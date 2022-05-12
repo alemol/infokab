@@ -2,6 +2,7 @@ package mx.geoint.ParseXML;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.xml.sax.SAXException;
 
@@ -10,23 +11,19 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 public class ParseXML {
-    public static void main(String [] arg) {
+    String filePath = "";
+    ParseHandler parseHandler = new ParseHandler();
+
+    public ParseXML(String path) {
+        filePath = path;
+    }
+
+    public void read() {
         try{
-            String filePath = "src/main/resources/eligio_uikab_mena.eaf";
             File inputFile = new File(filePath);
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
-            ParseHandler parseHandler = new ParseHandler();
             saxParser.parse(inputFile, parseHandler);
-
-            parseHandler.getTranscripcion();
-            parseHandler.getTraduccion();
-            parseHandler.getGlosado();
-            parseHandler.getMorfemas();
-
-            //Gson gson = new Gson();
-            //String json = gson.toJson(parseHandler);
-            //System.out.println("Transcripción: " + json);
         } catch (ParserConfigurationException e) {
             throw new RuntimeException(e);
         } catch (SAXException e) {
@@ -34,5 +31,21 @@ public class ParseXML {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<Tier> getTierTranscription(){
+        return parseHandler.getTranscripcion();
+    }
+
+    public List<Tier> getTierTraduccion(){
+        return parseHandler.getTraduccion();
+    }
+
+    public List<Tier> getTierGlosado(){
+        return parseHandler.getGlosado();
+    }
+
+    public List<Tier> getTierMorfemas(){
+        return parseHandler.getMorfemas();
     }
 }

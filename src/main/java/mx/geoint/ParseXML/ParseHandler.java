@@ -177,25 +177,38 @@ public class ParseHandler extends DefaultHandler{
         return tierList.get(latestTierIndex);
     }
 
-    public void getTranscripcion(){
-        Gson gson = new Gson();
-        String json = gson.toJson(transcripcion);
-        System.out.println("Transcripción: " + json);
+    public List<Tier> getTranscripcion(){
+        return transcripcion;
     }
 
-    public void getTraduccion(){
+    public List<Tier> getTraduccion(){
+        return traduccion;
+    }
+    public List<Tier> getGlosado(){
+        return glosado;
+    }
+    public List<Tier> getMorfemas(){
+        return morfemas;
+    }
+
+    public void printTranscripcion(){
+        Gson gson = new Gson();
+        String json = gson.toJson(transcripcion);
+        System.out.println("Traducción: " + json);
+    }
+    public void printTraduccion(){
         Gson gson = new Gson();
         String json = gson.toJson(traduccion);
         System.out.println("Traducción: " + json);
     }
 
-    public void getGlosado(){
+    public void printGlosado(){
         Gson gson = new Gson();
         String json = gson.toJson(glosado);
         System.out.println("Glosado: " + json);
     }
 
-    public void getMorfemas(){
+    public void printMorfemas(){
         Gson gson = new Gson();
         String json = gson.toJson(morfemas);
         System.out.println("Morfemas: " + json);
