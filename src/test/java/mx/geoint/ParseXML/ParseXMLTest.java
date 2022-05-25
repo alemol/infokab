@@ -3,41 +3,25 @@ package mx.geoint.ParseXML;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import mx.geoint.ParseXML.Tier;
-
-import java.util.ArrayList;
-import java.util.List;
-
 class ParseXMLTest {
     private ParseXML parseXML;
-    private List<Tier> transcripcion;
-    private List<Tier> traduccion;
-    private List<Tier> glosado;
-    private List<Tier> morfemas;
 
-    public void initParseXML(){
-        parseXML = new ParseXML("src/main/resources/eligio_uikab_mena.eaf");
-        transcripcion = new ArrayList<>();
-        traduccion = new ArrayList<>();
-        glosado = new ArrayList<>();
-        morfemas = new ArrayList<>();
+    public void initParseXML(String tier_id){
+        parseXML = new ParseXML("src/main/resources/eligio_uikab_mena.eaf", tier_id);
 
     }
 
     @Test
     void read() {
-        initParseXML();
-        assertTrue("src/main/resources/eligio_uikab_mena.eaf" == parseXML.filePath);
+        initParseXML("Transcripción");
+        assertSame("src/main/resources/eligio_uikab_mena.eaf",parseXML.filePath);
     }
 
     @Test
     void getInitTier() {
-        initParseXML();
+        initParseXML("Transcripción");
         assertAll(
-                () -> assertEquals(null, parseXML.getTierTranscription()),
-                () -> assertEquals(null, parseXML.getTierTraduccion()),
-                () -> assertEquals(null, parseXML.getTierGlosado()),
-                () -> assertEquals(null, parseXML.getTierMorfemas())
+                () -> assertNull(parseXML.getTier())
         );
     }
 
@@ -52,16 +36,16 @@ class ParseXMLTest {
         // "ANNOTATION_VALUE":"Le tomojchi’o’, tak le chéen u yawat le kaaxo’ob, yéetel áak’abo’,",
         // "DIFF_TIME":4760.0
         // }
-        initParseXML();
+        initParseXML("Transcripción");
         parseXML.read();
         assertAll(
-            () -> assertEquals("a5", parseXML.getTierTranscription().get(0).ANNOTATION_ID),
-            () -> assertEquals("ts1", parseXML.getTierTranscription().get(0).TIME_SLOT_REF1),
-            () -> assertEquals("34240", parseXML.getTierTranscription().get(0).TIME_VALUE1),
-            () -> assertEquals("ts5", parseXML.getTierTranscription().get(0).TIME_SLOT_REF2),
-            () -> assertEquals("39000", parseXML.getTierTranscription().get(0).TIME_VALUE2),
-            () -> assertEquals("Le tomojchi’o’, tak le chéen u yawat le kaaxo’ob, yéetel áak’abo’,", parseXML.getTierTranscription().get(0).ANNOTATION_VALUE),
-            () -> assertEquals(4760.0, parseXML.getTierTranscription().get(0).DIFF_TIME)
+            () -> assertEquals("a5", parseXML.getTier().get(0).ANNOTATION_ID),
+            () -> assertEquals("ts1", parseXML.getTier().get(0).TIME_SLOT_REF1),
+            () -> assertEquals("34240", parseXML.getTier().get(0).TIME_VALUE1),
+            () -> assertEquals("ts5", parseXML.getTier().get(0).TIME_SLOT_REF2),
+            () -> assertEquals("39000", parseXML.getTier().get(0).TIME_VALUE2),
+            () -> assertEquals("Le tomojchi’o’, tak le chéen u yawat le kaaxo’ob, yéetel áak’abo’,", parseXML.getTier().get(0).ANNOTATION_VALUE),
+            () -> assertEquals(4760.0, parseXML.getTier().get(0).DIFF_TIME)
         );
     }
 
@@ -76,16 +60,16 @@ class ParseXMLTest {
         // "ANNOTATION_VALUE":"El mal agüero se da incluso con el puro grito de las gallinas por la noche,",
         // "DIFF_TIME":4760.0
         // }
-        initParseXML();
+        initParseXML("Traducción");
         parseXML.read();
         assertAll(
-                () -> assertEquals("a14", parseXML.getTierTraduccion().get(0).ANNOTATION_ID),
-                () -> assertEquals("ts2", parseXML.getTierTraduccion().get(0).TIME_SLOT_REF1),
-                () -> assertEquals("34240", parseXML.getTierTraduccion().get(0).TIME_VALUE1),
-                () -> assertEquals("ts6", parseXML.getTierTraduccion().get(0).TIME_SLOT_REF2),
-                () -> assertEquals("39000", parseXML.getTierTraduccion().get(0).TIME_VALUE2),
-                () -> assertEquals("El mal agüero se da incluso con el puro grito de las gallinas por la noche,", parseXML.getTierTraduccion().get(0).ANNOTATION_VALUE),
-                () -> assertEquals(4760.0, parseXML.getTierTraduccion().get(0).DIFF_TIME)
+                () -> assertEquals("a14", parseXML.getTier().get(0).ANNOTATION_ID),
+                () -> assertEquals("ts2", parseXML.getTier().get(0).TIME_SLOT_REF1),
+                () -> assertEquals("34240", parseXML.getTier().get(0).TIME_VALUE1),
+                () -> assertEquals("ts6", parseXML.getTier().get(0).TIME_SLOT_REF2),
+                () -> assertEquals("39000", parseXML.getTier().get(0).TIME_VALUE2),
+                () -> assertEquals("El mal agüero se da incluso con el puro grito de las gallinas por la noche,", parseXML.getTier().get(0).ANNOTATION_VALUE),
+                () -> assertEquals(4760.0, parseXML.getTier().get(0).DIFF_TIME)
         );
     }
 
@@ -100,16 +84,16 @@ class ParseXMLTest {
         // "DIFF_TIME":4760.0
         // }
 
-        initParseXML();
+        initParseXML("Glosado");
         parseXML.read();
         assertAll(
-                () -> assertEquals("a23", parseXML.getTierGlosado().get(0).ANNOTATION_ID),
-                () -> assertEquals("ts3", parseXML.getTierGlosado().get(0).TIME_SLOT_REF1),
-                () -> assertEquals("34240", parseXML.getTierGlosado().get(0).TIME_VALUE1),
-                () -> assertEquals("ts7", parseXML.getTierGlosado().get(0).TIME_SLOT_REF2),
-                () -> assertEquals("39000", parseXML.getTierGlosado().get(0).TIME_VALUE2),
-                () -> assertEquals("DM mal.agüero=D2 hasta DM sólo ERG.3SG EP-grito DM gallina-PL con-ABS.3SG noche=D2", parseXML.getTierGlosado().get(0).ANNOTATION_VALUE),
-                () -> assertEquals(4760.0, parseXML.getTierGlosado().get(0).DIFF_TIME)
+                () -> assertEquals("a23", parseXML.getTier().get(0).ANNOTATION_ID),
+                () -> assertEquals("ts3", parseXML.getTier().get(0).TIME_SLOT_REF1),
+                () -> assertEquals("34240", parseXML.getTier().get(0).TIME_VALUE1),
+                () -> assertEquals("ts7", parseXML.getTier().get(0).TIME_SLOT_REF2),
+                () -> assertEquals("39000", parseXML.getTier().get(0).TIME_VALUE2),
+                () -> assertEquals("DM mal.agüero=D2 hasta DM sólo ERG.3SG EP-grito DM gallina-PL con-ABS.3SG noche=D2", parseXML.getTier().get(0).ANNOTATION_VALUE),
+                () -> assertEquals(4760.0, parseXML.getTier().get(0).DIFF_TIME)
         );
     }
 
@@ -123,17 +107,16 @@ class ParseXMLTest {
         // "ANNOTATION_VALUE":"Le tomojchi’=o’, tak le chéen u y-awat le kaax-o’ob, yéetel-ø áak’ab=o’,",
         // "DIFF_TIME":4760.0
         // }
-        initParseXML();
+        initParseXML("Morfemas");
         parseXML.read();
-        assertEquals(morfemas.getClass().getSimpleName(), parseXML.getTierMorfemas().getClass().getSimpleName());
         assertAll(
-                () -> assertEquals("a32", parseXML.getTierMorfemas().get(0).ANNOTATION_ID),
-                () -> assertEquals("ts4", parseXML.getTierMorfemas().get(0).TIME_SLOT_REF1),
-                () -> assertEquals("34240", parseXML.getTierMorfemas().get(0).TIME_VALUE1),
-                () -> assertEquals("ts8", parseXML.getTierMorfemas().get(0).TIME_SLOT_REF2),
-                () -> assertEquals("39000", parseXML.getTierMorfemas().get(0).TIME_VALUE2),
-                () -> assertEquals("Le tomojchi’=o’, tak le chéen u y-awat le kaax-o’ob, yéetel-ø áak’ab=o’,", parseXML.getTierMorfemas().get(0).ANNOTATION_VALUE),
-                () -> assertEquals(4760.0, parseXML.getTierMorfemas().get(0).DIFF_TIME)
+                () -> assertEquals("a32", parseXML.getTier().get(0).ANNOTATION_ID),
+                () -> assertEquals("ts4", parseXML.getTier().get(0).TIME_SLOT_REF1),
+                () -> assertEquals("34240", parseXML.getTier().get(0).TIME_VALUE1),
+                () -> assertEquals("ts8", parseXML.getTier().get(0).TIME_SLOT_REF2),
+                () -> assertEquals("39000", parseXML.getTier().get(0).TIME_VALUE2),
+                () -> assertEquals("Le tomojchi’=o’, tak le chéen u y-awat le kaax-o’ob, yéetel-ø áak’ab=o’,", parseXML.getTier().get(0).ANNOTATION_VALUE),
+                () -> assertEquals(4760.0, parseXML.getTier().get(0).DIFF_TIME)
         );
     }
 }

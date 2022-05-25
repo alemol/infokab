@@ -2,7 +2,12 @@ package mx.geoint.ParseXML;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.xml.sax.SAXException;
 
@@ -12,10 +17,11 @@ import javax.xml.parsers.SAXParserFactory;
 
 public class ParseXML {
     String filePath = "";
-    ParseHandler parseHandler = new ParseHandler();
+    ParseHandler parseHandler;
 
-    public ParseXML(String path) {
+    public ParseXML(String path, String tier_id) {
         filePath = path;
+        parseHandler = new ParseHandler(tier_id);
     }
 
     public void read() {
@@ -33,19 +39,7 @@ public class ParseXML {
         }
     }
 
-    public List<Tier> getTierTranscription(){
-        return parseHandler.getTranscripcion();
-    }
-
-    public List<Tier> getTierTraduccion(){
-        return parseHandler.getTraduccion();
-    }
-
-    public List<Tier> getTierGlosado(){
-        return parseHandler.getGlosado();
-    }
-
-    public List<Tier> getTierMorfemas(){
-        return parseHandler.getMorfemas();
+    public List<Tier> getTier(){
+        return parseHandler.getTier();
     }
 }
