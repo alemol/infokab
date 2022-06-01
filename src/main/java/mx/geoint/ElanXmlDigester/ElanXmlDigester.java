@@ -5,6 +5,7 @@ import mx.geoint.FFmpeg.FFmpeg;
 import mx.geoint.ParseXML.ParseXML;
 import mx.geoint.ParseXML.Tier;
 
+import java.io.FileWriter;
 import java.util.List;
 
 public class ElanXmlDigester {
@@ -27,14 +28,15 @@ public class ElanXmlDigester {
                     (Integer.parseInt(tier.TIME_VALUE1)/1000),
                     (tier.DIFF_TIME/1000)+.5,
                     tier.ANNOTATION_ID+"_"+tier_id+"_"+tier.TIME_SLOT_REF1+"_"+tier.TIME_SLOT_REF2+"_"+tier.TIME_VALUE1+"_"+tier.TIME_VALUE2+"_eligio_uikab_mena.wav");
-            System.out.println(creado);
+            if(creado==true){
+                Gson gson = new Gson();
+                FileWriter file = new FileWriter(tier.ANNOTATION_ID+".json");
+                file.write(gson.toJson(tier));
+                file.close();
+            }
         }
     }
 
 }
 
-    /*Gson gson = new Gson();
-    FileWriter file = new
-            FileWriter("path/"+tier.ANNOTATION_ID+".json");
-            file.write(gson.toJson(tier));
-                    file.close();*/
+    /*;*/
