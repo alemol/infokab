@@ -54,17 +54,16 @@ public class FFmpeg {
                     InputStreamReader(p.getErrorStream()));
             // Recorremos la salida e imprimimos los resultados
             while ((s = stdInput.readLine()) != null) {
-                System.out.println(s);
-                creado = true;
+                //System.out.println(s);
             }
             // Recorremos la salida e imprimimos los errores.
             while ((s = stdError.readLine()) != null) {
-                System.out.println(s);
-                creado = false;
+                //System.out.println(s);
             }
-
+            creado = true;
             //System.exit(0);
         } catch (IOException e) {
+            creado = false;
             System.out.println("Ocurrió un error: ");
             e.printStackTrace();
             System.exit(-1);
