@@ -53,6 +53,11 @@ public class Lucene{
 
             String reader = new String(Files.readAllBytes(Paths.get(String.valueOf(file))));
             document.add(new TextField(FIELD_CONTENTS, reader, Field.Store.YES));
+            //FileReader reader = new FileReader(file);
+            //Gson gson = new Gson();
+            //Tier tier = gson.fromJson(reader, Tier.class);
+            //System.out.println("Value: "+ tier.ANNOTATION_VALUE);
+            //document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE, Field.Store.YES));
 
             indexWriter.addDocument(document);
         }

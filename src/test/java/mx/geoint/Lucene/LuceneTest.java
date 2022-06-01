@@ -17,12 +17,13 @@ class LuceneTest {
     @Test
     void createIndex() throws IOException {
         initLucene();
-        lucene.createIndex("/home/alejandro/Documentos/projects/infokab-backend/Files/file_to_index");
+        lucene.createIndex("/home/alejandro/Documentos/projects/infokab-backend/Files/file_to_index_json");
     }
 
     @Test
     void searchIndex() throws IOException, ParseException {
         initLucene();
-        List<Document> docs = lucene.searchIndex("mutación de virus");
+        List<Document> docs = lucene.searchIndex("weye\u0027 bajux");
+        //List<Document> docs = lucene.searchIndex("tsíimino’ob");
     }
 }
