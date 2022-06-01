@@ -25,7 +25,8 @@ public class FFmpeg {
      * - duration: es el tiempo que va a tardar el fragmento de video (se obtiene restando (TIME_VALUE2 - TIME_VALUE1)/1000).
      * - output: es el nombre con el cual se va a guardar el nuevo fragmento.
      * */
-    public void cortador(String source, double start, double duration, String output) {
+    public boolean cortador(String source, double start, double duration, String output) {
+        boolean creado = false;
         // Metemos la función en un try catch para manejar los errores sin interrumpir la ejecución.
         try {
             // Comprobamos si existe un archivo cortado con el mismo nomnbre, si existe mandamos a llamar a la función que lo elimina.
@@ -54,10 +55,12 @@ public class FFmpeg {
             // Recorremos la salida e imprimimos los resultados
             while ((s = stdInput.readLine()) != null) {
                 System.out.println(s);
+                creado = true;
             }
             // Recorremos la salida e imprimimos los errores.
             while ((s = stdError.readLine()) != null) {
                 System.out.println(s);
+                creado = false;
             }
 
             //System.exit(0);
@@ -66,6 +69,7 @@ public class FFmpeg {
             e.printStackTrace();
             System.exit(-1);
         }
+        return creado;
     }
 
     /* Método para comprobar si existe un archivo con el mismo nombre */
