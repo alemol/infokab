@@ -34,9 +34,16 @@ public class Lucene{
 
     Lucene(){}
 
-    public static void createIndex(String path_files_to_index_directory) throws IOException {
+    public static void createIndex(String path_files_to_index_directory, boolean create) throws IOException {
         Analyzer analyzer = new StandardAnalyzer();
         IndexWriterConfig config = new IndexWriterConfig(analyzer);
+
+        if(create){
+            config.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
+        }else{
+            config.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
+        }
+
         Directory indexDirectory = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
         IndexWriter indexWriter = new IndexWriter(indexDirectory, config);
 
