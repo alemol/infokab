@@ -1,6 +1,8 @@
 package mx.geoint.ElanXmlDigester;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ElanXmlDigesterTest {
@@ -11,7 +13,7 @@ class ElanXmlDigesterTest {
     }
 
     @Test
-    void parse_tier(){
+    void parse_tier() throws IOException {
         //{
         // "ANNOTATION_ID":"a5",
         // "TIME_SLOT_REF1":"ts1",
@@ -22,7 +24,7 @@ class ElanXmlDigesterTest {
         // "DIFF_TIME":4760.0
         // }
         initElanXmlDigester();
-        elanXmlDigester.parse_tier("Transcripción", false, false);
+            elanXmlDigester.parse_tier("Transcripción", false, false);
 
         assertAll(
                 () -> assertEquals("a5", elanXmlDigester.getTier.get(0).ANNOTATION_ID),
@@ -36,7 +38,7 @@ class ElanXmlDigesterTest {
     }
 
     @Test
-    void getTierTraduccion() {
+    void getTierTraduccion() throws IOException {
         //{
         // "ANNOTATION_ID":"a14",
         // "TIME_SLOT_REF1":"ts2",
@@ -60,7 +62,7 @@ class ElanXmlDigesterTest {
     }
 
     @Test
-    void getTierGlosado() {//{
+    void getTierGlosado() throws IOException {//{
         // "ANNOTATION_ID":"a23",
         // "TIME_SLOT_REF1":"ts3",
         // "TIME_VALUE1":"34240",
@@ -84,7 +86,7 @@ class ElanXmlDigesterTest {
     }
 
     @Test
-    void getTierMorfemas() {
+    void getTierMorfemas() throws IOException {
         // "ANNOTATION_ID":"a32",
         // "TIME_SLOT_REF1":"ts4",
         // "TIME_VALUE1":"34240",
