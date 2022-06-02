@@ -30,11 +30,11 @@ public class ElanXmlDigester {
             String file_name = format_name(tier, tier_id, path, type_path);
             String file_name_json = format_name(tier, tier_id, path,"json");
 
-            boolean creado = ffmpeg.cortador(path,
+            boolean creado = ffmpeg.cortador(path+"."+type_path,
                     (Integer.parseInt(tier.TIME_VALUE1)/1000),
                     (tier.DIFF_TIME/1000)+.5,
                     file_name);
-
+            System.out.println(creado);
             if(creado==true){
                 Gson gson = new Gson();
                 FileWriter file = new FileWriter(pathSystem.DIRECTORY_FILES_JSON+file_name_json);

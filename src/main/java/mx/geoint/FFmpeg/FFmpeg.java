@@ -58,9 +58,16 @@ public class FFmpeg {
             }
             // Recorremos la salida e imprimimos los errores.
             while ((s = stdError.readLine()) != null) {
-                //System.out.println(s);
+                if(s.indexOf("size=")==0) {
+                    //System.out.println(s.indexOf("size=")+" "+s);
+                    creado = true;
+                }
+                if(s.indexOf("No such file or directory")!=-1){
+                    //System.out.println(s+" "+s.indexOf("No such file or directory"));
+                    creado = false;
+                }
+
             }
-            creado = true;
             //System.exit(0);
         } catch (IOException e) {
             creado = false;
