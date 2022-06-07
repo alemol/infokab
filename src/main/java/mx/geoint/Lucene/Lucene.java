@@ -1,5 +1,7 @@
 package mx.geoint.Lucene;
 
+import com.google.gson.Gson;
+import mx.geoint.ParseXML.Tier;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -19,8 +21,8 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,13 +60,13 @@ public class Lucene{
             String name = file.getName();
             document.add(new StringField(FIELD_NAME, name, Field.Store.YES));
 
-            String reader = new String(Files.readAllBytes(Paths.get(String.valueOf(file))));
-            document.add(new TextField(FIELD_CONTENTS, reader, Field.Store.YES));
-            //FileReader reader = new FileReader(file);
-            //Gson gson = new Gson();
-            //Tier tier = gson.fromJson(reader, Tier.class);
-            //System.out.println("Value: "+ tier.ANNOTATION_VALUE);
-            //document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE, Field.Store.YES));
+            //String reader = new String(Files.readAllBytes(Paths.get(String.valueOf(file))));
+            //document.add(new TextField(FIELD_CONTENTS, reader, Field.Store.YES));
+            FileReader reader = new FileReader(file);
+            Gson gson = new Gson();
+            Tier tier = gson.fromJson(reader, Tier.class);
+            System.out.println("Value: "+ tier.ANNOTATION_VALUE);
+            document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE, Field.Store.YES));
 
             indexWriter.addDocument(document);
         }
