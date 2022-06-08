@@ -28,13 +28,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lucene{
-    public static final String INDEX_DIRECTORY = "/home/alejandro/Documentos/projects/infokab-backend/Files/Index";
+    public static final String INDEX_DIRECTORY = "/home/jose/Documentos/CentroGeo/Infokab/Files/index/";
 
     public static final String FIELD_PATH = "path";
     public static final String FIELD_NAME = "filename";
     public static final String FIELD_CONTENTS = "contents";
 
-    Lucene(){}
+    public Lucene(){}
+
 
     public static void createIndex(String path_files_to_index_directory, boolean create) throws IOException {
         Analyzer analyzer = new StandardAnalyzer();
