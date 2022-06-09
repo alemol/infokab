@@ -9,9 +9,7 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
-import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.index.IndexWriter;
-import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.index.*;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
@@ -27,21 +25,35 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Lucene{
-    public static final String INDEX_DIRECTORY = pathSystem.DIRECTORY_INDEX_LUCENE;
+    public String INDEX_DIRECTORY;
 
     public static final String FIELD_PATH = "path";
     public static final String FIELD_NAME = "filename";
     public static final String FIELD_CONTENTS = "contents";
 
-    public Lucene(){}
+    private Analyzer analyzer;
+    private IndexWriterConfig config;
+    private Directory indexDirectory;
+    private IndexWriter indexWriter;
+    public Lucene(){
+        INDEX_DIRECTORY = pathSystem.DIRECTORY_INDEX_LUCENE;
+    }
+    public Lucene(String path){
+        INDEX_DIRECTORY = path;
+    }
 
-
-    public static void createIndex(String path_files_to_index_directory, boolean create) throws IOException {
-        Analyzer analyzer = new StandardAnalyzer();
-        IndexWriterConfig config = new IndexWriterConfig(analyzer);
+    /*
+     * Inicializa el proceso para poder agregar nuevos documentos
+     * @param create True si se hara de cero el indice, fals para indexar nuevo documentos
+     * @return
+     **/
+    public void initConfig(boolean create) throws IOException {
+        analyzer = new StandardAnalyzer();
+        config = new IndexWriterConfig(analyzer);
 
         if(create){
             config.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
@@ -49,19 +61,34 @@ public class Lucene{
             config.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
         }
 
-        Directory indexDirectory = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
-        IndexWriter indexWriter = new IndexWriter(indexDirectory, config);
+        //System.out.println("directory"+ INDEX_DIRECTORY);
+        indexDirectory = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
 
-        if(indexWriter == null){
-            throw new IllegalArgumentException("IndexWrite instance must not be null");
+        statusIndexWrite();
+    }
+
+    /*
+     * Inicializa el indexWrite si no existe en caso contrario regresa el ya inicializado
+     * @param
+     * @return indexWrite para agregar documentos al indices
+     **/
+    public IndexWriter statusIndexWrite() throws IOException {
+        if(indexWriter == null || !indexWriter.isOpen()){
+            indexWriter = new IndexWriter(indexDirectory, config);
         }
 
-        if(!indexWriter.isOpen()){
-            throw new IllegalArgumentException("IndexWrite instance must be open");
-        }
+        return indexWriter;
+    }
 
+    /*
+     * Indexa los documentos del directory proporcionado
+     * @param path_files_to_index_directory Path de los json a indexar
+     * @return
+     **/
+    public void createIndex(String path_files_to_index_directory) throws IOException {
         File dir = new File(path_files_to_index_directory);
         File[] files = dir.listFiles();
+
         for (File file : files) {
             Document document = new Document();
 
@@ -71,12 +98,9 @@ public class Lucene{
             String name = file.getName();
             document.add(new StringField(FIELD_NAME, name, Field.Store.YES));
 
-            //String reader = new String(Files.readAllBytes(Paths.get(String.valueOf(file))));
-            //document.add(new TextField(FIELD_CONTENTS, reader, Field.Store.YES));
             FileReader reader = new FileReader(file);
             Gson gson = new Gson();
             Tier tier = gson.fromJson(reader, Tier.class);
-            System.out.println("Value: "+ tier.ANNOTATION_VALUE);
             document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE, Field.Store.YES));
 
             indexWriter.addDocument(document);
@@ -85,9 +109,15 @@ public class Lucene{
         indexWriter.close();
     }
 
-    public static List<Document> searchIndex(String searchString) throws IOException, ParseException {
+    /*
+     * Realizar una busqueda para un directorio en especifico (Verificar si se elimina)
+     * @param searchString Texto a buscar en los indices
+     * @return List<Document> lista de documentos encontrados
+     **/
+    public List<Document> searchIndex(String searchString) throws IOException, ParseException {
         Analyzer analyzer = new StandardAnalyzer();
         System.out.println("Searching for '" + searchString + "'");
+
         Directory directory = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
         DirectoryReader indexReader = DirectoryReader.open(directory);
         IndexSearcher indexSearcher = new IndexSearcher(indexReader);
@@ -101,13 +131,60 @@ public class Lucene{
         for (ScoreDoc scoreDoc: hits.scoreDocs) {
             int docId = scoreDoc.doc;
             float docScore = scoreDoc.score;
-            Document hitDoc = indexReader.document(docId);
+            Document hitDoc = indexSearcher.doc(docId);
             System.out.println("doc="+docId +" score=" + docScore +" path="+ hitDoc.get(FIELD_PATH));
             docs.add(hitDoc);
         }
 
         indexReader.close();
         directory.close();
+        return docs;
+    }
+
+    /*
+     * Realiza la busqueda de un texto en los indices de la caperta raiz DIRECTORY_INDEX_GENERAL
+     * @param searchString texto a buscar
+     * @return List<Document> Lista de documentos encontrados
+     **/
+    public List<Document> searchMultipleIndex(String searchString) throws IOException, ParseException {
+        List<IndexReader> indexReaders = new ArrayList<>();
+
+        Analyzer analyzer = new StandardAnalyzer();
+        //System.out.println("Searching for '" + searchString + "'");
+
+        //Se Obtiene todos los indices generados en la caperta DIRECTORY_INDEX_GENERAL
+        File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL);
+        File[] files = dir.listFiles();
+        for (File file : files) {
+            if(file.isDirectory()){
+                Directory directory = FSDirectory.open(Paths.get(file.getCanonicalPath()));
+                //Condición para no tomar los directorios que estan agregando al momento
+                if(DirectoryReader.indexExists(directory)){
+                    indexReaders.add(DirectoryReader.open(directory));
+                }
+            }
+        }
+
+        //Creacion de indexSearch con muchos indices
+        MultiReader multiReader = new MultiReader(indexReaders.toArray(new IndexReader[indexReaders.size()]));
+        IndexSearcher indexSearcher = new IndexSearcher(multiReader);
+
+        QueryParser queryParser = new QueryParser(FIELD_CONTENTS, analyzer);
+        Query new_query = queryParser.parse(searchString);
+        TopDocs hits = indexSearcher.search(new_query, 10);
+        System.out.println("totalHits: " + hits.totalHits);
+
+        //Obtención de información de los documentos encontrados
+        List<Document> docs = new ArrayList<>();
+        for (ScoreDoc scoreDoc: hits.scoreDocs) {
+            int docId = scoreDoc.doc;
+            float docScore = scoreDoc.score;
+
+            Document hitDoc = indexSearcher.doc(docId);
+            docs.add(hitDoc);
+        }
+
+        multiReader.close();
         return docs;
     }
 }

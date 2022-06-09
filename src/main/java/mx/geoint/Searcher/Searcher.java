@@ -26,8 +26,7 @@ public class Searcher {
      * @return          las incidencias con el resultado de la búsqueda
      **/
     public List<Document> find(String text) throws IOException, ParseException {
-        List<Document> docs = lucene.searchIndex("weye\u0027 bajux");
-
+        List<Document> docs = lucene.searchMultipleIndex("weye\u0027 bajux");
         return docs;
     }
 }
