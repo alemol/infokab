@@ -2,6 +2,7 @@ package mx.geoint.Lucene;
 
 import com.google.gson.Gson;
 import mx.geoint.ParseXML.Tier;
+import mx.geoint.pathSystem;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -19,6 +20,7 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.store.Lock;
 
 import java.io.File;
 import java.io.FileReader;
@@ -28,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lucene{
-    public static final String INDEX_DIRECTORY = "/home/jose/Documentos/CentroGeo/Infokab/Files/index/";
+    public static final String INDEX_DIRECTORY = pathSystem.DIRECTORY_INDEX_LUCENE;
 
     public static final String FIELD_PATH = "path";
     public static final String FIELD_NAME = "filename";
@@ -49,6 +51,14 @@ public class Lucene{
 
         Directory indexDirectory = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
         IndexWriter indexWriter = new IndexWriter(indexDirectory, config);
+
+        if(indexWriter == null){
+            throw new IllegalArgumentException("IndexWrite instance must not be null");
+        }
+
+        if(!indexWriter.isOpen()){
+            throw new IllegalArgumentException("IndexWrite instance must be open");
+        }
 
         File dir = new File(path_files_to_index_directory);
         File[] files = dir.listFiles();
