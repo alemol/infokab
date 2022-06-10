@@ -25,9 +25,14 @@ public class Searcher {
      * @param   text    el texto que se quiere buscar
      * @return          las incidencias con el resultado de la búsqueda
      **/
-    public List<Document> find(String text) throws IOException, ParseException {
-        List<Document> docs = lucene.searchIndex("weye\u0027 bajux");
-
-        return docs;
+    public List<Document> find(String text) {
+        try{
+            List<Document> docs = lucene.searchIndex(text);
+            return docs;
+        } catch (IOException ex){
+            return null;
+        } catch (ParseException ex){
+            return null;
+        }
     }
 }

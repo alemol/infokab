@@ -17,7 +17,7 @@ class LuceneTest {
     @Test
     void createIndex() throws IOException {
         initLucene();
-        lucene.createIndex("/home/alejandro/Documentos/projects/infokab-backend/Files/file_to_index_json", true);
+        lucene.createIndex("/home/jose/Documentos/CentroGeo/Infokab/Files/file_to_index_json", true);
     }
 
     @Test
