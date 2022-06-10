@@ -14,7 +14,7 @@ public class SearcherService {
     @Autowired
     Searcher searcher;
 
-    public List<Document> findDocuments(String searchValue) throws IOException, ParseException {
+    public List<Document> findDocuments(String searchValue) {
         return searcher.find(searchValue);
     }
 }
