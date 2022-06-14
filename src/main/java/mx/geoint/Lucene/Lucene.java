@@ -48,7 +48,7 @@ public class Lucene{
 
     /*
      * Inicializa el proceso para poder agregar nuevos documentos
-     * @param create True si se hara de cero el indice, fals para indexar nuevo documentos
+     * @param create True si se hara de cero el indice, false para indexar nuevo documentos al indice existente
      * @return
      **/
     public void initConfig(boolean create) throws IOException {
@@ -68,7 +68,7 @@ public class Lucene{
     }
 
     /*
-     * Inicializa el indexWrite si no existe en caso contrario regresa el ya inicializado
+     * Inicializa el indexWrite si no existe, en caso contrario regresa el ya inicializado
      * @param
      * @return indexWrite para agregar documentos al indices
      **/
