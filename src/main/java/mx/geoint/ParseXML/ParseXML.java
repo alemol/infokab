@@ -19,11 +19,20 @@ public class ParseXML {
     String filePath = "";
     ParseHandler parseHandler;
 
+    /*
+     * Inicializa la instancia con el path y la clase ParseHandler
+     * @param
+     *  path        string del path del archivo .eaf
+     *  tier_id     tipo de tier a obtner del archivo .eaf
+     **/
     public ParseXML(String path, String tier_id) {
         filePath = path;
         parseHandler = new ParseHandler(tier_id);
     }
 
+    /*
+     * Leer el archivo .eaf y obtiene por medio el metodo de SAXParser el tier_id con sus tiempos
+     **/
     public void read() {
         try{
             File inputFile = new File(filePath);
@@ -39,6 +48,10 @@ public class ParseXML {
         }
     }
 
+    /*
+     * Regresar una lista de la clase tier que se obtuvo de parse del archivo .eaf
+     *  List<Tier> regresa una lista de tier con su anotacacion y sus intervalos de tiempo
+     **/
     public List<Tier> getTier(){
         return parseHandler.getTier();
     }
