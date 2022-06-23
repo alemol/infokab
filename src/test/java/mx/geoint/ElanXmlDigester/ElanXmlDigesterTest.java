@@ -9,7 +9,8 @@ class ElanXmlDigesterTest {
     ElanXmlDigester elanXmlDigester;
 
     public void initElanXmlDigester(){
-        elanXmlDigester = new ElanXmlDigester("src/main/resources/eligio_uikab_mena.eaf");
+        elanXmlDigester = new ElanXmlDigester("src/main/resources/2015-01-09_1650_Entrevista_datos_espontáneos_Clementina.eaf");
+        //elanXmlDigester = new ElanXmlDigester("src/main/resources/eligio_uikab_mena.eaf");
     }
 
     @Test
@@ -24,17 +25,7 @@ class ElanXmlDigesterTest {
         // "DIFF_TIME":4760.0
         // }
         initElanXmlDigester();
-            elanXmlDigester.parse_tier("Transcripción", false, false);
-
-        assertAll(
-                () -> assertEquals("a5", elanXmlDigester.getTier.get(0).ANNOTATION_ID),
-                () -> assertEquals("ts1", elanXmlDigester.getTier.get(0).TIME_SLOT_REF1),
-                () -> assertEquals("34240", elanXmlDigester.getTier.get(0).TIME_VALUE1),
-                () -> assertEquals("ts5", elanXmlDigester.getTier.get(0).TIME_SLOT_REF2),
-                () -> assertEquals("39000", elanXmlDigester.getTier.get(0).TIME_VALUE2),
-                () -> assertEquals("Le tomojchi’o’, tak le chéen u yawat le kaaxo’ob, yéetel áak’abo’,", elanXmlDigester.getTier.get(0).ANNOTATION_VALUE),
-                () -> assertEquals(4760.0, elanXmlDigester.getTier.get(0).DIFF_TIME)
-        );
+        elanXmlDigester.parse_tier("Oración", true, false);
     }
 
     @Test

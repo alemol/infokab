@@ -2,24 +2,29 @@ package mx.geoint.ParseXML;
 
 import org.junit.jupiter.api.Test;
 
+import java.text.Normalizer;
+
 import static org.junit.jupiter.api.Assertions.*;
 class ParseXMLTest {
     private ParseXML parseXML;
 
     public void initParseXML(String tier_id){
-        parseXML = new ParseXML("src/main/resources/eligio_uikab_mena.eaf", tier_id);
+        String original_path_name = "src/main/resources/2015-01-09_1650_Entrevista_datos_espontáneos_Clementina.eaf";
+        String normalize = Normalizer.normalize(original_path_name, Normalizer.Form.NFD);
+        String path_name = normalize.replaceAll("[^\\p{ASCII}]", "");
+        parseXML = new ParseXML(path_name, tier_id);
 
     }
 
     @Test
     void read() {
-        initParseXML("Transcripción");
+        initParseXML("traduccion");
         assertSame("src/main/resources/eligio_uikab_mena.eaf",parseXML.filePath);
     }
 
     @Test
     void getInitTier() {
-        initParseXML("Transcripción");
+        initParseXML("traduccion");
         assertAll(
                 () -> assertNull(parseXML.getTier())
         );
@@ -36,8 +41,9 @@ class ParseXMLTest {
         // "ANNOTATION_VALUE":"Le tomojchi’o’, tak le chéen u yawat le kaaxo’ob, yéetel áak’abo’,",
         // "DIFF_TIME":4760.0
         // }
-        initParseXML("Transcripción");
+        initParseXML("traduccion");
         parseXML.read();
+
         assertAll(
             () -> assertEquals("a5", parseXML.getTier().get(0).ANNOTATION_ID),
             () -> assertEquals("ts1", parseXML.getTier().get(0).TIME_SLOT_REF1),
