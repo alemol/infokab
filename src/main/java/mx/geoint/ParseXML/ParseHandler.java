@@ -6,6 +6,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -129,7 +130,10 @@ public class ParseHandler extends DefaultHandler{
                 jsonObjectTimeOrder.addProperty(TIME_SLOT_ID, TIME_VALUE);
                 break;
             case TIER:
-                current_tier_id = attr.getValue("TIER_ID");
+                //current_tier_id = attr.getValue("TIER_ID");
+                String LINGUISTIC_TYPE_REF = attr.getValue("LINGUISTIC_TYPE_REF");
+                String normalize = Normalizer.normalize(LINGUISTIC_TYPE_REF.toLowerCase(), Normalizer.Form.NFD);
+                current_tier_id = normalize.replaceAll("[^\\p{ASCII}]", "");
                 break;
             case ALIGNABLE_ANNOTATION:
                 String ANNOTATION_ID = attr.getValue("ANNOTATION_ID");

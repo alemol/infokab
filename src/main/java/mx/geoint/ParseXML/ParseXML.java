@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.Normalizer;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -26,8 +27,10 @@ public class ParseXML {
      *  tier_id     tipo de tier a obtner del archivo .eaf
      **/
     public ParseXML(String path, String tier_id) {
+        String normalize = Normalizer.normalize(tier_id.toLowerCase(), Normalizer.Form.NFD);
+        String new_tier_id = normalize.replaceAll("[^\\p{ASCII}]", "");
         filePath = path;
-        parseHandler = new ParseHandler(tier_id);
+        parseHandler = new ParseHandler(new_tier_id);
     }
 
     /*

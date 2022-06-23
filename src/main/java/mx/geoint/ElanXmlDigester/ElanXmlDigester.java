@@ -8,6 +8,7 @@ import mx.geoint.pathSystem;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.Normalizer;
 import java.util.List;
 
 public class ElanXmlDigester {
@@ -19,7 +20,8 @@ public class ElanXmlDigester {
      * @param eaf_path path donde se localiza el archivo
      **/
     public ElanXmlDigester(String eaf_path){
-        filepath = eaf_path;
+        String normalize = Normalizer.normalize(eaf_path, Normalizer.Form.NFD);
+        filepath = normalize.replaceAll("[^\\p{ASCII}]", "");
     }
 
     /*
