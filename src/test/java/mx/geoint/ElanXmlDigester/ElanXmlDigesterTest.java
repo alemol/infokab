@@ -8,13 +8,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class ElanXmlDigesterTest {
     ElanXmlDigester elanXmlDigester;
 
-    public void initElanXmlDigester(){
+    public void initElanXmlDigesterVideo(){
         elanXmlDigester = new ElanXmlDigester("src/main/resources/2015-01-09_1650_Entrevista_datos_espontáneos_Clementina.eaf");
-        //elanXmlDigester = new ElanXmlDigester("src/main/resources/eligio_uikab_mena.eaf");
+    }
+    public void initElanXmlDigesterAudio(){
+        elanXmlDigester = new ElanXmlDigester("src/main/resources/eligio_uikab_mena.eaf");
     }
 
     @Test
-    void parse_tier() throws IOException {
+    void getTierTranscriptionAudio() throws IOException {
         //{
         // "ANNOTATION_ID":"a5",
         // "TIME_SLOT_REF1":"ts1",
@@ -24,12 +26,20 @@ class ElanXmlDigesterTest {
         // "ANNOTATION_VALUE":"Le tomojchi’o’, tak le chéen u yawat le kaaxo’ob, yéetel áak’abo’,",
         // "DIFF_TIME":4760.0
         // }
-        initElanXmlDigester();
-        elanXmlDigester.parse_tier("Oración", true, false);
+        initElanXmlDigesterAudio();
+        elanXmlDigester.parse_tier("oracion", false, false);
+        assertAll(
+                () -> assertEquals("a5", elanXmlDigester.getTier.get(0).ANNOTATION_ID),
+                () -> assertEquals("ts1", elanXmlDigester.getTier.get(0).TIME_SLOT_REF1),
+                () -> assertEquals("34240", elanXmlDigester.getTier.get(0).TIME_VALUE1),
+                () -> assertEquals("ts5", elanXmlDigester.getTier.get(0).TIME_SLOT_REF2),
+                () -> assertEquals("39000", elanXmlDigester.getTier.get(0).TIME_VALUE2),
+                () -> assertEquals("Le tomojchi’o’, tak le chéen u yawat le kaaxo’ob, yéetel áak’abo’,", elanXmlDigester.getTier.get(0).ANNOTATION_VALUE),
+                () -> assertEquals(4760.0, elanXmlDigester.getTier.get(0).DIFF_TIME)
+        );
     }
-
     @Test
-    void getTierTraduccion() throws IOException {
+    void getTierTraduccionAudio() throws IOException {
         //{
         // "ANNOTATION_ID":"a14",
         // "TIME_SLOT_REF1":"ts2",
@@ -39,7 +49,7 @@ class ElanXmlDigesterTest {
         // "ANNOTATION_VALUE":"El mal agüero se da incluso con el puro grito de las gallinas por la noche,",
         // "DIFF_TIME":4760.0
         // }
-        initElanXmlDigester();
+        initElanXmlDigesterAudio();
         elanXmlDigester.parse_tier("Traducción", false, false);
         assertAll(
                 () -> assertEquals("a14", elanXmlDigester.getTier.get(0).ANNOTATION_ID),
@@ -53,7 +63,7 @@ class ElanXmlDigesterTest {
     }
 
     @Test
-    void getTierGlosado() throws IOException {//{
+    void getTierGlosadoAudio() throws IOException {//{
         // "ANNOTATION_ID":"a23",
         // "TIME_SLOT_REF1":"ts3",
         // "TIME_VALUE1":"34240",
@@ -63,7 +73,7 @@ class ElanXmlDigesterTest {
         // "DIFF_TIME":4760.0
         // }
 
-        initElanXmlDigester();
+        initElanXmlDigesterAudio();
         elanXmlDigester.parse_tier("Glosado", false, false);
         assertAll(
                 () -> assertEquals("a23", elanXmlDigester.getTier.get(0).ANNOTATION_ID),
@@ -77,7 +87,7 @@ class ElanXmlDigesterTest {
     }
 
     @Test
-    void getTierMorfemas() throws IOException {
+    void getTierMorfemasAudio() throws IOException {
         // "ANNOTATION_ID":"a32",
         // "TIME_SLOT_REF1":"ts4",
         // "TIME_VALUE1":"34240",
@@ -86,7 +96,7 @@ class ElanXmlDigesterTest {
         // "ANNOTATION_VALUE":"Le tomojchi’=o’, tak le chéen u y-awat le kaax-o’ob, yéetel-ø áak’ab=o’,",
         // "DIFF_TIME":4760.0
         // }
-        initElanXmlDigester();
+        initElanXmlDigesterAudio();
         elanXmlDigester.parse_tier("Morfemas", false, false);
         assertAll(
                 () -> assertEquals("a32", elanXmlDigester.getTier.get(0).ANNOTATION_ID),
@@ -96,6 +106,102 @@ class ElanXmlDigesterTest {
                 () -> assertEquals("39000", elanXmlDigester.getTier.get(0).TIME_VALUE2),
                 () -> assertEquals("Le tomojchi’=o’, tak le chéen u y-awat le kaax-o’ob, yéetel-ø áak’ab=o’,", elanXmlDigester.getTier.get(0).ANNOTATION_VALUE),
                 () -> assertEquals(4760.0, elanXmlDigester.getTier.get(0).DIFF_TIME)
+        );
+    }
+
+    //SECTION TEST FOR VIDEO
+    @Test
+    void getTierTraduccionVideo() throws IOException {
+        //{
+        // "ANNOTATION_ID":"a13",
+        // "TIME_SLOT_REF1":"ts2",
+        // "TIME_VALUE1":"21340",
+        // "TIME_SLOT_REF2":"ts4",
+        // "TIME_VALUE2":"22640",
+        // "ANNOTATION_VALUE":"Trae el bejuco para que la pegue",
+        // "DIFF_TIME":1300.0
+        // }
+        initElanXmlDigesterVideo();
+        elanXmlDigester.parse_tier("Traducción", false, false);
+        assertAll(
+                () -> assertEquals("a13", elanXmlDigester.getTier.get(0).ANNOTATION_ID),
+                () -> assertEquals("ts2", elanXmlDigester.getTier.get(0).TIME_SLOT_REF1),
+                () -> assertEquals("21340", elanXmlDigester.getTier.get(0).TIME_VALUE1),
+                () -> assertEquals("ts4", elanXmlDigester.getTier.get(0).TIME_SLOT_REF2),
+                () -> assertEquals("22640", elanXmlDigester.getTier.get(0).TIME_VALUE2),
+                () -> assertEquals("Trae el bejuco para que la pegue", elanXmlDigester.getTier.get(0).ANNOTATION_VALUE),
+                () -> assertEquals(1300.0, elanXmlDigester.getTier.get(0).DIFF_TIME)
+        );
+    }
+
+    @Test
+    void getTierGlosadoVideo() throws IOException {//{
+        // "ANNOTATION_ID":"a9",
+        // "TIME_SLOT_REF1":"ts2",
+        // "TIME_VALUE1":"21340",
+        // "TIME_SLOT_REF2":"ts4",
+        // "TIME_VALUE2":"22640",
+        // "ANNOTATION_VALUE":"Traer-DET bejuco-? HAB-1sg.A-pegar-? ",
+        // "DIFF_TIME":1300.0
+        // }
+
+        initElanXmlDigesterVideo();
+        elanXmlDigester.parse_tier("Glosado", false, false);
+        assertAll(
+                () -> assertEquals("a9", elanXmlDigester.getTier.get(0).ANNOTATION_ID),
+                () -> assertEquals("ts2", elanXmlDigester.getTier.get(0).TIME_SLOT_REF1),
+                () -> assertEquals("21340", elanXmlDigester.getTier.get(0).TIME_VALUE1),
+                () -> assertEquals("ts4", elanXmlDigester.getTier.get(0).TIME_SLOT_REF2),
+                () -> assertEquals("22640", elanXmlDigester.getTier.get(0).TIME_VALUE2),
+                () -> assertEquals("Traer-DET bejuco-? HAB-1sg.A-pegar-? ", elanXmlDigester.getTier.get(0).ANNOTATION_VALUE),
+                () -> assertEquals(1300.0, elanXmlDigester.getTier.get(0).DIFF_TIME)
+        );
+    }
+
+    @Test
+    void getTierMorfemasVideo() throws IOException {
+        // "ANNOTATION_ID":"a5",
+        // "TIME_SLOT_REF1":"ts2",
+        // "TIME_VALUE1":"21340",
+        // "TIME_SLOT_REF2":"ts4",
+        // "TIME_VALUE2":"22640",
+        // "ANNOTATION_VALUE":"Taas-e aak'-o' k-in-jats'ej",
+        // "DIFF_TIME":1300.0
+        // }
+        initElanXmlDigesterVideo();
+        elanXmlDigester.parse_tier("Morfemas", false, false);
+        assertAll(
+                () -> assertEquals("a5", elanXmlDigester.getTier.get(0).ANNOTATION_ID),
+                () -> assertEquals("ts2", elanXmlDigester.getTier.get(0).TIME_SLOT_REF1),
+                () -> assertEquals("21340", elanXmlDigester.getTier.get(0).TIME_VALUE1),
+                () -> assertEquals("ts4", elanXmlDigester.getTier.get(0).TIME_SLOT_REF2),
+                () -> assertEquals("22640", elanXmlDigester.getTier.get(0).TIME_VALUE2),
+                () -> assertEquals("Taas-e aak'-o' k-in-jats'ej", elanXmlDigester.getTier.get(0).ANNOTATION_VALUE),
+                () -> assertEquals(1300.0, elanXmlDigester.getTier.get(0).DIFF_TIME)
+        );
+    }
+
+    @Test
+    void getTierTranscriptionVideo() throws IOException {
+        //{
+        // "ANNOTATION_ID":"a1",
+        // "TIME_SLOT_REF1":"ts2",
+        // "TIME_VALUE1":"21340",
+        // "TIME_SLOT_REF2":"ts4",
+        // "TIME_VALUE2":"22640",
+        // "ANNOTATION_VALUE":"Taase aak'o' kinjats'ej"
+        // "DIFF_TIME":1300.0
+        // }
+        initElanXmlDigesterVideo();
+        elanXmlDigester.parse_tier("oracion", false, false);
+        assertAll(
+                () -> assertEquals("a1", elanXmlDigester.getTier.get(0).ANNOTATION_ID),
+                () -> assertEquals("ts2", elanXmlDigester.getTier.get(0).TIME_SLOT_REF1),
+                () -> assertEquals("21340", elanXmlDigester.getTier.get(0).TIME_VALUE1),
+                () -> assertEquals("ts4", elanXmlDigester.getTier.get(0).TIME_SLOT_REF2),
+                () -> assertEquals("22640", elanXmlDigester.getTier.get(0).TIME_VALUE2),
+                () -> assertEquals("Taase aak'o' kinjats'ej", elanXmlDigester.getTier.get(0).ANNOTATION_VALUE),
+                () -> assertEquals(1300.0, elanXmlDigester.getTier.get(0).DIFF_TIME)
         );
     }
 }
