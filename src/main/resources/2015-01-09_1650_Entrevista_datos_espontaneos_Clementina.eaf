@@ -133,7 +133,7 @@
             </ALIGNABLE_ANNOTATION>
         </ANNOTATION>
     </TIER>
-    <TIER LINGUISTIC_TYPE_REF="morfo" PARENT_REF="trs@part01" TIER_ID="mrf@part01">
+    <TIER LINGUISTIC_TYPE_REF="morfemas" PARENT_REF="trs@part01" TIER_ID="mrf@part01">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a5" ANNOTATION_REF="a1" TIME_SLOT_REF1="ts2" TIME_SLOT_REF2="ts4">
                 <ANNOTATION_VALUE>Taas-e aak'-o' k-in-jats'ej</ANNOTATION_VALUE>
@@ -175,7 +175,7 @@
             </ALIGNABLE_ANNOTATION>
         </ANNOTATION>
     </TIER>
-    <TIER LINGUISTIC_TYPE_REF="glosa" PARENT_REF="trs@part01" TIER_ID="glo@part01">
+    <TIER LINGUISTIC_TYPE_REF="glosado" PARENT_REF="trs@part01" TIER_ID="glo@part01">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a9" ANNOTATION_REF="a1" TIME_SLOT_REF1="ts2" TIME_SLOT_REF2="ts4">
                 <ANNOTATION_VALUE>Traer-DET bejuco-? HAB-1sg.A-pegar-? </ANNOTATION_VALUE>
@@ -301,7 +301,7 @@
             </ALIGNABLE_ANNOTATION>
         </ANNOTATION>
     </TIER>
-    <TIER LINGUISTIC_TYPE_REF="morfo" PARENT_REF="trs@part02" TIER_ID="mrf@part02">
+    <TIER LINGUISTIC_TYPE_REF="morfemas" PARENT_REF="trs@part02" TIER_ID="mrf@part02">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a43" ANNOTATION_REF="a35" TIME_SLOT_REF1="ts21" TIME_SLOT_REF2="ts23">
                 <ANNOTATION_VALUE>Korina ko'oten weye'</ANNOTATION_VALUE>
@@ -343,7 +343,7 @@
             </ALIGNABLE_ANNOTATION>
         </ANNOTATION>
     </TIER>
-    <TIER LINGUISTIC_TYPE_REF="glosa" PARENT_REF="trs@part02" TIER_ID="glo@part02">
+    <TIER LINGUISTIC_TYPE_REF="glosado" PARENT_REF="trs@part02" TIER_ID="glo@part02">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a51" ANNOTATION_REF="a35" TIME_SLOT_REF1="ts21" TIME_SLOT_REF2="ts23">
                 <ANNOTATION_VALUE>Korina ven aquí</ANNOTATION_VALUE>
@@ -494,7 +494,7 @@
             </ALIGNABLE_ANNOTATION>
         </ANNOTATION>
     </TIER>
-    <TIER LINGUISTIC_TYPE_REF="morfo" PARENT_REF="trs@part03" TIER_ID="mrf@part03">
+    <TIER LINGUISTIC_TYPE_REF="morfemas" PARENT_REF="trs@part03" TIER_ID="mrf@part03">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a80" ANNOTATION_REF="a67" TIME_SLOT_REF1="ts24" TIME_SLOT_REF2="ts25">
                 <ANNOTATION_VALUE>(Je'e k-u-maan k'ook'o'che' ich e ja' xano')</ANNOTATION_VALUE>
@@ -761,9 +761,9 @@
     </TIER>
     <LINGUISTIC_TYPE GRAPHIC_REFERENCES="false" LINGUISTIC_TYPE_ID="gesto" TIME_ALIGNABLE="true"/>
     <LINGUISTIC_TYPE GRAPHIC_REFERENCES="false" LINGUISTIC_TYPE_ID="oracion" TIME_ALIGNABLE="true"/>
-    <LINGUISTIC_TYPE CONSTRAINTS="Symbolic_Association" GRAPHIC_REFERENCES="false" LINGUISTIC_TYPE_ID="glosa" TIME_ALIGNABLE="false"/>
+    <LINGUISTIC_TYPE CONSTRAINTS="Symbolic_Association" GRAPHIC_REFERENCES="false" LINGUISTIC_TYPE_ID="glosado" TIME_ALIGNABLE="false"/>
     <LINGUISTIC_TYPE CONSTRAINTS="Symbolic_Association" GRAPHIC_REFERENCES="false" LINGUISTIC_TYPE_ID="traduccion" TIME_ALIGNABLE="false"/>
-    <LINGUISTIC_TYPE CONSTRAINTS="Symbolic_Association" GRAPHIC_REFERENCES="false" LINGUISTIC_TYPE_ID="morfo" TIME_ALIGNABLE="false"/>
+    <LINGUISTIC_TYPE CONSTRAINTS="Symbolic_Association" GRAPHIC_REFERENCES="false" LINGUISTIC_TYPE_ID="morfemas" TIME_ALIGNABLE="false"/>
     <LINGUISTIC_TYPE GRAPHIC_REFERENCES="false" LINGUISTIC_TYPE_ID="notas" TIME_ALIGNABLE="true"/>
     <CONSTRAINT DESCRIPTION="Time subdivision of parent annotation's time interval, no time gaps allowed within this interval" STEREOTYPE="Time_Subdivision"/>
     <CONSTRAINT DESCRIPTION="Symbolic subdivision of a parent annotation. Annotations refering to the same parent are ordered" STEREOTYPE="Symbolic_Subdivision"/>

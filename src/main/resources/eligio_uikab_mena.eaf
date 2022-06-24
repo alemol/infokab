@@ -1315,7 +1315,7 @@
         <TIME_SLOT TIME_SLOT_ID="ts1303" TIME_VALUE="565000"/>
         <TIME_SLOT TIME_SLOT_ID="ts1304" TIME_VALUE="565000"/>
     </TIME_ORDER>
-    <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="Transcripción">
+    <TIER LINGUISTIC_TYPE_REF="oracion" TIER_ID="Transcripción">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a5"
                 TIME_SLOT_REF1="ts1" TIME_SLOT_REF2="ts5">
@@ -2295,7 +2295,7 @@
             </ALIGNABLE_ANNOTATION>
         </ANNOTATION>
     </TIER>
-    <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="Traducción">
+    <TIER LINGUISTIC_TYPE_REF="Traducción" TIER_ID="Traducción">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a14"
                 TIME_SLOT_REF1="ts2" TIME_SLOT_REF2="ts6">
@@ -3275,7 +3275,7 @@
             </ALIGNABLE_ANNOTATION>
         </ANNOTATION>
     </TIER>
-    <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="Glosado">
+    <TIER LINGUISTIC_TYPE_REF="Glosado" TIER_ID="Glosado">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a23"
                 TIME_SLOT_REF1="ts3" TIME_SLOT_REF2="ts7">
@@ -4255,7 +4255,7 @@
             </ALIGNABLE_ANNOTATION>
         </ANNOTATION>
     </TIER>
-    <TIER LINGUISTIC_TYPE_REF="default-lt" TIER_ID="Morfemas">
+    <TIER LINGUISTIC_TYPE_REF="Morfemas" TIER_ID="Morfemas">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a32"
                 TIME_SLOT_REF1="ts4" TIME_SLOT_REF2="ts8">
