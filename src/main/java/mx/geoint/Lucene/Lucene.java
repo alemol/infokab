@@ -92,7 +92,7 @@ public class Lucene{
         for (File file : files) {
             Document document = new Document();
 
-            String path = file.getCanonicalPath();
+            String path = file.getPath();
             document.add(new StringField(FIELD_PATH, path, Field.Store.YES));
 
             String name = file.getName();
@@ -181,6 +181,7 @@ public class Lucene{
             float docScore = scoreDoc.score;
 
             Document hitDoc = indexSearcher.doc(docId);
+            System.out.println("doc="+docId +" score=" + docScore +" path="+ hitDoc.get(FIELD_PATH));
             docs.add(hitDoc);
         }
 
