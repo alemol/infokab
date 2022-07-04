@@ -42,6 +42,6 @@ class LuceneTest {
     @Test
     void searchMutlipleIndex() throws IOException, ParseException {
         Lucene lucene = new Lucene();
-        lucene.searchMultipleIndex("weye\u0027 bajux");
+        lucene.searchMultipleIndex("nukuch máak");
     }
 }
