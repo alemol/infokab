@@ -1,13 +1,11 @@
 package mx.geoint.Lucene;
 
-import mx.geoint.Document.LuceneResult;
-import org.apache.lucene.document.Document;
+import mx.geoint.Result.LuceneResult;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 class LuceneTest {
     private Lucene lucene;

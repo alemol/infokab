@@ -1,14 +1,12 @@
 package mx.geoint.Searcher;
 
-import mx.geoint.Document.LuceneResult;
+import mx.geoint.Result.LuceneResult;
 import mx.geoint.Lucene.Lucene;
-import org.apache.lucene.document.Document;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class Searcher {
