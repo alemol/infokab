@@ -1,4 +1,4 @@
-package mx.geoint.Document;
+package mx.geoint.Result;
 
 public class LuceneResult {
     private String filePath;

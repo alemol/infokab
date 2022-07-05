@@ -1,7 +1,7 @@
 package mx.geoint.Lucene;
 
 import com.google.gson.Gson;
-import mx.geoint.Document.LuceneResult;
+import mx.geoint.Result.LuceneResult;
 import mx.geoint.ParseXML.Tier;
 import mx.geoint.pathSystem;
 import org.apache.lucene.analysis.Analyzer;
@@ -21,14 +21,12 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
-import org.apache.lucene.store.Lock;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Lucene{
     public static final String INDEX_DIRECTORY = pathSystem.DIRECTORY_INDEX_LUCENE;

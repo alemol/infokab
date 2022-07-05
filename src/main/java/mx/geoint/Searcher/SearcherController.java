@@ -1,18 +1,13 @@
 package mx.geoint.Searcher;
 
 import com.google.gson.Gson;
-import mx.geoint.Document.LuceneResult;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.queryparser.classic.ParseException;
+import mx.geoint.Result.LuceneResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
