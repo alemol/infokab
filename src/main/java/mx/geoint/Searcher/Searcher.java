@@ -1,11 +1,13 @@
 package mx.geoint.Searcher;
 
+import mx.geoint.Document.LuceneResult;
 import mx.geoint.Lucene.Lucene;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -25,9 +27,9 @@ public class Searcher {
      * @param   text    el texto que se quiere buscar
      * @return          las incidencias con el resultado de la búsqueda
      **/
-    public List<Document> find(String text) {
+    public ArrayList<LuceneResult> find(String text) {
         try{
-            List<Document> docs = lucene.searchIndex(text);
+            ArrayList<LuceneResult> docs = lucene.searchIndex(text);
             return docs;
         } catch (IOException ex){
             return null;

@@ -1,10 +1,12 @@
 package mx.geoint.Lucene;
 
+import mx.geoint.Document.LuceneResult;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 class LuceneTest {
@@ -23,7 +25,7 @@ class LuceneTest {
     @Test
     void searchIndex() throws IOException, ParseException {
         initLucene();
-        List<Document> docs = lucene.searchIndex("weye\u0027 bajux");
+        ArrayList<LuceneResult> docs = lucene.searchIndex("weye\u0027 bajux");
         //List<Document> docs = lucene.searchIndex("tsíimino’ob");
     }
 }

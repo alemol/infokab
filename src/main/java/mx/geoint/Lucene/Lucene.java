@@ -1,6 +1,7 @@
 package mx.geoint.Lucene;
 
 import com.google.gson.Gson;
+import mx.geoint.Document.LuceneResult;
 import mx.geoint.ParseXML.Tier;
 import mx.geoint.pathSystem;
 import org.apache.lucene.analysis.Analyzer;
@@ -85,7 +86,7 @@ public class Lucene{
         indexWriter.close();
     }
 
-    public static List<Document> searchIndex(String searchString) throws IOException, ParseException {
+    public static ArrayList<LuceneResult> searchIndex(String searchString) throws IOException, ParseException {
         Analyzer analyzer = new StandardAnalyzer();
         System.out.println("Searching for '" + searchString + "'");
         Directory directory = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
@@ -97,18 +98,26 @@ public class Lucene{
         TopDocs hits = indexSearcher.search(new_query, 10);
         System.out.println("totalHits: " + hits.totalHits);
 
-        List<Document> docs = new ArrayList<>();
+        ArrayList<LuceneResult> results = new ArrayList<LuceneResult>();
+
         for (ScoreDoc scoreDoc: hits.scoreDocs) {
             int docId = scoreDoc.doc;
             float docScore = scoreDoc.score;
             Document hitDoc = indexReader.document(docId);
             System.out.println("doc="+docId +" score=" + docScore +" path="+ hitDoc.get(FIELD_PATH));
-            docs.add(hitDoc);
+
+            String path = hitDoc.get("path");
+            String fileName = hitDoc.get("filename");
+            String content = hitDoc.get("contents");
+
+
+            LuceneResult doc = new LuceneResult(path, fileName, content, docScore);
+            results.add(doc);
         }
 
         indexReader.close();
         directory.close();
-        return docs;
+        return results;
     }
 }
 
