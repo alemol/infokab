@@ -1,7 +1,8 @@
 package mx.geoint.Lucene;
 
 import com.google.gson.Gson;
-import mx.geoint.Result.LuceneResult;
+import mx.geoint.Model.SearchDoc;
+import mx.geoint.Response.SearchResponse;
 import mx.geoint.ParseXML.Tier;
 import mx.geoint.pathSystem;
 import org.apache.lucene.analysis.Analyzer;
@@ -15,10 +16,7 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.*;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
@@ -34,6 +32,8 @@ public class Lucene{
     public static final String FIELD_PATH = "path";
     public static final String FIELD_NAME = "filename";
     public static final String FIELD_CONTENTS = "contents";
+
+    private static final int MAX_RESULTS = 9999;
 
     public Lucene(){}
 
@@ -84,7 +84,7 @@ public class Lucene{
         indexWriter.close();
     }
 
-    public static ArrayList<LuceneResult> searchIndex(String searchString) throws IOException, ParseException {
+    public static SearchResponse searchIndex(String searchString) throws IOException, ParseException {
         Analyzer analyzer = new StandardAnalyzer();
         System.out.println("Searching for '" + searchString + "'");
         Directory directory = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
@@ -96,7 +96,7 @@ public class Lucene{
         TopDocs hits = indexSearcher.search(new_query, 10);
         System.out.println("totalHits: " + hits.totalHits);
 
-        ArrayList<LuceneResult> results = new ArrayList<LuceneResult>();
+        ArrayList<SearchDoc> results = new ArrayList<SearchDoc>();
 
         for (ScoreDoc scoreDoc: hits.scoreDocs) {
             int docId = scoreDoc.doc;
@@ -109,7 +109,47 @@ public class Lucene{
             String content = hitDoc.get("contents");
 
 
-            LuceneResult doc = new LuceneResult(path, fileName, content, docScore);
+            SearchDoc doc = new SearchDoc(path, fileName, content, docScore);
+            results.add(doc);
+        }
+
+        SearchResponse searchResponse = new SearchResponse(results, hits.totalHits.value);
+
+        indexReader.close();
+        directory.close();
+        return searchResponse;
+    }
+
+    public ArrayList<SearchDoc> searchPaginate(String search, int page) throws IOException, ParseException {
+        System.out.println("pagina="+ page);
+        Analyzer analyzer = new StandardAnalyzer();
+        Directory directory = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
+        DirectoryReader indexReader = DirectoryReader.open(directory);
+        IndexSearcher indexSearcher = new IndexSearcher(indexReader);
+
+        TopScoreDocCollector collector = TopScoreDocCollector.create(MAX_RESULTS, 10);
+        int startIndex = (page -1) * 10;
+        QueryParser queryParser = new QueryParser(FIELD_CONTENTS, analyzer);
+        Query new_query = queryParser.parse(search);
+        indexSearcher.search(new_query, collector);
+
+        TopDocs hits = collector.topDocs(startIndex, 10);
+        System.out.println("totalHits: " + hits.totalHits);
+
+        ArrayList<SearchDoc> results = new ArrayList<SearchDoc>();
+
+        for (ScoreDoc scoreDoc: hits.scoreDocs) {
+            int docId = scoreDoc.doc;
+            float docScore = scoreDoc.score;
+            Document hitDoc = indexReader.document(docId);
+            System.out.println("doc="+docId +" score=" + docScore +" path="+ hitDoc.get(FIELD_PATH));
+
+            String path = hitDoc.get("path");
+            String fileName = hitDoc.get("filename");
+            String content = hitDoc.get("contents");
+
+
+            SearchDoc doc = new SearchDoc(path, fileName, content, docScore);
             results.add(doc);
         }
 

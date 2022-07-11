@@ -1,13 +1,13 @@
-package mx.geoint.Result;
+package mx.geoint.Model;
 
-public class LuceneResult {
+public class SearchDoc {
     private String filePath;
     private String fileName;
     private String text;
 
     private float score;
 
-    public LuceneResult(String filePath, String fileName, String text, float score){
+    public SearchDoc(String filePath, String fileName, String text, float score) {
         this.filePath = filePath;
         this.fileName = fileName;
         this.text = text;
