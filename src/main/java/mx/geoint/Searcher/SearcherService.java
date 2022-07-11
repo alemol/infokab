@@ -1,6 +1,6 @@
 package mx.geoint.Searcher;
 
-import mx.geoint.Result.LuceneResult;
+import mx.geoint.Response.SearchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ public class SearcherService {
     @Autowired
     Searcher searcher;
 
-    public ArrayList<LuceneResult> findDocuments(String searchValue) {
+    public SearchResponse findDocuments(String searchValue) {
         return searcher.find(searchValue);
     }
 }

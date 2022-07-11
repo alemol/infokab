@@ -1,7 +1,7 @@
 package mx.geoint.Searcher;
 
 import com.google.gson.Gson;
-import mx.geoint.Result.LuceneResult;
+import mx.geoint.Response.SearchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,15 +23,15 @@ public class SearcherController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ArrayList<LuceneResult>> search(@RequestBody String payload){
+    public ResponseEntity<SearchResponse> search(@RequestBody String payload){
         final Gson gson = new Gson();
         final Search search = gson.fromJson(payload, Search.class);
 
         String text = search.getText();
-        ArrayList<LuceneResult> documents = searcherService.findDocuments(text);
+        SearchResponse response = searcherService.findDocuments(text);
 
-        if(documents != null){
-            return ResponseEntity.status(HttpStatus.OK).body(documents);
+        if(response != null){
+            return ResponseEntity.status(HttpStatus.OK).body(response);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
