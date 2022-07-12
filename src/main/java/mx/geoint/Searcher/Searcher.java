@@ -1,5 +1,6 @@
 package mx.geoint.Searcher;
 
+import mx.geoint.Model.SearchDoc;
 import mx.geoint.Response.SearchResponse;
 import mx.geoint.Lucene.Lucene;
 import org.apache.lucene.queryparser.classic.ParseException;
@@ -17,9 +18,6 @@ public class Searcher {
         this.lucene = new Lucene();
     }
 
-    // TODO: 31/05/2022
-    //  Definir el método para buscar resultados en el índice de lucene
-    //  Crear la clase para el objeto que se devuelve
     /**
      * Regresa la lista de resultados donde se encuentra el texto a buscar.
      * @param   text    el texto que se quiere buscar
@@ -29,10 +27,23 @@ public class Searcher {
         try{
             SearchResponse response = lucene.searchIndex(text);
             return response;
-        } catch (IOException ex){
+        } catch (IOException | ParseException ex){
             return null;
-        } catch (ParseException ex){
-            return null;
+        }
+    }
+
+    /**
+     * Regresa la lista de resultados correspondiente a la página donde se encuentra el texto a buscar
+     * @param   text    el texto que se quiere buscar
+     * @param   page    la página de resultados que se necesita
+     * @return          las incidencias con el resultado de la búsqueda
+     */
+    public ArrayList<SearchDoc> findPage(String text, int page){
+        try {
+            ArrayList<SearchDoc> response = lucene.searchPaginate(text, page);
+            return response;
+        } catch (IOException | ParseException ex){
+            return  null;
         }
     }
 }
