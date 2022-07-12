@@ -1,8 +1,9 @@
 package mx.geoint.Searcher;
 
 public class Search {
-    private final String text;
+    private String text;
 
+    public Search(){}
     public Search(String text) {
         this.text = text;
     }

@@ -1,5 +1,6 @@
 package mx.geoint.Searcher;
 
+import mx.geoint.Model.SearchDoc;
 import mx.geoint.Response.SearchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,5 +15,9 @@ public class SearcherService {
 
     public SearchResponse findDocuments(String searchValue) {
         return searcher.find(searchValue);
+    }
+
+    public ArrayList<SearchDoc> findDocumentsPage(String searchvalue, int page){
+        return searcher.findPage(searchvalue, page);
     }
 }
