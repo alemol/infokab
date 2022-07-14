@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.io.FilenameUtils;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -18,6 +19,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 public class ParseXML {
     String filePath = "";
+    String name = "";
     ParseHandler parseHandler;
 
     /*
@@ -39,6 +41,7 @@ public class ParseXML {
     public void read() {
         try{
             File inputFile = new File(filePath);
+            name = inputFile.getName();
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
             saxParser.parse(inputFile, parseHandler);
@@ -57,5 +60,10 @@ public class ParseXML {
      **/
     public List<Tier> getTier(){
         return parseHandler.getTier();
+    }
+
+    public String getNameFile(){
+        String baseName = FilenameUtils.getBaseName(name);
+        return baseName;
     }
 }
