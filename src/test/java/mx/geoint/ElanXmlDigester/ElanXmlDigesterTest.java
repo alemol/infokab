@@ -9,10 +9,10 @@ class ElanXmlDigesterTest {
     ElanXmlDigester elanXmlDigester;
 
     public void initElanXmlDigesterVideo(){
-        elanXmlDigester = new ElanXmlDigester("src/main/resources/2015-01-09_1650_Entrevista_datos_espontáneos_Clementina.eaf");
+        elanXmlDigester = new ElanXmlDigester("src/main/resources/2015-01-09_1650_Entrevista_datos_espontáneos_Clementina.eaf", "47eebc99-9c0b-4ef8-bb6d-6bb9bd380a11");
     }
     public void initElanXmlDigesterAudio(){
-        elanXmlDigester = new ElanXmlDigester("src/main/resources/eligio_uikab_mena.eaf");
+        elanXmlDigester = new ElanXmlDigester("src/main/resources/eligio_uikab_mena.eaf", "47eebc99-9c0b-4ef8-bb6d-6bb9bd380a11");
     }
 
     @Test
