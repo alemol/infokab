@@ -12,6 +12,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class Infokab {
     public static void main(String[] args) {
         SpringApplication.run(Infokab.class, args);
+        long mb = 1024*1024;
+        System.out.println("\t Free Memory \t Total Memory \t Max Memory");
+        System.out.println("\t " + Runtime.getRuntime().freeMemory()/mb +
+                " \t \t " + Runtime.getRuntime().totalMemory()/mb +
+                 " \t \t " + Runtime.getRuntime().maxMemory()/mb);
     }
 }
 

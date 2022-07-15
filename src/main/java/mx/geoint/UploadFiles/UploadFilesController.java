@@ -44,6 +44,7 @@ public class UploadFilesController {
         }
 
         uploadFilesService.uploadFile(eaf, multimedia, uuid);
+        System.out.println("FINISHED API");
         return ResponseEntity.status(HttpStatus.OK).body("success");
     }
 }

@@ -47,9 +47,4 @@ public class ThreadElanXmlDigester extends Thread{
             throw new RuntimeException(e);
         }
     }
-
-    public static void main(String[] args){
-        ThreadElanXmlDigester threadElanXmlDigester = new ThreadElanXmlDigester();
-        threadElanXmlDigester.start();
-    }
 }
