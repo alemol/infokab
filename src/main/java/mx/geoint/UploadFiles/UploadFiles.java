@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -44,6 +45,7 @@ public class UploadFiles {
     }
 
     public boolean saveFile(MultipartFile file, String uuid, String directory) throws IOException {
+        Date startDate = new Date();
         String name = file.getOriginalFilename();
         String contentType = file.getContentType();
         long size = file.getSize();
@@ -53,10 +55,11 @@ public class UploadFiles {
         Path path = Paths.get(currentDirectory + name);
         Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
-        System.out.println("PATH :" + name);
-        System.out.println("contentType :" + contentType);
-        System.out.println("Size :" + size);
-
+        Date endDate = new Date();
+        long difference_In_Time = endDate.getTime() - startDate.getTime();
+        long difference_In_Seconds = (difference_In_Time / (1000)) % 60;
+        long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
+        System.out.println("UUID: "+ uuid +" PATH: " + name + " SIZE: "+ size + " SAVE_TIME: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
         return true;
     }
 

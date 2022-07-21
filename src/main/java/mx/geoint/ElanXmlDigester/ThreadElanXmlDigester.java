@@ -1,5 +1,6 @@
 package mx.geoint.ElanXmlDigester;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Queue;
 import java.util.LinkedList;
 
@@ -41,8 +42,15 @@ public class ThreadElanXmlDigester extends Thread{
 
     public void process(){
         try {
+            Date startDate = new Date();
             ElanXmlDigester currentElanXmlDigester = elanXmlDigester.poll();
             currentElanXmlDigester.parse_tier("oracion", true, false);
+
+            Date endDate = new Date();
+            long difference_In_Time = endDate.getTime() - startDate.getTime();
+            long difference_In_Seconds = (difference_In_Time / (1000)) % 60;
+            long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
+            System.out.println("TIMER FINISHED THREAD: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
