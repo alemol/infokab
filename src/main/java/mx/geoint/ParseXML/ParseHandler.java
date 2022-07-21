@@ -6,13 +6,14 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ParseHandler extends DefaultHandler{
     private String tier_id;
 
-    //Campos de XML
+    //VARIABLES PARA LOS STAGS IMPORTANTE DEL ARCHIVO .EAF
     private static final String ANNOTATION_DOCUMENT = "ANNOTATION_DOCUMENT";
     private static final String HEADER = "HEADER";
     private static final String MEDIA_DESCRIPTOR = "MEDIA_DESCRIPTOR";
@@ -23,6 +24,7 @@ public class ParseHandler extends DefaultHandler{
     private static final String ANNOTATION_VALUE = "ANNOTATION_VALUE";
 
     //Campos de información del author y video
+    //nota: verificar los campos a guardar
     private String author = "";
     private String date = "";
     private String format = "";
@@ -37,26 +39,31 @@ public class ParseHandler extends DefaultHandler{
     private String urn = "";
     private String last_used_annotation_id = "";
 
+    //Variable para saber el tier en curso
     private String current_tier_id = "";
 
-    //Banderas para obtener texto de xml
+    //Banderas para obtener texto de los tags de xml
     private Boolean flag_last_used_annotation_id = false;
     private Boolean flag_urn = false;
     private Boolean flag_text = false;
 
-    //Listas para los tier
+    //Listas de las traducciones
     public List<Tier> tierList;
 
-    //Objecto con los tiempos de time order
+    //Objecto para almacenar los tiempo
     JsonObject jsonObjectTimeOrder = new JsonObject();
 
+    /*
+     * Inicializa el tipo de tier a obtner
+     * @param tier_id tipo de tier a obtener
+     **/
     ParseHandler(String tier_id){
         this.tier_id = tier_id;
     }
 
     /*
-        CHARACTERS obtiene el texto del xml
-    **/
+     * Evento para el texto de una etiqueta, aqui se obtiene el texto de anotación y la agrega a la clase de tier
+     */
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         if(flag_urn){
@@ -74,13 +81,17 @@ public class ParseHandler extends DefaultHandler{
         }
     }
 
+    /*
+     * Evento para el inicio de lectura de un documento
+     */
     @Override
     public void startDocument() throws SAXException {
         tierList = new ArrayList<>();
     }
 
     /*
-    startElement: se invoca para cada comienzo de elemento de xml
+     * Evento para el comienzo de cada etiqueta del xml, en este evento se guardan
+     * los atributos del las etiquetas y se inicializan las banderas necesarias
     **/
     @Override
     public void startElement(String uri, String lName, String qName, Attributes attr) throws SAXException {
@@ -119,7 +130,10 @@ public class ParseHandler extends DefaultHandler{
                 jsonObjectTimeOrder.addProperty(TIME_SLOT_ID, TIME_VALUE);
                 break;
             case TIER:
-                current_tier_id = attr.getValue("TIER_ID");
+                //current_tier_id = attr.getValue("TIER_ID");
+                String LINGUISTIC_TYPE_REF = attr.getValue("LINGUISTIC_TYPE_REF");
+                String normalize = Normalizer.normalize(LINGUISTIC_TYPE_REF.toLowerCase(), Normalizer.Form.NFD);
+                current_tier_id = normalize.replaceAll("[^\\p{ASCII}]", "");
                 break;
             case ALIGNABLE_ANNOTATION:
                 String ANNOTATION_ID = attr.getValue("ANNOTATION_ID");
@@ -141,8 +155,9 @@ public class ParseHandler extends DefaultHandler{
     }
 
     /*
-        endElement: se invoca para fin de elemento de xml
-    **/
+     * Evento para el fin de cada etiqueta del xml, en este se reinician las banders
+     * correspondientes al cierre de la etiqueta en curso0
+     **/
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         switch (qName){
@@ -156,11 +171,21 @@ public class ParseHandler extends DefaultHandler{
         }
     }
 
+    /*
+     * Obtiene el ultimo elemento de la lista de anotaciones
+     * @params list<tier> una lista de tier
+     * return Tier El ultimo elemento de la lista
+     **/
     private Tier latestTier(List<Tier> tierList) {
         int latestTierIndex = tierList.size() - 1;
         return tierList.get(latestTierIndex);
     }
 
+    /*
+     * Obtiene toda  la lista de tier
+     * return list<Tier> regresa la lista de anotaciones
+     *
+     **/
     public List<Tier> getTier(){
         return tierList;
     }
