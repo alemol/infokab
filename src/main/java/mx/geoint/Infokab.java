@@ -13,10 +13,11 @@ public class Infokab {
     public static void main(String[] args) {
         SpringApplication.run(Infokab.class, args);
         long mb = 1024*1024;
-        System.out.println("\t Free Memory \t Total Memory \t Max Memory");
-        System.out.println("\t " + Runtime.getRuntime().freeMemory()/mb +
+        System.out.println("\t Used Memory \t Free Memory  \t Total Memory \t Max Memory");
+        System.out.println("\t " + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory())/mb +
+                " \t \t " + Runtime.getRuntime().freeMemory()/mb +
                 " \t \t " + Runtime.getRuntime().totalMemory()/mb +
-                 " \t \t " + Runtime.getRuntime().maxMemory()/mb);
+                " \t \t " + Runtime.getRuntime().maxMemory()/mb);
     }
 }
 
