@@ -46,4 +46,22 @@ public class Searcher {
             return  null;
         }
     }
+
+    public SearchResponse findMultiple(String text){
+        try{
+            SearchResponse response = lucene.searchMultipleIndex(text);
+            return response;
+        } catch (IOException | ParseException ex){
+            return null;
+        }
+    }
+
+    public ArrayList<SearchDoc> findPageMultiple(String text, int page){
+        try {
+            ArrayList<SearchDoc> response = lucene.searchPaginateMultiple(text, page);
+            return response;
+        } catch (IOException | ParseException ex){
+            return  null;
+        }
+    }
 }
