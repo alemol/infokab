@@ -49,4 +49,32 @@ public class SearcherController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
+
+    @RequestMapping(path = "/multiple", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<SearchResponse> searchMultiple(@RequestBody Search search){
+        String text = search.getText();
+        SearchResponse response = searcherService.findDocumentsMultiple(text);
+
+        if(response != null){
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @RequestMapping(path = "/multiple/page", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ArrayList<SearchDoc>> searchPaginateMultiple(@RequestBody SearchPage searchPage){
+        String text = searchPage.getText();
+        int page = searchPage.getPage();
+
+        ArrayList<SearchDoc> response = searcherService.findDocumentsPageMultiple(text, page);
+
+        if(response != null){
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
 }

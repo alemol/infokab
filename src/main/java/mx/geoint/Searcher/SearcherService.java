@@ -20,4 +20,10 @@ public class SearcherService {
     public ArrayList<SearchDoc> findDocumentsPage(String searchvalue, int page){
         return searcher.findPage(searchvalue, page);
     }
+
+    public SearchResponse findDocumentsMultiple(String searchValue){ return  searcher.findMultiple(searchValue); }
+
+    public ArrayList<SearchDoc> findDocumentsPageMultiple(String searchValue, int page){
+        return searcher.findPageMultiple(searchValue, page);
+    }
 }
