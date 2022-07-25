@@ -96,7 +96,7 @@ public class ElanXmlDigester {
         String file_name_json = format_name(tier, tier_id, path,"json");
 
         Gson gson = new Gson();
-        String currentDirectory = existDirectory(pathSystem.DIRECTORY_FILES_JSON, uuid);
+        String currentDirectory = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, path);
         FileWriter file = new FileWriter( currentDirectory + file_name_json);
         file.write(gson.toJson(tier));
         file.close();
@@ -115,17 +115,12 @@ public class ElanXmlDigester {
         return name_file;
     }
 
-    private String existDirectory(String pathDirectory, String uuid){
-        String currentDirectory = pathDirectory + uuid + "/";
+    private String existDirectory(String pathDirectory, String uuid, String baseName){
+        String currentDirectory = pathDirectory + uuid + "/" + baseName + "/" + "file_to_index/";
 
         if(!Files.exists(Path.of(currentDirectory))){
-            if (!Files.exists(Path.of(pathDirectory))){
-                File newDirectory = new File(pathDirectory);
-                newDirectory.mkdir();
-            }
-
             File newSubDirectory = new File(currentDirectory);
-            newSubDirectory.mkdir();
+            newSubDirectory.mkdirs();
         }
 
         return currentDirectory;

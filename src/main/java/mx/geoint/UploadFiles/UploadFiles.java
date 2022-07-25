@@ -2,6 +2,7 @@ package mx.geoint.UploadFiles;
 
 import mx.geoint.ElanXmlDigester.ThreadElanXmlDigester;
 import mx.geoint.pathSystem;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,21 +26,23 @@ public class UploadFiles {
     }
 
     public boolean uploadFile(MultipartFile eaf, MultipartFile multimedia, String uuid) throws IOException {
-        if(!saveFile(eaf, uuid, pathSystem.DIRECTORY_ANNOTATION)){
+        if(!saveFile(eaf, uuid, pathSystem.DIRECTORY_PROJECTS)){
             return false;
         }
 
-        if(!saveFile(multimedia, uuid, pathSystem.DIRECTORY_MULTIMEDIA)){
+        if(!saveFile(multimedia, uuid, pathSystem.DIRECTORY_PROJECTS)){
             return false;
         }
 
-        InitElanXmlDigester(eaf, uuid);
+        InitElanXmlDigester(eaf, uuid, pathSystem.DIRECTORY_PROJECTS);
         return true;
     }
 
-    public void InitElanXmlDigester(MultipartFile eaf, String uuid){
+    public void InitElanXmlDigester(MultipartFile eaf, String uuid, String directory){
         String name = eaf.getOriginalFilename();
-        String pathEaf = pathSystem.DIRECTORY_ANNOTATION+uuid+"/"+name;
+        String baseName = FilenameUtils.getBaseName(name);
+
+        String pathEaf = directory+ uuid+"/"+baseName+"/"+name;
         threadElanXmlDigester.add(pathEaf, uuid);
         threadElanXmlDigester.activate();
     }
@@ -47,11 +50,11 @@ public class UploadFiles {
     public boolean saveFile(MultipartFile file, String uuid, String directory) throws IOException {
         Date startDate = new Date();
         String name = file.getOriginalFilename();
+        String baseName = FilenameUtils.getBaseName(name);
+
         String contentType = file.getContentType();
         long size = file.getSize();
-
-        String currentDirectory = existDirectory(directory, uuid);
-
+        String currentDirectory = existDirectory(directory, uuid, baseName);
         Path path = Paths.get(currentDirectory + name);
         Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
@@ -63,17 +66,12 @@ public class UploadFiles {
         return true;
     }
 
-    private String existDirectory(String pathDirectory, String uuid){
-        String currentDirectory = pathDirectory + uuid + "/";
+    private String existDirectory(String pathDirectory, String uuid, String baseName){
+        String currentDirectory = pathDirectory + uuid + "/"+baseName+"/";
 
         if(!Files.exists(Path.of(currentDirectory))){
-            if (!Files.exists(Path.of(pathDirectory))){
-                File newDirectory = new File(pathDirectory);
-                newDirectory.mkdir();
-            }
-
             File newSubDirectory = new File(currentDirectory);
-            newSubDirectory.mkdir();
+            newSubDirectory.mkdirs();
         }
 
         return currentDirectory;
