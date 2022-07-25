@@ -193,7 +193,7 @@ public class Lucene{
      * @param searchString texto a buscar
      * @return List<Document> Lista de documentos encontrados
      **/
-    public List<Document> searchMultipleIndex(String searchString) throws IOException, ParseException {
+    public SearchResponse searchMultipleIndex(String searchString) throws IOException, ParseException {
         List<IndexReader> indexReaders = new ArrayList<>();
 
         Analyzer analyzer = new StandardAnalyzer();
@@ -222,18 +222,81 @@ public class Lucene{
         System.out.println("totalHits: " + hits.totalHits);
 
         //Obtención de información de los documentos encontrados
-        List<Document> docs = new ArrayList<>();
+        ArrayList<SearchDoc> results = new ArrayList<SearchDoc>();
+
         for (ScoreDoc scoreDoc: hits.scoreDocs) {
             int docId = scoreDoc.doc;
             float docScore = scoreDoc.score;
 
             Document hitDoc = indexSearcher.doc(docId);
             System.out.println("doc="+docId +" score=" + docScore +" path="+ hitDoc.get(FIELD_PATH));
-            docs.add(hitDoc);
+
+            String path = hitDoc.get("path");
+            String fileName = hitDoc.get("filename");
+            String content = hitDoc.get("contents");
+
+            SearchDoc doc = new SearchDoc(path, fileName, content, docScore);
+            results.add(doc);
+        }
+
+        SearchResponse searchResponse = new SearchResponse(results, hits.totalHits.value);
+
+        multiReader.close();
+        return searchResponse;
+    }
+
+    public ArrayList<SearchDoc> searchPaginateMultiple(String search, int page) throws IOException, ParseException {
+        List<IndexReader> indexReaders = new ArrayList<>();
+
+        Analyzer analyzer = new StandardAnalyzer();
+        //System.out.println("Searching for '" + searchString + "'");
+
+        //Se Obtiene todos los indices generados en la caperta DIRECTORY_INDEX_GENERAL
+        File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL);
+        File[] files = dir.listFiles();
+        for (File file : files) {
+            if(file.isDirectory()){
+                Directory directory = FSDirectory.open(Paths.get(file.getCanonicalPath()));
+                //Condición para no tomar los directorios que estan agregando al momento
+                if(DirectoryReader.indexExists(directory)){
+                    indexReaders.add(DirectoryReader.open(directory));
+                }
+            }
+        }
+
+        //Creacion de indexSearch con muchos indices
+        MultiReader multiReader = new MultiReader(indexReaders.toArray(new IndexReader[indexReaders.size()]));
+        IndexSearcher indexSearcher = new IndexSearcher(multiReader);
+
+        TopScoreDocCollector collector = TopScoreDocCollector.create(MAX_RESULTS, 10);
+        int startIndex = (page -1) * 10;
+        QueryParser queryParser = new QueryParser(FIELD_CONTENTS, analyzer);
+        Query new_query = queryParser.parse(search);
+        indexSearcher.search(new_query, collector);
+
+        TopDocs hits = collector.topDocs(startIndex, 10);
+        System.out.println("totalHits: " + hits.totalHits);
+
+        //Obtención de información de los documentos encontrados
+        ArrayList<SearchDoc> results = new ArrayList<SearchDoc>();
+
+        for (ScoreDoc scoreDoc: hits.scoreDocs) {
+            int docId = scoreDoc.doc;
+            float docScore = scoreDoc.score;
+
+            Document hitDoc = indexSearcher.doc(docId);
+            System.out.println("doc="+docId +" score=" + docScore +" path="+ hitDoc.get(FIELD_PATH));
+
+            String path = hitDoc.get("path");
+            String fileName = hitDoc.get("filename");
+            String content = hitDoc.get("contents");
+
+            SearchDoc doc = new SearchDoc(path, fileName, content, docScore);
+            results.add(doc);
         }
 
         multiReader.close();
-        return docs;
+        return results;
     }
 }
 
