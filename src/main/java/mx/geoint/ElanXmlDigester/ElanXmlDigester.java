@@ -58,46 +58,40 @@ public class ElanXmlDigester {
         parseXML.read();
 
         getTier = parseXML.getTier();
+        String baseNameEaf = FilenameUtils.getBaseName(filepathEaf);
+
         if(save_media==true){
+            String type_path = getTypeMultimedia(filepathMultimedia);
+
             for (int i = 0; i<1; i++){
                 Tier tier = getTier.get(i);
 
-                String path = FilenameUtils.getBaseName(filepathMultimedia);
-                String type_path = FilenameUtils.getExtension(filepathMultimedia);
-
-                String normalize = Normalizer.normalize(type_path, Normalizer.Form.NFD);
-                String type_path_normalize = normalize.replaceAll("[^\\p{ASCII}]", "");
-                String type_path_loweCase = type_path_normalize.toLowerCase();
-                System.out.println("Video "+ type_path_normalize);
-                if(type_path_loweCase.equals("wav") || type_path_loweCase.equals("mp4")){
+                if(type_path.equals("wav") || type_path.equals("mp4")){
                     boolean created = false;
-                    System.out.println("Video "+ parseXML.getMimeType());
+
                     switch (parseXML.getMimeType()){
                         case "audio/x-wav":
                             FFmpeg ffmpeg = new FFmpeg(filepathMultimedia);
                             created = saveAudio(ffmpeg, tier, tier_id, filepathMultimedia);
-                            System.out.println(created);
-                            if(created == true && save_text == true){
-                                saveText(tier, tier_id, path);
-                            }
                             break;
                         case "video/mp4":
-                            System.out.println("Video");
                             VideoCutter videoCutter = new VideoCutter();
                             created = saveVideo(videoCutter, tier, tier_id, filepathMultimedia);
-                            if(created == true && save_text == true){
-                                saveText(tier, tier_id, path);
-                            }
                             break;
                     }
+
+                    System.out.println(created);
+                    if(created == true && save_text == true){
+                        saveText(tier, tier_id, baseNameEaf);
+                    }
+
                 }
             }
         }else{
             if(save_text == true){
                 for (int i = 0; i< getTier.size();i++) {
                     Tier tier = getTier.get(i);
-                    String path = parseXML.getNameFile();
-                    saveText(tier, tier_id, path);
+                    saveText(tier, tier_id, baseNameEaf);
                 }
             }
         }
@@ -112,6 +106,7 @@ public class ElanXmlDigester {
      * @return
      */
     public boolean saveVideo(VideoCutter videoCutter, Tier tier, String tier_id, String source){
+        String basePath = FilenameUtils.getPath(source)+"multimedia/";
         String path = FilenameUtils.getBaseName(source);
         String type_path = FilenameUtils.getExtension(source);
 
@@ -120,6 +115,11 @@ public class ElanXmlDigester {
                 (Integer.parseInt(tier.TIME_VALUE1)/1000),
                 (Integer.parseInt(tier.TIME_VALUE2)/1000),
                 file_name);
+
+        if(created){
+            tier.setProjectName(path);
+            tier.setPathMultimedia(basePath+file_name);
+        }
         return created;
     }
     /*
@@ -132,6 +132,7 @@ public class ElanXmlDigester {
      *          type_path   Tipo de path sea audio o video
      **/
     public boolean saveAudio(FFmpeg ffmpeg, Tier tier, String tier_id, String source){
+        String basePath = FilenameUtils.getPath(source)+"multimedia/";
         String path = FilenameUtils.getBaseName(source);
         String type_path = FilenameUtils.getExtension(source);
 
@@ -140,6 +141,11 @@ public class ElanXmlDigester {
                 (Integer.parseInt(tier.TIME_VALUE1)/1000),
                 (tier.DIFF_TIME/1000)+.5,
                 file_name);
+
+        if(created){
+            tier.setProjectName(path);
+            tier.setPathMultimedia(basePath+file_name);
+        }
         return created;
     }
 
@@ -152,9 +158,11 @@ public class ElanXmlDigester {
      **/
     public void saveText(Tier tier, String tier_id, String path) throws IOException {
         String file_name_json = format_name(tier, tier_id, path,"json");
-
         Gson gson = new Gson();
-        String currentDirectory = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, path);
+
+        String basePath = FilenameUtils.getPath(filepathEaf);
+        String currentDirectory = existDirectory(basePath);
+
         FileWriter file = new FileWriter( currentDirectory + file_name_json);
         file.write(gson.toJson(tier));
         file.close();
@@ -173,8 +181,13 @@ public class ElanXmlDigester {
         return name_file;
     }
 
-    private String existDirectory(String pathDirectory, String uuid, String baseName){
-        String currentDirectory = pathDirectory + uuid + "/" + baseName + "/" + "file_to_index/";
+    /**
+     *
+     * @param pathDirectory
+     * @return
+     */
+    private String existDirectory(String pathDirectory){
+        String currentDirectory = pathDirectory + "file_to_index/";
 
         if(!Files.exists(Path.of(currentDirectory))){
             File newSubDirectory = new File(currentDirectory);
@@ -182,6 +195,19 @@ public class ElanXmlDigester {
         }
 
         return currentDirectory;
+    }
+
+    /**
+     *
+     * @param filepathMultimedia
+     * @return
+     */
+    private String getTypeMultimedia(String filepathMultimedia){
+        String type_path = FilenameUtils.getExtension(filepathMultimedia);
+        String normalize = Normalizer.normalize(type_path, Normalizer.Form.NFD);
+        String type_path_normalize = normalize.replaceAll("[^\\p{ASCII}]", "");
+        String type_path_loweCase = type_path_normalize.toLowerCase();
+        return type_path_loweCase;
     }
 }
 

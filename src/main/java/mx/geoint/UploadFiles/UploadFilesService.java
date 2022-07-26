@@ -14,7 +14,7 @@ public class UploadFilesService {
     @Autowired
     UploadFiles uploadFiles;
 
-    public boolean uploadFile(MultipartFile eaf, MultipartFile multimedia, String uuid) throws IOException {
-        return uploadFiles.uploadFile(eaf, multimedia, uuid);
+    public boolean uploadFile(MultipartFile eaf, MultipartFile multimedia, String uuid, String projectName) throws IOException {
+        return uploadFiles.uploadFile(eaf, multimedia, uuid, projectName);
     }
 }

@@ -20,5 +20,3 @@ public class Infokab {
                 " \t \t " + Runtime.getRuntime().maxMemory()/mb);
     }
 }
-
-
