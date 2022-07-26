@@ -189,4 +189,7 @@ public class ParseHandler extends DefaultHandler{
     public List<Tier> getTier(){
         return tierList;
     }
+    public String getMimeType(){
+        return mime_type;
+    }
 }

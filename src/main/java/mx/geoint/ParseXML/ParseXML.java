@@ -66,4 +66,8 @@ public class ParseXML {
         String baseName = FilenameUtils.getBaseName(name);
         return baseName;
     }
+
+    public String getMimeType(){
+        return parseHandler.getMimeType();
+    }
 }

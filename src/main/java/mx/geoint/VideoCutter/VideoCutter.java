@@ -4,6 +4,8 @@ import com.xuggle.xuggler.Global;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import com.xuggle.mediatool.IMediaReader;
 import com.xuggle.mediatool.IMediaWriter;
@@ -16,6 +18,7 @@ import com.xuggle.mediatool.event.IVideoPictureEvent;
 import com.xuggle.mediatool.event.IWriteHeaderEvent;
 import com.xuggle.mediatool.event.IWritePacketEvent;
 import com.xuggle.mediatool.event.IWriteTrailerEvent;
+import org.apache.commons.io.FilenameUtils;
 
 public class VideoCutter extends MediaListenerAdapter {
 
@@ -25,12 +28,14 @@ public class VideoCutter extends MediaListenerAdapter {
     private IMediaWriter[] writers;
 
     //public Cutter(double[] starts, double[] ends, String videoPathin, String videoPathout)
-    public void Cutter(double s, double e, String videoPathin, String videoPathout)
+    public boolean Cutter(String videoPathin, double s, double e, String videoPathout)
     {
         double starts[] = new double[1];
         starts[0] = s;
         double ends[] = new double[1];
         ends[0] = e;
+        String basePath = FilenameUtils.getPath(videoPathin)+"multimedia/";
+        existDirectory(basePath);
 
         try {
             //writers = new IMediaWriter[starts.length];
@@ -38,15 +43,15 @@ public class VideoCutter extends MediaListenerAdapter {
             IMediaReader reader = ToolFactory.makeReader(videoPathin);
             reader.setBufferedImageTypeToGenerate(BufferedImage.TYPE_3BYTE_BGR);
 
-            TMP_DIR = videoPathout + "_algo";
-            File tmpdir = new File(TMP_DIR);
-            tmpdir.mkdir(); //se crea la carpeta temporal para guardar la salida
+            //TMP_DIR = videoPathout + "_algo";
+            //File tmpdir = new File(TMP_DIR);
+            //tmpdir.mkdir(); //se crea la carpeta temporal para guardar la salida
             //paso de segundos a nanosegundos
             for(int i = 0; i < starts.length; i++)
             {
                 starts[i]*= Global.DEFAULT_PTS_PER_SECOND;
                 ends[i]*=Global.DEFAULT_PTS_PER_SECOND;
-                writers[i] =  ToolFactory.makeWriter(TMP_DIR+"/video.mp4", reader); //comprende il nome del file
+                writers[i] =  ToolFactory.makeWriter(basePath+videoPathout, reader); //comprende il nome del file
             }
 
             //creazione di un tool che mi taglia il video nei punti scelti
@@ -92,23 +97,23 @@ public class VideoCutter extends MediaListenerAdapter {
             System.out.println("Ocurrió un error: ");
             err.printStackTrace();
             //System.exit(-1);
-
+            return false;
         }
 
 
-        String OUT_FILE = videoPathout+".mp4";
+        //String OUT_FILE = videoPathout+".mp4";
         //Ottenuti i file separati li riunisco in un unico file
-        concatenateVideoFromWriters(OUT_FILE);
-
-
+        //return concatenateVideoFromWriters(videoPathin, OUT_FILE);
+        return true;
     }
 
-    public void concatenateVideoFromWriters(String OUT_FILE)
+    public boolean concatenateVideoFromWriters(String source, String OUT_FILE)
     {
         //Si el fragmento es único, solo tengo que moverlo y renombrarlo
         if(writers.length == 1)
         {
-            new File(writers[0].getUrl()).renameTo(new File("/home/centrogeo/JavaApps/infokab-backend/src/main/resources/"+OUT_FILE));
+            String basePath = FilenameUtils.getPath(source)+"/multimedia/";
+            new File(writers[0].getUrl()).renameTo(new File(basePath+OUT_FILE));
         }
         /*else
         {
@@ -122,6 +127,8 @@ public class VideoCutter extends MediaListenerAdapter {
         }*/
         //elimino tutto
         deleteAllFromTmpFolder();
+
+        return true;
     }
 
     public void deleteAllFromTmpFolder()
@@ -189,4 +196,14 @@ public class VideoCutter extends MediaListenerAdapter {
         }
     }
 
+    private String existDirectory(String pathDirectory){
+        String currentDirectory = pathDirectory;
+
+        if(!Files.exists(Path.of(pathDirectory))){
+            File newSubDirectory = new File(pathDirectory);
+            newSubDirectory.mkdirs();
+        }
+
+        return currentDirectory;
+    }
 }

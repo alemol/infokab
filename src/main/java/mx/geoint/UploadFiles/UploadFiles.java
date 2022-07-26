@@ -34,16 +34,20 @@ public class UploadFiles {
             return false;
         }
 
-        InitElanXmlDigester(eaf, uuid, pathSystem.DIRECTORY_PROJECTS);
+        InitElanXmlDigester(eaf, multimedia, uuid, pathSystem.DIRECTORY_PROJECTS);
         return true;
     }
 
-    public void InitElanXmlDigester(MultipartFile eaf, String uuid, String directory){
-        String name = eaf.getOriginalFilename();
-        String baseName = FilenameUtils.getBaseName(name);
+    public void InitElanXmlDigester(MultipartFile eaf, MultipartFile multimedia, String uuid, String directory){
+        String nameEaf = eaf.getOriginalFilename();
+        String baseNameEaf = FilenameUtils.getBaseName(nameEaf);
 
-        String pathEaf = directory+ uuid+"/"+baseName+"/"+name;
-        threadElanXmlDigester.add(pathEaf, uuid);
+        String nameMultimedia = multimedia.getOriginalFilename();
+        String baseNameMultimedia = FilenameUtils.getBaseName(nameMultimedia);
+
+        String pathEaf = directory+ uuid+"/"+baseNameEaf+"/"+nameEaf;
+        String pathMultimedia = directory+ uuid+"/"+baseNameMultimedia+"/"+nameMultimedia;
+        threadElanXmlDigester.add(pathEaf, pathMultimedia, uuid);
         threadElanXmlDigester.activate();
     }
 

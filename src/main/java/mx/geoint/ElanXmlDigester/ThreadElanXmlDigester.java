@@ -18,8 +18,8 @@ public class ThreadElanXmlDigester extends Thread{
         }
     }
 
-    public void add(String pathEAF, String uuid){
-        elanXmlDigester.add(new ElanXmlDigester(pathEAF, uuid));
+    public void add(String pathEAF, String pathMultimedia, String uuid){
+        elanXmlDigester.add(new ElanXmlDigester(pathEAF, pathMultimedia, uuid));
     }
 
     public void deactivate(){
@@ -44,7 +44,7 @@ public class ThreadElanXmlDigester extends Thread{
         try {
             Date startDate = new Date();
             ElanXmlDigester currentElanXmlDigester = elanXmlDigester.poll();
-            currentElanXmlDigester.parse_tier("oracion", true, false);
+            currentElanXmlDigester.parse_tier("oracion", true, true);
 
             Date endDate = new Date();
             long difference_In_Time = endDate.getTime() - startDate.getTime();
