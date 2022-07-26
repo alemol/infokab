@@ -4,7 +4,9 @@ import com.google.gson.Gson;
 import mx.geoint.FFmpeg.FFmpeg;
 import mx.geoint.ParseXML.ParseXML;
 import mx.geoint.ParseXML.Tier;
+import mx.geoint.VideoCutter.VideoCutter;
 import mx.geoint.pathSystem;
+import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -15,7 +17,8 @@ import java.text.Normalizer;
 import java.util.List;
 
 public class ElanXmlDigester {
-    String filepath = "";
+    String filepathEaf = "";
+    String filepathMultimedia = "";
     String uuid = "";
     List<Tier> getTier;
 
@@ -26,7 +29,20 @@ public class ElanXmlDigester {
     public ElanXmlDigester(String eaf_path, String uuid){
         String normalize = Normalizer.normalize(eaf_path, Normalizer.Form.NFD);
         this.uuid = uuid;
-        filepath = normalize.replaceAll("[^\\p{ASCII}]", "");
+        filepathEaf = normalize.replaceAll("[^\\p{ASCII}]", "");
+    }
+
+    /*
+     * Inicializa el path del archivo a parsear
+     * @param eaf_path path donde se localiza el archivo
+     **/
+    public ElanXmlDigester(String eaf_path, String multimedia_path, String uuid){
+        this.uuid = uuid;
+        //String normalize = Normalizer.normalize(eaf_path, Normalizer.Form.NFD);
+        //filepath = normalize.replaceAll("[^\\p{ASCII}]", "");
+
+        filepathEaf = eaf_path;
+        filepathMultimedia = multimedia_path;
     }
 
     /*
@@ -38,22 +54,42 @@ public class ElanXmlDigester {
      *          save_media  bandera para iniciar el proceso de guardado de los fragmentos de audio
      **/
     public void parse_tier(String tier_id, boolean save_text, boolean save_media) throws IOException {
-        ParseXML parseXML = new ParseXML(filepath, tier_id);
+        ParseXML parseXML = new ParseXML(filepathEaf, tier_id);
         parseXML.read();
 
         getTier = parseXML.getTier();
         if(save_media==true){
-            FFmpeg ffmpeg = new FFmpeg(pathSystem.DIRECTORY_MULTIMEDIA);
-
-            for (int i = 0; i< getTier.size();i++){
+            for (int i = 0; i<1; i++){
                 Tier tier = getTier.get(i);
 
-                String path = parseXML.getNameFile();
-                String type_path = "wav";
-                boolean created = saveMedia(ffmpeg, tier, tier_id, path, type_path);
-                System.out.println(created);
-                if(created == true && save_text == true){
-                    saveText(tier, tier_id, path);
+                String path = FilenameUtils.getBaseName(filepathMultimedia);
+                String type_path = FilenameUtils.getExtension(filepathMultimedia);
+
+                String normalize = Normalizer.normalize(type_path, Normalizer.Form.NFD);
+                String type_path_normalize = normalize.replaceAll("[^\\p{ASCII}]", "");
+                String type_path_loweCase = type_path_normalize.toLowerCase();
+                System.out.println("Video "+ type_path_normalize);
+                if(type_path_loweCase.equals("wav") || type_path_loweCase.equals("mp4")){
+                    boolean created = false;
+                    System.out.println("Video "+ parseXML.getMimeType());
+                    switch (parseXML.getMimeType()){
+                        case "audio/x-wav":
+                            FFmpeg ffmpeg = new FFmpeg(filepathMultimedia);
+                            created = saveAudio(ffmpeg, tier, tier_id, filepathMultimedia);
+                            System.out.println(created);
+                            if(created == true && save_text == true){
+                                saveText(tier, tier_id, path);
+                            }
+                            break;
+                        case "video/mp4":
+                            System.out.println("Video");
+                            VideoCutter videoCutter = new VideoCutter();
+                            created = saveVideo(videoCutter, tier, tier_id, filepathMultimedia);
+                            if(created == true && save_text == true){
+                                saveText(tier, tier_id, path);
+                            }
+                            break;
+                    }
                 }
             }
         }else{
@@ -67,6 +103,25 @@ public class ElanXmlDigester {
         }
     }
 
+    /**
+     *
+     * @param videoCutter
+     * @param tier
+     * @param tier_id
+     * @param source
+     * @return
+     */
+    public boolean saveVideo(VideoCutter videoCutter, Tier tier, String tier_id, String source){
+        String path = FilenameUtils.getBaseName(source);
+        String type_path = FilenameUtils.getExtension(source);
+
+        String file_name = format_name(tier, tier_id, path, type_path);
+        boolean created = videoCutter.Cutter(source,
+                (Integer.parseInt(tier.TIME_VALUE1)/1000),
+                (Integer.parseInt(tier.TIME_VALUE2)/1000),
+                file_name);
+        return created;
+    }
     /*
      * Se encarga de realizar los cortes de audio y guardarlo
      * @param
@@ -76,9 +131,12 @@ public class ElanXmlDigester {
      *          path        Ruta del archivo o nombre del archivo //Definir
      *          type_path   Tipo de path sea audio o video
      **/
-    public boolean saveMedia(FFmpeg ffmpeg, Tier tier, String tier_id, String path, String type_path){
+    public boolean saveAudio(FFmpeg ffmpeg, Tier tier, String tier_id, String source){
+        String path = FilenameUtils.getBaseName(source);
+        String type_path = FilenameUtils.getExtension(source);
+
         String file_name = format_name(tier, tier_id, path, type_path);
-        boolean created = ffmpeg.cortador(path+"."+type_path,
+        boolean created = ffmpeg.cortador(source,
                 (Integer.parseInt(tier.TIME_VALUE1)/1000),
                 (tier.DIFF_TIME/1000)+.5,
                 file_name);

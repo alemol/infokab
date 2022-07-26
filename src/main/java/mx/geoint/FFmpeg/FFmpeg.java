@@ -1,5 +1,7 @@
 package mx.geoint.FFmpeg;
 
+import org.apache.commons.io.FilenameUtils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -28,23 +30,27 @@ public class FFmpeg {
     public boolean cortador(String source, double start, double duration, String output) {
         boolean creado = false;
         // Metemos la función en un try catch para manejar los errores sin interrumpir la ejecución.
+        String basePath = FilenameUtils.getPath(source)+"multimedia/";
+        existDirectory(basePath);
         try {
             // Comprobamos si existe un archivo cortado con el mismo nomnbre, si existe mandamos a llamar a la función que lo elimina.
-            if (if_exist(output)) {
-                eliminar(output);
+            if (if_exist(basePath+output)) {
+                eliminar(basePath+output);
             }
+
+
             // creamos el cuerpo del comando que se va a ejecutar.
             Process p = Runtime.getRuntime().exec(new String[]{
                     "ffmpeg",
                     "-i",
-                    path + source,
+                    source,
                     "-ss",
                     String.valueOf(start),
                     "-t",
                     String.valueOf(duration),
                     "-c",
                     "copy",
-                    path + output
+                    basePath+output
             });
             // Atrapamos la respuesta en caso de que sea exitoso.
             BufferedReader stdInput = new BufferedReader(new
@@ -80,12 +86,23 @@ public class FFmpeg {
 
     /* Método para comprobar si existe un archivo con el mismo nombre */
     public boolean if_exist(String output) {
-        return Files.exists(Path.of(path + output));
+        return Files.exists(Path.of(output));
     }
 
     /* Método que elimina el archivo */
     public void eliminar(String output) {
-        File myObj = new File(path + output);
+        File myObj = new File(output);
         myObj.delete();
+    }
+
+    private String existDirectory(String pathDirectory){
+        String currentDirectory = pathDirectory;
+
+        if(!Files.exists(Path.of(pathDirectory))){
+            File newSubDirectory = new File(pathDirectory);
+            newSubDirectory.mkdirs();
+        }
+
+        return currentDirectory;
     }
 }
