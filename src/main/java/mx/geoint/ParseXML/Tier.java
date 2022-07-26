@@ -9,6 +9,8 @@ public class Tier {
     public String ANNOTATION_VALUE = "";
 
     public double DIFF_TIME = 0.0;
+    public String PROJECT_NAME;
+    public String PATH_MULTIMEDIA;
 
     /*
      * Inicializa la anotacion con sus respesctivos tiempos
@@ -42,4 +44,12 @@ public class Tier {
     public void setAnnotationValue(String annotation_value){
         ANNOTATION_VALUE = annotation_value;
     }
+
+    public void setProjectName(String projectName){
+        PROJECT_NAME = projectName;
+    }
+    public void setPathMultimedia(String pathMultimedia){
+        PATH_MULTIMEDIA = pathMultimedia;
+    }
+
 }

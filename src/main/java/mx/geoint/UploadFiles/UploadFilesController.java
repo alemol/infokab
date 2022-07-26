@@ -21,7 +21,7 @@ public class UploadFilesController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity created(@RequestParam MultipartFile eaf, @RequestParam MultipartFile multimedia, @RequestParam String uuid) throws IOException {
+    public ResponseEntity created(@RequestParam MultipartFile eaf, @RequestParam MultipartFile multimedia, @RequestParam String uuid, @RequestParam String projectName) throws IOException {
         Date startDate = new Date();
 
         if (eaf.isEmpty() || multimedia.isEmpty()) {
@@ -44,7 +44,7 @@ public class UploadFilesController {
             return new ResponseEntity<>(answerJsonObject.toString(), headers, HttpStatus.BAD_REQUEST);
         }
 
-        uploadFilesService.uploadFile(eaf, multimedia, uuid);
+        uploadFilesService.uploadFile(eaf, multimedia, uuid, projectName);
 
         Date endDate = new Date();
         long difference_In_Time = endDate.getTime() - startDate.getTime();

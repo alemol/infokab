@@ -25,48 +25,45 @@ public class UploadFiles {
         threadElanXmlDigester.start();
     }
 
-    public boolean uploadFile(MultipartFile eaf, MultipartFile multimedia, String uuid) throws IOException {
-        if(!saveFile(eaf, uuid, pathSystem.DIRECTORY_PROJECTS)){
+    public boolean uploadFile(MultipartFile eaf, MultipartFile multimedia, String uuid, String projectName) throws IOException {
+        String baseProjectName = projectName.replace(" ", "_");
+        String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
+        if(!saveFile(eaf, basePath, baseProjectName)){
             return false;
         }
 
-        if(!saveFile(multimedia, uuid, pathSystem.DIRECTORY_PROJECTS)){
+        if(!saveFile(multimedia, basePath, baseProjectName)){
             return false;
         }
 
-        InitElanXmlDigester(eaf, multimedia, uuid, pathSystem.DIRECTORY_PROJECTS);
+        InitElanXmlDigester(eaf, multimedia, uuid, basePath, baseProjectName);
         return true;
     }
 
-    public void InitElanXmlDigester(MultipartFile eaf, MultipartFile multimedia, String uuid, String directory){
-        String nameEaf = eaf.getOriginalFilename();
-        String baseNameEaf = FilenameUtils.getBaseName(nameEaf);
+    public void InitElanXmlDigester(MultipartFile eaf, MultipartFile multimedia, String uuid, String basePath, String projectName){
+        String extEaf = FilenameUtils.getExtension(eaf.getOriginalFilename());
+        String extMultimedia = FilenameUtils.getExtension(multimedia.getOriginalFilename());
 
-        String nameMultimedia = multimedia.getOriginalFilename();
-        String baseNameMultimedia = FilenameUtils.getBaseName(nameMultimedia);
-
-        String pathEaf = directory+ uuid+"/"+baseNameEaf+"/"+nameEaf;
-        String pathMultimedia = directory+ uuid+"/"+baseNameMultimedia+"/"+nameMultimedia;
+        String pathEaf = basePath+projectName+"."+extEaf;
+        String pathMultimedia = basePath+projectName+"."+extMultimedia;
         threadElanXmlDigester.add(pathEaf, pathMultimedia, uuid);
         threadElanXmlDigester.activate();
     }
 
-    public boolean saveFile(MultipartFile file, String uuid, String directory) throws IOException {
+    public boolean saveFile(MultipartFile file, String basePath, String projectName) throws IOException {
         Date startDate = new Date();
         String name = file.getOriginalFilename();
-        String baseName = FilenameUtils.getBaseName(name);
+        String ext  = FilenameUtils.getExtension(name);
 
-        String contentType = file.getContentType();
         long size = file.getSize();
-        String currentDirectory = existDirectory(directory, uuid, baseName);
-        Path path = Paths.get(currentDirectory + name);
+        Path path = Paths.get(basePath + projectName + "."+ ext);
         Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
         Date endDate = new Date();
         long difference_In_Time = endDate.getTime() - startDate.getTime();
         long difference_In_Seconds = (difference_In_Time / (1000)) % 60;
         long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
-        System.out.println("UUID: "+ uuid +" PATH: " + name + " SIZE: "+ size + " SAVE_TIME: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
+        System.out.println(" PATH: " + name + " SIZE: "+ size + " SAVE_TIME: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
         return true;
     }
 
