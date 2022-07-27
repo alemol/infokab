@@ -19,29 +19,30 @@ public class UploadFilesController {
         this.uploadFilesService = uploadFilesService;
     }
 
+    /**
+     *
+     * @param eaf MultipartFile, Archivo de anotaciones
+     * @param multimedia MultipartFile, Archivo de multimedia audio o video
+     * @param uuid String, Identificador de usuario
+     * @param projectName String, Nombre del proyecto
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity created(@RequestParam MultipartFile eaf, @RequestParam MultipartFile multimedia, @RequestParam String uuid, @RequestParam String projectName) throws IOException {
         Date startDate = new Date();
 
         if (eaf.isEmpty() || multimedia.isEmpty()) {
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type", "application/json; charset=UTF-8");
-
-            JsonObject answerJsonObject = new JsonObject();
-            answerJsonObject.addProperty("success", false);
-            answerJsonObject.addProperty("error", "Error se requiere 1 archivo .eaf y 1 archivo multimedia");
-            return new ResponseEntity<>(answerJsonObject.toString(), headers, HttpStatus.BAD_REQUEST);
+            return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere 1 archivo .eaf y 1 archivo multimedia", false);
         }
 
-        if(uuid.isEmpty()){
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type", "application/json; charset=UTF-8");
+        if (uuid.isEmpty()) {
+            return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere el uuid del usuario", false);
+        }
 
-            JsonObject answerJsonObject = new JsonObject();
-            answerJsonObject.addProperty("success", false);
-            answerJsonObject.addProperty("error", "Error se requiere el uuid del usuario");
-            return new ResponseEntity<>(answerJsonObject.toString(), headers, HttpStatus.BAD_REQUEST);
+        if (projectName.isEmpty()) {
+            return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere nombre del proyecto", false);
         }
 
         uploadFilesService.uploadFile(eaf, multimedia, uuid, projectName);
@@ -50,13 +51,31 @@ public class UploadFilesController {
         long difference_In_Time = endDate.getTime() - startDate.getTime();
         long difference_In_Seconds = (difference_In_Time / (1000)) % 60;
         long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
-        System.out.println("TIMER FINISHED API: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
+        System.out.println("TIMER FINISHED API: " + difference_In_Seconds + "s " + difference_In_Minutes + "m");
 
+        return createdResponseEntity(HttpStatus.OK, uuid, true);
+    }
+
+    /**
+     *
+     * @param code HttpStatus, codigo Http
+     * @param message String, Mensaje de respuesta
+     * @param status boolean, respuesta del success
+     * @return
+     */
+    public ResponseEntity createdResponseEntity(HttpStatus code, String message, boolean status){
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=UTF-8");
         JsonObject answerJsonObject = new JsonObject();
-        answerJsonObject.addProperty("success", true);
-        answerJsonObject.addProperty("uuid", uuid);
-        return new ResponseEntity<>(answerJsonObject.toString(), headers, HttpStatus.OK);
+
+        answerJsonObject.addProperty("success", status);
+
+        if(status){
+            answerJsonObject.addProperty("uuid", message);
+        }else{
+            answerJsonObject.addProperty("error", message);
+        }
+
+        return new ResponseEntity<>(answerJsonObject.toString(), headers, code);
     }
 }

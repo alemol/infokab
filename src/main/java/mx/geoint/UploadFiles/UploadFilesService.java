@@ -14,6 +14,15 @@ public class UploadFilesService {
     @Autowired
     UploadFiles uploadFiles;
 
+    /**
+     *
+     * @param eaf MultipartFile, Archivo de anotaciones
+     * @param multimedia MultipartFile, Archivo de multimedia audio o video
+     * @param uuid String, Identificador de usuario
+     * @param projectName String, Nombre del proyecto
+     * @return boolean, respuesta del servicio
+     * @throws IOException
+     */
     public boolean uploadFile(MultipartFile eaf, MultipartFile multimedia, String uuid, String projectName) throws IOException {
         return uploadFiles.uploadFile(eaf, multimedia, uuid, projectName);
     }
