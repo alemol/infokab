@@ -20,11 +20,24 @@ public class UploadFiles {
     //@Autowired
     //ThreadElanXmlDigester threadElanXmlDigester;
     private final ThreadElanXmlDigester threadElanXmlDigester;
+
+    /**
+     * Inicialización del thread
+     */
     public UploadFiles(){
         threadElanXmlDigester = new ThreadElanXmlDigester();
         threadElanXmlDigester.start();
     }
 
+    /**
+     * Funcion principal para la carga de archivos
+     * @param eaf MultipartFile, Archivo de anotaciones
+     * @param multimedia MultipartFile, Archivo de multimedia audio o video
+     * @param uuid String, Identificador de usuario
+     * @param projectName String, Nombre del proyecto
+     * @return boolean, respuesta de la carga de archivos
+     * @throws IOException
+     */
     public boolean uploadFile(MultipartFile eaf, MultipartFile multimedia, String uuid, String projectName) throws IOException {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
@@ -40,6 +53,13 @@ public class UploadFiles {
         return true;
     }
 
+    /**
+     * Inicializacion de los path's para el thread y la queue
+     * @param eaf MultipartFile, Archivo de anotaciones
+     * @param multimedia MultipartFile, Archivo de multimedia audio o video
+     * @param uuid String, Identificador de usuario
+     * @param projectName String, Nombre del proyecto
+     */
     public void InitElanXmlDigester(MultipartFile eaf, MultipartFile multimedia, String uuid, String basePath, String projectName){
         String extEaf = FilenameUtils.getExtension(eaf.getOriginalFilename());
         String extMultimedia = FilenameUtils.getExtension(multimedia.getOriginalFilename());
@@ -50,6 +70,14 @@ public class UploadFiles {
         threadElanXmlDigester.activate();
     }
 
+    /**
+     *
+     * @param file MultiparteFile, Archivo a subir o transferir
+     * @param basePath String, ruta base para el archivo a subir o transferir
+     * @param projectName String, Nombre del proyecto
+     * @return
+     * @throws IOException
+     */
     public boolean saveFile(MultipartFile file, String basePath, String projectName) throws IOException {
         Date startDate = new Date();
         String name = file.getOriginalFilename();
@@ -67,6 +95,13 @@ public class UploadFiles {
         return true;
     }
 
+    /**
+     *
+     * @param pathDirectory String, directorio base
+     * @param uuid String, indentificador del usuario
+     * @param baseName String, Nombre base del archivo
+     * @return
+     */
     private String existDirectory(String pathDirectory, String uuid, String baseName){
         String currentDirectory = pathDirectory + uuid + "/"+baseName+"/";
 

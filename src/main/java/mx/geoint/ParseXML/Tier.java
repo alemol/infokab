@@ -12,15 +12,14 @@ public class Tier {
     public String PROJECT_NAME;
     public String PATH_MULTIMEDIA;
 
-    /*
-     * Inicializa la anotacion con sus respesctivos tiempos
-     * @param
-     *  annotation_id   indentificador de la anotación
-     *  time_slot_ref1  indentificador de inicio del la anotación
-     *  time_value1     tiempo de inicio de la anotación en milisengundos
-     *  time_slot_ref2  indentificador de fin de la anotación
-     *  time_value1     tiempo de fin de la anotacion en milisengundos
-     **/
+    /**
+     * Inicializa la anotación con sus respectivos tiempos
+     * @param annotation_id String, identificador de la anotación
+     * @param time_slot_ref1 String, identificador de inicio del la anotación
+     * @param time_value1 String, tiempo de inicio de la anotación en milisengundos
+     * @param time_slot_ref2 String, identificador de fin de la anotación
+     * @param time_value2 String, tiempo de fin de la anotación en milisengundos
+     */
     public Tier(String annotation_id, String time_slot_ref1, String time_value1, String time_slot_ref2, String time_value2) {
         this.ANNOTATION_ID = annotation_id;
         this.TIME_SLOT_REF1 = time_slot_ref1;
@@ -35,19 +34,26 @@ public class Tier {
         }
     }
 
-    /*
-     * Inserta la el valor de la anotación
-     * @param
-     *  annotation_value texto de la anotación
-     *  time_slot_ref1  indentificador de inicio del la anotación
-     **/
+    /**
+     * Inserta el valor de la anotación
+     * @param annotation_value String, texto de la anotación
+     */
     public void setAnnotationValue(String annotation_value){
         ANNOTATION_VALUE = annotation_value;
     }
 
+    /**
+     * Inserta el valor del nombre del proyecto
+     * @param projectName String, Nombre del proyecto
+     */
     public void setProjectName(String projectName){
         PROJECT_NAME = projectName;
     }
+
+    /**
+     * Inserta el valor del path multimedia
+     * @param pathMultimedia String, path multimedia
+     */
     public void setPathMultimedia(String pathMultimedia){
         PATH_MULTIMEDIA = pathMultimedia;
     }

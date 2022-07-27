@@ -7,6 +7,9 @@ import java.util.LinkedList;
 public class ThreadElanXmlDigester extends Thread{
     Queue<ElanXmlDigester> elanXmlDigester = new LinkedList<>();
 
+    /**
+     * Función que ejecuta el hilo cuando esta en activo
+     */
     public void run(){
         while(true){
             System.out.println("RUN TREAHD: "+ elanXmlDigester.size() + " : " + Thread.currentThread().getName());
@@ -18,10 +21,19 @@ public class ThreadElanXmlDigester extends Thread{
         }
     }
 
+    /**
+     *
+     * @param pathEAF String, ruta del archivo eaf
+     * @param pathMultimedia String, ruta del archivo multimedia
+     * @param uuid String, Identificador del usuario
+     */
     public void add(String pathEAF, String pathMultimedia, String uuid){
         elanXmlDigester.add(new ElanXmlDigester(pathEAF, pathMultimedia, uuid));
     }
 
+    /**
+     * Función para desactivar el hilo activo
+     */
     public void deactivate(){
         synchronized (this) {
             try {
@@ -33,6 +45,9 @@ public class ThreadElanXmlDigester extends Thread{
         }
     }
 
+    /**
+     * Funcion para activar el hilo inactivo
+     */
     public void activate(){
         synchronized (this) {
             System.out.println("Thread activate");
@@ -40,6 +55,9 @@ public class ThreadElanXmlDigester extends Thread{
         }
     }
 
+    /**
+     * Función para obtener un elemento de la queue y ejecutar su proceso
+     */
     public void process(){
         try {
             Date startDate = new Date();

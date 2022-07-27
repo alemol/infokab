@@ -22,12 +22,11 @@ public class ParseXML {
     String name = "";
     ParseHandler parseHandler;
 
-    /*
+    /**
      * Inicializa la instancia con el path y la clase ParseHandler
-     * @param
-     *  path        string del path del archivo .eaf
-     *  tier_id     tipo de tier a obtner del archivo .eaf
-     **/
+     * @param path String, Ruta del archivo eaf
+     * @param tier_id String, Identificador de tier a obtener en el archivo eaf
+     */
     public ParseXML(String path, String tier_id) {
         String normalize = Normalizer.normalize(tier_id.toLowerCase(), Normalizer.Form.NFD);
         String new_tier_id = normalize.replaceAll("[^\\p{ASCII}]", "");
@@ -35,9 +34,9 @@ public class ParseXML {
         parseHandler = new ParseHandler(new_tier_id);
     }
 
-    /*
+    /**
      * Leer el archivo .eaf y obtiene por medio el metodo de SAXParser el tier_id con sus tiempos
-     **/
+     */
     public void read() {
         try{
             File inputFile = new File(filePath);
@@ -54,14 +53,18 @@ public class ParseXML {
         }
     }
 
-    /*
+    /**
      * Regresar una lista de la clase tier que se obtuvo de parse del archivo .eaf
-     *  List<Tier> regresa una lista de tier con su anotacacion y sus intervalos de tiempo
-     **/
+     * @return List<Tier> Lista de instancias de la clase Tier
+     */
     public List<Tier> getTier(){
         return parseHandler.getTier();
     }
 
+    /**
+     * Regresa el mimeType del archivo multimedia obtenido del archivo eaf
+     * @return String, mimeType del archivo multimedia en el archivo eaf
+     */
     public String getMimeType(){
         return parseHandler.getMimeType();
     }

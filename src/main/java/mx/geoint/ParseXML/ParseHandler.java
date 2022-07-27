@@ -53,16 +53,20 @@ public class ParseHandler extends DefaultHandler{
     //Objecto para almacenar los tiempo
     JsonObject jsonObjectTimeOrder = new JsonObject();
 
-    /*
-     * Inicializa el tipo de tier a obtner
-     * @param tier_id tipo de tier a obtener
-     **/
+    /**
+     *
+     * @param tier_id String, Identificador de tier a obtener en el archivo eaf
+     */
     ParseHandler(String tier_id){
         this.tier_id = tier_id;
     }
 
-    /*
+    /**
      * Evento para el texto de una etiqueta, aqui se obtiene el texto de anotación y la agrega a la clase de tier
+     * @param ch
+     * @param start
+     * @param length
+     * @throws SAXException
      */
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
@@ -81,18 +85,24 @@ public class ParseHandler extends DefaultHandler{
         }
     }
 
-    /*
+    /**
      * Evento para el inicio de lectura de un documento
+     * @throws SAXException
      */
     @Override
     public void startDocument() throws SAXException {
         tierList = new ArrayList<>();
     }
 
-    /*
+    /**
      * Evento para el comienzo de cada etiqueta del xml, en este evento se guardan
-     * los atributos del las etiquetas y se inicializan las banderas necesarias
-    **/
+     * los atributos de las etiquetas y se inicializan las banderas necesarias
+     * @param uri
+     * @param lName
+     * @param qName
+     * @param attr
+     * @throws SAXException
+     */
     @Override
     public void startElement(String uri, String lName, String qName, Attributes attr) throws SAXException {
         switch (qName){
@@ -154,10 +164,14 @@ public class ParseHandler extends DefaultHandler{
         }
     }
 
-    /*
-     * Evento para el fin de cada etiqueta del xml, en este se reinician las banders
-     * correspondientes al cierre de la etiqueta en curso0
-     **/
+    /**
+     * Evento para el fin de cada etiqueta del xml, en este se reinician las banderas
+     * correspondientes al cierre de la etiqueta en curso
+     * @param uri
+     * @param localName
+     * @param qName
+     * @throws SAXException
+     */
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         switch (qName){
@@ -171,24 +185,28 @@ public class ParseHandler extends DefaultHandler{
         }
     }
 
-    /*
+    /**
      * Obtiene el ultimo elemento de la lista de anotaciones
-     * @params list<tier> una lista de tier
-     * return Tier El ultimo elemento de la lista
-     **/
+     * @param tierList list<tier> una lista de instancias de la clase Tier
+     * @return Tier, Ultimo elemento de la lista
+     */
     private Tier latestTier(List<Tier> tierList) {
         int latestTierIndex = tierList.size() - 1;
         return tierList.get(latestTierIndex);
     }
 
-    /*
-     * Obtiene toda  la lista de tier
-     * return list<Tier> regresa la lista de anotaciones
-     *
-     **/
+    /**
+     * Regresa toda la lista de instancias de la clase Tier
+     * @return list<Tier> regresa la lista de anotaciones
+     */
     public List<Tier> getTier(){
         return tierList;
     }
+
+    /**
+     * Regres el mime_type del multimedia del archivo eaf
+     * @return String regresa el mime_type del multimedia del archivo eaf
+     */
     public String getMimeType(){
         return mime_type;
     }
