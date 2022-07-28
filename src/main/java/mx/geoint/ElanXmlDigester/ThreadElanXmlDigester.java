@@ -1,4 +1,6 @@
 package mx.geoint.ElanXmlDigester;
+import mx.geoint.Lucene.Lucene;
+import mx.geoint.pathSystem;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Queue;
@@ -63,6 +65,11 @@ public class ThreadElanXmlDigester extends Thread{
             Date startDate = new Date();
             ElanXmlDigester currentElanXmlDigester = elanXmlDigester.poll();
             currentElanXmlDigester.parse_tier("oracion", true, true);
+
+            String uuid = currentElanXmlDigester.getUUID();
+            Lucene lucene = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+uuid+"/");
+            lucene.initConfig(false);
+            lucene.createIndex(currentElanXmlDigester.basePathJsonFiles());
 
             Date endDate = new Date();
             long difference_In_Time = endDate.getTime() - startDate.getTime();
