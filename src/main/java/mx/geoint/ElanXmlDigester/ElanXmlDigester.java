@@ -66,7 +66,7 @@ public class ElanXmlDigester {
         if(save_media==true){
             String type_path = getTypeMultimedia(filepathMultimedia);
 
-            for (int i = 0; i<1; i++){
+            for (int i = 0; i< getTier.size(); i++){
                 Tier tier = getTier.get(i);
 
                 if(type_path.equals("wav") || type_path.equals("mp4")){
@@ -121,7 +121,8 @@ public class ElanXmlDigester {
 
         if(created){
             tier.setProjectName(path);
-            tier.setPathMultimedia(basePath+file_name);
+            tier.setMediaPath(basePath+file_name);
+            tier.setOriginalMediaPath(source);
         }
         return created;
     }
@@ -147,7 +148,8 @@ public class ElanXmlDigester {
 
         if(created){
             tier.setProjectName(path);
-            tier.setPathMultimedia(basePath+file_name);
+            tier.setMediaPath(basePath+file_name);
+            tier.setOriginalMediaPath(source);
         }
         return created;
     }
@@ -211,5 +213,22 @@ public class ElanXmlDigester {
         String type_path_normalize = normalize.replaceAll("[^\\p{ASCII}]", "");
         String type_path_loweCase = type_path_normalize.toLowerCase();
         return type_path_loweCase;
+    }
+
+    /**
+     *
+     * @return String, Identificador del usuario
+     */
+    public String getUUID(){
+        return uuid;
+    }
+
+    /**
+     *
+     * @return String, Directorio donde se encuentran los json
+     */
+    public String basePathJsonFiles(){
+        String basePath = FilenameUtils.getPath(filepathEaf);
+        return existDirectory(basePath);
     }
 }

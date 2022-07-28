@@ -22,9 +22,9 @@ public class CreateIndex {
         Gson gson = new Gson();
         CreateIndexModel createIndexModel = gson.fromJson(text, CreateIndexModel.class);
 
-        Lucene lucene = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+createIndexModel.name+"/");
-        lucene.initConfig(true);
-        lucene.createIndex(pathSystem.DIRECTORY_FILES_JSON);
+        //Lucene lucene = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+createIndexModel.name+"/");
+        //lucene.initConfig(true);
+        //lucene.createIndex(pathSystem.DIRECTORY_FILES_JSON);
 
         System.out.println("Create Index");
         return "ok";

@@ -10,7 +10,8 @@ public class Tier {
 
     public double DIFF_TIME = 0.0;
     public String PROJECT_NAME;
-    public String PATH_MULTIMEDIA;
+    public String MEDIA_PATH;
+    public String ORIGINAL_MEDIA_PATH;
 
     /**
      * Inicializa la anotación con sus respectivos tiempos
@@ -52,10 +53,17 @@ public class Tier {
 
     /**
      * Inserta el valor del path multimedia
-     * @param pathMultimedia String, path multimedia
+     * @param path String, path multimedia
      */
-    public void setPathMultimedia(String pathMultimedia){
-        PATH_MULTIMEDIA = pathMultimedia;
+    public void setMediaPath(String path){
+        MEDIA_PATH = path;
     }
 
+    /**
+     * Inserta el valor del path multimedia
+     * @param path String, path original del multimedia
+     */
+    public void setOriginalMediaPath(String path){
+        ORIGINAL_MEDIA_PATH = path;
+    }
 }
