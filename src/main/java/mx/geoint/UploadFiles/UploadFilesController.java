@@ -45,7 +45,8 @@ public class UploadFilesController {
             return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere nombre del proyecto", false);
         }
 
-        uploadFilesService.uploadFile(eaf, multimedia, uuid, projectName);
+        long uploadTime = (new Date()).getTime();
+        Number codeStatus = uploadFilesService.uploadFile(eaf, multimedia, uuid, projectName+"_"+uploadTime);
 
         Date endDate = new Date();
         long difference_In_Time = endDate.getTime() - startDate.getTime();
@@ -53,7 +54,11 @@ public class UploadFilesController {
         long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
         System.out.println("TIMER FINISHED API: " + difference_In_Seconds + "s " + difference_In_Minutes + "m");
 
-        return createdResponseEntity(HttpStatus.OK, uuid, true);
+        if(codeStatus.equals(0)){
+            return createdResponseEntity(HttpStatus.OK, uuid, true);
+        }else{
+            return createdResponseEntity(HttpStatus.CONFLICT, codeStatus.toString(), false);
+        }
     }
 
     /**

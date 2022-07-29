@@ -38,19 +38,19 @@ public class UploadFiles {
      * @return boolean, respuesta de la carga de archivos
      * @throws IOException
      */
-    public boolean uploadFile(MultipartFile eaf, MultipartFile multimedia, String uuid, String projectName) throws IOException {
+    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, String uuid, String projectName) throws IOException {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
         if(!saveFile(eaf, basePath, baseProjectName)){
-            return false;
+            return pathSystem.NOT_UPLOAD_EAF_FILE;
         }
 
         if(!saveFile(multimedia, basePath, baseProjectName)){
-            return false;
+            return pathSystem.NOT_UPLOAD_MULTIMEDIA_FILE;
         }
 
         InitElanXmlDigester(eaf, multimedia, uuid, basePath, baseProjectName);
-        return true;
+        return pathSystem.SUCCESS_UPLOAD;
     }
 
     /**
