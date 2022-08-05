@@ -90,7 +90,7 @@ public class ElanXmlDigester {
             }
             if (type_path.equals("mp4")) {
                 System.out.println("video");
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i < getTier.size(); i++) {
                     Tier tier = getTier.get(i);
                     String path = FilenameUtils.getBaseName(filepathMultimedia);
                     String extension = FilenameUtils.getExtension(filepathMultimedia);
