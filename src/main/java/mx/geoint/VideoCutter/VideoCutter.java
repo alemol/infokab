@@ -111,9 +111,6 @@ public class VideoCutter extends MediaListenerAdapter {
         IMediaReader reader = ToolFactory.makeReader(videoPathin);
         reader.setBufferedImageTypeToGenerate(BufferedImage.TYPE_3BYTE_BGR);
 
-        TMP_DIR = "out_tmp";
-        File tmpdir = new File(TMP_DIR);
-        tmpdir.mkdir(); //creo una cartella temporanea per salvere i frammenti
         //passo da secondi a nanosecondi
         for(int i = 0; i < starts.length; i++)
         {
