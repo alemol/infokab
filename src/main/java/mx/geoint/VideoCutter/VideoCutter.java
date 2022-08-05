@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
 
 import com.xuggle.mediatool.IMediaReader;
 import com.xuggle.mediatool.IMediaWriter;
@@ -28,13 +29,12 @@ public class VideoCutter extends MediaListenerAdapter {
     private IMediaWriter[] writers;
 
     //public Cutter(double[] starts, double[] ends, String videoPathin, String videoPathout)
-    public boolean Cutter(String videoPathin, double s, double e, String videoPathout)
-    {
+    public boolean Cutter(String videoPathin, double s, double e, String videoPathout) {
         double starts[] = new double[1];
         starts[0] = s;
         double ends[] = new double[1];
         ends[0] = e;
-        String basePath = FilenameUtils.getPath(videoPathin)+"multimedia/";
+        String basePath = FilenameUtils.getPath(videoPathin) + "multimedia/";
         existDirectory(basePath);
 
         try {
@@ -47,11 +47,10 @@ public class VideoCutter extends MediaListenerAdapter {
             //File tmpdir = new File(TMP_DIR);
             //tmpdir.mkdir(); //se crea la carpeta temporal para guardar la salida
             //paso de segundos a nanosegundos
-            for(int i = 0; i < starts.length; i++)
-            {
-                starts[i]*= Global.DEFAULT_PTS_PER_SECOND;
-                ends[i]*=Global.DEFAULT_PTS_PER_SECOND;
-                writers[i] =  ToolFactory.makeWriter(basePath+videoPathout, reader); //comprende il nome del file
+            for (int i = 0; i < starts.length; i++) {
+                starts[i] *= Global.DEFAULT_PTS_PER_SECOND;
+                ends[i] *= Global.DEFAULT_PTS_PER_SECOND;
+                writers[i] = ToolFactory.makeWriter(basePath + videoPathout, reader); //comprende il nome del file
             }
 
             //creazione di un tool che mi taglia il video nei punti scelti
@@ -65,18 +64,15 @@ public class VideoCutter extends MediaListenerAdapter {
             int rp = 0; //Posición relativa, cambia según el flujo de partes de la película
             //E' importante che le parti siano disgiunte
             //reader.
-            while(reader.readPacket() == null)
-            {
-                if(!updatedS && (checkPos.timeInMilisec >= starts[rp]))
-                {
+            while (reader.readPacket() == null) {
+                if (!updatedS && (checkPos.timeInMilisec >= starts[rp])) {
                     System.out.print("\n" + rp);
                     updatedS = true; //da un certo punto inizio a convertire
                     updatedE = false;
                     checkPos.addListener(writers[rp]);
                 }
 
-                if(!updatedE && (checkPos.timeInMilisec >= ends[rp] ))
-                {
+                if (!updatedE && (checkPos.timeInMilisec >= ends[rp])) {
                     System.out.print("-" + rp);
                     updatedE = true; //arrivato ad un certo punto smetto di convertire
                     checkPos.removeListener(writers[rp]);
@@ -84,16 +80,14 @@ public class VideoCutter extends MediaListenerAdapter {
                     rp++; //passo alla prossima parte del filmato
                     System.out.println(rp);
                     //if(rp == starts.length)
-                    if(rp <= starts.length)
-                    { //se sono arrivato alla fine
+                    if (rp <= starts.length) { //se sono arrivato alla fine
                         System.out.print("\nCLOSE\n");
                         //writer.close(); //smetto di convertire
-                    }
-                    else
+                    } else
                         updatedS = false;
                 }
             }
-        }catch (Exception err) {
+        } catch (Exception err) {
             System.out.println("Ocurrió un error: ");
             err.printStackTrace();
             //System.exit(-1);
@@ -107,13 +101,159 @@ public class VideoCutter extends MediaListenerAdapter {
         return true;
     }
 
-    public boolean concatenateVideoFromWriters(String source, String OUT_FILE)
+    public HashMap<String, Boolean> Cutter2(double[] starts, double[] ends, String videoPathin, String[] videoPathout)
     {
-        //Si el fragmento es único, solo tengo que moverlo y renombrarlo
-        if(writers.length == 1)
+
+        String basePath = FilenameUtils.getPath(videoPathin) + "multimedia/";
+        existDirectory(basePath);
+
+        writers = new IMediaWriter[starts.length];
+        IMediaReader reader = ToolFactory.makeReader(videoPathin);
+        reader.setBufferedImageTypeToGenerate(BufferedImage.TYPE_3BYTE_BGR);
+
+        TMP_DIR = "out_tmp";
+        File tmpdir = new File(TMP_DIR);
+        tmpdir.mkdir(); //creo una cartella temporanea per salvere i frammenti
+        //passo da secondi a nanosecondi
+        for(int i = 0; i < starts.length; i++)
         {
-            String basePath = FilenameUtils.getPath(source)+"/multimedia/";
-            new File(writers[0].getUrl()).renameTo(new File(basePath+OUT_FILE));
+            starts[i]*=Global.DEFAULT_PTS_PER_SECOND;
+            ends[i]*=Global.DEFAULT_PTS_PER_SECOND;
+            writers[i] =  ToolFactory.makeWriter(basePath + videoPathout[i], reader); //comprende il nome del file
+        }
+
+        //creazione di un tool che mi taglia il video nei punti scelti
+        videoCheck checkPos = new videoCheck(); //videocheck estende MediaToolAdapter
+        reader.addListener(checkPos);
+        //IMediaWriter writer = ToolFactory.makeWriter(videoPathout+".flv", reader); //comprende il nome del file
+
+        boolean updatedS = false;
+        boolean updatedE = false;
+
+        int rp = 0; //Relative Position, cambia in base allo scorrere delle parti del filmato
+        //E' importante che le parti siano disgiunte
+        //reader.
+        HashMap<String, Boolean>  CreatedList = new HashMap<String, Boolean>();
+        while(reader.readPacket() == null)
+        {
+            try{
+                if(!updatedS && (checkPos.timeInMilisec >= starts[rp]))
+                {
+                    System.out.print("\n" + rp);
+                    updatedS = true; //da un certo punto inizio a convertire
+                    updatedE = false;
+                    checkPos.addListener(writers[rp]);
+                }
+
+                if(!updatedE && (checkPos.timeInMilisec >= ends[rp] ))
+                {
+                    System.out.print("-" + rp);
+                    updatedE = true; //arrivato ad un certo punto smetto di convertire
+                    checkPos.removeListener(writers[rp]);
+                    //writers[rp].close();
+                    CreatedList.put(basePath + videoPathout[rp],true);
+                    rp++; //passo alla prossima parte del filmato
+                    if(rp == starts.length)
+                    { //se sono arrivato alla fine
+                        System.out.print("\nCLOSE\n");
+                        //writer.close(); //smetto di convertire
+                    }
+                    else
+                        updatedS = false;
+                }
+            } catch (Exception err) {
+                System.out.println("Ocurrió un error: ");
+                err.printStackTrace();
+                //System.exit(-1);
+                CreatedList.put(basePath + videoPathout[rp],false);
+            }
+
+
+        }
+
+        //String OUT_FILE = videoPathout+".flv";
+        //Ottenuti i file separati li riunisco in un unico file
+        //concatenateVideoFromWriters(OUT_FILE);
+        return CreatedList;
+
+    }
+
+    public HashMap<String, Boolean> CutterList(double[] starts, double[] ends, String videoPathin, String[] videoPathout) {
+        String basePath = FilenameUtils.getPath(videoPathin) + "multimedia/";
+        existDirectory(basePath);
+        HashMap<String, Boolean> CreatedList = new HashMap<String, Boolean>();
+
+        writers = new IMediaWriter[starts.length];
+        IMediaReader reader = ToolFactory.makeReader(videoPathin);
+        reader.setBufferedImageTypeToGenerate(BufferedImage.TYPE_3BYTE_BGR);
+
+        /*TMP_DIR = videoPathout + "_tmp";
+        File tmpdir = new File(TMP_DIR);
+        tmpdir.mkdir(); //creo una cartella temporanea per salvere i frammenti*/
+        //passo da secondi a nanosecondi
+        for (int i = 0; i < starts.length; i++) {
+            starts[i] *= Global.DEFAULT_PTS_PER_SECOND;
+            ends[i] *= Global.DEFAULT_PTS_PER_SECOND;
+            writers[i] = ToolFactory.makeWriter(basePath + videoPathout[i], reader); //comprende il nome del file
+        }
+
+        //creazione di un tool che mi taglia il video nei punti scelti
+        videoCheck checkPos = new videoCheck(); //videocheck estende MediaToolAdapter
+        reader.addListener(checkPos);
+        //IMediaWriter writer = ToolFactory.makeWriter(videoPathout+".flv", reader); //comprende il nome del file
+
+        boolean updatedS = false;
+        boolean updatedE = false;
+
+        int rp = 0; //Relative Position, cambia in base allo scorrere delle parti del filmato
+        //E' importante che le parti siano disgiunte
+        //reader.
+
+        while (reader.readPacket() == null) {
+            try {
+                if (!updatedS && (checkPos.timeInMilisec >= starts[rp])) {
+                    System.out.print("\n" + rp);
+                    updatedS = true; //da un certo punto inizio a convertire
+                    updatedE = false;
+                    checkPos.addListener(writers[rp]);
+                }
+
+                if (!updatedE && (checkPos.timeInMilisec >= ends[rp])) {
+                    System.out.print("-" + rp);
+                    updatedE = true; //arrivato ad un certo punto smetto di convertire
+                    checkPos.removeListener(writers[rp]);
+                    //writers[rp].close();
+                    CreatedList.put(TMP_DIR + "/p" + rp + ".flv", true);
+                    rp++; //passo alla prossima parte del filmato
+                    if (rp == starts.length) { //se sono arrivato alla fine
+                        System.out.print("\nCLOSE\n");
+                        for (int i = 0; i <= writers.length; i++) {
+                            writers[i].close();
+                        }
+                        //writers[rp].close(); //smetto di convertire
+                    } else
+                        updatedS = false;
+                }
+            } catch (Exception err) {
+                System.out.println("Ocurrió un error: ");
+                err.printStackTrace();
+                //System.exit(-1);
+                CreatedList.put(TMP_DIR + "/p" + rp + ".flv", false);
+            }
+        }
+
+        //String OUT_FILE = videoPathout+".flv";
+        //Ottenuti i file separati li riunisco in un unico file
+        //concatenateVideoFromWriters(OUT_FILE);
+        return CreatedList;
+
+    }
+
+    public boolean concatenateVideoFromWriters(String source, String OUT_FILE) {
+        //Si el fragmento es único, solo tengo que moverlo y renombrarlo
+        if (writers.length == 1) {
+            String basePath = FilenameUtils.getPath(source) + "/multimedia/";
+            new File(writers[0].getUrl()).renameTo(new File(basePath + OUT_FILE));
         }
         /*else
         {
@@ -131,75 +271,66 @@ public class VideoCutter extends MediaListenerAdapter {
         return true;
     }
 
-    public void deleteAllFromTmpFolder()
-    {
-        System.out.print("deleting tmpfile and folder"+ TMP_DIR +" \n");
+    public void deleteAllFromTmpFolder() {
+        System.out.print("deleting tmpfile and folder" + TMP_DIR + " \n");
         File td = new File(TMP_DIR);
         String[] fileslist = td.list();
-        for(String fpath : fileslist)
-        {
-            System.out.print(fpath+" \n");
-            new File(TMP_DIR+"/"+fpath).delete(); //elimino i file nella cartella
+        for (String fpath : fileslist) {
+            System.out.print(fpath + " \n");
+            new File(TMP_DIR + "/" + fpath).delete(); //elimino i file nella cartella
         }
         td.delete(); //elimino la cartella
     }
 
-    class videoCheck extends MediaToolAdapter
-    {
+    class videoCheck extends MediaToolAdapter {
         //Devono essere millisecondi
         public Long timeInMilisec = (long) 0;
         public boolean convert = true;
 
         @Override
-        public void onVideoPicture(IVideoPictureEvent event)
-        {
+        public void onVideoPicture(IVideoPictureEvent event) {
             timeInMilisec = event.getTimeStamp();  //mi ritorna il preciso istante in MICROsecondi
             //adesso chiamo la superclasse che continua con la manipolazione
 
-            if(convert)
+            if (convert)
                 super.onVideoPicture(event);
         }
 
         @Override
-        public void onAudioSamples(IAudioSamplesEvent event)
-        {
-            if(convert)
+        public void onAudioSamples(IAudioSamplesEvent event) {
+            if (convert)
                 super.onAudioSamples(event);
         }
 
         @Override
-        public void onWritePacket(IWritePacketEvent event)
-        {
-            if(convert)
+        public void onWritePacket(IWritePacketEvent event) {
+            if (convert)
                 super.onWritePacket(event);
         }
 
         @Override
-        public void onWriteTrailer(IWriteTrailerEvent event)
-        {
-            if(convert)
+        public void onWriteTrailer(IWriteTrailerEvent event) {
+            if (convert)
                 super.onWriteTrailer(event);
         }
 
         @Override
-        public void onReadPacket(IReadPacketEvent event)
-        {
-            if(convert)
+        public void onReadPacket(IReadPacketEvent event) {
+            if (convert)
                 super.onReadPacket(event);
         }
 
         @Override
-        public void onWriteHeader(IWriteHeaderEvent event)
-        {
-            if(convert)
+        public void onWriteHeader(IWriteHeaderEvent event) {
+            if (convert)
                 super.onWriteHeader(event);
         }
     }
 
-    private String existDirectory(String pathDirectory){
+    private String existDirectory(String pathDirectory) {
         String currentDirectory = pathDirectory;
 
-        if(!Files.exists(Path.of(pathDirectory))){
+        if (!Files.exists(Path.of(pathDirectory))) {
             File newSubDirectory = new File(pathDirectory);
             newSubDirectory.mkdirs();
         }

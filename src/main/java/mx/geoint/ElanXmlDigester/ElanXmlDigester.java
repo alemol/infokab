@@ -5,7 +5,6 @@ import mx.geoint.FFmpeg.FFmpeg;
 import mx.geoint.ParseXML.ParseXML;
 import mx.geoint.ParseXML.Tier;
 import mx.geoint.VideoCutter.VideoCutter;
-import mx.geoint.pathSystem;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
@@ -14,6 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.Normalizer;
+import java.util.HashMap;
 import java.util.List;
 
 public class ElanXmlDigester {
@@ -67,17 +67,16 @@ public class ElanXmlDigester {
         getTier = parseXML.getTier();
         String baseNameEaf = FilenameUtils.getBaseName(filepathEaf);
         String type_path = getTypeMultimedia(filepathMultimedia);
-        System.out.println("type_path: "+ type_path);
+        System.out.println("type_path: " + type_path);
         double s[] = new double[getTier.size()];
         double e[] = new double[getTier.size()];
         String name[] = new String[getTier.size()];
         if (save_media == true) {
-            for (int i = 0; i < getTier.size(); i++) {
-                Tier tier = getTier.get(i);
 
-                if (type_path.equals("wav")){
+            if (type_path.equals("wav")) {
+                for (int i = 0; i < getTier.size(); i++) {
+                    Tier tier = getTier.get(i);
                     boolean created = false;
-
                     FFmpeg ffmpeg = new FFmpeg(filepathMultimedia);
                     created = saveAudio(ffmpeg, tier, tier_id, filepathMultimedia);
                     //VideoCutter videoCutter = new VideoCutter();
@@ -87,24 +86,27 @@ public class ElanXmlDigester {
                     if (created == true && save_text == true) {
                         saveText(tier, tier_id, baseNameEaf);
                     }
-
                 }
-                if(type_path.equals("mp4")){
-                    System.out.println("video");
+            }
+            if (type_path.equals("mp4")) {
+                System.out.println("video");
+                for (int i = 0; i < 10; i++) {
+                    Tier tier = getTier.get(i);
                     String path = FilenameUtils.getBaseName(filepathMultimedia);
                     String extension = FilenameUtils.getExtension(filepathMultimedia);
-
                     s[i] = Double.parseDouble(tier.TIME_VALUE1) / 1000;
                     e[i] = Double.parseDouble(tier.TIME_VALUE2) / 1000;
                     name[i] = format_name(tier, tier_id, path, extension);
-                    System.out.println(s[i]);
-                    System.out.println(e[i]);
-                    System.out.println(name[i]);
-                    System.out.println("video");
 
                 }
+                VideoCutter videoCutter = new VideoCutter();
+                System.out.println(s.length);
+                HashMap<String, Boolean> CreatedList = saveVideo(videoCutter,s,e,name,filepathMultimedia);
+                System.out.println(CreatedList);
             }
-        }else {
+
+
+        } else {
             if (save_text == true) {
                 for (int i = 0; i < getTier.size(); i++) {
                     Tier tier = getTier.get(i);
@@ -112,6 +114,7 @@ public class ElanXmlDigester {
                 }
             }
         }
+
     }
 
     /**
@@ -123,7 +126,15 @@ public class ElanXmlDigester {
      * @param source      String, ruta del multimedia
      * @return
      */
-    public boolean saveVideo(VideoCutter videoCutter, Tier tier, String tier_id, String source) {
+    public HashMap<String, Boolean> saveVideo(VideoCutter videoCutter, double[] s, double[] e, String[] name, String source){
+        String basePath = FilenameUtils.getPath(source) + "multimedia/";
+        String path = FilenameUtils.getBaseName(source);
+        String type_path = FilenameUtils.getExtension(source);
+        //boolean created = videoCutter.Cutter();
+        HashMap<String, Boolean> CreatedList = videoCutter.Cutter2(s, e, source,name);
+        return CreatedList;
+    }
+    /*public boolean saveVideo(VideoCutter videoCutter, Tier tier, String tier_id, String source) {
         String basePath = FilenameUtils.getPath(source) + "multimedia/";
         String path = FilenameUtils.getBaseName(source);
         String type_path = FilenameUtils.getExtension(source);
@@ -140,7 +151,7 @@ public class ElanXmlDigester {
             tier.setOriginalMediaPath(source);
         }
         return created;
-    }
+    }*/
 
     /**
      * Se encarga de realizar los cortes de audio y guardarlo
@@ -180,6 +191,10 @@ public class ElanXmlDigester {
      */
     public void saveText(Tier tier, String tier_id, String path) throws IOException {
         String file_name_json = format_name(tier, tier_id, path, "json");
+        System.out.println(tier);
+        System.out.println(tier_id);
+        System.out.println(path);
+        System.out.println(file_name_json);
         Gson gson = new Gson();
 
         String basePath = FilenameUtils.getPath(filepathEaf);
