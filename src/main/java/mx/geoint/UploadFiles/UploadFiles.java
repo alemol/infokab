@@ -46,17 +46,25 @@ public class UploadFiles {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
         //int id_project = 0; //inicializa variable de id de de proyecto
-        if(!saveFile(eaf, uuid, basePath, baseProjectName)){
+        if(!saveFile(eaf, basePath, baseProjectName)){
             return pathSystem.NOT_UPLOAD_EAF_FILE;
         }
 
-        if(!saveFile(multimedia, uuid, basePath, baseProjectName)){
+        if(!saveFile(multimedia, basePath, baseProjectName)){
             return pathSystem.NOT_UPLOAD_MULTIMEDIA_FILE;
         }
 
         int id_project = database.createProject(uuid, basePath, baseProjectName); //inserta un registro del proyecto en la base de datos
         System.out.println("ID de proyecto generado: "+id_project);
-        InitElanXmlDigester(eaf, multimedia, uuid, basePath, baseProjectName);
+        if(id_project > 0){
+            System.out.println("Proyecto guardado en base de datos");
+            InitElanXmlDigester(eaf, multimedia, uuid, basePath, baseProjectName);
+        }
+        else{
+            System.out.println("No se pudo guardar el proyecto en base de datos");
+            return pathSystem.ERROR_DATABASE_SAVE_PROJECT;
+        }
+
         return pathSystem.SUCCESS_UPLOAD;
     }
 
@@ -86,10 +94,9 @@ public class UploadFiles {
      * @return
      * @throws IOException
      */
-    public boolean saveFile(MultipartFile file, String uuid, String basePath, String projectName) throws IOException {
+    public boolean saveFile(MultipartFile file, String basePath, String projectName) throws IOException {
         Date startDate = new Date();
         String name = file.getOriginalFilename();
-        String contentType = file.getContentType();
         String ext  = FilenameUtils.getExtension(name);
 
         long size = file.getSize();
