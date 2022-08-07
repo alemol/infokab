@@ -6,8 +6,15 @@ import java.util.UUID;
 
 public class databaseController {
 
+    String DBhost = "localhost";
+    String DBname = "infokab";
+    String DBuser = "postgres";
+    String DBpassword = "postgres";
+    String urlConnection = "jdbc:postgresql://"+DBhost+"/"+DBname;
+
     public databaseController(){
-        System.out.println("constructor");
+        System.out.println("init databaseController");
+
     }
     public int createProject(String uuid, String basePath, String projectName){
         System.out.println("createProject");
@@ -15,13 +22,13 @@ public class databaseController {
         //---guardado a base de datos
         System.out.println("save to database: "+projectName);
 
-        String url = "jdbc:postgresql://localhost/infokab";
+        //String url = "jdbc:postgresql://localhost/infokab";
         Properties props = new Properties();
-        props.setProperty("user","postgres");
-        props.setProperty("password","postgres");
+        props.setProperty("user",this.DBuser);
+        props.setProperty("password",this.DBpassword);
         //props.setProperty("ssl","true");
         try {
-            Connection conn = DriverManager.getConnection(url, props);
+            Connection conn = DriverManager.getConnection(this.urlConnection, props);
             System.out.println(conn);
 
             String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo,fecha_creacion) VALUES (?,?,?,?) RETURNING id_proyecto";
@@ -43,8 +50,9 @@ public class databaseController {
                 id_project = rs.getInt(1);
                 System.out.println("generated key");
                 System.out.println(id_project);
-            }
 
+            }
+            conn.close();
             // rows affected
             //System.out.println(row); //1
 
@@ -64,7 +72,6 @@ public class databaseController {
             return 0;
         }
         //---guardado a base de datos
-
         return id_project;
     }
 }
