@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://10.2.102.202:3000/"})
+@CrossOrigin(origins = {"http://localhost:3000", "http://10.2.102.202:3000/","http://10.2.102.182"})
 @RestController
 @RequestMapping(path = "api/search")
 public class SearcherController {

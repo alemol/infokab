@@ -69,6 +69,15 @@
             <artifactId>xuggle-xuggler</artifactId>
             <version>5.4</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.4.0</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

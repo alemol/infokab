@@ -2,6 +2,7 @@ package mx.geoint.UploadFiles;
 
 import mx.geoint.ElanXmlDigester.ThreadElanXmlDigester;
 import mx.geoint.pathSystem;
+import mx.geoint.database.databaseController;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,16 +16,19 @@ import java.nio.file.StandardCopyOption;
 import java.util.Date;
 import java.util.List;
 
+
 @Component
 public class UploadFiles {
     //@Autowired
     //ThreadElanXmlDigester threadElanXmlDigester;
     private final ThreadElanXmlDigester threadElanXmlDigester;
+    private final databaseController database;
 
     /**
      * Inicialización del thread
      */
     public UploadFiles(){
+        database = new databaseController();
         threadElanXmlDigester = new ThreadElanXmlDigester();
         threadElanXmlDigester.start();
     }
@@ -41,14 +45,17 @@ public class UploadFiles {
     public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, String uuid, String projectName) throws IOException {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
-        if(!saveFile(eaf, basePath, baseProjectName)){
+        //int id_project = 0; //inicializa variable de id de de proyecto
+        if(!saveFile(eaf, uuid, basePath, baseProjectName)){
             return pathSystem.NOT_UPLOAD_EAF_FILE;
         }
 
-        if(!saveFile(multimedia, basePath, baseProjectName)){
+        if(!saveFile(multimedia, uuid, basePath, baseProjectName)){
             return pathSystem.NOT_UPLOAD_MULTIMEDIA_FILE;
         }
 
+        int id_project = database.createProject(uuid, basePath, baseProjectName); //inserta un registro del proyecto en la base de datos
+        System.out.println("ID de proyecto generado: "+id_project);
         InitElanXmlDigester(eaf, multimedia, uuid, basePath, baseProjectName);
         return pathSystem.SUCCESS_UPLOAD;
     }
@@ -61,6 +68,7 @@ public class UploadFiles {
      * @param projectName String, Nombre del proyecto
      */
     public void InitElanXmlDigester(MultipartFile eaf, MultipartFile multimedia, String uuid, String basePath, String projectName){
+        System.out.println("InitElanXmlDigester.....");
         String extEaf = FilenameUtils.getExtension(eaf.getOriginalFilename());
         String extMultimedia = FilenameUtils.getExtension(multimedia.getOriginalFilename());
 
@@ -78,9 +86,10 @@ public class UploadFiles {
      * @return
      * @throws IOException
      */
-    public boolean saveFile(MultipartFile file, String basePath, String projectName) throws IOException {
+    public boolean saveFile(MultipartFile file, String uuid, String basePath, String projectName) throws IOException {
         Date startDate = new Date();
         String name = file.getOriginalFilename();
+        String contentType = file.getContentType();
         String ext  = FilenameUtils.getExtension(name);
 
         long size = file.getSize();
@@ -92,6 +101,7 @@ public class UploadFiles {
         long difference_In_Seconds = (difference_In_Time / (1000)) % 60;
         long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
         System.out.println(" PATH: " + name + " SIZE: "+ size + " SAVE_TIME: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
+
         return true;
     }
 
