@@ -1,4 +1,6 @@
 package mx.geoint.database;
+import mx.geoint.User.User;
+
 import java.time.LocalDateTime;
 import java.sql.*;
 import java.util.Properties;
@@ -73,5 +75,72 @@ public class databaseController {
         }
         //---guardado a base de datos
         return id_project;
+    }
+
+    public boolean insertUser(User user){
+        System.out.println(user.getNombre());
+        System.out.println(user.getApellido());
+        System.out.println(user.getCorreo());
+        System.out.println(user.getPassword());
+        String encryptedPassword = org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPassword());
+
+        System.out.println(encryptedPassword);
+
+        UUID uuid = UUID.randomUUID();
+        System.out.println(uuid);
+
+        //---guardado a base de datos
+
+        Properties props = new Properties();
+        props.setProperty("user",this.DBuser);
+        props.setProperty("password",this.DBpassword);
+        //props.setProperty("ssl","true");
+        try {
+            Connection conn = DriverManager.getConnection(this.urlConnection, props);
+            System.out.println(conn);
+
+            String SQL_INSERT = "INSERT INTO usuarios (id_usuario, nombre, apellido, correo, contraseña, fecha_creacion) VALUES (?,?,?,?,?,?)";
+
+            PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT);
+            preparedStatement.setObject(1, uuid);
+            preparedStatement.setString(2, user.getNombre());
+            preparedStatement.setString(3, user.getApellido());
+            preparedStatement.setString(4, user.getCorreo());
+            preparedStatement.setString(5, encryptedPassword);
+            preparedStatement.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
+
+            int row = preparedStatement.executeUpdate();
+
+            //rows affected
+            System.out.println(row); //1
+            conn.close();
+            if(row>0){
+                System.out.println("usuario insertado en base de datos");
+                return true;
+            }
+            else{
+                System.out.println("No se pudo insertar el usuario en base de datos");
+                return false;
+            }
+
+
+
+/*            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM usuarios");
+            while (rs.next())
+            {
+                System.out.print("Column 1 returned ");
+                System.out.println(rs.getString(1));
+            }
+            rs.close();
+            st.close();*/
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            //throw new RuntimeException(e);
+            return false;
+        }
+        //---guardado a base de datos
+
     }
 }
