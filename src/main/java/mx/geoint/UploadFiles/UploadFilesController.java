@@ -9,6 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 @CrossOrigin(origins = {"http://localhost:3000", "http://10.2.102.202:3000/", "http://10.2.102.182"})
 @RestController
@@ -31,7 +33,7 @@ public class UploadFilesController {
      */
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity created(@RequestParam MultipartFile eaf, @RequestParam MultipartFile multimedia, @RequestParam String uuid, @RequestParam String projectName) throws IOException {
+    public ResponseEntity created(@RequestParam MultipartFile eaf, @RequestParam MultipartFile multimedia, @RequestParam String uuid, @RequestParam String projectName) throws IOException, ExecutionException, InterruptedException {
         Date startDate = new Date();
 
         if (eaf.isEmpty() || multimedia.isEmpty()) {
@@ -47,7 +49,10 @@ public class UploadFilesController {
         }
 
         long uploadTime = (new Date()).getTime();
-        Number codeStatus = uploadFilesService.uploadFile(eaf, multimedia, uuid, projectName+"_"+uploadTime);
+        //Number codeStatus = uploadFilesService.uploadFile(eaf, multimedia, uuid, projectName+"_"+uploadTime);
+        CompletableFuture<Number> codeStatus = uploadFilesService.uploadFile(eaf, multimedia, uuid, projectName+"_"+uploadTime);
+        CompletableFuture.allOf(codeStatus).join();
+        codeStatus.get();
 
         Date endDate = new Date();
         long difference_In_Time = endDate.getTime() - startDate.getTime();
@@ -55,7 +60,7 @@ public class UploadFilesController {
         long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
         System.out.println("TIMER FINISHED API: " + difference_In_Seconds + "s " + difference_In_Minutes + "m");
 
-        if(codeStatus.equals(0)){
+        if(codeStatus.get().equals(0)){
             return createdResponseEntity(HttpStatus.OK, uuid, true);
         }else{
             return createdResponseEntity(HttpStatus.CONFLICT, codeStatus.toString(), false);
