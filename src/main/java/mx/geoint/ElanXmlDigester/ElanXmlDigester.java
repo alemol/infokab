@@ -134,7 +134,8 @@ public class ElanXmlDigester {
         HashMap<String, Boolean> CreatedList = videoCutter.Cutter2(s, e, source,name);
         return CreatedList;
     }
-    /*public boolean saveVideo(VideoCutter videoCutter, Tier tier, String tier_id, String source) {
+
+    public boolean saveVideo(VideoCutter videoCutter, Tier tier, String tier_id, String source) {
         String basePath = FilenameUtils.getPath(source) + "multimedia/";
         String path = FilenameUtils.getBaseName(source);
         String type_path = FilenameUtils.getExtension(source);
@@ -151,7 +152,7 @@ public class ElanXmlDigester {
             tier.setOriginalMediaPath(source);
         }
         return created;
-    }*/
+    }
 
     /**
      * Se encarga de realizar los cortes de audio y guardarlo
