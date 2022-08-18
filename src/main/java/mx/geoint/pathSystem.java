@@ -1,6 +1,7 @@
 package mx.geoint;
 
 public class pathSystem {
+    public static final String DIRECTORY_PUBLIC_MULTIMEDIA = "./Files/";
     public static final String DIRECTORY_INDEX_LUCENE = "./Files/index/";
     public static final String DIRECTORY_INDEX_GENERAL = "./Files/Indices/";
 
