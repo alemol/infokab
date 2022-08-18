@@ -14,9 +14,13 @@ public class databaseController {
     String DBpassword = "postgres";
     String urlConnection = "jdbc:postgresql://"+DBhost+"/"+DBname;
 
+    Properties props;
+
     public databaseController(){
         System.out.println("init databaseController");
-
+        props = new Properties();
+        props.setProperty("user",this.DBuser);
+        props.setProperty("password",this.DBpassword);
     }
     public int createProject(String uuid, String basePath, String projectName){
         System.out.println("createProject");
@@ -25,9 +29,9 @@ public class databaseController {
         System.out.println("save to database: "+projectName);
 
         //String url = "jdbc:postgresql://localhost/infokab";
-        Properties props = new Properties();
-        props.setProperty("user",this.DBuser);
-        props.setProperty("password",this.DBpassword);
+        //Properties props = new Properties();
+        //props.setProperty("user",this.DBuser);
+        //props.setProperty("password",this.DBpassword);
         //props.setProperty("ssl","true");
         try {
             Connection conn = DriverManager.getConnection(this.urlConnection, props);
@@ -91,9 +95,9 @@ public class databaseController {
 
         //---guardado a base de datos
 
-        Properties props = new Properties();
-        props.setProperty("user",this.DBuser);
-        props.setProperty("password",this.DBpassword);
+        //Properties props = new Properties();
+        //props.setProperty("user",this.DBuser);
+        //props.setProperty("password",this.DBpassword);
         //props.setProperty("ssl","true");
         try {
             Connection conn = DriverManager.getConnection(this.urlConnection, props);
@@ -142,5 +146,38 @@ public class databaseController {
         }
         //---guardado a base de datos
 
+    }
+
+    /**
+     * se encargar de verificar las credenciales de usuario y si existe devuelve su id
+     * @param user, User es la clase que contiene el correo y contraseña
+     * @return UUID, String es el id_usuario
+     */
+    public String login(User user){
+        String UUID = null;
+        String encryptedPassword = org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPassword());
+
+        try {
+            Connection conn = DriverManager.getConnection(this.urlConnection, props);
+            String QUERY = "SELECT id_usuario FROM usuarios WHERE correo=? AND contraseña=?";
+
+            PreparedStatement preparedStatement = conn.prepareStatement(QUERY);
+            preparedStatement.setString(1, user.getCorreo());
+            preparedStatement.setString(2, encryptedPassword);
+
+            ResultSet row = preparedStatement.executeQuery();
+            while(row.next()){
+                UUID = row.getString(1);
+            }
+
+            row.close();
+            preparedStatement.close();
+            conn.close();
+
+            return UUID;
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            return null;
+        }
     }
 }
