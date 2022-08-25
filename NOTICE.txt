@@ -1,0 +1,8 @@
+Información sobre bibliotecas de terceros utilizadas en el proyecto 
+Apache Lucene
+Java
+Spring
+ffmpeg
+xuggle
+PostgreSQL
+
