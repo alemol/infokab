@@ -14,6 +14,8 @@ public class StreamingService {
     private static final String VIDEO_FORMAT_V2 = "url:http://localhost:8080/multimedia/%s.MP4";
     private static final String AUDIO_FORMAT_V2 = "url:http://localhost:8080/multimedia/%s.wav";
 
+    private static final String AUDIO_FORMAT_V3 = "url:http://localhost:8080/multimedia/%s";
+
     @Autowired
     private ResourceLoader resourceLoader;
 
@@ -31,5 +33,9 @@ public class StreamingService {
 
     public Mono<Resource> getAudioV2(String title){
         return Mono.fromSupplier(() -> this.resourceLoader.getResource(String.format(AUDIO_FORMAT_V2, title)));
+    }
+
+    public Mono<Resource> getAudioV3(String title){
+        return Mono.fromSupplier(() -> this.resourceLoader.getResource(String.format(AUDIO_FORMAT_V3, title)));
     }
 }

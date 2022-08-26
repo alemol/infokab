@@ -39,4 +39,11 @@ public class StreamingController {
         String urlTail = new AntPathMatcher().extractPathWithinPattern( "audiov2/**", request.getRequestURI() );
         return streamingService.getAudioV2(urlTail);
     }
+
+    @GetMapping(value = "audioV3/**", produces = "audio/wav")
+    public Mono<Resource> getAudioV3(@RequestHeader("Range") String range, HttpServletRequest request){
+        System.out.println(range);
+        String urlTail = new AntPathMatcher().extractPathWithinPattern( "audiov3/**", request.getRequestURI() );
+        return streamingService.getAudioV3(urlTail);
+    }
 }

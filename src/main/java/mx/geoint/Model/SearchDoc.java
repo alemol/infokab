@@ -17,6 +17,12 @@ public class SearchDoc {
     private String multimediaName;
     private String typePath;
 
+    private String originalPath;
+
+    private float startTime;
+
+    private float endTime;
+
     public SearchDoc(String filePath, String fileName, String text, float score) throws FileNotFoundException {
         this.filePath = filePath;
         this.fileName = fileName;
@@ -30,6 +36,10 @@ public class SearchDoc {
         basePath = FilenameUtils.getPath(tier.MEDIA_PATH).replace("./Files/","/");
         multimediaName = FilenameUtils.getBaseName(tier.MEDIA_PATH);
         typePath = FilenameUtils.getExtension(tier.MEDIA_PATH);
+
+        originalPath = tier.ORIGINAL_MEDIA_PATH.replace("./Files/", "/");
+        startTime = Float.parseFloat(tier.TIME_VALUE1) / 1000;
+        endTime = Float.parseFloat(tier.TIME_VALUE2) / 1000;
     }
 
     public String getFilePath() {
@@ -67,4 +77,28 @@ public class SearchDoc {
     public String getMultimediaName(){ return multimediaName; }
     public String getBasePath(){ return basePath; }
     public String getTypePath(){ return typePath; }
+
+    public String getOriginalPath() {
+        return originalPath;
+    }
+
+    public void setOriginalPath(String originalPath) {
+        this.originalPath = originalPath;
+    }
+
+    public float getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(float startTime) {
+        this.startTime = startTime;
+    }
+
+    public float getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(float endTime) {
+        this.endTime = endTime;
+    }
 }
