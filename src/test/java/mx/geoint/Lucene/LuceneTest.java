@@ -4,6 +4,10 @@ import mx.geoint.ElanXmlDigester.ElanXmlDigester;
 import mx.geoint.Model.SearchDoc;
 import mx.geoint.Response.SearchResponse;
 import mx.geoint.pathSystem;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.document.TextField;
+import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.junit.jupiter.api.Test;
 
@@ -64,6 +68,22 @@ class LuceneTest {
     void searchMutlipleIndex() throws IOException, ParseException {
         //createIndex();
         Lucene lucene = new Lucene();
-        lucene.searchMultipleIndex("nukuch máak");
+        lucene.searchMultipleIndex("ch´aalun");
+    }
+
+    @Test
+    void createIndexLuceneText() throws IOException {
+        Lucene lucene_1 = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"47eebc99-9c0b-4ef8-bb6d-6bb9bd380a11/");
+        lucene_1.initConfig(true);
+        IndexWriter indexWriter = lucene_1.statusIndexWrite();
+
+        Document document1 = new Document();
+        document1.add(new TextField("contents", "bueeno tuun ch´aalun", Field.Store.YES));
+        indexWriter.addDocument(document1);
+
+        Document document2 = new Document();
+        document2.add(new TextField("contents", "bueeno tuun ch'aalun", Field.Store.YES));
+        indexWriter.addDocument(document2);
+        indexWriter.close();
     }
 }
