@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ANNOTATION_DOCUMENT AUTHOR="" DATE="2022-08-26T12:46:30-05:00"
+    FORMAT="3.0" VERSION="3.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv3.0.xsd">
+    <HEADER MEDIA_FILE="" TIME_UNITS="milliseconds">
+        <MEDIA_DESCRIPTOR
+            MEDIA_URL="file:///C:/Users/LENOVO/Downloads/juan Tuyub/Juan Tuyub.m4a"
+            MIME_TYPE="unknown" RELATIVE_MEDIA_URL="./Juan Tuyub.m4a"/>
+        <PROPERTY NAME="URN">urn:nl-mpi-tools-elan-eaf:d57f465a-4bb5-42d6-9eca-b5c2c7c3caee</PROPERTY>
+        <PROPERTY NAME="lastUsedAnnotationId">34</PROPERTY>
+    </HEADER>
+    <TIME_ORDER>
+        <TIME_SLOT TIME_SLOT_ID="ts1" TIME_VALUE="1020"/>
+        <TIME_SLOT TIME_SLOT_ID="ts2" TIME_VALUE="2700"/>
+        <TIME_SLOT TIME_SLOT_ID="ts3" TIME_VALUE="3270"/>
+        <TIME_SLOT TIME_SLOT_ID="ts4" TIME_VALUE="5490"/>
+        <TIME_SLOT TIME_SLOT_ID="ts5" TIME_VALUE="6380"/>
+        <TIME_SLOT TIME_SLOT_ID="ts6" TIME_VALUE="8653"/>
+        <TIME_SLOT TIME_SLOT_ID="ts7" TIME_VALUE="9480"/>
+        <TIME_SLOT TIME_SLOT_ID="ts8" TIME_VALUE="12890"/>
+        <TIME_SLOT TIME_SLOT_ID="ts9" TIME_VALUE="13590"/>
+        <TIME_SLOT TIME_SLOT_ID="ts10" TIME_VALUE="18090"/>
+        <TIME_SLOT TIME_SLOT_ID="ts11" TIME_VALUE="18690"/>
+        <TIME_SLOT TIME_SLOT_ID="ts12" TIME_VALUE="25590"/>
+        <TIME_SLOT TIME_SLOT_ID="ts13" TIME_VALUE="26100"/>
+        <TIME_SLOT TIME_SLOT_ID="ts14" TIME_VALUE="37120"/>
+        <TIME_SLOT TIME_SLOT_ID="ts15" TIME_VALUE="38710"/>
+        <TIME_SLOT TIME_SLOT_ID="ts16" TIME_VALUE="55400"/>
+        <TIME_SLOT TIME_SLOT_ID="ts17" TIME_VALUE="56200"/>
+        <TIME_SLOT TIME_SLOT_ID="ts18" TIME_VALUE="87200"/>
+        <TIME_SLOT TIME_SLOT_ID="ts19" TIME_VALUE="87810"/>
+        <TIME_SLOT TIME_SLOT_ID="ts20" TIME_VALUE="105090"/>
+        <TIME_SLOT TIME_SLOT_ID="ts21" TIME_VALUE="105410"/>
+        <TIME_SLOT TIME_SLOT_ID="ts22" TIME_VALUE="136000"/>
+    </TIME_ORDER>
+    <TIER ANNOTATOR="FCA" LANG_REF="yua"
+        LINGUISTIC_TYPE_REF="Transcripción Fonético " PARTICIPANT="JBT" TIER_ID="tx@JBT">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a1"
+                TIME_SLOT_REF1="ts3" TIME_SLOT_REF2="ts4">
+                <ANNOTATION_VALUE/>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a12"
+                TIME_SLOT_REF1="ts7" TIME_SLOT_REF2="ts8">
+                <ANNOTATION_VALUE/>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a15"
+                TIME_SLOT_REF1="ts9" TIME_SLOT_REF2="ts10">
+                <ANNOTATION_VALUE/>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a18"
+                TIME_SLOT_REF1="ts11" TIME_SLOT_REF2="ts12">
+                <ANNOTATION_VALUE>- Meen in papaj uchile' tu, tu' kanso'on bin, bin ichkool,</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a20"
+                TIME_SLOT_REF1="ts13" TIME_SLOT_REF2="ts14">
+                <ANNOTATION_VALUE>- K'aajanten uchil ka'achil  in papaj, le', to'on tin palalilo'one', in waake' min, min keex 8 aaños in waak yaato'one' ku bisko'on ichkool, </ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a22"
+                TIME_SLOT_REF1="ts15" TIME_SLOT_REF2="ts16">
+                <ANNOTATION_VALUE>- Yaan óora tunbey in papaja' ku, ti' bakasyoones beya jach teemprano' ku ya'asko'on, chen ya' las 5 de' la' maañana', tun píisa'astal, tun píik'i píik'i sa'aste' tun ya'asko'on tial biin ichkool, </ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a24"
+                TIME_SLOT_REF1="ts17" TIME_SLOT_REF2="ts18">
+                <ANNOTATION_VALUE/>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a27"
+                TIME_SLOT_REF1="ts19" TIME_SLOT_REF2="ts20">
+                <ANNOTATION_VALUE/>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a30"
+                TIME_SLOT_REF1="ts21" TIME_SLOT_REF2="ts22">
+                <ANNOTATION_VALUE/>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER ANNOTATOR="FCA" LANG_REF="spa"
+        LINGUISTIC_TYPE_REF="Transcripción Ortográfico"
+        PARENT_REF="tx@JBT" PARTICIPANT="JBT" TIER_ID="to@JBT">
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a2" ANNOTATION_REF="a1">
+                <ANNOTATION_VALUE>- In kaajala' u k'aabae San Silverio,</ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a13" ANNOTATION_REF="a12">
+                <ANNOTATION_VALUE>- In kuxtale' pos chen yeetel ichkool</ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a16" ANNOTATION_REF="a15">
+                <ANNOTATION_VALUE>- Kin biino'on ichkool, kin biino'on tak si', kin kóon si'on,</ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a25" ANNOTATION_REF="a24">
+                <ANNOTATION_VALUE>- Chen a'ajko'on beyo' pos in mamaa leti'e binkaj ju'uch' k'eyeen, de' echoo in mama' leti'e jach maas teemprano' ku ya'ajal, leti'e k'anáan u liisto'kunsik le k'eymo', men chen li'ikin papaj leti'e, liisto' e k'eymo' chen ken u' ch'ae, to'one tin ch'iiko'on, tin chuupik in mejen chujo'on tin luuk'lo'on tun, jach taan u píisa'astale' tin k'uuchlo'on tin ichkoolo'on, chen k'uuchko'on pos binkaj p'íisbi in mejen meyajo'on, </ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a28" ANNOTATION_REF="a27">
+                <ANNOTATION_VALUE>- In papaj uchile', syempree ku ts'iikto'on jun k'aan kool, jun k'aan páak, e tiiempo tun jéelo' to'one pos páak, ma' jach k'uuchuk ik muuk' ti' le' koolo', peroo ku toocarxan in meyajtko'oni', ka' tuulo'on yéetel juntul in suukun u k'aabae Roman, </ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a31" ANNOTATION_REF="a30">
+                <ANNOTATION_VALUE>- Chen xiiko'on tun, koomo' yaax to'on bey nunukuch paalalo'ono' pos to'on kiin biislo'on ichkool, chen k'uuchko'on tune to'one binkajo'on páak, yaan óora tun in papaj tun leti'e koomo' seeb u meyaj leti' tun yaan óorae' ku, ku, ku ts'ooksike ti' tuno', ku, ku yaantko'on, in wa'ake chen ya' las 12 wa' las 10, wa bixe' tun ya'awatko'on uk'u' k'eyeen, </ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER ANNOTATOR="FCA" LANG_REF="yua"
+        LINGUISTIC_TYPE_REF="Segmentación" PARENT_REF="tx@JBT"
+        PARTICIPANT="JBT" TIER_ID="sg@JBT"/>
+    <TIER ANNOTATOR="FCA" LANG_REF="yua" LINGUISTIC_TYPE_REF="Glosa"
+        PARENT_REF="tx@JBT" PARTICIPANT="JBT" TIER_ID="gl@JBT"/>
+    <TIER ANNOTATOR="FCA" LANG_REF="spa"
+        LINGUISTIC_TYPE_REF="Transcripción Ortográfico"
+        PARENT_REF="tx@JBT" PARTICIPANT="JBT" TIER_ID="ft@JBT">
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a3" ANNOTATION_REF="a1">
+                <ANNOTATION_VALUE>- Mi pueblo se llama San Silverio, </ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a14" ANNOTATION_REF="a12">
+                <ANNOTATION_VALUE>- Mi subsistencia es a base de la milpa,</ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a17" ANNOTATION_REF="a15">
+                <ANNOTATION_VALUE>- Vamos a la milpa, vamos a leñar, vendemos la leña, </ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a19" ANNOTATION_REF="a18">
+                <ANNOTATION_VALUE>- Porque mi papá hace tiempo nos enseño a ir a la milpa, </ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a21" ANNOTATION_REF="a20">
+                <ANNOTATION_VALUE>- Recuerdo cuando eramos niños y teniamos mas o menos 8 años, mi papá nos llevaba a la milpa, </ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a23" ANNOTATION_REF="a22">
+                <ANNOTATION_VALUE>- Avecesmi papá cuando son vacaciones, asi muy temprano nos despierta, cuando da las 5 de la mañana, justo cuando esta por salir el sol, cuando está por aclarar la mañana nos despierta para ir a la milpa, </ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a26" ANNOTATION_REF="a24">
+                <ANNOTATION_VALUE>- Cuando nos despertamos mi mamá va a moler el pozol, de hecho mi mamá siempre se levanta más temprano que nosotros, ella debe alistar el pozol, porque cuando mi papá se levante ya lo debe tener listo para que él solo lo agarre, mientras nosotros agarramos nuestras botellas, lo llenamos y nos vamos, ya justo cuando amanece bien ya estamos en  nuestra milpa, al llegar nos miden el trabajo que hemos de realizar,  </ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a33" ANNOTATION_REF="a27">
+                <ANNOTATION_VALUE>- Mi papá hace tiempo siempre nos daba un mecate de milpa para desmonte o chapeo, en esos tiempos nosotros chapeabamos porque no teniamos tanta fuerza para el desmonte, aunque aveces si lo haciamos, eramos dos, yo junto con mi hermano mayor que se llama Roman,  </ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a34" ANNOTATION_REF="a30">
+                <ANNOTATION_VALUE>-Cuando vamos, como somos los mayores a nosotros nos llevan a la milpa, cuando llegamos nosotros vamos a chapear, aveces mi papá como trabaja rapido termina rapido el suyo y nos ayuda, mas o menos como a las 10 o 12 del día nos grita para tomar pozol, </ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER ANNOTATOR="FCA" LANG_REF="yua"
+        LINGUISTIC_TYPE_REF="Transcripción Fonético " PARTICIPANT="FC" TIER_ID="tx@FC">
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a4"
+                TIME_SLOT_REF1="ts1" TIME_SLOT_REF2="ts2">
+                <ANNOTATION_VALUE/>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a7"
+                TIME_SLOT_REF1="ts5" TIME_SLOT_REF2="ts6">
+                <ANNOTATION_VALUE/>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER ANNOTATOR="FCA" LANG_REF="yua"
+        LINGUISTIC_TYPE_REF="Transcripción Ortográfico"
+        PARENT_REF="tx@FC" PARTICIPANT="FC" TIER_ID="to@FC">
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a5" ANNOTATION_REF="a4">
+                <ANNOTATION_VALUE>-¿Bix u k'aaba a kaajal?</ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a8" ANNOTATION_REF="a7">
+                <ANNOTATION_VALUE>-¿Bix a kuxtal?,</ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <TIER ANNOTATOR="FCA" LANG_REF="yua"
+        LINGUISTIC_TYPE_REF="Segmentación" PARENT_REF="tx@FC"
+        PARTICIPANT="FC" TIER_ID="sg@FC"/>
+    <TIER ANNOTATOR="FCA" LANG_REF="yua" LINGUISTIC_TYPE_REF="Glosa"
+        PARENT_REF="tx@FC" PARTICIPANT="FC" TIER_ID="gl@FC"/>
+    <TIER ANNOTATOR="FCA" LANG_REF="spa"
+        LINGUISTIC_TYPE_REF="Transcripción Ortográfico"
+        PARENT_REF="tx@FC" PARTICIPANT="M" TIER_ID="ft@M">
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a6" ANNOTATION_REF="a4">
+                <ANNOTATION_VALUE>-¿Como se llama tu pueblo?</ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <REF_ANNOTATION ANNOTATION_ID="a9" ANNOTATION_REF="a7">
+                <ANNOTATION_VALUE>-¿como vives?</ANNOTATION_VALUE>
+            </REF_ANNOTATION>
+        </ANNOTATION>
+    </TIER>
+    <LINGUISTIC_TYPE GRAPHIC_REFERENCES="false"
+        LINGUISTIC_TYPE_ID="Transcripción Fonético " TIME_ALIGNABLE="true"/>
+    <LINGUISTIC_TYPE CONSTRAINTS="Symbolic_Association"
+        GRAPHIC_REFERENCES="false"
+        LINGUISTIC_TYPE_ID="Transcripción Ortográfico" TIME_ALIGNABLE="false"/>
+    <LINGUISTIC_TYPE CONSTRAINTS="Symbolic_Association"
+        GRAPHIC_REFERENCES="false" LINGUISTIC_TYPE_ID="Segmentación" TIME_ALIGNABLE="false"/>
+    <LINGUISTIC_TYPE CONSTRAINTS="Symbolic_Association"
+        GRAPHIC_REFERENCES="false" LINGUISTIC_TYPE_ID="Glosa" TIME_ALIGNABLE="false"/>
+    <LINGUISTIC_TYPE CONSTRAINTS="Symbolic_Association"
+        GRAPHIC_REFERENCES="false" LINGUISTIC_TYPE_ID="Traducción libre" TIME_ALIGNABLE="false"/>
+    <LANGUAGE LANG_DEF="http://cdb.iso.org/lg/CDB-00135953-001"
+        LANG_ID="yua" LANG_LABEL="maya yucateco"/>
+    <LANGUAGE LANG_DEF="http://cdb.iso.org/lg/CDB-00138504-001"
+        LANG_ID="spa" LANG_LABEL="español -mexico"/>
+    <CONSTRAINT
+        DESCRIPTION="Time subdivision of parent annotation's time interval, no time gaps allowed within this interval" STEREOTYPE="Time_Subdivision"/>
+    <CONSTRAINT
+        DESCRIPTION="Symbolic subdivision of a parent annotation. Annotations refering to the same parent are ordered" STEREOTYPE="Symbolic_Subdivision"/>
+    <CONSTRAINT DESCRIPTION="1-1 association with a parent annotation" STEREOTYPE="Symbolic_Association"/>
+    <CONSTRAINT
+        DESCRIPTION="Time alignable annotations within the parent annotation's time interval, gaps are allowed" STEREOTYPE="Included_In"/>
+</ANNOTATION_DOCUMENT>

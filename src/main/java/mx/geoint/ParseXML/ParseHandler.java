@@ -21,6 +21,7 @@ public class ParseHandler extends DefaultHandler{
     private static final String TIME_SLOT = "TIME_SLOT";
     private static final String TIER = "TIER";
     private static final String ALIGNABLE_ANNOTATION = "ALIGNABLE_ANNOTATION";
+    private static final String REF_ANNOTATION = "REF_ANNOTATION";
     private static final String ANNOTATION_VALUE = "ANNOTATION_VALUE";
 
     //Campos de información del author y video
@@ -52,6 +53,7 @@ public class ParseHandler extends DefaultHandler{
 
     //Objecto para almacenar los tiempo
     JsonObject jsonObjectTimeOrder = new JsonObject();
+    JsonObject jsonObjectRefTimer = new JsonObject();
 
     /**
      *
@@ -151,12 +153,32 @@ public class ParseHandler extends DefaultHandler{
                 String TIME_SLOT_REF2 = attr.getValue("TIME_SLOT_REF2");
                 String TIME_VALUE1 = jsonObjectTimeOrder.get(TIME_SLOT_REF1).getAsString();
                 String TIME_VALUE2 = jsonObjectTimeOrder.get(TIME_SLOT_REF2).getAsString();
-                Tier new_tier = new Tier(ANNOTATION_ID, TIME_SLOT_REF1, TIME_VALUE1, TIME_SLOT_REF2, TIME_VALUE2);
+
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.addProperty("TIME_SLOT_REF1", TIME_SLOT_REF1);
+                jsonObject.addProperty("TIME_SLOT_REF2", TIME_SLOT_REF2);
+                jsonObject.addProperty("TIME_VALUE1", TIME_VALUE1);
+                jsonObject.addProperty("TIME_VALUE2", TIME_VALUE2);
+                jsonObjectRefTimer.add(ANNOTATION_ID, jsonObject);
 
                 if(tier_id.equals(current_tier_id)) {
-                    tierList.add(new_tier);
+                    tierList.add(new Tier(ANNOTATION_ID, TIME_SLOT_REF1, TIME_VALUE1, TIME_SLOT_REF2, TIME_VALUE2));
                 }
 
+                break;
+            case REF_ANNOTATION:
+                String REF_ANNOTATION_ID = attr.getValue("ANNOTATION_ID");
+                String REF_ANNOTATION_REF = attr.getValue("ANNOTATION_REF");
+
+                JsonObject REF_VALUES = jsonObjectRefTimer.getAsJsonObject(REF_ANNOTATION_REF);
+                String REF_TIME_SLOT_REF1 = REF_VALUES.get("TIME_SLOT_REF1").getAsString();
+                String REF_TIME_SLOT_REF2 = REF_VALUES.get("TIME_SLOT_REF2").getAsString();
+                String REF_TIME_VALUE1 = REF_VALUES.get("TIME_VALUE1").getAsString();
+                String REF_TIME_VALUE2 = REF_VALUES.get("TIME_VALUE2").getAsString();
+
+                if(tier_id.equals(current_tier_id)) {
+                    tierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2));
+                }
                 break;
             case ANNOTATION_VALUE:
                 flag_text = true;

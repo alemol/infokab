@@ -1,5 +1,6 @@
 package mx.geoint.ParseXML;
 
+import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 
 import java.text.Normalizer;
@@ -230,4 +231,75 @@ class ParseXMLTest {
                 () -> assertEquals(1300.0, parseXML.getTier().get(0).DIFF_TIME)
         );
     }
+
+     void getTierDinamic(String tier_id, String path_eaf) {
+        String original_path_name = path_eaf;
+        String normalize = Normalizer.normalize(original_path_name, Normalizer.Form.NFD);
+        String path_name = normalize.replaceAll("[^\\p{ASCII}]", "");
+        ParseXML parseXML = new ParseXML(path_name, tier_id);
+        parseXML.read();
+
+        String jsonString = new Gson().toJson(parseXML.getTier());
+         System.out.println(tier_id +" Size: " + parseXML.getTier().size());
+        System.out.println(jsonString);
+    }
+
+    void testXMLFiles(String number_case) {
+        String path = "";
+        String tier_id_fonetico = "";
+        String tier_id_transcripcion = "";
+        String tier_id_traduccion = "";
+
+        switch (number_case){
+            case "1":
+                path = "Juan Tuyub_FCA.eaf";
+                tier_id_fonetico= "Transcripción Fonético ";
+                tier_id_transcripcion = "Transcripción Ortográfico";
+
+                System.out.println(path);
+                getTierDinamic(tier_id_fonetico, "src/test/resources/"+path);
+                getTierDinamic(tier_id_transcripcion, "src/test/resources/"+path);
+                break;
+            case "2":
+                path = "Pablo Balam 1_RIKT.eaf";
+                tier_id_transcripcion = "Transcripcion ";
+                tier_id_traduccion = "Traduccion";
+
+                System.out.println(path);
+                getTierDinamic(tier_id_transcripcion, "src/test/resources/"+path);
+                getTierDinamic(tier_id_traduccion, "src/test/resources/"+path);
+                break;
+            case "3":
+                path = "22-08-2022 ALONDRA-XOHUAYAN_IPC respaldo.eaf";
+                tier_id_fonetico= "trascripcion fonetica";
+                tier_id_transcripcion = "transpcion ortografica";
+                tier_id_traduccion = "traduccion libre";
+
+                System.out.println(path);
+                getTierDinamic(tier_id_fonetico, "src/test/resources/"+path);
+                getTierDinamic(tier_id_transcripcion, "src/test/resources/"+path);
+                getTierDinamic(tier_id_traduccion, "src/test/resources/"+path);
+                break;
+            case "4":
+                path = "2015-01-09_1650_Entrevista_datos_espontáneos_Clementina.eaf";
+                tier_id_fonetico= "morfo";
+                tier_id_transcripcion = "oracion";
+                tier_id_traduccion = "traduccion";
+
+                System.out.println(path);
+                getTierDinamic(tier_id_fonetico, "src/test/resources/"+path);
+                getTierDinamic(tier_id_transcripcion, "src/test/resources/"+path);
+                getTierDinamic(tier_id_traduccion, "src/test/resources/"+path);
+                break;
+        }
+    }
+
+    @Test
+    void runTestFile() {
+        testXMLFiles("1");
+        testXMLFiles("2");
+        testXMLFiles("3");
+        testXMLFiles("4");
+    }
+
 }
