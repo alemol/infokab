@@ -1,0 +1,3524 @@
+﻿Dictionnary of YM
+a	PRON	2A:PRON		Lehmann
+áabil	N	nieto/a:N	Nieto o nieta	
+áabitsilo'ob	N	nietos:N	Nietos	
+aach	N	aguijón:N	Aguijón	
+áain	N	lagarto:N	Lagarto	
+áak	N	tortuga:N	Tortuga	
+aak'	N	bejuco:N	Bejuco, lengua	
+áak'	ADJ	verde:ADJ	Verde, tierno, fresco	
+áak'ab	ADV	anoche:ADV	Anoche	
+áak'ab	N	noche:N	Noche	
+áak'abejak	ADV	anoche:ADV	Anoche	
+aak'abich	N	enfermedad de la vista:N	Enfermedad de la vista	
+áak'abt	VI	anochecer:VI	Anochecer	
+áak'abtal	VI	anochecer:VI	Anochecer	
+áakach	N	tábano:N	Tábano	
+áak'al	N	aguada:N	Aguada	
+áakam	VI	bramar:VI	Bramar, gemir, quejarse	
+áakam	N	gemido:N	Gemido, quejido, bramido	
+áakan	VI	rugir:VI	Rugir, quejarse por el dolor, bramar	
+aak'il	N	enredadera:N	Enredadera, planta trepadora	
+áaktun	N	gruta:N	Gruta, caverna	
+aal	ADJ	pesado:ADJ	Pesado	
+aal	N	hija/o:N	Hija o hijo de la mujer (sólo se aplica a la madre o sólo ella designa así a sus hijos)	
+a'al	VT	decir:VT	Decir, mandar	
+aalak'	N	animal doméstico:N	Animal doméstico	
+aalank	VI	parir:VI	Tener crías, parir	
+aalankil	VI	parir:VI	Tener crías, parir	
+aalansaj	N	comadrona:N	Comadrona, partera	
+áalkab	VI	correr:VI	Correr	
+a'almaj	VT	ordenar:VT	Ordenar, decir, mandar	
+áalux	N	duende:N		texts
+aanikab	N	lianas:N	Lianas o bejucos flexibles y resistentes que sirven para amarrar la estructura de la casa	
+aant	VI	estar:VI	Estar, existir, haber	
+áant	VT	ayudar:VT	Ayudar	
+áantaj	N	ayuda:N	Ayuda	
+áantaj	VT	ayudar:VT	Ayudar	
+aantal	VI	estar:VI	Estar, existir, haber	
+áantik	VT	ayudar:VT	Ayudar	
+aax	N	verruga:N	Verruga	
+áayin	N	lagarto:N	Lagarto	
+aj	PART	MASC:PART	prefijo masculino	
+al	VT	decir:VT		texts
+alux	N	duende:N		texts
+atia'al	PRON	2SG.POS:PRON	2SG.POS	
+atia'ale'ex	PRON	2PL.POS:PRON	2PL.POS	
+atpuj	ADJ	sobresaliente:ADJ	Sobresaliente	
+awat	VI	gritar:VI	Gritar	
+awt	VI	gritar:VI	Gritar	
+ayik'al	ADJ	rico:ADJ	Acaudalado, rico, adinerado	
+ayik'alil	N	fortuna:N	Fortuna, riqueza, caudal	
+báab	VI	nadar:VI	Nadar	
+báab	VT	trasegar:VT	Trasegar, vaciar	
+ba'abaaje'	VT	clavar varias veces:VT	Clavar varias veces	
+báabáak'	ADJ	muy enredado:ADJ	Muy enredado	
+báabaalaaj	VT	abofetear repetidamente:VT	Abofetear repetidamente	
+báabaaloox	VT	golpear por golpear:VT	Golpear por golpear	
+báabaalt'aan	VI	hablar desesperada:VI	Hablar desesperada e histéricamente	
+báabaalts'oon	VT	tirar con pistola sin tino:VT	Tirar con escopeta o pistola sin tino	
+báabáaxki	ADJ	firme y plano:ADJ	Firme y plano, aplícase a los pisos	
+ba'abal	N	alguna cosa:N	Alguna cosa	
+báabalch'iin	VT	tirar por tirar:VT	Tirar por tirar	
+báabalki	ADJ	muy guardado:ADJ	Muy guardado	
+báabayki	ADJ	muy liso:ADJ	Muy liso, hermoso	
+báaj	PART	REFL:PART		Lehmann
+baak'	VT	enredar:VT	Enredar
+baakal	N	hueso:N	Hueso de elote
+baal	N	cuñado:N	Cuñado
+baal	VT	tapar:VT	Tapar, resguardar, cubrir
+ba'al	N	cosa:N	Cosa
+ba'al	N	costal:N	Costal
+báalam	N	jaguar:N	Jaguar
+báalamjolom	N	insecto:N	Insecto con el cuerpo lustroso de color azul pavo y alas amarillentas. Se le encuentra en troncos viejos. Su piquete ocasiona dolor intenso y temperatura elevada
+ba'alba	N	bienes:N	Bienes o propiedades
+ba'alchajal	VT	interponer:VT	Interponer
+ba'alche'	N	animal:N	Animal, bruto, bestia
+báalche'	N	bebida ritual:N	Bebida ritual fermentada hecha con la corteza de un árbol (LONCHOCARPUS VIOLACEUS), agua y miel
+ba'ale'	CONJ	pero:CONJ	Pero
+baan	CLF	CLF:CLF	Sufijo clasificador para contar montones
+báan	VI	desmoronarse:VI	Desmoronarse, derrumbarse
+báanal	VI	desmoronarse:VI	Desmoronarse, derrumbarse
+ba'apaach	ADV	alrededor:ADV	Alrededor
+báat	N	hacha:N	Hacha
+ba'ate'el	N	pelea:N	Pelea
+ba'ate'el	VT	combatir:VT	Combatir, pelear, guerrear
+ba'ate'il	N	batalla:N	Batalla, combate
+ba'ats'	N	mono aullador:N	Mono aullador o saraguato (ALOUATTA PALLATA MEXICANA)
+baax	VT	golpear:VT	Golpear hasta pulverizar
+baax	VT	romper golpeando:VT	Romper golpeando o deshacer bollos de algo sólido o duro
+ba'ax	PRON	qué:PRON	Qué
+báaxa	VT	jugar:VT	Jugar
+báaxal	N	juego:N	Juego
+ba'axten	CONJ	porque:CONJ	
+báay	N	caricia:N	Caricia
+báay	VT	acariciar:VT	Acariciar
+báay	VT	alisar:VT	Alisar, planchar
+báay	N	caricia:N	Caricia
+báay	VT	acariciar:VT	Acariciar
+báayli'e'	ADJ	intacto:ADJ	Intacto, íntegro
+bab	N	racimo:N	Racimo de frutos
+bab	VT	verter:VT	Verter
+baba'al	N	espanto:N	Espanto, ser maligno
+bababut'	VT	embutir:VT	Embutir, rellenar
+babak'taj	VT	enredar:VT	Enredar
+ba'bal	N	algo:N	Alguna cosa algo
+babalki	ADJ	que se esconde:ADJ	Que se esconde mucho o muchas veces
+babanki	N	cosa fija:N	Cosa fija, que no se menea
+babax	VT	golpear:VT	Golpear repetidamente como el zapatero o el herrero
+babayki	ADJ	alisado:ADJ	Alisado
+babayki	ADJ	liso:ADJ	Liso
+babkaltaj	N	gárgara:N	Gárgara
+babkaltaj	VI	toser:VI	Toser para aclarar la voz
+baili'	VI	permanecer:VI	Permanecer
+baili'	VI	perpetuar:VI	Perpetuar, permanecer, durar
+baj	N	tuza:N	Tuza
+baj	VT	clavar:VT	Clavar
+bajab	N	martillo:N	Martillo
+bajabaj	VI	apurarse:VI	Apurarse
+bajpéek	VT	apisonar:VT	Apisonar
+bajun	ADV	cuánto:ADV	¿Cuánto? (Es para referirse a cantidad)
+bajux	ADV	cuánto:ADV	¿Cuánto? (Es para referirse a precio)
+bak'	N	carne:N	Carne
+bak'	VT	revolver:VT	Revolver, enredar, enrollar
+bakáan	CONJ	pues:CONJ	Pues
+bakakix	CONJ	aunque:CONJ	Aunque, por más que , sin embargo
+bakal	N	raquis:N	Raquis o hueso de la mazorca
+bakche'	N	instrumento para sacar el elote:N	Instrumento que sirve para sacar el elote de su envoltura en la cosecha. Puede ser un cuerno de ciervo enano, una madera aguzada, un instrumento de metal
+bakitak	INTERJ	ojalá:INTERJ	¡Ojalá!
+baksaj	N	vencido:N	Vencido, cautivo
+baksaj	VT	vencer:VT	Vencer, hacer cautivo
+bal	VT	encubrir:VT	Encubrir o esconder debajo
+bal	VT	cubrir:VT	Cubrir, tapar
+bala'	CONJ	pues:CONJ	Pues
+balak'	VI	rodar:VI	Rodar
+balaknak	N	cosa que se esconde:N	Cosa que se esconde
+balak'taj	VT	voltearse:VT	Voltearse o hacer rodar
+balantik	VT	esconder:VT	Esconder, encubrir
+balba	VT	emboscar:VT	Emboscar
+balinaj	VT	retener:VT	Retener, contener alguna cosa
+balk'aj	VI	rodar:VI	Rodar
+balk'ajal	VI	rodar:VI	Rodar
+balk'ajalak	VI	desaparecer:VI	Desaparecer
+balta'achil	N	gula:N	Gula, glotonería
+balts'am	N	actor:N	Actor o comediante (m) Aj balts’am, (f) Ix balts’am
+balul	VT	rebuscar:VT	Rebuscar
+ban	N	montón de cosas menudas:N	Montón de cosas menudas como sal en grano, maíz, tierra
+banab	N	manada pequeña:N	Manada pequeña de animales
+banaja'	N	llovizna:N	Llovizna
+banbanok'ol	N	llanto intenso:N	Llanto intenso
+bat	N	granizo:N	Granizo
+bat'aab	N	encender:N	Encender y propagar el fuego de la quema alrededor del terreno desmontado
+batsil	N	compañero:N	Compañero, semejante
+batsil	N	mismo:N	Mismo
+bax	VT	descortezar:VT	Descortezar los árboles a golpes
+baxalba	VI	masturbarse:VI	Masturbarse
+bayel	N	parte del cuerpo:N	Parte del cuerpo del hombre o de cualquier animal
+bayj	VI	siempre:VI	Siempre, permanecer, continuar
+bayjal	ADJ	semejante:ADJ	Semejante, parecido
+bayjal	VI	siempre:VI	Siempre, permanecer, continuar
+baykunaj	VT	seguir:VT	Seguir, continuar
+bayli'	ADV	siempre:ADV	Siempre
+bayli'	VI	siempre:VI	Siempre, permanecer, continuar
+baytaj	VT	adular:VT	Adular, acariciar, consolar
+bebech	N	lagartija:N	Lagartija
+bebek	N	acequia o canal:N	Acequia o canal
+beeb	N	planta perenne:N	Planta perenne, erecta (NYCTAGINACEAE (PISONIA ACULEATA L.))
+beeb	N	uña de gato:N	Uña de gato (PISONIA AULEATA)
+beech'	N	codorniz:N	Codorniz
+béech'k'abt	VT	llamar con la mano:VT	Llamar con la mano
+béejbéechki	ADJ	en posición de alerta:ADJ	En posición de alerta
+béek	N	roble:N	Roble (EHRETIA TINIFOLIA L.)
+beel	N	camino:N	Camino
+beel	N	verraco:N	Verraco
+beelil	N	curso:N	Curso, derrotero
+beet	VT	hacer:VT	Hacer
+beey	ADV	si:ADV	Si
+beeykuntik	VT	hacer realidad:VT	Hacer realidad
+bej	N	camino:N	Camino
+bejela'e	ADV	hoy:ADV	Hoy, ahora
+bejele'	ADV	hoy:ADV	Hoy
+bejla'ake'	ADV	hoy:ADV	Hoy
+bejla'e'	ADV	hoy:ADV	Hoy
+bejle'	ADV	hoy:ADV	Hoy
+bekab	N	guardarraya:N	Guardarraya
+bekan	N	foso:N	Foso, cavidad, barranca
+bekanil	N	canal:N	Canal
+bek'ech	ADJ	delgado:ADJ	Delgado
+belankil	VT	administrar:VT	Administrar, regir, gobernar
+belbesaj	VI	dar principio:VI	Dar principio, encaminar
+belbesaj	VT	guiar:VT	Guiar, hacer camino
+belil	N	camino:N	Camino, dirección, rumbo
+belili'	N	curso:N	Curso, derrotero
+betan	N	medida:N	Medida
+bey	ADV	así:ADV	Así, también
+bey	ADV	como:ADV	Como, así
+beya'	ADV	así:ADV	Así
+beychajak	ADJ	posible:ADJ	Posible
+beyistak	ADV	sin duda:ADV	Sin duda, por supuesto
+beyistako'	ADV	así es:ADV	Así es
+beyli'	ADV	de por si:ADV	De por si
+beyo'	ADV	si:ADV	Si
+bibilki	N	cosa arrastrada:N	Cosa arrastrada, hollada, muy sucia
+bich'	N	cormorán:N	Cormorán
+biibiiki	ADJ	muy suave:ADJ	Muy Suave
+bíibiilki	ADJ	muy limpio:ADJ	Muy limpio
+bi'ich	ADJ	delgado:ADJ	Delgado
+biil	VI	servir:VI	Servir, necesitarse
+biilal	VI	servir:VI	Servir, necesitarse
+biin	VI	ir:VI	Ir	
+bíin	PART	FUT.PRED:PART		Lehmann
+biirich	ADJ	lampiño:ADJ	Lampiño	
+biit'	VT	asir con las yemas de los dedos:VT	Asir con las yemas de los dedos	
+biix	N	ochavario:N	Ochavario (ocho días después de Finados o celebración de los Santos Difuntos)	
+bik	INTERJ	cuidado:INTERJ	Cuidado!	
+bik'chalák	VI	culebrear:VI	Culebrear	
+bik'iin	ADV	cuándo:ADV	Cuándo	
+bik'ix	ADV	cuándo:ADV	Cuándo	
+bik'yaj	VT	blandir:VT	Blandir	
+bil	VT	enrollar:VT	Enrollar, torcer	
+bili'in	VT	limpiar:VT	Limpiar	
+bilim	N	huella:N	Huella, rastro, señal, revolcadero de animales	
+biltum	N	suelo:N	Suelo	
+bilyaj	VT	arrastrar por el suelo:VT	Arrastrar algo por el suelo	
+bin	PART	FUT.IMM:PART		Lehmann
+bin	VI	ir:VI	Ir	texts
+binili'	ADV	siempre:ADV	Siempre	
+binmaake'	ADV	claro que sí:ADV	Claro que sí	
+bis	VT	llevar:VT	Llevar	
+bit'	VT	apretar con la yema de lo dedos:VT	Apretar con la yema de lo dedos	
+bits'	VT	labrar madera sacándole punta:VT	Labrar madera sacándole punta	
+bix	CONJ	cómo:CONJ	Cómo	
+bixi	PRON	cómo es:PRON	Cómo es	
+bo'	VT	pagar:VT		texts
+bob	N	animal mitológico:N	Animal mitológico	
+bob	VI	revolcar:VI	Revolcar	
+bobal	VI	revolcar:VI	Revolcar	
+bobil	N	animal mitológico:N	Animal mitológico	
+boboch	N	animal mitológico:N	Animal mitológico	
+bobojki	ADJ	que suena hueco:ADJ	Que suena hueco	
+bobojtej	VT	sondear:VT	Sondear	
+bobok'	ADJ	batido:ADJ	Batido, muy batido	
+bobokni'ktik	VI	olfatear el rastro:VI	Olfatear el rastro
+boboliik'	ADJ	tomar aire fuerte:ADJ	Tomar aire fuerte
+boboni'	ADJ	con gran olfato:ADJ	Con gran olfato, con mucho olfato
+boboon	ADJ	pintado por partes:ADJ	Pintado por partes
+boboonabil	ADJ	lo pintaron por partes:ADJ	Lo pintaron por partes
+bobox	N	rabadilla:N	Rabadilla
+bobox	N	coxis:N	Coxis
+boch'	N	sombra y amparo:N	Sombra y amparo
+boch'besaj	VT	amparar y favorecer:VT	Amparar y favorecer
+boj	N	golpe que se da a cosas huecas:N	Golpe que se da a cosas huecas
+bok'	VT	batir:VT	Batir
+bokobxut'en	N	batidor:N	Batidor
+bolin	N	gusarapo:N	Gusarapo
+bolon	N	nueve:N	Nueve
+boob	N	varejón que le sale al henequén:N	Varejón que le sale al henequén
+bóoch'	N	rebozo:N	Rebozo, mantilla
+book	N	olor:N	Olor, hedor, fetidez
+book'	VT	batir:VT	Batir o revolver líquidos
+bo'ol	VT	pagar:VT	Pagar
+bo'ol	N	paga:N	Paga, salario, retribución
+boon	VT	pintar:VT	Pintar, dibujar
+boon	N	pintura:N	Pintura, tintura
+boona'an	ADJ	pintado:ADJ	Pintado
+boonik	VT	pintar:VT	Pintar
+bo'ot	VT	pagar:VT	Pagar
+boox	ADJ	negro:ADJ	Negro
+booxkaay	N	bagre:N	Bagre
+bo'oy	N	sombra:N	Sombra
+bo'oybesaj	VT	dar sombra:VT	Dar sombra, proteger, defender, amparar
+bo'oychaj	VI	defenderse de la lluvia o del sol:VI	Defenderse de la lluvia o del sol
+bo'oychajal	VI	defenderse de la lluvia o del sol:VI	Defenderse de la lluvia o del sol
+bots	N	estero de mar o río:N	Estero de mar o río
+bubul	N	insecto acuático:N	Insecto acuático
+bubulki	ADJ	muy lleno de agua:ADJ	Muy lleno de agua o que se inunda
+bujbuj	VT	partir en varios pedazos:VT	Partir en varios pedazos
+buka'aj	ADV	de este tamaño:ADV	De este tamaño
+buk'tun	N	cerro:N	Cerro
+buk'ul	VT	remover la tierra:VT	Remover la tierra
+buk'xookil	N	cuenta en general:N	Cuenta en general, suma
+bukyaj	ADV	con frecuencia:ADV	Con frecuencia
+buláak'ab	ADV	toda la noche:ADV	Toda la noche
+buleb	N	jarro:N	Jarro
+bulk'iin	ADV	todo el día:ADV	Todo el día
+buluk	N	once:N	Once
+buts'nak	ADJ	borroso:ADJ	Borroso, carente de claridad
+but'ub	N	embudo:N	Embudo
+buuj	N	riña entre muchos:N	Riña entre muchos
+buuj	VT	partir:VT	Partir, rajar, cascar
+búuk	VT	vestir:VT	Vestir, ponerse la ropa
+buuk'	VT	mezclar:VT	Mezclar, revolver
+búukbes	VT	cubrir:VT	Cubrir, cubierto
+búukina'	N	ropa:N	Ropa
+búuko'	N	camisa:N	Camisa, vestido
+buul	N	juego de azar:N	Juego de azar
+buul	VI	anegar:VI	Anegar, ahogar
+bu'ul	N	frijol:N	Frijol (PHASEOLUS SPP)
+búul	VI	hundir:VI	Hundir, sumergir
+búul	VI	inundar:VI	Inundar
+búul	VI	naufragar:VI	Naufragar
+búulul	VI	anegar:VI	Anegar , inundar, ahogarse
+búulul	VI	hundir:VI	Hundir, sumergir
+búulul	VI	inundar:VI	Inundar
+búulul	VI	naufragar:VI	Naufragar
+buut'	VT	embutir:VT	Embutir , rellenar
+buut'	N	relleno:N	Relleno, embutido
+buuts'	N	humo:N	Humo
+buy	N	calor o vapor nocivo:N	Calor o vapor nocivo que sale de las tierras delgadas o de raíces de árboles podridos
+buy	N	nube en el ojo:N	Nube en el ojo
+cha'	VT	dejar:VT	Dejar, permitir
+cha'ach	VT	masticar:VT	Masticar , mascar
+cháach	N	atado:N	Atado, manojo
+cháach	CLF	CLF:CLF	Sufijo clasificador para contar manojos
+cháach	VT	agarrar:VT	Agarrar, atrapar, prender
+cháach	ADV	manojo de cualquier cosa:ADV	Manojo de cualquier cosa, como varas, cabellos, velas, etc
+cháach	VT	agarrar:VT	Agarrar, atrapar
+ch'aach'áak	ADJ	muy macheteado:ADJ	Muy macheteado
+ch'aach'áakbil	ADJ	fue macheteado:ADJ	Fue macheteado
+cha'acha'aki	ADJ	muy sucio:ADJ	Muy sucio
+cháachaal	ADJ	ralo:ADJ	Ralo, poco tupido
+cha'acha'an	ADJ	masticado por hocico:ADJ	Masticado por hocico grande de caballo, cerdo, perro
+cháachab	N	colador:N	Colador
+ch'aaj	N	gota:N	Gota de agua o de licor
+ch'aaj	VI	gotear:VI	Gotear
+cha'aj	VT	dejar en libertad:VT	Dejar en libertad
+cha'aj	VT	deslumbrar:VT	Deslumbrar
+ch'áaj	VI	gotear:VI	Gotear
+ch'áaj	N	gota:N	Gota
+ch'áaj	VI	gotear:VI	Gotear
+ch'áaj	VI	gotear:VI	Gotear
+cháajal	VT	deshacer:VT	Deshacer, anular
+ch'áajal	VI	gotear:VI	Gotear
+chaak	VT	salcochar:VT	Salcochar
+cháak	N	lluvia:N	Lluvia
+ch'áak	VT	cortar con golpe de hacha:VT	Cortar con golpe de hacha o machete
+chaak'	VI	guiñar:VI	Guiñar
+chaal	VT	enjuagar:VT	Enjuagar
+cháamcham	N	empanada cocida:N	Empanada cocida en el comal
+ch'a'an	VT	agarrar:VT	Agarrar
+chaanbéel	ADV	despacio:ADV	Despacio
+chaanbéel	ADV	despacio:ADV	Despacio
+cha'ant	VI	ver:VI	Ver, contemplar, observar, espectáculo, fiesta
+chab	N	caspa:N	Caspa
+cha'b	VT	saltar:VT	Saltar, dejar en libertad
+ch'a'b	VT	coger:VT	Coger, apropiarse, tomar
+ch'aba	VT	prevenir:VT	Prevenir, prepararse
+chabiljal	N	bastar:N	Bastar
+ch'abtan	N	ermitaño:N	Ermitaño, asceta
+chach	N	ramo:N	Ramo
+ch'ach'alkij	ADJ	grasoso:ADJ	Grasoso
+ch'a'chi'ibta'al	VT	invocar:VT	Invocar
+chak	ADJ	rojo:ADJ	Rojo
+ch'ak	N	cama:N	Cama
+chakaj	N	palo mulato:N	Palo mulato. (BURSERA SIMARUBA (L) (SARG)). Árbol de madera blanda. Su corteza sirve para contrarrrestar el escozor y las erupciones cutáneas producidas por el chechem
+chakalja'as	N	mamey de santo domingo:N	Mamey de Santo Domingo (MAMMEA AMERICANA L.)
+chak'an	N	sabana:N	Sabana
+chakawil	N	calentura:N	Calentura, fiebre
+chakay	N	langosta de mar:N	Langosta de mar
+ch'akbe'ent	VT	desmontar:VT	Desmontar, talar
+chaket	ADJ	infinito:ADJ	Infinito, sin cuenta
+chaketj	VI	alterarse mucho como de espanto:VI	Alterarse mucho como de espanto
+chaketj	VI	multiplicarse:VI	Multiplicarse, aumentarse
+chaketjal	VI	alterarse mucho como de espanto:VI	Alterarse mucho como de espanto
+chaketjal	VI	multiplicarse:VI	Multiplicarse, aumentarse
+chakjole'en	ADJ	candente:ADJ	Candente. Color de fuego
+chakjole'en	ADJ	candente:ADJ	Candente, color de fuego
+chakjome'en	ADJ	púrpura:ADJ	Púrpura , escarlata
+chaklolmakal	N	flor de san diego:N	Flor de San Diego (ANTIGONON LEPTOPUS HOOK. ET ARN.)
+chakpak'e'en	N	época de la floración femenina del maíz:N	Época de la floración femenina del maíz
+chakpuk'e'en	ADJ	morado:ADJ	Color violeta, morado
+ch'akt	VT	cruzar:VT	Cruzar, atravesar
+chakte'	N	brasilete:N	Brasilete (CAESALPINIA PLATYLOBO (S. WATSON)) Árbol de madera dura y fuerte cuyo centro es rojo. Sirve en ebanistería y para postes principales en la construcción de casas, etc
+ch'ala'at	N	costilla:N	Costilla
+ch'albal	ADJ	que está muy engrasado:ADJ	Que está muy engrasado
+ch'alik	VT	aprovechar y servir:VT	Aprovechar y servir de algo
+chaltun	N	piedra plana superficial:N	Piedra plana superficial
+ch'am	N	piñuela:N	Piñuela (BROMELIA PINGUIN L.)
+ch'amak	N	zorra:N	Zorra
+chamal	N	cigarro:N	Cigarro
+chan	ADJ	chico:ADJ	
+chanba'al	N	bebé:N	Bebé (niño de brazos)
+chanpaal	N	bebé:N	Bebé (niño de brazos)
+ch'atoj	N	venganza:N	Venganza
+ch'atojil	N	venganza:N	Venganza
+chawakil	N	fiebre:N	Fiebre
+chaway	N	arrecife:N	Arrecife
+chaybesabal	ADJ	añadida:ADJ	Añadida o acrecentada
+chaybesaj	VT	añadir:VT	Añadir o aumentar
+chaybesaj	VT	convidar u ofrecer:VT	Convidar u ofrecer
+che'	N	árbol:N	Árbol, madera
+che'che'	ADJ	crudo:ADJ	Crudo, no maduro
+cheeb	VT	fortificar:VT	Fortificar alguna cosa
+cheeb	N	pincel:N	Pincel o instrumento para escribir
+ch'eeb	VI	inclinar:VI	Inclinar, ladear
+chéech	ADJ	llorón:ADJ	Llorón
+chéecheej	ADJ	que suena a macizo:ADJ	Que suena a macizo o compacto
+ch'éech'eej	VT	esparcir:VT	Esparcir
+ch'éech'éejki	ADV	abundante:ADV	Abundante
+cheej	VT	acuñar:VT	Acuñar
+cheej	VT	amontonar:VT	Amontonar, tupir
+che'ej	N	risa:N	Risa
+che'ej	VT	reír:VT	Reír
+ch'e'ej	N	sonido fuerte:N	Sonido fuerte que lastima los oídos	
+ch'eejel	VT	hacer que una cosa abundante se agote:VT	Hacer que una cosa abundante se agote	
+ch'e'ejsaj	VT	exterminar:VT	Exterminar	
+cheek	N	cicatriz:N	Cicatriz	
+ch'eel	ADJ	rubio:ADJ	Rubio, güero	
+ch'eel	N	urraca de plumaje azul y negro:N	Urraca de plumaje azul y negro, destructora de los maizales	
+che'el	N	tallo:N	Tallo	
+chéel	N	arco iris:N	Arco iris	
+cheem	N	canoa:N	Canoa	
+cheem	VI	navegar:VI	Navegar	
+ch'eem	N	lagaña:N	Lagaña	
+cheemul	VI	navegar:VI	Navegar	
+ch'e'en	N	pozo:N	Pozo	
+chéen	ADV	sólo:ADV		Lehmann
+ch'eeneb	VI	acechar:VI	Acechar	
+cheep	VT	fricción para encender:VT	Fricción para encender un cerillo	
+ch'eet	VT	inclinar:VT	Inclinar, ladear, torcer
+ch'ej	VI	destruirse:VI	Destruirse, perderse en algún oficio, aniquilarse
+ch'ejel	VI	destruirse:VI	Destruirse, perderse en algún oficio, aniquilarse
+ch'ejob	N	pájaro carpintero:N	Pájaro carpintero
+ch'ejun	N	pájaro carpintero:N	Pájaro carpintero
+chek'	N	huella:N	Huella
+chek'ech	N	coloradilla:N	Garrapata diminuta de color rojo, coloradilla
+cheket	ADJ	infinito:ADJ	Infinito, sin cuenta
+ch'enaj	ADJ	dejar silencioso:ADJ	Dejar silencioso
+ch'ench'enki	N	silencio:N	Silencio
+ch'ench'enki	N	silencio:N	Silencio
+ch'ench'enkil	N	silencio:N	Silencio
+ch'eneknakil	N	soledad:N	Soledad
+ch'eneknakil	N	soledad:N	Soledad
+ch'enxikint	VI	escuchar con atención:VI	Escuchar con atención
+chetun	ADV	súbitamente:ADV	Súbitamente
+chi'	N	baba:N	Baba
+chi'	N	boca:N	Boca
+chi'	N	playa:N	Playa, costa, ribera, orilla
+chi'	N	nance:N	Nance
+chi'b	VT	morder:VT	Morder
+chich	ADJ	recio:ADJ	Recio, duro
+chich	N	tema:N	Tema
+ch'ich'iknak	ADJ	prendido con fuerza:ADJ	Prendido con fuerza
+chichil	N	fuerza:N	Fuerza o fortaleza de una cosa
+chi'ib	N	salina:N	Salina
+chi'ib	VI	ladrar:VI	Ladrar
+chi'ibal	N	dolor:N	Dolor
+chi'ibal	VT	morder:VT	Morder
+chi'ibal	VI	ladrar:VI	Ladrar
+ch'i'ibal	N	casta:N	Casta, linaje, raza
+ch'i'ibal	N	descendencia:N	Descendencia
+ch'i'ibalil	N	familia:N	Familia
+chiich	N	abuela:N	Abuela
+ch'íich'	N	pájaro:N	Pájaro
+ch'íich'	VT	espulgar:VT	Espulgar, recoger
+chíichíichnak	ADJ	muy preocupado:ADJ	Muy preocupado, muy intranquilo o desesperado
+chi'ichnak	N	intranquilidad:N	Intranquilidad, melancolía
+ch'íij	VI	envejecer:VI	Envejecer
+ch'iija'an	ADJ/N	viejo:ADJ/N	Viejo, anciano
+ch'íijil	VI	envejecer:VI	Envejecer
+ch'íijil	N	vejez:N	Vejez
+chiik	N	pizote:N	Pizote o tejón (NASUA NARICA YUCATANICA. ALLEN)
+ch'iik	VT	clavar:VT	Clavar, sembrar
+ch'iik	VI	callar:VI	Callar, no hablar
+ch'iik	VI	clavarse de punta:VI	Clavarse de punta
+chi'ikam	N	jícama:N	Jícama (LEGUMINOSAE PACHYRAHIZU EROSUS (L) URBAN)
+ch'iikil	VI	callar:VI	Callar, no hablar
+ch'iikil	VI	clavarse de punta:VI	Clavarse de punta
+chíikpaj	VI	aparecer:VI	Aparecer
+chíikpajal	VI	aparecer:VI	Aparecer
+chíikul	N	signo:N	Signo o señal
+chiil	N	manatí:N	Manatí
+chiil	VI	crecer:VI	Crecer
+ch'iil	N	granero:N	Granero, troje de maíz
+ch'i'iláankab	N	descendencia:N	Descendencia
+chíim	N	buche:N	Buche
+ch'iin	VT	arrojar:VT	Arrojar, tirar, lanzar
+ch'iin	VT	tirar:VT	Tirar, lanzar, arrojar
+chíin	VI	inclinarse:VI	Inclinarse
+ch'iinch'iin	VT	tirar sin razón:VT	Tirar o apedrear sin razón o propósito
+ch'iinch'iinabil	ADJ	fue apedreado:ADJ	Fue apedreado
+chíinik	N	tarde:N	Tarde
+chíinil	VI	inclinarse:VI	Inclinarse
+chiinpóoltik	VI	saludar inclinando la cabeza:VI	Saludar inclinando la cabeza
+chi'isaj	VT	prometer:VT	Prometer
+ch'iit	N	palma:N	Palma, huano enano cuyas hojas sirven para techar construcciones, hacer escobas, etc. (SABAL YAPA C. (WRIGTH))
+chíiwoj	N	tarántula:N	Tarántula
+chik	N	bufón:N	Bufón, payaso
+ch'ik	N	pulga:N	Pulga
+chika'an	ADJ	parecido:ADJ	Parecido, visible
+chikibelsaj	VT	firmar:VT	Firmar, señalar
+chik'ich	N	coloradilla:N	Garrapata diminuta de color rojo, coloradilla
+chik'iin	N	poniente:N	Poniente, oeste
+ch'ikmubáa	ADJ	empecinado:ADJ	Empecinado
+chikuns	VT	acostar:VT	Acostar
+ch'il	N	silencio:N	Silencio
+ch'ilib	N	palillo:N	Palillo, ramita, seca
+ch'ilibts'íib	N	lápiz:N	Lápiz
+chilikbal	ADJ	acostado:ADJ	Acostado
+chilkunaj	VI	callar:VI	Callar, acallar
+chiltaj	VI	callar:VI	Callar, acallar
+chiltal	N	soledad:N	Soledad
+chim	N	vejiga:N	Vejiga
+chimal	N	escudo:N	Escudo
+chimtaj	VT	concertar el precio:VT	Concertar el precio
+chin	ADJ	inclinado:ADJ	Inclinado
+china'an	VT	inclinar:VT	Inclinar
+chinchíin	ADJ	que está inclinado:ADJ	Que está inclinado o ve hacia abajo
+chinchinki	ADJ	árbol con muchos frutos:ADJ	Árbol con muchos o abundantes frutos
+chinchinpool	ADJ	de cabeza:ADJ	De cabeza
+chit	VI	acostar:VI	Acostar
+chi't'aan	N	carta:N	Carta
+chitaj	VI	acostar:VI	Acostar
+chital	VI	acostar:VI	Acostar
+chiya'an	ADJ	crecido:ADJ	Crecido
+cho	N	variedad de ceiba:N	Variedad de ceiba que produce como algodón
+ch'o'	N	ratón:N	Ratón
+ch'ob	N	plato:N	Plato
+ch'och'elem	N	cigarra:N	Cigarra
+ch'och'lin	N	cigarra:N	Cigarra
+chojba	VI	comenzar a cargarse de frutos:VI	Comenzar el árbol a cargarse de frutos
+chojokbal	ADJ	colgado:ADJ	Colgado
+ch'ojot	N	pájaro carpintero:N	Pájaro carpintero
+chok'la'antaj	VT	meter en lugar estrecho:VT	Meter por la fuerza en lugar estrecho
+chok'ob	N	sopa para rituales:N	Sopa que se prepara para algunos rituales de la cosmogonía milpera maya como el Waajil Kool, el Waajil
+chokoj	ADJ	caliente:ADJ	Caliente
+chokwil	N	calentura:N	Calentura, fiebre
+chokwil	N	calentura:N	Calentura, fiebre
+ch'om	N	piñuela:N	Piñuela (BROMELIA PINGUIN L.)
+ch'omak	N	zorra:N	Zorra
+cho'ob	N	sudario:N	Sudario, pañuelo, toalla
+chooch	N	intestino:N	Intestino
+chooch	N	morcilla:N	Morcilla o moronga. Alimento que se hace rellenando el intestino del marrano con sangre y pedacitos de carne y vísceras del mismo animal
+ch'óoch'	ADJ	salado:ADJ	Salado
+ch'óoch'	VT	limpiar:VT	Limpiar, escombrar, despejar un lugar
+choochóoblalbil	ADJ	echar de cualquier manera:ADJ	Echar de cualquier manera
+chóocho'ojan	ADJ	colgado:ADJ	Colgado
+chóocho'ojanki	ADJ	que se derrama:ADJ	Que se derrama o cae con rapidez
+chóocho'ojki	ADJ	frutas que cuelgan en abundancia:ADJ	Frutas que cuelgan en abundancia
+chóocho'okaj	ADJ	metido rápidamente:ADJ	Metido rápidamente
+choochóok'an	ADJ	metido sin orden:ADJ	Metido de cualquier manera, sin orden
+ch'óoch'oot	ADJ	muy doblado:ADJ	Muy doblado o retorcido
+cho'oik	VT	limpiar:VT	Limpiar
+chooj	VI	chorrear:VI	Chorrear, manar un líquido
+ch'ooj	N	añil:N	Añil (INDIGOFERA SUFFRUTICOSA MILLER), azul
+chook'	VT	meter:VT	Embutir, meter
+chóol	VT	aflojar:VT	Aflojar, desenredar
+ch'oom	N	zopilote:N	Zopilote
+cho'on	N	vello de la región púbica:N	Vello de la región púbica
+ch'oop	VT	lastimar el ojo:VT	Herir o lastimar el ojo con el dedo índice
+ch'óop	ADJ	tuerto:ADJ	Tuerto
+ch'oot	VT	torcer:VT	Torcer, esprimir, darle vueltas a algo
+ch'óotol	VT	torcer:VT	Torcer, cerrar
+ch'óoy	N	cubeta:N	Cubeta
+chopayba	VI	forcejear por soltarse:VI	Forcejear por soltarse
+ch'ot	N	corte de caña de azúcar:N	Zafra o corte de caña de azúcar
+chowak	ADJ	largo:ADJ	Largo
+chu'chum	N	tumor:N	Tumor, incordio, postema
+chujkaal	N	agrura estomacal:N	Agrura estomacal
+chujkab	N	horno:N	Horno
+chujuchuujabil	ADJ	muy quemado:ADJ	Muy quemado, que fue muy quemado
+ch'ujuk	ADJ/N	dulce:ADJ/N	Dulce
+ch'ujukinsik	VT	endulzar:VT	Endulzar
+chuk	VT	aprehender:VT	Aprehender, asir, alcanzar, atrapar
+chukbes	VT	completar:VT	Completar
+chukbesaj	VI	cumplir:VI	Cumplir
+chukik	VT	alcanzar:VT	Alcanzar, capturar
+chukim	ADJ	tordillo:ADJ	Tordillo, de color cenizo
+chukpachtik	VT	alcanzar:VT	Alcanzar, capturar
+chul	N	flauta:N	Flauta
+chultun	N	cisterna:N	Cisterna hecha por los mayas prehispánicos
+chulul	N	lo más fuerte y duro de la madera:N	Lo más fuerte y duro de la madera de un árbol, el corazón del árbol
+chumbesik	VT	emprender:VT	Emprender, comenzar
+chumpajal	VT	empezar:VT	Empezar
+chuna'an	VT	comenzar:VT	Comenzar
+chunchintok'	N	guayacán:N	Guayacán (GUAIACUM SANCTUM L.)
+ch'unkuy	N	corozo:N	Corozo (ATTALEA COHUNE (MART))
+ch'úu	N	racimo:N	Racimo de frutos
+chu'uch	VT	mamar:VT	Mamar, chupar, absorber
+chúuch	N	pezón:N	Pezón
+chu'uchum	N	tumor:N	Tumor
+chúuchuukaj	ADJ	perseguido varias veces:ADJ	Perseguido y atrapado varias veces
+chúuchuup	ADJ	llenado sin orden:ADJ	Llenado sin orden
+ch'úuch'uynak	ADJ	colgados sin orden:ADJ	Colgados sin orden
+chuuj	VT	quemar:VT	Quemar
+chuuj	N	quemadura:N	Quemadura
+chúuj	N	calabazo:N	Calabazo (LAGENARIA SICERARIA (STANDLEY))
+chuuk	VT	aprehender:VT	Aprehender, alcanzar, pescar
+ch'uuk	VT	aflojar algo tenso:VT	Aflojar algo tenso
+chúuk	N	carbón:N	Carbón
+ch'úuk	VT	espiar:VT	Espiar
+chúuka'an	ADV	completo:ADV	Completo
+chúukbes	VT	completar:VT	Completar
+chúukbesaj	VT	completar:VT	Completar
+ch'uul	VI	mojar:VI	Mojar, humedecer
+ch'uul	VT	mojar:VT	Mojar, humedecer
+ch'u'ul	VT	mojar:VT	Mojar
+chúul	VT	limpiar:VT	Limpiar un plato o vasija
+chúumuk	N	centro:N	Centro
+chúumukil	ADV	en medio:ADV	En medio
+chuun	N	causa:N	Causa, principio, origen
+chuun	N	tronco:N	Tronco
+chuun	N	ano:N	Ano
+chúun	VT	empezar:VT	Empezar
+chúunk'iin	N	tarde:N	Tarde
+chúunpajal	VT	comenzar:VT	Comenzar
+chúunuk	N	origen:N	Origen, principio
+chuup	ADJ	lleno:ADJ	Lleno, hinchado, inflamado
+chuup	VT	llenar:VT	Llenar
+ch'úup	N	hembra:N	Hembra
+ch'úupal	ADJ/N	muchacha:ADJ/N	Mujer joven, muchacha
+chuupil	N	inflamación:N	Inflamación
+chúusa'al	N	comienzo:N	Comienzo
+chuuy	VT	coser:VT	Coser, costurar, bordar
+chuuy	N	costura:N	Costura
+chuuy	VT	costurar:VT	Costurar
+chu'uy	ADJ	enredado:ADJ	Enredado, enmarañado
+ch'úuy	N	gavilán:N	Gavilán
+ch'úuy	VT	alzar:VT	Alzar, levantar, suspender
+ch'uy	VT	remar:VT	Remar
+ch'uyk'alak	VI	balancearse:VI	Balancearse
+ch'uyk'alakil	VI	balancearse:VI	Balancearse
+ebtuunil	N	grada:N	Grada, escalón
+eeb	N	escalera:N	Escalera
+éejen	INTERJ	si:INTERJ	Expresa asentimiento
+éejenil	N	acuerdo:N	Acuerdo, aprobación, asentimiento
+ee'joch'e'en	ADJ	obscuro:ADJ	Obscuro
+eéjoch'e'ent	VI	obscurecer:VI	Obscurecer
+eéjoch'e'ental	VI	obscurecer:VI	Obscurecer
+eek'	N	estrella:N	Estrella
+éek'	ADJ	negro:ADJ	Negro, sucio
+éek'	N	palo de tinte:N	Palo de tinte (HAEMATOXYLON CAMPECHIANUM L)
+éek'bej	N	sendero:N	Sendero
+éek'chob	N	maíz de granos color rojo:N	Maíz de granos color rojo oscuro
+éek'il	N	negrura:N	Negrura
+éek'jub	N	maíz de granos azulosos:N	Maíz de granos azulosos
+éek'pose'en	ADJ	manchado:ADJ	Manchado, tostado, cenizo
+éek'puk'e'en	ADJ	negro:ADJ	Negro, ennegrecido
+éek'same'en	ADV	en la tarde:ADV	En la tarde . Crepúsculo nocturno
+éek'uneil	N	cola negra:N	Cola negra (ofidio de gran tamaño que devora a otras serpientes mayores que ella. Se le conoce como la reina de las serpientes)
+e'el	N	huevo:N	Huevo
+e'el	VT	ovar:VT	Ovar, desovar
+e'elankal	VT	ovar:VT	Ovar, desovar
+e'elankil	VT	ovar:VT	Ovar, desovar
+e'elemuuy	N	árbol de la familia de las anonáceas:N	Árbol de la familia de las anonáceas, su madera es utilizada para pié o cabo de hachas, marros y picos. Su raíz es utilizada como diurético. (MALMEA DEPRESSA (BAILLON) R.E. FRIES)
+éem	VI	bajar:VI	Bajar
+éemel	VI	bajar:VI	Bajar
+éepose'en	ADJ	manchado:ADJ	Manchado, tostado, cenizo
+e'es	VT	demostrar:VT	Demostrar, mostrar, exhibir
+éet	N	compañero:N	Compañero, semejante
+éetkulik	N	compañero:N	El compañero que esta sentado con otro
+eets'	N	gesto:N	Gesto
+eets'	VI	hacer gestos:VI	Hacer gestos o muecas
+éets'	N	eco:N	Eco
+éets'juum	N	eco:N	Eco, resonar, repercutir el sonido
+eex	N	calzón:N	Calzón, pantalón, pantaletas
+ek	N	avispa:N	Avispa
+ektolol	N	lindero:N	Lindero
+el	VI	arder:VI	Arder
+ela'an	N	quemado:N	Quemado
+elel	VI	arder:VI	Arder o quemar
+esaj	VT	encantar:VT	Encantar, embaucar
+et	N	colaborador:N	Colaborador
+etbenel	VT	ir en compañía:VT	Ir en compañía de otro
+etbisbail	N	amigo:N	Amigo
+etchi'il	N	amigo:N	Amigo
+etpatkunaj	N	retrato:N	Retrato, fotografía
+ets'a'an	N	cosa firme:N	Cosa firme, fija, asentada
+ets'ekbal	ADJ	estancada:ADJ	Estancada
+ets'kúunsaj	VT	asentar:VT	Asentar
+ib	N	frijol de lima:N	Frijol de lima (PASHEOLUS LUNATUS)
+i'binkaan	N	serpiente coralillo:N	Serpiente coralillo (MICRURUS)
+ich	PREP	dentro:PREP	Dentro
+ich	PREP	entre:PREP	Entre
+ich	N	ojo:N	Ojo, cara, fruto
+ichil	PREP	dentro:PREP	Dentro
+ichil	PREP	entre:PREP	Entre
+ichk	VI	bañar:VI	Bañar
+ichkíil	VI	bañar:VI	Bañar
+ichkil	N	baño:N	Baño
+iich	N	gemelo:N	Gemelo, mellizo
+íich'ak	N	uña:N	Uña, garra
+íicham	N	esposo:N	Esposo
+iicho'ob	N	gemelos:N	Gemelos, mellizos
+iik'	N	aire:N	Aire, viento
+iik'	N	espíritu:N	Espíritu, vida, aliento
+iim	N	seno:N	Seno, teta, ubre
+i'inaj	N	semilla de maíz:N	Semilla de maíz. Mazorca con cáscara que se guarda para semilla
+iipil	N	traje de las mujeres:N	Traje de las mujeres indígenas de Yucatán
+iis	N	camote:N	Camote ( IPOMOEA BATATAS)
+iit	N	ano:N	Ano	
+iits	N	resina:N	Resina de los árboles	
+íits'in	N	hermano menor:N	Hermano menor, hermanito	
+i'ix	CONJ	y:CONJ	Y	
+ik'el	N	polilla:N	Polilla	
+ikil	ADV	en tanto:ADV	En tanto	
+iknal	ADV	junto:ADV	Junto, en compañía	
+il	ADJ	tonto:ADJ	Tonto	
+il	VT	ver:VT	Ver	
+ila'an	ADJ	visto:ADJ	Visto	
+ilib	N	nuera:N	Nuera	
+ilil	N	vicio:N	Vicio	
+ilmaj	N	regla:N	Regla o menstruación	
+ilólalil	N	desgracia:N	Desgracia	
+in	PRON	1SG.A:PRON		Lehmann
+intia'al	PRON	1SG.POS:PRON	Mío	
+isíins	N	baño:N	Baño	
+istikia	ADV	con dificultad:ADV	Con dificultad	
+ix	PART	FEM:PART	Prefijo denotador de género femenino	
+ixi'im	N	maíz:N	Maíz ( ZEA MAYS L.)	
+j	PART	MASC:PART		Lehmann
+ja'	N	agua:N	Agua	
+jaab	VT	limar:VT	Limar	
+jaab	VT	dispersar:VT	Dispersar, separar	
+jaab	VT	apagar:VT	Apagar el fogón	
+jaab	N	lima:N	Lima	
+ja'ab	N	año:N	Año	
+ja'abin	N	jabín:N	Jabín (PISCIDIA PISCIPULA (L) SARG)	
+jaaj	ADV	si:ADV	Si	
+jaaj	N	verdad:N	Verdad	
+jáajaabche'ej	ADV	reirse a carcajadas:ADV	Reirse a carcajadas	
+ja'aja'ach'	VT	masticar repetidamente:VT	Masticar repetidamente
+jáajaak'	VI	asustarse de pronto:VI	Asustarse de pronto
+jáajaak'óol	VI	asustarse de pronto:VI	Asustarse de pronto
+ja'aja'al	N	época de lluvia:N	Época de lluvia
+jáajaalchataj	VT	soltar rápidamente:VT	Soltar rápidamente
+jáajaalki	ADJ	resbaloso:ADJ	Resbaloso
+jáajaan	ADV	rápidamente:ADV	Rápidamente
+jáajaancha'ataj	VT	patear varias veces:VT	Patear varias veces
+jáajaapan	ADJ	abierto en forma de boca:ADJ	Abierto en forma de boca
+jáajaats'aan	ADJ	azotado varias veces:ADJ	Azotado varias veces
+jáajaats'ki	ADJ	que refleja mucho:ADJ	Que refleja mucho
+jaajil	N	verdad:N	Verdad
+jaajkunaj	VT	afirmar algo:VT	Afirmar algo
+jaajkunajil	N	testigo:N	Testigo
+jaak'	N	incienso:N	Incienso
+jáal	VT	sacar:VT	Sacar, desenterrar
+jáal	N	orilla:N	Orilla, ribera, vera
+jaaleb	N	tepezcuintle:N	Tepezcuintle (CUNICULUS PACA NELSONI)
+ja'alibe'	ADV	entonces:ADV	
+jáalk'ab	VT	dejar en libertad:VT	Dejar en libertad
+jáalk'abil	N	libertad:N	Libertad
+jáampike'en	ADJ	vacío:ADJ	Vacío, claro en la espesura
+ja'an	N	yerno:N	Yerno
+ja'ankabtsil	N	yerno:N	Yerno
+jaant	VT	comer:VT	
+jaap	VT	abrir:VI	Abrir la boca
+jáap	VT	sorber:VT	Sorber
+jáap	VT	sorber algún líquido espeso:VT	Sorber algún líquido espeso
+ja'as	N	plátano:N	Plátano (MUSA PARADIASÍACA L.)
+jaat	VT	despedazar:VT	Despedazar, desflorar, romper
+jaat	VT	romper:VT	Romper, rasgar, despedazar
+ja'at	VT	rayar:VT	Rayar
+jaatal	ADJ	roto:ADJ	Roto
+jaats	VT	dividir:VT	Dividir, repartir, separar
+jaats	N	parte:N	Parte de algo
+jaats	VT	repartir:VT	Repartir, dividir, apartar, separar
+jaats'	VT	azotar:VT	Azotar, pegar
+jaats'	N	latigazo:N	Latigazo
+jaats'	VT	flagelar:VT	Flagelar, azotar con cinturón o bejuco
+ja'ats'	VT	limpiar de escombros:VT	Limpiar de escombros
+ja'atskab	ADV	temprano:ADV	Temprano, amanecer, por la mañana
+jaatslil	N	división en porciones:N	División en porciones
+jáatspaj	VI	disminuir:VI	Disminuir, mermar
+jáatspajal	VI	disminuir:VI	Disminuir, mermar
+jaatsul	N	parte de algo:N	Parte de algo, porción
+jáaw	VT	suspender:VT	Suspender, cesar
+jáawal	VT	cesar:VT	Cesar, concluir
+jaax	VT	allanar:VT	Allanar, emparejar con la mano
+jaax	VT	corchar:VT	Corchar. Hilar
+jaax	VT	batir el chocolate:VT	Batir el chocolate
+jaax	VT	frotar:VT	Frotar
+jaax	VT	hilar:VT	Hilar
+jaay	VT	extender:VT	Extender
+jaay	ADJ	sencillo:ADJ	Sencillo
+jáay	VI	aterizar:VI	Aterizar, descender
+ja'aya	ADJ	tendido:ADJ	Tendido
+jaayab	VI	bostezar:VI	Bostezar
+jáayal	VT	extenderse:VT	Extenderse, regarse
+jáayal	VI	aterizar:VI	Aterizar, descender
+ja'ayan	ADJ	tendido:ADJ	Tendido
+jaayts'ile'en	ADJ	muy sencillo:ADJ	Muy sencillo
+jab	VI	apagarse:VI	Apagarse el fuego
+jaba'an	ADJ	apagado:ADJ	Apagado
+jabal	N	fuego consumido:N	Fuego consumido, hoguera consumida
+jaban	N	matorral:N	Matorral, maleza
+jach	ADV	muy:ADV	Muy (prefijo para formar el superlativo de los adjetivos calificativos)
+jachile'	N	suegro:N	Suegro
+jachile'	N	suegro:N	Suegro
+ja'il	ADJ	acuático:ADJ	Acuático
+jaja'kij	ADJ	empapado:ADJ	Empapado, que ha absorbido mucha agua
+ja'ja'lil	N	tiempo de lluvia:N	Tiempo de lluvia
+jajalki	ADJ	resbaloso:ADJ	Resbaloso
+jaja'ok'ol	N	sollozo:N	Sollozo
+jak'	VI	espantarse:VI	Espantarse
+jak'ab	VI	atragantarse:VI	Atragantarse
+jak'ab	VI	atragantar:VI	Atragantar
+jal	VT	sacar:VT	Sacar de la olla y sacar lo que se cuece bajo la tierra
+jalach	N	líder:N	Líder
+jalal	N	cañoto:N	Cañoto (ARUNDO DONAX L.)
+jalanch'inta'ab	ADJ	arrojado:ADJ	Arrojado
+jalchaj	VI	resbalar:VI	Resbalar
+jalchajal	VI	resbalar:VI	Resbalar
+jalk'abil	N	libertad:N	Libertad
+jalk'aj	VI	resbalar:VI	Resbalar
+jalk'ajal	VI	resbalar:VI	Resbalar
+jalkunaj	VT	dar testimonio:VT	Dar testimonio
+jaltun	N	sarteneja:N	Sarteneja (oquedad en la piedra en que se acumula el agua de lluvia)
+jan	ADV	al instante:ADV	Al instante
+janal	N	alimento:N	Alimento
+janal	N	almuerzo:N	Almuerzo
+janal	VT	comer:VT	Comer
+janalbe'en	N	alimento:N	Alimento
+jaranch'ak	N	desyerbe:N	Desyerbe (superficial o mal hecho)
+jatskaab	ADV	por la mañana:ADV	Por la mañana
+jats'uts	ADJ	bonito:ADJ	Bonita, hermosa
+jats'utskinaj	VT	embellecer:VT	Embellecer
+jaw	VT	terminar:VT	Terminar, concluir
+jawakbal	ADJ	boca arriba:ADJ	Boca arriba
+jawakbal	ADJ	acostado boca arriba:ADJ	Acostado boca arriba
+jawan	N	suegra:N	Suegra
+jawkinaj	VT	voltear algo:VT	Voltear algo
+jawtal	ADJ	acostado boca arriba:ADJ	Acostado boca arriba
+jayaj	VT	destruir:VT	Destruir, asolar derribando
+jayaj	VT	tender por el suelo:VT	Tender por el suelo
+jayba	VT	tender:VT	Tender, extender
+je'	N	huevo:N	Huevo
+je'	VT	abrir:VT	Abrir
+jebak	CONJ	mas:CONJ	Mas, pero
+jech	VT	esquivar:VT	Esquivar, evitar algo
+je'e	PREP	a:PREP	A
+je'eb	N	llave:N	Llave
+je'ebik	CONJ	así como:CONJ	Así como
+je'ebik	PREP	según:PREP	Según
+je'ebix	CONJ	así como:CONJ	Así como
+je'ebix	PREP	según:PREP	Según	
+jeech	VI	abrir las piernas:VI	Abrir las piernas	
+jeech	VI	esquivar:VI	Esquivar,evitar	
+jéech	N	racimo:N	Racimo	
+jéechkab	ADJ	al descubierto:ADJ	Al descubierto, sin protección, a la intemperie	
+je'ej	N	ingle:N	Ingle	
+jéejeek'	ADJ	desgajado:ADJ	Desgajado	
+jéejeem	ADJ	derrumbado por partes:ADJ	Derrumbado por partes	
+jéejeep'ki	ADJ	muy apretado:ADJ	Muy apretado	
+jeek'	VI	desgajar:VI	Desgajar, separar	
+jéek'	N	gajo:N	Gajo	
+jeel	VT	mudarse:VT	Mudarse, cambiarse de ropa	
+jeel	N	cambiar:N	Cambiar, trueque	
+jeel	VT	cambiar:VT	Suplente, mudar, cambiar	
+jeel	VT	substituir:VT	Substituir	
+je'el	PART	COM:PART	je'l	Lehmann
+je'el	VI	descansar:VI	Descansar
+jeelbesik	VT	cambiar:VT	Cambiar, sustituir
+je'eleb	N	descansadero:N	Descansadero
+je'elel	VI	descansar:VI	Descansar
+je'elel	N	descanso:N	Descanso
+jéemkal	N	rugido:N	Rugido
+jéemp'uch	VT	aporrear:VT	Aporrear
+jeen	VT	derrumbar:VT	Derrumbar, derribar
+jéen	VI	derrumbarse:VI	Derrumbarse
+jéench'in	VT	empujar con fuerza:VT	Empujar con fuerza
+jéenel	VI	derrumbarse:VI	Derrumbarse
+jéentáant	VT	atropellar:VT	Atropellar, empujar
+jeep'	VT	anudar:VT	Anudar,apretar
+jeep'	VT	anudar apretando fuerte:VT	Anudar apretando fuerte
+jéesb	VI	acezar:VI	Acezar, jadear
+jéesbaj	VI	jadear:VI	Jadear
+jéesbal	VI	acezar:VI	Acezar, jadear
+je'esíim	VI	estornudar:VI	Estornudar
+je'esíim	N	estornudo:N	Estornudo
+jéet	ADV	muy:ADV	Muy (prefijo para formar el superlativo de los adjetivos calificativos)
+jeets'	VI	afirmar:VI	Afirmar, asegurar
+je'etsíim	N	estornudo:N	Estornudo
+je'etsíim	VI	estornudar:VI	Estornudar
+je'ex	CONJ	así como:CONJ	Así como
+jejekank	VI	echar mazorcas el maíz:VI	Echar mazorcas el maíz
+jejekankil	VI	echar mazorcas el maíz:VI	Echar mazorcas el maíz
+jejeláas	ADJ	diferente:ADJ	Diferente
+jek'	VT	desgajar:VT	Desgajar (quebrar una rama)
+je'k'alab	N	llave:N	Llave
+jekankil	VT	florecer el maíz:VT	Florecer el maíz
+jel	N	dirección:N	Dirección, rumbo	
+je'l	PART	COM:PART		Lehmann
+jela'an	ADJ	diferente:ADJ	Diferente	
+jelaj	VI	mudarse:VI	Mudarse, desdecirse	
+je'lajki'	ADV	quizá:ADV	Quizá, ojalá	
+je'lakito	ADV	acaba de ser:ADV	Acaba de ser	
+je'le'	ADV	sí:ADV	Sí	
+jelep	VI	mudar:VI	Mudar, trocarse, cambiarse	
+jelkunaj	N	diversificación:N	Diversificación	
+jelkunaj	VT	mudar:VT	Mudar, trocar, diferenciar	
+jem	N	valle:N	Valle	
+jensen	PRON	quién:PRON	¿Quién?	
+jentan	VT	atropellar:VT	Atropellar, empujar algo	
+jep'	ADJ	atada apretadamente:ADJ	Atada o liada apretadamente	
+jep'	VT	apretar:VT	Apretar	
+jet	VI	agrietar:VI	Agrietar, abrir o hender rompiendo	
+jet'	N	abertura honda:N	Hendidura o abertura honda
+jeta'an	ADV	muy:ADV	Muy (prefijo para formar el superlativo de los adjetivos calificativos)
+jets'il	N	apoyo:N	Apoyo, firmeza
+jets'kun	VI	apoyar:VI	Apoyar
+jets'kunt	VT	confirmar:VT	Confirmar
+jets'tal	VT	apaciguar:VT	Apaciguar
+ji'	VT	untar:VT	Untar
+ji'b	VT	planchar:VT	Planchar, desencoger, enderezar
+jich'kaal	VT	ahorcar:VT	Ahorcar
+jich'kaal	N	ahorcado:N	Ahorcado
+jichoch	N	violín:N	Violín
+ji'i	VT	untar:VT	Untar
+jiich'	VT	apretar:VT	Apretar, ceñir
+jiich'	ADJ	apretado:ADJ	Apretado
+jiich'	VT	amarrar fuertemente:VT	Amarrar fuertemente
+jíich'	VI	ceñirse:VI	Ceñirse, muy apretado
+jiich'il	ADJ	anudado:ADJ	Anudado, atado
+jíich'il	VI	ceñirse:VI	Ceñirse, muy apretado
+jiijiich'	VT	amarrar con fuerza:VT	Amarrar con fuerza
+jíijiichki	ADJ	abundante refiriéndose a la fruta del árbol:ADJ	Abundante refiriéndose a la fruta del árbol
+jiijiit'	ADJ	muy tejido:ADJ	Muy tejido o muy trenzado
+ji'ik	VT	alisar:VT	Alisar, planchar
+ji'ik	VT	untar:VT	Untar
+jíil	VT	sacar:VT	Sacar, desenvainar, arrastrar algo
+jíilt	VT	arrastrar:VT	Arrastrar, sacar de la funda
+jiit'	VT	tejer:VT	Tejer, trenzar
+jiit'	VT	tejer:VT	Tejer
+jíits'	VT	zafar:VT	Zafar
+ji'ixtik	VT	desbastar:VT	Desbastar
+jikipil	ADV	manojo de algo:ADV	Manojo de algo
+jintaman	N	algodón:N	Algodón (GOSSYPIUM HIRRSUTUM L.)
+jobnel	N	entrañas:N	Entrañas, vísceras, vientre
+joch	VT	imitar:VT	Imitar, copiar lo escrito
+jochol	N	retrato:N	Retrato, fotografía
+jochol	ADJ	dibujado:ADJ	Dibujado
+jojochil	ADJ	limpio:ADJ	Limpio
+jojok'ki	ADJ	podrido:ADJ	Podrido
+jojolkij	ADJ	resbaloso:ADJ	Resbaloso
+jojopaank	VI	titilar:VI	Titilar
+jojopaankil	VI	titilar:VI	Titilar
+jojopsa	VT	soplar con repetición:VT	Soplar con repetición
+jok	VT	arrancar:VT	Arrancar, zafar
+jok'a'an	ADJ	publicado:ADJ	Publicado, descubierto
+jok'enjok'	N	cadena:N	Cadena
+joktaj	VI	agacharse:VI	Agacharse, ponerse de cuclillas
+jol	VT	agujerear:VT	Agujerear
+jolche'	N	brecha:N	Brecha que se abre alrededor del monte para facilitar su medición
+jolkan	N	soldado:N	Soldado
+jolkanil	N	valentía:N	Valentía o ánimo
+jolo'och	N	bráqueas:N	Bráqueas que envuelven la mazorca del maíz
+joltan	VT	apuntar:VT	Apuntar para tirar
+jom	ADJ	perforado:ADJ	Perforado
+jom	N	corneta:N	Corneta, clarín, trompeta
+jom	N	zanja:N	Zanja, hoyo o barranca obscura
+jom	VT	desfondar:VT	Desfondar
+joma'	N	recipiente:N	Recipiente hecho con un leek o la mitad de un calabazo que sirve para llevar la semilla durante la siembra
+jomlil	N	cueva:N	Cueva
+jo'o	N	cinco:N	Cinco
+joob	VT	desordenar:VT	Desordenar, desorganizar, destruir
+jooch	VT	cosechar maíz:VT	Cosechar maíz
+jooch	VT	cosechar:VT	Cosechar
+jo'och	VT	raspar:VT	Raspar, raer
+jo'och	VT	raspar:VT	Raspar, rasurar, quitarle la pelambre al cerdo o al jabalí
+jo'oche'	N	ofrenda:N	Ofrenda
+jo'oche'	N	ofrenda en las ceremonias milperas:N	Ofrenda en las ceremonias milperas
+jóojoch	ADJ	vacío:ADJ	Vacío, hueco
+jóojooch'	ADJ	sin fuerza para erguirse:ADJ	Se aplica a algún cuerpo que no tiene fuerza para erguirse
+jóojook'	ADJ	empatado varias veces:ADJ	Empatado varias veces con amarras
+jóojoolki	ADJ	muy resbalozo:ADJ	Muy resbalozo
+jóojoon	ADJ	con muchos agujeros:ADJ	Con muchos agujeros
+jóojoonan	ADJ	roto en varias de sus partes:ADJ	Roto en varias de sus partes
+jóojoonki	ADJ	que suena muy hueco:ADJ	Que suena muy hueco
+jóojóopanki	ADJ	que se enciende varias veces:ADJ	Que se enciende varias veces
+jóojóopki	ADJ	que se enciende rápido:ADJ	Que se enciende rápido
+jóojóots'ki	ADJ	que se desprende con facilidad:ADJ	Que se desprende con facilidad
+jook	VT	arrancar:VT	Arrancar, desraizar
+jook'	VT	atar:VT	Atar, anudar
+jook'	N	lazo:N	Lazo, nudo
+jóok'	VI	salir:VI	Salir
+jook'ob	N	gancho:N	Gancho
+jóok'ol	VI	salir:VI	Salir
+jóok's	VT	sacar:VT	Sacar
+jool	N	agujero:N	Agujero
+jool	VT	agujerar:VT	Agujerar
+jo'ol	N	cabeza:N	Cabeza
+jo'olajun	N	quince:N	Quince
+jo'olil	N	líder:N	Líder
+jo'oljeak	ADV	ayer:ADV	Ayer
+jo'oljeake'	ADV	ayer:ADV	Ayer
+jo'oljej	ADV	ayer:ADV	Ayer
+jo'olpóop	VT	encabezar:VT	Encabezar, acaudillar
+jo'olpóop	N	caudillo:N	Caudillo, gobernante, dirigente
+joom	ADJ	desfondado:ADJ	Desfondado
+joom	VT	desfondar:VT	Desfondar
+jóomkab	N	abismo:N	Abismo
+jóomk'ab	N	sonido producido al soplar las manos:N	Sonido producido al soplar las manos entrelazadas. Con este sonido se comunican algunos cazadores
+joonaj	N	puerta:N	Puerta
+joop	VT	encender:VT	Encender
+jo'op	VT	cucharear:VT	Cucharear, palear
+jo'op	N	cuchara:N	Cuchara
+jo'op'	VT	comenzar:VT	Comenzar
+jóopb	VI	brillar:VI	Brillar
+jóopbal	VI	brillar:VI	Brillar
+joopbe'en	ADJ	fácil:ADJ	Fácil
+jo'opche'	N	pala:N	Pala
+jo'opol	VT	empezar:VT	Empezar
+jo'op'ol	VT	comenzar:VT	Comenzar
+jó'os	VT	sacar:VT	Sacar
+jo'osik	VT	sacar:VT	Sacar
+jo'ot'	VT	firmar:VT	Firmar
+jó'ot'	VT	rayar:VT	Rayar
+jóotenjóot	ADJ	agachado:ADJ	Agachado, de cuclillas
+joots'	VT	sacar:VT	Sacar, zafar
+jo'ots'	VT	sacar:VT	Sacar con los dedos una porción de algo masoso
+jóoyab	VT	regar:VT	Regar
+jop	VI	avivar:VI	Avivar el fuego
+jop'	VT	comenzar:VT	Comenzar
+jopank	VI	arder echando llamas:VI	Arder echando llamas
+jopankil	VI	arder echando llamas:VI	Arder echando llamas
+jopba	VI	brillar:VI	Brillar, cintilar
+jopsaj	VT	hacer arder la lumbre soplando:VT	Hacer arder la lumbre soplando
+joroch'	N	tortilla de masa:N	Tortilla de masa que se pone a cocer dentro del caldo de frijol
+joya'n	ADJ	sencillo:ADJ	Sencillo
+jub	N	caracol marino:N	Caracol marino
+juch'	VT	triturar:VT	Triturar, moler
+juch'	N	masa de maíz:N	Masa de maíz
+ju'che'	N	monte bajo:N	Monte bajo
+jujunp'íitile'	ADV	poco a poco:ADV	Poco a poco
+ju'ju'ut	ADJ	derrumbado:ADJ	Derrumbado, en ruinas
+juk'	VT	torcer:VT	Torcer, descoyuntar
+juk'ul	VT	desencajarse el hueso:VT	Desencajarse el hueso
+jula	N	menstruación:N	Menstruación
+julche'	VT	hurgar con palo:VT	Hurgar con palo, herir con aguijón
+julek'	N	abismo:N	Abismo
+julte'	N	lanza:N	Lanza
+jultuchiilt'aan	N	telégrafo:N	Telégrafo
+jun	N	uno:N	Uno
+junak	ADV	muchas veces:ADV	Muchas veces, a cada momento
+junk'uli'	ADV	para siempre:ADV	Para siempre, perpetuamente
+junmoolkinaj	VT	reunió:VT	Reunió, amontonó, juntó
+junmooltaj	VT	reunir todo:VT	Reunir todo, recoger todo
+junpaachil	N	fuera:N	Fuera
+junpáaykunta'an	ADJ	apartado:ADJ	Apartado
+junp'éelkunaj	VT	unificar:VT	Unificar
+junpuli'	ADV	de una vez por todas:ADV	De una vez por todas
+juntats'	ADV	derechamente:ADV	Derechamente
+juntéenekij	ADV	una vez:ADV	Una vez
+junténajkij	ADV	una vez:ADV	Una vez
+jup'boon	N	tatuaje:N	Tatuaje
+jup'boon	VT	tatuar:VT	Tatuar
+jup'lants'aak	VT	vacunar:VT	Vacunar
+jup'lants'aako'	N	vacuna:N	Vacuna
+juts'	VT	arrimar:VT	Arrimar
+juub	VT	desbaratar:VT	Desbaratar, deshacer, desmoronar
+juuch'	VT	moler el nixtamal:VT	Moler el nixtamal , triturar
+juuj	N	iguano:N	Iguano, lagarto (Hondzonot, municipio de Tulum, Q. Roo.)
+júujuunp'íit	ADJ	poco a poco:ADJ	Poco a poco, dosificado
+júujuupki	ADJ	tierra:ADJ	Tierra, arena o polvo muy suave
+júuk	VT	abrigar:VT	Abrigar, empollar
+juuk'	VI	gatear:VI	Gatear
+juul	N	dardo:N	Dardo
+juul	VT	ensartar:VT	Ensartar, enhebrar
+juul	N	rayo de luz:N	Rayo de luz, haz de claridad
+juul	VT	alumbrar:VT	Alumbrar, enfocar, afocar
+juum	N	ruido:N	Ruido, bullicio, sonido
+juun	N	solo:N	Solo
+ju'un	N	papel:N	Papel
+ju'un	N	álamo:N	Álamo (FICUS COTINIFOLIA H.B. ET K.)
+juup	VT	meter:VT	Meter
+juup	VT	enfundar:VT	Enfundar, encajar
+juup'	VT	inyectar:VT	Inyectar, pinchar
+juut	VT	demoler:VT	Demoler, desmoronar, desbaratar
+juut	VI	desprender:VI	Desprender, desmoronar
+juuts'	VT	apartar:VT	Apartar, arrimar	
+juux	N	lima:N	Lima	
+juux	VT	afilar:VT	Afilar, desbastar con lima	
+juux	N	piedra para afilar:N	Piedra para afilar	
+júuy	VT	mover en círculos:VT	Mover en círculos una substancia pastosa para su cocimiento	
+juuyub	VI	hipar:VI	Hipar, respirar por la boca a causa de un ardor	
+juuyub	N	hipo:N	Hipo	
+k	PRON	1PL.A:PRON		Lehmann
+ka	CONJ	que:CONJ	Que	
+ka'	N	calabaza:N	Calabaza blanca de pepita gruesa	
+ka'	N	metate:N	Metate	
+ka'	CONJ	que:CONJ	Que	
+ka'a	N	dos:N	Dos	
+káa	CONJ	que:CONJ		Lehmann
+kaab	N	miel:N	Miel, tierra, abeja	
+kaab	N	mundo:N	Mundo	
+k'aab	N	baba:N	Baba
+k'aab	N	caldo:N	Caldo
+k'aab	N	jugo:N	Jugo
+k'aaba'	N	nombre:N	Nombre
+kaabal	ADJ	bajo:ADJ	Bajo
+kaabal	ADV	abajo:ADV	Abajo, debajo, en lo bajo
+kaabal	PREP	bajo:PREP	Bajo
+kaach	N	fractura:N	Fractura
+kaach	VI	quebrar:VI	Quebrar, fracturar
+ka'ach	ADV	de antes:ADV	De antes, antiguamente
+káach	VI	quebrar:VI	Quebrar
+káachal	VI	quebrar:VI	Quebrar
+ka'achuchi	ADV	en otros tiempos:ADV	En otros tiempos
+kaaj	N	localidad:N	Localidad, pueblo, poblado
+kaaj	VI	morar:VI	Morar, habitar
+k'aaj	N	hiel:N	Hiel
+ka'aj	ADV	EVID:ADV	Verbo auxiliar con que se conjuga el presente de indicativo de todos los verbos neutros y significa estarse verificando el verbo
+k'a'aj	ADJ	amargo:ADJ	Amargo
+kaajak	VI	radicar:VI	Radicar, residir. Náach waye’ kaajakbaleen
+káajal	VT	comenzar:VT	Comenzar, empezar
+k'a'ajil	N	amargura:N	Amargura
+kaajkuns	VT	acto de cohabitar con una mujer:VT	Acto de llevar a una mujer y cohabitar con ella en unión libre
+kaajla'an	VI	radicar:VI	Radicar, residir. ¿Way kaajla’aneech? ¿Aquí vives?
+kaajn	VI	vivir:VI	Vivir, radicar
+kaajnáal	VI	vivir:VI	Vivir, radicar
+kaajnáalil	N	habitante:N	Poblador o habitante
+k'a'ajs	VI	recordar:VI	Recordar
+káajsaj	VT	empezar:VT	Empezar
+k'a'ajsajul	N	recuerdo:N	Recuerdo
+kaajt	VI	residir:VI	Residir, radicar. ¿Tu’ux ka kaajtal? ¿Dónde vives?
+kaajtal	VI	residir:VI	Residir, radicar. ¿Tu’ux ka kaajtal? ¿Dónde vives?
+k'áak'	N	fuego:N	Fuego, lumbre, llama de fuego
+k'áak'	N	fogaje:N	Fogaje
+k'áak'	N	viruela:N	Viruela
+k'áak'	N	fuego:N	Fuego, lumbre
+k'áak'	VT	asar:VT	Asar
+ka'akaach	ADJ	quebradizo:ADJ	Quebradizo
+k'áak'áaj	ADJ	muy amargo:ADJ	Muy amargo
+k'áak'aalki	ADJ	muy seco:ADJ	Muy seco
+k'aak'aas	ADJ	atajar varias veces:ADJ	Atajar varias veces
+k'aak'aasjoltik	VT	atajar en varias ocaciones:VT	Atajar en varias ocaciones
+k'áak'aat	ADJ	atravesado:ADJ	Atravesado
+k'áak'a'atki	ADJ	muy traficado:ADJ	Muy traficado, refiriéndose a un camino
+k'aak'aax	ADJ	amarrado muy fuerte varias veces:ADJ	Amarrado muy fuerte varias veces
+káakab	N	suelo pardo obscuro:N	Suelo pardo obscuro, muy bueno para la agricultura
+ka'akate'	ADV	al rato:ADV	Al rato, más tarde
+káakbach	ADJ/N	sexo servidora:ADJ/N	Sexo servidora, falena
+k'áak'náab	N	mar:N	Mar
+k'áak't	VT	asar:VT	Asar
+kaal	N	garganta:N	Garganta
+k'aal	VT	acorralar:VT	Acorralar
+k'aal	VT	encarcelar:VT	Encarcelar ,encerrar
+k'aala'an	ADJ/N	preso:ADJ/N	Preso, encerrado
+káalkun	VI	emborrachar:VI	Emborrachar
+káalt	VI	emborrachar:VI	Emborrachar
+káaltal	N	borrachera:N	Borrachera
+káaltal	VI	emborrachar:VI	Emborrachar
+k'aam	ADV	fuerte:ADV	Fuerte (se utiliza para el viento, la lluvia)
+k'aam	VT	recibir:VT	Recibir, hospedar
+k'a'am	ADJ	recio:ADJ	Recio
+k'a'am	VI	arreciar:VI	Arreciar
+kaamb	VI	aprender:VI	Aprender
+kaambal	VI	aprender:VI	Aprender
+k'aambe'en	N	recibimiento:N	Recibimiento, bienvenida
+k'áambe'enil	N	bienvenida:N	Bienvenida
+ka'ambes	N	educación:N	Educación
+kaan	N	culebra:N	Culebra, víbora
+k'aan	N	mecate:N	Mecate, medida agraria de 400m2 o de 20m lineales
+ka'an	N	cielo:N	Cielo
+ka'an	VI	cansar:VI	Cansar
+k'áan	N	hamaca:N	Hamaca
+k'a'ana'an	ADJ	necesario:ADJ	Necesario, valioso, importante
+k'áanab	N	mar:N	Mar
+ka'anal	ADV	arriba:ADV	Arriba
+ka'anal	VI	cansar:VI	Cansar
+ka'anal	ADJ	cansado:ADJ	Cansado
+ka'analil	N	nivel:N	Nivel, altura
+ka'anan	VI	cansar:VI	Cansar
+k'a'anan	ADJ	importante:ADJ	Importante, necesario, valioso
+káanb	VI	aprender:VI	Aprender
+káanbal	N	estudiante:N	Estudiante
+káanbal	VI	aprender:VI	Aprender
+ka'anche'	N	altar rústico:N	Altar rústico de madera
+k'áanche'	N	banquillo:N	Banquillo
+k'áank'áanche'tik	VT	asar a fuego lento:VT	Asar a fuego lento
+ka'ans	VT	enseñar:VT	Enseñar
+kaans	N	educación:N	Educación
+k'aansaj	VT	acorralar:VT	Acorralar
+ka'ansaj	VT	enseñar:VT	Enseñar
+ka'ansaj	VT	enseñar:VT	Enseñar
+káant	VT	confesar:VT	Confesar, aceptar culpabilidad
+kaap	VT	meter:VT	Meter, introducir
+k'aap	N	pulsera:N	Pulsera
+k'aap	VT	meter:VT	Meter, insertar
+k'aas	ADJ	feo:ADJ	Feo, malo
+k'aas	N	mal:N	Mal
+k'aas	ADJ	malo:ADJ	Malo, descompuesto, feo
+k'aaschaja'an	ADJ	malo:ADJ	Malo, descompuesto
+k'aasil	N	fealdad:N	Fealdad, maldad
+k'aasil	N	maldad:N	Maldad, fealdad
+k'a'ask	VI	recordar:VI	Recordar
+k'aat	VT	atravesar:VT	Atravesar, cruzar
+k'áat	VT	pedir:VT	Pedir, querer, preguntar
+k'áat	N	súplica:N	Súplica
+k'áat	VT	preguntar:VT	Preguntar
+k'áat	VT	querer:VT	Querer, desear
+k'áat	VI	atravezar:VI	Atravezar, cruzar
+k'áatal	VI	atravezar:VI	Atravezar, cruzar
+k'a'aw	N	grajo:N	Grajo, tordo
+ka'awakche'	N	caoba:N	Caoba (SWIETENIA MACROPHYLLA (G. KING))
+k'aax	VT	amarrar:VT	Amarrar, atar
+káax	N	gallina:N	Gallina
+k'áax	N	monte:N	Monte, selva
+k'áaxil	ADJ	silvestre:ADJ	Silvestre
+kaay	N	pescado:N	Pescado
+k'aay	N	canción:N	Canción
+k'aay	VI	cantar:VI	Cantar
+k'a'ayt	VT	pregonar:VT	Pregonar
+k'ab	N	mano:N	Mano
+k'ab	N	rama:N	Rama de árbol o arbusto
+kabal	PREP	bajo:PREP	Bajo
+k'abeet	ADJ	necesario:ADJ	Necesario
+k'abéet	ADJ	necesario:ADJ	Útil, necesario
+k'abtaj	VT	hacer obra de mano:VT	Hacer obra de mano
+k'aj	N	pinole:N	Pinole (bebida hecha con maíz tostado y molido)
+kajkool	N	desmonte:N	Desmonte
+k'ajlakum	N	cosa larga y frágil:N	Cosa larga y frágil
+k'ajóol	VT	conocer:VT	Conocer
+k'ajóolo	N	conocimiento:N	Conocimiento, noticia
+k'ak'aax	ADJ	muy atado:ADJ	Muy atado o apretado
+kakachki	ADJ	frágil:ADJ	Frágil, quebradizo
+k'ak'aknak	VI	flotar:VI	Flotar
+kakaltun	N	albahaca:N	Albahaca (OCIMUM MICRANTHUM WILLD)
+kal	N	poder:N	Poder, fuerza para hacer algo
+kala'an	ADJ	borracho:ADJ	Borracho, beodo
+kaláankimén	VT	velar:VT	Velar
+kaláant	VT	cuidar:VT	Cuidar
+kalam	N	víbora coralillo:N	Víbora coralillo
+kalbach	N	crueldad:N	Crueldad excesiva
+kali'ikil	ADV	mientras:ADV	Mientras
+kalikil	ADV	mientras:ADV	Mientras
+ka'lop	N	curva:N	Curva
+k'alwiix	N	dificultad al orinar:N	Dificultad al orinar por cálculos renales
+kama'ach	N	mandíbula:N	Mandíbula o maxilar
+k'amas	N	comején:N	Comején
+kama't'aan	N	rezo:N	Rezo, oración
+k'amnikte'	N	matrimonio:N	Matrimonio
+kampach	N	dolor de espalda:N	Dolor de espalda, lumbago
+kan	N	cuatro:N	Cuatro
+k'an	ADJ	amarillo:ADJ	Amarillo, maduro
+kanáant	VT	cuidar:VT	Cuidar, vigilar
+kanan	VT	cuidar:VT	Cuidar, vigilar
+kananil	N	importancia:N	Importancia
+kananil	N	precaución:N	Precaución
+k'anbul	N	faisán:N	Faisán. Oco faisán (CRAX RUBRA RUBRA L.)
+k'anchik'in	N	bilis:N	Bilis
+kanil	N	tallo:N	Tallo
+k'anisté	N	zapote amarillo:N	Zapote amarillo
+k'anjoojop	ADJ	dorado:ADJ	Dorado
+k'anjoojop	ADJ	dorado:ADJ	Dorado
+k'anjuul	ADJ	dorado:ADJ	Dorado
+k'ank'an	ADJ	muy amarillo:ADJ	Muy amarillo
+k'ank'an	ADJ	amarillo:ADJ	Amarillo
+kankanki	ADJ	atorado:ADJ	Atorado, trabado muy fuerte
+k'ank'anki	ADJ	que está muy sazón:ADJ	Que está muy sazón
+k'ank'ubul	N	cielo amarillento:N	Cielo amarillento que trae lluvia caliente que cae en agosto y quema los cultivos
+kanlajun	N	catorce:N	Catorce
+ka'ojej	ADV	antier:ADV	Antier
+k'aóol	VT	conocer:VT	Conocer
+k'asab	N	velo de novia:N	Velo de novia
+k'asal	N	menstruación:N	Menstruación
+k'ast	VI	deteriorar:VI	Deteriorar
+k'astal	VI	deteriorar:VI	Deteriorar
+k'at	N	barro:N	Barro
+k'at	VT	atravesar:VT	Atravesar
+k'ataj	VT	pedir:VT	Pedir
+katak	CONJ	?:CONJ	Que sólo se usa para numerales
+k'atakbal	ADJ	cruzado:ADJ	Cruzado
+k'atun	ADV	veinte años:ADV	Período de veinte años
+k'atun	N	ejército:N	Ejército, batallón
+k'a'tun	N	batalla:N	Batalla, guerra o combate
+k'atunyaj	N	batalla:N	Batalla, guerra o combate
+kaujeak	ADV	antier:ADV	Antier
+k'awa	N	caracol comestible:N	Caracol comestible que vive en la orilla de lagos y cenotes
+k'ax	ADV	manojo:ADV	Manojo o atado
+k'ax	CLF	CLF:CLF	Sufijo clasificador para contar manojos o atados: Jo’ok’ax x péelon tin maanaj. Cinco atados de espelón compré
+k'ax	N	cinta:N	Cinta
+k'axab	N	boa:N	Boa (CONSTRICTOR SP)
+kaxan	VT	encontrar:VT	Encontrar, buscar
+kaxtik	VT	encontrar:VT	Encontrar
+kaybal	N	red de pesca:N	Red de pesca
+k'ayt'el	N	maíz del gallo:N	Maíz del gallo, variedad de maíz que tarda 40 días en desarrollarse
+k'eban	N	pecado:N	Pecado
+kéeb	N	eructo:N	Eructo
+kéeb	VI	eructar:VI	Eructar
+k'eech	VI	ladear:VI	Ladear, desviar, torcer
+kéej	N	venado:N	Venado cola blanca
+k'éek'eech	ADJ	muy curveado:ADJ	Muy curveado
+k'éek'eey	VT	regañar varias veces:VT	Regañar varias veces
+k'éek'en	N	cerdo:N	Cerdo, marrano
+ke'el	N	frío:N	Frío
+k'éel	VT	tostar:VT	Tostar
+keelenche'	N	monte bajo:N	Monte bajo
+k'eelil	N	tiempo de frío:N	Tiempo de frío
+keep	N	falo:N	Falo, pene
+kéet	N	igual:N	Igual, parejo
+kéet	VT	emparejar:VT	Emparejar
+k'éewel	N	cuero:N	Cuero
+k'eex	VT	cambiar:VT	Cambiar , canjear
+kéex	VT	suspender al bebé en posición adecuada:VT	Suspender al bebé en posición adecuada para que defeque u orine, la acción se acompaña de un bisbiseo peculiar
+k'éexk'eex	ADJ	muy cambiado:ADJ	Muy cambiado
+k'eey	VT	amonestar:VT	Amonestar, regañar , reprender
+k'eey	N	regaño:N	Regaño, reprimenda
+kekexki	ADJ	muy fresco:ADJ	Muy fresco, muy limpio
+kekexkij	ADJ	limpio:ADJ	Limpio
+keléembal	N	hombro:N	Hombro
+kelema	N	edad en que se tiene fuerza y vigor:N	Edad en que se tiene fuerza y vigor
+kenlik	ADJ	necesario:ADJ	Necesario
+ket	ADJ	semejante:ADJ	Semejante, parecido
+ket	VT	aceptar:VT	Aceptar una proposición
+keta'an	ADJ	cosa concertada:ADJ	Cosa concertada
+ketbesaj	VT	concordar:VT	Concordar, aprobar
+ketbesaj	ADJ	cosa concertada:ADJ	Cosa concertada
+ketbesik	VT	comparar:VT	Comparar
+ketlantak	VT	comparar:VT	Comparar
+kex	CONJ	aún:CONJ	Aún, aunque
+k'exa'an	N	cosa que se ha trocado por otra:N	Cosa que se ha trocado por otra
+kextun	CONJ	aunque sea:CONJ	Aunque sea
+k'exul	N	trueque:N	Trueque o recompensa
+k'exulan	N	sucesor:N	Sucesor
+k'eyem	N	pozole:N	Pozole
+ki'	ADJ	delicioso:ADJ	Delicioso
+kian	N	edad:N	Edad
+kib	N	cera:N	Cera, vela
+kiblaj	VT	atacar:VT	Arremeter o embestir, atacar
+kii'	N	sabor:N	Sabor
+ki'ibokil	N	fragancia:N	Fragancia
+ki'ibook	ADJ	oloroso:ADJ	Oloroso, aromático
+k'íich	VI	calentarse:VI	Calentarse exponiéndose al sol o cerca de la brasa. Leño de ja’abin que se enciende debajo de la hamaca en época de frío
+ki'ichkelem	ADJ	hermoso:ADJ	Hermoso
+ki'ichkelmil	N	belleza:N	Belleza
+ki'ichpam	ADJ	bonito:ADJ	Bonita, hermosa
+ki'ichpamil	N	belleza:N	Belleza
+kíik	N	hermana:N	Hermana
+k'i'ik'	N	sangre:N	Sangre
+k'i'ik'che'	N	hule:N	Hule (CASTILLA ELÁSTICA, CERV)
+kíiki'iki	ADJ	delicioso:ADJ	Delicioso
+k'íik'iit	ADJ	disperso en area grande:ADJ	Disperso o desparramado en area grande
+k'íik'i'itki	ADJ	muy veloz:ADJ	Muy veloz
+k'iil	VT	lastimar:VT	Lastimar
+ki'il	N	sabor:N	Sabor
+kíilb	VI	temblar la tierra:VI	Temblar la tierra, tronar
+kíilbal	VI	temblar la tierra:VI	Temblar la tierra
+kíilbal	N	temblor:N	Temblor
+kíilbal	VI	temblar la tierra:VI	Temblar la tierra, tronar
+k'íilkab	N	sudor:N	Sudor
+k'íilkab	VI	sudar:VI	Sudar
+kíim	VI	morir:VI	Morir
+kíimil	VI	morir:VI	Morir
+ki'impaj	VI	lastimarse:VI	Lastimarse, herirse
+ki'impajal	VI	lastimarse:VI	Lastimarse, herirse
+k'iin	N	día:N	Día
+k'iin	N	sol:N	Sol
+k'iin	N	tiempo:N	Tiempo
+k'íin	VT	calentar:VT	Calentar, entibiar
+ki'inak'	N	dolor de estómago:N	Dolor de estómago y náuseas
+k'i'inam	N	dolor:N	Dolor
+k'i'inam	VI	doler:VI	Doler
+k'i'inam	VI	doler:VI	Doler, latir
+k'iinbe'en	N	tiempo en que abunda una cosa:N	Tiempo en que abunda una cosa
+k'iinbesaj	N	celebración:N	Celebración
+kíins	VT	matar:VT	Matar
+k'iintaj	N	destino:N	Destino
+k'iintsil	N	hora:N	Hora
+kiirits'	ADJ	sucio:ADJ	Sucio
+kiis	N	ventosa intestinal:N	Ventosa intestinal, cuesco
+kiis	VI	ventosearse:VI	Ventosearse, expedir cuescos
+k'iit	VT	desparramar:VT	Desparramar
+k'íit	VT	esparcir:VT	Esparcir , desparramar
+k'íiwik	N	plaza:N	Plaza, centro de la población, parque
+k'i'ix	N	espina:N	Espina, aguijón
+kij	N	henequén:N	Henequén (AGAVE SPP.)
+ki'ki'	ADV	con perfección:ADV	Con perfección, con buena voluntad
+kikiláank	VI	temblar:VI	Temblar
+kikiláankal	VI	temblar:VI	Temblar
+kikiláankil	VI	temblar:VI	Temblar
+kikit'aan	ADJ	gracioso al hablar:ADJ	Gracioso al hablar
+ki'ki't'aan	N	bendición:N	Bendición
+kikit'aanta'ak	VT	bendecir:VT	Bendecir
+ki'ki't'aanta'al	VT	elogiar:VT	Elogiar
+k'ili'	N	perico de ojos rojos:N	Perico de ojos rojos (FALCO ALBIGULARIS ALBIGULARIS, DAUDIN)
+kili'ich	N	santo:N	Santo
+kili'ichkuntabak	ADJ	santificado:ADJ	Santificado
+kimen	N	difunto:N	Difunto o muerto
+k'inal	ADJ	caliente:ADJ	Caliente, tibio
+k'inam	N	fuerza:N	Fuerza, reciedumbre, vigor
+k'inam	N	veneno de animales:N	Veneno o ponzoña de animales
+ki'óol	ADJ	dichoso:ADJ	Dichoso
+ki'óolal	N	entusiasmo:N	Entusiasmo
+kisin	N	diablo:N	Demonio o diablo
+kisneb	N	claraboya:N	Claraboya, tronera
+kitak	ADV	luego que:ADV	Luego que
+kitam	N	jabalí:N	Jabalí (PECARI TAYASSU)
+kiwi'	N	achiote:N	Achiote
+k'ixpachoch	N	puerco espín:N	Puerco espín
+ko'	ADJ	travieso:ADJ	Travieso
+k'o'	N	papada:N	Papada
+kobol	N	estima en que se tiene a uno:N	Estima en que se tiene a uno
+ko'il	N	lujuria:N	Lujuria, deshonestidad, excitación
+ko'il	N	rabia:N	Rabia
+ko'il	VT	fornicar:VT	Fornicar
+koj	ADJ	preciosa y de rica estima:ADJ	Preciosa y de rica estima
+koj	N	diente:N	Diente, pico
+koj	N	puma:N	Puma
+k'ojaàn	N	enfermo:N	Enfermo
+k'oja'anil	N	enfermedad:N	Enfermedad
+k'ojól	ADJ	mayor:ADJ	Mayor, principal, importante
+kokan	N	sangría:N	Sangría
+koko'chaak	VT	patear:VT	Patear
+ko'ko'k'aaba'	N	apodo:N	Apodo
+kolóojche'	N	bajareque:N	Bajareque
+k'óoben	N	cocina:N	Cocina, fogón
+k'ooch	N	higuerilla:N	Higuerilla (RICINUS COMMUNIS)
+kóoch	ADJ	ancho:ADJ	Ancho
+k'óoch	VT	cornear:VT	Cornear, embestir
+k'óoch	VT	cargar en la cabeza:VT	Cargar algo llevándolo en la cabeza
+koocha'	N	loro grande verde:N	Loro grande verde mayor que el t’uut’
+kóochak	N	puntapié:N	Puntapié
+kóochak'	VT	patear:VT	Patear
+k'óochbesaj	VT	culpar:VT	Culpar
+k'oochle'	N	guarumbo:N	Guarumbo [CECROPIA OBTUSIFOLIA (BERT)]
+kooj	VT	golpear:VT	Golpear, abatanar
+ko'oj	ADJ	caro:ADJ	Caro
+kóoj	VI	llegar:VI	Llegar, venir
+kóoj	VI	presentir:VI	Presentir
+kóojol	VI	presentir:VI	Presentir
+kóok	N	sordo:N	Sordo
+kóokay	N	luciérnaga:N	Luciérnaga
+k'ook'ool	ADJ	muy sucio:ADJ	Muy sucio, muy manchado
+kóokoolche'	N	gancho para jalar:N	Gancho para jalar y bajar algo
+k'óok'oos	VT	cortar con tijeras:VT	Cortar o picoear con tijeras
+k'óok'ooxki	ADJ	muy áspero:ADJ	Muy áspero o rasposo
+k'óok'ooxki	ADJ	muy rasposo:ADJ	Muy rasposo
+kool	VT	tumbar monte:VT	Tumbar monte, desmontar, hacer milpa
+kool	N	milpa:N	Milpa
+k'ool	N	ruiseñor:N	Ruiseñor. (Hondzonot, municipio de Tulum, Q. Roo)
+k'ool	VT	golpear:VT	Golpear
+k'ool	N	golpear:N	Golpear
+kóol	VT	jalar:VT	Jalar, separar
+ko'olel	N	dama:N	Dama, mujer, señora
+koolkaab	N	milpero:N	Milpero, campesino
+koolnáal	N	agricultor:N	Agricultor, milpero, campesino
+kóom	ADJ	corto:ADJ	Corto
+k'óom	N	hoya:N	Hoya, barranco, hondonada
+k'óonk'óon	ADJ	terreno muy ondulado:ADJ	Terreno muy ondulado
+koonol	N	venta:N	Venta
+kóonol	VT	vender:VT	Vender
+koop	VI	enrollar:VI	Enrollar, enroscar
+k'oop	VT	golpear la cabeza con los nudillos:VT	Golpear la cabeza con los nudillos con movimiento de muñeca de arriba hacia abajo(coscorronear)
+k'oop	N	golpear:N	Golpear
+koopil	ADJ	encorvado:ADJ	Encorvado
+k'óopte'	N	ciricote:N	Ciricote (CORDIA DODECANDRA D.C.)
+koos	N	aguililla:N	Aguililla	
+k'oos	VT	rapar:VT	Rapar, cortar el cabello	
+k'oos	N	peluquero:N	Peluquero, peluquera, estilista	
+k'oos	VT	cortar:VT	Cortar con tijeras	
+k'oos	N	sirviente:N	Sirviente, sirvienta, criado, criada	
+koot	N	albarrada:N	Albarrada, barda de piedras sin mezcla	
+koot	VT	hacer albarrada:VT	Hacer albarrada	
+ko'oten	VI	venir.IMP:VI	IRREGULAR	Lehmann
+koots	VT	trozar:VT	Trozar, despedazar	
+koots'	N	rollo:N	Rollo	
+koots'	N	taco:N	Taco	
+koots'	CLF	CLF:CLF	Sufijo clasificador para contar rollos, ruedas: Óoxkoots’ aak’ tin bisaj. Tres rollos de bejuco llevé	
+koots'	VT	arrollar:VT	Arrollar	
+koots'	VT	enrrollar:VT	Enrrollar, hacer un rollo con un petate, una cartulina, una piel, etc	
+kóots'	VI	enrollarse:VI	Enrollarse	
+kóots'ol	VI	enrollarse:VI	Enrollarse	
+ko'ox	PART	HORT:PART	ko'x	Lehmann
+k'o'ox	ADJ	arisco:ADJ	Arisco	
+k'óoy	VT	escarbar:VT	Escarbar, hacer hoyos	
+kop	VI	acurrucarse:VI	Acurrucarse	
+kopa'an	ADJ	enroscado:ADJ	Enroscado	
+kopba	VI	enroscarse la culebra:VI	Enroscarse la culebra	
+kopej	VI	enrollar:VI	Enrollar	
+kopo'	N	higuera:N	Higuera cuya corteza servía para hace papel (FICUS COTINIFOLIA H.B. ET K)	
+kopulba	VT	acometer:VT	Acometer	
+ko'x	PART	HORT:PART		Lehmann
+k'oxol	N	mosco:N	Mosco	
+k'oy	N	semen:N	Semen	
+k'u	N	pirámide:N	Pirámide	
+k'u'	N	nido:N	Nido	
+k'u'ankil	VT	anidar:VT	Anidar	
+k'uba'an	ADJ	depositado:ADJ	Depositado o entregado	
+k'uben	N	encargo:N	Encargo
+k'ubilaj	N	traición:N	Traición, entrega
+k'uch	N	zopilote:N	Zopilote de cabeza roja (CATHARTES AURA AURA)
+k'uch	VI	llegar:VI	Llegar, venir
+k'uchbesaj	VT	obligar y culpar:VT	Obligar y culpar
+k'uche'	N	cedro:N	Cedro (CEDRELA MEXICANA (M. ROEMER))
+kuchkabal	N	familia:N	Familia, gente que tiene uno a su cargo
+kuchkabal	N	comarca:N	Comarca, provincia o región
+kuchteel	N	barrio de pueblo:N	Barrio de pueblo o ciudad
+kuchul	N	efecto:N	Efecto
+k'uchul	VI	llegar:VI	Llegar, venir
+k'uj	N	dios:N	Dios
+kuk	N	retoño:N	Retoño
+k'uk'	N	retoño:N	Retoño
+k'uk'ank	VI	retoñar:VI	Retoñar
+k'uk'ankil	VI	retoñar:VI	Retoñar
+kukíintaj	VT	sentar:VT	Sentar, asentar
+kuklim	N	escarabajo pelotero:N	Escarabajo pelotero (PHANACUS KUK S.P.)
+kukul	N	ola:N	Ola
+kukuleb	N	sacrificio:N	Sacrificio
+kukut	N	cebolla:N	Cebolla (ALLIUM CEPA L.)
+k'uk'ut	N	tubérculo:N	Tubérculo
+kukutil	N	cuerpo:N	Cuerpo
+kukutki	ADJ	gordito:ADJ	Gordito
+kul	N	cáliz:N	Cáliz
+k'ul	N	cosa divina:N	Cosa divina o sagrada
+kula'an	N	residente:N	Residente. Que se encuentra presente
+kula'an	VT	sujetar:VT	Sujetar o sojuzgar
+kulkaal	N	garganta corta:N	Garganta corta, cerviz
+kulkinbil	N	lo que ha de ser promovido:N	Lo que ha de ser promovido
+k'ult	VT	adorar:VT	Adorar
+k'ulu'	N	mapache:N	Mapache (PROCYON LOTOR SCHUFELDTI(NELSON Y GLODMAN))
+kulun	VI	retumbar:VI	Retumbar
+kulxekil	N	silla:N	Silla
+kuma'n	ADJ	detenido:ADJ	Detenido, parado, asentado
+kumbinaj	VT	promover a oficio:VT	Promover a oficio
+kumche'	N	troje de maíz:N	Troje de maíz
+k'unaaj	N	iglesia:N	Iglesia
+kunab	N	ardilla:N	Ardilla
+kupaj	VI	asfixiar:VI	Asfixiar, ahogar, retener el resuello
+kusam	N	golondrina:N	Golondrina
+kusamil	N	lugar de golondrinas:N	Lugar de golondrinas. Nombre maya de Cozumel
+kusba	VI	apartarse con arrogancia:VI	Apartarse con arrogancia
+kut	VI	sentarse:VI	Sentarse
+kutal	VI	sentarse:VI	Sentarse
+k'uub	N	ofrenda:N	Ofrenda
+k'uub	VT	entregar:VT	Entregar
+k'uub	VI	entregarse:VI	Entregarse. Kin k’uubkinbá (me entrego, me rindo, me someto)
+kuuch	N	carga:N	Carga
+kuuch	VT	cargar:VT	Cargar
+kuuch	N	CLF:N	Sufijo clasificador para contar cargas de maíz
+k'uuch	N	hilo:N	Hilo
+k'uuch	VT	hilar:VT	Hilar
+ku'uch	VI	atragantar:VI	Atragantar
+kúuch	N	fardo:N	Fardo, carga
+kúuchil	N	lugar:N	Lugar
+ku'uchul	VI	atragantar:VI	Atragantar
+ku'uk	N	ardilla:N	Ardilla
+kúuk	N	codo:N	Codo
+k'uuk'che'	N	retoño:N	Retoño
+kuukulpaach	VI	retroceder:VI	Retroceder
+k'u'uk'um	N	pluma:N	Pluma
+k'u'uk'umel	N	plumaje:N	Plumaje
+k'úuk'úutki	ADJ	bien formada:ADJ	Bien formada, se aplica al cuerpo de las mujeres
+k'uuk'uuyki	ADJ	que es muy ondulado:ADJ	Que es muy ondulado
+k'uul	N	coxis:N	Coxis, rabadilla
+kúul	CLF	CLF:CLF	Sufijo clasificador para contar árboles: Ka’akúul ka’awakche’. Dos árboles de caoba
+kúulpaachkúuns	VT	desconocer:VT	Desconocer, menospreciar
+ku'ult	VT	frotar aplicando un polvo:VT	Frotar aplicando un polvo
+k'uuluch	N	cucaracha:N	Cucaracha
+kuum	N	olla:N	Olla
+k'u'um	N	nixtamal:N	Nixtamal (granos de maíz cocidos con agua y cal)
+kúum	CONJ	pero:CONJ	Pero
+k'úum	N	calabaza:N	Calabaza (CURCUBITA PEPO C. ARGYROSPERMA (CURCUBITA SPP))
+kuun	CONJ	pues:CONJ	Pues
+kuup	VI	detener el resuello:VI	Detener el resuello
+k'uup	VT	rebanar:VT	Rebanar
+k'uup	VT	castrar:VT	Castrar, capar
+k'uut	VT	machacar:VT	Machacar, convertir en pulpa (tamular)
+kúuts	N	pavo silvestre:N	Pavo silvestre
+k'úuts	N	tabaco:N	Tabaco (NICOTINA TABACUM L.)
+k'uutub	N	molcajete:N	Molcajete
+k'uux	ADJ	enojado:ADJ	Enojado
+k'uux	N	ira:N	Ira
+k'uux	VT	disgustar:VT	Disgustar, enojar
+k'u'ux	ADJ	disgustado:ADJ	Disgustado
+k'úux	VT	roer:VT	Roer
+kuuxum	N	moho:N	Moho, hongo, verdín
+kuuy	N	calcañar:N	Calcañar
+k'u'uy	VT	menear:VT	Menear
+kux	CONJ	pero:CONJ	Pero
+kux	CONJ	y:CONJ	Y
+kuxóolal	N	juicio:N	Juicio
+kuxt	VI	vivir:VI	Vivir
+k'uxtaanbalo'ob	N	enemigos:N	Enemigos
+kuxtaj	VI	vivir:VI	Vivir
+kuxtal	N	vida:N	Vida
+kuxtal	VI	vivir:VI	Vivir
+k'uxub	N	achiote:N	Achiote
+k'uya'an	N	cosa consagrada:N	Cosa dada a dios y consagrada
+k'uyche'	N	amapola:N	Amapola (PACHIRA AGUATICA. AUBL.)
+k'uyen	N	cosa divina:N	Cosa divina o sagrada
+la'	ADV	si:ADV	Si. La’ in yuum. Si mi señor. La’, in ko’olel. Si, mi mujer
+laab	VI	deteriorar:VI	Deteriorar
+la'ach	VT	rascar:VT	Rascar, rasguñar, arañar
+laaj	N	bofetada:N	Bofetada
+laaj	VT	abofetear:VT	Abofetear, golpear con la palma de la mano
+láaj	ADV	todo:ADV	Todo
+laajlaaja	VT	pegar con la palma de la mano:VT	Pegar o golpear a alguien varias veces con la palma de la mano
+laak	VT	despegar:VT	Despegar
+laak	VT	desprender:VT	Desprender
+láak'	ADJ	otro:ADJ	
+láak'	N	familiar:N	Familiar, pariente
+láakam	N	grandeza:N	Grandeza, pendón, bandera
+láakej	ADV	mientras:ADV	Mientras
+láak'tsil	N	familiar:N	Familiar, pariente
+láak'tsilil	N	familia:N	Familia
+laal	N	ortiga:N	Ortiga (URERA SPP)
+láal	VT	vaciar:VT	Vaciar, verter
+laalaak	ADJ	cosa que se desprende:ADJ	Cosa que se desprende
+láalaanki	ADJ	muy metido:ADJ	Muy metido
+laam	VI	sumir:VI	Sumir, hundir
+laap'	CLF	CLF:CLF	Sufijo clasificador para contar puñados: Junlaap’ ta’ab utia’al le bak’o’. Un puñado de sal para la carne
+laap'	VT	asir engarrafado:VT	Asir engarrafado como ave de rapiña
+laap'	VT	empuñar:VT	Empuñar, agarrar
+láap'	ADV	puñado de cosas:ADV	Puñado de cosas
+laap'k'abil	N	empuñadura:N	Empuñadura, mango de herramienta
+láat'	VT	sostener con la palma:VT	Sostener con la palma de la mano
+la'aten	PREP	por eso:PREP	Por eso	
+láaylie'	ADV	también:ADV	También	
+lágab	N	color:N	Color	
+lajun	N	diez:N	Diez	
+lak	N	cajete:N	Cajete	
+lak	N	plato:N	Plato	
+lak'alak	N	cosa que anda acompañada:N	Cosa que anda acompañada	
+lak'ankil	N	compañía:N	Compañía	
+lak'iin	N	este:N	Este, oriente	
+lalail	N	el mayor o mejor:N	El mayor o mejor	
+lalajk'ab	N	aplauso:N	Aplauso	
+lam	ADJ	cosa lejana:ADJ	Cosa lejana que está muy apartada, hundida en el horizonte	
+lamal	ADJ	que está lejano:ADJ	Que está lejana o hundida en el horizonte	
+layli'	CONJ	siempre:CONJ	Siempre	
+le	PART	DET:PART		Lehmann
+le'	N	hoja:N	Hoja	
+lebetik	PREP	por eso:PREP	Por eso
+lechkaltaj	VT	llevar cargado sobre el hombro:VT	Llevar cargado o apoyado sobre el hombro detrás del pescuezo
+leech	VT	colgar:VT	Colgar
+léech	N	trampa:N	Trampa de lazo
+léech	VT	trabar:VT	Trabar, atrapar
+léej	VT	lazar:VT	Lazar
+leek	N	fruto esférico:N	Fruto esférico de pericarpio duro que sirve para conservar suaves y calientes las tortillas de maíz
+léele'ech	ADJ	colgado varias veces:ADJ	Colgado de algo varias veces
+léele'eki	ADJ	de bruces abajo:ADJ	De bruces o boca abajo
+léeléep'ki	ADJ	de pensamiento ágil:ADJ	De pensamiento ágil
+léemb	VI	titilar:VI	Titilar, brillar
+léembal	VI	titilar:VI	Titilar, brillar
+léemleenki	ADJ	que pesa mucho:ADJ	Que arde o pesa mucho,
+léench'in	VT	empujar:VT	Empujar
+le'ep'	VT	descortezar:VT	Descortezar, despellejar con las uñas
+léets'	N	resplandor del fuego:N	Resplandor del fuego
+léets'	VT	lamer:VT	Lamer
+léets'b	VI	brillar:VI	Brillar
+léets'b	VI	relampaguear:VI	Relampaguear
+léets'bal	VI	brillar:VI	Brillar
+léets'bal	VI	relampaguear:VI	Relampaguear
+léeyli	ADV	también:ADV	También
+lek'	VI	mirar duramente:VI	Mirar duramente, con fiereza
+leka'an	ADJ	retentado de ataque:ADJ	Retentado de ataque o pasión
+lel	N	semen:N	Semen
+lela'	PRON	DEM:PRON	Ésta, éste
+lelo'	PRON	DEM:PRON	Ésa, ése
+lelo'oba'	PRON	DEM.PL:PRON	Éstas, éstos
+lem	ADV	muy:ADV	Muy (prefijo para formar el superlativo de los adjetivos calificativos)
+lem	VT	fortificar:VT	Fortificar o hacer fuerte alguna cosa
+lemkech	ADV	muy:ADV	Muy (prefijo para formar el superlativo de los adjetivos calificativos)
+lep'óolal	N	ánimo:N	Ánimo, coraje, esfuerzo
+leti'	PRON	DEM:PRON	Él, ella
+leti'ob	PRON	DEM.PL:PRON	Ellos, ellas
+lets'b	VI	brillar:VI	Brillar, cintilar
+lets'bal	VI	brillar:VI	Brillar, cintilar
+le'um	N	araña:N	Araña
+líik'	VI	levantarse:VI	Levantarse, ascender
+líik'bal	PREP	desde:PREP	Desde
+líil	VT	sacudir:VT	Sacudir
+líil	VT	rociar:VT	Rociar
+líiliichki	ADJ	que raspa finamente:ADJ	Que raspa finamente
+liilíit'ki	ADJ	que camina rápido de puntitas:ADJ	Que camina rápido de puntitas
+li'is	VT	alzar:VT	Alzar, levantar, guardar
+liit'	VI	pararse con la punta de los pies:VI	Pararse con la punta de los pies
+lik'	VT	levantar:VT	Levantar
+lik'ul	ADV	de alguna parte:ADV	De alguna parte
+lik'ul	PREP	desde:PREP	Desde
+lilik'ki	ADJ	muy rápido:ADJ	Muy rápido o veloz	
+lobil	N	lugar de maleza:N	Lugar de maleza, breñas y espinas	
+lobkinaj	VT	estragar:VT	Estragar, dañar	
+loch	N	vuelta y comba que hace el madero:N	Vuelta y comba que hace el madero	
+lo'che	N	coa:N	Coa (instrumento cortante de hierro con forma curva y mango de madera sirve para desyerbar)	
+lo'che'paak	N	desyerbe:N	Desyerbe (con todo y raíz)	
+loj	VT	redimir:VT	Redimir, rescatar, desagraviar	
+lokes	PART	OBL:PART		Lehmann
+lokok	N	cera:N	Cera	
+lolok	N	cera muy pegajosa:N	Cera muy pegajosa	
+loma'an	ADJ	herido a lanzadas:ADJ	Herido a lanzadas o arponeado	
+loob	ADJ	enmarañado:ADJ	Enmarañado, lleno de maleza	
+loob	N	accidente:N	Accidente, daño	
+loob	N	herida:N	Herida, daño	
+loob	N	maleza:N	Maleza	
+loob	VT	herir:VT	Herir, dañar	
+lóob	N	coa:N	Coa
+loobil	N	daño:N	Daño
+loobkinan	ADJ	dañado:ADJ	Dañado
+lóoch	VT	abrazar al cuello:VT	Abrazar uno al cuello o de la cervis
+loojil	N	ofrenda:N	Ofrenda
+lóojsiko'ob	VT	bendecir:VT	Bendecir
+lóok	VI	hervir:VI	Hervir
+lool	N	flor:N	Flor
+loolank	VI	florecer:VI	Florecer
+loolank	VI	florecer:VI	Florecer
+loolankal	VI	florecer:VI	Florecer
+loolankil	VI	florecer:VI	Florecer
+lóolo'och	ADJ	muy curveado:ADJ	Muy curveado, por ejemplo un camino
+lóoloochbil	ADJ	abrazados del cuello:ADJ	Abrazados del cuello
+lóolo'ochki	ADJ	muy curveado:ADJ	Muy curveado
+lóoloom	VT	apuñalar repetidamente:VT	Apuñalar repetidamente
+lóoloot	ADJ	juntas de dos en dos:ADJ	Juntas o pegadas de dos en dos
+l'ooloot'	ADJ	engarrotado:ADJ	Engarrotado
+lóoloox	VT	dar gran cantidad de puñetazos:VT	Dar gran cantidad de puñetazos
+loom	VT	apuñalar:VT	Apuñalar
+loom	VT	herir con arma:VT	Punzar o herir con arma o instrumento puntiagudo, apuñalar, acuchillar, ensartar
+loot	CLF	CLF:CLF	Sufijo clasificador para contar pares o parejas
+lóot	VT	juntar:VT	Juntar, pegar, unir
+lóot	VT	juntar en un puño:VT	Juntar o llevar en un puño
+loox	N	puñetazo:N	Puñetazo
+loox	VT	boxear:VT	Boxear, golpear con el puño
+lu'	N	bagre:N	Bagre
+luk's	VT	quitar:VT	Quitar
+lumtabe'en	N	cosa digna de ser considerada:N	Cosa digna de ser considerada
+luub	VT	desprender:VT	Desprender
+lúub	N	medida de longitud:N	Medida de longitud equivalente a cuatro kilómetros
+lúub	VI	caer:VI	Caer
+lúubul	VI	caer:VI	Caer
+lúubul	VI	caer:VI	Caer
+luuch	N	jícara:N	Jícara (CRESCENTIA CUJETE L)
+lu'uch	VT	cucharear:VT	Cucharear
+luuk'	N	lodo:N	Lodo
+luuk'	VT	tragar:VT	Deglutir, tragar
+lúul	N	baba:N	Baba, babaza
+lúulúuban	ADJ	caidos:ADJ	Caidos
+lúulúuk'	ADJ	picado por algún ave:ADJ	Picado o tragado por algún ave
+lúulúuk'bil	ADJ	tragado rapidamente:ADJ	Tragado rapidamente
+lu'um	N	tierra:N	Tierra
+ma'	ADV	no:ADV	No
+ma'ab	ADV	no:ADV	No
+máaben	N	caja:N	Caja, cofre
+maach	VT	aprehender:VT	Aprehender, agarrar, sujetar
+ma'ach	ADV	no:ADV	No
+ma'aj	N	ganglio:N	Ganglio del sobaco o de la ingle
+maak	N	tapa:N	Tapa
+maak	VT	tapar:VT	Tapar
+máak	N	persona:N	Persona, gente, hombre
+maak'	VT	comer rápidamente:VT	Comer rápidamente sin masticar
+máakalmáak	PRON	cuál:PRON	Cuál
+ma'ak'antik	VT	preparar:VT	Preparar algún objeto o alimento
+ma'ak'óolil	N	flojera:N	Flojera
+ma'alob	ADV	bien:ADV	Bien
+máamaaki	ADJ	muy espeso:ADJ	Muy espeso
+máamaalaaj	VT	abofetear alocadamente:VT	Abofetear alocadamente
+maan	VT	comprar:VT	Comprar
+máan	VI	pasar:VI	Pasar
+máanal	ADV	demasiado:ADV	Demasiado, excesivo
+maanch'akat	VT	atravesar:VT	Atravesar
+máanlil	N	pasado:N	Pasado, sucedido
+máas	N	grillo:N	Grillo
+máasa	N	verdad:N	Verdad
+máaskab	N	machete:N	Machete
+máat	VT	mendigar:VT	Mendigar, pedir limosna
+ma'atan	ADV	no:ADV	No
+ma'ats'	VT	chupar:VT	Chupar, lamer, pasar la lengua a algo
+máatsab	N	pestaña:N	Pestaña
+maax	VT	majar:VT	Majar, machacar, magullar
+ma'ax	N	mono araña:N	Mono araña (ATELES SP)
+máax	PRON	quien:PRON	
+maay	N	casco de caballo:N	Casco de caballo
+maay	N	pata hendida en dos partes:N	Pata hendida en dos partes , pezuña
+máay	VT	cernir:VT	Cernir, colar
+máay	VT	colar:VT	Colar
+ma'ba'l	N	cosa vacía:N	Cosa vacía o hueca
+ma'ba'lil	N	vanidad:N	Vanidad
+mach	VT	asir con la mano:VT	Asir con la mano
+mach	VT	agarrar:VT	Agarrar
+ma'ili'	ADV	antes:ADV	Antes
+majáant	VT	prestar:VT	Prestar
+majan	VT	tomar y pedir prestado:VT	Tomar y pedir prestado
+majan	N	préstamo:N	Préstamo
+majan	VT	prestar:VT	Prestar
+makal	N	makal:N	Makal, ñame (DIOSCORACEAE (DIOSCOREA ALATA L.))
+makan	N	enramada:N	Enramada
+makat	VT	maravillarse:VT	Maravillarse de alguna persona como desconociéndola
+makenjal	VT	aprovechar:VT	Aprovechar
+ma'kenlik	N	cosa provechosa:N	Cosa provechosa y necesaria
+makil	N	parentesco:N	Parentesco
+maklaj	VT	desconocer:VT	Desconocer a otro y extrañarle
+maknal	ADJ	bruto:ADJ	Bruto, estúpido
+maktsil	ADJ	cosa maravillosa:ADJ	Cosa maravillosa, extraña e increíble
+maktsiljal	ADJ	hacerse maravillosa:ADJ	Hacerse maravillosa y milagrosa
+makul	N	premio:N	Premio, galardón
+mal	ADV	todo:ADV	Todo, toda
+mal	VI	pasar:VI	Pasar generalmente por un lugar
+mal	VT	calmar:VT	Calmar, sanar, aliviar
+mamak	N	urdimbre:N	Urdimbre
+mamakbo'oy	N	favor:N	Favor
+mamantats'il	N	aventura:N	Aventura
+mamayki	ADJ	suave:ADJ	Suave, delicado, blando
+mamaykij	ADJ	fino:ADJ	Fino
+mana'an	VI	faltar:VI	Faltar, carecer
+manak'óol	N	olvido:N	Olvido, descuido
+manba'alkuntik	VT	desperdiciar:VT	Desperdiciar
+manchi'taj	VT	denunciar:VT	Denunciar, delatar
+mánk'iinal	N	fiesta:N	Fiesta
+mank'iinalil	N	fiesta:N	Fiesta
+mantats'	ADV	siempre:ADV	Siempre o frecuentemente
+ma'óolal	N	apatía:N	Apatía
+masewal	N	indio:N	Indio
+ma'tech	ADV	no es cierto:ADV	No es cierto
+matla	ADV	menos:ADV	Menos
+maxulik'iin	ADV	eternamente:ADV	Eternamente
+mayak	N	mesa:N	Mesa
+méek'	VT	abrazar:VT	Abrazar
+méek'táant	VT	abarcar:VT	Abarcar
+méek'tantaj	VT	acaudillar:VT	Acaudillar
+méemeek'	VT	abrazar repetidamente:VT	Abrazar repetidamente
+méemek	ADJ	muy doblado:ADJ	Muy doblado, por ejemplo una madera o una línea
+meen	VT	hacer:VT	Hacer
+méent	VT	hacer:VT	Hacer
+meents'ul	VT	rebuscar elote:VT	Rebuscar elote en la milpa cosechada
+meentun	CONJ	porque:CONJ	Porque
+me'ex	N	barba:N	Barba, bigote
+mejnil	N	hijo:N	Hijo
+meyaj	VI	laborar:VI	Laborar, trabajar
+meyaj	N	trabajo:N	Trabajo
+mi	ADV	quizá:ADV	Quizá, creo que..., juzgo que..
+mia	ADV	quizá:ADV	Quizá, creo que..., juzgo que..
+miatsil	N	cultura:N	Cultura
+míimíiski	ADJ	muy limpio:ADJ	Muy limpio o bien barrido
+míimíste	VT	barrer sin orden:VT	Barrer sin orden
+miis	N	gato:N	Gato
+míis	VT	barrer:VT	Barrer
+míisa'an	ADJ	barrido:ADJ	Barrido, limpio
+míisib	N	escoba:N	Escoba
+míist	VT	barrer:VT	Barrer
+mix	ADV	NEG:ADV	Ni
+mixba'al	ADV	nada:ADV	Nada
+mixche'	N	uva de la costa:N	Uva de la costa, uvero, uva de mar (COCCOLOBA UVÍFERA (L) JACQ)
+moch	VI	acurrucarse:VI	Acurrucarse
+mocht	VI	acurrucarse:VI	Acurrucarse
+mochtal	VI	acurrucarse:VI	Acurrucarse
+moj	N	brasero debajo de la cama:N	Brasero o brasa que se pone debajo de la cama
+mok	VT	anudar:VT	Anudar
+molay	N	institución:N	Institución, grupo
+momolank	VI	bullir:VI	Bullir (mucha gente)
+momolankil	VI	bullir:VI	Bullir (mucha gente)
+monkaab	N	azúcar:N	Azúcar, panela
+moo	N	guacamaya:N	Guacamaya
+mooch'	N	pata de ave:N	Pata de ave
+mo'ojtun	N	ceja:N	Ceja
+mook	VT	anudar:VT	Anudar
+mool	VT	recoger:VT	Recoger, juntar
+mool	VT	juntar:VT	Juntar
+mo'ol	N	garra de los felinos:N	Garra de los felinos
+moom	N	azúcar:N	Azúcar
+moom	N	miel cuajada:N	Miel cuajada, azúcar
+móomooch	VT	amarrar fuertemente:VT	Amarrar fuertemente
+móomoochki	ADJ	muy encogido:ADJ	Muy encogido, como cuando duermen algunas personas
+móomoots	ADJ	muy encogido:ADJ	Muy encogido, por ejemplo telas, hilos lonas
+moot'	VI	agazapar:VI	Agazapar
+moot'	VI	encoger:VI	Encoger
+moots	N	raíz:N	Raíz
+moots'	VI	encoger:VI	Encoger
+mop	N	corozo:N	Corozo (ATTALEA COHUNE (MART))
+mot'	VI	agacharse:VI	Agacharse
+mot'	VI	agacharse:VI	Agacharse
+mot'al	VI	agacharse:VI	Agacharse
+mot'kin	VI	agazapar:VI	Agazapar
+mot'okbal	ADJ	agachado:ADJ	Agachado
+motsank	VI	echar raíces:VI	Echar raíces
+motsankil	VI	echar raíces:VI	Echar raíces
+much'	VI	aglomerar:VI	Aglomerar
+much'kin	VI	aglomerar:VI	Aglomerar
+much'kinaj	N	reunión:N	Reunión
+much'tal	N	reunión:N	Reunión
+much'tsikbalo'	N	asamblea:N	Asamblea, reunión
+mu'il	N	cuñada:N	Cuñada
+mujul	N	dote:N	Dote para el casamiento
+muk'ook	N	muslo:N	Muslo, pierna
+muk'óolal	N	sufrimiento:N	Sufrimiento
+muk'óolalil	N	fortaleza:N	Fortaleza
+mukuk	N	alforja:N	Alforja, costal, saco, talega
+mukul	ADJ	encubierto:ADJ	Encubierto, enterrado
+mukuy	N	tórtola:N	Tórtola
+muk'yaj	VI	sufrir:VI	Sufrir
+mul	VI	aglomerar:VI	Aglomerar
+mulkin	VT	amontonar:VT	Amontonar, aglomerar
+mulkinaj	N	reunión:N	Reunión
+multun	N	mojón:N	Mojón, mojonera
+mun	ADV	no:ADV	No
+munya	N	pena:N	Pena, miseria
+múu	N	cuñada:N	Cuñada
+muuch	N	sapo:N	Sapo
+mu'uch	ADJ	ensortijado:ADJ	Ensortijado
+muuch'	VT	juntar:VT	Juntar
+múuch'	VI	amontonarse:VI	Amontonarse, aglomerarse
+múuch'ul	VI	amontonarse:VI	Amontonarse, aglomerarse
+muuk	VT	enterrar:VT	Enterrar, sepultar
+múuk	VT	enterrar:VT	Enterrar, sepultar
+muuk'	N	fuerza:N	Fuerza
+muuk'	N	vigor:N	Vigor
+muuk'a'an	ADJ	seguro:ADJ	Seguro, inerte, inmóvil
+muuk'a'an	ADJ	fuerte:ADJ	Fuerte
+muuk'náal	ADJ	fuerte:ADJ	Fuerte
+múuknal	N	tumba:N	Tumba, sepultura
+múul	N	cerro:N	Cerro
+muum	ADJ	tierno:ADJ	Tierno
+múumu'uch	ADJ	muy rizado:ADJ	Muy rizado
+múumuuk	ADJ	enterrado por partes:ADJ	Enterrado por partes
+múumuuxki	ADJ	muy molido:ADJ	Muy molido
+múusiik'	N	aliento:N	Aliento
+muut	N	almud:N	Almud (medida de peso de 3.600 kgs.)
+muuts'	VI	cerrar:VI	Cerrar los ojos
+múuyal	N	nube:N	Nube
+mux	VT	moler:VT	Moler, triturar
+na'	N	madre:N	Madre
+náab	N	cuarta:N	Cuarta, medida de longitud entre el dedo pulgar y el meñique con la mano abierta
+náab	CLF	CLF:CLF	Sufijo clasificador para contar cuartas
+náach	ADV	lejos:ADV	Lejos
+naach'	VI	asir fuertemente:VI	Asir fuertemente con los dientes
+naach'	N	coito:N	Coito
+náachja'antak	ADJ	alejadas:ADJ	Alejadas
+náachkun	VT	alejar:VT	Alejar
+náacht	VI	alejarse:VI	Alejarse
+náachtal	VI	alejarse:VI	Alejarse
+naaj	N	casa:N	Casa
+na'aj	ADJ	lleno:ADJ	Lleno por haber comido suficiente
+náajal	N	sueldo:N	Sueldo, salario, ganancia
+náajalt	VT	ganar:VT	Ganar
+naak	VT	arrinconar:VT	Arrinconar
+naak'	VT	arrimar:VT	Arrimar, juntar, acercar
+naak'	ADV	junto:ADV	Junto, cerca, pegada a otra
+na'akal	VT	trepar:VT	Trepar, subir
+na'aks	VT	elevar:VT	Elevar
+náanaach	ADJ	atrapado por la boca:ADJ	Atrapado por la boca
+náanáach	ADJ	muy lejos:ADJ	Muy lejos
+náanaachan	ADJ	mordido varias veces:ADJ	Mordido varias veces
+náanaach'ki	ADJ	muy aglomerado:ADJ	Muy aglomerado
+náanaak'	VT	pegarse:VT	Pegarse o acercarse mucho las personas o animales
+náanaak'ki	ADJ	pegado:ADJ	Pegado a alguien o muy acercado a alguien
+náanaat'ki	ADJ	muy encimado:ADJ	Muy encimado o sobrepuesto
+náanaats'	VT	acercarse varias veces:VT	Acercarse varias veces
+na'at	N	entendimiento:N	Entendimiento, juicio, razón, inteligencia
+na'at	VT	entender:VT	Entender, adivinar
+na'at	N	adivinanza:N	Adivinanza
+naat'	VT	montar:VT	Montar
+na'atbe'en	VI	entender:VI	Entender
+naats'	ADV	cerca:ADV	Cerca
+naats'	VI	acercarse:VI	Acercarse
+naats'al	VI	acercarse:VI	Acercarse
+náaxche'	N	brasa:N	Brasa
+náay	VI	soñar:VI	Soñar
+náay	VI	descuidar:VI	Descuidar, entretener
+náayt	VI	soñar:VI	Soñar
+nabte'	N	lanza:N	Lanza
+naj	N	casa:N	Casa
+najbe'en	ADJ	necesario:ADJ	Necesario, preciso
+najbe'entsil	N	necesidad:N	Necesidad, precisión
+najil	N	oportunidad:N	Oportunidad, congruencia
+nak	N	corona:N	Corona, trono, diadema
+nak'	N	barriga:N	Barriga, abdomen
+nak'	VI	acabarse del todo:VI	Acabarse del todo
+nak'al	VI	acabarse del todo:VI	Acabarse del todo
+na'kj	VI	crecer:VI	Crecer el hombre o cualquier animal
+na'kjal	VI	crecer:VI	Crecer el hombre o cualquier animal
+nakkun	VI	apoyar:VI	Apoyar
+nakkun	VI	arrinconar:VI	Arrinconar
+naktan	VI	encontrarse:VI	Encontrarse, dar con otro
+naktan	VT	encontrarse:VT	Encontrarse, dar con otro
+napul	ADJ	derecho:ADJ	Derecho, directamente
+nasa	N	costal:N	Costal
+nat'ab	N	tenazas:N	Tenazas
+nayal	N	visión entre sueños:N	Visión entre sueños
+nayk'alank	VI	bambolearse:VI	Bambolearse
+nayk'alankil	VI	bambolearse:VI	Bambolearse
+neek'	N	pepita:N	Pepita, semilla, hueso de una fruta
+neek'	N	semilla:N	Semilla
+néen	N	espejo:N	Espejo
+néenées	ADJ	triturado:ADJ	Triturado por boca pequeña por ejemplo de rata o tuza
+néent	VI	espejear:VI	Espejear
+nées	VT	roer:VT	Roer
+néet'	VT	descortezar:VT	Descortezar, roer
+neets	ADJ	bobo:ADJ	Bobo
+nej	N	rabo:N	Rabo, cola
+ni'	N	nariz:N	Nariz, hocico
+nibpixan	N	agradecimiento:N	Agradecimiento
+nibpixanil	N	agradecimiento:N	Agradecimiento
+nich'	VT	morder:VT	Morder, mostrar los dientes
+nich'b	VI	intranquilizarse:VI	Intranquilizarse
+nich'bal	VI	intranquilizarse:VI	Intranquilizarse
+niik	VI	derrumbar:VI	Derrumbar, derribar
+níiníich'	ADJ	mordisqueado:ADJ	Mordisqueado
+níiniich'ki		con comezón:	Con comezón
+níiniik	ADJ	muy derrumbado:ADJ	Muy derrumbado
+níiniiki	ADJ	hecho montones:ADJ	Hecho montones
+nik	N	montón pequeño:N	Montón pequeño de cualquier cosa
+nik	VT	amontonar:VT	Amontonar
+nikank	VI	echar flores:VI	Echar flores los árboles o hierbas
+nikankil	VI	echar flores:VI	Echar flores los árboles o hierbas
+nikib	N	sopor:N	Sopor, cabecear dormitando
+nikte'	N	flor:N	Flor 
+nixa'an	ADJ	desnivelado:ADJ	Desnivelado, ladeado
+nixk'aj	VI	resbalarse:VI	Resbalarse algo mal colocado
+nixk'ajal	VI	resbalarse:VI	Resbalarse algo mal colocado
+nojbail	N	soberbia:N	Soberbia, orgullo
+nojbe'enil	N	gloria:N	Gloria
+nojbe'enkant	N	homenaje:N	Homenaje
+nojil	N	grandeza:N	Grandeza
+nojmal	VT	gastar:VT	Gastar o destruir
+nojoch	ADJ	grande:ADJ	Grande
+nojocht	VI	engrandecer:VI	Engrandecer, crecer
+nojochtal	VI	engrandecer:VI	Engrandecer, crecer
+nojol	N	sur:N	Sur
+noka'an	ADV	volcado:ADV	Volcado
+nokokbaj	ADJ	boca abajo:ADJ	Boca abajo
+nokokbaj	ADV	boca abajo:ADV	Boca abajo
+nokokbal	ADJ	boca abajo:ADJ	Boca abajo
+nokokbal	ADV	boca abajo:ADV	Boca abajo
+nokop	VI	naufragar:VI	Naufragar
+nokopa'il	N	naufragio:N	Naufragio
+nolmail	N	obstinación:N	Obstinación
+nonojbail	N	soberbia:N	Soberbia, presunción, vanagloria
+nonojbail	N	terquedad:N	Terquedad
+nonojil	N	destreza:N	Destreza, maña en cualquier cosa
+nonolki	ADJ	terco:ADJ	Terco, obstinado
+no'och	N	barbilla:N	Barbilla o mentón
+no'oj	N	derecha:N	Derecha
+no'oj	ADJ	derecho:ADJ	Derecho
+nook	VT	poner boca abajo:VT	Poner o volver boca abajo
+nook'	N	paño:N	Paño, manta, ropa en general
+nook'	N	ropa:N	Ropa
+nook'	N	velo de novia:N	Velo de novia
+nóok'	VI	roncar:VI	Roncar
+nooka'an	ADJ	embrocado:ADJ	Embrocado
+nook'ol	N	gusano:N	Gusano
+nookoy	ADJ	nublado:ADJ	Nublado
+nool	N	abuelo:N	Abuelo
+nóol	ADJ	tonto:ADJ	Tonto. (Hondzonot, municipio de Tulum, Q. Roo.)
+nóol	VT	anolar:VT	Anolar (desgastar un dulce en la boca moviéndolo de lado a lado)
+noom	N	perdiz:N	Perdiz
+nóonoj	ADV	mucho:ADV	Mucho, demasiado
+nóonoojkan	ADJ	boca abajo:ADJ	Boca abajo
+nóonoojki	ADJ	muy cansado:ADJ	Muy cansado
+nóonook	ADJ	embrocado:ADJ	Embrocado
+nóot'	VT	pelar con los dientes:VT	Pelar con los dientes
+not'b	VI	enflaquecer:VI	Enflaquecer
+not'bal	VI	enflaquecer:VI	Enflaquecer
+nox	VI	apoyar:VI	Apoyar
+noy	N	meollo:N	Meollo, médula
+nuk	N	cosa gorda:N	Cosa gorda y gruesa
+nukuch	ADJ	grande:ADJ	Grande
+nula'an	ADJ	magullado:ADJ	Magullado
+num	ADV	en abundancia:ADV	En abundancia
+numchi'tik	VI	informar:VI	Informar
+numyail	N	trabajos:N	Trabajos, penas, tormentos
+numyaj	N	infortunio:N	Infortunio, tribulación, adversidad
+nuntal	ADJ	tartamudo:ADJ	Tartamudo, balbuciente
+nunulaja'an	ADJ	muy magullado:ADJ	Muy magullado
+nunuyaktaj	VI	maravillar:VI	Maravillar
+nup	VT	juntar:VT	Juntar, unir
+nupankil	N	discordia:N	Discordia, guerra, enemistad
+nuuch	VT	juntar los leños:VT	Juntar los leños para avivar el fuego
+nuuk	ADJ	grande:ADJ	Grande
+núuk	ADJ	sobrio:ADJ	Sobrio, templado
+núuk	VT	contestar:VT	Contestar
+nu'ukul	N	aparato:N	Aparato, herramienta, instrumento
+nu'ukul	N	utensilio:N	Utensilio, instrumento para alguna actividad
+nuul	VT	magullar:VT	Magullar, lastimar
+núunúuka	ADV	mal contestar:ADV	Mal contestar
+núunuuktal	ADJ	cosa muy grande:ADJ	Cosa muy grande
+nuup	VT	unir:VT	Unir, juntar
+nuup	N	compañero:N	Compañero, pareja
+nuup'	VT	atrapar con trampa:VT	Atrapar con trampa
+núup'	VT	encerrar:VT	Encerrar, atrapar
+nuupan	ADJ	unido:ADJ	Unido
+nuupik	VT	unir:VT	Unir
+nuupt'aan	N	trato:N	Trato, convenio
+nuupul	N	compañero:N	Compañero, pareja
+nu'ut'	ADJ	apretado:ADJ	Apretado, ceñido
+nux	N	bebé:N	Bebé (niño de brazos)
+nuxiib	ADJ	anciano:ADJ	Anciano, viejo
+ojel	VT	saber:VT	Saber, averiguar, conocer
+ojelil	N	sabiduría:N	Sabiduría
+ojelil	N	noticia:N	Noticia
+ojelt	VT	saber:VT	Saber, averiguar, conocer
+ok	VI	entrar:VI	Entrar
+ok'	VI	llorar:VI	Llorar
+oka'anóolal	N	creencia:N	Creencia
+okja'	N	bautizo:N	Bautizo
+oklal	PREP	por:PREP	Por
+ok'najak	ADV	anoche:ADV	Anoche
+oknajk'iin	N	tarde:N	Tarde, anochecer
+okol	VI	entrar:VI	Entrar
+ok'ol	VI	llorar:VI	Llorar
+okom	N	poste o pilar:N	Poste o pilar
+oks	VT	introducir:VT	Introducir, meter
+oksaj	VT	meter:VT	Meter, introducir, sembrar maíz
+ol	ADV	casi:ADV	Casi, a punto
+olal	PREP	por:PREP	Por
+olbil	N	cosa voluntaria:N	Cosa voluntaria, hecha de corazón
+olom	N	sangre cuajada:N	Sangre cuajada, linaje
+om	VI	hervir:VI	Hervir, bullir
+omank	VI	fermentar:VI	Fermentar, burbujear, espumar
+omankal	VI	fermentar:VI	Fermentar, burbujear, espumar
+o'niak	ADV	anoche:ADV	Anoche
+ooch	N	tlacuache:N	Zarigüeya o tlacuache (DIDELPHYS MESOAMERICANA)
+o'och	N	comida:N	Comida, alimento
+o'och	N	almuerzo:N	Almuerzo
+oochel	N	figura:N	Figura, imagen
+oochel	N	sombra:N	Sombra del cuerpo
+ook	N	pie:N	Pie
+óok'iin	ADV	en la noche:ADV	En la noche
+ookol	N	ladrón:N	Ladrón
+óokol	VT	robar:VT	Robar
+ook'ot	N	baile:N	Baile
+óok'ot	VI	bailar:VI	Bailar
+óol	N	energía:N	Energía. ánimo, salud, voluntad
+óolak	ADV	por poco:ADV	Por poco
+o'olal	PREP	por:PREP	Por
+o'olki	ADJ	blando:ADJ	Blando, suave
+óoltik	VT	querer:VT	Querer, desear
+óom	N	espuma:N	Espuma
+óom	N	burbuja:N	Burbuja
+oon	N	aguacate:N	Aguacate (PERSEA AMERICANA MILLER)
+óop	N	anona:N	Anona (ANNONA CHERIMOLA MILLER)
+oop'	N	tortilla tostada:N	Tortilla tostada o pan tostado
+óot	VI	apetecer:VI	Apetecer, desear, querer
+oot'	N	piel:N	Piel, pellejo
+oots'	N	nata:N	Nata
+óotsil	ADJ	pobre:ADJ	Pobre
+óotsilil	N	pobreza:N	Pobreza
+óox	N	ramón:N	Ramón, moracene (BROCIMUM ALICASTRUM SW)
+óox	N	tres:N	Tres
+óoxejeak	ADV	hace tres días:ADV	Hace tres días
+ooxoj	N	calor:N	Calor
+ooxol	N	vapor:N	Vapor
+otoch	N	casa:N	Casa, hogar
+owox	N	vapor:N	Vapor o vaho
+oxo'omt	VT	desgranar:VT	Desgranar a mano las mazorcas de maíz
+pa'	N	castillo:N	Castillo, fortaleza, muralla, trinchera
+pa'	VT	romper:VT	Romper
+paach	ADV	atrás:ADV	Atrás
+paach	N	espalda:N	Espalda, lomo
+paach	N	espía:N	Espía que mira donde entra y sale uno y qué tratos hace
+páajtal	N	poder:N	Poder
+páajtalil	N	poder:N	Poder
+paak	VT	doblar:VT	Doblar, plegar, empacar
+paak	VI	aguardar:VI	Aguardar, esperar
+p'aak	N	tomate:N	Tomate (LYCOPERSICUM ESCULENTUN)
+páak	N	deshierba:N	Deshierba
+páak	VT	deshierbar:VT	Deshierbar, limpiar de maleza un terreno
+páak'	VT	untar:VT	Untar, pegar
+páak'al	VT	sembrado:VT	Sembrado
+páak'al	N	heredad donde hay cosas plantadas:N	Heredad donde hay cosas plantadas, plantío
+páak'al	VT	sembrar:VT	Sembrar
+páak'alnikte'	N	jardín:N	Jardín
+paakat	VI	mirar:VI	Mirar
+paaklam	ADV	recíproco:ADV	Recíproco, mutuo.Paaklam áantaj : ayudarse recíprocamente
+páaknak'	N	ijada:N	Ijada
+páakt	VT	desyerbar:VT	Desyerbar
+paal	N	niño:N	Niño, hijo
+pa'al	ADJ	roto:ADJ	Roto
+paalal	N	hijo:N	Hijo
+paalil	N	infancia:N	Infancia
+paalitsilta'alil	N	esclavitud:N	Esclavitud
+páan	VT	cavar:VT	Cavar, escarbar
+páanche'	ADV	completo:ADV	Completo
+páap	ADJ	picante:ADJ	Picante
+paapaach'	ADJ	muy desesperado:ADJ	Muy desesperado, ansioso
+páapaach'ki	ADJ	sin fuerza para erguirse:ADJ	Sin fuerza para erguirse
+páapáak	ADJ	inclinado:ADJ	Inclinado
+p'áap'aat	VT	dejarse varias veces:VT	Dejarse varias veces
+pa'as	VT	escarbar:VT	Escarbar
+p'a'as	N	burla:N	Burla, escarnio, mofa
+p'a'ast	VI	burlar:VI	Burlar, imitar
+paat	VT	moldear:VT	Moldear, formar, modelar
+p'aat	VT	dejar:VT	Dejar, abandonar
+pa'at	VI	esperar:VI	Esperar
+p'áat	VI	quedar:VI	Quedar
+p'áatal	VI	quedar:VI	Quedar
+pa'atik	VI	esperar:VI	Esperar
+páats'	VT	sobar:VT	Masaje, sobar
+páawo'	N	bolsa:N	Bolsa
+paax	VT	tocar:VT	Tocar un instrumento musical
+paax	N	música:N	Música
+páax	N	músico:N	Músico
+p'áax	N	deuda:N	Deuda
+p'áax	VT	deber:VT	Deber, fiar
+páaxnáal	N	músico:N	Músico
+paay	VT	torear:VT	Torear
+paay	VT	torear:VT	Torear
+páay	VT	prestar:VT	Prestar
+páay	N	préstamo:N	Préstamo
+páay	VT	prestar:VT	Prestar
+páay	VT	atraer:VT	Atraer, tirar, jalar
+pach	VT	apropiar:VT	Apropiar, tomar posesión
+pachkab	N	nuca:N	Nuca
+paj	ADJ	acedo:ADJ	Acedo
+pajkun	VT	empollar:VT	Empollar
+pajkuns	VT	encamar:VT	Encamar (gallinas o pavas)
+pajt	VI	fermentar:VI	Fermentar
+pajtal	VI	fermentar:VI	Fermentar
+pak'	N	pared:N	Pared
+pakab	N	camada o cría de aves o de cualquier animal cuadrúpedo:N	Camada o cría de aves o de cualquier animal cuadrúpedo
+pakab	N	camada o cría de aves o de cualquier animal cuadrúpedo:N	Camada o cría de aves o de cualquier animal cuadrúpedo
+pak'ach	VT	tortear:VT	Tortear (hacer tortillas con las manos)
+pak'akok	VT	remendar:VT	Remendar
+paklan	ADV	recíprocamente:ADV	Recíprocamente
+pak'mab	VT	desperdiciar:VT	Desperdiciar
+pak'te	ADV	juntos:ADV	Juntos, en compañía
+pak'te	ADV	juntos:ADV	Juntos, en compañía
+palbil	N	esclavo:N	Esclavo
+palitsil	N	esclavo:N	Esclavo
+palitsil	N	peón de las haciendas:N	Peón de las haciendas
+pan	VT	escarbar:VT	Escarbar
+panaab	N	batea:N	Batea, pileta
+panab	N	pileta:N	Pileta
+papalank	VI	temblar de miedo:VI	Temblar de miedo y espanto
+papalankil	VI	temblar de miedo:VI	Temblar de miedo y espanto
+patan	N	impuesto:N	Impuesto
+pats'	ADJ	vacío:ADJ	Desinflado o vacío
+pats'baj	N	bocanada:N	Bocanada
+pawo'	N	bolsa:N	Bolsa
+p'ay	VT	reducir a polvo:VT	Reducir a polvo o pedazos
+paya'an	ADJ	cosa que es llamada:ADJ	Cosa que es llamada
+payalchi'	N	rezo:N	Rezo, oración
+payalte'eto'ob	VT	invitar:VT	Invitar
+paybe	VT	dirigir:VT	Dirigir
+paybe	VT	prevenir:VT	Prevenir, hablar primero
+paybe'en	ADV	antes:ADV	Antes, primeramente
+paybil	N	cosa llamada:N	Cosa llamada
+paymun	ADV	muy:ADV	Muy, mejor, sobre, más
+paynum	ADV	más:ADV	Más o sobre
+paynumil	N	ventaja:N	Ventaja, prepotencia
+paywakaxil	N	corrida de toros:N	Corrida de toros
+peech	N	garrapata:N	Garrapata
+pe'ech	ADJ	áspero:ADJ	Áspero, duro
+peech'	VT	majar:VT	Majar, prensar
+pe'echak'	N	huella:N	Huella
+pe'echak'	VT	pisar:VT	Pisar
+p'eek	VT	odiar:VT	Aborrecer, detestar, odiar
+p'eek	N	odio:N	Odio, rencor
+péek	N	destreza:N	Destreza
+péek	VT	mover:VT	Mover
+peek'	N	perro:N	Perro
+péeka'an	ADJ	hábil:ADJ	Hábil
+p'eekbe'en	ADJ	despreciable:ADJ	Despreciable
+péeks	VT	mover:VT	Mover
+peel	N	vulva:N	Vulva, vagina
+p'eel	VT	descascarar:VT	Descascarar
+p'éel	CLF	CLF:CLF	Sufijo clasificador para contar objetos
+p'éelel	N	número:N	Número
+péenkuch	N	tortilla gruesa:N	Tortilla gruesa que se cuece directamente sobre la brasa
+p'éep	VT	desplumar:VT	Desplumar
+pe'epe'ech'	ADJ	arrugado:ADJ	Arrugado
+pe'epe'echki	ADJ	muy pegado:ADJ	Muy pegado, que no se puede desprender con facilidad
+pe'epe'ech'ki	ADJ	que están juntos:ADJ	Que están juntos o muy apretados
+p'éep'eek	VI	odiar mucho:VI	Odiar mucho
+p'éep'eekan	ADJ	muy odiado:ADJ	Muy odiado
+p'éep'eekiis	VI	ventosearse:VI	Ventosearse, echar cuescos
+p'éep'eel	VT	desgranar:VT	Desgranar algo
+péepen	N	mariposa:N	Mariposa
+p'e'es	VT	desollar:VT	Desollar, tajar
+peets'	VT	oprimir:VT	Oprimir, prensar
+peets'	CLF	CLF:CLF	Sufijo clasificador para contar piezas de música
+peets'	VT	apesgar:VT	Apesgar
+p'eja'an	ADJ	cosa mellada:ADJ	Cosa mellada
+pek'	VI	sentarse:VI	Sentarse
+pekekbaj	ADJ	echado:ADJ	Echado, tirado
+p'el	VT	desenvainar:VT	Desenvainar
+p'elech	ADJ	exacto:ADJ	Exacto
+p'elk'iin	N	término:N	Término de tiempo o plazo señalado
+pem	VI	hartarse de comida:VI	Hartarse de comida
+pem	VI	hincharse el vientre de comida:VI	Hincharse el vientre de comida
+pemal	VI	hartarse de comida:VI	Hartarse de comida
+pemal	VI	hincharse el vientre de comida:VI	Hincharse el vientre de comida
+p'entak	N	esclavo:N	Esclavo
+pepets'ki	ADV	muy seguido:ADV	Muy seguido, contínuo
+pet	N	círculo:N	Círculo
+pet	N	corona de clérigo:N	Corona de clérigo
+petel	ADV	todo:ADV	Todo, entero
+petén	N	isla:N	Isla, comarca, región
+petk'inki	N	sábila:N	Sábila (ALOE VERA L.)
+pets'	N	tiempo para capturar animales:N	Tiempo para capturar animales
+pets'	VT	controlar:VT	Controlar
+peulil	N	felicitación:N	Felicitación
+pich'	N	tordo:N	Tordo
+pichi'	N	guayaba:N	Guayaba (PSIDIUM GUAJAVA L.)
+píib	N	pan de masa de maíz y carne de gallina:N	Pan de masa de maíz y carne de gallina o marrano que se hornea
+píib	N	horno ancestral:N	Horno ancestral que se hace en la tierra
+píib	VT	hornear:VT	Hornear en un foso que se cava en la tierra
+píib	N	carne horneada:N	Carne horneada en la tierra
+píibinal	N	elote horneado:N	Elote horneado bajo tierra
+píibt	VT	hornear:VT	Hornear en la tierra
+piich	N	parota:N	Parota, orejón, guanacaste (ENTEROLUBIUM CYCLOCARPUM (JACQ.))
+piich	VT	verter:VT	Verter cualquier líquido
+p'iich	N	cresta:N	Cresta
+piik	N	fustán:N	Fustán
+p'iik	VT	bajar fruta quebrando la rama:VT	Bajar fruta quebrando la rama
+píik	VI	aclarar:VI	Aclarar, amanecer
+píik'	VI	amanecer:VI	Amanecer
+píik'ij	ADV	amanecer:ADV	Amanecer
+píik'ij	VI	amanecer:VI	Amanecer
+píik'il	VI	amanecer:VI	Amanecer
+p'iil	VI	abrir:VI	Abrir los ojos
+piim	ADJ	grueso:ADJ	Grueso
+piim	N	tortilla gruesa:N	Tortilla gruesa
+píimpiim	ADJ	muy grueso:ADJ	Muy grueso
+p'íip'i'ik	ADJ	quebrado en varias partes:ADJ	Quebrado en varias partes, como los gajos delgados de los árboles
+píipíik'	VT	abanicar:VT	Abanicar
+p'íip'i'iki	ADJ	bien vestido:ADJ	Bien vestido
+p'íip'iis	VT	medir sin orden:VT	Medir sin orden
+p'íip'iisan	ADJ	medido sin orden:ADJ	Medido sin orden
+p'iis	N	medida:N	Medida
+p'iis	VT	medir:VT	Medir
+p'iis	CLF	CLF:CLF	Sufijo clasificador para contar medidas
+p'iisiche'	N	vara:N	Vara para medir que tiene la sexta parte de un mecate, es decir 3.33 m
+p'iisk'iin	N	reloj:N	Reloj
+piit	VT	quitarse alguna prenda:VT	Quitarse alguna prenda. Tin piit in nook’, Me estoy quitando la ropa
+p'iit	VI	brincar:VI	Brincar, saltar
+p'iit	N	brinco:N	Brinco
+p'íit	ADV	poco:ADV	Poco
+p'iitik	VI	saltar:VI	Saltar, brincar
+piix	N	funda:N	Funda, vaina
+piix	VT	cubrir:VT	Forrar, cubrir
+píix	N	rodilla:N	Rodilla
+pikit	N	abanico:N	Abanico
+pikju'un	N	libro:N	Libro
+piktanil	N	multitud:N	Multitud
+p'is	VT	guerrear:VT	Guerrear, combatir, forcejear, pelear cuerpo a cuerpo
+p'isba	VT	combatir:VT	Combatir
+p'isba	VT	luchar cuerpo a cuerpo:VT	Luchar cuerpo a cuerpo
+p'isibk'iin	N	reloj:N	Reloj
+pita'an	ADJ	limpiado:ADJ	Limpiada de suciedad
+pitk'aj	VI	resbalar:VI	Resbalar
+pitk'ajal	VI	resbalar:VI	Resbalar
+pix	VT	cubrir:VT	Cubrir, tapar
+pixan	N	alma:N	Alma
+p'o'	VT	lavar:VT	Lavar
+p'ochaj	VI	espigar el maíz:VI	Espigar el maíz
+p'ochajal	VI	espigar el maíz:VI	Espigar el maíz
+p'ochak	VI	espigar el maíz:VI	Espigar el maíz
+p'ochakal	VI	espigar el maíz:VI	Espigar el maíz
+pojokbal	ADJ	colgado:ADJ	Colgado
+pojpoj	ADJ	holgado:ADJ	Holgado
+pojpojki	ADJ	muy holgado:ADJ	Muy holgado
+p'oka'an	ADJ	agachado:ADJ	Agachado
+p'okokbal	ADJ	agachado:ADJ	Agachado
+p'okt	VI	agacharse:VI	Agacharse
+p'oktal	VI	agacharse:VI	Agacharse
+p'olba	VI	esponjarse:VI	Esponjarse como pavo
+polbox	N	anona morada:N	Anona morada
+p'olmal	N	comercio:N	Comercio
+polok	ADJ	gordo:ADJ	Gordo
+pom	N	copal:N	Copal (PROTIUM COPAL (ENGL))
+p'onto'	N	pelícano:N	Pelícano moreno
+pooch	ADJ	deseoso:ADJ	Deseoso
+pooch'	N	injuria:N	Injuria, insulto, blasfemia
+pooch'	VT	insultar:VT	Insultar
+p'o'ochaj	VI	espigar el maíz:VI	Espigar el maíz
+p'o'ochajal	VI	espigar el maíz:VI	Espigar el maíz
+pooch'il	N	injuria:N	Injuria, insulto, blasfemia
+poochtal	N	ambición:N	Ambición
+póok	VT	asar:VT	Asar, tostar
+p'óok	N	sombrero:N	Sombrero
+pool	N	cabeza:N	Cabeza
+póol	VT	desbastar:VT	Desbastar, labrar, esculpir
+póol	VT	tallar:VT	Tallar
+p'óolenp'ool	N	ámpulas:N	Ámpulas o protuberancias
+poolil	N	líder:N	Líder
+poop	N	petate:N	Petate, estera
+póopóoch'il	VT	insultar varias veces:VT	Insultar varias veces
+p'óop'ool	N	montículos:N	Montículos
+p'óop'oolki	ADJ	que tiene ampollas:ADJ	Que tiene ampollas
+poopoop	ADJ	mojado:ADJ	Mojado
+poopoopki	ADJ	muy mojado:ADJ	Muy mojado
+p'óop'oot	N	especie de peinado:N	Especie de peinado
+poopts'áan	N	estrado:N	Estrado
+poot	VT	barrenar:VT	Barrenar, horadar
+p'oot	N	copete:N	Copete
+poots	VT	desprender:VT	Desprender
+poots'	VT	ordeñar:VT	Ordeñar
+p'op'oltal	ADJ	estar inflado:ADJ	Estar inflado, lleno de aire
+popots'ki	ADJ	resbaloso:ADJ	Resbaloso
+p'op'ox	N	planta perenne:N	Planta perenne, trepadora que produce comezón (EUPHORBIACEAE)
+pots'	VI	resbalar algo de la mano:VI	Resbalar algo de la mano
+p'uj	VT	alborotar:VT	Alborotar
+p'uja'	N	rocío:N	Rocío
+p'uja'an	ADJ	enojado:ADJ	Enojado
+p'ujbesaj	VT	arengar:VT	Arengar, exaltar las pasiones, encender los ánimos
+p'ujul	N	motín:N	Motín, tumulto
+pukak'	N	incienso:N	Incienso
+puksi'ik'al	N	corazón:N	Corazón
+pul	N	hechizo:N	Hechizo
+p'ulu'ust	VT	inflar:VT	Inflar
+p'uluut	N	incienso:N	Incienso
+punab	N	caoba:N	Caoba (SWIETENIA MACROPHYLLA (G. KING))
+p'up'ulki	ADJ	cosa harta:ADJ	Cosa harta o repleta prominente
+p'uru'us	VI	pujar inflándose:VI	Pujar inflándose
+p'uru'us	VT	inflar:VT	Inflar
+pus	VT	cepillar:VT	Cepillar
+puts'	VT	ordeñar:VT	Ordeñar, extraer miel de abeja
+p'uuch	VT	aporrear:VT	Aporrear
+p'uuch	VT	desgranar mazorcas:VT	Desgranar mazorcas de maíz (golpeándolas con una vara en un costal, hamaca, ka’anche’)
+pu'uch	N	espalda:N	Espalda, lomo
+puuch'	VT	aplastar:VT	Aplastar
+p'uuj	N	batida:N	Batida, clamoreo, cacería colectiva
+p'u'uj	VI	enojar:VI	Enojar
+p'u'uj	ADJ	molesto:ADJ	Molesto
+p'u'uj	VI	disgustar:VI	Disgustar
+p'u'ujul	VI	disgustar:VI	Disgustar
+pu'ujuy	N	tapacamino:N	Tapacamino (ave) CAPRIMULGUS SERICOCAUDATIS SALVINI (HARTER)
+pu'uk	N	cerro:N	Cerro
+p'u'uk	N	mejilla:N	Mejilla
+puuk'	VT	deshacer:VT	Deshacer, disolver, diluir
+puul	VT	avalanzar:VT	Avalanzar, arremeter con furia
+puul	VT	arrojar:VT	Arrojar, tirar
+puul	CLF	CLF:CLF	Sufijo clasificador para azotes, puñetazos, bofetadas
+p'úul	N	cántaro:N	Cántaro
+p'uum	VT	curvear:VT	Curvear
+p'úup'ujan	ADJ	muy molesto:ADJ	Muy molesto
+pu'upu'uch'	ADJ	muy lastimado:ADJ	Muy lastimado
+p'úup'uuchbil	VT	golpear varias veces:VT	Golpear varias veces
+pu'upu'uch'ki	ADJ	muy suave:ADJ	Muy suave
+p'úup'u'uj	VT	molestar:VT	Molestar
+pu'upu'uski	ADJ	limpio:ADJ	Limpio, sin polvo
+p'uus	N	enano corcovado:N	Enano corcovado que habita las grutas y laberintos subterráneos
+p'uus	N	giba:N	Giba, joroba
+p'u'us	N	almizcle:N	Almizcle
+p'u'us	ADJ	maloliente:ADJ	Maloliente
+púusk	VT	sacudir:VT	Sacudir
+púust	VT	limpiar:VT	Limpiar, sacudir
+puut	N	papaya:N	Papaya (CARICA PAPAYA L.)
+púut	VT	acarrear:VT	Acarrear, transportar objetos o frutas
+púuts'	N	aguja:N	Aguja
+púuts'	VI	huir:VI	Huir, fugarse, desertar
+púuts'ul	N	fuga:N	Fuga
+púuts'ul	VI	huir:VI	Huir, fugarse, desertar
+p'uuy	VT	astillar:VT	Astillar, pulverizar
+p'uuy	N	migaja:N	Migaja
+sa'	N	atole:N	Atole
+sa'a	N	atole:N	Atole
+sáabin	N	comadreja:N	Comadreja (PUTORIUS FRENATUS LIEHT GAUMER). Mamífero carníboro de color pardo o café y cabeza blanca
+sáabukan	N	morral de fibra:N	Morral de fibra de henequén
+saak'	N	comezón:N	Comezón, escozor
+sáak'	N	langosta:N	Langosta, insecto que es plaga para la agricultura
+saakal	N	hormiga negra:N	Hormiga negra que se desplaza en grandes grupos
+sa'ak'ol	N	trabajador:N	Trabajador, diligente
+sáal	ADJ	liviano:ADJ	Liviano, de poco peso
+sáam	ADV	largo rato:ADV	Largo rato
+sáamal	ADV	mañana:ADV	Mañana
+sáansaanki	ADJ	que corre mucho:ADJ	Que corre mucho sin detenerse
+sáansamal	ADV	diariamente:ADV	Diariamente
+sáap	N	braza:N	Braza (medida de longitud)
+sáap	CLF	CLF:CLF	Sufijo clasificador para contar brazas
+saap'	VI	evaporar:VI	Evaporar
+sa'ap'ak	VI	secarse un pozo:VI	Secarse un pozo o aguada
+sáapik'en	ADJ	trasparente:ADJ	Trasparente
+sáas	N	luz:N	Luz, claridad
+sáasáak'óol	ADJ	muy diligente:ADJ	Muy diligente, muy activo
+sáasáap	ADJ	jalar por brazada:ADJ	Jalar por brazada como sacar agua del pozo
+sa'asa'apki	ADJ	que causa comezón:ADJ	Que causa comezón
+sáasaat	VI	ocultarse en varias ocasiones:VI	Perderse u ocultarse en varias ocasiones
+sáasaats'	ADJ	muy estirado:ADJ	Muy estirado
+sa'asak	N	tos:N	Tos
+sáasak'	N	mucha comezón:N	Mucha comezón 
+sáasak'k	VI	toser por comezón:VI	Toser por comezón en la garganta
+sáasak'kaal	VI	toser por comezón:VI	Toser por comezón en la garganta
+saask'alen	ADJ	trasparente:ADJ	Trasparente
+sáaskun	VT	iluminar:VT	Iluminar
+sáastaj	N	amanecer:N	Amanecer
+sáastal	N	amanecer:N	Amanecer, aclarar
+saast'en	ADJ	trasparente:ADJ	Trasparente
+sáastun	N	piedra de la claridad:N	Piedra de la claridad, piedra adivinatoria
+saat	VI	desaparecer:VI	Desaparecer, perderse
+sa'at	VI	perder:VI	Perder, extraviar
+sa'atal	VI	perder:VI	Perder, extraviar
+saats'	N	elástico:N	Elástico
+saats'	VT	estirar:VT	Estirar
+saats'	ADJ	elástico:ADJ	Elástico
+saats'	VT	estirar:VT	Estirar
+saay	N	hollejo:N	Hollejo
+saay	N	hormiga roja:N	Hormiga roja, denominada arriera
+sabak	N	tinta negra:N	Tinta negra, pólvora, tizne, hollín
+sajakil	N	miedo:N	Miedo
+sajakkun	VT	amenazar:VT	Amenazar
+sajakt	VI	temer:VI	Temer
+sajaktal	VI	temer:VI	Temer
+sajbe'en	ADJ	temible:ADJ	Temible, peligroso
+sajbe'enile'	N	peligro:N	Peligro
+sajbe'entsil	ADJ	temible:ADJ	Temible
+sajkay	N	polilla:N	Polilla
+sajkil	N	temor:N	Temor, miedo
+sajkimeen	ADJ	desmayado:ADJ	Desmayado
+sajlu'um	ADJ	miedoso:ADJ	Miedoso
+sak	ADJ	blanco:ADJ	Blanco
+sakab	N	bebida ritual:N	Bebida ritual
+sak'ab	N	caña:N	Caña o tallo del maíz y de la caña de azúcar
+sakach	ADJ	fanfarrón:ADJ	Fanfarrón
+sakal	N	tala:N	Tala en general
+sakan	N	masa de maíz:N	Masa de maíz
+sakche'ej	VI	sonreír:VI	Sonreír
+sakil	N	blancura:N	Blancura
+saknikte'	N	flor de mayo:N	Flor de mayo (PLUMERIA ALBA L.)
+sakpile'en	ADJ	pálido:ADJ	Pálido
+sakuleka	ADJ	blancuzco:ADJ	Blancuzco
+salbiju'un	N	libro:N	Libro
+sam	N	arena:N	Arena
+samak	ADV	largo rato:ADV	Largo rato
+samchaj	VI	desaparecer:VI	Desaparecer de la vista
+samchajal	VI	desaparecer:VI	Desaparecer de la vista
+same'	ADV	largo rato:ADV	Largo rato
+sap	VI	agotarse:VI	Agotarse, secarse
+sasats'kil	ADJ	elástico:ADJ	Elástico
+saskab	N	tierra blanca:N	Tierra blanca
+sat	VI	naufragar:VI	Naufragar
+sat	VT	perder:VT	Perder, extraviar
+sata'an	ADJ	perdido:ADJ	Perdido, aturdido
+satal	N	perdición:N	Perdición
+sayab	N	ojo de agua:N	Ojo de agua, manantial
+sayabil	N	fuente:N	Fuente, manantial, ojo de agua
+seba'an	ADV	aprisa:ADV	Aprisa
+sebchi'tik	VI	prometer:VI	Prometer
+séeb	ADJ	veloz:ADJ	Veloz, rápido
+séeb	ADV	enseguida:ADV	Enseguida
+séeb	ADV	urgente:ADV	Urgente
+séeba'an	ADJ	veloz:ADJ	Veloz, pronto, rápido
+séeba'anil	N	destreza:N	Destreza
+séebal	ADV	aprisa:ADV	Aprisa
+séebankil	ADV	rápidamente:ADV	Rápidamente
+séebik	ADV	pronto:ADV	Pronto, rápidamente
+se'en	N	catarro:N	Catarro
+se'enak	VI	toser:VI	Toser
+sem	ADV	muy:ADV	Muy (prefijo para formar el superlativo de los adjetivos calificativos)
+semet'	N	caña áspera:N	Caña áspera, juncia
+semkech	ADV	muy:ADV	Muy (prefijo para formar el superlativo de los adjetivos calificativos)
+ses	N	seseo:N	Seseo, tartamudez, balbucencia
+seten	ADV	muy:ADV	Muy (prefijo para formar el superlativo de los adjetivos calificativos)
+si'	N	leña:N	Leña
+sibnel	N	lomo:N	Lomo, espinazo de cualquier cuadrúpedo
+siibal	N	regalo:N	Regalo
+siibil	ADJ	cosa que está ofrecida:ADJ	Cosa que está ofrecida
+síij	VI	nacer:VI	Nacer
+síij	VT	regalar:VT	Regalar
+síij	VI	nacer:VI	Nacer
+síijil	VI	nacer:VI	Nacer
+síil	VT	arremangar la falda:VT	Arremangar o subirse la falda o el vestido
+síin	ADJ	tendido:ADJ	Tendido
+síina'an	N	alacrán:N	Alacrán
+síinik	N	hormiga:N	Hormiga
+siinsiin	VT	tensar cuerda varias veces:VT	Tensar cuerda con fuerza varias veces
+si'intik	VT	leñar:VT	Leñar
+si'ip'	VI	hincharse:VI	Hincharse
+si'ipil	N	culpa:N	Culpa
+si'ipil	N	pecado:N	Pecado
+si'ipil	N	delito:N	Delito. (Hondzonot, municipio de Tulum, Q. Roo.)
+si'ip'il	VI	hincharse:VI	Hincharse
+si'is	ADJ	entumido:ADJ	Entumido
+síis	ADJ	helado:ADJ	Helado
+síis	N	frío:N	Frío
+síisal	N	sombra que hacen los árboles:N	Frescura y sombra que hacen los árboles grandes
+síisiiki	ADJ	muy seco:ADJ	Muy seco o deshidratado
+síisiip'ki	ADJ	a punto de madurar:ADJ	A punto de madurar
+síiskunsik	VI	enfriar:VI	Enfriar
+síist	VI	enfriarse:VI	Enfriarse
+síistal	VI	enfriarse:VI	Enfriarse
+síist'ube'	N	frescura:N	Frescura
+siit	N	carrizo:N	Carrizo
+síit'	N	brinco:N	Brinco
+síit'	VI	brincar:VI	Brincar, saltar
+sikil	N	semilla de calabaza:N	Semilla de calabaza
+silk'a	VT	permitir:VT	Permitir, conceder
+sin	VT	extender:VT	Extender
+sintal	VT	extenderse:VT	Extenderse, estirarse
+sipit	VT	disparar:VT	Disparar
+sipit	VT	soltar de la mano:VT	Soltar de la mano
+sits'	VI	desear:VI	Desear, ambicionar
+siyan	N	tiempo en que uno nació:N	Edad o tiempo en que uno nació
+siyan	N	biografía:N	Biografía, historia
+sob	N	sobrino:N	Sobrino
+sojol	N	hojas secas:N	Hojas secas, basura
+sok	N	caracol:N	Caracol, especie que se da en Cozumel
+sóol	N	carapacho:N	Carapacho
+sóol	N	corteza:N	Corteza, cáscara
+soorot'	N	pulmón:N	Pulmón
+sóoskil	N	fibra de henequén:N	Fibra de henequén
+so'osok'	ADJ	enredado:ADJ	Enredado, enmarañado
+so'oso'op'	ADJ	esponjado a montones:ADJ	Esponjado a montones
+soots'	N	murciélago:N	Murciélago
+so'oy	N	gallinero:N	Gallinero
+spélon	N	espelón leguminosae:N	Espelón leguminosae (VIGNA UNGUICULATA)(L)WALP)
+subin	N	arbusto de espinas:N	Arbusto de espinas largas semejantes a diminutos cuernos de ganado vacuno, cornezuelo ( ACACIA CORNIGA (WILLD))
+subtal	N	dignidad:N	Dignidad, decencia, vergüenza
+suju'uy	ADJ	intacto:ADJ	Intacto, puro, virgen
+suju'uyil	ADJ	pureza:ADJ	Pureza, doncellez
+suku'un	N	hermano:N	Hermano
+sunsunki	ADJ	muy amontonado:ADJ	Muy amontonado, esponjado
+sup'	VT	cercar con palos:VT	Cercar con palos
+susulki	ADJ	muy mojado:ADJ	Muy mojado
+su'tal	N	dignidad:N	Dignidad, decencia, vergüenza
+sutuchiilt'aan	N	teléfono:N	Teléfono
+sutup	N	arbusto cuyos frutos se utilizan para provocar el habla:N	Arbusto cuyos frutos se utilizan para provocar el habla en los infantes que no aprenden a hablar pronto
+sutupak	N	pronunciación:N	Pronunciación
+suuk	ADJ	acostumbrado:ADJ	Acostumbrado, manso, dócil
+su'uk	N	zacate:N	Zacate
+su'uk'iin	VI	ayunar:VI	Ayunar
+su'uk'iin	N	ayuno:N	Ayuno
+suukt	VI	acostumbrarse:VI	Acostumbrarse
+suuktal	VI	acostumbrarse:VI	Acostumbrarse
+suul	VT	remojar:VT	Remojar
+suum	N	soga:N	Soga, reata
+suup'	VT	cercar con varas:VT	Cercar con varas y árboles no talados totalmente
+suup'	N	cerca hecha con varas:N	Cerco o cerca hecha con varas y árboles derribados parcialmente
+súus	VT	pelar una fruta:VT	Pelar una fruta
+súusuut	VI	virar varias veces:VI	Virar varias veces
+suut	VI	virar:VI	Virar, voltear, girar
+suut	N	vuelta:N	Vuelta
+suut	VI	volver:VI	Volver, regresar
+su'uts'	ADJ	agrio:ADJ	Agrio
+suuts'ki	N	vinagre:N	Vinagre
+súutuk	ADV	momento:ADV	Momento, instante
+su'uy	N	remolino de la cabeza:N	Remolino de la cabeza
+ta'	N	excremento:N	Excremento, fecal
+ta'	VI	defecar:VI	Defecar
+t'aab	VT	encender:VT	Encender, incendiar
+ta'ab	N	sal:N	Sal
+táab	N	mecapal:N	Mecapal
+táab	VI	arraigar:VI	Arraigar, enraizar
+t'áab	VT	encender:VT	Encender
+táabal	VI	arraigar:VI	Arraigar, enraizar
+t'áabal	VT	encender:VT	Encender
+ta'abt	VT	salar:VT	Salar
+ta'aitak	ADV	a punto de suceder:ADV	A punto de suceder
+t'a'aj	ADJ	ágil:ADJ	Ágil, activo
+t'aajam	N	callo:N	Callo
+taak	VI	cruzarse:VI	Cruzarse, meterse en condiciones difíciles
+t'aak	VT	desflorar:VT	Desflorar, desvirgar
+ta'ak	VT	guardar:VT	Guardar, esconder, ocultar
+taak'	VT	pegar:VT	Pegar, adherir
+taak'a'an	ADJ	pegado:ADJ	Pegado, adherido
+t'aakal	ADJ	desprendido:ADJ	Desprendido
+taak'al	ADJ	pegado:ADJ	Pegado
+táak'in	N	dinero:N	Dinero
+ta'akmauba	ADJ	escondido:ADJ	Escondido
+táakpajal	VT	involucrarse:VT	Involucrarse, participar
+ta'akumbilo'ob	N	fiesta de guardar:N	Fiesta de guardar
+ta'akun	N	escondite:N	Escondite
+taal	VI	llegar:VI	Llegar, venir
+taam	ADJ	hondo:ADJ	Hondo, profundo
+táaman	N	hígado:N	Hígado	
+t'aan	N	idioma:N	Idioma, palabra, hablar	
+ta'an	N	cal:N	Cal	
+ta'an	N	ceniza:N	Ceniza	
+táan	PART	DUR:PART		Lehmann
+táan	ADV	ahora mismo:ADV	Ahora mismo	
+táan	PREP	enfrente:PREP	Enfrente	
+taanaj	N	casa:N	Casa, hogar	
+ta'anbesaj	VT	mezclar:VT	Mezclar, revolver	
+táanchumuk	N	medio:N	Medio, mitad	
+táanij	ADV	antes:ADV	Antes	
+táanil	ADV	antes:ADV	Antes	
+táanile	PREP	delante:PREP	Delante	
+táankab	ADV	afuera:ADV	Afuera, patio	
+táankelmil	N	adolescencia:N	Adolescencia, juventud masculina	
+táankuch	N	medio:N	Medio, mitad	
+táanlaj	VT	atender:VT	Atender, servir	
+táant	PART	PAST.IMM:PART		Lehmann
+t'aant'aan	VI	delirar:VI	Delirar, desvariar, hablar solo	
+t'aant'aanjo'	VI	hablar por hablar:VI	Hablar por hablar	
+t'aant'aanjo'ol	VI	hablar por hablar:VI	Hablar por hablar	
+táantik	PART	PAST.IMM:PART		Lehmann
+táas	N	sábana:N	Sábana	
+taasik	VT	traer:VT	Traer	
+taat	N	señor:N	Señor, padre	
+taata	N	padre:N	Padre	
+t'áat'aak	ADJ	con huecos:ADJ	Con huecos u orificios	
+táata'ak	ADJ	muy guardado:ADJ	Muy guardado	
+táatáak	ADJ	metido varias veces:ADJ	Metido varias veces	
+táataak'	ADJ	pegado en varias partes:ADJ	Pegado en varias partes	
+táataakbi	VT	obligar a hacer:VT	Obligar a alguien a hacer o no hacer algo	
+t'áat'áaki	ADJ	muy trillado:ADJ	Muy trillado	
+táataak'ki	ADJ	muy pegajoso:ADJ	Muy pegajoso
+taatatsilo'ob	N	padres:N	Padres
+taats'jul	VT	atravesar:VT	Atravesar
+táax	ADJ	liso:ADJ	Liso
+táax	ADJ/N	llano:ADJ/N	Llano
+táaxkun	VT	aplanar:VT	Aplanar, emparejar
+ta'aytak	ADV	a punto de suceder:ADV	A punto de suceder
+t'ab	VT	encender:VT	Encender fuego
+t'aba'an	ADJ	cosa encendida:ADJ	Cosa encendida, ardiendo
+tabantaj	VT	acompañar:VT	Acompañar
+tachi'achil	N	crueldad:N	Crueldad, barbarie, enojo
+taj	N	arbusto melífico:N	Arbusto melífico de flores amarillas
+taj	VI	madurar:VI	Madurar, cocer
+tajal	VI	madurar:VI	Madurar, cocer
+tajche'	N	antorcha:N	Antorcha
+tak	ADV	hasta:ADV	Hasta
+tak'	VT	fijar:VT	Fijar, adherir
+tak'	VI	cocerse:VI	Cocerse, madurar
+tak'aj	VT	incrustar:VT	Incrustar
+tak'al	VI	cocerse:VI	Cocerse, madurar
+tak'an	ADJ	maduro:ADJ	Maduro, cocido
+takchalak	VI	andar dando traspiés:VI	Andar dando traspiés
+takchalak	VI	bambolear:VI	Bambolear
+takjo'ol	N	acusación:N	Acusación
+takjo'ol	VT	acusar:VT	Acusar
+tak'oop	N	guanábana:N	Guanábana (ANNONCEAE (ANONA MURICATA L.))
+takpool	N	acusación:N	Acusación
+takpool	VT	acusar:VT	Acusar
+takti	PREP	desde:PREP	Desde
+tala'am	ADJ	difícil:ADJ	Difícil
+talan	N	cosa decente:N	Cosa decente, respetable y honesta, difícil, misterio
+taman	N	borrego:N	Borrego
+tamaxchi'	N	augurio:N	Augurio, predicción
+tamnel	N	hígado:N	Hígado
+tamuk'	ADV	entre tanto:ADV	Entre tanto
+tanjay	N	pañuelo:N	Pañuelo
+tanxel	ADV	otra parte:ADV	Otra parte
+tat	ADJ	espeso:ADJ	Espeso
+t'at'abki	VI	ardiendo con calentura:VI	Ardiendo con calentura o fiebre que quema
+tatalak	ADV	en todas partes:ADV	Donde quiera o en todas partes
+tatich	N	dirigente:N	Dirigente de un poblado
+tats'	VT	planchar:VT	Planchar, desencoger, enderezar, alisar
+ta'uch	N	zapote negro:N	Zapote negro (DIESPYRUS DIGYNA (JACQ))
+tax	VT	rasar:VT	Rasar, allanar
+taxkun	VT	allanar:VT	Allanar, emparejar, igualar
+te'a	ADJ	tendido:ADJ	Tendido
+teak	ADV	ahora:ADV	Ahora
+teaki'	ADV	ahora:ADV	Ahora
+tech	PRON	2SG:PRON	
+teejel	N	fisura:N	Fisura
+téek	ADV	pronto:ADV	Pronto
+téek	N	manatí:N	Manatí
+t'eel	N	gallo:N	Gallo
+te'ela'	ADV	aquí:ADV	Aquí
+te'elo'	ADV	ahí:ADV	Ahí, allí
+teen	PRON	1SG:PRON	Yo
+teep'	N	cobija:N	Cobija, cobertor
+teep'	VT	cobijar:VT	Cobijar, tapar
+teep'	VI	reventar:VI	Reventar, romper
+t'ees	VT	enderezar:VT	Enderezar, desencorbar
+téet	VT	escoger:VT	Escoger, elegir, seleccionar
+t'e'et'	N	cadera:N	Cadera
+te'ex	PRON	2PL:PRON	Ustedes
+tem	N	escalón:N	Escalón o grada para subir, peldaño
+temba	VI	temblar la tierra:VI	Temblar la tierra
+témil	N	bolsa del pantalón:N	Bolsa del pantalón
+ten	PRON	1SG:PRON	Yo
+tepalil	N	casa real:N	Casa real
+tepalil	N	majestad:N	Majestad, gloria
+tes	N	amaranto:N	Amaranto (AMATANTHUS)
+ti'	ADV	LOC:ADV	A, en, con, por, de
+t'ib	VI	llenarse el vientre de viento:VI	Llenarse el vientre de viento
+t'ibal	VI	llenarse el vientre de viento:VI	Llenarse el vientre de viento
+tibantsil	N	cosa terrible:N	Cosa terrible
+tibibtsil	N	cosa horrible:N	Cosa horrible que causa pavor
+tibil	ADJ	justo:ADJ	Justo
+tibil	N	cosa buena:N	Cosa buena y virtuosa
+tibilak	ADV	a buen tiempo:ADV	A buen tiempo
+tibilil	N	virtud:N	Virtud
+tich'	VT	proporcionar:VT	Proporcionar, dar
+ti'i	ADV	allí:ADV	Allí
+tii'	ADV	a buen tiempo:ADV	A buen tiempo
+tiich'	VT	levantar:VT	Alzar o levantar las manos
+tiich'	N	ofrenda:N	Ofrenda
+tiich'	N	ofrenda:N	Ofrenda
+t'iik	VT	desflecar:VT	Desflecar, destejer
+t'íilit	VI	permanecer:VI	Permanecer, detener
+t'iin	VT	tensar:VT	Tensar, tender
+t'iina'an	VT	tenso:VT	Tenso, Tendido, Teso
+t'íinchak'	VT	estirar los pies:VT	Estirar los pies
+t'íint'íinki	ADJ	muy abultado:ADJ	Muy abultado, tensado, a punto de reventar
+t'íint'íinkóochak'	VT	patear alocadamente:VT	Patear alocadamente
+tíip'	VI	salir:VI	Salir, asomarse
+tíip'il	VI	salir:VI	Salir, asomarse
+tíit	VT	sacudir:VT	Sacudir
+ti'its	N	esquina:N	Esquina, ángulo
+tiix	VT	derramar un líquido:VT	Derramar un líquido
+tiix	VT	derramar:VT	Derramar
+tij	VI	secar:VI	Secar
+tijil	VI	secar:VI	Secar
+tikin	ADJ	seco:ADJ	Seco
+t'ilil	VT	permanecer:VT	Permanecer
+tilis	ADJ	cosa honrada:ADJ	Cosa honrada, ilustre, venerable, solemne
+tio'lal	PREP	por:PREP	Por
+tio'oklal	PREP	por:PREP	Por
+tip'	VI	asomar:VI	Asomar, aparecer
+tip'a'an	N	exceso:N	Exceso
+tip'ix	VI	chisporrotear:VI	Chisporrotear
+tip'ix	N	arco para tirar:N	Arco para tirar, arco de flecha
+tirix	N	ruido que hace la serpiente:N	Ruido que hace la serpiente de cascabel
+t'is	VT	poner en fila:VT	Poner en fila u orden
+t'isaj	VT	puso en fila:VT	Puso en fila u orden
+t'isbil	VT	poner en fila:VT	Poner en fila u orden
+titip'ánk	VI	latir el pulso:VI	Latir el pulso, saltar como los nervios
+titip'ánkil	VI	latir el pulso:VI	Latir el pulso, saltar como los nervios
+tits'	VI	saltar las gotas:VI	Saltar las gotas de un líquido que se derrama
+ti'yal	N	hacienda:N	Hacienda, propiedad
+to'	N	envoltura:N	Envoltura
+to'	VT	envolver:VT	Envolver
+toj	ADJ	derecho:ADJ	Derecho
+toj	ADJ	recto:ADJ	Recto, derecho
+tojil	ADJ	recto:ADJ	Recto, justo
+tojkíinsik	VT	enderezar:VT	Enderezar
+tojl	VT	azuzar:VT	Azuzar, echar
+tojlaj	VT	aventar:VT	Aventar, lanzar con ímpetu
+tojol	N	precio:N	Precio, costo, valor
+tojolt	VT	costear:VT	Costear
+tojóolal	ADJ	saludable:ADJ	Saludable
+tojóoli	N	salud:N	Salud
+tojtojki	ADJ	muy tieso:ADJ	Muy tieso
+tok'	N	pedernal:N	Pedernal
+tok'	VT	punzar:VT	Punzar, hacer sangría
+tokbaj	VT	defender:VT	Defender, vengar
+tolo'	ADV	allá:ADV	Allá
+tolo'	ADV	allí:ADV	Allí
+t'ona'an	ADJ	débil:ADJ	Débil
+t'onanil	N	enervación:N	Enervación , sin ánimo
+tontal	N	humildad:N	Humildad
+to'och	ADJ	áspero:ADJ	Áspero, tieso
+t'óoch	VT	picar:VT	Picar
+t'óochpaj	VI	tropezar:VI	Tropezar
+t'óochpaj	VI	tropezarse:VI	Tropezarse
+t'óochpajal	VI	tropezar:VI	Tropezar
+t'óochpajal	VI	tropezarse:VI	Tropezarse
+tooj	N	momoto turquí:N	Momoto turquí (MOMOTUS LESSONI EXIGUUS) Pájaro verde obscuro que habita grutas, cavernas, cenotes, pozos abandonados
+t'ooj	VT	vaciar:VT	Vaciar un líquido en un recipiente
+tóoj	VI	ladrar el perro:VI	Ladrar el perro persiguiendo a algún animal
+t'óoj	VT	picar:VT	Picar
+t'oojob	N	embudo:N	Embudo
+tóojol	VI	ladrar:VI	Ladrar el perro persiguiendo a algún animal
+tóojol	VT	perseguir:VT	Perseguir el perro a su presa, echar, azuzar
+toojolch'intik	VT	sacar:VT	Sacar, expulsar con violencia
+took	VT	arrebatar:VT	Arrebatar
+took	VT	defender:VT	Defender o librar arrebatando o quitando
+t'ook	VT	bajar:VT	Bajar, arrancar frutos o flores
+t'ook	VT	reventar:VT	Reventar, romper, una soga o cuerda
+t'ook	VT	cosechar:VT	Cosechar
+t'ook	VT	arrancar:VT	Arrancar, bajar frutas o flores
+tóok	N	quema:N	Quema
+tóok	VT	quemar:VT	Quemar
+t'ooki	VT	degradar:VT	Degradar, doblegar
+tooksajil	N	liberación:N	Liberación, redención, salvación
+t'o'ol	N	línea:N	Línea
+tóolok	N	basilisco:N	Basilisco (BASILISCUS VITTATUS (WIEGMANN))
+toon	N	falo:N	Falo, pene
+t'oon	VI	inclinarse:VI	Inclinarse, humillarse
+to'on	PRON	1PL:PRON	Nosotros
+t'óon	N	pantorrilla:N	Pantorrilla
+toonil	N	virilidad:N	Virilidad
+t'oonkíisaj	VT	humillar:VT	Humillar
+t'oonol	ADJ	inclinado:ADJ	Inclinado
+to'onto'on	ADJ	camino con muchos baches:ADJ	Camino con muchos baches
+to'onto'onch'iin	VT	tirar para asustar:VT	Tirar para asustar
+toop	N	problema:N	Problema, dificultad
+toop	VT	molestar:VT	Molestar, fastidiar
+toop	N	actos carnales:N	Actos carnales, actos sexuales
+tóop'	VI	brotar:VI	Brotar (los vegetales, las aves)
+tóop'ol	VI	brotar:VI	Brotar (los vegetales, las aves)
+tóos	VT	espolvorear:VT	Espolvorear, esparcir
+toot	ADJ	mudo:ADJ	Mudo
+t'óot'	VT	esparcir:VT	Esparcir
+tootnaj	VI	enmudecer:VI	Enmudecer
+t'óot'oochki	ADJ	muy resistente:ADJ	Muy resistente
+t'óot'ook	ADJ	hecho pedazos un hilo:ADJ	Hecho pedazos un hilo o soga
+tóotóokabi	ADJ	arrebatado:ADJ	Arrebatado
+t'óot'ool	ADJ	por pedazos:ADJ	Por pedazos o áreas
+t'oox	VT	repartir:VT	Repartir, distribuir
+t'oox	N	dulces:N	Dulces, galletas, golosinas o comida que se distribuye después de la novena o rosario que se realiza durante nueve dias
+to'oy	VT	encostalar:VT	Encostalar , poner en sacos o costales
+tosja'	N	llovizna:N	Llovizna
+t'ot'	N	caracol de agua:N	Caracol de agua
+totojk'e'	VI	cacarear:VI	Cacarear
+totop'	N	botón de flor:N	Botón de flor
+ts'a	VT	dar:VT	
+ts'aa	VT	poner:VT	Poner
+tsáab	N	pléyades:N	Pléyades
+ts'áabilaj	N	don o merced que uno da o hace:N	Don o merced que uno da o hace
+ts'áabilaj	VT	ofrecer o donar:VT	Ofrecer o donar
+ts'áabilaj	N	gracia:N	Gracia
+tsaaj	VT	freír:VT	Freír
+ts'áaj	VT	dar:VT	Dar, poner
+tsaajbi	ADJ	frito:ADJ	Frito
+ts'aak	VT	curar:VT	Curar, medicar
+ts'aal	VT	sobar la carne con la tortilla:VT	Sobar o presionar la carne o vianda con la tortilla a fin de que no se gaste pronto
+ts'aal	VT	apesgar:VT	Apesgar
+ts'aam	VT	sumir:VT	Sumir, remojar, empapar
+ts'aam	VI	sumergir:VI	Sumergir
+ts'áam	VI	remojarse:VI	Remojarse
+ts'áamal	VI	remojarse:VI	Remojarse
+ts'aap	N	escora:N	Escora, apilamiento de tortillas,discos, billetes
+ts'aap	VT	apilar:VT	Apilar, escorar, ordenar una tortilla sobre otra, un disco sobre otro, etc
+tsaats	N	grasa:N	Grasa
+ts'aats'	N	cenagal:N	Cenagal
+tsa'atsa'a	ADJ	en pedazos:ADJ	En pedazos, cortado en trozos
+ts'áats'aancha'ak'	VT	pisotear:VT	Pisotear
+tsa'atsa'ap	ADJ	que tiene pelusa y da comezón:ADJ	Que tiene pelusa y da comezón
+tsáatsaap	ADJ	apilado sin orden:ADJ	Apilado sin orden
+tsa'atsa'apki	ADJ	que causa comezón:ADJ	Que causa comezón
+ts'áaul	N	presente que uno da:N	Don o presente que uno da
+tsaay	VT	embonar:VT	Embonar, empatar, empalmar
+ts'a'ay	N	colmillo:N	Colmillo
+ts'aj	VT	pensar:VT	Pensar, creer o juzgar
+ts'aka'an	N	que está emponzoñado:N	Que está emponzoñado
+ts'akaja'an	ADJ	envenenado:ADJ	Envenenado
+ts'akil	N	ponzoña:N	Ponzoña o veneno
+ts'akin	N	paz:N	Paz, tranquilidad, reposo
+ts'al	N	sello:N	Sello
+ts'al	VT	sellar:VT	Sellar
+ts'ala'an	ADJ	impreso:ADJ	Impreso, sellado
+ts'alk'abtantaj	ADV	a empellones:ADV	A empellones
+ts'almuy	N	saramuyo:N	Saramuyo (ANNONACEA ( ANNONA RETICULATA))
+ts'alpaachtik	VT	obligar:VT	Obligar
+ts'am	N	trono:N	Trono, estrado, asiento de principales
+ts'am	VT	remojar:VT	Remojar, sumergir
+tsama'	N	frijol negro:N	Variedad de frijol negro
+tsantsanki	ADJ	parado:ADJ	Parado, erecto
+ts'awayak	N	mantis del diablo:N	Mantis o caballito del diablo
+tsay	VT	engendrar:VT	Engendrar, fecundar
+ts'eeb	ADJ	bizco:ADJ	Bizco
+ts'eej	N	lasca:N	Lasca, pedazo de pedernal
+ts'eejik	VT	lascar:VT	Lascar
+tse'ek	N	sermón:N	Sermón, prédica, discurso
+tseek'	N	calavera:N	Calavera, cráneo
+tsé'ekt	VT	predicar:VT	Predicar, sermonear
+tséel	ADV	lado:ADV	Lado, costado, vera
+tséelil	N	costado:N	Lado o costado
+tseem	N	pecho:N	Pecho
+tséem	VT	alimentar:VT	Alimentar, criar
+tséent	VT	criar:VT	Criar, mantener, sustentar
+ts'éets'eej	ADJ	lascado:ADJ	Lascado
+ts'éets'eejki	ADJ	que se lascar fácilmente:ADJ	Que se lascar fácilmente
+tseetseel	ADJ	ladeado:ADJ	Ladeado
+ts'e'ets'ek	ADV	algo:ADV	Algo, un poco
+tsek	N	cimiento:N	Cimiento
+tsek'el	N	suelo pedregoso:N	Suelo pedregoso, tierra pedregosa
+tsela'an	N	cosa ladeada:N	Cosa ladeada
+tselek	N	espinilla:N	Espinilla
+ts'elek	N	dedo de la mano:N	Dedo de la mano. (Hondzonot, municipio de Tulum, Q. Roo.)
+tselepk'iin	ADV	de las tres de la tarde en adelante:ADV	De las tres de la tarde en adelante
+ts'éyuum	N	tío:N	Tío
+ts'íib	VT	escribir:VT	Escribir , redactar
+ts'íib	N	escrito:N	Escrito
+ts'íibol	N	ambición:N	Ambición
+ts'íibol	N	deseo:N	Deseo, envidia
+ts'íibolal	N	deseo:N	Deseo
+ts'íiboltik	VI	desear:VI	Desear
+tsiik	VT	deshebrar:VT	Deshebrar, hacer jirones
+ts'iik	VT	afeitar:VT	Afeitar, rasurar
+tsíik	VT	deshebrar:VT	Deshebrar (carne), desmenuzar
+ts'íik	ADJ	bravo:ADJ	Bravo, molesto
+ts'íik	VI	enojar:VI	Enojar
+ts'íik	ADJ	enojado:ADJ	Enojado
+ts'íik	ADJ	feroz:ADJ	Feroz (bestia brava y fiera)
+ts'íik	ADJ	izquierda:ADJ	Izquierda
+tsíikbe'enil	N	respeto:N	Respeto
+tsíikik	VT	respetar:VT	Respetar
+tsí'ikt	VT	deshebrar:VT	Deshebrar (carne), desmenuzar
+ts'íil	VT	despellejar:VT	Pelar a un animal cazado, despellejar
+ts'íim	N	yuca:N	Yuca (MANIHOT ESCULENTA (CRANTZ))
+tsíimin	N	caballo:N	Caballo
+tsíintsíin	N	mosca verde:N	Mosca verde
+ts'íip	VT	deshollar:VT	Deshollar
+ts'iis	N	coito:N	Coito
+ts'iit	CLF	CLF:CLF	Sufijo clasificador para contar objetos alargados como velas, dedos, cañas
+tsíits	VT	escurrir:VT	Escurrir, rociar
+ts'íits'ii	ADJ	brioso:ADJ	Brioso
+ts'íits'íiban	ADJ	brilloso:ADJ	Brilloso, muy liso
+ts'íits'íiban	ADJ	escarabujeado:ADJ	Escarabujeado, garabateado
+tsíitsiik	ADJ	hecho jirones:ADJ	Hecho jirones
+ts'íits'iiki	ADJ	muy liso:ADJ	Muy liso y resbaloso
+ts'íits'iip	ADJ	pelado en varias partes:ADJ	Pelado en varias partes
+tsi'itspajal	VT	escurrir:VT	Escurrir
+ts'iiw	N	tordo:N	Tordo, pájaro negro de ojos como brasas
+ts'ik	VT	dar:VT	Dar, poner
+tsikbail	N	orgullo:N	Orgullo, altivez, soberbia
+tsikbal	N	cuento:N	Cuento
+tsikbal	VT	conversar:VT	Conversar
+tsikbalile'	N	relato:N	Relato, conversación
+tsikbe'en	ADJ	digno:ADJ	Digno
+tsikbe'en	ADJ	célebre:ADJ	Célebre
+tsikbe'en	N	dignidad:N	Dignidad
+tsiktsilil	N	solemnidad:N	Solemnidad
+tsilk'iin	N	hora:N	Hora
+tsirin	N	sonido que produce el crótalo de la víbora de cascabel:N	Sonido que produce el crótalo de la víbora de cascabel
+tso'	N	pavo doméstico:N	Pavo doméstico, guajolote
+ts'ono'ot	N	cenote:N	Cenote
+ts'o'ok	N	último:N	Último, fin, término
+ts'o'ok	VT	acabar:VT	Acabar , terminar
+ts'o'okol	VT	terminar:VT	Terminar
+tsool	N	coordinación:N	Coordinación, orden, fila, hilera
+tsool	VT	acomodar:VT	Acomodar, ordenar, organizar
+tsoola'an	ADJ	ordenado:ADJ	Ordenado, enfilado
+ts'oom	VI	sumergir:VI	Sumergir
+ts'o'om	N	seso:N	Seso, cerebro
+ts'o'omel	N	cerebro:N	Cerebro, masa encefálica
+ts'oon	N	escopeta:N	Escopeta
+ts'oon	N	cacería:N	Cacería
+ts'oon	VT	cazar:VT	Cazar, fusilar, balear
+ts'oon	N	presa cazada:N	Presa cazada
+ts'oonts'oon	VT	tirar con arma de fuego varias veces:VT	Tirar con arma de fuego varias veces
+ts'oop	VT	clavar:VT	Clavar
+ts'o'osklabeel	N	casamiento:N	Casamiento
+tso'ots	N	pelo:N	Pelo, cabello
+ts'oots'oopki	ADJ	con demasiado lodo:ADJ	Con demasiado lodo
+ts'ooy	ADJ	delgado:ADJ	Delgado
+ts'ooy	VI	enflaquecer:VI	Enflaquecer
+ts'ooya'an	ADJ	flaco:ADJ	Flaco, delgado
+tsopche'	N	lanza:N	Lanza
+ts'opche'	N	horqueta:N	Horqueta
+ts'opokbal	ADJ	incrustado:ADJ	Incrustado
+ts'ot	VT	introducir:VT	Introducir, meter
+ts'oyesaj	VT	rendir:VT	Rendir o vencer a otro
+ts'oysaj	N	victoria:N	Victoria
+ts'u'	N	centro:N	Centro
+tsuk	N	montón de granos:N	Montón de granos o cosas menudas
+tsúkul	N	parte:N	Parte
+ts'ulubmay	N	pimienta:N	Pimienta (COLUBRINA FERRUGINOSA BRONGN.)
+ts'unu'un	N	colibrí:N	Colibrí
+tsuub	N	agutí:N	Agutí, liebre (DASYPROCTA PUNETATA YUCATANICA (GOLMAN)
+tsuuk	N	buche:N	Buche, estómago
+ts'uul	N	caballero:N	Caballero, extranjero
+ts'úum	VI	deshincharse:VI	Deshincharse, desinflarse
+ts'úumul	VI	deshincharse:VI	Deshincharse, desinflarse
+ts'uunts'uunki	ADJ	dícese del lodo donde fácilmente se hunden las bestias:ADJ	Dícese del lodo donde fácilmente se hunden las bestias
+ts'u'ut	ADJ	egoísta:ADJ	Egoísta, avaro, tacaño
+ts'u'util	N	avaricia:N	Avaricia
+ts'uuts'	ADJ	delgado:ADJ	Delgado, raquítico, reseco
+ts'u'uts'	N	beso:N	Beso
+ts'u'uts'	VT	fumar:VT	Fumar, besar
+ts'u'uts'	VT	besar:VT	Fumar, besar
+ts'u'uts'ukil	ADJ	suave:ADJ	Suave
+tsu'utsu'uk	ADJ	en montones:ADJ	En montones o manojos
+ts'uuts'uuki	ADJ	muy suave:ADJ	Muy suave, que se deshace
+tsúutsuy	N	paloma:N	Paloma torcaza
+tsu'uy	N	cosa enredada:N	Cosa enredada (como los cabellos)
+ts'u'uy	ADJ	duro:ADJ	Duro, correoso, fibroso, recio
+ts'u'uy	ADJ	difícil:ADJ	Difícil
+tu	PREP	PREP:PREP	
+tu'	ADJ	fétido:ADJ	Fétido, maloliente, apestoso
+tu'	N	hedor:N	Hedor
+tubik	ADV	en dónde:ADV	En dónde
+tubul	VT	olvidar:VT	Desaparecer de la memoria, olvidar
+t'uchkíinsaj	VT	asentar:VT	Asentar
+t'ucht	VI	agacharse:VI	Agacharse
+t'uchtal	VI	agacharse:VI	Agacharse
+t'uju'	N	tosferina:N	Tosferina
+tuk'	N	cocoyol:N	Cocoyol (ACRONOMIA MEXICANA (KARW))
+tuk'ub	N	hipo:N	Hipo
+tul	ADJ	lleno:ADJ	Lleno
+t'ul	VT	seguir el rastro:VT	Seguir el rastro
+tuláakal	ADV	todo:ADV	Todo
+tuláaklo'on	PRON	todos:PRON	Todos
+t'ulbe	N	sendero:N	Sendero, vereda
+tulum	N	muralla:N	Muralla, trinchera, palizada
+tumaja'an	ADJ	acordado:ADJ	Acordado
+tuméen	CONJ	porque:CONJ	Porque
+tuméen	PREP	por eso:PREP	Por eso
+tumen	CONJ	porque:CONJ	Porque
+tumut	N	consideración:N	Consideración, aprecio, razón
+tumut	N	examen:N	Examen, prueba
+tun	ADV	entonces:ADV	Entonces
+t'un	N	gota pequeña:N	Gota pequeña
+t'un	N	punto de escritura:N	Punto de escritura
+tunar	N	serenata:N	Serenata
+tunk'as	N	cuarto:N	Cuarto, celda, aposento
+tunkuluchuj	N	búho:N	Búho
+tunkuluchuj	N	tecolote:N	Tecolote
+tuntabail	N	tentación:N	Tentación
+tuntumil	ADV	menos entre otros:ADV	Menos entre otros
+tuntun	ADJ	mediano:ADJ	Mediano
+tusbeel	VT	mandar:VT	Mandar
+tusinil	ADV	todo:ADV	Todo, cantidad concreta
+tutajuli'	N	tentación:N	Tentación
+tu'tak	VI	pudrirse:VI	Pudrirse
+tutukal	VT	formar montones:VT	Formar o hacer montones
+tutukchi'	N	cuchicheo:N	Cuchicheo
+t'uub	VT	remojar:VT	Remojar, sumir
+tu'ub	VT	olvidar:VT	Olvidar
+túub	N	saliva:N	Saliva
+túub	VI	escupir:VI	Escupir
+t'úubent'uub	ADJ	sumergidos:ADJ	Sumergidos
+tu'ubi'	ADV	en dónde:ADV	En dónde
+tu'ubs	VT	olvidar:VT	Olvidar
+tuuch	N	ombligo:N	Ombligo
+t'uuch	N	moño:N	Moño, sorongo, chongo
+t'úuch	VI	posarse el ave:VI	Posarse el ave
+t'úuch	VI	posarse el ave:VI	Posarse el ave
+t'úuchul	VI	posarse el ave:VI	Posarse el ave
+túujkab	ADJ	en efectivo:ADJ	En efectivo, amontonado
+tu'uk'	N	rincón:N	Rincón
+tu'uk'il	N	esquina:N	Esquina
+tuukul	N	imaginación:N	Imaginación, intención, propósito, creer, pensar
+túul	CLF	CLF:CLF	Sufijo clasificador para contar animales o personas
+túulch'in	VT	empujar:VT	Empujar
+túulis	ADJ	entero:ADJ	Entero
+tuun	N	jade:N	Jade
+túun	VT	probar:VT	Probar, experimentar
+túun	ADV	entonces:ADV	Entonces
+túunben	ADJ	nuevo:ADJ	Nuevo
+tuunich	N	piedra:N	Piedra
+tuunkuy	N	calcañar:N	Calcañar
+túunt	VT	probar:VT	Probar, sondear
+túuntaj	VT	examinar:VT	Examinar o probar
+túuntaj	VT	practicar:VT	Practicar, ensayar, examinar
+túuntaj	VT	probar:VT	Probar, sondear
+túuntajil	N	experiencia:N	Experiencia
+tuup	VT	borrar:VT	Borrar, apagar
+tuup	N	arete:N	Arete
+tuup	VT	apagar el fuego:VT	Apagar el fuego
+tuup	VT	borrar:VT	Borrar
+t'uup	N	meñique:N	Meñique
+t'uup	N	hijo menor:N	El hijo menor de una familia
+tuupul	N	apagado:N	Apagado, borrado
+tuus	N	mentira:N	Mentira
+tuus	VT	engañar:VT	Engañar, mentir
+tuuskeep	VI	vacilar:VI	Vacilar, bromear
+t'uut'	N	loro:N	Loro
+túuts'	ADJ	ovalado:ADJ	Ovalado
+túutukinsbil	VT	hacer montones:VT	Hacer montones	
+túutúuk	N	montones:N	Montones	
+túutúulch'in	VT	empujar:VT	Empujar	
+t'úut'uulki	ADJ	muy trillado:ADJ	Muy trillado	
+t'u'ut'uy	N	andrajo:N	Andrajo	
+tuux	N	hoyuelo en la mejilla:N	Hoyuelo en la mejilla o en la barba	
+tu'ux	ADV	dónde:ADV	Dónde	
+tu'uxi	ADV	en dónde:ADV	En dónde	
+túuxt	VT	enviar:VT	Enviar, mandar	
+t'úuy	VT	alzar:VT	Alzar, asir con los dedos	
+u	PRON	3A:PRON		Lehmann
+u'	VI	venir:VI	Venir, llegar	
+uale'	ADV	tal vez:ADV	Tal vez	
+uchak	ADV	puede ser:ADV	Puede ser	
+uchbal	N	causa:N	Causa, razón	
+ui'it'il	N	cintura:N	Cintura	
+uj	N	luna:N	Luna, menstruación
+uk'	N	piojo:N	Piojo
+uk'aj	N	aguardiente:N	Aguardiente
+uk'aj	N	sed:N	Sed
+uk'ul	N	bebida:N	Bebida, desayuno
+uk'ul	VT	beber:VT	Beber
+uk'um	N	ciénaga junto al mar:N	Ciénaga junto al mar, estero, marisma
+uk'um	N	río:N	Río
+uláak'	N	otro:N	Otro
+ulis	N	menstruación:N	Menstruación
+us	N	mosca pequeña:N	Variedad de mosca pequeña
+utia'al	CONJ	para que:CONJ	Para que, a fin de que
+utia'al	PRON	3SG.POS:PRON	3SG.POS
+utia'alo'ob	PRON	3PL.POS:PRON	3PL.POS
+uts	ADJ	bueno:ADJ	Bueno, amable, cortés
+uts'banaj	N	olfato:N	Olfato
+utsil	N	virtud:N	Virtud, bondad	
+utskíinsaj	VT	componer:VT	Componer, reparar	
+utst	VI	sanar:VI	Sanar	
+utstal	VI	sanar:VI	Sanar	
+u'ub	VI	sentir:VI	Sentir	
+u'ub	VI	escuchar:VI	Escuchar, oir	
+úuch	PART	PAST.REM:PART		Lehmann
+úuch	VI	acaecer:VI	Acaecer, suceder	
+úuch	VI	suceder:VI	Suceder, acontecer	
+úuchak	ADJ	posible:ADJ	Posible	
+úuchak	ADV	quizá:ADV	Quizá, tal vez	
+úuchben	ADJ	antiguo:ADJ	Antiguo, viejo	
+úuchbenil	N	antigüedad:N	Antigüedad	
+úuchul	VI	acaecer:VI	Acaecer, suceder	
+úuchul	VI	suceder:VI	Suceder, acontecer	
+úuk	N	siete:N	Siete	
+úuklajun	N	diecisiete:N	Diecisiete
+úukum	N	paloma de pico negro:N	Paloma de pico negro
+u'ul	VI	llegar:VI	Llegar, venir
+u'ul	VI	venir:VI	Venir, llegar
+úul	N	faringe:N	Faringe
+úulum	N	pavo doméstico:N	Pavo doméstico
+úumbal	VT	mecer:VT	Mecer
+úurich	N	caracol de los jardines:N	Caracol de los jardines
+uusáan	N	salpullido:N	Salpullido
+uust	VI	soplar con la boca:VI	Soplar con la boca
+uustik	VT	soplar con la boca:VT	Soplar con la boca
+úuts'ben	VI	olfatear:VI	Olfatear
+u'uy	VT	sentir:VI	Sentir
+u'uy	VT	escuchar:VI	Escuchar, oir
+wa	CONJ	si:CONJ	Si
+wáa	CONJ	o:CONJ	O
+wáa	CONJ	si:CONJ	Si
+wáabil	N	nieto/a:N	Nieto o nieta
+waach'	VT	desatar:VT	Desatar, desabrochar, destornillar
+waach'	VT	desenrollar:VT	Desenrollar, desdoblar, desatar
+waach'	N	diarrea:N	Diarrea
+waaj	N	mancha de color violeta:N	Mancha de color violeta que tienen algunos niños en la espalda sobre el cocxis
+waaj	N	tortilla:N	Tortilla de maíz, pan
+waajil	N	banquete:N	Banquete
+wáak	N	seis:N	Seis
+waak'	VI	estallar:VI	Estallar, reventar, detonar
+waak'	N	estallido:N	Estallido, detonación
+waak'	VI	detonar:VI	Detonar
+waak'	VT	urdir:VT	Urdir
+wáak'	VI	explotar:VI	Explotar, detonar
+wáak'al	VI	explotar:VI	Explotar, detonar
+wáaklajun	N	dieciséis:N	Dieciséis
+wáal	CLF	CLF:CLF	Sufijo clasificador para contar hojas de papel y dobleces
+waats	VT	doblar:VT	Doblar (las cañas de maíz para que se protegan las mazorcas de la humedad)
+waats'	VT	doblar las cañas:VT	Doblar las cañas de maíz sin romperlas para proteger las mazorcas de la lluvia
+wáawaach'	VT	desatar sin orden:VT	Desatar sin orden
+wáawaak'bi	ADJ	que revienta varias veces:ADJ	Que revienta varias veces. Que está a punto de reventar
+wáaway	N	mal de pinto:N	Mal de pinto
+wáay	N	brujo:N	Brujo que se convierte en marrano, chivo, toro, borrego
+wa'k'áan	VT	hurdir hamaca:VT	Hurdir hamaca
+wakax	N	ganado vacuno:N	Ganado vacuno
+wakuna'an	ADJ	electo:ADJ	Electo
+wakunaj	N	nombramiento:N	Nombramiento
+wakunaj	ADJ	elegido:ADJ	Elegido para algún cargo
+wakunaj	N	elección:N	Elección
+wale'	ADV	quizá:ADV	Quizá, tal vez
+walk'aj	VI	tornar:VI	Tornar, volverse, convertirse
+walk'ajal	VI	tornar:VI	Tornar, volverse, convertirse
+walkila'	ADV	a esta hora:ADV	A esta hora
+wawak'il	N	crepitación:N	Crepitación
+waxak	N	ocho:N	Ocho
+waxaklajun	N	dieciocho:N	Dieciocho
+way	ADV	acá:ADV	Acá
+way	ADV	aquí:ADV	Aquí
+wayak'	VI	soñar:VI	Soñar
+waye'	ADV	acá:ADV	Acá
+wayum	N	huaya:N	Huaya (TALISIA OLIVAEFORMIS (KUNT) RADLK)
+weech	N	armadillo:N	Armadillo
+week'	VT	estrellar:VT	Estrellar
+week,wéekel	VT	derramar:VT	Derramar
+weel	VT	aserrar:VT	Aserrar, marcar, señalar
+ween	VI	dormir:VI	Dormir
+weenel	VI	dormir:VI	Dormir
+wéet	N	compañero:N	Compañero, semejante
+wéet	N	compañero:N	Compañero, semejante
+weet'	VT	prohibir:VT	Prohibir, vedar, evitar
+weet'a'an	ADJ	prohibido:ADJ	Prohibido
+wéeweek	ADJ	derramado:ADJ	Derramado. Manchar con líquido una superficie
+wéewéek'	ADJ	manchado por partes:ADJ	Manchado por partes
+wenak	N	muñeco:N	Muñeco, espantajo, maniquí
+werek'	ADJ	gordo:ADJ	Gordo
+wet	ADV	con:ADV	Con, en compañía
+wewel	ADJ	listado de colores:ADJ	Listado de colores, manchado, jaspeado
+wewel	N	lista:N	Lista, tira
+weye'	ADV	acá:ADV	Acá
+wii'	N	cogollo:N	Cogollo
+wi'ij	N	hambre:N	Hambre
+wi'ij	VI	tener hambre:VI	Tener hambre
+wíinik	N	hombre:N	Hombre
+wíinkil	N	cuerpo:N	Cuerpo
+wíinkilis	N	figura:N	Figura
+wíinklil	N	cuerpo:N	Cuerpo
+wiits	N	cerro:N	Cerro
+wíiwiich'	VT	pegar con bejuco:VT	Pegar con bejuco
+wíiwiits'	VT	pringar:VT	Pringar algo
+wiix	VI	orinar:VI	Orinar
+wiix	N	orina:N	Orina
+wiknal	ADV	junto:ADV	Junto, en compañía
+wilib	N	nuera:N	Nuera
+wilta'	VI	ondear:VI	Ondear u ondular
+wilta'al	VI	ondear:VI	Ondear u ondular
+wináal	N	mes:N	Mes
+winkilis	N	cosa labrada:N	Cosa labrada o pintada
+wi'óolal	N	apetito:N	Apetito
+wits'	VT	salpicar:VT	Salpicar
+wol	VT	arrollar:VT	Arrollar
+wol	ADV	todo junto:ADV	Todo junto
+woob	N	pitahaya:N	Pitahaya (CEREUS UNDATUS (HAW)
+woochel	N	sombra:N	Sombra de algún cuerpo proyectada a causa de la luz
+wooj	N	letra:N	Letra, pintura,escritura, glifos
+wool	VT	empacar:VT	Empacar
+wóol	VT	redondear:VT	Redondear, formar ovillo
+wóolis	ADJ	redondo:ADJ	Redondo
+wóowóoch'	N	oleaje:N	Oleaje o reflejo por efecto de la luz solar
+wóowooki	ADJ	muy seco:ADJ	Muy seco
+wóowool	ADJ	por bolas:ADJ	Por bolas
+wuuts'	VT	doblar:VT	Doblar, plegar
+wúuwuuts'	ADJ	muy doblado:ADJ	Muy doblado como metales o madera
+wúuwuuts'ki	ADJ	que se dobla muy fácil:ADJ	Que se dobla muy fácil	
+x	PART	FEM:PART		Lehmann
+xaab	VT	trasplantar:VT	Trasplantar	
+xaache'	N	peine:N	Peine, peineta	
+xaache'	VT	peinar:VT	Peinar	
+xáachmanxaach	ADJ	muy ralo:ADJ	Muy ralo	
+xaak	VT	escaldar:VT	Escaldar	
+xaak	VI	ampollar:VI	Ampollar	
+xáak	N	cesta:N	Cesta, cesto	
+xaak'	CLF	CLF:CLF	Sufijo clasificador para contar pasos en forma de brincos	
+xa'ak'	N	mezcla:N	Mezcla	
+xa'ak'	N	recaudos:N	Recaudos o condimentos	
+xa'ak'a'an	ADJ	mezclado:ADJ	Mezclado	
+xáak'a'at	VT	saltar:VT	Saltar, pasar sobre algo	
+xáak'ab	N	pasos largos:N	Pasos largos	
+xáak'abt	VT	dar el paso:VT	Dar el paso, evadir	
+xaakal	N	ampolla:N	Ampolla
+xaak'al	VT	buscar:VT	Buscar, rebuscar
+xa'akit	VT	mezclar:VT	Mezclar, revolver
+xa'an	N	huano:N	Huano (THRINAX RADIATA (LOOD)), palma (REINHARDTIA SP)
+xáanab	N	calzado:N	Calzado
+xáant	VI	durar:VI	Durar, tardar
+xáant	VI	tardarse:VI	Demorarse o tardarse
+xáantal	VI	durar:VI	Durar, tardar
+xáantal	VI	tardarse:VI	Demorarse o tardarse
+xáax	N	lado:N	Lado, espacio en la hamaca
+xáaxaachki	ADJ	afianzado con mucha fuerza:ADJ	Afianzado con mucha fuerza de algo
+xáaxaak	ADJ	despeinada:ADJ	Despeinada o de pelo esponjado
+xa'ay	N	bifurcación:N	Bifurcación
+xa'ay	N	cruce:N	Cruce, encrucijada
+xak'lal	VT	revolver:VT	Revolver
+xakt	VI	estar de cuatro patas:VI	Estar de cuatro patas
+xaktal	VI	estar de cuatro patas:VI	Estar de cuatro patas
+xamach	N	comal:N	Comal
+xaman	N	norte:N	Norte
+xan	ADV	también:ADV	También
+xanbel	ADV	despacio:ADV	Despacio
+xanbel	ADV	despacio:ADV	Despacio
+xayak	N	enfermedad bucal:N	Enfermedad bucal que se caracteriza por la aparición de llagas en la comisura de los labios
+xchiople'	N	trébol:N	Trébol
+xech	ADJ	patente:ADJ	Patente, manifiesto, visible
+xeej	VT	vomitar:VT	Vomitar
+xeej	N	vómito:N	Vómito
+xe'ek'	N	ensalada de cítricos y jícama:N	Ensalada de cítricos y jícama
+xe'ek'	N	mezcla:N	Mezcla
+xéekt	VT	asentar:VT	Asentar
+xeep'	N	pellizco:N	Pellizco
+xe'ep'	VT	pellizcar:VT	Pellizcar
+xeet'	N	pedazo:N	Pedazo	
+xeet'	VT	romper:VT	Romper, despedazar	
+xeet'el	ADJ	roto:ADJ	Roto	
+xéexeek'	VT	tirar cosas y revolverlas:VT	Tirar cosas y revolverlas	
+xéexeet'	N	pedazos:N	Pedazos o añicos	
+xe'exet'	VT	despedazar:VT	Despedazar	
+xek	N	silla:N	Silla, montura	
+xen	VI	ir.IMP:VI	IRREGULAR	Lehmann
+xet	ADJ	se aplica a quien tiene labio leporino:ADJ	Se aplica a quien tiene labio leporino	
+xexbail	N	polución:N	Polución	
+xiib	N	hombre:N	Hombre	
+xíib	VI	erizarse:VI	Erizarse	
+xíibil	VI	erizarse:VI	Erizarse	
+xiich'	N	tendón:N	Tendón	
+xi'ik	VI	ir:VI	Ir	
+xíik	VI	partirse:VI	Partirse, rajarse	
+xiik'	N	axila:N	Axila, ala
+xíikil	VI	partirse:VI	Partirse, rajarse
+xi'im	N	maíz:N	Maíz ( ZEA MAYS L.)
+xi'im	N	maíz:N	Maíz ( ZEA MAYS L.)
+xíinb	VI	caminar:VI	Caminar, pasear
+xíinbal	N	paseo:N	Paseo
+xíinbal	VI	caminar:VI	Caminar, pasear
+xiipal	N	muchacho:N	Muchacho
+xíit	VT	espulgar:VT	Espulgar, cernir entre los dedos
+xiit'	VT	abrir lo doblado:VT	Abrir o extender lo doblado
+xíit'	VI	abrirse:VI	Abrirse
+xíit'il	VI	abrirse:VI	Abrirse
+xíiw	N	hierba:N	Hierba, yerba
+xiix	N	resto:N	Resto, asiento, sedimento
+xiix	N	carne:N	Carne, vísceras y retacería de res que se frie en su propia grasa o cebo
+xíixi'ik	ADJ	muy cuarteado:ADJ	Muy cuarteado
+xíixiit'	VT	extender varias veces:VT	Extender varias veces algo
+xíixt	VT	espulgar:VT	Espulgar, cernir entre los dedos
+xik	VT	rajar:VT	Rajar
+xikin	N	oído:N	Oído, oreja
+xikintaj	VI	escuchar de manera oculta:VI	Escuchar de manera oculta
+xik'n	VI	volar:VI	Volar
+xik'nal	VI	volar:VI	Volar
+xip	VT	comenzar:VT	Comenzar algún trabajo
+xiuil	N	virtud:N	Virtud
+xixim	N	concha de mar:N	Concha de mar
+xol	VI	hincarse:VI	Hincarse
+xolob	N	clavo:N	Clavo
+xolokbal	ADJ	hincando:ADJ	Hincando, arrodillado
+xóob	N	silbido:N	Silbido
+xóobt	VI	silbar:VI	Silbar
+xooch'	N	búho:N	Búho
+xook	N	lección:N	Lección
+xook	VT	leer:VT	Leer, contar, estudiar
+xookil	N	cuenta:N	Cuenta
+xookil	N	cuento:N	Cuento
+xookul	N	cuenta:N	Cuenta
+xóolkin	VI	arrodillar:VI	Arrodillar
+xóolte'	N	bastón:N	Báculo, bastón
+xoop	N	guacamayo:N	Guacamayo
+xoot	VT	cortar:VT	Cortar con cuchillo
+xoot'	VT	cortar:VT	Cortar, dividir
+xooteb	N	cuchillo:N	Cuchillo
+xoot'manxoot'	ADJ	por pedazos:ADJ	Por pedazos
+xootob	N	cuchillo:N	Cuchillo
+xooxoot	VT	cortar con arma corta:VT	Cortar con arma corta (cuchillo, puñal, navaja) varias veces
+xóoxoot'	VT	despedazar madera:VT	Despedazar madera, cortar una tabla en pedazos
+xotem	N	colilla de cigarro:N	Colilla de cigarro
+xoxolki'	ADJ	quieto:ADJ	Quieto, inmóvil
+xo'xo'ot	VT	descuartizar:VT	Descuartizar
+xulub	N	diablo:N	Diablo
+xulub	N	cuerno:N	Cuerno de venado o de otro animal
+xululte	ADJ	temporal:ADJ	Temporal
+xunáan	N	dama:N	Dama, señora
+xuuch	N	pozo:N	Pozo que se forma en los suelos pantanosos
+xuuch	VT	absorber:VT	Absorber
+xuuch	N	sorbo:N	Sorbo
+xúuch	VT	beber a sorbos:VT	Beber a sorbos
+xu'uk'il	N	rincón:N	Rincón, extremo de la milpa
+xuul	N	final:N	Final, término
+xuul	VT	finalizar:VT	Finalizar, acabar
+xuul	N	límite:N	Límite
+xúul	N	bastón plantador:N	Bastón plantador
+xuulab	N	hormiga carnicera:N	Hormiga carnicera
+xu'uls	VT	anular:VT	Anular
+xu'ulsaj	VT	exterminar:VT	Exterminar
+xuup	VT	gastar:VT	Gastar, acabar, consumir
+xu'up	VI	acabarse:VI	Acabarse, gastarse, terminarse
+xu'upul	VI	acabarse:VI	Acabarse, gastarse, terminarse
+xuux	N	avispero:N	Avispero
+xúuxak	N	cesta:N	Cesta, cesto
+xúuxub	N	silbido:N	Silbido
+xúuxub	VI	silbar:VI	Silbar
+xúuxuuch	VI	absorber con fuerza:VI	Absorber con fuerza
+xúuxuunki	ADJ	que no se mueve:ADJ	Que no se mueve
+xúuxuup	VT	gastar por gastar:VT	Gastar por gastar el dinero o alguna cosa
+ya'	N	zapote:N	Zapote (MANILKARA ZAPOTA (L) VAN ROYEN)
+ya'ab	ADV	mucho:ADV	Mucho, bastante
+ya'abach	ADV	mucho:ADV	Mucho
+ya'abil	N	edad:N	Edad
+ya'abkach	ADV	mucho:ADV	Mucho
+ya'abt	VI	abundar:VI	Abundar
+ya'abtal	VI	abundar:VI	Abundar
+yaach'	VT	arrugar:VT	Arrugar
+yaach'	VT	diluir:VT	Diluir
+yaach'	VT	aplastar:VT	Aplastar, majar
+ya'ach'	N	sopa:N	Sopa
+ya'ach'ta'an	ADJ	machacado:ADJ	Machacado
+yaaj	N	dolor:N	Dolor
+yáajkunaj	VT	amar:VT	Amar
+yáajt	VI	doler:VI	Doler
+yáajtal	VI	doler:VI	Doler
+yaak'	N	llama del fuego:N	Llama del fuego
+yaakun	N	amor:N	Amor
+yaakun	VT	enamorar:VT	Enamorar
+yaakunaj	VT	amar:VT	Amar
+yáakunaj	VT	amar:VT	Amar
+yaakunajil	N	amor:N	Amor
+yaalak'tik	VT	domesticar:VT	Domesticar
+yaam	N	olas del mar:N	Olas del mar
+yaamaj	N	amor:N	Amor
+yaamil	N	amor:N	Amor
+yaan	VT	haber:VT	Haber . Yaan ya’ab múulo’ob waye’. Hay muchos cerros aquí
+yaant	VI	haber:VI	Haber, nacer, existir
+yaantal	VI	haber:VI	Haber, nacer, existir
+yáanyaaki	VI	desesperarse demasiado:VI	Desesperarse demasiado
+yaanyan	N	súplica:N	Súplica
+ya'ax	ADJ/N	verde:ADJ/N	Verde
+yáax	ADJ	primero:ADJ	Primero, antes
+yáax	ADV	antes:ADV	Antes, primero	
+ya'axche'	N	ceiba:N	Ceiba (CEIBA PENTANDRA (L. GAERTH))	
+ya'axka	ADJ	azul turquesa:ADJ	Azul turquesa	
+yáayaach'	ADJ	muy arrugado:ADJ	Muy arrugado aplícase a ropa y telas	
+yáayaach'ki	ADJ	húmedo con mucho lodo:ADJ	Húmedo con mucho lodo, aplícase a los patios o solares	
+ya'aya'ax	ADJ	verde esmeralda:ADJ	Verde esmeralda	
+yaayan	N	súplica:N	Súplica	
+yaayatulul	N	penitencia:N	Penitencia	
+yail	PREP	por causa grande:PREP	Por causa grande, grave y de importancia	
+yail	N	fuerza:N	Fuerza, apremio, valor	
+yala'	N	resto:N	Resto, sobra	
+yalan	PREP	debajo:PREP	Debajo	
+yalpak'a	ADJ	conveniente:ADJ	Conveniente	
+yalul	N	manera:N	Manera, muestra, modo	
+yan	PART	DEB:PART		Lehmann
+yanal	PREP	debajo:PREP	Debajo	
+yatsil	N	limosna:N	Misericordia, limosna, caridad y merced que se recibe
+ye'	VI	ovar:VI	Ovar
+ye'eb	N	neblina:N	Neblina
+yeej	N	filo:N	Filo
+ye'el	N	huevo:N	Huevo
+ye'el	VI	ovar:VI	Ovar
+yeenba	N	armas:N	Armas, instrumentos para algún oficio
+ye'esame'en	N	obscuro:N	Obscuro
+yéet	N	compañero:N	Compañero, semejante
+yeet'	VT	apretar con las yemas de los dedos:VT	Apretar con las yemas de los dedos
+yeet'	VT	sobar:VT	Sobar
+yeet'	N	apretón:N	Apretón que se da con la punta de los dedos
+yéetel	CONJ	y:CONJ	Y, e, con
+yeets'	VT	apretar:VT	Apretar, exprimir
+yéey	VT	escoger:VT	Escoger, elegir, seleccionar 
+yéeye'esaj	ADJ	lo enseñó muchas veces:ADJ	Lo enseñó muchas veces
+yelma	N	perfume:N	Perfume
+yelmal	N	esencia:N	Esencia
+yiib	VI	derretir:VI	Derretir
+yi'ij	N	espiga de maíz:N	Espiga de maíz
+yiijtalil	N	maduración:N	Maduración
+yíiyiibanki	ADJ	que se refleja:ADJ	Que se refleja
+yij	N	madurez del maíz:N	Madurez o sazón del maíz
+yik'el	N	insecto:N	Insecto
+yiknal	ADV	junto:ADV	Junto, en compañía
+yilib	N	nuera:N	Nuera
+yilk'il	N	insecto:N	Insecto
+yis	N	riñón:N	Riñón
+yit	N	fondo:N	Fondo
+yits'atil	N	sabiduría:N	Sabiduría, conocimiento, arte, oficio
+yiyibank	VI	fluir suavemente:VI	Fluir suavemente
+yiyibankil	VI	fluir suavemente:VI	Fluir suavemente
+yiyibki	VI	con flujo suave las aguas:VI	Con flujo suave las aguas
+yojsa'	CONJ	porque:CONJ	Porque
+yok'lal	CONJ	porque:CONJ	Porque
+yokob	N	punzón:N	Punzón
+yol	N	cogollo:N	Cogollo
+yóok'	PREP	sobre:PREP	Sobre
+yook'lal	PREP	para:PREP	Para
+yóok'ol	PREP	sobre:PREP	Sobre
+yook'sal	PREP	para:PREP	Para
+yo'om	N	embarazo:N	Embarazo
+yo'omkin	VT	embarazar:VT	Embarazar
+yoot'	VT	sobar:VT	Sobar
+yóoyo'op'	ADJ	hecho pedazos:ADJ	Hecho pedazos
+yóoyo'op'ki	ADJ	que se parte muy fácil:ADJ	Que se parte muy fácil
+yuil	N	mes:N	Mes
+yuk'	N	cosa universal:N	Cosa universal que lo comprende todo
+yukache'	N	yugo:N	Yugo para unir una bestia con otra
+yut	N	talismán:N	Talismán
+yuuch'	VT	arrugar:VT	Arrugar
+yúujuus	ADJ	gordito:ADJ	Gordito
+yuuk	N	venado enano:N	Venado enano (MAZAMA PANDORA. MERRIAM)
+yúuk	VT	menear:VT	Menear, revolver algún líquido
+yúul	N	traquea:N	Traquea
+yúul	VT	bruñir:VT	Bruñir, planchar
+yuum	N	dios:N	Dios, señor, padre
+yuumil	N	dueño:N	Dueño
+yuumtsil	N	dios:N	Dios, señor
+yúuntun	N	honda para arrojar piedras:N	Honda para arrojar piedras
+yuuy	N	lunar:N	Lunar
+yúuyum	N	oropéndola:N	Oropéndola
+yúuyuuch'	ADJ	muy arrugado:ADJ	Muy arrugado, utilízase para metales
+yúuyúum	ADJ	que se mece varias veces:ADJ	Que se mece varias veces
+yuyulbej	N	carretera asfaltada:N	Carretera asfaltada
+yuyulki	ADJ	nivelado:ADJ	Nivelado, emparejado
