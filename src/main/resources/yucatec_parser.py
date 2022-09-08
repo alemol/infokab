@@ -299,10 +299,14 @@ def process_text(textname):
 if __name__ == '__main__':
     import sys
     file_path = "/home/alejandro/Documentos/projects/infokab/src/main/resources/"
+    file_path = sys.argv[1]+"/"
+
     if len(sys.argv) >= 2:
 #        textname = sys.argv[1]
-        yuc_dict = dict_from_file('yuc_dict.txt')
-        prefixes, suffixes = affixes('yuc_aff.txt')
+        yuc_dict = dict_from_file(file_path+'yuc_dict.txt')
+        prefixes, suffixes = affixes(file_path+'yuc_aff.txt')
+        textname = file_path+'Prueba001.txt'
+        process_text(textname)
 #        suffixes = affixes('yuc_aff.txt')
 #        process_text(textname)
     else:
