@@ -2,6 +2,7 @@ package mx.geoint.glosa;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import mx.geoint.Model.Glosa;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@CrossOrigin(origins = {"http://localhost:3000", "http://10.2.102.202:3000/","http://10.2.102.182"})
 @RestController
 @RequestMapping(path = "api/glosa")
 public class GlosaController {
@@ -24,9 +26,9 @@ public class GlosaController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ArrayList<String>> created() throws IOException {
+    public ResponseEntity<ArrayList<Glosa>> created() throws IOException {
         Date startDate = new Date();
-        ArrayList<String> response = glosaService.process();
+        ArrayList<Glosa> response = glosaService.process();
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
