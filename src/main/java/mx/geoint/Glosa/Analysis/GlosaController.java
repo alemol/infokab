@@ -1,4 +1,4 @@
-package mx.geoint.glosa;
+package mx.geoint.Glosa.Analysis;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

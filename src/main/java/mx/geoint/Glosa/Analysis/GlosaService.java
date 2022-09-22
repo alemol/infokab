@@ -1,4 +1,4 @@
-package mx.geoint.glosa;
+package mx.geoint.Glosa.Analysis;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import mx.geoint.Model.Glosa;
