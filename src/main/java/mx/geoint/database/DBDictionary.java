@@ -1,12 +1,16 @@
 package mx.geoint.database;
 
+import mx.geoint.Glosa.Dictionary.DictionaryRequest;
 import mx.geoint.Model.DictionaryDoc;
 import mx.geoint.Response.DictionaryResponse;
 import mx.geoint.Response.SearchResponse;
+import mx.geoint.User.User;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class DBDictionary {
     public Credentials credentials;
@@ -15,14 +19,14 @@ public class DBDictionary {
         this.credentials = new Credentials();
     }
 
-    public DictionaryResponse ListBases(int offset, int noOfRecords) throws SQLException {
+    public DictionaryResponse ListRegistersDictionary(int offset, int noOfRecords, String tableName) throws SQLException {
         ArrayList<DictionaryDoc> results = new ArrayList<DictionaryDoc>();
         DictionaryDoc dictionaryDoc = null;
         int totalHits = 0;
 
         Connection conn = credentials.getConnection();
-        
-        String SQL_QUERY = "SELECT * FROM bases offset " + offset + " limit " + noOfRecords;
+
+        String SQL_QUERY = "SELECT * FROM " + tableName +" offset " + offset + " limit " + noOfRecords;
         ResultSet rs = conn.prepareStatement(SQL_QUERY).executeQuery();
 
         while (rs.next()) {
@@ -46,5 +50,65 @@ public class DBDictionary {
         conn.close();
         DictionaryResponse dictionaryResponse = new DictionaryResponse(results, totalHits);
         return dictionaryResponse;
+    }
+
+    public boolean deleteRegisterDictionary(int register, String tableName) throws SQLException {
+        Connection conn = credentials.getConnection();
+        String SQL_QUERY = "DELETE FROM " + tableName +" WHERE id_rol="+register;
+        int rs = conn.prepareStatement(SQL_QUERY).executeUpdate();
+
+        conn.close();
+        if(rs>0){
+            System.out.println("registro eliminado en base de datos");
+            return true;
+        } else{
+            System.out.println("No se pudo eliminar el registro en base de datos");
+            return false;
+        }
+    }
+
+    public boolean insertRegisterDictionary(DictionaryRequest dictionaryRequest, String tableName) throws SQLException {
+        Connection conn = credentials.getConnection();
+        String SQL_INSERT = "INSERT INTO " + tableName +" (clave, codigo, descripcion, traduccion, extra) VALUES (?,?,?,?,?)";
+
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT);
+        preparedStatement.setObject(1, dictionaryRequest.getClave());
+        preparedStatement.setString(2, dictionaryRequest.getCode());
+        preparedStatement.setString(3, dictionaryRequest.getDescription());
+        preparedStatement.setString(4, dictionaryRequest.getTraduction());
+        preparedStatement.setString(5, dictionaryRequest.getExtra());
+
+        int rs = preparedStatement.executeUpdate();
+
+        conn.close();
+        if(rs>0){
+            System.out.println("registro insertado en base de datos");
+            return true;
+        } else{
+            System.out.println("No se pudo insertar el registro en base de datos");
+            return false;
+        }
+    }
+
+    public boolean updateRegisterDictionary(DictionaryRequest dictionaryRequest, String tableName) throws SQLException {
+        Connection conn = credentials.getConnection();
+        String SQL_INSERT = "UPDATE " + tableName +" SET clave = ?, codigo = ?, descripcion = ?, traduccion = ?, extra = ? WHERE id_rol="+dictionaryRequest.getId();
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT);
+        preparedStatement.setObject(1, dictionaryRequest.getClave());
+        preparedStatement.setString(2, dictionaryRequest.getCode());
+        preparedStatement.setString(3, dictionaryRequest.getDescription());
+        preparedStatement.setString(4, dictionaryRequest.getTraduction());
+        preparedStatement.setString(5, dictionaryRequest.getExtra());
+
+        int rs = preparedStatement.executeUpdate();
+
+        conn.close();
+        if(rs>0){
+            System.out.println("registro insertado en base de datos");
+            return true;
+        } else{
+            System.out.println("No se pudo insertar el registro en base de datos");
+            return false;
+        }
     }
 }
