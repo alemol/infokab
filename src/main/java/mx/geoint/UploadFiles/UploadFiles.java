@@ -58,7 +58,7 @@ public class UploadFiles {
         System.out.println("ID de proyecto generado: "+id_project);
         if(id_project > 0){
             System.out.println("Proyecto guardado en base de datos");
-            InitElanXmlDigester(eaf, multimedia, uuid, basePath, baseProjectName);
+            //InitElanXmlDigester(eaf, multimedia, uuid, basePath, baseProjectName);
         }
         else{
             System.out.println("No se pudo guardar el proyecto en base de datos");
