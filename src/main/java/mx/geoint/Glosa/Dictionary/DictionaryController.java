@@ -54,6 +54,13 @@ public class DictionaryController {
         return dictionaryService.insertRegister(dictionaryRequest, "bases");
     }
 
+    @RequestMapping(path = "/bases/update", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public boolean updateRegisterBases(@RequestBody DictionaryRequest dictionaryRequest) throws SQLException {
+        System.out.println("update Register");
+        return dictionaryService.updateRegister(dictionaryRequest, "bases");
+    }
+
     @RequestMapping(value={"/prefixes/list/", "/prefixes/list/{selectPage}"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<DictionaryResponse> listPrefixes(@PathVariable Optional<Integer> selectPage) throws SQLException {
@@ -86,6 +93,12 @@ public class DictionaryController {
         return dictionaryService.insertRegister(dictionaryRequest, "prefijos");
     }
 
+    @RequestMapping(path = "/prefixes/update", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public boolean updateRegisterPrefixes(@RequestBody DictionaryRequest dictionaryRequest) throws SQLException {
+        System.out.println("update Register");
+        return dictionaryService.updateRegister(dictionaryRequest, "prefijos");
+    }
     @RequestMapping(value={"/suffixes/list/", "/suffixes/list/{selectPage}"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<DictionaryResponse> listSuffixes(@PathVariable Optional<Integer> selectPage) throws SQLException {
@@ -116,5 +129,12 @@ public class DictionaryController {
     public boolean createRegisterSuffixes(@RequestBody DictionaryRequest dictionaryRequest) throws SQLException {
         System.out.println("Create Register");
         return dictionaryService.insertRegister(dictionaryRequest, "sufijos");
+    }
+
+    @RequestMapping(path = "/suffixes/update", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public boolean updateRegisterSuffixes(@RequestBody DictionaryRequest dictionaryRequest) throws SQLException {
+        System.out.println("update Register");
+        return dictionaryService.updateRegister(dictionaryRequest, "sufijos");
     }
 }

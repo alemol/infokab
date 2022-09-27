@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @CrossOrigin(origins = {"http://localhost:3000", "http://10.2.102.202:3000/", "http://10.2.102.182"})
 @RestController
+@RequestMapping(path="api/streaming")
 public class StreamingController {
     @Autowired
     private StreamingService streamingService;
@@ -23,7 +24,7 @@ public class StreamingController {
     @GetMapping(value = "videoV2/**", produces = "video/mp4")
     public Mono<Resource> getVideoV2(@RequestHeader("Range") String range, HttpServletRequest request){
         System.out.println(range);
-        String urlTail = new AntPathMatcher().extractPathWithinPattern( "videoV2/**", request.getRequestURI() );
+        String urlTail = new AntPathMatcher().extractPathWithinPattern( "api/streaming/videoV2/**", request.getRequestURI() );
         return streamingService.getVideoV2(urlTail);
     }
 
@@ -36,14 +37,14 @@ public class StreamingController {
     @GetMapping(value = "audioV2/**", produces = "audio/wav")
     public Mono<Resource> getAudioV2(@RequestHeader("Range") String range, HttpServletRequest request){
         System.out.println(range);
-        String urlTail = new AntPathMatcher().extractPathWithinPattern( "audiov2/**", request.getRequestURI() );
+        String urlTail = new AntPathMatcher().extractPathWithinPattern( "api/streaming/audiov2/**", request.getRequestURI() );
         return streamingService.getAudioV2(urlTail);
     }
 
     @GetMapping(value = "audioV3/**", produces = "audio/wav")
     public Mono<Resource> getAudioV3(@RequestHeader("Range") String range, HttpServletRequest request){
         System.out.println(range);
-        String urlTail = new AntPathMatcher().extractPathWithinPattern( "audiov3/**", request.getRequestURI() );
+        String urlTail = new AntPathMatcher().extractPathWithinPattern( "api/streaming/audiov3/**", request.getRequestURI() );
         return streamingService.getAudioV3(urlTail);
     }
 }
