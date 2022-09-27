@@ -26,7 +26,7 @@ public class DBDictionary {
 
         Connection conn = credentials.getConnection();
 
-        String SQL_QUERY = "SELECT * FROM " + tableName +" offset " + offset + " limit " + noOfRecords;
+        String SQL_QUERY = "SELECT * FROM " + tableName +" order by id_rol offset " + offset + " limit " + noOfRecords;
         ResultSet rs = conn.prepareStatement(SQL_QUERY).executeQuery();
 
         while (rs.next()) {
@@ -92,8 +92,8 @@ public class DBDictionary {
 
     public boolean updateRegisterDictionary(DictionaryRequest dictionaryRequest, String tableName) throws SQLException {
         Connection conn = credentials.getConnection();
-        String SQL_INSERT = "UPDATE " + tableName +" SET clave = ?, codigo = ?, descripcion = ?, traduccion = ?, extra = ? WHERE id_rol="+dictionaryRequest.getId();
-        PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT);
+        String SQL_UPDATE = "UPDATE " + tableName +" SET clave = ?, codigo = ?, descripcion = ?, traduccion = ?, extra = ? WHERE id_rol="+dictionaryRequest.getId();
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
         preparedStatement.setObject(1, dictionaryRequest.getClave());
         preparedStatement.setString(2, dictionaryRequest.getCode());
         preparedStatement.setString(3, dictionaryRequest.getDescription());
@@ -104,10 +104,10 @@ public class DBDictionary {
 
         conn.close();
         if(rs>0){
-            System.out.println("registro insertado en base de datos");
+            System.out.println("registro actualizado en base de datos");
             return true;
         } else{
-            System.out.println("No se pudo insertar el registro en base de datos");
+            System.out.println("No se pudo actualizar el registro en base de datos");
             return false;
         }
     }
