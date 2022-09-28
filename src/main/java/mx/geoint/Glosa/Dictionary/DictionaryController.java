@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = {"http://localhost:3009", "http://localhost:3000", "http://10.2.102.202:3000/","http://10.2.102.182"})
+@CrossOrigin(origins = {"http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182"})
 @RestController
 @RequestMapping(path="api/dictionary")
 public class DictionaryController {

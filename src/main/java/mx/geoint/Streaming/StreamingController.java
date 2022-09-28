@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
 
 import javax.servlet.http.HttpServletRequest;
 
-@CrossOrigin(origins = {"http://localhost:3009", "http://localhost:3000", "http://10.2.102.202:3000/", "http://10.2.102.182"})
+@CrossOrigin(origins = {"http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009", "http://10.2.102.182"})
 @RestController
 @RequestMapping(path="api/streaming")
 public class StreamingController {

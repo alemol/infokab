@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:3009","http://localhost:3000", "http://10.2.102.202:3000/","http://10.2.102.182"})
+@CrossOrigin(origins = {"http://localhost:3009, http://localhost:3009","http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182"})
 @RestController
 @RequestMapping(path = "api/glosa")
 public class GlosaController {
