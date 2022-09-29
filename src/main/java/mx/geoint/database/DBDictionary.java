@@ -19,15 +19,17 @@ public class DBDictionary {
         this.credentials = new Credentials();
     }
 
-    public DictionaryResponse ListRegistersDictionary(int offset, int noOfRecords, String tableName) throws SQLException {
+    public DictionaryResponse ListRegistersDictionary(int offset, int noOfRecords, String Search, String tableName) throws SQLException {
         ArrayList<DictionaryDoc> results = new ArrayList<DictionaryDoc>();
         DictionaryDoc dictionaryDoc = null;
         int totalHits = 0;
 
         Connection conn = credentials.getConnection();
 
-        String SQL_QUERY = "SELECT * FROM " + tableName +" order by id_rol offset " + offset + " limit " + noOfRecords;
-        ResultSet rs = conn.prepareStatement(SQL_QUERY).executeQuery();
+        String SQL_QUERY = "SELECT * FROM " + tableName +" WHERE clave like concat(?, '%') order by id_rol offset " + offset + " limit " + noOfRecords;
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
+        preparedStatement.setObject(1, Search);
+        ResultSet rs = preparedStatement.executeQuery();
 
         while (rs.next()) {
             dictionaryDoc = new DictionaryDoc();

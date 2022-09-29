@@ -16,9 +16,15 @@ public class DictionaryService {
         this.dbDictionary = new DBDictionary();
     }
 
-    public DictionaryResponse getList(int page, int recordsPerPage, String tableName) throws SQLException {
-        return dbDictionary.ListRegistersDictionary(page, recordsPerPage, tableName);
+    public DictionaryResponse getRegisters(DictionaryPaginate dictionaryPaginate, String tableName) throws SQLException {
+        String search = dictionaryPaginate.getSearch();
+        int page = dictionaryPaginate.getPage();
+        int recordsPerPage = dictionaryPaginate.getRecord();
+
+        int currentPage = (page - 1) * recordsPerPage;
+        return dbDictionary.ListRegistersDictionary(currentPage, recordsPerPage, search, tableName);
     }
+
     public boolean deleteRegister(int register, String tableName) throws SQLException {
         return dbDictionary.deleteRegisterDictionary(register,tableName);
     }
