@@ -26,7 +26,7 @@ public class DBDictionary {
 
         Connection conn = credentials.getConnection();
 
-        String SQL_QUERY = "SELECT * FROM " + tableName +" WHERE clave like concat(?, '%') order by id_rol offset " + offset + " limit " + noOfRecords;
+        String SQL_QUERY = "SELECT * FROM " + tableName +" WHERE clave like concat(?, '%') order by id offset " + offset + " limit " + noOfRecords;
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         preparedStatement.setObject(1, Search);
         ResultSet rs = preparedStatement.executeQuery();
@@ -59,7 +59,7 @@ public class DBDictionary {
 
     public boolean deleteRegisterDictionary(int register, String tableName) throws SQLException {
         Connection conn = credentials.getConnection();
-        String SQL_QUERY = "DELETE FROM " + tableName +" WHERE id_rol="+register;
+        String SQL_QUERY = "DELETE FROM " + tableName +" WHERE id="+register;
         int rs = conn.prepareStatement(SQL_QUERY).executeUpdate();
 
         conn.close();
@@ -97,7 +97,7 @@ public class DBDictionary {
 
     public boolean updateRegisterDictionary(DictionaryRequest dictionaryRequest, String tableName) throws SQLException {
         Connection conn = credentials.getConnection();
-        String SQL_UPDATE = "UPDATE " + tableName +" SET clave = ?, codigo = ?, descripcion = ?, traduccion = ?, extra = ? WHERE id_rol="+dictionaryRequest.getId();
+        String SQL_UPDATE = "UPDATE " + tableName +" SET clave = ?, codigo = ?, descripcion = ?, traduccion = ?, extra = ? WHERE id="+dictionaryRequest.getId();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
         preparedStatement.setObject(1, dictionaryRequest.getClave());
         preparedStatement.setString(2, dictionaryRequest.getCode());
