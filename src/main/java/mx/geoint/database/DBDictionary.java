@@ -43,7 +43,10 @@ public class DBDictionary {
         }
         rs.close();
 
-        rs = conn.prepareStatement("SELECT count(*) from bases").executeQuery();
+        SQL_QUERY = "SELECT count(*) FROM "+tableName+" WHERE clave like concat(?, '%')";
+        preparedStatement = conn.prepareStatement(SQL_QUERY);
+        preparedStatement.setObject(1, Search);
+        rs = preparedStatement.executeQuery();
         if (rs.next()) {
             totalHits = rs.getInt(1);
         }
