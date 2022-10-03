@@ -1,11 +1,13 @@
 package mx.geoint.Model;
 
+import java.util.ArrayList;
+
 public class Glosa {
     private int id;
     private String word;
-    private Object steps;
+    private ArrayList<GlosaStep> steps;
 
-    public Glosa(int id, String word, Object steps) {
+    public Glosa(int id, String word, ArrayList<GlosaStep> steps) {
         this.id = id;
         this.word = word;
         this.steps = steps;
@@ -27,11 +29,11 @@ public class Glosa {
         this.word = word;
     }
 
-    public Object getSteps() {
+    public ArrayList<GlosaStep> getSteps() {
         return steps;
     }
 
-    public void setSteps(Object steps) {
+    public void setSteps(ArrayList<GlosaStep> steps) {
         this.steps = steps;
     }
 }

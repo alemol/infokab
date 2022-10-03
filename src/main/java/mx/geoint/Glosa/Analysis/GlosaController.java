@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,9 +37,11 @@ public class GlosaController {
 
     @RequestMapping(path="/analysis", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ArrayList<Glosa>> analysis(@RequestBody Map<String, String> body) throws IOException {
+    public ResponseEntity<ArrayList<Glosa>> analysis(@RequestBody Map<String, String> body) throws IOException, SQLException {
         System.out.println("data:"+body.get("text"));
-        System.out.println("data:"+body.get("uuid"));
-        return ResponseEntity.status(HttpStatus.OK).body(new ArrayList<Glosa>());
+        //System.out.println("data:"+body.get("uuid"));
+        String text = body.get("text");
+        ArrayList<Glosa> response = glosaService.textProcess(text);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

@@ -1,10 +1,12 @@
 package mx.geoint.database;
 
+import com.google.gson.JsonArray;
 import mx.geoint.Glosa.Dictionary.DictionaryRequest;
 import mx.geoint.Model.DictionaryDoc;
 import mx.geoint.Response.DictionaryResponse;
 import mx.geoint.Response.SearchResponse;
 import mx.geoint.User.User;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -115,5 +117,24 @@ public class DBDictionary {
             System.out.println("No se pudo actualizar el registro en base de datos");
             return false;
         }
+    }
+
+    public ArrayList<String> textProcess(String text) throws SQLException {
+        ArrayList<String> arrayList = new ArrayList<>();
+        Connection conn = credentials.getConnection();
+        String SQL_QUERY = QueryTextProcess.getQuery();
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
+
+        for(int i = 1; i <= 60; i++) {
+            preparedStatement.setString(i, text);
+        }
+        ResultSet rs = preparedStatement.executeQuery();
+
+        while (rs.next()) {
+            arrayList.add(rs.getString(2));
+        }
+
+        conn.close();
+        return arrayList;
     }
 }
