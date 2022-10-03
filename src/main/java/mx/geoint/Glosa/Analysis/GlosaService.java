@@ -1,14 +1,12 @@
 package mx.geoint.Glosa.Analysis;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import mx.geoint.Model.Glosa;
 import mx.geoint.Model.GlosaStep;
+import mx.geoint.ParseXML.ParseXML;
+import mx.geoint.ParseXML.Tier;
 import mx.geoint.database.DBDictionary;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,7 +14,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -65,7 +62,42 @@ public class GlosaService {
             glosaSteps.add(glosaStep);
         }
         result_list.add(new Glosa(1, annotation, glosaSteps));
-        System.out.println(result_list.get(0).getSteps().toString());
         return result_list;
+    }
+
+    public static ArrayList<Tier> getAnnotations(String name){
+        String path = "";
+        String tier_id_transcripcion = "";
+
+        switch (name){
+            case "04_02_01062022_11_SCY_C_2_2":
+                //path = "Pablo Balam 1_RIKT.eaf";
+                path = "04_02_01062022_11_SCY_C_2_2.eaf";
+                tier_id_transcripcion = "Transcripcion ";
+                break;
+            case "04_02_01072022_11_SCY_C_2_2":
+                //path = "Juan Tuyub_FCA.eaf";
+                path = "04_02_01072022_11_SCY_C_2_2.eaf";
+                tier_id_transcripcion = "Transcripción Ortográfico";
+                break;
+            case "04_02_01082022_11_SCY_C_2_2":
+                //path = "22-08-2022 ALONDRA-XOHUAYAN_IPC respaldo.eaf";
+                path = "04_02_01072022_11_SCY_C_2_2.eaf";
+                tier_id_transcripcion = "transpcion ortografica";
+                break;
+            case "04_02_01092022_11_SCY_C_2_2":
+                //path = "2015-01-09_1650_Entrevista_datos_espontáneos_Clementina.eaf";
+                path = "04_02_01092022_11_SCY_C_2_2.eaf";
+                tier_id_transcripcion = "oracion";
+                break;
+        }
+
+        return new ArrayList<>(getTierDinamic("./eafs/"+path, tier_id_transcripcion));
+    }
+
+    static List<Tier> getTierDinamic(String path_eaf, String tier_id) {
+        ParseXML parseXML = new ParseXML(path_eaf, tier_id);
+        parseXML.read();
+        return parseXML.getTier();
     }
 }
