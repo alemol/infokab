@@ -52,7 +52,7 @@ public class GlosaService {
     }
 
     public static ArrayList<Glosa> textProcess(String annotation) throws SQLException {
-        String[] textList = annotation.split(" ");
+        String[] textList = annotation.trim().replaceAll("\\s{2,}", " ").split(" ");
         ArrayList<Glosa> result_list = new ArrayList<>();
         ArrayList<GlosaStep> glosaSteps = new ArrayList<>();
         int i = 0;
@@ -72,7 +72,7 @@ public class GlosaService {
         int i = 0;
         for (String annotation: glosaRequest.getAnnotations()){
             i += 1;
-            String[] textList = annotation.split(" ");
+            String[] textList = annotation.trim().replaceAll("\\s{2,}", " ").split(" ");
             ArrayList<GlosaStep> glosaSteps = new ArrayList<>();
             int j = 0;
 
