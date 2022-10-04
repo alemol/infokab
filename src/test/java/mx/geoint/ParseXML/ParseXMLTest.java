@@ -2,7 +2,11 @@ package mx.geoint.ParseXML;
 
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import java.io.IOException;
 import java.text.Normalizer;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -244,7 +248,7 @@ class ParseXMLTest {
         System.out.println(jsonString);
     }
 
-    void testXMLFiles(String number_case) {
+    void testXMLFiles(String number_case) throws ParserConfigurationException, IOException, TransformerException, SAXException {
         String path = "";
         String tier_id_fonetico = "";
         String tier_id_transcripcion = "";
@@ -295,11 +299,27 @@ class ParseXMLTest {
     }
 
     @Test
-    void runTestFile() {
+    void runTestFile() throws ParserConfigurationException, IOException, TransformerException, SAXException {
         testXMLFiles("1");
         testXMLFiles("2");
         testXMLFiles("3");
         testXMLFiles("4");
     }
 
+    void setTierDinamic(String tier_id, String path_eaf) throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        String original_path_name = path_eaf;
+        String normalize = Normalizer.normalize(original_path_name, Normalizer.Form.NFD);
+        String path_name = normalize.replaceAll("[^\\p{ASCII}]", "");
+        ParseXML parseXML = new ParseXML(path_name, tier_id);
+        parseXML.setElement();
+    }
+
+    @Test
+    void runTestAddAnnotationInFile() throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        String path = "Juan Tuyub_FCA_GLOSA.eaf";
+        String tier_id_fonetico= "Transcripción Fonético ";
+        String tier_id_transcripcion = "Transcripción Ortográfico";
+
+        setTierDinamic(tier_id_transcripcion,"src/test/resources/"+path);
+    }
 }
