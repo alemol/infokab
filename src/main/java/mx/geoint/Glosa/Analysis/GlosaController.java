@@ -1,6 +1,7 @@
 package mx.geoint.Glosa.Analysis;
 
 import mx.geoint.Model.Glosa;
+import mx.geoint.Model.GlosaRequest;
 import mx.geoint.ParseXML.Tier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,13 @@ public class GlosaController {
         //System.out.println("data:"+body.get("uuid"));
         String text = body.get("text");
         ArrayList<Glosa> response = glosaService.textProcess(text);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @RequestMapping(path="/analysis/list", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ArrayList<Glosa>> arrayAnalisys(@RequestBody GlosaRequest glosaRequest) throws IOException, SQLException {
+        ArrayList<Glosa> response = glosaService.ArrayProcess(glosaRequest);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 

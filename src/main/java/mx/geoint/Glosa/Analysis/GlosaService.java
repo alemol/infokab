@@ -2,6 +2,7 @@ package mx.geoint.Glosa.Analysis;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import mx.geoint.Model.Glosa;
+import mx.geoint.Model.GlosaRequest;
 import mx.geoint.Model.GlosaStep;
 import mx.geoint.ParseXML.ParseXML;
 import mx.geoint.ParseXML.Tier;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -62,6 +64,27 @@ public class GlosaService {
             glosaSteps.add(glosaStep);
         }
         result_list.add(new Glosa(1, annotation, glosaSteps));
+        return result_list;
+    }
+
+    public static ArrayList<Glosa> ArrayProcess(GlosaRequest glosaRequest) throws SQLException {
+        ArrayList<Glosa> result_list = new ArrayList<>();
+        int i = 0;
+        for (String annotation: glosaRequest.getAnnotations()){
+            i += 1;
+            String[] textList = annotation.split(" ");
+            ArrayList<GlosaStep> glosaSteps = new ArrayList<>();
+            int j = 0;
+
+            for (String text : textList){
+                j += 1;
+                ArrayList<String> result = dbDictionary.textProcess(text);
+                GlosaStep glosaStep = new GlosaStep(j, text, result);
+                glosaSteps.add(glosaStep);
+            }
+
+            result_list.add(new Glosa(i, annotation, glosaSteps));
+        }
         return result_list;
     }
 
