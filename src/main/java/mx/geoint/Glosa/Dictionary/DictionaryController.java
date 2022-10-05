@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = {"http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182"})
+@CrossOrigin(origins = {"http://infokaab.com/","http://infokaab.com.mx/","http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182"})
 @RestController
 @RequestMapping(path="api/dictionary")
 public class DictionaryController {
@@ -22,22 +22,10 @@ public class DictionaryController {
         this.dictionaryService = dictionaryService;
     }
 
-    @RequestMapping(value={"/bases/list/", "/bases/list/{selectPage}"}, method = RequestMethod.GET)
+    @RequestMapping(path="/bases/list", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<DictionaryResponse> listBases(@PathVariable Optional<Integer> selectPage) throws SQLException {
-        int page = 1;
-        int recordsPerPage = 10;
-        if (selectPage.isPresent()) {
-            if(selectPage.get() <= 0){
-                page = 1;
-            } else{
-                page = selectPage.get();
-            }
-        }
-
-        int currentPage = (page - 1) * recordsPerPage;
-
-        DictionaryResponse dictionaryResponse = dictionaryService.getList(currentPage, recordsPerPage, "bases");
+    public ResponseEntity<DictionaryResponse> listBases(@RequestBody DictionaryPaginate dictionaryPaginate) throws SQLException {
+        DictionaryResponse dictionaryResponse = dictionaryService.getRegisters(dictionaryPaginate, "bases");
         return ResponseEntity.status(HttpStatus.OK).body(dictionaryResponse);
     }
 
@@ -61,22 +49,10 @@ public class DictionaryController {
         return dictionaryService.updateRegister(dictionaryRequest, "bases");
     }
 
-    @RequestMapping(value={"/prefixes/list/", "/prefixes/list/{selectPage}"}, method = RequestMethod.GET)
+    @RequestMapping(path="/prefixes/list", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<DictionaryResponse> listPrefixes(@PathVariable Optional<Integer> selectPage) throws SQLException {
-        int page = 1;
-        int recordsPerPage = 10;
-        if (selectPage.isPresent()) {
-            if(selectPage.get() <= 0){
-                page = 1;
-            } else{
-                page = selectPage.get();
-            }
-        }
-
-        int currentPage = (page - 1) * recordsPerPage;
-
-        DictionaryResponse dictionaryResponse = dictionaryService.getList(currentPage, recordsPerPage, "prefijos");
+    public ResponseEntity<DictionaryResponse> listPrefixes(@RequestBody DictionaryPaginate dictionaryPaginate) throws SQLException {
+        DictionaryResponse dictionaryResponse = dictionaryService.getRegisters(dictionaryPaginate, "prefijos");
         return ResponseEntity.status(HttpStatus.OK).body(dictionaryResponse);
     }
 
@@ -99,22 +75,10 @@ public class DictionaryController {
         System.out.println("update Register");
         return dictionaryService.updateRegister(dictionaryRequest, "prefijos");
     }
-    @RequestMapping(value={"/suffixes/list/", "/suffixes/list/{selectPage}"}, method = RequestMethod.GET)
+    @RequestMapping(path="/suffixes/list", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<DictionaryResponse> listSuffixes(@PathVariable Optional<Integer> selectPage) throws SQLException {
-        int page = 1;
-        int recordsPerPage = 10;
-        if (selectPage.isPresent()) {
-            if(selectPage.get() <= 0){
-                page = 1;
-            } else{
-                page = selectPage.get();
-            }
-        }
-
-        int currentPage = (page - 1) * recordsPerPage;
-
-        DictionaryResponse dictionaryResponse = dictionaryService.getList(currentPage, recordsPerPage, "sufijos");
+    public ResponseEntity<DictionaryResponse> listSuffixes(@RequestBody DictionaryPaginate dictionaryPaginate) throws SQLException {
+        DictionaryResponse dictionaryResponse = dictionaryService.getRegisters(dictionaryPaginate, "sufijos");
         return ResponseEntity.status(HttpStatus.OK).body(dictionaryResponse);
     }
 

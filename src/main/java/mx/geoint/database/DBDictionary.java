@@ -1,10 +1,12 @@
 package mx.geoint.database;
 
+import com.google.gson.JsonArray;
 import mx.geoint.Glosa.Dictionary.DictionaryRequest;
 import mx.geoint.Model.DictionaryDoc;
 import mx.geoint.Response.DictionaryResponse;
 import mx.geoint.Response.SearchResponse;
 import mx.geoint.User.User;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -19,15 +21,17 @@ public class DBDictionary {
         this.credentials = new Credentials();
     }
 
-    public DictionaryResponse ListRegistersDictionary(int offset, int noOfRecords, String tableName) throws SQLException {
+    public DictionaryResponse ListRegistersDictionary(int offset, int noOfRecords, String Search, String tableName) throws SQLException {
         ArrayList<DictionaryDoc> results = new ArrayList<DictionaryDoc>();
         DictionaryDoc dictionaryDoc = null;
         int totalHits = 0;
 
         Connection conn = credentials.getConnection();
 
-        String SQL_QUERY = "SELECT * FROM " + tableName +" order by id_rol offset " + offset + " limit " + noOfRecords;
-        ResultSet rs = conn.prepareStatement(SQL_QUERY).executeQuery();
+        String SQL_QUERY = "SELECT * FROM " + tableName +" WHERE clave like concat(?, '%') order by id offset " + offset + " limit " + noOfRecords;
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
+        preparedStatement.setObject(1, Search);
+        ResultSet rs = preparedStatement.executeQuery();
 
         while (rs.next()) {
             dictionaryDoc = new DictionaryDoc();
@@ -41,7 +45,10 @@ public class DBDictionary {
         }
         rs.close();
 
-        rs = conn.prepareStatement("SELECT count(*) from bases").executeQuery();
+        SQL_QUERY = "SELECT count(*) FROM "+tableName+" WHERE clave like concat(?, '%')";
+        preparedStatement = conn.prepareStatement(SQL_QUERY);
+        preparedStatement.setObject(1, Search);
+        rs = preparedStatement.executeQuery();
         if (rs.next()) {
             totalHits = rs.getInt(1);
         }
@@ -54,7 +61,7 @@ public class DBDictionary {
 
     public boolean deleteRegisterDictionary(int register, String tableName) throws SQLException {
         Connection conn = credentials.getConnection();
-        String SQL_QUERY = "DELETE FROM " + tableName +" WHERE id_rol="+register;
+        String SQL_QUERY = "DELETE FROM " + tableName +" WHERE id="+register;
         int rs = conn.prepareStatement(SQL_QUERY).executeUpdate();
 
         conn.close();
@@ -92,7 +99,7 @@ public class DBDictionary {
 
     public boolean updateRegisterDictionary(DictionaryRequest dictionaryRequest, String tableName) throws SQLException {
         Connection conn = credentials.getConnection();
-        String SQL_UPDATE = "UPDATE " + tableName +" SET clave = ?, codigo = ?, descripcion = ?, traduccion = ?, extra = ? WHERE id_rol="+dictionaryRequest.getId();
+        String SQL_UPDATE = "UPDATE " + tableName +" SET clave = ?, codigo = ?, descripcion = ?, traduccion = ?, extra = ? WHERE id="+dictionaryRequest.getId();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
         preparedStatement.setObject(1, dictionaryRequest.getClave());
         preparedStatement.setString(2, dictionaryRequest.getCode());
@@ -110,5 +117,24 @@ public class DBDictionary {
             System.out.println("No se pudo actualizar el registro en base de datos");
             return false;
         }
+    }
+
+    public ArrayList<String> textProcess(String text) throws SQLException {
+        ArrayList<String> arrayList = new ArrayList<>();
+        Connection conn = credentials.getConnection();
+        String SQL_QUERY = QueryTextProcess.getQuery();
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
+
+        for(int i = 1; i <= 60; i++) {
+            preparedStatement.setString(i, text);
+        }
+        ResultSet rs = preparedStatement.executeQuery();
+
+        while (rs.next()) {
+            arrayList.add(rs.getString(2));
+        }
+
+        conn.close();
+        return arrayList;
     }
 }
