@@ -22,7 +22,7 @@ public class UploadFilesService {
      * @return boolean, respuesta del servicio
      * @throws IOException
      */
-    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion, String uuid, String projectName) throws IOException {
-        return uploadFiles.uploadFile(eaf, multimedia, autorizacion, uuid, projectName);
+    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion , String uuid, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds) throws IOException {
+        return uploadFiles.uploadFile(eaf, multimedia, autorizacion, uuid, projectName, date, hablantes, ubicacion, radio, circleBounds);
     }
 }

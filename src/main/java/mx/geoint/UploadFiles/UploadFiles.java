@@ -41,7 +41,7 @@ public class UploadFiles {
      * @return boolean, respuesta de la carga de archivos
      * @throws IOException
      */
-    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion, String uuid, String projectName) throws IOException {
+    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion, String uuid, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds) throws IOException {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
         //int id_project = 0; //inicializa variable de id de de proyecto
@@ -53,11 +53,16 @@ public class UploadFiles {
             return pathSystem.NOT_UPLOAD_MULTIMEDIA_FILE;
         }
 
-        if(!saveFile(autorizacion, basePath, baseProjectName+"_autorizacion")){
-            return pathSystem.NOT_UPLOAD_MULTIMEDIA_FILE;
+        if(autorizacion==null){
+            System.out.println("sin archivo de autorizacion");
+        }else{
+            if(!saveFile(autorizacion, basePath, baseProjectName+"_autorizacion")){
+                return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
+            }
         }
 
-        int id_project = database.createProject(uuid, basePath, baseProjectName); //inserta un registro del proyecto en la base de datos
+
+        int id_project = database.createProject(uuid, basePath, baseProjectName, date, hablantes, ubicacion, radio, circleBounds); //inserta un registro del proyecto en la base de datos
         System.out.println("ID de proyecto generado: "+id_project);
         if(id_project > 0){
             System.out.println("Proyecto guardado en base de datos");

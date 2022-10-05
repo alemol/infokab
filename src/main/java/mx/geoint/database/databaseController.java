@@ -22,7 +22,7 @@ public class databaseController {
         props.setProperty("user",this.DBuser);
         props.setProperty("password",this.DBpassword);
     }
-    public int createProject(String uuid, String basePath, String projectName){
+    public int createProject(String uuid, String basePath, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds){
         System.out.println("createProject");
         int id_project = 0;
         //---guardado a base de datos
@@ -37,7 +37,8 @@ public class databaseController {
             Connection conn = DriverManager.getConnection(this.urlConnection, props);
             System.out.println(conn);
 
-            String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo,fecha_creacion) VALUES (?,?,?,?) RETURNING id_proyecto";
+            String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id_proyecto";
+
 
             PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setObject(1, UUID.fromString(uuid));
@@ -47,6 +48,12 @@ public class databaseController {
             preparedStatement.setString(3, basePath.toString());
             //preparedStatement.setString(4, contentType);
             preparedStatement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+
+            preparedStatement.setString(5, date);
+            preparedStatement.setString(6, hablantes);
+            preparedStatement.setString(7, ubicacion);
+            preparedStatement.setInt(8, Integer.parseInt(radio));
+            preparedStatement.setString(9, circleBounds);
 
             preparedStatement.execute();
             //int row = preparedStatement.executeUpdate();
