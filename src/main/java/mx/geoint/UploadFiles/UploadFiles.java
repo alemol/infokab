@@ -4,7 +4,6 @@ import mx.geoint.ElanXmlDigester.ThreadElanXmlDigester;
 import mx.geoint.pathSystem;
 import mx.geoint.database.databaseController;
 import org.apache.commons.io.FilenameUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,7 +13,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Date;
-import java.util.List;
 
 
 @Component
@@ -35,14 +33,15 @@ public class UploadFiles {
 
     /**
      * Funcion principal para la carga de archivos
-     * @param eaf MultipartFile, Archivo de anotaciones
-     * @param multimedia MultipartFile, Archivo de multimedia audio o video
-     * @param uuid String, Identificador de usuario
+     *
+     * @param eaf         MultipartFile, Archivo de anotaciones
+     * @param multimedia  MultipartFile, Archivo de multimedia audio o video
+     * @param uuid        String, Identificador de usuario
      * @param projectName String, Nombre del proyecto
      * @return boolean, respuesta de la carga de archivos
      * @throws IOException
      */
-    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, String uuid, String projectName) throws IOException {
+    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion, String uuid, String projectName) throws IOException {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
         //int id_project = 0; //inicializa variable de id de de proyecto
@@ -51,6 +50,10 @@ public class UploadFiles {
         }
 
         if(!saveFile(multimedia, basePath, baseProjectName)){
+            return pathSystem.NOT_UPLOAD_MULTIMEDIA_FILE;
+        }
+
+        if(!saveFile(autorizacion, basePath, baseProjectName+"_autorizacion")){
             return pathSystem.NOT_UPLOAD_MULTIMEDIA_FILE;
         }
 

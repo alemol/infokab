@@ -31,8 +31,14 @@ public class UploadFilesController {
      */
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity created(@RequestParam MultipartFile eaf, @RequestParam MultipartFile multimedia, @RequestParam String uuid, @RequestParam String projectName) throws IOException {
+    public ResponseEntity created(@RequestParam MultipartFile eaf, @RequestParam MultipartFile multimedia, @RequestParam String uuid, @RequestParam String projectName, @RequestParam MultipartFile autorizacion, @RequestParam String hablantes, @RequestParam String ubicacion, @RequestParam String radio, @RequestParam String circleBounds) throws IOException {
         Date startDate = new Date();
+
+        System.out.println(autorizacion);
+        System.out.println(hablantes);
+        System.out.println(radio);
+        System.out.println(circleBounds);
+        System.out.println(ubicacion);
 
         if (eaf.isEmpty() || multimedia.isEmpty()) {
             return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere 1 archivo .eaf y 1 archivo multimedia", false);
@@ -47,7 +53,7 @@ public class UploadFilesController {
         }
 
         long uploadTime = (new Date()).getTime();
-        Number codeStatus = uploadFilesService.uploadFile(eaf, multimedia, uuid, projectName+"_"+uploadTime);
+        Number codeStatus = uploadFilesService.uploadFile(eaf, multimedia, autorizacion,uuid, projectName+"_"+uploadTime);
 
         Date endDate = new Date();
         long difference_In_Time = endDate.getTime() - startDate.getTime();
