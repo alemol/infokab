@@ -105,7 +105,7 @@ public class GlosaService {
                 break;
             case "04_02_01082022_11_SCY_C_2_2":
                 //path = "22-08-2022 ALONDRA-XOHUAYAN_IPC respaldo.eaf";
-                path = "04_02_01072022_11_SCY_C_2_2.eaf";
+                path = "04_02_01082022_11_SCY_C_2_2.eaf";
                 tier_id_transcripcion = "transpcion ortografica";
                 break;
             case "04_02_01092022_11_SCY_C_2_2":

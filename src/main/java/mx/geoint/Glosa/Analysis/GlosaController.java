@@ -47,7 +47,7 @@ public class GlosaController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @RequestMapping(path="/proyects", method = RequestMethod.POST)
+    @RequestMapping(path="/projects", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ArrayList<String>> getFiles() throws IOException {
         ArrayList<String> arrayList = new ArrayList<>();
@@ -61,8 +61,8 @@ public class GlosaController {
     @RequestMapping(path="/annotations", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ArrayList<Tier>> getAnnotations(@RequestBody Map<String, String> body) throws IOException {
-        String proyect = body.get("proyect");
-        ArrayList<Tier> arrayList = glosaService.getAnnotations(proyect);
+        String project = body.get("project");
+        ArrayList<Tier> arrayList = glosaService.getAnnotations(project);
         return ResponseEntity.status(HttpStatus.OK).body(arrayList);
     }
 }
