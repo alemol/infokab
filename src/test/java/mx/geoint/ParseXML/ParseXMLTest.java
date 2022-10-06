@@ -1,6 +1,7 @@
 package mx.geoint.ParseXML;
 
 import com.google.gson.Gson;
+import mx.geoint.Model.GlosaStep;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
@@ -8,6 +9,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.text.Normalizer;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 class ParseXMLTest {
@@ -307,19 +309,21 @@ class ParseXMLTest {
     }
 
     void setTierDinamic(String tier_id, String path_eaf) throws ParserConfigurationException, IOException, TransformerException, SAXException {
-        String original_path_name = path_eaf;
-        String normalize = Normalizer.normalize(original_path_name, Normalizer.Form.NFD);
-        String path_name = normalize.replaceAll("[^\\p{ASCII}]", "");
-        ParseXML parseXML = new ParseXML(path_name, tier_id);
-        parseXML.setElement();
+        ArrayList<GlosaStep> glosaSteps = new ArrayList<>();
+        glosaSteps.add(new GlosaStep(1, "to'one'", null, "(to'on)+e' = 1PL[to'on]+D3/TOP/FF"));
+        glosaSteps.add(new GlosaStep(2, "ma'alobon", null, null));
+        glosaSteps.add(new GlosaStep(3, "bejla'e'", null, "(bejla'e') = hoy[bejla'e']"));
+
+        ParseXML parseXML = new ParseXML(path_eaf, tier_id);
+        parseXML.writeElement("a284", glosaSteps);
     }
 
     @Test
     void runTestAddAnnotationInFile() throws ParserConfigurationException, IOException, TransformerException, SAXException {
-        String path = "Juan Tuyub_FCA_GLOSA.eaf";
+        String path = "04_02_01082022_11_SCY_C_2_2.eaf";
         String tier_id_fonetico= "Transcripción Fonético ";
         String tier_id_transcripcion = "Transcripción Ortográfico";
 
-        setTierDinamic(tier_id_transcripcion,"src/test/resources/"+path);
+        setTierDinamic(tier_id_transcripcion,"./eafs/"+path);
     }
 }

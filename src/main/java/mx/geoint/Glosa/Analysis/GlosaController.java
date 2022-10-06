@@ -1,17 +1,20 @@
 package mx.geoint.Glosa.Analysis;
 
 import mx.geoint.Model.Glosa;
+import mx.geoint.Model.GlosaAnnotationsRequest;
 import mx.geoint.Model.GlosaRequest;
 import mx.geoint.ParseXML.Tier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 
-@CrossOrigin(origins = {"http://infokaab.com/","http://infokaab.com.mx/","http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182"})
 @RestController
 @RequestMapping(path = "api/glosa")
 public class GlosaController {
@@ -21,7 +24,11 @@ public class GlosaController {
         this.glosaService = glosaService;
     }
 
-
+    /**
+     * Api para ejectuar el script de python
+     * @return ArrayList<Glosa> arreglo del modelo glosa
+     * @throws IOException
+     */
     @RequestMapping(path="/script", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ArrayList<Glosa>> created() throws IOException {
@@ -30,7 +37,13 @@ public class GlosaController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-
+    /**
+     * Api para análisis de una oracion o anotación
+     * @param body text a procesas y indentificador del usuario
+     * @return ArrayList<Glosa> arreglo del modelo glosa
+     * @throws IOException
+     * @throws SQLException
+     */
     @RequestMapping(path="/analysis", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ArrayList<Glosa>> analysis(@RequestBody Map<String, String> body) throws IOException, SQLException {
@@ -40,6 +53,13 @@ public class GlosaController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    /**
+     * Api para análisis de una lista de oraciones o anotaciones
+     * @param glosaRequest
+     * @return
+     * @throws IOException
+     * @throws SQLException
+     */
     @RequestMapping(path="/analysis/list", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ArrayList<Glosa>> arrayAnalisys(@RequestBody GlosaRequest glosaRequest) throws IOException, SQLException {
@@ -47,6 +67,11 @@ public class GlosaController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    /**
+     * Api para obtener una lista de proyecto predeterminados
+     * @return ArraList<String> Lista de los nombre de los archivos
+     * @throws IOException
+     */
     @RequestMapping(path="/projects", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ArrayList<String>> getFiles() throws IOException {
@@ -58,11 +83,33 @@ public class GlosaController {
         return ResponseEntity.status(HttpStatus.OK).body(arrayList);
     }
 
+    /**
+     * Api para obtener las oraciones o anotaciones de un proyecto predeterminado
+     * @param body
+     * @return ArrayList<Tier> Lista de las oraciones o anotaciones obtenidas del archivos eaf de un proyecto predeterminado
+     * @throws IOException
+     */
     @RequestMapping(path="/annotations", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ArrayList<Tier>> getAnnotations(@RequestBody Map<String, String> body) throws IOException {
         String project = body.get("project");
         ArrayList<Tier> arrayList = glosaService.getAnnotations(project);
         return ResponseEntity.status(HttpStatus.OK).body(arrayList);
+    }
+
+    /**
+     * Api para el guardado del análisis de una oración o anotación al archivo eaf correspondiente de un proyecto
+     * @param glosaAnnotationsRequest
+     * @return
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws TransformerException
+     * @throws SAXException
+     */
+    @RequestMapping(path="/save/annotation", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Boolean> saveAnnotations(@RequestBody GlosaAnnotationsRequest glosaAnnotationsRequest) throws IOException, ParserConfigurationException, TransformerException, SAXException {
+        Boolean answer = glosaService.saveAnnotation(glosaAnnotationsRequest);
+        return ResponseEntity.status(HttpStatus.OK).body(answer);
     }
 }
