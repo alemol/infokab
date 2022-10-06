@@ -6,7 +6,7 @@ public class GlosaStep {
     private int id;
     private String word;
     private ArrayList<String> parsing;
-    private String select;
+    private String select = "";
 
     public GlosaStep(){ }
     public GlosaStep(int id, String word, ArrayList<String> parsing){

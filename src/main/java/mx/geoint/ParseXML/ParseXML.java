@@ -71,7 +71,7 @@ public class ParseXML {
      * @throws IOException
      * @throws SAXException
      */
-    public void writeElement(String annotation_ref, ArrayList<GlosaStep> steps) throws ParserConfigurationException, TransformerException, IOException, SAXException {
+    public void writeElement(String annotation_ref, String annotation_tier_ref, ArrayList<GlosaStep> steps) throws ParserConfigurationException, TransformerException, IOException, SAXException {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document document = db.parse(new File(filePath));
@@ -91,6 +91,7 @@ public class ParseXML {
 
             REF_ANNOTATION.setAttribute("ANNOTATION_ID", "g"+String.valueOf(annotation_ref));
             REF_ANNOTATION.setAttribute("ANNOTATION_WORD", String.valueOf(step.getId()));
+            REF_ANNOTATION.setAttribute("ANNOTATION_TIER_REF", String.valueOf(annotation_tier_ref));
             REF_ANNOTATION.setAttribute("ANNOTATION_REF", String.valueOf(annotation_ref));
 
             ANNOTATION_VALUE.appendChild(document.createTextNode(step.getSelect()));
