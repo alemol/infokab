@@ -82,9 +82,13 @@ public class ParseXML {
             TIER = document.createElement("TIER");
             TIER.setAttribute("LINGUISTIC_TYPE_REF", "Glosado");
             root.appendChild(TIER);
+        }else{
+            removeAnnotationinTier(TIER, String.valueOf(annotation_tier_ref));
         }
 
         Element ANNOTATION = document.createElement("ANNOTATION");
+        ANNOTATION.setAttribute("ANNOTATION_TIER_REF", String.valueOf(annotation_tier_ref));
+
         for (GlosaStep step: steps){
             Element REF_ANNOTATION = document.createElement("REF_ANNOTATION");
             Element ANNOTATION_VALUE = document.createElement("ANNOTATION_VALUE");
@@ -101,6 +105,28 @@ public class ParseXML {
         }
 
         saveFile(document);
+    }
+
+    /**
+     * Elimina el nodo de la capa de glosado con el anotacion de referencia
+     * @param tier Nodo de la capa tier de glosado
+     * @param ANNOTATION_TIER_REF identificador de la anotacion
+     * @return elemento o nodo eliminado
+     */
+    private Element removeAnnotationinTier(Element tier,  String ANNOTATION_TIER_REF){
+        Element element = null;
+        NodeList nodeList = tier.getElementsByTagName("ANNOTATION");
+        for (int temp=0; temp<nodeList.getLength(); temp ++){
+            Node tempNode = nodeList.item(temp);
+            Element tempElement = (Element) tempNode;
+            if(tempElement.getAttribute("ANNOTATION_TIER_REF").equals(ANNOTATION_TIER_REF)){
+                element = tempElement;
+                tier.removeChild(tempNode);
+                break;
+            }
+        }
+
+        return element;
     }
 
     /**
