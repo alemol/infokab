@@ -2,6 +2,7 @@ package mx.geoint.UploadFiles;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class UploadFilesService {
      * @return boolean, respuesta del servicio
      * @throws IOException
      */
-    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, String uuid, String projectName) throws IOException {
-        return uploadFiles.uploadFile(eaf, multimedia, uuid, projectName);
+    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion , String uuid, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds) throws IOException {
+        return uploadFiles.uploadFile(eaf, multimedia, autorizacion, uuid, projectName, date, hablantes, ubicacion, radio, circleBounds);
     }
 }

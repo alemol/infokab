@@ -1,6 +1,7 @@
 package mx.geoint.ParseXML;
 
 import com.google.gson.Gson;
+import mx.geoint.Model.GlosaStep;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
@@ -8,6 +9,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.text.Normalizer;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 class ParseXMLTest {
@@ -249,51 +251,58 @@ class ParseXMLTest {
     }
 
     void testXMLFiles(String number_case) throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        String basePath = "./eafs/";
         String path = "";
         String tier_id_fonetico = "";
         String tier_id_transcripcion = "";
         String tier_id_traduccion = "";
+        String tier_id_glosado = "Glosado";
 
         switch (number_case){
             case "1":
-                path = "Juan Tuyub_FCA.eaf";
+                path = "04_02_01072022_11_SCY_C_2_2.eaf";
                 tier_id_fonetico= "Transcripción Fonético ";
                 tier_id_transcripcion = "Transcripción Ortográfico";
 
+
                 System.out.println(path);
-                getTierDinamic(tier_id_fonetico, "src/test/resources/"+path);
-                getTierDinamic(tier_id_transcripcion, "src/test/resources/"+path);
+                getTierDinamic(tier_id_fonetico, basePath+path);
+                getTierDinamic(tier_id_transcripcion, basePath+path);
+                getTierDinamic(tier_id_glosado, basePath+path);
                 break;
             case "2":
-                path = "Pablo Balam 1_RIKT.eaf";
+                path = "04_02_01062022_11_SCY_C_2_2.eaf";
                 tier_id_transcripcion = "Transcripcion ";
                 tier_id_traduccion = "Traduccion";
 
                 System.out.println(path);
-                getTierDinamic(tier_id_transcripcion, "src/test/resources/"+path);
-                getTierDinamic(tier_id_traduccion, "src/test/resources/"+path);
+                getTierDinamic(tier_id_transcripcion, basePath+path);
+                getTierDinamic(tier_id_traduccion, basePath+path);
+                getTierDinamic(tier_id_glosado, basePath+path);
                 break;
             case "3":
-                path = "22-08-2022 ALONDRA-XOHUAYAN_IPC respaldo.eaf";
+                path = "04_02_01082022_11_SCY_C_2_2.eaf";
                 tier_id_fonetico= "trascripcion fonetica";
                 tier_id_transcripcion = "transpcion ortografica";
                 tier_id_traduccion = "traduccion libre";
 
                 System.out.println(path);
-                getTierDinamic(tier_id_fonetico, "src/test/resources/"+path);
-                getTierDinamic(tier_id_transcripcion, "src/test/resources/"+path);
-                getTierDinamic(tier_id_traduccion, "src/test/resources/"+path);
+                getTierDinamic(tier_id_fonetico, basePath+path);
+                getTierDinamic(tier_id_transcripcion, basePath+path);
+                getTierDinamic(tier_id_traduccion, basePath+path);
+                getTierDinamic(tier_id_glosado, basePath+path);
                 break;
             case "4":
-                path = "2015-01-09_1650_Entrevista_datos_espontáneos_Clementina.eaf";
+                path = "04_02_01092022_11_SCY_C_2_2.eaf";
                 tier_id_fonetico= "morfo";
                 tier_id_transcripcion = "oracion";
                 tier_id_traduccion = "traduccion";
 
                 System.out.println(path);
-                getTierDinamic(tier_id_fonetico, "src/test/resources/"+path);
-                getTierDinamic(tier_id_transcripcion, "src/test/resources/"+path);
-                getTierDinamic(tier_id_traduccion, "src/test/resources/"+path);
+                getTierDinamic(tier_id_fonetico, basePath+path);
+                getTierDinamic(tier_id_transcripcion, basePath+path);
+                getTierDinamic(tier_id_traduccion, basePath+path);
+                getTierDinamic(tier_id_glosado, basePath+path);
                 break;
         }
     }
@@ -307,19 +316,21 @@ class ParseXMLTest {
     }
 
     void setTierDinamic(String tier_id, String path_eaf) throws ParserConfigurationException, IOException, TransformerException, SAXException {
-        String original_path_name = path_eaf;
-        String normalize = Normalizer.normalize(original_path_name, Normalizer.Form.NFD);
-        String path_name = normalize.replaceAll("[^\\p{ASCII}]", "");
-        ParseXML parseXML = new ParseXML(path_name, tier_id);
-        parseXML.setElement();
+        ArrayList<GlosaStep> glosaSteps = new ArrayList<>();
+        glosaSteps.add(new GlosaStep(1, "to'one'", null, "(to'on)+e' = 1PL[to'on]+D3/TOP/FF"));
+        glosaSteps.add(new GlosaStep(2, "ma'alobon", null, null));
+        glosaSteps.add(new GlosaStep(3, "bejla'e'", null, "(bejla'e') = hoy[bejla'e']"));
+
+        ParseXML parseXML = new ParseXML(path_eaf, tier_id);
+        parseXML.writeElement("a283", "a284", glosaSteps);
     }
 
     @Test
     void runTestAddAnnotationInFile() throws ParserConfigurationException, IOException, TransformerException, SAXException {
-        String path = "Juan Tuyub_FCA_GLOSA.eaf";
+        String path = "04_02_01082022_11_SCY_C_2_2.eaf";
         String tier_id_fonetico= "Transcripción Fonético ";
         String tier_id_transcripcion = "Transcripción Ortográfico";
 
-        setTierDinamic(tier_id_transcripcion,"src/test/resources/"+path);
+        setTierDinamic(tier_id_transcripcion,"./eafs/"+path);
     }
 }

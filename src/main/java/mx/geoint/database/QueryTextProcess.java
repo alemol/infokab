@@ -2,7 +2,7 @@ package mx.geoint.database;
 
 public class QueryTextProcess {
     static String query_main_base = " " +
-            " SELECT (base.clave) as clave, base.codigo as codigos, concat('<',base.clave,'>') as result_left, concat(base.descripcion,'[',base.clave,']') as result_right\n" +
+            " SELECT (base.clave) as clave, base.codigo as codigos, concat('(',base.clave,')') as result_left, concat(base.descripcion,'[',base.clave,']') as result_right\n" +
             "    FROM bases as base\n" +
             "    where ? like concat(base.clave,'%')\n" +
             "    and length(?) <= length(base.clave)";
@@ -10,7 +10,7 @@ public class QueryTextProcess {
     static String query_main_base_with_one_suffixes = "" +
             " select concat(base1.clave,sufijo1.clave) as clave, concat(base1.codigos,'-',sufijo1.codigo) as codigos, concat(base1.result_left,'+',sufijo1.clave) as result_left, concat(base1.result_right,'+',sufijo1.descripcion) as result_right\n" +
             "    from sufijos as sufijo1, (\n" +
-            "        SELECT base.clave as clave, base.codigo as base_code, base.codigo as codigos, concat('<',base.clave,'>') as result_left, concat(base.descripcion,'[',base.clave,']') as result_right\n" +
+            "        SELECT base.clave as clave, base.codigo as base_code, base.codigo as codigos, concat('(',base.clave,')') as result_left, concat(base.descripcion,'[',base.clave,']') as result_right\n" +
             "        FROM bases as base\n" +
             "        where ? like concat(base.clave,'%')\n" +
             "        and length(?) >= length(base.clave)\n" +
@@ -24,7 +24,7 @@ public class QueryTextProcess {
             "    from sufijos as sufijo2, (\n" +
             "        select concat(base1.clave,sufijo1.clave) as clave, base1.base_code as base_code, concat(base1.codigos,'-',sufijo1.codigo) as codigos, concat(base1.result_left,'+',sufijo1.clave) as result_left, concat(base1.result_right,'+',sufijo1.descripcion) as result_right\n" +
             "        from sufijos as sufijo1, (\n" +
-            "            SELECT base.clave as clave, base.codigo as base_code, base.codigo as codigos, concat('<',base.clave,'>') as result_left, concat(base.descripcion,'[',base.clave,']') as result_right\n" +
+            "            SELECT base.clave as clave, base.codigo as base_code, base.codigo as codigos, concat('(',base.clave,')') as result_left, concat(base.descripcion,'[',base.clave,']') as result_right\n" +
             "            FROM bases as base\n" +
             "            where ? like concat(base.clave,'%')\n" +
             "            and length(?) >= length(base.clave)\n" +
@@ -44,7 +44,7 @@ public class QueryTextProcess {
             "        from sufijos as sufijo2, (\n" +
             "            select concat(base1.clave,sufijo1.clave) as clave, base1.base_code as base_code, concat(base1.codigos,'-',sufijo1.codigo) as codigos, concat(base1.result_left,'+',sufijo1.clave) as result_left, concat(base1.result_right,'+',sufijo1.descripcion) as result_right\n" +
             "            from sufijos as sufijo1, (\n" +
-            "                SELECT base.clave as clave, base.codigo as base_code, base.codigo as codigos, concat('<',base.clave,'>') as result_left, concat(base.descripcion,'[',base.clave,']') as result_right\n" +
+            "                SELECT base.clave as clave, base.codigo as base_code, base.codigo as codigos, concat('(',base.clave,')') as result_left, concat(base.descripcion,'[',base.clave,']') as result_right\n" +
             "                FROM bases as base\n" +
             "                where ? like concat(base.clave,'%')\n" +
             "                and length(?) >= length(base.clave)\n" +
@@ -72,7 +72,7 @@ public class QueryTextProcess {
             "            from sufijos as sufijo2, (\n" +
             "                select concat(base1.clave,sufijo1.clave) as clave, base1.base_code as base_code, concat(base1.codigos,'-',sufijo1.codigo) as codigos, concat(base1.result_left,'+',sufijo1.clave) as result_left, concat(base1.result_right,'+',sufijo1.descripcion) as result_right\n" +
             "                from sufijos as sufijo1, (\n" +
-            "                    SELECT base.clave as clave, base.codigo as base_code, base.codigo as codigos, concat('<',base.clave,'>') as result_left, concat(base.descripcion,'[',base.clave,']') as result_right\n" +
+            "                    SELECT base.clave as clave, base.codigo as base_code, base.codigo as codigos, concat('(',base.clave,')') as result_left, concat(base.descripcion,'[',base.clave,']') as result_right\n" +
             "                    FROM bases as base\n" +
             "                    where ? like concat(base.clave,'%')\n" +
             "                    and length(?) >= length(base.clave)\n" +
@@ -103,7 +103,7 @@ public class QueryTextProcess {
             "    and length(?) <= length(p.clave)";
 
     static String query_main_prefixes_with_base = "" +
-            " select concat(prefijo.clave,base.clave) as clave, concat(prefijo.codigos,'-',base.codigo) as codigos, concat(prefijo.result_left,'+','<',base.clave,'>') as result_left, concat(prefijo.result_right,'+',base.descripcion) as result_right\n" +
+            " select concat(prefijo.clave,base.clave) as clave, concat(prefijo.codigos,'-',base.codigo) as codigos, concat(prefijo.result_left,'+','(',base.clave,')') as result_left, concat(prefijo.result_right,'+',base.descripcion) as result_right\n" +
             "    FROM bases as base, (\n" +
             "        select p.clave as clave, p.codigo as codigos, p.clave as result_left, p.descripcion as result_right\n" +
             "        from prefijos p \n" +
@@ -117,7 +117,7 @@ public class QueryTextProcess {
     static String query_main_prefixes_with_base_with_one_suffixes = " " +
             " select concat(base1.clave,sufijo1.clave) as clave, concat(base1.codigos,'-',sufijo1.codigo) as codigos, concat(base1.result_left,'+',sufijo1.clave) as result_left, concat(base1.result_right,'+',sufijo1.descripcion) as result_right\n" +
             "    from sufijos as sufijo1, (\n" +
-            "        select concat(prefijo.clave,base.clave) as clave, base.codigo as base_code, concat(prefijo.codigos,'-',base.codigo) as codigos, concat(prefijo.result_left,'+','<',base.clave,'>') as result_left, concat(prefijo.result_right,'+',base.descripcion) as result_right\n" +
+            "        select concat(prefijo.clave,base.clave) as clave, base.codigo as base_code, concat(prefijo.codigos,'-',base.codigo) as codigos, concat(prefijo.result_left,'+','(',base.clave,')') as result_left, concat(prefijo.result_right,'+',base.descripcion) as result_right\n" +
             "        FROM bases as base, (\n" +
             "            select p.clave as clave, p.codigo as codigos, p.clave as result_left, p.descripcion as result_right\n" +
             "            from prefijos p \n" +
@@ -137,7 +137,7 @@ public class QueryTextProcess {
             "    from sufijos as sufijo2, (\n" +
             "        select concat(base1.clave,sufijo1.clave) as clave, base1.base_code as base_code, concat(base1.codigos,'-',sufijo1.codigo) as codigos, concat(base1.result_left,'+',sufijo1.clave) as result_left, concat(base1.result_right,'+',sufijo1.descripcion) as result_right\n" +
             "        from sufijos as sufijo1, (\n" +
-            "            select concat(prefijo.clave,base.clave) as clave, base.codigo as base_code, concat(prefijo.codigos,'-',base.codigo) as codigos, concat(prefijo.result_left,'+','<',base.clave,'>') as result_left, concat(prefijo.result_right,'+',base.descripcion) as result_right\n" +
+            "            select concat(prefijo.clave,base.clave) as clave, base.codigo as base_code, concat(prefijo.codigos,'-',base.codigo) as codigos, concat(prefijo.result_left,'+','(',base.clave,')') as result_left, concat(prefijo.result_right,'+',base.descripcion) as result_right\n" +
             "            FROM bases as base, (\n" +
             "                select p.clave as clave, p.codigo as codigos, p.clave as result_left, p.descripcion as result_right\n" +
             "                from prefijos p \n" +
@@ -163,7 +163,7 @@ public class QueryTextProcess {
             "        from sufijos as sufijo2, (\n" +
             "            select concat(base1.clave,sufijo1.clave) as clave, base1.base_code as base_code, concat(base1.codigos,'-',sufijo1.codigo) as codigos, concat(base1.result_left,'+',sufijo1.clave) as result_left, concat(base1.result_right,'+',sufijo1.descripcion) as result_right\n" +
             "            from sufijos as sufijo1, (\n" +
-            "                select concat(prefijo.clave,base.clave) as clave, base.codigo as base_code, concat(prefijo.codigos,'-',base.codigo) as codigos, concat(prefijo.result_left,'+','<',base.clave,'>') as result_left, concat(prefijo.result_right,'+',base.descripcion) as result_right\n" +
+            "                select concat(prefijo.clave,base.clave) as clave, base.codigo as base_code, concat(prefijo.codigos,'-',base.codigo) as codigos, concat(prefijo.result_left,'+','(',base.clave,')') as result_left, concat(prefijo.result_right,'+',base.descripcion) as result_right\n" +
             "                FROM bases as base, (\n" +
             "                    select p.clave as clave, p.codigo as codigos, p.clave as result_left, p.descripcion as result_right\n" +
             "                    from prefijos p \n" +

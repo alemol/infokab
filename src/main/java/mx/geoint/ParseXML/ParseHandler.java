@@ -177,7 +177,7 @@ public class ParseHandler extends DefaultHandler{
                 String REF_TIME_VALUE2 = REF_VALUES.get("TIME_VALUE2").getAsString();
 
                 if(tier_id.equals(current_tier_id)) {
-                    tierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2));
+                    tierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
                 }
                 break;
             case ANNOTATION_VALUE:
