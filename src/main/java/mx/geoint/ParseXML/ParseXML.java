@@ -87,22 +87,23 @@ public class ParseXML {
         }
 
         Element ANNOTATION = document.createElement("ANNOTATION");
+        Element REF_ANNOTATION = document.createElement("REF_ANNOTATION");
+
         ANNOTATION.setAttribute("ANNOTATION_TIER_REF", String.valueOf(annotation_tier_ref));
+        REF_ANNOTATION.setAttribute("ANNOTATION_ID", "g"+String.valueOf(annotation_ref));
+        REF_ANNOTATION.setAttribute("ANNOTATION_TIER_REF", String.valueOf(annotation_tier_ref));
+        REF_ANNOTATION.setAttribute("ANNOTATION_REF", String.valueOf(annotation_ref));
 
         for (GlosaStep step: steps){
-            Element REF_ANNOTATION = document.createElement("REF_ANNOTATION");
             Element ANNOTATION_VALUE = document.createElement("ANNOTATION_VALUE");
-
-            REF_ANNOTATION.setAttribute("ANNOTATION_ID", "g"+String.valueOf(annotation_ref));
-            REF_ANNOTATION.setAttribute("ANNOTATION_WORD", String.valueOf(step.getId()));
-            REF_ANNOTATION.setAttribute("ANNOTATION_TIER_REF", String.valueOf(annotation_tier_ref));
-            REF_ANNOTATION.setAttribute("ANNOTATION_REF", String.valueOf(annotation_ref));
-
+            ANNOTATION_VALUE.setAttribute("ANNOTATION_WORD", String.valueOf(step.getId()));
             ANNOTATION_VALUE.appendChild(document.createTextNode(step.getSelect()));
+
             REF_ANNOTATION.appendChild(ANNOTATION_VALUE);
-            ANNOTATION.appendChild(REF_ANNOTATION);
-            TIER.appendChild(ANNOTATION);
         }
+
+        ANNOTATION.appendChild(REF_ANNOTATION);
+        TIER.appendChild(ANNOTATION);
 
         saveFile(document);
     }
