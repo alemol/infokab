@@ -1,8 +1,11 @@
 package mx.geoint.database;
+import mx.geoint.Model.UsersList;
+import mx.geoint.Response.UserListResponse;
 import mx.geoint.User.User;
 
 import java.time.LocalDateTime;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.UUID;
 
@@ -186,5 +189,63 @@ public class databaseController {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
             return null;
         }
+    }
+
+    public Boolean haspermission(String uuid) {
+        Boolean permission = false;
+        try {
+            Connection conn = DriverManager.getConnection(this.urlConnection, props);
+            String QUERY = "select exists(select * from public.usuarios where id_usuario=?::uuid and id_rol = 1)";
+
+            PreparedStatement preparedStatement = conn.prepareStatement(QUERY);
+            preparedStatement.setString(1, uuid);
+            ResultSet row = preparedStatement.executeQuery();
+            while(row.next()){
+                permission = row.getBoolean(1);
+            }
+
+            row.close();
+            preparedStatement.close();
+            conn.close();
+
+            return permission;
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            return permission;
+        }
+    }
+
+    public UserListResponse getUserslist() {
+        ArrayList<UsersList> results = new ArrayList<UsersList>();
+        UsersList userslist = null;
+        int totalHits = 0;
+        try {
+            Connection conn = DriverManager.getConnection(this.urlConnection, props);
+            String QUERY = "SELECT id_usuario, nombre, apellido, correo, id_rol FROM public.usuarios;";
+
+            PreparedStatement preparedStatement = conn.prepareStatement(QUERY);
+            ResultSet row = preparedStatement.executeQuery();
+            System.out.println(preparedStatement);
+            while(row.next()){
+                userslist = new UsersList();
+                userslist.setUUID(row.getString(1));
+                userslist.setNombres(row.getString(2));
+                userslist.setApellidos(row.getString(3));
+                userslist.setCorreo(row.getString(4));
+                results.add(userslist);
+            }
+            totalHits = results.size();
+
+            row.close();
+            preparedStatement.close();
+            conn.close();
+
+            UserListResponse userListResponse = new UserListResponse(results, totalHits);
+            return userListResponse;
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        }
+        return null;
     }
 }

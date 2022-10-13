@@ -1,11 +1,15 @@
 package mx.geoint.User;
 
 import com.google.gson.JsonObject;
+import mx.geoint.Response.DictionaryResponse;
+import mx.geoint.Response.UserListResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import mx.geoint.database.databaseController;
+
+import java.util.UUID;
 
 @CrossOrigin(origins = {"http://infokaab.com/","http://infokaab.com.mx/","http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182"})
 @RestController
@@ -65,6 +69,28 @@ public class userController {
         }
 
         return new ResponseEntity<>(answerJsonObject.toString(), headers, code);
+    }
+
+    /**
+     *
+     * @param uuid recibimos el uuid del usuario que realiza la consulta
+     * @return
+     */
+    @RequestMapping(path = "/list", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity usersList(@RequestParam String uuid){
+        Boolean haspermission = Boolean.valueOf(database.haspermission(uuid));
+        System.out.println("Get usersList : "+haspermission);
+
+        if(haspermission == true ){
+            UserListResponse userListResponse = database.getUserslist();
+            //return createdResponseEntity(HttpStatus.CONFLICT, "No tiene permiso", false);
+            return ResponseEntity.status(HttpStatus.OK).body(userListResponse);
+        }else{
+            UserListResponse userListResponse = database.getUserslist();
+            //return createdResponseEntity(HttpStatus.CONFLICT, "No tiene permiso", false);
+            return ResponseEntity.status(HttpStatus.OK).body(userListResponse);
+        }
     }
 
 }
