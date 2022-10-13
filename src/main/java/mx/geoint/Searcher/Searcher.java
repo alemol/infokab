@@ -47,13 +47,15 @@ public class Searcher {
         }
     }
 
-    public SearchResponse findMultiple(String text){
-        try{
+    public SearchResponse findMultiple(String text) throws IOException, ParseException{
+        SearchResponse response = lucene.searchMultipleIndex(text);
+        return response;
+        /*try{
             SearchResponse response = lucene.searchMultipleIndex(text);
             return response;
         } catch (IOException | ParseException ex){
             return null;
-        }
+        }*/
     }
 
     public ArrayList<SearchDoc> findPageMultiple(String text, int page){
