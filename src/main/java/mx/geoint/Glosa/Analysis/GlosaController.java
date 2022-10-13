@@ -7,6 +7,7 @@ import mx.geoint.ParseXML.Tier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -91,10 +92,18 @@ public class GlosaController {
      */
     @RequestMapping(path="/annotations", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ArrayList<Tier>> getAnnotations(@RequestBody Map<String, String> body) throws IOException {
-        String project = body.get("project");
-        ArrayList<Tier> arrayList = glosaService.getAnnotations(project);
-        return ResponseEntity.status(HttpStatus.OK).body(arrayList);
+    public ResponseEntity<?> getAnnotations(@RequestBody Map<String, String> body) throws IOException, ParserConfigurationException, SAXException {
+        try{
+            String project = body.get("project");
+            ArrayList<Tier> arrayList = glosaService.getAnnotations(project);
+            return ResponseEntity.status(HttpStatus.OK).body(arrayList);
+        } catch (ParserConfigurationException e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ParserConfigurationException", e);
+        } catch (SAXException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SAXException", e);
+        } catch (IOException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "IOException", e);
+        }
     }
 
     /**

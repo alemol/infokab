@@ -4,6 +4,7 @@ import com.xuggle.xuggler.IError;
 import mx.geoint.Model.SearchDoc;
 import mx.geoint.Response.SearchResponse;
 import mx.geoint.Searcher.Searcher;
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -58,7 +59,7 @@ public class DownloadTest {
 
 
     @Test
-    void generateZipFromSearch() throws IOException {
+    void generateZipFromSearch() throws IOException, ParseException {
         Searcher busqueda = new Searcher();
 
         SearchResponse results = busqueda.findMultiple("yaan");

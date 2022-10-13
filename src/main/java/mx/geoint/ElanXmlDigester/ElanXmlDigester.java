@@ -7,7 +7,9 @@ import mx.geoint.ParseXML.Tier;
 import mx.geoint.VideoCutter.VideoCutter;
 import mx.geoint.pathSystem;
 import org.apache.commons.io.FilenameUtils;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -56,7 +58,7 @@ public class ElanXmlDigester {
      * @param save_media boolean, bandera para iniciar el proceso de guardado de los fragmentos del multimedia
      * @throws IOException
      */
-    public void parse_tier(String tier_id, boolean save_text, boolean save_media) throws IOException {
+    public void parse_tier(String tier_id, boolean save_text, boolean save_media) throws ParserConfigurationException, SAXException, IOException {
         ParseXML parseXML = new ParseXML(filepathEaf, tier_id);
         parseXML.read();
 

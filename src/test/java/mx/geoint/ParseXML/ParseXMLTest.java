@@ -46,7 +46,7 @@ class ParseXMLTest {
     }
 
     @Test
-    void getTierTranscriptionAudio() {
+    void getTierTranscriptionAudio() throws ParserConfigurationException, SAXException, IOException {
         //{
         // "ANNOTATION_ID":"a5",
         // "TIME_SLOT_REF1":"ts1",
@@ -71,7 +71,7 @@ class ParseXMLTest {
     }
 
     @Test
-    void getTierTraduccionAudio() {
+    void getTierTraduccionAudio() throws ParserConfigurationException, SAXException, IOException{
         //{
         // "ANNOTATION_ID":"a14",
         // "TIME_SLOT_REF1":"ts2",
@@ -95,7 +95,7 @@ class ParseXMLTest {
     }
 
     @Test
-    void getTierGlosadoAudio() {//{
+    void getTierGlosadoAudio() throws ParserConfigurationException, SAXException, IOException {//{
         // "ANNOTATION_ID":"a23",
         // "TIME_SLOT_REF1":"ts3",
         // "TIME_VALUE1":"34240",
@@ -119,7 +119,7 @@ class ParseXMLTest {
     }
 
     @Test
-    void getTierMorfemasAudio() {
+    void getTierMorfemasAudio() throws ParserConfigurationException, SAXException, IOException {
         // "ANNOTATION_ID":"a32",
         // "TIME_SLOT_REF1":"ts4",
         // "TIME_VALUE1":"34240",
@@ -143,7 +143,7 @@ class ParseXMLTest {
 
     //SECTION DE TEST VIDEO
     @Test
-    void getTierTranscriptionVideo() {
+    void getTierTranscriptionVideo() throws ParserConfigurationException, SAXException, IOException {
         //{
         // "ANNOTATION_ID":"a1",
         // "TIME_SLOT_REF1":"ts2",
@@ -168,7 +168,7 @@ class ParseXMLTest {
     }
 
     @Test
-    void getTierTraduccionVideo() {
+    void getTierTraduccionVideo() throws ParserConfigurationException, SAXException, IOException {
         //{
         // "ANNOTATION_ID":"a13",
         // "TIME_SLOT_REF1":"ts2",
@@ -192,7 +192,7 @@ class ParseXMLTest {
     }
 
     @Test
-    void getTierGlosadoVideo() {//{
+    void getTierGlosadoVideo() throws ParserConfigurationException, SAXException, IOException {//{
         // "ANNOTATION_ID":"a9",
         // "TIME_SLOT_REF1":"ts2",
         // "TIME_VALUE1":"21340",
@@ -216,7 +216,7 @@ class ParseXMLTest {
     }
 
     @Test
-    void getTierMorfemasVideo() {
+    void getTierMorfemasVideo() throws ParserConfigurationException, SAXException, IOException {
         // "ANNOTATION_ID":"a5",
         // "TIME_SLOT_REF1":"ts2",
         // "TIME_VALUE1":"21340",
@@ -238,7 +238,7 @@ class ParseXMLTest {
         );
     }
 
-     void getTierDinamic(String tier_id, String path_eaf) {
+     void getTierDinamic(String tier_id, String path_eaf) throws ParserConfigurationException, SAXException, IOException{
         String original_path_name = path_eaf;
         String normalize = Normalizer.normalize(original_path_name, Normalizer.Form.NFD);
         String path_name = normalize.replaceAll("[^\\p{ASCII}]", "");

@@ -1,6 +1,9 @@
 package mx.geoint.ElanXmlDigester;
 import mx.geoint.Lucene.Lucene;
 import mx.geoint.pathSystem;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Queue;
@@ -18,7 +21,15 @@ public class ThreadElanXmlDigester extends Thread{
             if(elanXmlDigester.isEmpty()){
                 deactivate();
             } else {
-                process();
+                try {
+                    process();
+                } catch (ParserConfigurationException e) {
+                    throw new RuntimeException(e);
+                } catch (SAXException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
@@ -60,7 +71,7 @@ public class ThreadElanXmlDigester extends Thread{
     /**
      * Función para obtener un elemento de la queue y ejecutar su proceso
      */
-    public void process(){
+    public void process() throws ParserConfigurationException, SAXException, IOException{
         try {
             Date startDate = new Date();
             ElanXmlDigester currentElanXmlDigester = elanXmlDigester.poll();

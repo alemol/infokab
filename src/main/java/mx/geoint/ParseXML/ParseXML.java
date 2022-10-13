@@ -46,20 +46,12 @@ public class ParseXML {
     /**
      * Leer el archivo .eaf y obtiene por medio el metodo de SAXParser el tier_id con sus tiempos
      */
-    public void read() {
-        try{
-            File inputFile = new File(filePath);
-            name = inputFile.getName();
-            SAXParserFactory factory = SAXParserFactory.newInstance();
-            SAXParser saxParser = factory.newSAXParser();
-            saxParser.parse(inputFile, parseHandler);
-        } catch (ParserConfigurationException e) {
-            throw new RuntimeException(e);
-        } catch (SAXException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void read() throws ParserConfigurationException, SAXException, IOException{
+        File inputFile = new File(filePath);
+        name = inputFile.getName();
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        SAXParser saxParser = factory.newSAXParser();
+        saxParser.parse(inputFile, parseHandler);
     }
 
     /**

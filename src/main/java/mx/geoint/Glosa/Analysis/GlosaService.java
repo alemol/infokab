@@ -115,7 +115,7 @@ public class GlosaService {
      * @param name
      * @return ArraList<Tier> una lista del modelo Tier
      */
-    public static ArrayList<Tier> getAnnotations(String name) {
+    public static ArrayList<Tier> getAnnotations(String name) throws IOException, ParserConfigurationException, SAXException {
         String path = "";
         String tier_id_transcripcion = "";
 
@@ -151,7 +151,7 @@ public class GlosaService {
      * @param tier_id id de la capa tier a obtener
      * @return List<Tier> una lista de las anotaciones del archivo eaf
      */
-    static List<Tier> getTierDinamic(String path_eaf, String tier_id) {
+    static List<Tier> getTierDinamic(String path_eaf, String tier_id) throws ParserConfigurationException, SAXException, IOException {
         ParseXML parseXML = new ParseXML(path_eaf, tier_id);
         parseXML.read();
         return parseXML.getTier();
