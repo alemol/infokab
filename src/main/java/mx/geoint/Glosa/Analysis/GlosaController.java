@@ -1,5 +1,6 @@
 package mx.geoint.Glosa.Analysis;
 
+import mx.geoint.Logger.Logger;
 import mx.geoint.Model.Glosa;
 import mx.geoint.Model.GlosaAnnotationsRequest;
 import mx.geoint.Model.GlosaRequest;
@@ -20,9 +21,10 @@ import java.util.*;
 @RequestMapping(path = "api/glosa")
 public class GlosaController {
     private final GlosaService glosaService;
-
+    private final Logger logger;
     public GlosaController(GlosaService glosaService) {
         this.glosaService = glosaService;
+        this.logger = new Logger();
     }
 
     /**
@@ -98,10 +100,13 @@ public class GlosaController {
             ArrayList<Tier> arrayList = glosaService.getAnnotations(project);
             return ResponseEntity.status(HttpStatus.OK).body(arrayList);
         } catch (ParserConfigurationException e){
+            Logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ParserConfigurationException", e);
         } catch (SAXException e){
+            Logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SAXException", e);
         } catch (IOException e){
+            Logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "IOException", e);
         }
     }
