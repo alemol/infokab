@@ -30,54 +30,63 @@ public class GlosaController {
     /**
      * Api para ejectuar el script de python
      * @return ArrayList<Glosa> arreglo del modelo glosa
-     * @throws IOException
      */
     @RequestMapping(path="/script", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ArrayList<Glosa>> created() throws IOException {
-        Date startDate = new Date();
-        ArrayList<Glosa> response = glosaService.process();
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+    public ResponseEntity<ArrayList<Glosa>> created() {
+        try{
+            Date startDate = new Date();
+            ArrayList<Glosa> response = glosaService.process();
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }catch (IOException e){
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "IOException", e);
+        }
     }
 
     /**
      * Api para análisis de una oracion o anotación
      * @param body text a procesas y indentificador del usuario
      * @return ArrayList<Glosa> arreglo del modelo glosa
-     * @throws IOException
-     * @throws SQLException
      */
     @RequestMapping(path="/analysis", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ArrayList<Glosa>> analysis(@RequestBody Map<String, String> body) throws IOException, SQLException {
-        //System.out.println("data:"+body.get("uuid"));
-        String text = body.get("text");
-        ArrayList<Glosa> response = glosaService.textProcess(text);
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+    public ResponseEntity<ArrayList<Glosa>> analysis(@RequestBody Map<String, String> body) {
+        try{
+            //System.out.println("data:"+body.get("uuid"));
+            String text = body.get("text");
+            ArrayList<Glosa> response = glosaService.textProcess(text);
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch(SQLException e){
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SQLException", e);
+        }
     }
 
     /**
      * Api para análisis de una lista de oraciones o anotaciones
      * @param glosaRequest
      * @return
-     * @throws IOException
-     * @throws SQLException
      */
     @RequestMapping(path="/analysis/list", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ArrayList<Glosa>> arrayAnalisys(@RequestBody GlosaRequest glosaRequest) throws IOException, SQLException {
-        ArrayList<Glosa> response = glosaService.ArrayProcess(glosaRequest);
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+    public ResponseEntity<ArrayList<Glosa>> arrayAnalisys(@RequestBody GlosaRequest glosaRequest) {
+        try {
+            ArrayList<Glosa> response = glosaService.ArrayProcess(glosaRequest);
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch(SQLException e){
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SQLException", e);
+        }
     }
 
     /**
      * Api para obtener una lista de proyecto predeterminados
      * @return ArraList<String> Lista de los nombre de los archivos
-     * @throws IOException
      */
     @RequestMapping(path="/projects", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ArrayList<String>> getFiles() throws IOException {
+    public ResponseEntity<ArrayList<String>> getFiles() {
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("04_02_01062022_11_SCY_C_2_2");
         arrayList.add("04_02_01072022_11_SCY_C_2_2");
@@ -90,11 +99,10 @@ public class GlosaController {
      * Api para obtener las oraciones o anotaciones de un proyecto predeterminado
      * @param body
      * @return ArrayList<Tier> Lista de las oraciones o anotaciones obtenidas del archivos eaf de un proyecto predeterminado
-     * @throws IOException
      */
     @RequestMapping(path="/annotations", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> getAnnotations(@RequestBody Map<String, String> body) throws IOException, ParserConfigurationException, SAXException {
+    public ResponseEntity<?> getAnnotations(@RequestBody Map<String, String> body) {
         try{
             String project = body.get("project");
             ArrayList<Tier> arrayList = glosaService.getAnnotations(project);
@@ -115,15 +123,25 @@ public class GlosaController {
      * Api para el guardado del análisis de una oración o anotación al archivo eaf correspondiente de un proyecto
      * @param glosaAnnotationsRequest
      * @return
-     * @throws IOException
-     * @throws ParserConfigurationException
-     * @throws TransformerException
-     * @throws SAXException
      */
     @RequestMapping(path="/save/annotation", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Boolean> saveAnnotations(@RequestBody GlosaAnnotationsRequest glosaAnnotationsRequest) throws IOException, ParserConfigurationException, TransformerException, SAXException {
-        Boolean answer = glosaService.saveAnnotation(glosaAnnotationsRequest);
-        return ResponseEntity.status(HttpStatus.OK).body(answer);
+    public ResponseEntity<Boolean> saveAnnotations(@RequestBody GlosaAnnotationsRequest glosaAnnotationsRequest) {
+        try{
+            Boolean answer = glosaService.saveAnnotation(glosaAnnotationsRequest);
+            return ResponseEntity.status(HttpStatus.OK).body(answer);
+        } catch (ParserConfigurationException e){
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ParserConfigurationException", e);
+        } catch (SAXException e){
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SAXException", e);
+        } catch (IOException e){
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "IOException", e);
+        } catch (TransformerException e){
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "TransformerException", e);
+        }
     }
 }

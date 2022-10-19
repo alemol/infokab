@@ -8,14 +8,24 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Logger {
     public static void appendToFile(Exception e) {
         try {
-            existDirectory();
-            FileWriter fstream = new FileWriter(pathSystem.DIRECTORY_LOG+"exception.log", true);
+            Date date = new Date();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat dateFullFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            String stringDate = dateFormat.format(date);
+            String stringFullDate = dateFullFormat.format(date);
+            System.out.println(stringDate);
+
+            String existDirectory = existDirectory();
+            FileWriter fstream = new FileWriter(existDirectory+stringDate+"-exception.log", true);
             BufferedWriter out = new BufferedWriter(fstream);
             PrintWriter pWriter = new PrintWriter(out, true);
+            pWriter.print(stringFullDate+": ");
             e.printStackTrace(pWriter);
         }
         catch (Exception ie) {
