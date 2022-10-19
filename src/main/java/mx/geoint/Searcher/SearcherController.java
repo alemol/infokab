@@ -1,6 +1,7 @@
 package mx.geoint.Searcher;
 
 import com.google.gson.Gson;
+import mx.geoint.Logger.Logger;
 import mx.geoint.Model.SearchDoc;
 import mx.geoint.Response.SearchResponse;
 import org.apache.lucene.queryparser.classic.ParseException;
@@ -19,10 +20,11 @@ import java.util.ArrayList;
 public class SearcherController {
 
     private final SearcherService searcherService;
-
+    private final Logger logger;
     @Autowired
     public SearcherController(SearcherService searcherService){
         this.searcherService = searcherService;
+        this.logger = new Logger();
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -62,9 +64,11 @@ public class SearcherController {
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (IOException exIO){
             System.out.println("entre IO");
+            Logger.appendToFile(exIO);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró", exIO);
         } catch (ParseException exP){
             System.out.println("entre Parse");
+            Logger.appendToFile(exP);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", exP);
         }
 

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 @Service
 public class UploadFilesService {
@@ -21,7 +22,7 @@ public class UploadFilesService {
      * @return boolean, respuesta del servicio
      * @throws IOException
      */
-    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, String uuid, String projectName) throws IOException {
+    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, String uuid, String projectName) throws IOException, SQLException {
         return uploadFiles.uploadFile(eaf, multimedia, uuid, projectName);
     }
 }

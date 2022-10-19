@@ -1,13 +1,16 @@
 package mx.geoint.UploadFiles;
 
 import com.google.gson.JsonObject;
+import mx.geoint.Logger.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
 
 @CrossOrigin(origins = {"http://infokaab.com/","http://infokaab.com.mx/","http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182"})
@@ -15,9 +18,11 @@ import java.util.Date;
 @RequestMapping(path = "api/upload")
 public class UploadFilesController {
     private final UploadFilesService uploadFilesService;
+    private final Logger logger;
 
     public UploadFilesController(UploadFilesService uploadFilesService) {
         this.uploadFilesService = uploadFilesService;
+        this.logger = new Logger();
     }
 
     /**
@@ -31,7 +36,7 @@ public class UploadFilesController {
      */
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity created(@RequestParam MultipartFile eaf, @RequestParam MultipartFile multimedia, @RequestParam String uuid, @RequestParam String projectName) throws IOException {
+    public ResponseEntity created(@RequestParam MultipartFile eaf, @RequestParam MultipartFile multimedia, @RequestParam String uuid, @RequestParam String projectName) {
         Date startDate = new Date();
 
         if (eaf.isEmpty() || multimedia.isEmpty()) {
@@ -46,19 +51,27 @@ public class UploadFilesController {
             return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere nombre del proyecto", false);
         }
 
-        long uploadTime = (new Date()).getTime();
-        Number codeStatus = uploadFilesService.uploadFile(eaf, multimedia, uuid, projectName+"_"+uploadTime);
+        try{
+            long uploadTime = (new Date()).getTime();
+            Number codeStatus = uploadFilesService.uploadFile(eaf, multimedia, uuid, projectName+"_"+uploadTime);
 
-        Date endDate = new Date();
-        long difference_In_Time = endDate.getTime() - startDate.getTime();
-        long difference_In_Seconds = (difference_In_Time / (1000)) % 60;
-        long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
-        System.out.println("TIMER FINISHED API: " + difference_In_Seconds + "s " + difference_In_Minutes + "m");
+            Date endDate = new Date();
+            long difference_In_Time = endDate.getTime() - startDate.getTime();
+            long difference_In_Seconds = (difference_In_Time / (1000)) % 60;
+            long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
+            System.out.println("TIMER FINISHED API: " + difference_In_Seconds + "s " + difference_In_Minutes + "m");
 
-        if(codeStatus.equals(0)){
-            return createdResponseEntity(HttpStatus.OK, uuid, true);
-        }else{
-            return createdResponseEntity(HttpStatus.CONFLICT, codeStatus.toString(), false);
+            if(codeStatus.equals(0)){
+                return createdResponseEntity(HttpStatus.OK, uuid, true);
+            }else{
+                return createdResponseEntity(HttpStatus.CONFLICT, codeStatus.toString(), false);
+            }
+        } catch (SQLException e) {
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
+        } catch (IOException e) {
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "IOException", e);
         }
     }
 

@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class UploadFiles {
      * @return boolean, respuesta de la carga de archivos
      * @throws IOException
      */
-    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, String uuid, String projectName) throws IOException {
+    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, String uuid, String projectName) throws IOException, SQLException {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
         //int id_project = 0; //inicializa variable de id de de proyecto

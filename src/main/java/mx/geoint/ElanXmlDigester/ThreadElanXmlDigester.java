@@ -1,4 +1,5 @@
 package mx.geoint.ElanXmlDigester;
+import mx.geoint.Logger.Logger;
 import mx.geoint.Lucene.Lucene;
 import mx.geoint.pathSystem;
 import org.xml.sax.SAXException;
@@ -11,7 +12,7 @@ import java.util.LinkedList;
 
 public class ThreadElanXmlDigester extends Thread{
     Queue<ElanXmlDigester> elanXmlDigester = new LinkedList<>();
-
+    Logger logger = new Logger();
     /**
      * Función que ejecuta el hilo cuando esta en activo
      */
@@ -24,10 +25,13 @@ public class ThreadElanXmlDigester extends Thread{
                 try {
                     process();
                 } catch (ParserConfigurationException e) {
+                    Logger.appendToFile(e);
                     throw new RuntimeException(e);
                 } catch (SAXException e) {
+                    Logger.appendToFile(e);
                     throw new RuntimeException(e);
                 } catch (IOException e) {
+                    Logger.appendToFile(e);
                     throw new RuntimeException(e);
                 }
             }

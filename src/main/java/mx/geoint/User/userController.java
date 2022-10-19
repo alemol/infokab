@@ -1,29 +1,39 @@
 package mx.geoint.User;
 
 import com.google.gson.JsonObject;
+import mx.geoint.Logger.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import mx.geoint.database.databaseController;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.sql.SQLException;
 
 @CrossOrigin(origins = {"http://infokaab.com/","http://infokaab.com.mx/","http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182"})
 @RestController
 @RequestMapping(path = "api/user")
 public class userController {
     private final databaseController database;
+    private final Logger logger;
 
     public userController(){
         database = new databaseController();
+        this.logger = new Logger();
     }
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public boolean createUser(@RequestBody User user){
-        System.out.println("Create user");
-        boolean creationUser = database.insertUser(user);
-
-        return creationUser;
+    public boolean createUser(@RequestBody User user) {
+        try{
+            System.out.println("Create user");
+            boolean creationUser = database.insertUser(user);
+            return creationUser;
+        } catch (SQLException e) {
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
+        }
     }
 
     /**
@@ -34,13 +44,19 @@ public class userController {
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity loginUser(@RequestBody User user){
-        String UUID = database.login(user);
-        System.out.println("Get user : "+UUID);
+        try{
+            String UUID = database.login(user);
+            System.out.println("Get user : "+UUID);
 
-        if(UUID != null && !UUID.isEmpty()){
-            return createdResponseEntity(HttpStatus.OK, UUID, true);
-        }else{
-            return createdResponseEntity(HttpStatus.CONFLICT, "No existe usuario", false);
+            if(UUID != null && !UUID.isEmpty()){
+                return createdResponseEntity(HttpStatus.OK, UUID, true);
+            }else{
+                return createdResponseEntity(HttpStatus.CONFLICT, "No existe usuario", false);
+            }
+
+        }catch (SQLException e) {
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
         }
     }
 
