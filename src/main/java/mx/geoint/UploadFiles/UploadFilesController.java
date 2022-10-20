@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Date;
 
-@CrossOrigin(origins = {"http://infokaab.com/","http://infokaab.com.mx/","http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182"})
+@CrossOrigin(origins = {"http://infokaab.com/", "http://infokaab.com.mx/", "http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009", "http://10.2.102.182"})
 @RestController
 @RequestMapping(path = "api/upload")
 public class UploadFilesController {
@@ -26,18 +26,22 @@ public class UploadFilesController {
     }
 
     /**
-     *
-     * @param eaf MultipartFile, Archivo de anotaciones
-     * @param multimedia MultipartFile, Archivo de multimedia audio o video
-     * @param uuid String, Identificador de usuario
+     * @param eaf         MultipartFile, Archivo de anotaciones
+     * @param multimedia  MultipartFile, Archivo de multimedia audio o video
+     * @param uuid        String, Identificador de usuario
      * @param projectName String, Nombre del proyecto
      * @return
      * @throws IOException
      */
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity created(@RequestParam MultipartFile eaf, @RequestParam MultipartFile multimedia, @RequestParam String uuid, @RequestParam String projectName) {
+    public ResponseEntity created(@RequestParam MultipartFile eaf, @RequestParam MultipartFile multimedia, @RequestParam String uuid, @RequestParam String projectName, @RequestParam(required = false) MultipartFile autorizacion, @RequestParam String date, @RequestParam String hablantes, @RequestParam String ubicacion, @RequestParam String radio, @RequestParam String circleBounds) throws IOException {
         Date startDate = new Date();
+        //System.out.println(autorizacion);
+        System.out.println(hablantes);
+        System.out.println(radio);
+        System.out.println(circleBounds);
+        System.out.println(ubicacion);
 
         if (eaf.isEmpty() || multimedia.isEmpty()) {
             return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere 1 archivo .eaf y 1 archivo multimedia", false);
@@ -53,7 +57,7 @@ public class UploadFilesController {
 
         try{
             long uploadTime = (new Date()).getTime();
-            Number codeStatus = uploadFilesService.uploadFile(eaf, multimedia, uuid, projectName+"_"+uploadTime);
+        Number codeStatus = uploadFilesService.uploadFile(eaf, multimedia, autorizacion, uuid, projectName + "_" + uploadTime, date, hablantes, ubicacion, radio, circleBounds);
 
             Date endDate = new Date();
             long difference_In_Time = endDate.getTime() - startDate.getTime();
@@ -76,22 +80,21 @@ public class UploadFilesController {
     }
 
     /**
-     *
-     * @param code HttpStatus, codigo Http
+     * @param code    HttpStatus, codigo Http
      * @param message String, Mensaje de respuesta
-     * @param status boolean, respuesta del success
+     * @param status  boolean, respuesta del success
      * @return
      */
-    public ResponseEntity createdResponseEntity(HttpStatus code, String message, boolean status){
+    public ResponseEntity createdResponseEntity(HttpStatus code, String message, boolean status) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=UTF-8");
         JsonObject answerJsonObject = new JsonObject();
 
         answerJsonObject.addProperty("success", status);
 
-        if(status){
+        if (status) {
             answerJsonObject.addProperty("uuid", message);
-        }else{
+        } else {
             answerJsonObject.addProperty("error", message);
         }
 
