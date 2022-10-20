@@ -5,6 +5,7 @@ public class UsersList {
     String nombres;
     String apellidos;
     String correo;
+    String permisos;
 
 
     public String getUUID() { return uuid; }
@@ -15,5 +16,8 @@ public class UsersList {
     public void setApellidos(String apellidos) { this.apellidos = apellidos; }
     public String getCorreo() { return correo; }
     public void setCorreo(String correo) { this.correo = correo; }
+
+    public String getPermisos() { return permisos; }
+    public void setPermisos(String permisos) { this.permisos = permisos; }
 
 }

@@ -113,7 +113,7 @@ public class databaseController {
             Connection conn = DriverManager.getConnection(this.urlConnection, props);
             System.out.println(conn);
 
-            String SQL_INSERT = "INSERT INTO usuarios (id_usuario, nombre, apellido, correo, contraseña, fecha_creacion) VALUES (?,?,?,?,?,?)";
+            String SQL_INSERT = "INSERT INTO usuarios (id_usuario, nombre, apellido, correo, contraseña, fecha_creacion,permisos) VALUES (?,?,?,?,?,?,?::json)";
 
             PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT);
             preparedStatement.setObject(1, uuid);
@@ -122,6 +122,7 @@ public class databaseController {
             preparedStatement.setString(4, user.getCorreo());
             preparedStatement.setString(5, encryptedPassword);
             preparedStatement.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
+            preparedStatement.setString(7, "{\"buscador\": true");
 
             int row = preparedStatement.executeUpdate();
 
@@ -163,13 +164,16 @@ public class databaseController {
      * @param user, User es la clase que contiene el correo y contraseña
      * @return UUID, String es el id_usuario
      */
-    public String login(User user){
+    public UserListResponse login(User user){
         String UUID = null;
         String encryptedPassword = org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPassword());
+        ArrayList<UsersList> results = new ArrayList<UsersList>();
+        UsersList userslist = null;
+        int totalHits = 0;
 
         try {
             Connection conn = DriverManager.getConnection(this.urlConnection, props);
-            String QUERY = "SELECT id_usuario FROM usuarios WHERE correo=? AND contraseña=?";
+            String QUERY = "SELECT id_usuario, nombre, apellido, correo, permisos::text FROM usuarios WHERE correo=? AND contraseña=?";
 
             PreparedStatement preparedStatement = conn.prepareStatement(QUERY);
             preparedStatement.setString(1, user.getCorreo());
@@ -177,14 +181,22 @@ public class databaseController {
 
             ResultSet row = preparedStatement.executeQuery();
             while(row.next()){
-                UUID = row.getString(1);
+                userslist = new UsersList();
+                userslist.setUUID(row.getString(1));
+                userslist.setNombres(row.getString(2));
+                userslist.setApellidos(row.getString(3));
+                userslist.setCorreo(row.getString(4));
+                userslist.setPermisos(row.getString(5));
+                results.add(userslist);
             }
+            totalHits = results.size();
 
             row.close();
             preparedStatement.close();
             conn.close();
 
-            return UUID;
+            UserListResponse userListResponse = new UserListResponse(results, totalHits);
+            return userListResponse;
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
             return null;
@@ -221,7 +233,7 @@ public class databaseController {
         int totalHits = 0;
         try {
             Connection conn = DriverManager.getConnection(this.urlConnection, props);
-            String QUERY = "SELECT id_usuario, nombre, apellido, correo, id_rol FROM public.usuarios;";
+            String QUERY = "SELECT id_usuario, nombre, apellido, correo, permisos::text FROM public.usuarios ORDER BY id_usuario ASC;";
 
             PreparedStatement preparedStatement = conn.prepareStatement(QUERY);
             ResultSet row = preparedStatement.executeQuery();
@@ -232,6 +244,7 @@ public class databaseController {
                 userslist.setNombres(row.getString(2));
                 userslist.setApellidos(row.getString(3));
                 userslist.setCorreo(row.getString(4));
+                userslist.setPermisos(row.getString(5));
                 results.add(userslist);
             }
             totalHits = results.size();
@@ -247,5 +260,34 @@ public class databaseController {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
         return null;
+    }
+
+    public boolean updatePermissions(String uuid, String permissions) {
+        try {
+            Connection conn = DriverManager.getConnection(this.urlConnection, props);
+            String QUERY = "UPDATE public.usuarios SET permisos=?::json WHERE id_usuario=?::uuid";
+
+            PreparedStatement preparedStatement = conn.prepareStatement(QUERY);
+
+            preparedStatement.setString(1, permissions);
+            preparedStatement.setString(2, uuid);
+
+            int row = preparedStatement.executeUpdate();
+
+            //rows affected
+            //System.out.println(row); //1.
+            preparedStatement.close();
+            conn.close();
+            if(row>0){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            return false;
+        }
     }
 }
