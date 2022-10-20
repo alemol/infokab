@@ -22,18 +22,7 @@ public class ThreadElanXmlDigester extends Thread{
             if(elanXmlDigester.isEmpty()){
                 deactivate();
             } else {
-                try {
-                    process();
-                } catch (ParserConfigurationException e) {
-                    Logger.appendToFile(e);
-                    throw new RuntimeException(e);
-                } catch (SAXException e) {
-                    Logger.appendToFile(e);
-                    throw new RuntimeException(e);
-                } catch (IOException e) {
-                    Logger.appendToFile(e);
-                    throw new RuntimeException(e);
-                }
+                process();
             }
         }
     }
@@ -57,6 +46,7 @@ public class ThreadElanXmlDigester extends Thread{
                 System.out.println("Thread deactivate");
                 this.wait();
             } catch (InterruptedException e) {
+                Logger.appendToFile(e);
                 throw new RuntimeException(e);
             }
         }
@@ -75,8 +65,9 @@ public class ThreadElanXmlDigester extends Thread{
     /**
      * Función para obtener un elemento de la queue y ejecutar su proceso
      */
-    public void process() throws ParserConfigurationException, SAXException, IOException{
-        try {
+    public void process(){
+        try{
+
             Date startDate = new Date();
             ElanXmlDigester currentElanXmlDigester = elanXmlDigester.poll();
             currentElanXmlDigester.parse_tier("oracion", true, true);
@@ -91,7 +82,14 @@ public class ThreadElanXmlDigester extends Thread{
             long difference_In_Seconds = (difference_In_Time / (1000)) % 60;
             long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
             System.out.println("TIMER FINISHED THREAD: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
+        } catch (ParserConfigurationException e) {
+            Logger.appendToFile(e);
+            throw new RuntimeException(e);
         } catch (IOException e) {
+            Logger.appendToFile(e);
+            throw new RuntimeException(e);
+        } catch (SAXException e) {
+            Logger.appendToFile(e);
             throw new RuntimeException(e);
         }
     }

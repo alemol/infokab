@@ -18,7 +18,7 @@ import java.util.Date;
 @RequestMapping(path = "api/upload")
 public class UploadFilesController {
     private final UploadFilesService uploadFilesService;
-    private final Logger logger;
+    private Logger logger;
 
     public UploadFilesController(UploadFilesService uploadFilesService) {
         this.uploadFilesService = uploadFilesService;

@@ -21,7 +21,7 @@ import java.util.*;
 @RequestMapping(path = "api/glosa")
 public class GlosaController {
     private final GlosaService glosaService;
-    private final Logger logger;
+    private Logger logger;
     public GlosaController(GlosaService glosaService) {
         this.glosaService = glosaService;
         this.logger = new Logger();

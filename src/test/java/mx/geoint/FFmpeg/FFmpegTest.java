@@ -1,8 +1,12 @@
 package mx.geoint.FFmpeg;
 
+import mx.geoint.Logger.Logger;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -14,8 +18,13 @@ class FFmpegTest {
     private String source ="eligio_uikab_mena.wav";
     @Test
     void testCortador() {
-        ffmpeg = new FFmpeg(path);
-        ffmpeg.cortador(source,34.240,4.70,output);
+        try{
+            ffmpeg = new FFmpeg(path);
+            ffmpeg.cortador(source,34.240,4.70,output);
+        } catch (IOException e) {
+            Logger.appendToFile(e);
+            throw new RuntimeException(e);
+        }
     }
 
     @Test

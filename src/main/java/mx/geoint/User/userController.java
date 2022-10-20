@@ -16,7 +16,7 @@ import java.sql.SQLException;
 @RequestMapping(path = "api/user")
 public class userController {
     private final databaseController database;
-    private final Logger logger;
+    private Logger logger;
 
     public userController(){
         database = new databaseController();

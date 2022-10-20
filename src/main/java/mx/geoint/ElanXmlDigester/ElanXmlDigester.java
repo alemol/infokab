@@ -2,11 +2,14 @@ package mx.geoint.ElanXmlDigester;
 
 import com.google.gson.Gson;
 import mx.geoint.FFmpeg.FFmpeg;
+import mx.geoint.Logger.Logger;
 import mx.geoint.ParseXML.ParseXML;
 import mx.geoint.ParseXML.Tier;
 import mx.geoint.VideoCutter.VideoCutter;
 import mx.geoint.pathSystem;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -77,7 +80,11 @@ public class ElanXmlDigester {
                     switch (parseXML.getMimeType()){
                         case "audio/x-wav":
                             FFmpeg ffmpeg = new FFmpeg(filepathMultimedia);
-                            created = saveAudio(ffmpeg, tier, tier_id, filepathMultimedia);
+                            try{
+                                created = saveAudio(ffmpeg, tier, tier_id, filepathMultimedia);
+                            } catch (IOException e) {
+                                Logger.appendToFile(e);
+                            }
                             break;
                         case "video/mp4":
                             VideoCutter videoCutter = new VideoCutter();
@@ -137,12 +144,13 @@ public class ElanXmlDigester {
      * @param source String, ruta del multimedia
      * @return
      */
-    public boolean saveAudio(FFmpeg ffmpeg, Tier tier, String tier_id, String source){
+    public boolean saveAudio(FFmpeg ffmpeg, Tier tier, String tier_id, String source) throws IOException {
         String basePath = FilenameUtils.getPath(source)+"multimedia/";
         String path = FilenameUtils.getBaseName(source);
         String type_path = FilenameUtils.getExtension(source);
 
         String file_name = format_name(tier, tier_id, path, type_path);
+
         boolean created = ffmpeg.cortador(source,
                 (Integer.parseInt(tier.TIME_VALUE1)/1000),
                 (tier.DIFF_TIME/1000)+.5,
@@ -153,6 +161,7 @@ public class ElanXmlDigester {
             tier.setMediaPath(basePath+file_name);
             tier.setOriginalMediaPath(source);
         }
+
         return created;
     }
 

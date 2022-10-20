@@ -15,17 +15,17 @@ public class SearcherService {
     @Autowired
     Searcher searcher;
 
-    public SearchResponse findDocuments(String searchValue) {
+    public SearchResponse findDocuments(String searchValue) throws IOException, ParseException {
         return searcher.find(searchValue);
     }
 
-    public ArrayList<SearchDoc> findDocumentsPage(String searchvalue, int page){
+    public ArrayList<SearchDoc> findDocumentsPage(String searchvalue, int page) throws IOException, ParseException {
         return searcher.findPage(searchvalue, page);
     }
 
     public SearchResponse findDocumentsMultiple(String searchValue) throws IOException, ParseException { return  searcher.findMultiple(searchValue); }
 
-    public ArrayList<SearchDoc> findDocumentsPageMultiple(String searchValue, int page){
+    public ArrayList<SearchDoc> findDocumentsPageMultiple(String searchValue, int page) throws IOException, ParseException {
         return searcher.findPageMultiple(searchValue, page);
     }
 }

@@ -19,7 +19,7 @@ import java.util.Optional;
 @RequestMapping(path="api/dictionary")
 public class DictionaryController {
     private final DictionaryService dictionaryService;
-    private final Logger logger;
+    private Logger logger;
 
     public DictionaryController(DictionaryService dictionaryService){
         this.dictionaryService = dictionaryService;

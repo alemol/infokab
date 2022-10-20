@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class SearcherController {
 
     private final SearcherService searcherService;
-    private final Logger logger;
+    private Logger logger;
     @Autowired
     public SearcherController(SearcherService searcherService){
         this.searcherService = searcherService;
@@ -30,13 +30,21 @@ public class SearcherController {
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<SearchResponse> search(@RequestBody Search search){
-        String text = search.getText();
-        SearchResponse response = searcherService.findDocuments(text);
+        try{
+            String text = search.getText();
+            SearchResponse response = searcherService.findDocuments(text);
 
-        if(response != null){
-            return ResponseEntity.status(HttpStatus.OK).body(response);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            if(response != null){
+                return ResponseEntity.status(HttpStatus.OK).body(response);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+        } catch (IOException e) {
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No se encontro", e);
+        } catch (ParseException e) {
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
         }
     }
 
@@ -46,12 +54,20 @@ public class SearcherController {
         String text = searchPage.getText();
         int page = searchPage.getPage();
 
-        ArrayList<SearchDoc> response = searcherService.findDocumentsPage(text, page);
+        try{
+            ArrayList<SearchDoc> response = searcherService.findDocumentsPage(text, page);
 
-        if(response != null){
-            return ResponseEntity.status(HttpStatus.OK).body(response);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            if(response != null){
+                return ResponseEntity.status(HttpStatus.OK).body(response);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+        } catch (IOException e) {
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No se encontro", e);
+        } catch (ParseException e) {
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
         }
     }
 
@@ -62,22 +78,15 @@ public class SearcherController {
         try{
             SearchResponse response = searcherService.findDocumentsMultiple(text);
             return ResponseEntity.status(HttpStatus.OK).body(response);
-        } catch (IOException exIO){
+        } catch (IOException e){
             System.out.println("entre IO");
-            Logger.appendToFile(exIO);
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró", exIO);
-        } catch (ParseException exP){
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró", e);
+        } catch (ParseException e){
             System.out.println("entre Parse");
-            Logger.appendToFile(exP);
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", exP);
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
         }
-
-
-        /*if(response != null){
-            return ResponseEntity.status(HttpStatus.OK).body(response);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }*/
     }
 
     @RequestMapping(path = "/multiple/page", method = RequestMethod.POST)
@@ -85,13 +94,20 @@ public class SearcherController {
     public ResponseEntity<ArrayList<SearchDoc>> searchPaginateMultiple(@RequestBody SearchPage searchPage){
         String text = searchPage.getText();
         int page = searchPage.getPage();
+        try{
+            ArrayList<SearchDoc> response = searcherService.findDocumentsPageMultiple(text, page);
 
-        ArrayList<SearchDoc> response = searcherService.findDocumentsPageMultiple(text, page);
-
-        if(response != null){
-            return ResponseEntity.status(HttpStatus.OK).body(response);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            if(response != null){
+                return ResponseEntity.status(HttpStatus.OK).body(response);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+        } catch (IOException e) {
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró", e);
+        } catch (ParseException e) {
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
         }
     }
 }
