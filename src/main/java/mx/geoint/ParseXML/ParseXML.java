@@ -4,21 +4,16 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Map;
 
-import com.xuggle.xuggler.Utils;
 import mx.geoint.Model.GlosaStep;
-import org.apache.commons.io.FilenameUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.*;
@@ -30,6 +25,11 @@ public class ParseXML {
     String filePath = "";
     String name = "";
     ParseHandler parseHandler;
+
+    public ParseXML(String path) {
+        filePath = path;
+        parseHandler = new ParseHandler();
+    }
 
     /**
      * Inicializa la instancia con el path y la clase ParseHandler
@@ -177,6 +177,10 @@ public class ParseXML {
      */
     public List<Tier> getTier(){
         return parseHandler.getTier();
+    }
+
+    public Map<String, List<Tier>> getTiers(){
+        return parseHandler.getTiers();
     }
 
     /**

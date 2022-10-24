@@ -70,7 +70,7 @@ public class UploadFiles {
         System.out.println("ID de proyecto generado: "+id_project);
         if(id_project > 0){
             System.out.println("Proyecto guardado en base de datos");
-            //InitElanXmlDigester(eaf, multimedia, uuid, basePath, baseProjectName);
+            InitElanXmlDigester(eaf, multimedia, uuid, basePath, baseProjectName, id_project);
         }
         else{
             System.out.println("No se pudo guardar el proyecto en base de datos");
@@ -87,14 +87,14 @@ public class UploadFiles {
      * @param uuid String, Identificador de usuario
      * @param projectName String, Nombre del proyecto
      */
-    public void InitElanXmlDigester(MultipartFile eaf, MultipartFile multimedia, String uuid, String basePath, String projectName){
+    public void InitElanXmlDigester(MultipartFile eaf, MultipartFile multimedia, String uuid, String basePath, String projectName, int projectID){
         System.out.println("InitElanXmlDigester.....");
         String extEaf = FilenameUtils.getExtension(eaf.getOriginalFilename());
         String extMultimedia = FilenameUtils.getExtension(multimedia.getOriginalFilename());
 
         String pathEaf = basePath+projectName+"."+extEaf;
         String pathMultimedia = basePath+projectName+"."+extMultimedia;
-        threadElanXmlDigester.add(pathEaf, pathMultimedia, uuid);
+        threadElanXmlDigester.add(pathEaf, pathMultimedia, uuid, projectID);
         threadElanXmlDigester.activate();
     }
 

@@ -5,6 +5,8 @@ import mx.geoint.FFmpeg.FFmpeg;
 import mx.geoint.ParseXML.ParseXML;
 import mx.geoint.ParseXML.Tier;
 import mx.geoint.VideoCutter.VideoCutter;
+import mx.geoint.database.DBProjects;
+import mx.geoint.database.DBReports;
 import mx.geoint.pathSystem;
 import org.apache.commons.io.FilenameUtils;
 
@@ -13,14 +15,21 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.sql.SQLException;
 import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 public class ElanXmlDigester {
     String filepathEaf = "";
     String filepathMultimedia = "";
     String uuid = "";
+    int projectID;
     List<Tier> getTier;
+    private DBReports dbReports;
+    private DBProjects dbProjects;
 
     /**
      * Inicializa el path del archivo a parsear
@@ -31,6 +40,8 @@ public class ElanXmlDigester {
         String normalize = Normalizer.normalize(eaf_path, Normalizer.Form.NFD);
         this.uuid = uuid;
         filepathEaf = normalize.replaceAll("[^\\p{ASCII}]", "");
+        dbReports = new DBReports();
+        dbProjects = new DBProjects();
     }
 
     /**
@@ -46,6 +57,79 @@ public class ElanXmlDigester {
 
         filepathEaf = eaf_path;
         filepathMultimedia = multimedia_path;
+        dbReports = new DBReports();
+        dbProjects = new DBProjects();
+    }
+
+    /**
+     * Inicializa el path del archivo eaf y multimedia a parsear
+     * @param eaf_path String, Ruta del archivo eaf
+     * @param multimedia_path String, Ruta del archivo multimedia
+     * @param uuid String, Identificador del usuario
+     */
+    public ElanXmlDigester(String eaf_path, String multimedia_path, String uuid, int projectID){
+        this.uuid = uuid;
+        filepathEaf = eaf_path;
+        filepathMultimedia = multimedia_path;
+        this.projectID = projectID;
+        dbReports = new DBReports();
+        dbProjects = new DBProjects();
+    }
+
+    /**
+     * Analisis del archivo eaf
+     * @throws SQLException
+     */
+    public void validateElanXmlDigester() throws SQLException {
+        ParseXML parseXML = new ParseXML(filepathEaf);
+        parseXML.read();
+
+        Map<String, List<Tier>> tiersList = parseXML.getTiers();
+        List<Integer> tierCount = new ArrayList<>();
+        for (var entry : tiersList.entrySet()){
+            List<Tier> tierList = entry.getValue();
+            tierCount.add(tierList.size());
+        }
+
+        Boolean error_diff_annotations = false;
+        Boolean error_tier_is_empty = false;
+        Boolean error_tier_diff_time_zero = false;
+        Boolean error_tier_annotation_empty = false;
+
+        HashSet<Integer> set = new HashSet<Integer>(tierCount);
+        if(set.size() > 1){
+            error_diff_annotations = true;
+            dbReports.newRegister(projectID, "NO COINDICEN EL NUMERO DE ANOTACIONES", "");
+        }
+
+        if(set.size() == 1) {
+            for (var entry : tiersList.entrySet()){
+                List<Tier> tierList = entry.getValue();
+
+                if(tierList.isEmpty()){
+                    error_tier_is_empty = true;
+                    dbReports.newRegister(projectID, "Tier Vacio", "La capa "+entry.getKey()+" no contiene anotaciones");
+                    continue;
+                }
+
+                for (var register : tierList){
+                    if(register.DIFF_TIME == 0){
+                        error_tier_diff_time_zero = true;
+                        dbReports.newRegister(projectID, "TIEMPO DE CORTE CERO", "La anotación "+register.ANNOTATION_ID);
+                    }
+
+                    if(register.ANNOTATION_VALUE.isEmpty()){
+                        error_tier_annotation_empty = true;
+                        dbReports.newRegister(projectID, "ANOTACIÓN VACIA", "La anotación "+register.ANNOTATION_ID);
+                    }
+                }
+            }
+        }
+
+        if(!error_diff_annotations && !error_tier_annotation_empty && !error_tier_is_empty && !error_tier_diff_time_zero){
+            Integer firstElement = set.iterator().next();
+            dbProjects.setProjectAnnotationsCounter(projectID, firstElement);
+        }
     }
 
     /**

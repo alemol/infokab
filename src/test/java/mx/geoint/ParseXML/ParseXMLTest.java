@@ -10,6 +10,8 @@ import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 class ParseXMLTest {
@@ -332,5 +334,61 @@ class ParseXMLTest {
         String tier_id_transcripcion = "Transcripción Ortográfico";
 
         setTierDinamic(tier_id_transcripcion,"./eafs/"+path);
+    }
+
+
+    void getMapTier(String path_eaf){
+        String original_path_name = path_eaf;
+        String normalize = Normalizer.normalize(original_path_name, Normalizer.Form.NFD);
+        String path_name = normalize.replaceAll("[^\\p{ASCII}]", "");
+        ParseXML parseXML = new ParseXML(path_name);
+        parseXML.read();
+
+        Map<String, List<Tier>> tiersList = parseXML.getTiers();
+        for (var entry : tiersList.entrySet()){
+            String jsonString = new Gson().toJson(entry.getValue());
+            System.out.println(entry.getKey() +" Size: " + entry.getValue().size());
+            System.out.println(jsonString);
+        }
+    }
+
+    void testMapXMLFiles(String number_case) throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        String basePath = "./eafs/";
+        String path = "";
+
+        switch (number_case){
+            case "1":
+                path = "04_02_01072022_11_SCY_C_2_2.eaf";
+
+                System.out.println(path);
+                getMapTier(basePath+path);
+                break;
+            case "2":
+                path = "04_02_01062022_11_SCY_C_2_2.eaf";
+
+                System.out.println(path);
+                getMapTier(basePath+path);
+                break;
+            case "3":
+                path = "04_02_01082022_11_SCY_C_2_2.eaf";
+
+                System.out.println(path);
+                getMapTier(basePath+path);
+                break;
+            case "4":
+                path = "04_02_01092022_11_SCY_C_2_2.eaf";
+
+                System.out.println(path);
+                getMapTier(basePath+path);
+                break;
+        }
+    }
+
+    @Test
+    void runMapTestFile() throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        testMapXMLFiles("1");
+        testMapXMLFiles("2");
+        testMapXMLFiles("3");
+        testMapXMLFiles("4");
     }
 }
