@@ -85,20 +85,29 @@ public class ElanXmlDigester {
         parseXML.read();
 
         Map<String, List<Tier>> tiersList = parseXML.getTiers();
+
         List<Integer> tierCount = new ArrayList<>();
+        Boolean error_tier = false;
+
         for (var entry : tiersList.entrySet()){
+            String key = entry.getKey();
+
+            if(key.equals("oracion") || key.equals("Transcripción Ortográfico") ||
+                    key.equals("Transcripcion ") || key.equals("transpcion ortografica")){
+                error_tier = true;
+                dbProjects.setProjectAnnotationsCounter(projectID, entry.getValue().size());
+            }
+
             List<Tier> tierList = entry.getValue();
             tierCount.add(tierList.size());
         }
 
-        Boolean error_diff_annotations = false;
-        Boolean error_tier_is_empty = false;
-        Boolean error_tier_diff_time_zero = false;
-        Boolean error_tier_annotation_empty = false;
+        if(error_tier){
+            dbReports.newRegister(projectID, "TIER PRINCIPAL", "No se encontro el tier principal");
+        }
 
         HashSet<Integer> set = new HashSet<Integer>(tierCount);
         if(set.size() > 1){
-            error_diff_annotations = true;
             dbReports.newRegister(projectID, "NO COINDICEN EL NUMERO DE ANOTACIONES", "");
         }
 
@@ -107,28 +116,20 @@ public class ElanXmlDigester {
                 List<Tier> tierList = entry.getValue();
 
                 if(tierList.isEmpty()){
-                    error_tier_is_empty = true;
                     dbReports.newRegister(projectID, "Tier Vacio", "La capa "+entry.getKey()+" no contiene anotaciones");
                     continue;
                 }
 
                 for (var register : tierList){
                     if(register.DIFF_TIME == 0){
-                        error_tier_diff_time_zero = true;
                         dbReports.newRegister(projectID, "TIEMPO DE CORTE CERO", "La anotación "+register.ANNOTATION_ID);
                     }
 
                     if(register.ANNOTATION_VALUE.isEmpty()){
-                        error_tier_annotation_empty = true;
                         dbReports.newRegister(projectID, "ANOTACIÓN VACIA", "La anotación "+register.ANNOTATION_ID);
                     }
                 }
             }
-        }
-
-        if(!error_diff_annotations && !error_tier_annotation_empty && !error_tier_is_empty && !error_tier_diff_time_zero){
-            Integer firstElement = set.iterator().next();
-            dbProjects.setProjectAnnotationsCounter(projectID, firstElement);
         }
     }
 

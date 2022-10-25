@@ -209,7 +209,7 @@ class ElanXmlDigesterTest {
     @Test
     void getValidationAudio(){
         try {
-            ElanXmlDigester elanXmlDigester = new ElanXmlDigester("src/main/resources/eligio_uikab_mena.eaf", "47eebc99-9c0b-4ef8-bb6d-6bb9bd380a11","47eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",9);
+            ElanXmlDigester elanXmlDigester = new ElanXmlDigester("./eafs/04_02_01082022_11_SCY_C_2_2.eaf", "47eebc99-9c0b-4ef8-bb6d-6bb9bd380a11","47eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",10);
             elanXmlDigester.validateElanXmlDigester();
         } catch (SQLException e) {
             throw new RuntimeException(e);

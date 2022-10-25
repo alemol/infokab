@@ -1,10 +1,10 @@
 package mx.geoint.Glosa.Analysis;
 
-import mx.geoint.Model.Glosa;
-import mx.geoint.Model.GlosaAnnotationsRequest;
-import mx.geoint.Model.GlosaRequest;
-import mx.geoint.Model.ProjectRegistration;
+import mx.geoint.Glosa.Dictionary.DictionaryPaginate;
+import mx.geoint.Glosa.Dictionary.DictionaryRequest;
+import mx.geoint.Model.*;
 import mx.geoint.ParseXML.Tier;
+import mx.geoint.Response.ReportsResponse;
 import mx.geoint.database.DBProjects;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -100,6 +100,28 @@ public class GlosaController {
         String project = body.get("project");
         ArrayList<Tier> arrayList = glosaService.getAnnotations(project);
         return ResponseEntity.status(HttpStatus.OK).body(arrayList);
+    }
+
+    /**
+     *
+     * @param dictionaryPaginate
+     * @return
+     */
+    @RequestMapping(path="/reports/list", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ReportsResponse> getReports(@RequestBody DictionaryPaginate dictionaryPaginate) {
+        try{
+            ReportsResponse reportsResponse = glosaService.getRegisters(dictionaryPaginate);
+            return ResponseEntity.status(HttpStatus.OK).body(reportsResponse);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @RequestMapping(path="/report", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public boolean createRegisterBases(@RequestBody ReportRequest ReportRequest) throws SQLException {
+        return glosaService.insertRegister(ReportRequest);
     }
 
     /**

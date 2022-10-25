@@ -19,15 +19,23 @@ public class DBProjects {
     public ArrayList<ProjectRegistration> ListProjects() throws SQLException {
         ArrayList<ProjectRegistration> result = new ArrayList<>();
         ProjectRegistration projectRegistrations = null;
-        String SQL_QUERY = "SELECT id_proyecto, id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, estado, fecha_archivo, hablantes, ubicacion, radio, bounds " +
-                            "FROM proyectos";
+        String SQL_QUERY = "select\n" +
+                            "p.*, count(r.id_proyecto) as total_de_reportes\n" +
+                            "FROM proyectos as p\n" +
+                            "left join reportes as r on r.id_proyecto = p.id_proyecto\n" +
+                            "group by p.id_proyecto\n" +
+                            "order by p.id_proyecto";
 
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         ResultSet rs = preparedStatement.executeQuery();
         while(rs.next()){
-            int random_total = (int)Math.floor(Math.random()*(200-1+1)+1);
-            int random_save = (int)Math.floor(Math.random()*(random_total-1+1)+1);
+            int random_total = rs.getInt(12);
+            int random_save = 0;
+
+            if(random_total > 0){
+                random_save = (int)Math.floor(Math.random()*(random_total-1+1)+1);
+            }
 
             projectRegistrations = new ProjectRegistration();
             projectRegistrations.setId_proyecto(rs.getString(1));
@@ -41,7 +49,7 @@ public class DBProjects {
             projectRegistrations.setUbicacion(rs.getString(9));
             projectRegistrations.setRadio(rs.getInt(10));
             projectRegistrations.setBounds(rs.getString(11));
-
+            projectRegistrations.setTotal_de_reportes(rs.getInt(14));
 
             projectRegistrations.setTotal_de_anotaciones(random_total);
             projectRegistrations.setAnotaciones_guardadas(random_save);

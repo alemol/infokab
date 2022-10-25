@@ -1,7 +1,12 @@
 package mx.geoint.database;
 
+import mx.geoint.Glosa.Dictionary.DictionaryRequest;
+import mx.geoint.Model.ReportDoc;
+import mx.geoint.Response.ReportsResponse;
+
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class DBReports {
     public Credentials credentials;
@@ -24,5 +29,42 @@ public class DBReports {
         conn.close();
 
         return true;
+    }
+
+    public ReportsResponse ListRegisters(int offset, int noOfRecords, Integer id) throws SQLException {
+        ArrayList<ReportDoc> results = new ArrayList<ReportDoc>();
+        ReportDoc reportDoc = null;
+        int totalHits = 0;
+
+        Connection conn = credentials.getConnection();
+
+        String SQL_QUERY = "SELECT * FROM reportes WHERE id_proyecto=? order by id offset " + offset + " limit " + noOfRecords;
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
+        preparedStatement.setObject(1, id);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        while (rs.next()) {
+            reportDoc = new ReportDoc();
+            reportDoc.setId(rs.getString(1));
+            reportDoc.setId_proyecto(rs.getString(2));
+            reportDoc.setTitulo(rs.getString(3));
+            reportDoc.setReporte(rs.getString(4));
+            reportDoc.setFecha_creacion(rs.getString(5));
+            results.add(reportDoc);
+        }
+        rs.close();
+
+        SQL_QUERY = "SELECT count(*) FROM reportes WHERE id_proyecto=?";
+        preparedStatement = conn.prepareStatement(SQL_QUERY);
+        preparedStatement.setObject(1, id);
+        rs = preparedStatement.executeQuery();
+        if (rs.next()) {
+            totalHits = rs.getInt(1);
+        }
+        rs.close();
+
+        conn.close();
+        ReportsResponse reportsResponse = new ReportsResponse(results, totalHits);
+        return reportsResponse;
     }
 }

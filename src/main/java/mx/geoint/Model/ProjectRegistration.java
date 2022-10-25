@@ -17,6 +17,7 @@ public class ProjectRegistration {
 
     int total_de_anotaciones;
     int anotaciones_guardadas;
+    int total_de_reportes;
 
     public String getId_proyecto() { return id_proyecto; }
 
@@ -69,4 +70,8 @@ public class ProjectRegistration {
     public int getTotal_de_anotaciones() { return total_de_anotaciones; }
 
     public void setTotal_de_anotaciones(int total_de_anotaciones) { this.total_de_anotaciones = total_de_anotaciones; }
+
+    public void setTotal_de_reportes(int total_de_reportes) { this.total_de_reportes = total_de_reportes; }
+
+    public int getTotal_de_reportes() { return total_de_reportes; }
 }

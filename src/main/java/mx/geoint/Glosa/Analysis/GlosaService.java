@@ -1,13 +1,14 @@
 package mx.geoint.Glosa.Analysis;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import mx.geoint.Model.Glosa;
-import mx.geoint.Model.GlosaAnnotationsRequest;
-import mx.geoint.Model.GlosaRequest;
-import mx.geoint.Model.GlosaStep;
+import mx.geoint.Glosa.Dictionary.DictionaryPaginate;
+import mx.geoint.Glosa.Dictionary.DictionaryRequest;
+import mx.geoint.Model.*;
 import mx.geoint.ParseXML.ParseXML;
 import mx.geoint.ParseXML.Tier;
+import mx.geoint.Response.ReportsResponse;
 import mx.geoint.database.DBDictionary;
+import mx.geoint.database.DBReports;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
@@ -19,16 +20,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 @Service
 public class GlosaService {
     public static DBDictionary dbDictionary;
+    public static DBReports dbReports;
 
     public GlosaService() {
         this.dbDictionary = new DBDictionary();
+        this.dbReports = new DBReports();
     }
 
     /**
@@ -166,5 +168,22 @@ public class GlosaService {
         ParseXML parseXML = new ParseXML("./eafs/"+projectName+".eaf", "Glosado");
         parseXML.writeElement(annotationREF, annotationId, steps);
         return true;
+    }
+
+    public ReportsResponse getRegisters(DictionaryPaginate dictionaryPaginate) throws SQLException {
+        int page = dictionaryPaginate.getPage();
+        Integer id_project = dictionaryPaginate.getId();
+        int recordsPerPage = dictionaryPaginate.getRecord();
+
+        int currentPage = (page - 1) * recordsPerPage;
+        return dbReports.ListRegisters(currentPage, recordsPerPage, id_project);
+    }
+
+    public boolean insertRegister(ReportRequest reportRequest) throws SQLException {
+        int id_project = reportRequest.getId_proyecto();
+        String title = reportRequest.getTitulo();
+        String report = reportRequest.getReporte();
+
+        return dbReports.newRegister(id_project, title, report);
     }
 }
