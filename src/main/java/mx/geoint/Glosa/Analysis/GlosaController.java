@@ -1,9 +1,7 @@
 package mx.geoint.Glosa.Analysis;
 
 import mx.geoint.Logger.Logger;
-import mx.geoint.Model.Glosa;
-import mx.geoint.Model.GlosaAnnotationsRequest;
-import mx.geoint.Model.GlosaRequest;
+import mx.geoint.Model.*;
 import mx.geoint.Glosa.Dictionary.DictionaryPaginate;
 import mx.geoint.Glosa.Dictionary.DictionaryRequest;
 import mx.geoint.ParseXML.Tier;
@@ -138,14 +136,15 @@ public class GlosaController {
             ReportsResponse reportsResponse = glosaService.getRegisters(dictionaryPaginate);
             return ResponseEntity.status(HttpStatus.OK).body(reportsResponse);
         } catch (SQLException e) {
+            Logger.appendToFile(e);
             throw new RuntimeException(e);
         }
     }
 
     @RequestMapping(path="/report", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public boolean createRegisterBases(@RequestBody ReportRequest ReportRequest) throws SQLException {
-        return glosaService.insertRegister(ReportRequest);
+    public boolean createRegisterBases(@RequestBody ReportRequest reportRequest) throws SQLException {
+        return glosaService.insertRegister(reportRequest);
     }
 
     /**

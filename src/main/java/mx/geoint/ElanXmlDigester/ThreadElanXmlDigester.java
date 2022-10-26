@@ -111,6 +111,7 @@ public class ThreadElanXmlDigester extends Thread{
             long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
             System.out.println("TIMER FINISHED THREAD: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
         } catch (SQLException e) {
+            Logger.appendToFile(e);
             throw new RuntimeException(e);
         }
     }
