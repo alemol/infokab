@@ -85,7 +85,7 @@ public class ElanXmlDigester {
      * Analisis del archivo eaf
      * @throws SQLException
      */
-    public void validateElanXmlDigester() throws SQLException {
+    public void validateElanXmlDigester() throws SQLException, ParserConfigurationException, IOException, SAXException {
         ParseXML parseXML = new ParseXML(filepathEaf);
         parseXML.read();
 

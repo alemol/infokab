@@ -113,6 +113,15 @@ public class ThreadElanXmlDigester extends Thread{
         } catch (SQLException e) {
             Logger.appendToFile(e);
             throw new RuntimeException(e);
+        } catch (ParserConfigurationException e) {
+            Logger.appendToFile(e);
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            Logger.appendToFile(e);
+            throw new RuntimeException(e);
+        } catch (SAXException e) {
+            Logger.appendToFile(e);
+            throw new RuntimeException(e);
         }
     }
 }

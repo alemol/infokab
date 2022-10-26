@@ -215,6 +215,12 @@ class ElanXmlDigesterTest {
             elanXmlDigester.validateElanXmlDigester();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } catch (ParserConfigurationException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (SAXException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -223,7 +229,7 @@ class ElanXmlDigesterTest {
         try{
             initElanXmlDigesterVideo();
             elanXmlDigester.validateElanXmlDigester();
-        } catch (SQLException e) {
+        } catch (SQLException | ParserConfigurationException | IOException | SAXException e) {
             throw new RuntimeException(e);
         }
     }
