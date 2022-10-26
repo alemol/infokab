@@ -4,6 +4,7 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -205,5 +206,25 @@ class ElanXmlDigesterTest {
                 () -> assertEquals("Taase aak'o' kinjats'ej", elanXmlDigester.getTier.get(0).ANNOTATION_VALUE),
                 () -> assertEquals(1300.0, elanXmlDigester.getTier.get(0).DIFF_TIME)
         );
+    }
+
+    @Test
+    void getValidationAudio(){
+        try {
+            ElanXmlDigester elanXmlDigester = new ElanXmlDigester("./eafs/04_02_01082022_11_SCY_C_2_2.eaf", "47eebc99-9c0b-4ef8-bb6d-6bb9bd380a11","47eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",10);
+            elanXmlDigester.validateElanXmlDigester();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    void getValidationVideo(){
+        try{
+            initElanXmlDigesterVideo();
+            elanXmlDigester.validateElanXmlDigester();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

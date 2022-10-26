@@ -14,7 +14,6 @@ public class Credentials {
     Properties props;
 
     public Credentials(){
-        System.out.println("init databaseController");
         props = new Properties();
         props.setProperty("user",this.DBuser);
         props.setProperty("password",this.DBpassword);

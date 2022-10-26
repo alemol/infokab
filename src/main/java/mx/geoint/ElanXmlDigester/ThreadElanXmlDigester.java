@@ -6,6 +6,7 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Queue;
 import java.util.LinkedList;
@@ -22,7 +23,8 @@ public class ThreadElanXmlDigester extends Thread{
             if(elanXmlDigester.isEmpty()){
                 deactivate();
             } else {
-                process();
+                //process();
+                validateProcess();
             }
         }
     }
@@ -33,8 +35,8 @@ public class ThreadElanXmlDigester extends Thread{
      * @param pathMultimedia String, ruta del archivo multimedia
      * @param uuid String, Identificador del usuario
      */
-    public void add(String pathEAF, String pathMultimedia, String uuid){
-        elanXmlDigester.add(new ElanXmlDigester(pathEAF, pathMultimedia, uuid));
+    public void add(String pathEAF, String pathMultimedia, String uuid, int projectID){
+        elanXmlDigester.add(new ElanXmlDigester(pathEAF, pathMultimedia, uuid, projectID));
     }
 
     /**
@@ -90,6 +92,25 @@ public class ThreadElanXmlDigester extends Thread{
             throw new RuntimeException(e);
         } catch (SAXException e) {
             Logger.appendToFile(e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Proceso para validar un archivo eaf
+     */
+    public void validateProcess(){
+        try{
+            Date startDate = new Date();
+            ElanXmlDigester currentElanXmlDigester = elanXmlDigester.poll();
+            currentElanXmlDigester.validateElanXmlDigester();
+
+            Date endDate = new Date();
+            long difference_In_Time = endDate.getTime() - startDate.getTime();
+            long difference_In_Seconds = (difference_In_Time / (1000)) % 60;
+            long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
+            System.out.println("TIMER FINISHED THREAD: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }

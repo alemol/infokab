@@ -4,8 +4,12 @@ public class DictionaryPaginate {
     private int page;
     private int record;
     private String search;
+    private Integer id;
 
-    public DictionaryPaginate(){}
+    public DictionaryPaginate(){
+        this.page = 1;
+        this.record = 10;
+    }
     public DictionaryPaginate(int page, int record, String search){
         if(page <= 0){
             this.page = 1;
@@ -25,4 +29,6 @@ public class DictionaryPaginate {
     public int getPage(){ return page; }
     public int getRecord(){ return record; }
     public String getSearch(){ return search; }
+    public void setId(Integer id) { this.id = id; }
+    public Integer getId() { return id; }
 }
