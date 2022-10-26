@@ -93,7 +93,9 @@ public class ElanXmlDigester {
             String key = entry.getKey();
 
             if(key.equals("oracion") || key.equals("Transcripción Ortográfico") ||
-                    key.equals("Transcripcion ") || key.equals("transpcion ortografica")){
+                    key.equals("Transcripcion ") || key.equals("transpcion ortografica") ||
+                    key.equals("Transcripción")
+            ){
                 error_tier = true;
                 dbProjects.setProjectAnnotationsCounter(projectID, entry.getValue().size());
             }
@@ -102,7 +104,7 @@ public class ElanXmlDigester {
             tierCount.add(tierList.size());
         }
 
-        if(error_tier){
+        if(!error_tier){
             dbReports.newRegister(projectID, "TIER PRINCIPAL", "No se encontro el tier principal");
         }
 
