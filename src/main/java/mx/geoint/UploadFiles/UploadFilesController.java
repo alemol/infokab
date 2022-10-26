@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 
 @CrossOrigin(origins = {"http://infokaab.com/", "http://infokaab.com.mx/", "http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009", "http://10.2.102.182"})
@@ -32,12 +33,6 @@ public class UploadFilesController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity created(@RequestParam MultipartFile eaf, @RequestParam MultipartFile multimedia, @RequestParam String uuid, @RequestParam String projectName, @RequestParam(required = false) MultipartFile autorizacion, @RequestParam String date, @RequestParam String hablantes, @RequestParam String ubicacion, @RequestParam String radio, @RequestParam String circleBounds) throws IOException {
         Date startDate = new Date();
-        //System.out.println(autorizacion);
-        System.out.println(hablantes);
-        System.out.println(radio);
-        System.out.println(circleBounds);
-        System.out.println(ubicacion);
-
         if (eaf.isEmpty() || multimedia.isEmpty()) {
             return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere 1 archivo .eaf y 1 archivo multimedia", false);
         }

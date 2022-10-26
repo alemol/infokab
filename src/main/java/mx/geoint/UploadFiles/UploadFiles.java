@@ -61,8 +61,8 @@ public class UploadFiles {
             }
         }
 
-
         int id_project = database.createProject(uuid, basePath, baseProjectName, date, hablantes, ubicacion, radio, circleBounds); //inserta un registro del proyecto en la base de datos
+
         System.out.println("ID de proyecto generado: "+id_project);
         if(id_project > 0){
             System.out.println("Proyecto guardado en base de datos");
