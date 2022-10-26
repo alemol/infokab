@@ -4,21 +4,16 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Map;
 
-import com.xuggle.xuggler.Utils;
 import mx.geoint.Model.GlosaStep;
-import org.apache.commons.io.FilenameUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.*;
@@ -30,6 +25,11 @@ public class ParseXML {
     String filePath = "";
     String name = "";
     ParseHandler parseHandler;
+
+    public ParseXML(String path) {
+        filePath = path;
+        parseHandler = new ParseHandler();
+    }
 
     /**
      * Inicializa la instancia con el path y la clase ParseHandler
@@ -87,22 +87,23 @@ public class ParseXML {
         }
 
         Element ANNOTATION = document.createElement("ANNOTATION");
+        Element REF_ANNOTATION = document.createElement("REF_ANNOTATION");
+
         ANNOTATION.setAttribute("ANNOTATION_TIER_REF", String.valueOf(annotation_tier_ref));
+        REF_ANNOTATION.setAttribute("ANNOTATION_ID", "g"+String.valueOf(annotation_ref));
+        REF_ANNOTATION.setAttribute("ANNOTATION_TIER_REF", String.valueOf(annotation_tier_ref));
+        REF_ANNOTATION.setAttribute("ANNOTATION_REF", String.valueOf(annotation_ref));
 
         for (GlosaStep step: steps){
-            Element REF_ANNOTATION = document.createElement("REF_ANNOTATION");
             Element ANNOTATION_VALUE = document.createElement("ANNOTATION_VALUE");
-
-            REF_ANNOTATION.setAttribute("ANNOTATION_ID", "g"+String.valueOf(annotation_ref));
-            REF_ANNOTATION.setAttribute("ANNOTATION_WORD", String.valueOf(step.getId()));
-            REF_ANNOTATION.setAttribute("ANNOTATION_TIER_REF", String.valueOf(annotation_tier_ref));
-            REF_ANNOTATION.setAttribute("ANNOTATION_REF", String.valueOf(annotation_ref));
-
+            ANNOTATION_VALUE.setAttribute("ANNOTATION_WORD", String.valueOf(step.getId()));
             ANNOTATION_VALUE.appendChild(document.createTextNode(step.getSelect()));
+
             REF_ANNOTATION.appendChild(ANNOTATION_VALUE);
-            ANNOTATION.appendChild(REF_ANNOTATION);
-            TIER.appendChild(ANNOTATION);
         }
+
+        ANNOTATION.appendChild(REF_ANNOTATION);
+        TIER.appendChild(ANNOTATION);
 
         saveFile(document);
     }
@@ -176,6 +177,10 @@ public class ParseXML {
      */
     public List<Tier> getTier(){
         return parseHandler.getTier();
+    }
+
+    public Map<String, List<Tier>> getTiers(){
+        return parseHandler.getTiers();
     }
 
     /**

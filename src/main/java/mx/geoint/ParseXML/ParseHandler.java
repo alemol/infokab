@@ -1,6 +1,5 @@
 package mx.geoint.ParseXML;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -8,7 +7,9 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ParseHandler extends DefaultHandler{
     private String tier_id;
@@ -50,10 +51,15 @@ public class ParseHandler extends DefaultHandler{
 
     //Listas de las traducciones
     public List<Tier> tierList;
+    Map<String, List<Tier>> tiersList = new HashMap<String, List<Tier>>();
 
     //Objecto para almacenar los tiempo
     JsonObject jsonObjectTimeOrder = new JsonObject();
     JsonObject jsonObjectRefTimer = new JsonObject();
+
+    ParseHandler(){
+        this.tier_id = "";
+    }
 
     /**
      *
@@ -81,8 +87,12 @@ public class ParseHandler extends DefaultHandler{
 
         if(flag_text){
             String annotation_value = new String(ch, start, length);
-            if(tier_id.equals(current_tier_id)) {
+            if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
                 latestTier(tierList).setAnnotationValue(annotation_value);
+            }
+            if(tier_id.isEmpty()) {
+                List getTierList = tiersList.get(current_tier_id);
+                latestTier(getTierList).setAnnotationValue(annotation_value);
             }
         }
     }
@@ -146,6 +156,10 @@ public class ParseHandler extends DefaultHandler{
                 String LINGUISTIC_TYPE_REF = attr.getValue("LINGUISTIC_TYPE_REF");
                 String normalize = Normalizer.normalize(LINGUISTIC_TYPE_REF.toLowerCase(), Normalizer.Form.NFD);
                 current_tier_id = normalize.replaceAll("[^\\p{ASCII}]", "");
+                if(tier_id.isEmpty()){
+                    tiersList.put(current_tier_id, new ArrayList<>());
+                }
+
                 break;
             case ALIGNABLE_ANNOTATION:
                 String ANNOTATION_ID = attr.getValue("ANNOTATION_ID");
@@ -161,8 +175,14 @@ public class ParseHandler extends DefaultHandler{
                 jsonObject.addProperty("TIME_VALUE2", TIME_VALUE2);
                 jsonObjectRefTimer.add(ANNOTATION_ID, jsonObject);
 
-                if(tier_id.equals(current_tier_id)) {
+                if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
                     tierList.add(new Tier(ANNOTATION_ID, TIME_SLOT_REF1, TIME_VALUE1, TIME_SLOT_REF2, TIME_VALUE2));
+                }
+
+                if(tier_id.isEmpty()){
+                    List getTierList = tiersList.get(current_tier_id);
+                    getTierList.add(new Tier(ANNOTATION_ID, TIME_SLOT_REF1, TIME_VALUE1, TIME_SLOT_REF2, TIME_VALUE2));
+                    tiersList.put(current_tier_id, getTierList);
                 }
 
                 break;
@@ -176,8 +196,14 @@ public class ParseHandler extends DefaultHandler{
                 String REF_TIME_VALUE1 = REF_VALUES.get("TIME_VALUE1").getAsString();
                 String REF_TIME_VALUE2 = REF_VALUES.get("TIME_VALUE2").getAsString();
 
-                if(tier_id.equals(current_tier_id)) {
+                if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
                     tierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
+                }
+
+                if(tier_id.isEmpty()){
+                    List getTierList = tiersList.get(current_tier_id);
+                    getTierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
+                    tiersList.put(current_tier_id, getTierList);
                 }
                 break;
             case ANNOTATION_VALUE:
@@ -223,6 +249,10 @@ public class ParseHandler extends DefaultHandler{
      */
     public List<Tier> getTier(){
         return tierList;
+    }
+
+    public Map<String, List<Tier>> getTiers(){
+        return tiersList;
     }
 
     /**

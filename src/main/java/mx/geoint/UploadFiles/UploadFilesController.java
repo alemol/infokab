@@ -46,7 +46,8 @@ public class UploadFilesController {
         }
 
         long uploadTime = (new Date()).getTime();
-        Number codeStatus = uploadFilesService.uploadFile(eaf, multimedia, autorizacion, uuid, projectName + "_" + uploadTime, date, hablantes, ubicacion, radio, circleBounds);
+        String fullProjectName = projectName + "_" + uploadTime;
+        Number codeStatus = uploadFilesService.uploadFile(eaf, multimedia, autorizacion, uuid, fullProjectName, date, hablantes, ubicacion, radio, circleBounds);
 
         Date endDate = new Date();
         long difference_In_Time = endDate.getTime() - startDate.getTime();

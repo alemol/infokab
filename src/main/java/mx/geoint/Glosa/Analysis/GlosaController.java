@@ -1,9 +1,11 @@
 package mx.geoint.Glosa.Analysis;
 
-import mx.geoint.Model.Glosa;
-import mx.geoint.Model.GlosaAnnotationsRequest;
-import mx.geoint.Model.GlosaRequest;
+import mx.geoint.Glosa.Dictionary.DictionaryPaginate;
+import mx.geoint.Glosa.Dictionary.DictionaryRequest;
+import mx.geoint.Model.*;
 import mx.geoint.ParseXML.Tier;
+import mx.geoint.Response.ReportsResponse;
+import mx.geoint.database.DBProjects;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -74,13 +76,16 @@ public class GlosaController {
      */
     @RequestMapping(path="/projects", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ArrayList<String>> getFiles() throws IOException {
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("04_02_01062022_11_SCY_C_2_2");
-        arrayList.add("04_02_01072022_11_SCY_C_2_2");
-        arrayList.add("04_02_01082022_11_SCY_C_2_2");
-        arrayList.add("04_02_01092022_11_SCY_C_2_2");
-        return ResponseEntity.status(HttpStatus.OK).body(arrayList);
+    public ResponseEntity<ArrayList<?>> getFiles() throws IOException, SQLException {
+        //ArrayList<String> arrayList = new ArrayList<>();
+        //arrayList.add("04_02_01062022_11_SCY_C_2_2");
+        //arrayList.add("04_02_01072022_11_SCY_C_2_2");
+        //arrayList.add("04_02_01082022_11_SCY_C_2_2");
+        //arrayList.add("04_02_01092022_11_SCY_C_2_2");
+
+        DBProjects dbProjects = new DBProjects();
+        ArrayList<ProjectRegistration> result = dbProjects.ListProjects();
+        return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
     /**
@@ -95,6 +100,28 @@ public class GlosaController {
         String project = body.get("project");
         ArrayList<Tier> arrayList = glosaService.getAnnotations(project);
         return ResponseEntity.status(HttpStatus.OK).body(arrayList);
+    }
+
+    /**
+     *
+     * @param dictionaryPaginate
+     * @return
+     */
+    @RequestMapping(path="/reports/list", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ReportsResponse> getReports(@RequestBody DictionaryPaginate dictionaryPaginate) {
+        try{
+            ReportsResponse reportsResponse = glosaService.getRegisters(dictionaryPaginate);
+            return ResponseEntity.status(HttpStatus.OK).body(reportsResponse);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @RequestMapping(path="/report", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public boolean createRegisterBases(@RequestBody ReportRequest ReportRequest) throws SQLException {
+        return glosaService.insertRegister(ReportRequest);
     }
 
     /**
