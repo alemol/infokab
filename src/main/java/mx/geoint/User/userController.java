@@ -82,6 +82,7 @@ public class userController {
         Boolean haspermission = true;
         if (haspermission == true) {
             UserListResponse userListResponse = database.getUserslist();
+            System.out.println(userListResponse.getTotalHits());
             //return createdResponseEntity(HttpStatus.CONFLICT, "No tiene permiso", false);
             return ResponseEntity.status(HttpStatus.OK).body(userListResponse);
         } else {

@@ -113,7 +113,7 @@ public class databaseController {
             Connection conn = DriverManager.getConnection(this.urlConnection, props);
             System.out.println(conn);
 
-            String SQL_INSERT = "INSERT INTO usuarios (id_usuario, nombre, apellido, correo, contraseña, fecha_creacion,permisos) VALUES (?,?,?,?,?,?,?::json)";
+            String SQL_INSERT = "INSERT INTO usuarios (id_usuario, nombre, apellido, correo, contraseña, fecha_creacion) VALUES (?,?,?,?,?,?)";
 
             PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT);
             preparedStatement.setObject(1, uuid);
@@ -122,7 +122,6 @@ public class databaseController {
             preparedStatement.setString(4, user.getCorreo());
             preparedStatement.setString(5, encryptedPassword);
             preparedStatement.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
-            preparedStatement.setString(7, "{\"buscador\": true");
 
             int row = preparedStatement.executeUpdate();
 
@@ -233,7 +232,10 @@ public class databaseController {
         int totalHits = 0;
         try {
             Connection conn = DriverManager.getConnection(this.urlConnection, props);
-            String QUERY = "SELECT id_usuario, nombre, apellido, correo, permisos::text FROM public.usuarios ORDER BY id_usuario ASC;";
+            String QUERY = "SELECT id_usuario, nombre, apellido, correo, permisos::text FROM public.usuarios \n" +
+                    "EXCEPT\n" +
+                    "SELECT id_usuario, nombre, apellido, correo, permisos::text FROM public.usuarios WHERE nombre ='Super'\n" +
+                    "ORDER BY id_usuario ASC;";
 
             PreparedStatement preparedStatement = conn.prepareStatement(QUERY);
             ResultSet row = preparedStatement.executeQuery();
