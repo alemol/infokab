@@ -127,11 +127,11 @@ public class GlosaService {
 
 
     public Boolean saveAnnotation(GlosaAnnotationsRequest glosaAnnotationsRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException {
-        String projectName = glosaAnnotationsRequest.getProject();
+        String projectName = glosaAnnotationsRequest.getFilePath();
         String annotationId = glosaAnnotationsRequest.getAnnotationID();
         String annotationREF = glosaAnnotationsRequest.getAnnotationREF();
         ArrayList<GlosaStep> steps = glosaAnnotationsRequest.getSteps();
-        ParseXML parseXML = new ParseXML("./eafs/"+projectName+".eaf", "Glosado");
+        ParseXML parseXML = new ParseXML(projectName, "Glosado");
         parseXML.writeElement(annotationREF, annotationId, steps);
         return true;
     }

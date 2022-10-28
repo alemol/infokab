@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 
 public class GlosaAnnotationsRequest {
-    private String project;
+    private String filePath;
 
     @JsonProperty("ANNOTATION_ID")
     private String annotationID;
@@ -15,14 +15,14 @@ public class GlosaAnnotationsRequest {
     private ArrayList<GlosaStep> steps;
 
     public GlosaAnnotationsRequest(){ }
-    public GlosaAnnotationsRequest(String project, String annotationID, ArrayList<GlosaStep> steps){
-        this.project = project;
+    public GlosaAnnotationsRequest(String filePath, String annotationID, ArrayList<GlosaStep> steps){
+        this.filePath = filePath;
         this.annotationID = annotationID;
         this.steps = steps;
     }
 
-    public void setProject(String project) {this.project = project; }
-    public String getProject() { return project;}
+    public void setFilePath(String filePath) {this.filePath = filePath; }
+    public String getFilePath() { return filePath;}
     public void setAnnotationID(String annotationID) { this.annotationID = annotationID; }
     public String getAnnotationID() { return annotationID; }
     public void setSteps(ArrayList<GlosaStep> steps) { this.steps = steps; }
