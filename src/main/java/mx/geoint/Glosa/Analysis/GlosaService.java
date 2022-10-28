@@ -114,49 +114,15 @@ public class GlosaService {
 
     /**
      * Servicio para obtener las oraciones o anotaciones de un proyecto
-     * @param name
+     * @param filePath
      * @return ArraList<Tier> una lista del modelo Tier
      */
-    public static ArrayList<Tier> getAnnotations(String name) {
-        String path = "";
-        String tier_id_transcripcion = "";
-
-        switch (name) {
-            case "04_02_01062022_11_SCY_C_2_2":
-                //path = "Pablo Balam 1_RIKT.eaf";
-                path = "04_02_01062022_11_SCY_C_2_2.eaf";
-                tier_id_transcripcion = "Transcripcion ";
-                break;
-            case "04_02_01072022_11_SCY_C_2_2":
-                //path = "Juan Tuyub_FCA.eaf";
-                path = "04_02_01072022_11_SCY_C_2_2.eaf";
-                tier_id_transcripcion = "Transcripción Ortográfico";
-                break;
-            case "04_02_01082022_11_SCY_C_2_2":
-                //path = "22-08-2022 ALONDRA-XOHUAYAN_IPC respaldo.eaf";
-                path = "04_02_01082022_11_SCY_C_2_2.eaf";
-                tier_id_transcripcion = "transpcion ortografica";
-                break;
-            case "04_02_01092022_11_SCY_C_2_2":
-                //path = "2015-01-09_1650_Entrevista_datos_espontáneos_Clementina.eaf";
-                path = "04_02_01092022_11_SCY_C_2_2.eaf";
-                tier_id_transcripcion = "oracion";
-                break;
-        }
-
-        return new ArrayList<>(getTierDinamic("./eafs/" + path, tier_id_transcripcion));
-    }
-
-    /**
-     * Servicio para iniciar y ejecutar la lectura de las anotaciones de un archivo eaf
-     * @param path_eaf ruta del archivo eaf
-     * @param tier_id id de la capa tier a obtener
-     * @return List<Tier> una lista de las anotaciones del archivo eaf
-     */
-    static List<Tier> getTierDinamic(String path_eaf, String tier_id) {
-        ParseXML parseXML = new ParseXML(path_eaf, tier_id);
+    public static ArrayList<Tier> getAnnotations(String filePath, String id) {
+        System.out.println("data " + filePath +" id "+ id);
+        String tier_id_transcripcion = "Transcripción Ortográfico";
+        ParseXML parseXML = new ParseXML(filePath, tier_id_transcripcion);
         parseXML.read();
-        return parseXML.getTier();
+        return new ArrayList<>(parseXML.getTier());
     }
 
 

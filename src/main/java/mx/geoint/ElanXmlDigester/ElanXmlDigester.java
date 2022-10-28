@@ -92,10 +92,7 @@ public class ElanXmlDigester {
         for (var entry : tiersList.entrySet()){
             String key = entry.getKey();
 
-            if(key.equals("oracion") || key.equals("Transcripción Ortográfico") ||
-                    key.equals("Transcripcion ") || key.equals("transpcion ortografica") ||
-                    key.equals("Transcripción")
-            ){
+            if(key.equals("oracion") || key.equals("transcripcion ortografico")){
                 error_tier = true;
                 dbProjects.setProjectAnnotationsCounter(projectID, entry.getValue().size());
             }

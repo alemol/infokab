@@ -97,8 +97,9 @@ public class GlosaController {
     @RequestMapping(path="/annotations", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ArrayList<Tier>> getAnnotations(@RequestBody Map<String, String> body) throws IOException {
-        String project = body.get("project");
-        ArrayList<Tier> arrayList = glosaService.getAnnotations(project);
+        String filePath = body.get("filePath");
+        String project_id = body.get("project");
+        ArrayList<Tier> arrayList = glosaService.getAnnotations(filePath, project_id);
         return ResponseEntity.status(HttpStatus.OK).body(arrayList);
     }
 
