@@ -33,7 +33,7 @@ public class DictionaryController {
             DictionaryResponse dictionaryResponse = dictionaryService.getRegisters(dictionaryPaginate, "bases");
             return ResponseEntity.status(HttpStatus.OK).body(dictionaryResponse);
         } catch (SQLException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
         }
     }
@@ -44,7 +44,7 @@ public class DictionaryController {
         try{
             return dictionaryService.deleteRegister(id,"bases");
         } catch (SQLException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
         }
     }
@@ -56,7 +56,7 @@ public class DictionaryController {
             System.out.println("Create Register");
             return dictionaryService.insertRegister(dictionaryRequest, "bases");
         } catch (SQLException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
         }
     }
@@ -68,7 +68,7 @@ public class DictionaryController {
             System.out.println("update Register");
             return dictionaryService.updateRegister(dictionaryRequest, "bases");
         } catch (SQLException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
         }
     }
@@ -80,7 +80,7 @@ public class DictionaryController {
             DictionaryResponse dictionaryResponse = dictionaryService.getRegisters(dictionaryPaginate, "prefijos");
             return ResponseEntity.status(HttpStatus.OK).body(dictionaryResponse);
         } catch (SQLException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
         }
     }
@@ -98,7 +98,7 @@ public class DictionaryController {
             System.out.println("Create Register");
             return dictionaryService.insertRegister(dictionaryRequest, "prefijos");
         } catch (SQLException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
         }
     }
@@ -110,7 +110,7 @@ public class DictionaryController {
             System.out.println("update Register");
             return dictionaryService.updateRegister(dictionaryRequest, "prefijos");
         } catch (SQLException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
         }
     }
@@ -121,7 +121,7 @@ public class DictionaryController {
             DictionaryResponse dictionaryResponse = dictionaryService.getRegisters(dictionaryPaginate, "sufijos");
             return ResponseEntity.status(HttpStatus.OK).body(dictionaryResponse);
         } catch (SQLException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
         }
     }
@@ -139,7 +139,7 @@ public class DictionaryController {
             System.out.println("Create Register");
             return dictionaryService.insertRegister(dictionaryRequest, "sufijos");
         } catch (SQLException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
         }
     }
@@ -151,7 +151,7 @@ public class DictionaryController {
             System.out.println("update Register");
             return dictionaryService.updateRegister(dictionaryRequest, "sufijos");
         } catch (SQLException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
         }
     }

@@ -40,10 +40,10 @@ public class SearcherController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
             }
         } catch (IOException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No se encontro", e);
         } catch (ParseException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
         }
     }
@@ -63,10 +63,10 @@ public class SearcherController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
             }
         } catch (IOException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No se encontro", e);
         } catch (ParseException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
         }
     }
@@ -80,11 +80,11 @@ public class SearcherController {
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (IOException e){
             System.out.println("entre IO");
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró", e);
         } catch (ParseException e){
             System.out.println("entre Parse");
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
         }
     }

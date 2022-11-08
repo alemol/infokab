@@ -31,7 +31,7 @@ public class userController {
             boolean creationUser = database.insertUser(user);
             return creationUser;
         } catch (SQLException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
         }
     }
@@ -55,7 +55,7 @@ public class userController {
             }
 
         }catch (SQLException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
         }
     }

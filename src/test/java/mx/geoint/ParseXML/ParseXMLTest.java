@@ -337,7 +337,7 @@ class ParseXMLTest {
     }
 
 
-    void getMapTier(String path_eaf){
+    void getMapTier(String path_eaf) throws ParserConfigurationException, IOException, SAXException {
         String original_path_name = path_eaf;
         String normalize = Normalizer.normalize(original_path_name, Normalizer.Form.NFD);
         String path_name = normalize.replaceAll("[^\\p{ASCII}]", "");

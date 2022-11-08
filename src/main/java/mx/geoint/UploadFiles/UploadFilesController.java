@@ -71,10 +71,10 @@ public class UploadFilesController {
                 return createdResponseEntity(HttpStatus.CONFLICT, codeStatus.toString(), false);
             }
         } catch (SQLException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
         } catch (IOException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "IOException", e);
         }
     }

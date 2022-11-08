@@ -41,7 +41,7 @@ public class GlosaController {
             ArrayList<Glosa> response = glosaService.process();
             return ResponseEntity.status(HttpStatus.OK).body(response);
         }catch (IOException e){
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "IOException", e);
         }
     }
@@ -60,7 +60,7 @@ public class GlosaController {
             ArrayList<Glosa> response = glosaService.textProcess(text);
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch(SQLException e){
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SQLException", e);
         }
     }
@@ -77,7 +77,7 @@ public class GlosaController {
             ArrayList<Glosa> response = glosaService.ArrayProcess(glosaRequest);
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch(SQLException e){
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SQLException", e);
         }
     }
@@ -88,16 +88,20 @@ public class GlosaController {
      */
     @RequestMapping(path="/projects", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ArrayList<?>> getFiles() throws IOException, SQLException {
+    public ResponseEntity<ArrayList<?>> getFiles() {
         //ArrayList<String> arrayList = new ArrayList<>();
         //arrayList.add("04_02_01062022_11_SCY_C_2_2");
         //arrayList.add("04_02_01072022_11_SCY_C_2_2");
         //arrayList.add("04_02_01082022_11_SCY_C_2_2");
         //arrayList.add("04_02_01092022_11_SCY_C_2_2");
-
-        DBProjects dbProjects = new DBProjects();
-        ArrayList<ProjectRegistration> result = dbProjects.ListProjects();
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        try {
+            DBProjects dbProjects = new DBProjects();
+            ArrayList<ProjectRegistration> result = dbProjects.ListProjects();
+            return ResponseEntity.status(HttpStatus.OK).body(result);
+        }catch (SQLException e){
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SQLException", e);
+        }
     }
 
     /**
@@ -113,13 +117,13 @@ public class GlosaController {
             ArrayList<Tier> arrayList = glosaService.getAnnotations(project);
             return ResponseEntity.status(HttpStatus.OK).body(arrayList);
         } catch (ParserConfigurationException e){
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ParserConfigurationException", e);
         } catch (SAXException e){
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SAXException", e);
         } catch (IOException e){
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "IOException", e);
         }
     }
@@ -136,8 +140,8 @@ public class GlosaController {
             ReportsResponse reportsResponse = glosaService.getRegisters(dictionaryPaginate);
             return ResponseEntity.status(HttpStatus.OK).body(reportsResponse);
         } catch (SQLException e) {
-            Logger.appendToFile(e);
-            throw new RuntimeException(e);
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SQLException", e);
         }
     }
 
@@ -159,16 +163,16 @@ public class GlosaController {
             Boolean answer = glosaService.saveAnnotation(glosaAnnotationsRequest);
             return ResponseEntity.status(HttpStatus.OK).body(answer);
         } catch (ParserConfigurationException e){
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ParserConfigurationException", e);
         } catch (SAXException e){
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SAXException", e);
         } catch (IOException e){
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "IOException", e);
         } catch (TransformerException e){
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "TransformerException", e);
         }
     }

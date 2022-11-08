@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ElanXmlDigester {
+    private Logger logger = new Logger();
     String filepathEaf = "";
     String filepathMultimedia = "";
     String uuid = "";
@@ -170,7 +171,7 @@ public class ElanXmlDigester {
                             try{
                                 created = saveAudio(ffmpeg, tier, tier_id, filepathMultimedia);
                             } catch (IOException e) {
-                                Logger.appendToFile(e);
+                                logger.appendToFile(e);
                             }
                             break;
                         case "video/mp4":

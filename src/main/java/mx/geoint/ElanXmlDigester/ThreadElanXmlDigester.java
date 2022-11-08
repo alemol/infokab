@@ -48,7 +48,7 @@ public class ThreadElanXmlDigester extends Thread{
                 System.out.println("Thread deactivate");
                 this.wait();
             } catch (InterruptedException e) {
-                Logger.appendToFile(e);
+                logger.appendToFile(e);
                 throw new RuntimeException(e);
             }
         }
@@ -85,13 +85,13 @@ public class ThreadElanXmlDigester extends Thread{
             long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
             System.out.println("TIMER FINISHED THREAD: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
         } catch (ParserConfigurationException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new RuntimeException(e);
         } catch (IOException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new RuntimeException(e);
         } catch (SAXException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new RuntimeException(e);
         }
     }
@@ -111,16 +111,16 @@ public class ThreadElanXmlDigester extends Thread{
             long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
             System.out.println("TIMER FINISHED THREAD: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
         } catch (SQLException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new RuntimeException(e);
         } catch (ParserConfigurationException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new RuntimeException(e);
         } catch (IOException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new RuntimeException(e);
         } catch (SAXException e) {
-            Logger.appendToFile(e);
+            logger.appendToFile(e);
             throw new RuntimeException(e);
         }
     }
