@@ -69,6 +69,16 @@ public class GlosaController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    @RequestMapping(path="/project", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ProjectRegistration> getProjectById(@RequestBody Map<String, String> body) throws IOException, SQLException {
+        String project_id = body.get("project");
+
+        DBProjects dbProjects = new DBProjects();
+        ProjectRegistration result = dbProjects.getProjectById(project_id);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+
     /**
      * Api para obtener una lista de proyecto predeterminados
      * @return ArraList<String> Lista de los nombre de los archivos

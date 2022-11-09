@@ -16,6 +16,27 @@ public class DBProjects {
         this.credentials = new Credentials();
     }
 
+    public ProjectRegistration getProjectById(String id) throws  SQLException {
+        String SQL_QUERY = "SELECT p.id_proyecto, p.nombre_proyecto, p.ruta_trabajo FROM proyectos as p WHERE p.id_proyecto = " + id;
+
+        Connection conn = credentials.getConnection();
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        ProjectRegistration projectRegister = null;
+
+        while(rs.next()) {
+            projectRegister = new ProjectRegistration();
+            projectRegister.setId_proyecto(rs.getString(1));
+            projectRegister.setNombre_proyecto(rs.getString(2));
+            projectRegister.setRuta_trabajo(rs.getString(3));
+        }
+        rs.close();
+        conn.close();
+        return projectRegister;
+
+    }
+
     public ArrayList<ProjectRegistration> ListProjects() throws SQLException {
         ArrayList<ProjectRegistration> result = new ArrayList<>();
         ProjectRegistration projectRegistrations = null;
