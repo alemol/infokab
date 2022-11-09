@@ -72,7 +72,7 @@ public class ThreadElanXmlDigester extends Thread{
 
             Date startDate = new Date();
             ElanXmlDigester currentElanXmlDigester = elanXmlDigester.poll();
-            currentElanXmlDigester.parse_tier("oracion", true, true);
+            currentElanXmlDigester.parse_tier("Transcripción Ortográfico", true, true);
 
             String uuid = currentElanXmlDigester.getUUID();
             Lucene lucene = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+uuid+"/");
