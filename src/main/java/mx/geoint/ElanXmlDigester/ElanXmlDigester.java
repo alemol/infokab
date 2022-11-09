@@ -111,6 +111,7 @@ public class ElanXmlDigester {
         }
 
         if(!error_tier){
+            dbProjects.setProjectAnnotationsCounter(projectID, 0);
             dbReports.newRegister(projectID, "TIER PRINCIPAL", "No se encontro el tier principal");
         }
 
