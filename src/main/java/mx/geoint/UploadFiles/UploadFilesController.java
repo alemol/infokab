@@ -1,14 +1,19 @@
 package mx.geoint.UploadFiles;
 
 import com.google.gson.JsonObject;
+import mx.geoint.Logger.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
+
+import java.sql.SQLException;
 import java.util.Date;
 
 @CrossOrigin(origins = {"http://infokaab.com/", "http://infokaab.com.mx/", "http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009", "http://10.2.102.182"})
@@ -16,9 +21,11 @@ import java.util.Date;
 @RequestMapping(path = "api/upload")
 public class UploadFilesController {
     private final UploadFilesService uploadFilesService;
+    private Logger logger;
 
     public UploadFilesController(UploadFilesService uploadFilesService) {
         this.uploadFilesService = uploadFilesService;
+        this.logger = new Logger();
     }
 
     /**
@@ -45,20 +52,27 @@ public class UploadFilesController {
             return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere nombre del proyecto", false);
         }
 
-        long uploadTime = (new Date()).getTime();
-        String fullProjectName = projectName + "_" + uploadTime;
-        Number codeStatus = uploadFilesService.uploadFile(eaf, multimedia, autorizacion, uuid, fullProjectName, date, hablantes, ubicacion, radio, circleBounds);
+        try{
+            long uploadTime = (new Date()).getTime();
+        Number codeStatus = uploadFilesService.uploadFile(eaf, multimedia, autorizacion, uuid, projectName + "_" + uploadTime, date, hablantes, ubicacion, radio, circleBounds);
 
-        Date endDate = new Date();
-        long difference_In_Time = endDate.getTime() - startDate.getTime();
-        long difference_In_Seconds = (difference_In_Time / (1000)) % 60;
-        long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
-        System.out.println("TIMER FINISHED API: " + difference_In_Seconds + "s " + difference_In_Minutes + "m");
+            Date endDate = new Date();
+            long difference_In_Time = endDate.getTime() - startDate.getTime();
+            long difference_In_Seconds = (difference_In_Time / (1000)) % 60;
+            long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
+            System.out.println("TIMER FINISHED API: " + difference_In_Seconds + "s " + difference_In_Minutes + "m");
 
-        if (codeStatus.equals(0)) {
-            return createdResponseEntity(HttpStatus.OK, uuid, true);
-        } else {
-            return createdResponseEntity(HttpStatus.CONFLICT, codeStatus.toString(), false);
+            if(codeStatus.equals(0)){
+                return createdResponseEntity(HttpStatus.OK, uuid, true);
+            }else{
+                return createdResponseEntity(HttpStatus.CONFLICT, codeStatus.toString(), false);
+            }
+        } catch (SQLException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
+        } catch (IOException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "IOException", e);
         }
     }
 

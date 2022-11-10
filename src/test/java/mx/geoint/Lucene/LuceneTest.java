@@ -10,7 +10,9 @@ import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.junit.jupiter.api.Test;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -26,7 +28,7 @@ class LuceneTest {
     }
 
     @Test
-    void createIndex() throws IOException {
+    void createIndex() throws ParserConfigurationException, SAXException, IOException{
         ElanXmlDigester user = initElanXmlDigesterAudio("47eebc99-9c0b-4ef8-bb6d-6bb9bd380a11");
         user.parse_tier("oracion", true, false);
 
@@ -36,7 +38,7 @@ class LuceneTest {
     }
 
     @Test
-    void createIndexTwoDirectory() throws IOException {
+    void createIndexTwoDirectory() throws ParserConfigurationException, SAXException, IOException {
         ElanXmlDigester user1 = initElanXmlDigesterAudio("47eebc99-9c0b-4ef8-bb6d-6bb9bd380a11");
         ElanXmlDigester user2 = initElanXmlDigesterAudio("47eebc99-9c0b-4ef8-bb6d-6bb9bd380a00");
 

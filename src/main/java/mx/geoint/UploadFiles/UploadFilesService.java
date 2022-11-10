@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 @Service
 public class UploadFilesService {
@@ -22,7 +23,7 @@ public class UploadFilesService {
      * @return boolean, respuesta del servicio
      * @throws IOException
      */
-    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion , String uuid, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds) throws IOException {
+    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion , String uuid, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds) throws IOException, SQLException {
         return uploadFiles.uploadFile(eaf, multimedia, autorizacion, uuid, projectName, date, hablantes, ubicacion, radio, circleBounds);
     }
 }

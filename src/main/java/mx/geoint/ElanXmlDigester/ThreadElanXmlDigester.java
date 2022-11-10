@@ -1,6 +1,10 @@
 package mx.geoint.ElanXmlDigester;
+import mx.geoint.Logger.Logger;
 import mx.geoint.Lucene.Lucene;
 import mx.geoint.pathSystem;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Date;
@@ -9,7 +13,7 @@ import java.util.LinkedList;
 
 public class ThreadElanXmlDigester extends Thread{
     Queue<ElanXmlDigester> elanXmlDigester = new LinkedList<>();
-
+    Logger logger = new Logger();
     /**
      * Función que ejecuta el hilo cuando esta en activo
      */
@@ -44,6 +48,7 @@ public class ThreadElanXmlDigester extends Thread{
                 System.out.println("Thread deactivate");
                 this.wait();
             } catch (InterruptedException e) {
+                logger.appendToFile(e);
                 throw new RuntimeException(e);
             }
         }
@@ -63,10 +68,11 @@ public class ThreadElanXmlDigester extends Thread{
      * Función para obtener un elemento de la queue y ejecutar su proceso
      */
     public void process(){
-        try {
+        try{
+
             Date startDate = new Date();
             ElanXmlDigester currentElanXmlDigester = elanXmlDigester.poll();
-            currentElanXmlDigester.parse_tier("oracion", true, true);
+            currentElanXmlDigester.parse_tier("Transcripción Ortográfico", true, true);
 
             String uuid = currentElanXmlDigester.getUUID();
             Lucene lucene = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+uuid+"/");
@@ -78,7 +84,14 @@ public class ThreadElanXmlDigester extends Thread{
             long difference_In_Seconds = (difference_In_Time / (1000)) % 60;
             long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
             System.out.println("TIMER FINISHED THREAD: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
+        } catch (ParserConfigurationException e) {
+            logger.appendToFile(e);
+            throw new RuntimeException(e);
         } catch (IOException e) {
+            logger.appendToFile(e);
+            throw new RuntimeException(e);
+        } catch (SAXException e) {
+            logger.appendToFile(e);
             throw new RuntimeException(e);
         }
     }
@@ -98,6 +111,16 @@ public class ThreadElanXmlDigester extends Thread{
             long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
             System.out.println("TIMER FINISHED THREAD: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
         } catch (SQLException e) {
+            logger.appendToFile(e);
+            throw new RuntimeException(e);
+        } catch (ParserConfigurationException e) {
+            logger.appendToFile(e);
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            logger.appendToFile(e);
+            throw new RuntimeException(e);
+        } catch (SAXException e) {
+            logger.appendToFile(e);
             throw new RuntimeException(e);
         }
     }

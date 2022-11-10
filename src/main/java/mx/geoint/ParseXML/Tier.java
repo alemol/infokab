@@ -1,6 +1,9 @@
 package mx.geoint.ParseXML;
 
+import mx.geoint.Logger.Logger;
+
 public class Tier {
+    private Logger logger = new Logger();
     public String ANNOTATION_ID = "";
     public String ANNOTATION_REF = "";
     public String TIME_SLOT_REF1 = "";
@@ -32,7 +35,7 @@ public class Tier {
         try{
             this.DIFF_TIME = Integer.parseInt(time_value2) - Integer.parseInt(time_value1);
         } catch (NumberFormatException e) {
-            throw new RuntimeException(e);
+            logger.appendToFile(e);
         }
     }
 
@@ -47,7 +50,7 @@ public class Tier {
         try{
             this.DIFF_TIME = Integer.parseInt(time_value2) - Integer.parseInt(time_value1);
         } catch (NumberFormatException e) {
-            throw new RuntimeException(e);
+            logger.appendToFile(e);
         }
     }
 
