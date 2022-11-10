@@ -111,7 +111,7 @@ public class databaseController {
 
         try {
             Connection conn = credentials.getConnection();
-            String QUERY = "SELECT id_usuario, nombre, apellido, correo, permisos::text FROM usuarios WHERE correo=? AND contraseña=?";
+            String QUERY = "SELECT id_usuario, nombre, apellido, correo, permisos::text, id_rol FROM usuarios WHERE correo=? AND contraseña=?";
 
             PreparedStatement preparedStatement = conn.prepareStatement(QUERY);
             preparedStatement.setString(1, user.getCorreo());
@@ -125,6 +125,7 @@ public class databaseController {
                 userslist.setApellidos(row.getString(3));
                 userslist.setCorreo(row.getString(4));
                 userslist.setPermisos(row.getString(5));
+                userslist.setId_rol(row.getInt(6));
                 results.add(userslist);
             }
             totalHits = results.size();

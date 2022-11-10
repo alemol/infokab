@@ -7,6 +7,7 @@ public class UsersList {
     String correo;
     String permisos;
 
+    Integer id_rol;
 
     public String getUUID() { return uuid; }
     public void setUUID(String uuid) { this.uuid = uuid; }
@@ -19,5 +20,8 @@ public class UsersList {
 
     public String getPermisos() { return permisos; }
     public void setPermisos(String permisos) { this.permisos = permisos; }
+
+    public Integer getId_rol() { return id_rol; }
+    public void setId_rol(Integer id_rol) { this.id_rol = id_rol; }
 
 }
