@@ -2,6 +2,7 @@ package mx.geoint.ElanXmlDigester;
 
 import com.google.gson.Gson;
 import mx.geoint.FFmpeg.FFmpeg;
+import mx.geoint.Logger.Logger;
 import mx.geoint.ParseXML.ParseXML;
 import mx.geoint.ParseXML.Tier;
 import mx.geoint.VideoCutter.VideoCutter;
@@ -9,7 +10,11 @@ import mx.geoint.database.DBProjects;
 import mx.geoint.database.DBReports;
 import mx.geoint.pathSystem;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -23,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ElanXmlDigester {
+    private Logger logger = new Logger();
     String filepathEaf = "";
     String filepathMultimedia = "";
     String uuid = "";
@@ -80,7 +86,7 @@ public class ElanXmlDigester {
      * Analisis del archivo eaf
      * @throws SQLException
      */
-    public void validateElanXmlDigester() throws SQLException {
+    public void validateElanXmlDigester() throws SQLException, ParserConfigurationException, IOException, SAXException {
         ParseXML parseXML = new ParseXML(filepathEaf);
         parseXML.read();
 
@@ -102,6 +108,7 @@ public class ElanXmlDigester {
         }
 
         if(!error_tier){
+            dbProjects.setProjectAnnotationsCounter(projectID, 0);
             dbReports.newRegister(projectID, "TIER PRINCIPAL", "No se encontro el tier principal");
         }
 
@@ -140,7 +147,7 @@ public class ElanXmlDigester {
      * @param save_media boolean, bandera para iniciar el proceso de guardado de los fragmentos del multimedia
      * @throws IOException
      */
-    public void parse_tier(String tier_id, boolean save_text, boolean save_media) throws IOException {
+    public void parse_tier(String tier_id, boolean save_text, boolean save_media) throws ParserConfigurationException, SAXException, IOException {
         ParseXML parseXML = new ParseXML(filepathEaf, tier_id);
         parseXML.read();
 
@@ -159,7 +166,11 @@ public class ElanXmlDigester {
                     switch (parseXML.getMimeType()){
                         case "audio/x-wav":
                             FFmpeg ffmpeg = new FFmpeg(filepathMultimedia);
-                            created = saveAudio(ffmpeg, tier, tier_id, filepathMultimedia);
+                            try{
+                                created = saveAudio(ffmpeg, tier, tier_id, filepathMultimedia);
+                            } catch (IOException e) {
+                                logger.appendToFile(e);
+                            }
                             break;
                         case "video/mp4":
                             VideoCutter videoCutter = new VideoCutter();
@@ -219,12 +230,13 @@ public class ElanXmlDigester {
      * @param source String, ruta del multimedia
      * @return
      */
-    public boolean saveAudio(FFmpeg ffmpeg, Tier tier, String tier_id, String source){
+    public boolean saveAudio(FFmpeg ffmpeg, Tier tier, String tier_id, String source) throws IOException {
         String basePath = FilenameUtils.getPath(source)+"multimedia/";
         String path = FilenameUtils.getBaseName(source);
         String type_path = FilenameUtils.getExtension(source);
 
         String file_name = format_name(tier, tier_id, path, type_path);
+
         boolean created = ffmpeg.cortador(source,
                 (Integer.parseInt(tier.TIME_VALUE1)/1000),
                 (tier.DIFF_TIME/1000)+.5,
@@ -235,6 +247,7 @@ public class ElanXmlDigester {
             tier.setMediaPath(basePath+file_name);
             tier.setOriginalMediaPath(source);
         }
+
         return created;
     }
 

@@ -6,6 +6,7 @@ public class pathSystem {
     public static final String DIRECTORY_INDEX_GENERAL = "./Files/Indices/";
 
     public static final String DIRECTORY_PROJECTS = "./Files/Project/";
+    public static final String DIRECTORY_LOG = "./Files/logs/";
 
     public static final Number SUCCESS_UPLOAD = 00;
     public static final Number NOT_UPLOAD_EAF_FILE = 01;

@@ -117,7 +117,7 @@ public class GlosaService {
      * @param filePath
      * @return ArraList<Tier> una lista del modelo Tier
      */
-    public static ArrayList<Tier> getAnnotations(String filePath, String id) {
+    public static ArrayList<Tier> getAnnotations(String filePath, String id) throws ParserConfigurationException, IOException, SAXException {
         System.out.println("data " + filePath +" id "+ id);
         String tier_id_transcripcion = "Transcripción Ortográfico";
         ParseXML parseXML = new ParseXML(filePath, tier_id_transcripcion);

@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.SQLException;
 import java.util.Date;
 
 
@@ -41,7 +42,7 @@ public class UploadFiles {
      * @return boolean, respuesta de la carga de archivos
      * @throws IOException
      */
-    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion, String uuid, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds) throws IOException {
+    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion, String uuid, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds) throws IOException, SQLException {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
 
@@ -65,8 +66,8 @@ public class UploadFiles {
             }
         }
 
-
         int id_project = database.createProject(uuid, basePath, baseProjectName, date, hablantes, ubicacion, radio, circleBounds); //inserta un registro del proyecto en la base de datos
+
         System.out.println("ID de proyecto generado: "+id_project);
         if(id_project > 0){
             System.out.println("Proyecto guardado en base de datos");

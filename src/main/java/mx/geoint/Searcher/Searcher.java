@@ -23,13 +23,9 @@ public class Searcher {
      * @param   text    el texto que se quiere buscar
      * @return          las incidencias con el resultado de la búsqueda
      **/
-    public SearchResponse find(String text) {
-        try{
-            SearchResponse response = lucene.searchIndex(text);
-            return response;
-        } catch (IOException | ParseException ex){
-            return null;
-        }
+    public SearchResponse find(String text) throws IOException, ParseException {
+        SearchResponse response = lucene.searchIndex(text);
+        return response;
     }
 
     /**
@@ -38,30 +34,18 @@ public class Searcher {
      * @param   page    la página de resultados que se necesita
      * @return          las incidencias con el resultado de la búsqueda
      */
-    public ArrayList<SearchDoc> findPage(String text, int page){
-        try {
-            ArrayList<SearchDoc> response = lucene.searchPaginate(text, page);
-            return response;
-        } catch (IOException | ParseException ex){
-            return  null;
-        }
+    public ArrayList<SearchDoc> findPage(String text, int page) throws IOException, ParseException {
+        ArrayList<SearchDoc> response = lucene.searchPaginate(text, page);
+        return response;
     }
 
-    public SearchResponse findMultiple(String text){
-        try{
-            SearchResponse response = lucene.searchMultipleIndex(text);
-            return response;
-        } catch (IOException | ParseException ex){
-            return null;
-        }
+    public SearchResponse findMultiple(String text) throws IOException, ParseException{
+        SearchResponse response = lucene.searchMultipleIndex(text);
+        return response;
     }
 
-    public ArrayList<SearchDoc> findPageMultiple(String text, int page){
-        try {
-            ArrayList<SearchDoc> response = lucene.searchPaginateMultiple(text, page);
-            return response;
-        } catch (IOException | ParseException ex){
-            return  null;
-        }
+    public ArrayList<SearchDoc> findPageMultiple(String text, int page) throws IOException, ParseException {
+        ArrayList<SearchDoc> response = lucene.searchPaginateMultiple(text, page);
+        return response;
     }
 }
