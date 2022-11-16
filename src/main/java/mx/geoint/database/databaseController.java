@@ -175,7 +175,7 @@ public class databaseController {
             String QUERY = "SELECT id_usuario, nombre, apellido, correo, permisos::text FROM public.usuarios \n" +
                     "EXCEPT\n" +
                     "SELECT id_usuario, nombre, apellido, correo, permisos::text FROM public.usuarios WHERE nombre ='Super'\n" +
-                    "ORDER BY id_usuario ASC;";
+                    "ORDER BY nombre ASC;";
 
             PreparedStatement preparedStatement = conn.prepareStatement(QUERY);
             ResultSet row = preparedStatement.executeQuery();
