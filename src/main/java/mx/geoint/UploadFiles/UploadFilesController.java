@@ -44,10 +44,6 @@ public class UploadFilesController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity created(@RequestParam MultipartFile eaf, @RequestParam MultipartFile multimedia, @RequestParam String uuid, @RequestParam String projectName, @RequestParam(required = false) MultipartFile autorizacion, @RequestParam String date, @RequestParam String hablantes, @RequestParam String ubicacion, @RequestParam String radio, @RequestParam String circleBounds, @RequestParam(required = false) MultipartFile[] images) throws IOException {
 
-        /*for(MultipartFile file : images) {
-            System.out.println(file.getOriginalFilename());
-        }*/
-
         Date startDate = new Date();
         if (eaf.isEmpty() || multimedia.isEmpty()) {
             return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere 1 archivo .eaf y 1 archivo multimedia", false);
@@ -72,8 +68,7 @@ public class UploadFilesController {
             System.out.println("TIMER FINISHED API: " + difference_In_Seconds + "s " + difference_In_Minutes + "m");
 
             if(codeStatus.equals(0)){
-                //return createdResponseEntity(HttpStatus.OK, uuid, true);
-                return createdResponseEntity(HttpStatus.CONFLICT, codeStatus.toString(), false);
+                return createdResponseEntity(HttpStatus.OK, uuid, true);
             }else{
                 return createdResponseEntity(HttpStatus.CONFLICT, codeStatus.toString(), false);
             }
