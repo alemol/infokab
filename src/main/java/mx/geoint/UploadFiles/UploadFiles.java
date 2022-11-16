@@ -42,7 +42,7 @@ public class UploadFiles {
      * @return boolean, respuesta de la carga de archivos
      * @throws IOException
      */
-    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion, String uuid, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds) throws IOException, SQLException {
+    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion, MultipartFile[] images, String uuid, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds) throws IOException, SQLException {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
 
@@ -64,6 +64,18 @@ public class UploadFiles {
             if(!saveFile(autorizacion, basePath, baseProjectName+"_autorizacion")){
                 return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
             }
+        }
+        if(images==null){
+            System.out.println("sin archivo de imagenes");
+        }else{
+            int index = 0;
+            for(MultipartFile file : images) {
+                //System.out.println("algo2 " + file.getOriginalFilename());
+                if(!saveFile(file, basePath, baseProjectName+"_image"+(index++))){
+                    return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
+                }
+            }
+
         }
 
         int id_project = database.createProject(uuid, basePath, baseProjectName, date, hablantes, ubicacion, radio, circleBounds); //inserta un registro del proyecto en la base de datos
