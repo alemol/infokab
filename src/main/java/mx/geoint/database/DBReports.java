@@ -33,17 +33,26 @@ public class DBReports {
         return true;
     }
 
-    public ReportsResponse ListRegisters(int offset, int noOfRecords, Integer id) throws SQLException {
+    public ReportsResponse ListRegisters(int offset, int noOfRecords, Integer id, String search) throws SQLException {
         ArrayList<ReportDoc> results = new ArrayList<ReportDoc>();
         ReportDoc reportDoc = null;
         int totalHits = 0;
 
         Connection conn = credentials.getConnection();
-
-        String SQL_QUERY = "SELECT * FROM reportes WHERE id_proyecto=? and activate=? order by id offset " + offset + " limit " + noOfRecords;
+        String SQL_QUERY = "";
+        if(search == null){
+            SQL_QUERY = "SELECT * FROM reportes WHERE id_proyecto=? and activate=? order by id offset " + offset + " limit " + noOfRecords;
+        }else{
+            SQL_QUERY = "SELECT * FROM reportes WHERE id_proyecto=? and activate=? and tipo=? order by id offset " + offset + " limit " + noOfRecords;
+        }
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         preparedStatement.setObject(1, id);
         preparedStatement.setBoolean(2, true);
+
+        if(search != null) {
+            preparedStatement.setString(3, search);
+        }
+
         ResultSet rs = preparedStatement.executeQuery();
 
         while (rs.next()) {
@@ -59,10 +68,19 @@ public class DBReports {
         }
         rs.close();
 
-        SQL_QUERY = "SELECT count(*) FROM reportes WHERE id_proyecto=? and activate=?";
+        if(search == null) {
+            SQL_QUERY = "SELECT count(*) FROM reportes WHERE id_proyecto=? and activate=?";
+        }else{
+            SQL_QUERY = "SELECT count(*) FROM reportes WHERE id_proyecto=? and activate=? and tipo=?";
+        }
         preparedStatement = conn.prepareStatement(SQL_QUERY);
         preparedStatement.setObject(1, id);
         preparedStatement.setBoolean(2, true);
+
+        if(search != null) {
+            preparedStatement.setString(3, search);
+        }
+
         rs = preparedStatement.executeQuery();
         if (rs.next()) {
             totalHits = rs.getInt(1);

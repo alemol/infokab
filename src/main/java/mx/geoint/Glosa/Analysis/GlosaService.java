@@ -140,9 +140,10 @@ public class GlosaService {
         int page = dictionaryPaginate.getPage();
         Integer id_project = dictionaryPaginate.getId();
         int recordsPerPage = dictionaryPaginate.getRecord();
+        String search = dictionaryPaginate.getSearch();
 
         int currentPage = (page - 1) * recordsPerPage;
-        return dbReports.ListRegisters(currentPage, recordsPerPage, id_project);
+        return dbReports.ListRegisters(currentPage, recordsPerPage, id_project, search);
     }
 
     public boolean insertRegister(ReportRequest reportRequest) throws SQLException {

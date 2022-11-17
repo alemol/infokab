@@ -43,7 +43,7 @@ public class DBProjects {
         String SQL_QUERY = "select\n" +
                             "p.*, count(r.id_proyecto) as total_de_reportes\n" +
                             "FROM proyectos as p\n" +
-                            "left join reportes as r on r.id_proyecto = p.id_proyecto\n" +
+                            "left join reportes as r on r.id_proyecto = p.id_proyecto and r.activate=true\n" +
                             "group by p.id_proyecto\n" +
                             "order by p.id_proyecto";
 
