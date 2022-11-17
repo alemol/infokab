@@ -149,7 +149,8 @@ public class GlosaService {
         int id_project = reportRequest.getId_proyecto();
         String title = reportRequest.getTitulo();
         String report = reportRequest.getReporte();
+        String tipo = reportRequest.getTipo();
 
-        return dbReports.newRegister(id_project, title, report);
+        return dbReports.newRegister(id_project, title, report, tipo);
     }
 }

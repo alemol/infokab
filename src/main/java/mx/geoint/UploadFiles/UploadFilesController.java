@@ -40,7 +40,7 @@ public class UploadFilesController {
      * @return
      * @throws IOException
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(path="/new", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity created(@RequestParam MultipartFile eaf, @RequestParam MultipartFile multimedia, @RequestParam String uuid, @RequestParam String projectName, @RequestParam(required = false) MultipartFile autorizacion, @RequestParam String date, @RequestParam String hablantes, @RequestParam String ubicacion, @RequestParam String radio, @RequestParam String circleBounds, @RequestParam(required = false) MultipartFile[] images) throws IOException {
 
@@ -80,6 +80,75 @@ public class UploadFilesController {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "IOException", e);
         }
 
+    }
+
+    @RequestMapping(path="/update/eaf", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity updateEaf(@RequestParam MultipartFile eaf, @RequestParam String projectName, @RequestParam String uuid, @RequestParam Number id) {
+        if(eaf.isEmpty()) {
+            return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere 1 archivo .eaf", false);
+        }
+
+        try{
+            Number codeStatus = uploadFilesService.updateEaf(eaf, projectName, uuid, id);
+            if(codeStatus.equals(0)){
+                return createdResponseEntity(HttpStatus.OK, "success", true);
+            }else{
+                return createdResponseEntity(HttpStatus.CONFLICT, codeStatus.toString(), false);
+            }
+        } catch (SQLException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
+        } catch (IOException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "IOException", e);
+        }
+    }
+
+    @RequestMapping(path="/update/multimedia", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity updateMultimedia(@RequestParam MultipartFile multimedia, @RequestParam String projectName, @RequestParam String uuid, @RequestParam Number id) {
+        if(multimedia.isEmpty()) {
+            return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere 1 archivo multimedia", false);
+        }
+
+        try{
+            Number codeStatus = uploadFilesService.updateMultimedia(multimedia, projectName, uuid, id);
+            if(codeStatus.equals(0)){
+                return createdResponseEntity(HttpStatus.OK, "success", true);
+            }else{
+                return createdResponseEntity(HttpStatus.CONFLICT, codeStatus.toString(), false);
+            }
+        } catch (SQLException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
+        } catch (IOException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "IOException", e);
+        }
+    }
+
+    @RequestMapping(path="/update/images", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity updateImages(@RequestParam MultipartFile[] images, @RequestParam String projectName, @RequestParam String uuid, @RequestParam Number id) {
+        if(images.length == 0) {
+            return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere al menos una imagen", false);
+        }
+
+        try{
+            Number codeStatus = uploadFilesService.updateImages(images, projectName, uuid, id);
+            if(codeStatus.equals(0)){
+                return createdResponseEntity(HttpStatus.OK, "success", true);
+            }else{
+                return createdResponseEntity(HttpStatus.CONFLICT, codeStatus.toString(), false);
+            }
+        } catch (SQLException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
+        } catch (IOException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "IOException", e);
+        }
     }
 
     /**

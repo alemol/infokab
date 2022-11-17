@@ -6,7 +6,8 @@ public class ReportDoc {
     String titulo;
     String reporte;
     String fecha_creacion;
-
+    String tipo;
+    Boolean activate;
     public void setId(String id) { this.id = id; }
 
     public String getId() { return id; }
@@ -26,4 +27,12 @@ public class ReportDoc {
     public void setFecha_creacion(String fecha_creacion) { this.fecha_creacion = fecha_creacion; }
 
     public String getFecha_creacion() { return fecha_creacion; }
+
+    public void setTipo(String tipo) { this.tipo = tipo; }
+
+    public String getTipo() { return tipo; }
+
+    public void setActivate(Boolean activate) { this.activate = activate;}
+
+    public Boolean getActivate() { return activate; }
 }

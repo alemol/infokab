@@ -109,12 +109,12 @@ public class ElanXmlDigester {
 
         if(!error_tier){
             dbProjects.setProjectAnnotationsCounter(projectID, 0);
-            dbReports.newRegister(projectID, "TIER PRINCIPAL", "No se encontro el tier principal");
+            dbReports.newRegister(projectID, "TIER PRINCIPAL", "No se encontro el tier principal","Documento");
         }
 
         HashSet<Integer> set = new HashSet<Integer>(tierCount);
         if(set.size() > 1){
-            dbReports.newRegister(projectID, "NO COINDICEN EL NUMERO DE ANOTACIONES", "");
+            dbReports.newRegister(projectID, "NO COINDICEN EL NUMERO DE ANOTACIONES", "","Documento");
         }
 
         if(set.size() == 1) {
@@ -122,17 +122,17 @@ public class ElanXmlDigester {
                 List<Tier> tierList = entry.getValue();
 
                 if(tierList.isEmpty()){
-                    dbReports.newRegister(projectID, "Tier Vacio", "La capa "+entry.getKey()+" no contiene anotaciones");
+                    dbReports.newRegister(projectID, "Tier Vacio", "La capa "+entry.getKey()+" no contiene anotaciones","Documento");
                     continue;
                 }
 
                 for (var register : tierList){
                     if(register.DIFF_TIME == 0){
-                        dbReports.newRegister(projectID, "TIEMPO DE CORTE CERO", "La anotación "+register.ANNOTATION_ID);
+                        dbReports.newRegister(projectID, "TIEMPO DE CORTE CERO", "La anotación "+register.ANNOTATION_ID,"Documento");
                     }
 
                     if(register.ANNOTATION_VALUE.isEmpty()){
-                        dbReports.newRegister(projectID, "ANOTACIÓN VACIA", "La anotación "+register.ANNOTATION_ID);
+                        dbReports.newRegister(projectID, "ANOTACIÓN VACIA", "La anotación "+register.ANNOTATION_ID,"Documento");
                     }
                 }
             }

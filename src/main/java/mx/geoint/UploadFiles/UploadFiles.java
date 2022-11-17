@@ -154,4 +154,47 @@ public class UploadFiles {
 
         return currentDirectory;
     }
+
+    public Number updateEaf(MultipartFile eaf, String projectName, String uuid, Number id) throws IOException, SQLException {
+        String baseProjectName = projectName.replace(" ", "_");
+        String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
+
+        if(!saveFile(eaf, basePath, baseProjectName)){
+            return pathSystem.NOT_UPLOAD_EAF_FILE;
+        }
+
+        if(!saveFile(eaf, basePath, baseProjectName + "_GLOSADO")) {
+            return pathSystem.NOT_UPLOAD_EAF_FILE;
+        }
+
+        return pathSystem.SUCCESS_UPLOAD;
+    }
+
+    public Number updateMultimedia(MultipartFile multimedia, String projectName, String uuid, Number id) throws IOException, SQLException {
+        String baseProjectName = projectName.replace(" ", "_");
+        String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
+
+        if(!saveFile(multimedia, basePath, baseProjectName)){
+            return pathSystem.NOT_UPLOAD_MULTIMEDIA_FILE;
+        }
+
+        return pathSystem.SUCCESS_UPLOAD;
+    }
+    public Number updateImages(MultipartFile[] images, String projectName, String uuid, Number id) throws IOException, SQLException {
+        String baseProjectName = projectName.replace(" ", "_");
+        String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
+
+        if(images != null){
+            int index = 0;
+            for(MultipartFile file : images) {
+                if(!saveFile(file, basePath, baseProjectName+"_image"+(index++))){
+                    return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
+                }
+            }
+
+        }
+
+        return pathSystem.SUCCESS_UPLOAD;
+    }
+
 }

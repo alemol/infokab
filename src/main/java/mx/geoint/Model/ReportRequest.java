@@ -4,6 +4,7 @@ public class ReportRequest {
     private Integer id_proyecto;
     private String titulo;
     private String reporte;
+    private String tipo;
 
     public ReportRequest(){}
     public ReportRequest(Integer id_proyecto, String titulo, String reporte){
@@ -23,4 +24,8 @@ public class ReportRequest {
     public Integer getId_proyecto() { return id_proyecto; }
 
     public void setId_proyecto(Integer id_proyecto) { this.id_proyecto = id_proyecto; }
+
+    public void setTipo(String tipo) { this.tipo = tipo; }
+
+    public String getTipo() { return tipo;}
 }

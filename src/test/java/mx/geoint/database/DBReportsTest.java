@@ -14,7 +14,7 @@ class DBReportsTest {
     void newRegister() {
         try{
             DBReports dbReports = new DBReports();
-            dbReports.newRegister(8,"Error Test", "Test Prueba");
+            dbReports.newRegister(8,"Error Test", "Test Prueba","Documento");
         }catch (SQLException e){
             System.out.println("Error SQLEX");
             throw new RuntimeException(e);
