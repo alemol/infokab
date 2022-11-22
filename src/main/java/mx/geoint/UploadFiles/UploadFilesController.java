@@ -84,7 +84,7 @@ public class UploadFilesController {
 
     @RequestMapping(path="/update/eaf", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity updateEaf(@RequestParam MultipartFile eaf, @RequestParam String projectName, @RequestParam String uuid, @RequestParam Number id) {
+    public ResponseEntity updateEaf(@RequestParam MultipartFile eaf, @RequestParam String projectName, @RequestParam String uuid, @RequestParam int id) {
         if(eaf.isEmpty()) {
             return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere 1 archivo .eaf", false);
         }
@@ -107,7 +107,7 @@ public class UploadFilesController {
 
     @RequestMapping(path="/update/multimedia", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity updateMultimedia(@RequestParam MultipartFile multimedia, @RequestParam String projectName, @RequestParam String uuid, @RequestParam Number id) {
+    public ResponseEntity updateMultimedia(@RequestParam MultipartFile multimedia, @RequestParam String projectName, @RequestParam String uuid, @RequestParam int id) {
         if(multimedia.isEmpty()) {
             return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere 1 archivo multimedia", false);
         }
@@ -130,7 +130,7 @@ public class UploadFilesController {
 
     @RequestMapping(path="/update/images", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity updateImages(@RequestParam MultipartFile[] images, @RequestParam String projectName, @RequestParam String uuid, @RequestParam Number id) {
+    public ResponseEntity updateImages(@RequestParam MultipartFile[] images, @RequestParam String projectName, @RequestParam String uuid, @RequestParam int id) {
         if(images.length == 0) {
             return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere al menos una imagen", false);
         }

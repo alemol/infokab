@@ -1,6 +1,8 @@
 package mx.geoint.UploadFiles;
 
 import mx.geoint.ElanXmlDigester.ThreadElanXmlDigester;
+import mx.geoint.ElanXmlDigester.ThreadValidateElanXmlDigester;
+import mx.geoint.database.DBReports;
 import mx.geoint.pathSystem;
 import mx.geoint.database.databaseController;
 import org.apache.commons.io.FilenameUtils;
@@ -21,15 +23,21 @@ public class UploadFiles {
     //@Autowired
     //ThreadElanXmlDigester threadElanXmlDigester;
     private final ThreadElanXmlDigester threadElanXmlDigester;
+    private final ThreadValidateElanXmlDigester threadValidateElanXmlDigester;
     private final databaseController database;
+    private final DBReports dbReports;
 
     /**
      * Inicialización del thread
      */
     public UploadFiles(){
         database = new databaseController();
+        dbReports = new DBReports();
         threadElanXmlDigester = new ThreadElanXmlDigester();
         threadElanXmlDigester.start();
+
+        threadValidateElanXmlDigester = new ThreadValidateElanXmlDigester();
+        threadValidateElanXmlDigester.start();
     }
 
     /**
@@ -83,7 +91,8 @@ public class UploadFiles {
         System.out.println("ID de proyecto generado: "+id_project);
         if(id_project > 0){
             System.out.println("Proyecto guardado en base de datos");
-            InitElanXmlDigester(eaf, multimedia, uuid, basePath, baseProjectName, id_project);
+            //InitElanXmlDigester(eaf, multimedia, uuid, basePath, baseProjectName, id_project);
+            InitValidateElanXmlDigester(eaf, uuid, basePath, baseProjectName, (Integer) id_project);
         }
         else{
             System.out.println("No se pudo guardar el proyecto en base de datos");
@@ -155,7 +164,7 @@ public class UploadFiles {
         return currentDirectory;
     }
 
-    public Number updateEaf(MultipartFile eaf, String projectName, String uuid, Number id) throws IOException, SQLException {
+    public Number updateEaf(MultipartFile eaf, String projectName, String uuid, int id_project) throws IOException, SQLException {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
 
@@ -167,10 +176,15 @@ public class UploadFiles {
             return pathSystem.NOT_UPLOAD_EAF_FILE;
         }
 
+        boolean resultQuery = dbReports.deactivateAllReportes(id_project);
+        if(resultQuery){
+            InitValidateElanXmlDigester(eaf, uuid, basePath, baseProjectName, id_project);
+        }
+
         return pathSystem.SUCCESS_UPLOAD;
     }
 
-    public Number updateMultimedia(MultipartFile multimedia, String projectName, String uuid, Number id) throws IOException, SQLException {
+    public Number updateMultimedia(MultipartFile multimedia, String projectName, String uuid, int id) throws IOException, SQLException {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
 
@@ -180,7 +194,7 @@ public class UploadFiles {
 
         return pathSystem.SUCCESS_UPLOAD;
     }
-    public Number updateImages(MultipartFile[] images, String projectName, String uuid, Number id) throws IOException, SQLException {
+    public Number updateImages(MultipartFile[] images, String projectName, String uuid, int id) throws IOException, SQLException {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
 
@@ -197,4 +211,17 @@ public class UploadFiles {
         return pathSystem.SUCCESS_UPLOAD;
     }
 
+    /**
+     * Inicializacion de los path's para el thread y la queue
+     * @param eaf MultipartFile, Archivo de anotaciones
+     * @param uuid String, Identificador de usuario
+     * @param projectName String, Nombre del proyecto
+     */
+    public void InitValidateElanXmlDigester(MultipartFile eaf, String uuid, String basePath, String projectName, int projectID){
+        System.out.println("InitElanXmlDigester.....");
+        String extEaf = FilenameUtils.getExtension(eaf.getOriginalFilename());
+        String pathEaf = basePath+projectName+"."+extEaf;
+        threadValidateElanXmlDigester.add(pathEaf, uuid, projectID);
+        threadValidateElanXmlDigester.activate();
+    }
 }

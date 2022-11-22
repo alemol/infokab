@@ -91,4 +91,22 @@ public class DBReports {
         ReportsResponse reportsResponse = new ReportsResponse(results, totalHits);
         return reportsResponse;
     }
+
+    public boolean deactivateAllReportes(int id_project) throws SQLException {
+        Connection conn = credentials.getConnection();
+        String SQL_UPDATE = "UPDATE reportes SET activate = ? WHERE id_proyecto=?";
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
+        preparedStatement.setBoolean(1, false);
+        preparedStatement.setInt(2, id_project);
+
+        int rs = preparedStatement.executeUpdate();
+        conn.close();
+        if(rs>0){
+            System.out.println("reportes desactivados actualizado en base de datos");
+            return true;
+        } else{
+            System.out.println("No se pudo desactivar los reports en base de datos");
+            return false;
+        }
+    }
 }

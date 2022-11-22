@@ -3,10 +3,8 @@ package mx.geoint.database;
 import mx.geoint.Glosa.Dictionary.DictionaryRequest;
 import mx.geoint.Model.ProjectRegistration;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class DBProjects {
@@ -89,6 +87,46 @@ public class DBProjects {
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
         preparedStatement.setInt(1, count);
         preparedStatement.setObject(2, id_project);
+        int rs = preparedStatement.executeUpdate();
+        conn.close();
+
+        if(rs>0){
+            System.out.println("registro actualizado en base de datos");
+            return true;
+        } else{
+            System.out.println("No se pudo actualizar el registro en base de datos");
+            return false;
+        }
+    }
+
+    public boolean updateDateEaf(Integer id_project, Integer count) throws SQLException {
+        Connection conn = credentials.getConnection();
+        String SQL_UPDATE = "UPDATE proyectos SET fecha_eaf = ? WHERE id_proyecto=?";
+
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
+        preparedStatement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
+        preparedStatement.setObject(2, id_project);
+
+        int rs = preparedStatement.executeUpdate();
+        conn.close();
+
+        if(rs>0){
+            System.out.println("registro actualizado en base de datos");
+            return true;
+        } else{
+            System.out.println("No se pudo actualizar el registro en base de datos");
+            return false;
+        }
+    }
+
+    public boolean updateDateMultimedia(Integer id_project, Integer count) throws SQLException {
+        Connection conn = credentials.getConnection();
+        String SQL_UPDATE = "UPDATE proyectos SET fecha_multimedia = ? WHERE id_proyecto=?";
+
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
+        preparedStatement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
+        preparedStatement.setObject(2, id_project);
+
         int rs = preparedStatement.executeUpdate();
         conn.close();
 

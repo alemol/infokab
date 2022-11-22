@@ -27,15 +27,15 @@ public class UploadFilesService {
         return uploadFiles.uploadFile(eaf, multimedia, autorizacion, images, uuid, projectName, date, hablantes, ubicacion, radio, circleBounds);
     }
 
-    public Number updateEaf(MultipartFile eaf, String projectName, String uuid, Number id) throws IOException, SQLException {
+    public Number updateEaf(MultipartFile eaf, String projectName, String uuid, int id) throws IOException, SQLException {
         return uploadFiles.updateEaf(eaf, projectName, uuid, id);
     }
 
-    public Number updateMultimedia(MultipartFile multimedia, String projectName, String uuid, Number id) throws IOException, SQLException {
+    public Number updateMultimedia(MultipartFile multimedia, String projectName, String uuid, int id) throws IOException, SQLException {
         return uploadFiles.updateMultimedia(multimedia, projectName, uuid, id);
     }
 
-    public Number updateImages(MultipartFile[] images, String projectName, String uuid, Number id) throws IOException, SQLException {
+    public Number updateImages(MultipartFile[] images, String projectName, String uuid, int id) throws IOException, SQLException {
         return uploadFiles.updateImages(images, projectName, uuid, id);
     }
 
