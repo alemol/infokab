@@ -77,9 +77,13 @@ public class UploadFiles {
             System.out.println("sin archivo de imagenes");
         }else{
             int index = 0;
+            String ImageFolder = basePath+"Images/";
+            System.out.println(ImageFolder);
+            File newSubDirectory = new File(ImageFolder);
+            newSubDirectory.mkdirs();
             for(MultipartFile file : images) {
                 //System.out.println("algo2 " + file.getOriginalFilename());
-                if(!saveFile(file, basePath, baseProjectName+"_image"+(index++))){
+                if(!saveFile(file, ImageFolder, baseProjectName+"_image"+(index++))){
                     return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
                 }
             }
@@ -155,7 +159,7 @@ public class UploadFiles {
      */
     private String existDirectory(String pathDirectory, String uuid, String baseName){
         String currentDirectory = pathDirectory + uuid + "/"+baseName+"/";
-
+        System.out.println("adasdad "+currentDirectory);
         if(!Files.exists(Path.of(currentDirectory))){
             File newSubDirectory = new File(currentDirectory);
             newSubDirectory.mkdirs();
@@ -163,6 +167,17 @@ public class UploadFiles {
 
         return currentDirectory;
     }
+
+    /*private String existDirectoryImages(String pathDirectory, String uuid, String baseName){
+        String currentDirectory = pathDirectory + uuid + "/"+baseName+"/";
+
+        if(!Files.exists(Path.of(currentDirectory))){
+            File newSubDirectory = new File(currentDirectory);
+            newSubDirectory.mkdirs();
+        }
+
+        return currentDirectory;
+    }*/
 
     public Number updateEaf(MultipartFile eaf, String projectName, String uuid, int id_project) throws IOException, SQLException {
         String baseProjectName = projectName.replace(" ", "_");
