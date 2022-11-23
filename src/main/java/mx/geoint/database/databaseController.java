@@ -172,10 +172,7 @@ public class databaseController {
         int totalHits = 0;
         try {
             Connection conn = credentials.getConnection();
-            String QUERY = "SELECT id_usuario, nombre, apellido, correo, permisos::text FROM public.usuarios \n" +
-                    "EXCEPT\n" +
-                    "SELECT id_usuario, nombre, apellido, correo, permisos::text FROM public.usuarios WHERE nombre ='Super'\n" +
-                    "ORDER BY nombre ASC;";
+            String QUERY = "SELECT id_usuario, nombre, apellido, correo, permisos::text ,id_rol FROM public.usuarios WHERE id_rol =2 ORDER BY concat(nombre, apellido, correo) ASC;";
 
             PreparedStatement preparedStatement = conn.prepareStatement(QUERY);
             ResultSet row = preparedStatement.executeQuery();
