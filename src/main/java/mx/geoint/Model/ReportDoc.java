@@ -8,6 +8,8 @@ public class ReportDoc {
     String fecha_creacion;
     String tipo;
     Boolean activate;
+    String comentario;
+
     public void setId(String id) { this.id = id; }
 
     public String getId() { return id; }
@@ -35,4 +37,8 @@ public class ReportDoc {
     public void setActivate(Boolean activate) { this.activate = activate;}
 
     public Boolean getActivate() { return activate; }
+
+    public void setComentario(String comentario) { this.comentario = comentario; }
+
+    public String getComentario() { return comentario; }
 }

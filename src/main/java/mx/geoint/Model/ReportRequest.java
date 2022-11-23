@@ -5,6 +5,7 @@ public class ReportRequest {
     private String titulo;
     private String reporte;
     private String tipo;
+    private String comentario;
 
     public ReportRequest(){}
     public ReportRequest(Integer id_proyecto, String titulo, String reporte){
@@ -28,4 +29,8 @@ public class ReportRequest {
     public void setTipo(String tipo) { this.tipo = tipo; }
 
     public String getTipo() { return tipo;}
+
+    public void setComentario(String comentario) { this.comentario = comentario; }
+
+    public String getComentario() { return comentario; }
 }

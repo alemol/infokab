@@ -15,10 +15,10 @@ public class DBReports {
         this.credentials = new Credentials();
     }
 
-    public Boolean newRegister(int id_project, String title, String report, String type) throws SQLException {
+    public Boolean newRegister(int id_project, String title, String report, String type, String comentario) throws SQLException {
         Connection conn = credentials.getConnection();
 
-        String SQL_INSERT = "INSERT INTO reportes (id_proyecto, titulo, reporte, tipo, activate, fecha_creacion) VALUES (?, ?, ?, ?, ?, ?) RETURNING id_proyecto";
+        String SQL_INSERT = "INSERT INTO reportes (id_proyecto, titulo, reporte, tipo, activate, fecha_creacion, comentario) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id_proyecto";
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
         preparedStatement.setObject(1, id_project);
@@ -27,6 +27,7 @@ public class DBReports {
         preparedStatement.setString(4, type);
         preparedStatement.setBoolean(5, true);
         preparedStatement.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
+        preparedStatement.setString(7, comentario);
         preparedStatement.execute();
         conn.close();
 
@@ -64,6 +65,7 @@ public class DBReports {
             reportDoc.setFecha_creacion(rs.getString(5));
             reportDoc.setTipo(rs.getString(6));
             reportDoc.setActivate(rs.getBoolean(7));
+            reportDoc.setComentario(rs.getString(8));
             results.add(reportDoc);
         }
         rs.close();
