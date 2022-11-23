@@ -11,10 +11,10 @@ public class StreamingService {
     private static final String FORMAT = "classpath:public/Files/multimedia/%s.mp4";
     private static final String AUDIO_FORMAT = "classpath:public/Files/multimedia/%s.wav";
 
-    private static final String VIDEO_FORMAT_V2 = "url:http://localhost:8080/multimedia/%s.MP4";
-    private static final String AUDIO_FORMAT_V2 = "url:http://localhost:8080/multimedia/%s.wav";
+    private static final String VIDEO_FORMAT_V2 = "url:http://localhost:8080/api/multimedia/%s.MP4";
+    private static final String AUDIO_FORMAT_V2 = "url:http://localhost:8080/api/multimedia/%s.wav";
 
-    private static final String AUDIO_FORMAT_V3 = "url:http://localhost:8080/multimedia/%s";
+    private static final String AUDIO_FORMAT_V3 = "url:http://localhost:8080/api/multimedia/%s";
 
     @Autowired
     private ResourceLoader resourceLoader;
