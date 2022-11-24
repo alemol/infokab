@@ -70,7 +70,7 @@ public class GlosaService {
      * @throws SQLException
      */
     public static ArrayList<Glosa> textProcess(String annotation) throws SQLException {
-        String[] textList = annotation.trim().replaceAll("\\s{2,}", " ").split(" ");
+        String[] textList = annotation.trim().toLowerCase().replaceAll("[^a-z üáéíóúñ\'-]", "").replaceAll("\\s{2,}", " ").split(" ");
         ArrayList<Glosa> result_list = new ArrayList<>();
         ArrayList<GlosaStep> glosaSteps = new ArrayList<>();
         int i = 0;
