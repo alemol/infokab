@@ -70,16 +70,20 @@ public class GlosaService {
      * @throws SQLException
      */
     public static ArrayList<Glosa> textProcess(String annotation) throws SQLException {
-        String[] textList = annotation.trim().toLowerCase().replaceAll("[^a-z üáéíóúñ\'-]", "").replaceAll("\\s{2,}", " ").split(" ");
+        //String[] textList = annotation.trim().toLowerCase().replaceAll("[^a-z üáéíóúñ\'-]", "").replaceAll("\\s{2,}", " ").split(" ");
+        String[] textList = annotation.trim().replaceAll("\\s{2,}", " ").split(" ");
         ArrayList<Glosa> result_list = new ArrayList<>();
         ArrayList<GlosaStep> glosaSteps = new ArrayList<>();
         int i = 0;
 
         for (String text : textList) {
             i += 1;
-            ArrayList<String> result = dbDictionary.textProcess(text);
-            GlosaStep glosaStep = new GlosaStep(i, text, result);
-            glosaSteps.add(glosaStep);
+            String text_process = text.toLowerCase().replaceAll("[^a-z üáéíóúñ\'-]", "");
+            if(!text_process.isEmpty()){
+                ArrayList<String> result = dbDictionary.textProcess(text_process);
+                GlosaStep glosaStep = new GlosaStep(i, text, text_process, result);
+                glosaSteps.add(glosaStep);
+            }
         }
         result_list.add(new Glosa(1, annotation, glosaSteps));
         return result_list;
@@ -102,9 +106,12 @@ public class GlosaService {
 
             for (String text : textList) {
                 j += 1;
-                ArrayList<String> result = dbDictionary.textProcess(text);
-                GlosaStep glosaStep = new GlosaStep(j, text, result);
-                glosaSteps.add(glosaStep);
+                String text_process = text.toLowerCase().replaceAll("[^a-z üáéíóúñ\'-]", "");
+                if(!text_process.isEmpty()) {
+                    ArrayList<String> result = dbDictionary.textProcess(text_process);
+                    GlosaStep glosaStep = new GlosaStep(j, text, text_process, result);
+                    glosaSteps.add(glosaStep);
+                }
             }
 
             result_list.add(new Glosa(i, annotation, glosaSteps));
