@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import mx.geoint.Glosa.Dictionary.DictionaryPaginate;
 import mx.geoint.Glosa.Dictionary.DictionaryRequest;
 import mx.geoint.Model.*;
+import mx.geoint.Model.Glosado.GlosaReportWordRequest;
 import mx.geoint.ParseXML.ParseXML;
 import mx.geoint.ParseXML.Tier;
 import mx.geoint.Response.ReportsResponse;
@@ -161,5 +162,27 @@ public class GlosaService {
         String comentario = reportRequest.getComentario();
 
         return dbReports.newRegister(id_project, title, report, tipo, comentario);
+    }
+
+    public Boolean reportAnnotation(GlosaReportWordRequest glosaReportWordRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        String projectName = glosaReportWordRequest.getFilePath();
+        String annotationId = glosaReportWordRequest.getAnnotationID();
+        String annotationREF = glosaReportWordRequest.getAnnotationREF();
+        String report = glosaReportWordRequest.getReport();
+
+        //ParseXML parseXML = new ParseXML(projectName, "Glosado");
+        //parseXML.writeElement(annotationREF, annotationId, steps);
+        return true;
+    }
+
+    public Boolean reportAnnotationWord(GlosaReportWordRequest glosaReportWordRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        String projectName = glosaReportWordRequest.getFilePath();
+        String annotationId = glosaReportWordRequest.getAnnotationID();
+        String annotationREF = glosaReportWordRequest.getAnnotationREF();
+        String word = glosaReportWordRequest.getWord();
+
+        //ParseXML parseXML = new ParseXML(projectName, "Glosado");
+        //parseXML.writeElement(annotationREF, annotationId, steps);
+        return true;
     }
 }

@@ -4,6 +4,7 @@ import mx.geoint.Logger.Logger;
 import mx.geoint.Model.*;
 import mx.geoint.Glosa.Dictionary.DictionaryPaginate;
 import mx.geoint.Glosa.Dictionary.DictionaryRequest;
+import mx.geoint.Model.Glosado.GlosaReportWordRequest;
 import mx.geoint.ParseXML.Tier;
 import mx.geoint.Response.ReportsResponse;
 import mx.geoint.database.DBProjects;
@@ -174,6 +175,48 @@ public class GlosaController {
     public ResponseEntity<Boolean> saveAnnotations(@RequestBody GlosaAnnotationsRequest glosaAnnotationsRequest) {
         try{
             Boolean answer = glosaService.saveAnnotation(glosaAnnotationsRequest);
+            return ResponseEntity.status(HttpStatus.OK).body(answer);
+        } catch (ParserConfigurationException e){
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ParserConfigurationException", e);
+        } catch (SAXException e){
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SAXException", e);
+        } catch (IOException e){
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "IOException", e);
+        } catch (TransformerException e){
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "TransformerException", e);
+        }
+    }
+
+    @RequestMapping(path="/report/annotation", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Boolean> reportAnnotation(@RequestBody GlosaReportWordRequest glosaReportWordRequest) {
+        try{
+            Boolean answer = glosaService.reportAnnotation(glosaReportWordRequest);
+            return ResponseEntity.status(HttpStatus.OK).body(answer);
+        } catch (ParserConfigurationException e){
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ParserConfigurationException", e);
+        } catch (SAXException e){
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SAXException", e);
+        } catch (IOException e){
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "IOException", e);
+        } catch (TransformerException e){
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "TransformerException", e);
+        }
+    }
+
+    @RequestMapping(path="/report/word", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Boolean> reportAnnotationWord(@RequestBody GlosaReportWordRequest glosaReportWordRequest) {
+        try{
+            Boolean answer = glosaService.reportAnnotationWord(glosaReportWordRequest);
             return ResponseEntity.status(HttpStatus.OK).body(answer);
         } catch (ParserConfigurationException e){
             logger.appendToFile(e);
