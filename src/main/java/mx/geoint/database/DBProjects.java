@@ -1,8 +1,11 @@
 package mx.geoint.database;
 
 import mx.geoint.Glosa.Dictionary.DictionaryRequest;
+import mx.geoint.Images.GalleryModel;
 import mx.geoint.Model.ProjectRegistration;
+import org.apache.commons.io.FilenameUtils;
 
+import java.io.File;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -72,6 +75,24 @@ public class DBProjects {
 
             projectRegistrations.setTotal_de_anotaciones(random_total);
             projectRegistrations.setAnotaciones_guardadas(random_save);
+
+            String dir = rs.getString(4) + "/Images/";
+
+            int lastIndex = 0;
+            String[] pathnames;
+
+            File f = new File(dir);
+
+            pathnames = f.list();
+
+            for (String pathname : pathnames) {
+                String x = FilenameUtils.getBaseName(pathname);
+                lastIndex = Integer.parseInt(x.split("image")[1]);
+            }
+            projectRegistrations.setimageList(pathnames);
+            projectRegistrations.setLastIndex(lastIndex);
+            System.out.println(pathnames.length);
+
             result.add(projectRegistrations);
         }
 
