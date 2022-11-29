@@ -1,16 +1,11 @@
 package mx.geoint.Images;
 
 
-import mx.geoint.User.User;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.io.File;
-import java.sql.SQLException;
-import java.util.*;
 
 //@CrossOrigin(origins = {"http://infokaab.com/","http://infokaab.com.mx/","http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182"})
 @RestController
@@ -29,12 +24,13 @@ public class ImageController {
     @RequestMapping(path = "/readpath", method = RequestMethod.POST,  consumes = "application/json")
     //@PostMapping(value = "/updatePerson", consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public boolean Filelist(@RequestParam String route) {
+    public boolean Filelist(@RequestBody routeModel route) {
+        //String route = "/home/centrogeo/JavaApps/infokab-backend/Files/Project/08a84f2a-ad52-4c12-b9a3-f0d38d5cd81d";
         System.out.println(route);
         int lastIndex = 0;
         String[] pathnames;
 
-        File f = new File(route);
+        File f = new File(route.getRoute());
 
         // Populates the array with names of files and directories
         pathnames = f.list();
