@@ -391,4 +391,18 @@ class ParseXMLTest {
         testMapXMLFiles("3");
         testMapXMLFiles("4");
     }
+
+    void changeAnnotationinTier(String tier_id, String path_eaf) throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        ParseXML parseXML = new ParseXML(path_eaf, tier_id);
+        parseXML.editAnnotation("a284",  "to'one' ma'alobon bejla'e'  chéen yaan horaa beya''");
+        parseXML.editAnnotation("a55",  "kek  bin xan jaan");
+    }
+
+    @Test
+    void runTestChangeAnnotationInFile() throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        String path = "04_02_01082022_11_SCY_C_2_2.eaf";
+        String tier_id_transcripcion = "transpcion ortografica";
+
+        changeAnnotationinTier(tier_id_transcripcion,"./eafs/"+path);
+    }
 }

@@ -162,6 +162,40 @@ public class ParseXML {
         Files.writeString(Path.of(filePath), xmlStr, StandardCharsets.UTF_8);
     }
 
+    public boolean editAnnotation(String annotation_ref, String annotation) throws ParserConfigurationException, TransformerException, IOException, SAXException {
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        Document document = db.parse(new File(filePath));
+
+        Element TIER = isTierInEaf(document, "transpcion ortografica");
+        if(TIER == null){ return false; }
+
+        changeAnnotationinTier(document, TIER, annotation_ref, annotation);
+        saveFile(document);
+        return true;
+    }
+
+    private void changeAnnotationinTier(Document doc, Element tier,  String ANNOTATION_TIER_REF, String annotation){
+        NodeList nodeList = tier.getElementsByTagName("REF_ANNOTATION");
+        for (int temp=0; temp<nodeList.getLength(); temp ++){
+            Node tempNode = nodeList.item(temp);
+            Element tempElement = (Element) tempNode;
+            if(tempElement.getAttribute("ANNOTATION_ID").equals(ANNOTATION_TIER_REF)
+            || tempElement.getAttribute("ANNOTATION_REF").equals(ANNOTATION_TIER_REF)){
+                NodeList childrenNodeList = tempNode.getChildNodes();
+
+                for (int aux_temp=0; aux_temp<childrenNodeList.getLength(); aux_temp ++) {
+                    Node auxTempNode = childrenNodeList.item(aux_temp);
+                    if(auxTempNode.getNodeName().equals("ANNOTATION_VALUE")){
+                        //Obtener la anotacion,
+                        // realizar modificaciones de la palabra
+
+                        auxTempNode.setTextContent(annotation);
+                    }
+                }
+            }
+        }
+    }
 
     /**
      * Regresar una lista de la clase tier que se obtuvo de parse del archivo .eaf
