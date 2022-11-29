@@ -6,6 +6,8 @@ import mx.geoint.Model.ProjectRegistration;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -77,21 +79,23 @@ public class DBProjects {
             projectRegistrations.setAnotaciones_guardadas(random_save);
 
             String dir = rs.getString(4) + "/Images/";
+            if (Files.exists(Path.of(dir))){
+                int lastIndex = 0;
+                String[] pathnames;
 
-            int lastIndex = 0;
-            String[] pathnames;
+                File f = new File(dir);
 
-            File f = new File(dir);
+                pathnames = f.list();
 
-            pathnames = f.list();
-
-            for (String pathname : pathnames) {
-                String x = FilenameUtils.getBaseName(pathname);
-                lastIndex = Integer.parseInt(x.split("image")[1]);
+                for (String pathname : pathnames) {
+                    String x = FilenameUtils.getBaseName(pathname);
+                    lastIndex = Integer.parseInt(x.split("image")[1]);
+                }
+                projectRegistrations.setimageList(pathnames);
+                projectRegistrations.setLastIndex(lastIndex);
+                System.out.println(pathnames.length);
             }
-            projectRegistrations.setimageList(pathnames);
-            projectRegistrations.setLastIndex(lastIndex);
-            System.out.println(pathnames.length);
+
 
             result.add(projectRegistrations);
         }
