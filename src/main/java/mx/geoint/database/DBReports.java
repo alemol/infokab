@@ -44,7 +44,7 @@ public class DBReports {
         if(search == null){
             SQL_QUERY = "SELECT id, id_proyecto, titulo, reporte, fecha_creacion, tipo, activate, comentario FROM reportes WHERE id_proyecto=? and activate=? order by id offset " + offset + " limit " + noOfRecords;
         }else{
-            SQL_QUERY = "SELECT * FROM reportes WHERE id_proyecto=? and activate=? and tipo=? order by id offset " + offset + " limit " + noOfRecords;
+            SQL_QUERY = "SELECT id, id_proyecto, titulo, reporte, fecha_creacion, tipo, activate, comentario FROM reportes WHERE id_proyecto=? and activate=? and tipo=? order by id offset " + offset + " limit " + noOfRecords;
         }
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         preparedStatement.setObject(1, id);
