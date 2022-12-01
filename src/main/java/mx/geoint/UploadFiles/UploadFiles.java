@@ -15,6 +15,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 
 
@@ -159,7 +161,6 @@ public class UploadFiles {
      */
     private String existDirectory(String pathDirectory, String uuid, String baseName){
         String currentDirectory = pathDirectory + uuid + "/"+baseName+"/";
-        System.out.println("adasdad "+currentDirectory);
         if(!Files.exists(Path.of(currentDirectory))){
             File newSubDirectory = new File(currentDirectory);
             newSubDirectory.mkdirs();
@@ -212,15 +213,28 @@ public class UploadFiles {
     public Number updateImages(MultipartFile[] images, String projectName, String uuid, int id) throws IOException, SQLException {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
-
-        if(images != null){
-            int index = 0;
-            for(MultipartFile file : images) {
-                if(!saveFile(file, basePath, baseProjectName+"_image"+(index++))){
-                    return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
-                }
+        int index = 0;
+        String ImageFolder = basePath+"Images/";
+        if(Files.exists(Path.of(ImageFolder))){
+            String[] pathnames;
+            File f = new File(ImageFolder);
+            pathnames = f.list();
+            Arrays.sort(pathnames);
+            for (String pathname : pathnames) {
+                String x = FilenameUtils.getBaseName(pathname);
+                System.out.println(x);
+                index = Integer.parseInt(x.split("image")[1]);
+                System.out.println(index);
             }
-
+        }else{
+            File newSubDirectory = new File(ImageFolder);
+            newSubDirectory.mkdirs();
+        }
+        System.out.println(index);
+        for(MultipartFile file : images) {
+            if(!saveFile(file, ImageFolder, baseProjectName+"_image"+(index+1))){
+                return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
+            }
         }
 
         return pathSystem.SUCCESS_UPLOAD;

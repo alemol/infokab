@@ -93,7 +93,6 @@ public class DBProjects {
                 }
                 projectRegistrations.setimageList(pathnames);
                 projectRegistrations.setLastIndex(lastIndex);
-                System.out.println(pathnames.length);
             }
 
 
