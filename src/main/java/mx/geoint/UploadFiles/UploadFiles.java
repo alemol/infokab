@@ -229,7 +229,7 @@ public class UploadFiles {
             newSubDirectory.mkdirs();
         }
         for(MultipartFile file : images) {
-            if(!saveFile(file, ImageFolder, baseProjectName+"_image"+(index+1))){
+            if(!saveFile(file, ImageFolder, baseProjectName+"_image"+(index+=1))){
                 return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
             }
         }
