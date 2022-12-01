@@ -15,10 +15,10 @@ public class DBReports {
         this.credentials = new Credentials();
     }
 
-    public Boolean newRegister(int id_project, String title, String report, String type, String comentario) throws SQLException {
+    public Boolean newRegister(int id_project, String title, String report, String type, String comentario, String anotacion) throws SQLException {
         Connection conn = credentials.getConnection();
 
-        String SQL_INSERT = "INSERT INTO reportes (id_proyecto, titulo, reporte, tipo, activate, fecha_creacion, comentario) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id_proyecto";
+        String SQL_INSERT = "INSERT INTO reportes (id_proyecto, titulo, reporte, tipo, activate, fecha_creacion, comentario, anotacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING id_proyecto";
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
         preparedStatement.setObject(1, id_project);
@@ -28,6 +28,7 @@ public class DBReports {
         preparedStatement.setBoolean(5, true);
         preparedStatement.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
         preparedStatement.setString(7, comentario);
+        preparedStatement.setString(8, anotacion);
         preparedStatement.execute();
         conn.close();
 
@@ -42,9 +43,9 @@ public class DBReports {
         Connection conn = credentials.getConnection();
         String SQL_QUERY = "";
         if(search == null){
-            SQL_QUERY = "SELECT id, id_proyecto, titulo, reporte, fecha_creacion, tipo, activate, comentario FROM reportes WHERE id_proyecto=? and activate=? order by id offset " + offset + " limit " + noOfRecords;
+            SQL_QUERY = "SELECT id, id_proyecto, titulo, reporte, fecha_creacion, tipo, activate, comentario, anotacion FROM reportes WHERE id_proyecto=? and activate=? order by id offset " + offset + " limit " + noOfRecords;
         }else{
-            SQL_QUERY = "SELECT id, id_proyecto, titulo, reporte, fecha_creacion, tipo, activate, comentario FROM reportes WHERE id_proyecto=? and activate=? and tipo=? order by id offset " + offset + " limit " + noOfRecords;
+            SQL_QUERY = "SELECT id, id_proyecto, titulo, reporte, fecha_creacion, tipo, activate, comentario, anotacion FROM reportes WHERE id_proyecto=? and activate=? and tipo=? order by id offset " + offset + " limit " + noOfRecords;
         }
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         preparedStatement.setObject(1, id);
@@ -66,6 +67,7 @@ public class DBReports {
             reportDoc.setTipo(rs.getString(6));
             reportDoc.setActivate(rs.getBoolean(7));
             reportDoc.setComentario(rs.getString(8));
+            reportDoc.setAnotacion(rs.getString(9));
             results.add(reportDoc);
         }
         rs.close();

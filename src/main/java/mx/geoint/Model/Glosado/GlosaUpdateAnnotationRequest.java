@@ -11,9 +11,16 @@ public class GlosaUpdateAnnotationRequest {
     @JsonProperty("ANNOTATION_REF")
     private String annotationREF;
 
+    @JsonProperty("ANNOTATION_ORIGINAL")
+    private String annotationOriginal;
+
     @JsonProperty("ANNOTATION_VALUE")
     private String annotationValue;
 
+    private Integer projectID;
+    private String title;
+    private String report;
+    private String type;
     public GlosaUpdateAnnotationRequest(){ }
 
     public void setFilePath(String filePath) { this.filePath = filePath; }
@@ -31,4 +38,24 @@ public class GlosaUpdateAnnotationRequest {
     public void setAnnotationValue(String annotationValue) { this.annotationValue = annotationValue; }
 
     public String getAnnotationValue() { return annotationValue; }
+
+    public void setAnnotationOriginal(String annotationOriginal) { this.annotationOriginal = annotationOriginal; }
+
+    public String getAnnotationOriginal() { return annotationOriginal; }
+
+    public void setReport(String report) { this.report = report; }
+
+    public String getReport() { return report; }
+
+    public void setProjectID(Integer projectID) { this.projectID = projectID; }
+
+    public Integer getProjectID() { return projectID; }
+
+    public void setTitle(String title) { this.title = title; }
+
+    public String getTitle() { return title; }
+
+    public void setType(String type) { this.type = type; }
+
+    public String getType() { return type; }
 }

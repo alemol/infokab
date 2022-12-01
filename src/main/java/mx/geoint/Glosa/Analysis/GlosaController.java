@@ -213,6 +213,9 @@ public class GlosaController {
         } catch (TransformerException e){
             logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "TransformerException", e);
+        } catch (SQLException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SQLException", e);
         }
     }
 }

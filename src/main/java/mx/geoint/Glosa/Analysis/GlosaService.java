@@ -162,15 +162,22 @@ public class GlosaService {
         String tipo = reportRequest.getTipo();
         String comentario = reportRequest.getComentario();
 
-        return dbReports.newRegister(id_project, title, report, tipo, comentario);
+        return dbReports.newRegister(id_project, title, report, tipo, comentario, "");
     }
 
-    public Boolean editAnnotation(GlosaUpdateAnnotationRequest glosaUpdateAnnotationRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException {
+    public Boolean editAnnotation(GlosaUpdateAnnotationRequest glosaUpdateAnnotationRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException, SQLException {
         String projectName = glosaUpdateAnnotationRequest.getFilePath();
         String annotationId = glosaUpdateAnnotationRequest.getAnnotationID();
-        String annotation = glosaUpdateAnnotationRequest.getAnnotationValue();
+        String annotationValue = glosaUpdateAnnotationRequest.getAnnotationValue();
+        String annotationOriginal = glosaUpdateAnnotationRequest.getAnnotationOriginal();
 
+        int id_project = glosaUpdateAnnotationRequest.getProjectID();
+        String title = glosaUpdateAnnotationRequest.getTitle();
+        String report = glosaUpdateAnnotationRequest.getReport();
+        String type = glosaUpdateAnnotationRequest.getType();
+
+        dbReports.newRegister(id_project, title, report, type, annotationValue, annotationOriginal);
         ParseXML parseXML = new ParseXML(projectName, pathSystem.TIER_MAIN);
-        return parseXML.editAnnotation(annotationId, annotation, pathSystem.TIER_MAIN);
+        return parseXML.editAnnotation(annotationId, annotationValue, pathSystem.TIER_MAIN);
     }
 }
