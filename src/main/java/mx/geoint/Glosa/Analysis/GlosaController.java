@@ -195,7 +195,7 @@ public class GlosaController {
      * @param
      * @return
      */
-    @RequestMapping(path="/edit/annotation", method = RequestMethod.POST)
+    @RequestMapping(path="/annotation/main", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Boolean> editAnnotation(@RequestBody GlosaUpdateAnnotationRequest glosaUpdateAnnotationRequest) {
         try{

@@ -171,7 +171,6 @@ public class GlosaService {
         String annotation = glosaUpdateAnnotationRequest.getAnnotationValue();
 
         ParseXML parseXML = new ParseXML(projectName, pathSystem.TIER_MAIN);
-        parseXML.editAnnotation(annotationId, annotation, pathSystem.TIER_MAIN);
-        return true;
+        return parseXML.editAnnotation(annotationId, annotation, pathSystem.TIER_MAIN);
     }
 }
