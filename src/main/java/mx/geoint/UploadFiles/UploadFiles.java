@@ -222,15 +222,12 @@ public class UploadFiles {
             Arrays.sort(pathnames);
             for (String pathname : pathnames) {
                 String x = FilenameUtils.getBaseName(pathname);
-                System.out.println(x);
                 index = Integer.parseInt(x.split("image")[1]);
-                System.out.println(index);
             }
         }else{
             File newSubDirectory = new File(ImageFolder);
             newSubDirectory.mkdirs();
         }
-        System.out.println(index);
         for(MultipartFile file : images) {
             if(!saveFile(file, ImageFolder, baseProjectName+"_image"+(index+1))){
                 return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
