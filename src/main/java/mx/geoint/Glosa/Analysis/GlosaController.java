@@ -175,18 +175,9 @@ public class GlosaController {
         try{
             Boolean answer = glosaService.saveAnnotation(glosaAnnotationsRequest);
             return ResponseEntity.status(HttpStatus.OK).body(answer);
-        } catch (ParserConfigurationException e){
+        } catch (SQLException e) {
             logger.appendToFile(e);
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ParserConfigurationException", e);
-        } catch (SAXException e){
-            logger.appendToFile(e);
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SAXException", e);
-        } catch (IOException e){
-            logger.appendToFile(e);
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "IOException", e);
-        } catch (TransformerException e){
-            logger.appendToFile(e);
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "TransformerException", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SQLException", e);
         }
     }
 

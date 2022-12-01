@@ -9,6 +9,7 @@ import mx.geoint.ParseXML.ParseXML;
 import mx.geoint.ParseXML.Tier;
 import mx.geoint.Response.ReportsResponse;
 import mx.geoint.database.DBDictionary;
+import mx.geoint.database.DBProjects;
 import mx.geoint.database.DBReports;
 import mx.geoint.pathSystem;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ import java.util.Map;
 public class GlosaService {
     public static DBDictionary dbDictionary;
     public static DBReports dbReports;
+    public static DBProjects dbProjects;
 
     public GlosaService() {
         this.dbDictionary = new DBDictionary();
@@ -134,15 +136,11 @@ public class GlosaService {
         return new ArrayList<>(parseXML.getTier());
     }
 
+    public Boolean saveAnnotation(GlosaAnnotationsRequest glosaAnnotationsRequest) throws SQLException {
+        int projectId = glosaAnnotationsRequest.getProjectID();
+        int glossingAnnotationInEaf = dbProjects.getGlossingAnnotationInEaf(projectId);
 
-    public Boolean saveAnnotation(GlosaAnnotationsRequest glosaAnnotationsRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException {
-        String projectName = glosaAnnotationsRequest.getFilePath();
-        String annotationId = glosaAnnotationsRequest.getAnnotationID();
-        String annotationREF = glosaAnnotationsRequest.getAnnotationREF();
-        ArrayList<GlosaStep> steps = glosaAnnotationsRequest.getSteps();
-        ParseXML parseXML = new ParseXML(projectName, "Glosado");
-        parseXML.writeElement(annotationREF, annotationId, steps);
-        return true;
+        return  dbProjects.setGlossingAnnotationToEaf(projectId, glossingAnnotationInEaf+1, glosaAnnotationsRequest);
     }
 
     public ReportsResponse getRegisters(DictionaryPaginate dictionaryPaginate) throws SQLException {
@@ -166,18 +164,6 @@ public class GlosaService {
     }
 
     public Boolean editAnnotation(GlosaUpdateAnnotationRequest glosaUpdateAnnotationRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException, SQLException {
-        String projectName = glosaUpdateAnnotationRequest.getFilePath();
-        String annotationId = glosaUpdateAnnotationRequest.getAnnotationID();
-        String annotationValue = glosaUpdateAnnotationRequest.getAnnotationValue();
-        String annotationOriginal = glosaUpdateAnnotationRequest.getAnnotationOriginal();
-
-        int id_project = glosaUpdateAnnotationRequest.getProjectID();
-        String title = glosaUpdateAnnotationRequest.getTitle();
-        String report = glosaUpdateAnnotationRequest.getReport();
-        String type = glosaUpdateAnnotationRequest.getType();
-
-        dbReports.newRegister(id_project, title, report, type, annotationValue, annotationOriginal);
-        ParseXML parseXML = new ParseXML(projectName, pathSystem.TIER_MAIN);
-        return parseXML.editAnnotation(annotationId, annotationValue, pathSystem.TIER_MAIN);
+        return dbReports.newAnnotationReport(glosaUpdateAnnotationRequest);
     }
 }

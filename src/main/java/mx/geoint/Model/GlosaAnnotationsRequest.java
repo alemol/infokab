@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class GlosaAnnotationsRequest {
     private String filePath;
+    private int projectID;
 
     @JsonProperty("ANNOTATION_ID")
     private String annotationID;
@@ -30,4 +31,8 @@ public class GlosaAnnotationsRequest {
 
     public void setAnnotationREF(String annotationREF) { this.annotationREF = annotationREF; }
     public String getAnnotationREF() { return annotationREF; }
+
+    public void setProjectID(int projectID) { this.projectID = projectID; }
+
+    public int getProjectID() { return projectID; }
 }
