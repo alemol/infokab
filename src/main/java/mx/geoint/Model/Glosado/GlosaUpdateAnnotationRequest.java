@@ -2,7 +2,7 @@ package mx.geoint.Model.Glosado;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class GlosaReportWordRequest {
+public class GlosaUpdateAnnotationRequest {
     private String filePath;
 
     @JsonProperty("ANNOTATION_ID")
@@ -11,10 +11,10 @@ public class GlosaReportWordRequest {
     @JsonProperty("ANNOTATION_REF")
     private String annotationREF;
 
-    private String word;
-    private String report;
+    @JsonProperty("ANNOTATION_VALUE")
+    private String annotationValue;
 
-    public GlosaReportWordRequest(){ }
+    public GlosaUpdateAnnotationRequest(){ }
 
     public void setFilePath(String filePath) { this.filePath = filePath; }
 
@@ -28,12 +28,7 @@ public class GlosaReportWordRequest {
 
     public String getAnnotationREF() { return annotationREF; }
 
-    public void setWord(String word) { this.word = word; }
+    public void setAnnotationValue(String annotationValue) { this.annotationValue = annotationValue; }
 
-    public String getWord() { return word; }
-
-
-    public void setReport(String report) { this.report = report; }
-
-    public String getReport() { return report; }
+    public String getAnnotationValue() { return annotationValue; }
 }

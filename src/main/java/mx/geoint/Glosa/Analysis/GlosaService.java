@@ -4,12 +4,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import mx.geoint.Glosa.Dictionary.DictionaryPaginate;
 import mx.geoint.Glosa.Dictionary.DictionaryRequest;
 import mx.geoint.Model.*;
-import mx.geoint.Model.Glosado.GlosaReportWordRequest;
+import mx.geoint.Model.Glosado.GlosaUpdateAnnotationRequest;
 import mx.geoint.ParseXML.ParseXML;
 import mx.geoint.ParseXML.Tier;
 import mx.geoint.Response.ReportsResponse;
 import mx.geoint.database.DBDictionary;
 import mx.geoint.database.DBReports;
+import mx.geoint.pathSystem;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
@@ -164,25 +165,13 @@ public class GlosaService {
         return dbReports.newRegister(id_project, title, report, tipo, comentario);
     }
 
-    public Boolean reportAnnotation(GlosaReportWordRequest glosaReportWordRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException {
-        String projectName = glosaReportWordRequest.getFilePath();
-        String annotationId = glosaReportWordRequest.getAnnotationID();
-        String annotationREF = glosaReportWordRequest.getAnnotationREF();
-        String report = glosaReportWordRequest.getReport();
+    public Boolean editAnnotation(GlosaUpdateAnnotationRequest glosaUpdateAnnotationRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        String projectName = glosaUpdateAnnotationRequest.getFilePath();
+        String annotationId = glosaUpdateAnnotationRequest.getAnnotationID();
+        String annotation = glosaUpdateAnnotationRequest.getAnnotationValue();
 
-        //ParseXML parseXML = new ParseXML(projectName, "Glosado");
-        //parseXML.writeElement(annotationREF, annotationId, steps);
-        return true;
-    }
-
-    public Boolean reportAnnotationWord(GlosaReportWordRequest glosaReportWordRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException {
-        String projectName = glosaReportWordRequest.getFilePath();
-        String annotationId = glosaReportWordRequest.getAnnotationID();
-        String annotationREF = glosaReportWordRequest.getAnnotationREF();
-        String word = glosaReportWordRequest.getWord();
-
-        //ParseXML parseXML = new ParseXML(projectName, "Glosado");
-        //parseXML.writeElement(annotationREF, annotationId, steps);
+        ParseXML parseXML = new ParseXML(projectName, pathSystem.TIER_MAIN);
+        parseXML.editAnnotation(annotationId, annotation, pathSystem.TIER_MAIN);
         return true;
     }
 }

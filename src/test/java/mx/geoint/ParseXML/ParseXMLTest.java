@@ -2,6 +2,7 @@ package mx.geoint.ParseXML;
 
 import com.google.gson.Gson;
 import mx.geoint.Model.GlosaStep;
+import mx.geoint.pathSystem;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
@@ -394,8 +395,8 @@ class ParseXMLTest {
 
     void changeAnnotationinTier(String tier_id, String path_eaf) throws ParserConfigurationException, IOException, TransformerException, SAXException {
         ParseXML parseXML = new ParseXML(path_eaf, tier_id);
-        parseXML.editAnnotation("a284",  "to'one' ma'alobon bejla'e'  chéen yaan horaa beya''");
-        parseXML.editAnnotation("a55",  "kek  bin xan jaan");
+        parseXML.editAnnotation("a284",  "to'one' ma'alobon bejla'e'  chéen yaan horaa beya''", pathSystem.TIER_MAIN);
+        parseXML.editAnnotation("a55",  "kek  bin xan jaan", pathSystem.TIER_MAIN);
     }
 
     @Test
