@@ -137,16 +137,16 @@ public class DBProjects {
         }
     }
 
-    public int getGlossingAnnotationInEaf(Integer id_project) throws SQLException {
+    public int getGlossingAnnotationInEaf(int projectId) throws SQLException {
         Connection conn = credentials.getConnection();
-        String SQL_UPDATE = "SELECT totaL_de_anotaciones FROM proyectos WHERE id_proyecto=?";
+        String SQL_UPDATE = "SELECT anotaciones_guardadas FROM proyectos WHERE id_proyecto=?";
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
-        preparedStatement.setObject(2, id_project);
-
+        preparedStatement.setInt(1, projectId);
         ResultSet row = preparedStatement.executeQuery();
+
         int total_de_anotaciones = 0;
         while(row.next()){
-             total_de_anotaciones = row.getInt(1);
+            total_de_anotaciones = row.getInt(1);
         }
 
         row.close();
@@ -159,8 +159,15 @@ public class DBProjects {
     public boolean setGlossingAnnotationToEaf(Integer id_project, Integer count, GlosaAnnotationsRequest glosaAnnotationsRequest) throws SQLException{
         String projectName = glosaAnnotationsRequest.getFilePath();
         String annotationId = glosaAnnotationsRequest.getAnnotationID();
-        String annotationREF = glosaAnnotationsRequest.getAnnotationREF();
+        String annotationREF = "";
+        if(glosaAnnotationsRequest.getAnnotationREF().isEmpty()){
+            annotationREF = glosaAnnotationsRequest.getAnnotationID();
+        }else{
+            annotationREF = glosaAnnotationsRequest.getAnnotationREF();
+        }
+
         ArrayList<GlosaStep> steps = glosaAnnotationsRequest.getSteps();
+        boolean answer = false;
 
         Connection conn = credentials.getConnection();
         conn.setAutoCommit(false);
@@ -170,9 +177,6 @@ public class DBProjects {
         preparedStatement.setInt(1, count);
         preparedStatement.setObject(2, id_project);
         int rs = preparedStatement.executeUpdate();
-
-        boolean answer;
-
         try{
             ParseXML parseXML = new ParseXML(projectName, "Glosado");
             parseXML.writeElement(annotationREF, annotationId, steps);

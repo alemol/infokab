@@ -35,6 +35,7 @@ public class GlosaService {
     public GlosaService() {
         this.dbDictionary = new DBDictionary();
         this.dbReports = new DBReports();
+        this.dbProjects = new DBProjects();
     }
 
     /**
@@ -139,8 +140,7 @@ public class GlosaService {
     public Boolean saveAnnotation(GlosaAnnotationsRequest glosaAnnotationsRequest) throws SQLException {
         int projectId = glosaAnnotationsRequest.getProjectID();
         int glossingAnnotationInEaf = dbProjects.getGlossingAnnotationInEaf(projectId);
-
-        return  dbProjects.setGlossingAnnotationToEaf(projectId, glossingAnnotationInEaf+1, glosaAnnotationsRequest);
+        return  dbProjects.setGlossingAnnotationToEaf(projectId, (glossingAnnotationInEaf+1), glosaAnnotationsRequest);
     }
 
     public ReportsResponse getRegisters(DictionaryPaginate dictionaryPaginate) throws SQLException {
