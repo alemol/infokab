@@ -58,6 +58,7 @@ public class DBReports {
         String type = glosaUpdateAnnotationRequest.getType();
 
         Connection conn = credentials.getConnection();
+        conn.setAutoCommit(false);
 
         String SQL_INSERT = "INSERT INTO reportes (id_proyecto, titulo, reporte, tipo, activate, fecha_creacion, comentario, anotacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING id_proyecto";
 
@@ -76,6 +77,8 @@ public class DBReports {
         try {
             ParseXML parseXML = new ParseXML(projectName, pathSystem.TIER_MAIN);
             parseXML.editAnnotation(annotationId, annotationValue, pathSystem.TIER_MAIN);
+
+            conn.commit();
             answer = true;
         } catch (ParserConfigurationException e) {
             conn.rollback();
