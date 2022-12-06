@@ -99,14 +99,17 @@ public class DBProjects {
                 File f = new File(dir);
 
                 pathnames = f.list();
-
-                for (String pathname : pathnames) {
-                    String x = FilenameUtils.getBaseName(pathname);
-                    lastIndex = Integer.parseInt(x.split("image")[1]);
+                if(pathnames.length>0){
+                    for (String pathname : pathnames) {
+                        String x = FilenameUtils.getBaseName(pathname);
+                        lastIndex = Integer.parseInt(x.split("image")[1]);
+                    }
+                    projectRegistrations.setimageList(pathnames);
+                    projectRegistrations.setLastIndex(lastIndex);
+                }else{
+                    projectRegistrations.setimageList(null);
+                    projectRegistrations.setLastIndex(lastIndex);
                 }
-                projectRegistrations.setimageList(pathnames);
-                projectRegistrations.setLastIndex(lastIndex);
-                System.out.println(pathnames.length);
             }
 
 
