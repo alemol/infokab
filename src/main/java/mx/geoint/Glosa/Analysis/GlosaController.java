@@ -4,6 +4,7 @@ import mx.geoint.Logger.Logger;
 import mx.geoint.Model.*;
 import mx.geoint.Glosa.Dictionary.DictionaryPaginate;
 import mx.geoint.Glosa.Dictionary.DictionaryRequest;
+import mx.geoint.Model.Glosado.GlosaUpdateAnnotationRequest;
 import mx.geoint.ParseXML.Tier;
 import mx.geoint.Response.ReportsResponse;
 import mx.geoint.database.DBProjects;
@@ -138,7 +139,6 @@ public class GlosaController {
             logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "IOException", e);
         }
-
     }
 
     /**
@@ -175,6 +175,35 @@ public class GlosaController {
         try{
             Boolean answer = glosaService.saveAnnotation(glosaAnnotationsRequest);
             return ResponseEntity.status(HttpStatus.OK).body(answer);
+        } catch (SQLException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SQLException", e);
+        } catch (ParserConfigurationException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ParserConfigurationException", e);
+        } catch (IOException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "IOException", e);
+        } catch (TransformerException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "TransformerException", e);
+        } catch (SAXException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SAXException", e);
+        }
+    }
+
+    /**
+     * Api para el guardado del análisis de una oración o anotación al archivo eaf correspondiente de un proyecto
+     * @param
+     * @return
+     */
+    @RequestMapping(path="/annotation/main", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Boolean> editAnnotation(@RequestBody GlosaUpdateAnnotationRequest glosaUpdateAnnotationRequest) {
+        try{
+            Boolean answer = glosaService.editAnnotation(glosaUpdateAnnotationRequest);
+            return ResponseEntity.status(HttpStatus.OK).body(answer);
         } catch (ParserConfigurationException e){
             logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ParserConfigurationException", e);
@@ -187,6 +216,9 @@ public class GlosaController {
         } catch (TransformerException e){
             logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "TransformerException", e);
+        } catch (SQLException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SQLException", e);
         }
     }
 }

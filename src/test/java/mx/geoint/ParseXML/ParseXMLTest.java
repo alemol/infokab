@@ -2,6 +2,7 @@ package mx.geoint.ParseXML;
 
 import com.google.gson.Gson;
 import mx.geoint.Model.GlosaStep;
+import mx.geoint.pathSystem;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
@@ -319,9 +320,9 @@ class ParseXMLTest {
 
     void setTierDinamic(String tier_id, String path_eaf) throws ParserConfigurationException, IOException, TransformerException, SAXException {
         ArrayList<GlosaStep> glosaSteps = new ArrayList<>();
-        glosaSteps.add(new GlosaStep(1, "to'one'", null, "(to'on)+e' = 1PL[to'on]+D3/TOP/FF"));
-        glosaSteps.add(new GlosaStep(2, "ma'alobon", null, null));
-        glosaSteps.add(new GlosaStep(3, "bejla'e'", null, "(bejla'e') = hoy[bejla'e']"));
+        glosaSteps.add(new GlosaStep(1, "to'one'", "to'one'", null, "(to'on)+e' = 1PL[to'on]+D3/TOP/FF"));
+        glosaSteps.add(new GlosaStep(2, "ma'alobon", "ma'alobon", null, null));
+        glosaSteps.add(new GlosaStep(3, "bejla'e'", "bejla'e'",null, "(bejla'e') = hoy[bejla'e']"));
 
         ParseXML parseXML = new ParseXML(path_eaf, tier_id);
         parseXML.writeElement("a283", "a284", glosaSteps);
@@ -390,5 +391,19 @@ class ParseXMLTest {
         testMapXMLFiles("2");
         testMapXMLFiles("3");
         testMapXMLFiles("4");
+    }
+
+    void changeAnnotationinTier(String tier_id, String path_eaf) throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        ParseXML parseXML = new ParseXML(path_eaf, tier_id);
+        parseXML.editAnnotation("a284",  "to'one' ma'alobon bejla'e'  chéen yaan horaa beya''", pathSystem.TIER_MAIN);
+        parseXML.editAnnotation("a55",  "kek  bin xan jaan", pathSystem.TIER_MAIN);
+    }
+
+    @Test
+    void runTestChangeAnnotationInFile() throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        String path = "04_02_01082022_11_SCY_C_2_2.eaf";
+        String tier_id_transcripcion = "transpcion ortografica";
+
+        changeAnnotationinTier(tier_id_transcripcion,"./eafs/"+path);
     }
 }

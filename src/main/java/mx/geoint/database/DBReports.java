@@ -1,24 +1,35 @@
 package mx.geoint.database;
 
 import mx.geoint.Glosa.Dictionary.DictionaryRequest;
+import mx.geoint.Logger.Logger;
+import mx.geoint.Model.Glosado.GlosaUpdateAnnotationRequest;
 import mx.geoint.Model.ReportDoc;
+import mx.geoint.ParseXML.ParseXML;
 import mx.geoint.Response.ReportsResponse;
+import mx.geoint.pathSystem;
 import org.apache.commons.io.filefilter.TrueFileFilter;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class DBReports {
     public Credentials credentials;
+    private Logger logger;
+
     public DBReports(){
         this.credentials = new Credentials();
+        this.logger = new Logger();
     }
 
-    public Boolean newRegister(int id_project, String title, String report, String type, String comentario) throws SQLException {
+    public Boolean newRegister(int id_project, String title, String report, String type, String comentario, String anotacion) throws SQLException {
         Connection conn = credentials.getConnection();
 
-        String SQL_INSERT = "INSERT INTO reportes (id_proyecto, titulo, reporte, tipo, activate, fecha_creacion, comentario) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id_proyecto";
+        String SQL_INSERT = "INSERT INTO reportes (id_proyecto, titulo, reporte, tipo, activate, fecha_creacion, comentario, anotacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING id_proyecto";
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
         preparedStatement.setObject(1, id_project);
@@ -28,10 +39,69 @@ public class DBReports {
         preparedStatement.setBoolean(5, true);
         preparedStatement.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
         preparedStatement.setString(7, comentario);
+        preparedStatement.setString(8, anotacion);
         preparedStatement.execute();
         conn.close();
 
         return true;
+    }
+
+    public Boolean newAnnotationReport(GlosaUpdateAnnotationRequest glosaUpdateAnnotationRequest) throws SQLException {
+        String projectName = glosaUpdateAnnotationRequest.getFilePath();
+        String annotationId = glosaUpdateAnnotationRequest.getAnnotationID();
+        String annotationValue = glosaUpdateAnnotationRequest.getAnnotationValue();
+        String annotationOriginal = glosaUpdateAnnotationRequest.getAnnotationOriginal();
+
+        int id_project = glosaUpdateAnnotationRequest.getProjectID();
+        String title = glosaUpdateAnnotationRequest.getTitle();
+        String report = glosaUpdateAnnotationRequest.getReport();
+        String type = glosaUpdateAnnotationRequest.getType();
+
+        Connection conn = credentials.getConnection();
+        conn.setAutoCommit(false);
+
+        String SQL_INSERT = "INSERT INTO reportes (id_proyecto, titulo, reporte, tipo, activate, fecha_creacion, comentario, anotacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING id_proyecto";
+
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
+        preparedStatement.setObject(1, id_project);
+        preparedStatement.setString(2, title);
+        preparedStatement.setString(3, report);
+        preparedStatement.setString(4, type);
+        preparedStatement.setBoolean(5, true);
+        preparedStatement.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
+        preparedStatement.setString(7, annotationValue);
+        preparedStatement.setString(8, annotationOriginal);
+        preparedStatement.execute();
+
+        boolean answer;
+        try {
+            ParseXML parseXML = new ParseXML(projectName, pathSystem.TIER_MAIN);
+            parseXML.editAnnotation(annotationId, annotationValue, pathSystem.TIER_MAIN);
+
+            conn.commit();
+            answer = true;
+        } catch (ParserConfigurationException e) {
+            conn.rollback();
+            answer = false;
+            logger.appendToFile(e);
+        } catch (IOException e) {
+            conn.rollback();
+            answer = false;
+            logger.appendToFile(e);
+        } catch (TransformerException e) {
+            conn.rollback();
+            answer = false;
+            logger.appendToFile(e);
+        } catch (SAXException e) {
+            conn.rollback();
+            answer = false;
+            logger.appendToFile(e);
+        }
+
+
+        preparedStatement.close();
+        conn.close();
+        return answer;
     }
 
     public ReportsResponse ListRegisters(int offset, int noOfRecords, Integer id, String search) throws SQLException {
@@ -42,9 +112,9 @@ public class DBReports {
         Connection conn = credentials.getConnection();
         String SQL_QUERY = "";
         if(search == null){
-            SQL_QUERY = "SELECT id, id_proyecto, titulo, reporte, fecha_creacion, tipo, activate, comentario FROM reportes WHERE id_proyecto=? and activate=? order by id offset " + offset + " limit " + noOfRecords;
+            SQL_QUERY = "SELECT id, id_proyecto, titulo, reporte, fecha_creacion, tipo, activate, comentario, anotacion FROM reportes WHERE id_proyecto=? and activate=? order by id offset " + offset + " limit " + noOfRecords;
         }else{
-            SQL_QUERY = "SELECT id, id_proyecto, titulo, reporte, fecha_creacion, tipo, activate, comentario FROM reportes WHERE id_proyecto=? and activate=? and tipo=? order by id offset " + offset + " limit " + noOfRecords;
+            SQL_QUERY = "SELECT id, id_proyecto, titulo, reporte, fecha_creacion, tipo, activate, comentario, anotacion FROM reportes WHERE id_proyecto=? and activate=? and tipo=? order by id offset " + offset + " limit " + noOfRecords;
         }
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         preparedStatement.setObject(1, id);
@@ -66,6 +136,7 @@ public class DBReports {
             reportDoc.setTipo(rs.getString(6));
             reportDoc.setActivate(rs.getBoolean(7));
             reportDoc.setComentario(rs.getString(8));
+            reportDoc.setAnotacion(rs.getString(9));
             results.add(reportDoc);
         }
         rs.close();

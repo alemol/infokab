@@ -68,7 +68,7 @@ public class ParseXML {
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document document = db.parse(new File(filePath));
 
-        Element TIER = isTierInEaf(document, "Glosado");
+        Element TIER = isTierInEaf(document, "glosado");
         if(TIER == null){
             Element root = document.getDocumentElement();
             TIER = document.createElement("TIER");
@@ -134,7 +134,10 @@ public class ParseXML {
         for (int temp=0; temp<nodeList.getLength(); temp ++){
             Node tempNode = nodeList.item(temp);
             Element tempElement = (Element) tempNode;
-            if(tempElement.getAttribute("LINGUISTIC_TYPE_REF").equals(LINGUISTIC_TYPE_REF)){
+
+            String NORMALIZE_LINGUISTIC_TYPE_REF = Normalizer.normalize(tempElement.getAttribute("LINGUISTIC_TYPE_REF").toLowerCase(), Normalizer.Form.NFD);
+            String TAG_LINGUISTIC_TYPE_REF = NORMALIZE_LINGUISTIC_TYPE_REF.replaceAll("[^\\p{ASCII}]", "");
+            if(TAG_LINGUISTIC_TYPE_REF.equals(LINGUISTIC_TYPE_REF)){
                 element = tempElement;
                 break;
             }
@@ -162,6 +165,70 @@ public class ParseXML {
         Files.writeString(Path.of(filePath), xmlStr, StandardCharsets.UTF_8);
     }
 
+    public boolean editAnnotation(String annotation_ref, String annotation, String tierName) throws ParserConfigurationException, TransformerException, IOException, SAXException {
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        Document document = db.parse(new File(filePath));
+
+        Element TIER = isTierInEaf(document, tierName);
+        if(TIER == null){ return false; }
+
+        changeAnnotationinTier(document, TIER, annotation_ref, annotation);
+        saveFile(document);
+        return true;
+    }
+
+    private void changeAnnotationinTier(Document doc, Element tier,  String ANNOTATION_TIER_REF, String annotation){
+        NodeList nodeListREF_ANNOTATION = tier.getElementsByTagName("REF_ANNOTATION");
+        NodeList nodeListALIGNABLE_ANNOTATION = tier.getElementsByTagName("ALIGNABLE_ANNOTATION");
+
+        if(nodeListREF_ANNOTATION.getLength()>0 && nodeListALIGNABLE_ANNOTATION.getLength() == 0){
+            for (int temp=0; temp<nodeListREF_ANNOTATION.getLength(); temp ++){
+                Node tempNode = nodeListREF_ANNOTATION.item(temp);
+                Element tempElement = (Element) tempNode;
+                String NORMALIZE_ANNOTATION_ID = Normalizer.normalize(tempElement.getAttribute("ANNOTATION_ID").toLowerCase(), Normalizer.Form.NFD);
+                String ANNOTATION_ID = NORMALIZE_ANNOTATION_ID.replaceAll("[^\\p{ASCII}]", "");
+
+                String NORMALIZE_ANNOTATION_REF = Normalizer.normalize(tempElement.getAttribute("ANNOTATION_ID").toLowerCase(), Normalizer.Form.NFD);
+                String ANNOTATION_REF = NORMALIZE_ANNOTATION_REF.replaceAll("[^\\p{ASCII}]", "");
+
+                if(ANNOTATION_ID.equals(ANNOTATION_TIER_REF) || ANNOTATION_REF.equals(ANNOTATION_TIER_REF)){
+                    NodeList childrenNodeList = tempNode.getChildNodes();
+
+                    for (int aux_temp=0; aux_temp<childrenNodeList.getLength(); aux_temp ++) {
+                        Node auxTempNode = childrenNodeList.item(aux_temp);
+                        if(auxTempNode.getNodeName().equals("ANNOTATION_VALUE")){
+                            auxTempNode.setTextContent(annotation);
+                        }
+                    }
+                }
+            }
+        }
+
+        if(nodeListREF_ANNOTATION.getLength() == 0 && nodeListALIGNABLE_ANNOTATION.getLength() > 0) {
+            for (int temp=0; temp<nodeListALIGNABLE_ANNOTATION.getLength(); temp ++){
+                Node tempNode = nodeListALIGNABLE_ANNOTATION.item(temp);
+                Element tempElement = (Element) tempNode;
+                String NORMALIZE_ANNOTATION_ID = Normalizer.normalize(tempElement.getAttribute("ANNOTATION_ID").toLowerCase(), Normalizer.Form.NFD);
+                String ANNOTATION_ID = NORMALIZE_ANNOTATION_ID.replaceAll("[^\\p{ASCII}]", "");
+
+                String NORMALIZE_ANNOTATION_REF = Normalizer.normalize(tempElement.getAttribute("ANNOTATION_ID").toLowerCase(), Normalizer.Form.NFD);
+                String ANNOTATION_REF = NORMALIZE_ANNOTATION_REF.replaceAll("[^\\p{ASCII}]", "");
+
+                if(ANNOTATION_ID.equals(ANNOTATION_TIER_REF) || ANNOTATION_REF.equals(ANNOTATION_TIER_REF)){
+                    NodeList childrenNodeList = tempNode.getChildNodes();
+
+                    for (int aux_temp=0; aux_temp<childrenNodeList.getLength(); aux_temp ++) {
+                        Node auxTempNode = childrenNodeList.item(aux_temp);
+                        if(auxTempNode.getNodeName().equals("ANNOTATION_VALUE")){
+                            auxTempNode.setTextContent(annotation);
+                        }
+                    }
+                }
+            }
+        }
+
+    }
 
     /**
      * Regresar una lista de la clase tier que se obtuvo de parse del archivo .eaf

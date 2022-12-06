@@ -4,11 +4,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import mx.geoint.Glosa.Dictionary.DictionaryPaginate;
 import mx.geoint.Glosa.Dictionary.DictionaryRequest;
 import mx.geoint.Model.*;
+import mx.geoint.Model.Glosado.GlosaUpdateAnnotationRequest;
 import mx.geoint.ParseXML.ParseXML;
 import mx.geoint.ParseXML.Tier;
 import mx.geoint.Response.ReportsResponse;
 import mx.geoint.database.DBDictionary;
+import mx.geoint.database.DBProjects;
 import mx.geoint.database.DBReports;
+import mx.geoint.pathSystem;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
@@ -27,10 +30,12 @@ import java.util.Map;
 public class GlosaService {
     public static DBDictionary dbDictionary;
     public static DBReports dbReports;
+    public static DBProjects dbProjects;
 
     public GlosaService() {
         this.dbDictionary = new DBDictionary();
         this.dbReports = new DBReports();
+        this.dbProjects = new DBProjects();
     }
 
     /**
@@ -70,16 +75,20 @@ public class GlosaService {
      * @throws SQLException
      */
     public static ArrayList<Glosa> textProcess(String annotation) throws SQLException {
-        String[] textList = annotation.trim().toLowerCase().replaceAll("[^a-z üáéíóúñ\'-]", "").replaceAll("\\s{2,}", " ").split(" ");
+        //String[] textList = annotation.trim().toLowerCase().replaceAll("[^a-z üáéíóúñ\'-]", "").replaceAll("\\s{2,}", " ").split(" ");
+        String[] textList = annotation.trim().replaceAll("\\s{2,}", " ").split(" ");
         ArrayList<Glosa> result_list = new ArrayList<>();
         ArrayList<GlosaStep> glosaSteps = new ArrayList<>();
         int i = 0;
 
         for (String text : textList) {
             i += 1;
-            ArrayList<String> result = dbDictionary.textProcess(text);
-            GlosaStep glosaStep = new GlosaStep(i, text, result);
-            glosaSteps.add(glosaStep);
+            String text_process = text.toLowerCase().replaceAll("[^a-z üáéíóúñ\'-]", "");
+            if(!text_process.isEmpty()){
+                ArrayList<String> result = dbDictionary.textProcess(text_process);
+                GlosaStep glosaStep = new GlosaStep(i, text, text_process, result);
+                glosaSteps.add(glosaStep);
+            }
         }
         result_list.add(new Glosa(1, annotation, glosaSteps));
         return result_list;
@@ -102,9 +111,12 @@ public class GlosaService {
 
             for (String text : textList) {
                 j += 1;
-                ArrayList<String> result = dbDictionary.textProcess(text);
-                GlosaStep glosaStep = new GlosaStep(j, text, result);
-                glosaSteps.add(glosaStep);
+                String text_process = text.toLowerCase().replaceAll("[^a-z üáéíóúñ\'-]", "");
+                if(!text_process.isEmpty()) {
+                    ArrayList<String> result = dbDictionary.textProcess(text_process);
+                    GlosaStep glosaStep = new GlosaStep(j, text, text_process, result);
+                    glosaSteps.add(glosaStep);
+                }
             }
 
             result_list.add(new Glosa(i, annotation, glosaSteps));
@@ -125,15 +137,17 @@ public class GlosaService {
         return new ArrayList<>(parseXML.getTier());
     }
 
+    public Boolean saveAnnotation(GlosaAnnotationsRequest glosaAnnotationsRequest) throws SQLException, ParserConfigurationException, IOException, TransformerException, SAXException {
+        Boolean isNew = glosaAnnotationsRequest.getNew();
+        if(isNew == true){
+            int projectId = glosaAnnotationsRequest.getProjectID();
+            int glossingAnnotationInEaf = dbProjects.getGlossingAnnotationInEaf(projectId);
+            return  dbProjects.setGlossingAnnotationToEaf(projectId, (glossingAnnotationInEaf+1), glosaAnnotationsRequest);
+        }else{
+            setGlossingAnnotationToEaf(glosaAnnotationsRequest);
+            return  true;
+        }
 
-    public Boolean saveAnnotation(GlosaAnnotationsRequest glosaAnnotationsRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException {
-        String projectName = glosaAnnotationsRequest.getFilePath();
-        String annotationId = glosaAnnotationsRequest.getAnnotationID();
-        String annotationREF = glosaAnnotationsRequest.getAnnotationREF();
-        ArrayList<GlosaStep> steps = glosaAnnotationsRequest.getSteps();
-        ParseXML parseXML = new ParseXML(projectName, "Glosado");
-        parseXML.writeElement(annotationREF, annotationId, steps);
-        return true;
     }
 
     public ReportsResponse getRegisters(DictionaryPaginate dictionaryPaginate) throws SQLException {
@@ -153,6 +167,25 @@ public class GlosaService {
         String tipo = reportRequest.getTipo();
         String comentario = reportRequest.getComentario();
 
-        return dbReports.newRegister(id_project, title, report, tipo, comentario);
+        return dbReports.newRegister(id_project, title, report, tipo, comentario, "");
+    }
+
+    public Boolean editAnnotation(GlosaUpdateAnnotationRequest glosaUpdateAnnotationRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException, SQLException {
+        return dbReports.newAnnotationReport(glosaUpdateAnnotationRequest);
+    }
+
+    public void setGlossingAnnotationToEaf(GlosaAnnotationsRequest glosaAnnotationsRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        String projectName = glosaAnnotationsRequest.getFilePath();
+        String annotationId = glosaAnnotationsRequest.getAnnotationID();
+        String annotationREF = "";
+        if(glosaAnnotationsRequest.getAnnotationREF().isEmpty()){
+            annotationREF = glosaAnnotationsRequest.getAnnotationID();
+        }else{
+            annotationREF = glosaAnnotationsRequest.getAnnotationREF();
+        }
+        ArrayList<GlosaStep> steps = glosaAnnotationsRequest.getSteps();
+
+        ParseXML parseXML = new ParseXML(projectName, "Glosado");
+        parseXML.writeElement(annotationREF, annotationId, steps);
     }
 }

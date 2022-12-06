@@ -9,6 +9,7 @@ public class ReportDoc {
     String tipo;
     Boolean activate;
     String comentario;
+    String anotacion;
 
     public void setId(String id) { this.id = id; }
 
@@ -41,4 +42,8 @@ public class ReportDoc {
     public void setComentario(String comentario) { this.comentario = comentario; }
 
     public String getComentario() { return comentario; }
+
+    public void setAnotacion(String anotacion) { this.anotacion = anotacion; }
+
+    public String getAnotacion() { return anotacion; }
 }
