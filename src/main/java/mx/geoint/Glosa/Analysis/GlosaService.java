@@ -137,10 +137,17 @@ public class GlosaService {
         return new ArrayList<>(parseXML.getTier());
     }
 
-    public Boolean saveAnnotation(GlosaAnnotationsRequest glosaAnnotationsRequest) throws SQLException {
-        int projectId = glosaAnnotationsRequest.getProjectID();
-        int glossingAnnotationInEaf = dbProjects.getGlossingAnnotationInEaf(projectId);
-        return  dbProjects.setGlossingAnnotationToEaf(projectId, (glossingAnnotationInEaf+1), glosaAnnotationsRequest);
+    public Boolean saveAnnotation(GlosaAnnotationsRequest glosaAnnotationsRequest) throws SQLException, ParserConfigurationException, IOException, TransformerException, SAXException {
+        Boolean isNew = glosaAnnotationsRequest.getNew();
+        if(isNew == true){
+            int projectId = glosaAnnotationsRequest.getProjectID();
+            int glossingAnnotationInEaf = dbProjects.getGlossingAnnotationInEaf(projectId);
+            return  dbProjects.setGlossingAnnotationToEaf(projectId, (glossingAnnotationInEaf+1), glosaAnnotationsRequest);
+        }else{
+            setGlossingAnnotationToEaf(glosaAnnotationsRequest);
+            return  true;
+        }
+
     }
 
     public ReportsResponse getRegisters(DictionaryPaginate dictionaryPaginate) throws SQLException {
@@ -165,5 +172,20 @@ public class GlosaService {
 
     public Boolean editAnnotation(GlosaUpdateAnnotationRequest glosaUpdateAnnotationRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException, SQLException {
         return dbReports.newAnnotationReport(glosaUpdateAnnotationRequest);
+    }
+
+    public void setGlossingAnnotationToEaf(GlosaAnnotationsRequest glosaAnnotationsRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        String projectName = glosaAnnotationsRequest.getFilePath();
+        String annotationId = glosaAnnotationsRequest.getAnnotationID();
+        String annotationREF = "";
+        if(glosaAnnotationsRequest.getAnnotationREF().isEmpty()){
+            annotationREF = glosaAnnotationsRequest.getAnnotationID();
+        }else{
+            annotationREF = glosaAnnotationsRequest.getAnnotationREF();
+        }
+        ArrayList<GlosaStep> steps = glosaAnnotationsRequest.getSteps();
+
+        ParseXML parseXML = new ParseXML(projectName, "Glosado");
+        parseXML.writeElement(annotationREF, annotationId, steps);
     }
 }

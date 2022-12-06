@@ -178,6 +178,18 @@ public class GlosaController {
         } catch (SQLException e) {
             logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SQLException", e);
+        } catch (ParserConfigurationException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ParserConfigurationException", e);
+        } catch (IOException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "IOException", e);
+        } catch (TransformerException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "TransformerException", e);
+        } catch (SAXException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SAXException", e);
         }
     }
 
