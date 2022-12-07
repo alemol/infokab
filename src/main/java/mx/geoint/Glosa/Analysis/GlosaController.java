@@ -221,4 +221,28 @@ public class GlosaController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SQLException", e);
         }
     }
+
+    @RequestMapping(path="/save/annotation/v2", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Boolean> saveAnnotationsV2(@RequestBody GlosaAnnotationsRequest glosaAnnotationsRequest) {
+        try{
+            Boolean answer = glosaService.saveAnnotationV2(glosaAnnotationsRequest);
+            return ResponseEntity.status(HttpStatus.OK).body(answer);
+        } catch (SQLException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SQLException", e);
+        } catch (ParserConfigurationException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ParserConfigurationException", e);
+        } catch (IOException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "IOException", e);
+        } catch (TransformerException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "TransformerException", e);
+        } catch (SAXException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SAXException", e);
+        }
+    }
 }

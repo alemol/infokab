@@ -188,4 +188,19 @@ public class GlosaService {
         ParseXML parseXML = new ParseXML(projectName, "Glosado");
         parseXML.writeElement(annotationREF, annotationId, steps);
     }
+
+
+    public Boolean saveAnnotationV2(GlosaAnnotationsRequest glosaAnnotationsRequest) throws SQLException, ParserConfigurationException, IOException, TransformerException, SAXException {
+        boolean isNew = glosaAnnotationsRequest.getNew();
+
+        if(isNew == true){
+            int projectId = glosaAnnotationsRequest.getProjectID();
+            //new register in the new table
+            return  dbProjects.setGlossingAnnotationToEaf(projectId, (1), glosaAnnotationsRequest);
+        }else{
+            //edit register in the new table
+            setGlossingAnnotationToEaf(glosaAnnotationsRequest);
+            return  true;
+        }
+    }
 }
