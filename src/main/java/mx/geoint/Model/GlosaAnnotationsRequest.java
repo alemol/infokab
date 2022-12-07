@@ -7,7 +7,9 @@ import java.util.ArrayList;
 public class GlosaAnnotationsRequest {
     private String filePath;
     private int projectID;
-    private Boolean isNew;
+
+    @JsonProperty("isNew")
+    private boolean isNew;
 
     @JsonProperty("ANNOTATION_ID")
     private String annotationID;
@@ -39,5 +41,5 @@ public class GlosaAnnotationsRequest {
 
     public void setNew(Boolean aNew) { isNew = aNew; }
 
-    public Boolean getNew() { return isNew; }
+    public boolean getNew() { return isNew; }
 }

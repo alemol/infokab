@@ -138,7 +138,7 @@ public class GlosaService {
     }
 
     public Boolean saveAnnotation(GlosaAnnotationsRequest glosaAnnotationsRequest) throws SQLException, ParserConfigurationException, IOException, TransformerException, SAXException {
-        Boolean isNew = glosaAnnotationsRequest.getNew();
+        boolean isNew = glosaAnnotationsRequest.getNew();
         if(isNew == true){
             int projectId = glosaAnnotationsRequest.getProjectID();
             int glossingAnnotationInEaf = dbProjects.getGlossingAnnotationInEaf(projectId);
