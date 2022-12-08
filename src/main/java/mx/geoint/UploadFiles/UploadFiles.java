@@ -60,7 +60,7 @@ public class UploadFiles {
             return pathSystem.NOT_UPLOAD_EAF_FILE;
         }
 
-        if(!saveFile(eaf, basePath, baseProjectName + "_GLOSADO")){
+        if(!saveFile(eaf, basePath, baseProjectName + "_ORIGINAL")){
             return pathSystem.NOT_UPLOAD_EAF_FILE;
         }
 
@@ -188,7 +188,7 @@ public class UploadFiles {
             return pathSystem.NOT_UPLOAD_EAF_FILE;
         }
 
-        if(!saveFile(eaf, basePath, baseProjectName + "_GLOSADO")) {
+        if(!saveFile(eaf, basePath, baseProjectName + "_ORIGINAL")) {
             return pathSystem.NOT_UPLOAD_EAF_FILE;
         }
 
