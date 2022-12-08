@@ -5,6 +5,7 @@ import mx.geoint.Model.*;
 import mx.geoint.Glosa.Dictionary.DictionaryPaginate;
 import mx.geoint.Glosa.Dictionary.DictionaryRequest;
 import mx.geoint.Model.Glosado.GlosaUpdateAnnotationRequest;
+import mx.geoint.Model.Glosado.GlosadoAnnotationRegister;
 import mx.geoint.ParseXML.Tier;
 import mx.geoint.Response.ReportsResponse;
 import mx.geoint.database.DBProjects;
@@ -20,7 +21,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 
-@CrossOrigin(origins = {"http://infokaab.com/","http://infokaab.com.mx/","http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182"})
+//@CrossOrigin(origins = {"http://infokaab.com/","http://infokaab.com.mx/","http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182"})
 @RestController
 @RequestMapping(path = "api/glosa")
 public class GlosaController {
@@ -222,11 +223,11 @@ public class GlosaController {
         }
     }
 
-    @RequestMapping(path="/save/annotation/v2", method = RequestMethod.POST)
+    @RequestMapping(path="/saved/annotation/v2", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Boolean> saveAnnotationsV2(@RequestBody GlosaAnnotationsRequest glosaAnnotationsRequest) {
         try{
-            Boolean answer = glosaService.saveAnnotationV2(glosaAnnotationsRequest);
+            Boolean answer = glosaService.savedAnnotationV2(glosaAnnotationsRequest);
             return ResponseEntity.status(HttpStatus.OK).body(answer);
         } catch (SQLException e) {
             logger.appendToFile(e);
@@ -243,6 +244,37 @@ public class GlosaController {
         } catch (SAXException e) {
             logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SAXException", e);
+        }
+    }
+
+    @RequestMapping(path="saved/annotation/list", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ArrayList<GlosadoAnnotationRegister>> savedAnnotationsList(@RequestBody Map<String, String> body) {
+        String uuid = body.get("uuid");
+        String project_id = body.get("project");
+
+        try{
+            ArrayList<GlosadoAnnotationRegister> answer = glosaService.savedAnnotationList(Integer.parseInt(project_id));
+            return ResponseEntity.status(HttpStatus.OK).body(answer);
+        } catch (SQLException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SQLException", e);
+        }
+    }
+
+    @RequestMapping(path="saved/annotation/register", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<GlosadoAnnotationRegister> getAnnotationRecord(@RequestBody Map<String, String> body) {
+        String uuid = body.get("uuid");
+        String project_id = body.get("project");
+        String annotation_ref = body.get("annotation_ref");
+
+        try{
+            GlosadoAnnotationRegister answer = glosaService.getAnnotationRecord(Integer.parseInt(project_id), annotation_ref);
+            return ResponseEntity.status(HttpStatus.OK).body(answer);
+        } catch (SQLException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SQLException", e);
         }
     }
 }

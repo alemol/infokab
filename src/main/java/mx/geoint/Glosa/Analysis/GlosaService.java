@@ -5,9 +5,11 @@ import mx.geoint.Glosa.Dictionary.DictionaryPaginate;
 import mx.geoint.Glosa.Dictionary.DictionaryRequest;
 import mx.geoint.Model.*;
 import mx.geoint.Model.Glosado.GlosaUpdateAnnotationRequest;
+import mx.geoint.Model.Glosado.GlosadoAnnotationRegister;
 import mx.geoint.ParseXML.ParseXML;
 import mx.geoint.ParseXML.Tier;
 import mx.geoint.Response.ReportsResponse;
+import mx.geoint.database.DBAnnotations;
 import mx.geoint.database.DBDictionary;
 import mx.geoint.database.DBProjects;
 import mx.geoint.database.DBReports;
@@ -31,11 +33,13 @@ public class GlosaService {
     public static DBDictionary dbDictionary;
     public static DBReports dbReports;
     public static DBProjects dbProjects;
+    public static DBAnnotations dbAnnotations;
 
     public GlosaService() {
         this.dbDictionary = new DBDictionary();
         this.dbReports = new DBReports();
         this.dbProjects = new DBProjects();
+        this.dbAnnotations = new DBAnnotations();
     }
 
     /**
@@ -190,17 +194,21 @@ public class GlosaService {
     }
 
 
-    public Boolean saveAnnotationV2(GlosaAnnotationsRequest glosaAnnotationsRequest) throws SQLException, ParserConfigurationException, IOException, TransformerException, SAXException {
+    public Boolean savedAnnotationV2(GlosaAnnotationsRequest glosaAnnotationsRequest) throws SQLException, ParserConfigurationException, IOException, TransformerException, SAXException {
         boolean isNew = glosaAnnotationsRequest.getNew();
 
         if(isNew == true){
-            int projectId = glosaAnnotationsRequest.getProjectID();
-            //new register in the new table
-            return  dbProjects.setGlossingAnnotationToEaf(projectId, (1), glosaAnnotationsRequest);
+            return dbAnnotations.newRegister(glosaAnnotationsRequest);
         }else{
-            //edit register in the new table
-            setGlossingAnnotationToEaf(glosaAnnotationsRequest);
-            return  true;
+            return dbAnnotations.updateRegister(glosaAnnotationsRequest);
         }
+    }
+
+    public ArrayList<GlosadoAnnotationRegister> savedAnnotationList(int project_id) throws SQLException {
+        return dbAnnotations.getAnnotationList(project_id);
+    }
+
+    public GlosadoAnnotationRegister getAnnotationRecord(int project_id, String annotation_ref) throws SQLException {
+        return dbAnnotations.getAnnotationRecord(project_id, annotation_ref);
     }
 }
