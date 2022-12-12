@@ -1,10 +1,12 @@
 package mx.geoint.ParseXML;
 
 import com.google.gson.JsonObject;
+import mx.geoint.pathSystem;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.xml.namespace.QName;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,13 +88,15 @@ public class ParseHandler extends DefaultHandler{
         }
 
         if(flag_text){
-            String annotation_value = new String(ch, start, length);
-            if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
-                latestTier(tierList).setAnnotationValue(annotation_value);
-            }
-            if(tier_id.isEmpty()) {
-                List getTierList = tiersList.get(current_tier_id);
-                latestTier(getTierList).setAnnotationValue(annotation_value);
+            if(current_tier_id.equals(pathSystem.TIER_MAIN) || current_tier_id.equals(pathSystem.TIER_DEFAULT) ){
+                String annotation_value = new String(ch, start, length);
+                if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
+                    latestTier(tierList).setAnnotationValue(annotation_value);
+                }
+                if(tier_id.isEmpty()) {
+                    List getTierList = tiersList.get(current_tier_id);
+                    latestTier(getTierList).setAnnotationValue(annotation_value);
+                }
             }
         }
     }
@@ -156,8 +160,14 @@ public class ParseHandler extends DefaultHandler{
                 String LINGUISTIC_TYPE_REF = attr.getValue("LINGUISTIC_TYPE_REF");
                 String normalize = Normalizer.normalize(LINGUISTIC_TYPE_REF.toLowerCase(), Normalizer.Form.NFD);
                 current_tier_id = normalize.replaceAll("[^\\p{ASCII}]", "");
+
                 if(tier_id.isEmpty()){
-                    tiersList.put(current_tier_id, new ArrayList<>());
+                    if(current_tier_id.equals(pathSystem.TIER_MAIN) || current_tier_id.equals(pathSystem.TIER_DEFAULT) ){
+                        List getTierList = tiersList.get(current_tier_id);
+                        if(getTierList == null){
+                            tiersList.put(current_tier_id, new ArrayList<>());
+                        }
+                    }
                 }
 
                 break;
@@ -187,23 +197,25 @@ public class ParseHandler extends DefaultHandler{
 
                 break;
             case REF_ANNOTATION:
-                String REF_ANNOTATION_ID = attr.getValue("ANNOTATION_ID");
-                String REF_ANNOTATION_REF = attr.getValue("ANNOTATION_REF");
+                if(current_tier_id.equals(pathSystem.TIER_MAIN) || current_tier_id.equals(pathSystem.TIER_DEFAULT) ){
+                    String REF_ANNOTATION_ID = attr.getValue("ANNOTATION_ID");
+                    String REF_ANNOTATION_REF = attr.getValue("ANNOTATION_REF");
 
-                JsonObject REF_VALUES = jsonObjectRefTimer.getAsJsonObject(REF_ANNOTATION_REF);
-                String REF_TIME_SLOT_REF1 = REF_VALUES.get("TIME_SLOT_REF1").getAsString();
-                String REF_TIME_SLOT_REF2 = REF_VALUES.get("TIME_SLOT_REF2").getAsString();
-                String REF_TIME_VALUE1 = REF_VALUES.get("TIME_VALUE1").getAsString();
-                String REF_TIME_VALUE2 = REF_VALUES.get("TIME_VALUE2").getAsString();
+                    JsonObject REF_VALUES = jsonObjectRefTimer.getAsJsonObject(REF_ANNOTATION_REF);
+                    String REF_TIME_SLOT_REF1 = REF_VALUES.get("TIME_SLOT_REF1").getAsString();
+                    String REF_TIME_SLOT_REF2 = REF_VALUES.get("TIME_SLOT_REF2").getAsString();
+                    String REF_TIME_VALUE1 = REF_VALUES.get("TIME_VALUE1").getAsString();
+                    String REF_TIME_VALUE2 = REF_VALUES.get("TIME_VALUE2").getAsString();
 
-                if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
-                    tierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
-                }
+                    if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
+                        tierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
+                    }
 
-                if(tier_id.isEmpty()){
-                    List getTierList = tiersList.get(current_tier_id);
-                    getTierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
-                    tiersList.put(current_tier_id, getTierList);
+                    if(tier_id.isEmpty()){
+                        List getTierList = tiersList.get(current_tier_id);
+                        getTierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
+                        tiersList.put(current_tier_id, getTierList);
+                    }
                 }
                 break;
             case ANNOTATION_VALUE:

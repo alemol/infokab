@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import mx.geoint.Model.GlosaStep;
+import mx.geoint.pathSystem;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -68,11 +69,11 @@ public class ParseXML {
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document document = db.parse(new File(filePath));
 
-        Element TIER = isTierInEaf(document, "glosado");
+        Element TIER = isTierInEaf(document, pathSystem.TIER_GlOSA);
         if(TIER == null){
             Element root = document.getDocumentElement();
             TIER = document.createElement("TIER");
-            TIER.setAttribute("LINGUISTIC_TYPE_REF", "Glosado");
+            TIER.setAttribute("LINGUISTIC_TYPE_REF", pathSystem.TIER_GlOSA);
             root.appendChild(TIER);
         }else{
             removeAnnotationinTier(TIER, String.valueOf(annotation_tier_ref));

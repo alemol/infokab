@@ -130,10 +130,6 @@ public class ElanXmlDigester {
                     if(register.DIFF_TIME == 0){
                         dbReports.newRegister(projectID, "TIEMPO DE CORTE CERO", "La anotación "+register.ANNOTATION_ID,"document", "", "");
                     }
-
-                    if(register.ANNOTATION_VALUE.isEmpty()){
-                        dbReports.newRegister(projectID, "ANOTACIÓN VACIA", "La anotación "+register.ANNOTATION_ID,"document", "", "");
-                    }
                 }
             }
         }
