@@ -209,4 +209,21 @@ public class DBAnnotations {
         conn.close();
         return answer;
     }
+
+    public boolean deleteGlossingRecords(int projectID) throws SQLException {
+        Connection conn = credentials.getConnection();
+        String SQL_QUERY = "DELETE FROM glosado WHERE proyecto_id=?";
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
+        preparedStatement.setInt(1, projectID);
+        int rs = preparedStatement.executeUpdate();
+
+        conn.close();
+        if(rs>0){
+            System.out.println("registro eliminado en base de datos");
+            return true;
+        } else{
+            System.out.println("No se pudo eliminar el registro en base de datos");
+            return false;
+        }
+    }
 }

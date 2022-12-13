@@ -2,6 +2,7 @@ package mx.geoint.UploadFiles;
 
 import mx.geoint.ElanXmlDigester.ThreadElanXmlDigester;
 import mx.geoint.ElanXmlDigester.ThreadValidateElanXmlDigester;
+import mx.geoint.database.DBAnnotations;
 import mx.geoint.database.DBReports;
 import mx.geoint.pathSystem;
 import mx.geoint.database.databaseController;
@@ -28,6 +29,7 @@ public class UploadFiles {
     private final ThreadValidateElanXmlDigester threadValidateElanXmlDigester;
     private final databaseController database;
     private final DBReports dbReports;
+    private final DBAnnotations dbAnnotations;
 
     /**
      * Inicialización del thread
@@ -35,6 +37,7 @@ public class UploadFiles {
     public UploadFiles(){
         database = new databaseController();
         dbReports = new DBReports();
+        dbAnnotations = new DBAnnotations();
         threadElanXmlDigester = new ThreadElanXmlDigester();
         threadElanXmlDigester.start();
 
@@ -192,10 +195,9 @@ public class UploadFiles {
             return pathSystem.NOT_UPLOAD_EAF_FILE;
         }
 
-        boolean resultQuery = dbReports.deactivateAllReportes(id_project);
-        if(resultQuery){
-            InitValidateElanXmlDigester(eaf, uuid, basePath, baseProjectName, id_project);
-        }
+        boolean rs1 = dbReports.deactivateAllReportes(id_project);
+        boolean rs2 = dbAnnotations.deleteGlossingRecords(id_project);
+        InitValidateElanXmlDigester(eaf, uuid, basePath, baseProjectName, id_project);
 
         return pathSystem.SUCCESS_UPLOAD;
     }

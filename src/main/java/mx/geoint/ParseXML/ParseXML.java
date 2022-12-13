@@ -89,7 +89,8 @@ public class ParseXML {
 
         for (GlosaStep step: steps){
             Element ANNOTATION_VALUE = document.createElement("ANNOTATION_VALUE");
-            ANNOTATION_VALUE.setAttribute("ANNOTATION_WORD", String.valueOf(step.getId()));
+            ANNOTATION_VALUE.setAttribute("WORD_POSITION", String.valueOf(step.getId()));
+            ANNOTATION_VALUE.setAttribute("ANNOTATION_WORD", String.valueOf(step.getWord()));
             ANNOTATION_VALUE.appendChild(document.createTextNode(step.getSelect()));
 
             REF_ANNOTATION.appendChild(ANNOTATION_VALUE);
