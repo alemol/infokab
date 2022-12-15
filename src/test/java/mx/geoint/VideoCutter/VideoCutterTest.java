@@ -1,11 +1,9 @@
 package mx.geoint.VideoCutter;
 
-import ch.qos.logback.classic.BasicConfigurator;
+import mx.geoint.Controllers.VideoCutter.VideoCutter;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class VideoCutterTest extends mx.geoint.VideoCutter.VideoCutter {
+class VideoCutterTest extends VideoCutter {
     VideoCutter cutter = new VideoCutter();
     @Test
     void cutter() {

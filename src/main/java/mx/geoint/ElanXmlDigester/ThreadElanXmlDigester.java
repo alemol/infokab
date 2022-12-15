@@ -1,5 +1,5 @@
 package mx.geoint.ElanXmlDigester;
-import mx.geoint.Logger.Logger;
+import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Lucene.Lucene;
 import mx.geoint.pathSystem;
 import org.xml.sax.SAXException;

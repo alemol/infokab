@@ -1,7 +1,7 @@
 package mx.geoint.Apis.User;
 
 import com.google.gson.JsonObject;
-import mx.geoint.Logger.Logger;
+import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.database.DBUsers;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

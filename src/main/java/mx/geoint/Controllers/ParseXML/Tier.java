@@ -1,6 +1,6 @@
 package mx.geoint.Controllers.ParseXML;
 
-import mx.geoint.Logger.Logger;
+import mx.geoint.Controllers.Logger.Logger;
 
 public class Tier {
     private Logger logger = new Logger();

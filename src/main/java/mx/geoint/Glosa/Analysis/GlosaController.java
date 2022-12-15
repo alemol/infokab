@@ -1,6 +1,6 @@
 package mx.geoint.Glosa.Analysis;
 
-import mx.geoint.Logger.Logger;
+import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Model.*;
 import mx.geoint.Apis.Dictionary.DictionaryPaginate;
 import mx.geoint.Model.Glosado.GlosaUpdateAnnotationRequest;

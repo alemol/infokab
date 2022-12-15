@@ -1,6 +1,6 @@
 package mx.geoint.Apis.Dictionary;
 
-import mx.geoint.Logger.Logger;
+import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Response.DictionaryResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,7 @@
 package mx.geoint.Apis.UploadFiles;
 
 import com.google.gson.JsonObject;
-import mx.geoint.Logger.Logger;
+import mx.geoint.Controllers.Logger.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

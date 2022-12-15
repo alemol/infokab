@@ -1,4 +1,4 @@
-package mx.geoint.VideoCutter;
+package mx.geoint.Controllers.VideoCutter;
 
 import com.xuggle.xuggler.Global;
 

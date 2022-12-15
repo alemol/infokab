@@ -1,4 +1,4 @@
-package mx.geoint.VideoCutter;
+package mx.geoint.Controllers.VideoCutter;
 
 /*
  * Copyright (c) 2008, 2009 by Xuggle Incorporated.  All rights reserved.

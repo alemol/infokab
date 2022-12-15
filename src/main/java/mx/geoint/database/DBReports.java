@@ -1,6 +1,6 @@
 package mx.geoint.database;
 
-import mx.geoint.Logger.Logger;
+import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Model.Glosado.GlosaUpdateAnnotationRequest;
 import mx.geoint.Model.ReportDoc;
 import mx.geoint.Controllers.ParseXML.ParseXML;

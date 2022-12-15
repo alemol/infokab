@@ -1,4 +1,4 @@
-package mx.geoint.Logger;
+package mx.geoint.Controllers.Logger;
 
 import mx.geoint.pathSystem;
 

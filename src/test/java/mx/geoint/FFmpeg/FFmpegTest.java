@@ -1,9 +1,8 @@
 package mx.geoint.FFmpeg;
 
-import mx.geoint.Logger.Logger;
+import mx.geoint.Controllers.FFmpeg.FFmpeg;
+import mx.geoint.Controllers.Logger.Logger;
 import org.junit.jupiter.api.Test;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.io.File;
 import java.io.IOException;

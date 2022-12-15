@@ -1,11 +1,11 @@
 package mx.geoint.ElanXmlDigester;
 
 import com.google.gson.Gson;
-import mx.geoint.FFmpeg.FFmpeg;
-import mx.geoint.Logger.Logger;
+import mx.geoint.Controllers.FFmpeg.FFmpeg;
+import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Controllers.ParseXML.ParseXML;
 import mx.geoint.Controllers.ParseXML.Tier;
-import mx.geoint.VideoCutter.VideoCutter;
+import mx.geoint.Controllers.VideoCutter.VideoCutter;
 import mx.geoint.database.DBProjects;
 import mx.geoint.database.DBReports;
 import mx.geoint.pathSystem;

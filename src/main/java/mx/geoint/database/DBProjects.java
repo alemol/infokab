@@ -1,6 +1,6 @@
 package mx.geoint.database;
 
-import mx.geoint.Logger.Logger;
+import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Model.GlosaAnnotationsRequest;
 import mx.geoint.Model.GlosaStep;
 import mx.geoint.Model.ProjectRegistration;
