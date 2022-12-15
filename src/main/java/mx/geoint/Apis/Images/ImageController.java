@@ -1,4 +1,4 @@
-package mx.geoint.Images;
+package mx.geoint.Apis.Images;
 
 
 import org.springframework.http.HttpStatus;

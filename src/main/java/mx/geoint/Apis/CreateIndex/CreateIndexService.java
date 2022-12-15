@@ -1,10 +1,9 @@
-package mx.geoint.CreateIndex;
+package mx.geoint.Apis.CreateIndex;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.List;
 
 @Service
 public class CreateIndexService {

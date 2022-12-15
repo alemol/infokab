@@ -1,4 +1,4 @@
-package mx.geoint.Images;
+package mx.geoint.Apis.Images;
 
 public class GalleryModel {
     public int lastIndex;

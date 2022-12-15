@@ -1,4 +1,4 @@
-package mx.geoint.CreateIndex;
+package mx.geoint.Apis.CreateIndex;
 
 import com.google.gson.Gson;
 import org.springframework.stereotype.Component;

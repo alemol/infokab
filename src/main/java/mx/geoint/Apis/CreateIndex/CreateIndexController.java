@@ -1,4 +1,4 @@
-package mx.geoint.CreateIndex;
+package mx.geoint.Apis.CreateIndex;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

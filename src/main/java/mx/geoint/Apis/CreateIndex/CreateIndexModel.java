@@ -1,4 +1,4 @@
-package mx.geoint.CreateIndex;
+package mx.geoint.Apis.CreateIndex;
 
 public class CreateIndexModel {
     public String name = "";
