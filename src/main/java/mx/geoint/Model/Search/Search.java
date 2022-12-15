@@ -1,4 +1,4 @@
-package mx.geoint.Apis.Searcher;
+package mx.geoint.Model.Search;
 
 public class Search {
     private String text;

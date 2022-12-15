@@ -1,6 +1,8 @@
 package mx.geoint.Apis.Searcher;
 
 import mx.geoint.Controllers.Logger.Logger;
+import mx.geoint.Model.Search.Search;
+import mx.geoint.Model.Search.SearchPage;
 import mx.geoint.Model.SearchDoc;
 import mx.geoint.Response.SearchResponse;
 import org.apache.lucene.queryparser.classic.ParseException;

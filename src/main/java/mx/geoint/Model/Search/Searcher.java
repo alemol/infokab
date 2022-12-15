@@ -1,4 +1,4 @@
-package mx.geoint.Apis.Searcher;
+package mx.geoint.Model.Search;
 
 import mx.geoint.Model.SearchDoc;
 import mx.geoint.Response.SearchResponse;
