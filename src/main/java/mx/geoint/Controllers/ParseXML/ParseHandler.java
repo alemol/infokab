@@ -1,6 +1,7 @@
 package mx.geoint.Controllers.ParseXML;
 
 import com.google.gson.JsonObject;
+import mx.geoint.Model.ParseXML.Tier;
 import mx.geoint.pathSystem;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

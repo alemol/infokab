@@ -3,7 +3,7 @@ package mx.geoint.Lucene;
 import mx.geoint.Controllers.Lucene.Lucene;
 import mx.geoint.Controllers.ElanXmlDigester.ElanXmlDigester;
 import mx.geoint.Model.SearchDoc;
-import mx.geoint.Response.SearchResponse;
+import mx.geoint.Model.Search.SearchResponse;
 import mx.geoint.pathSystem;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;

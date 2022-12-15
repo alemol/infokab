@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import mx.geoint.Model.Glosado.GlosaStep;
+import mx.geoint.Model.ParseXML.Tier;
 import mx.geoint.pathSystem;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

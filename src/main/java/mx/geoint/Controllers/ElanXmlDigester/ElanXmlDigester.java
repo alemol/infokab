@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import mx.geoint.Controllers.FFmpeg.FFmpeg;
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Controllers.ParseXML.ParseXML;
-import mx.geoint.Controllers.ParseXML.Tier;
+import mx.geoint.Model.ParseXML.Tier;
 import mx.geoint.Controllers.VideoCutter.VideoCutter;
 import mx.geoint.Database.DBProjects;
 import mx.geoint.Database.DBReports;

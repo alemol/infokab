@@ -1,7 +1,7 @@
 package mx.geoint.Download;
 
 import mx.geoint.Model.SearchDoc;
-import mx.geoint.Response.SearchResponse;
+import mx.geoint.Model.Search.SearchResponse;
 import mx.geoint.Model.Search.Searcher;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.junit.jupiter.api.Test;

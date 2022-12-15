@@ -1,4 +1,4 @@
-package mx.geoint.Response;
+package mx.geoint.Model.Dictionary;
 
 import mx.geoint.Model.Dictionary.DictionaryDoc;
 

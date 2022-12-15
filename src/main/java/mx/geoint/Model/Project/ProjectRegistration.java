@@ -1,4 +1,4 @@
-package mx.geoint.Model;
+package mx.geoint.Model.Project;
 
 import java.sql.Timestamp;
 

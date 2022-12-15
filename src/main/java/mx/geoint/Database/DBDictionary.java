@@ -2,7 +2,7 @@ package mx.geoint.Database;
 
 import mx.geoint.Model.Dictionary.DictionaryRequest;
 import mx.geoint.Model.Dictionary.DictionaryDoc;
-import mx.geoint.Response.DictionaryResponse;
+import mx.geoint.Model.Dictionary.DictionaryResponse;
 
 import java.sql.*;
 import java.util.ArrayList;

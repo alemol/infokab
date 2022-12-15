@@ -1,4 +1,4 @@
-package mx.geoint.Controllers.ParseXML;
+package mx.geoint.Model.ParseXML;
 
 import mx.geoint.Controllers.Logger.Logger;
 

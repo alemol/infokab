@@ -1,4 +1,4 @@
-package mx.geoint.Response;
+package mx.geoint.Model.Report;
 
 import mx.geoint.Model.Report.ReportDoc;
 

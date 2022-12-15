@@ -1,6 +1,7 @@
 package mx.geoint.Apis.Images;
 
 
+import mx.geoint.Model.Image.routeModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

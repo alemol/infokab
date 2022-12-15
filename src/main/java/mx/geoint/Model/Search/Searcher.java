@@ -1,7 +1,6 @@
 package mx.geoint.Model.Search;
 
 import mx.geoint.Model.SearchDoc;
-import mx.geoint.Response.SearchResponse;
 import mx.geoint.Controllers.Lucene.Lucene;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.stereotype.Component;
