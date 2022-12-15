@@ -2,7 +2,7 @@ package mx.geoint.Database;
 
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Model.Glosado.GlosaUpdateAnnotationRequest;
-import mx.geoint.Model.ReportDoc;
+import mx.geoint.Model.Report.ReportDoc;
 import mx.geoint.Controllers.ParseXML.ParseXML;
 import mx.geoint.Response.ReportsResponse;
 import mx.geoint.pathSystem;

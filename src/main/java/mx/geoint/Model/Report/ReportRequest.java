@@ -1,4 +1,4 @@
-package mx.geoint.Model;
+package mx.geoint.Model.Report;
 
 public class ReportRequest {
     private Integer id_proyecto;

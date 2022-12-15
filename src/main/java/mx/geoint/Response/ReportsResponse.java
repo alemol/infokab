@@ -1,6 +1,6 @@
 package mx.geoint.Response;
 
-import mx.geoint.Model.ReportDoc;
+import mx.geoint.Model.Report.ReportDoc;
 
 import java.util.ArrayList;
 

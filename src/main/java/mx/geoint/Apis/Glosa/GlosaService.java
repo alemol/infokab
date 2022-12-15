@@ -6,6 +6,7 @@ import mx.geoint.Model.*;
 import mx.geoint.Model.Glosado.*;
 import mx.geoint.Controllers.ParseXML.ParseXML;
 import mx.geoint.Controllers.ParseXML.Tier;
+import mx.geoint.Model.Report.ReportRequest;
 import mx.geoint.Response.ReportsResponse;
 import mx.geoint.Database.DBAnnotations;
 import mx.geoint.Database.DBDictionary;
