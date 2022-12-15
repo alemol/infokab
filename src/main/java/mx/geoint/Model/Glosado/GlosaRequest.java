@@ -1,4 +1,4 @@
-package mx.geoint.Model;
+package mx.geoint.Model.Glosado;
 
 import java.util.ArrayList;
 import java.util.List;

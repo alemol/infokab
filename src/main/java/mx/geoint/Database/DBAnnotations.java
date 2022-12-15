@@ -2,8 +2,8 @@ package mx.geoint.Database;
 
 import com.google.gson.Gson;
 import mx.geoint.Controllers.Logger.Logger;
-import mx.geoint.Model.GlosaAnnotationsRequest;
-import mx.geoint.Model.GlosaStep;
+import mx.geoint.Model.Glosado.GlosaAnnotationsRequest;
+import mx.geoint.Model.Glosado.GlosaStep;
 import mx.geoint.Model.Glosado.GlosadoAnnotationRegister;
 import mx.geoint.Controllers.ParseXML.ParseXML;
 import org.xml.sax.SAXException;

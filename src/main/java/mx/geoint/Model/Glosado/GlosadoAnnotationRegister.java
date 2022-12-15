@@ -1,7 +1,5 @@
 package mx.geoint.Model.Glosado;
 
-import mx.geoint.Model.GlosaStep;
-
 import java.util.ArrayList;
 
 public class GlosadoAnnotationRegister {

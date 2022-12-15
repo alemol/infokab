@@ -1,5 +1,7 @@
 package mx.geoint.Model;
 
+import mx.geoint.Model.Glosado.GlosaStep;
+
 import java.util.ArrayList;
 
 public class Glosa {

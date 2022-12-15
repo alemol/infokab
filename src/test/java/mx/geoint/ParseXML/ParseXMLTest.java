@@ -3,7 +3,7 @@ package mx.geoint.ParseXML;
 import com.google.gson.Gson;
 import mx.geoint.Controllers.ParseXML.ParseXML;
 import mx.geoint.Controllers.ParseXML.Tier;
-import mx.geoint.Model.GlosaStep;
+import mx.geoint.Model.Glosado.GlosaStep;
 import mx.geoint.pathSystem;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
