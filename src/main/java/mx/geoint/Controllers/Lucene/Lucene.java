@@ -1,7 +1,7 @@
 package mx.geoint.Controllers.Lucene;
 
 import com.google.gson.Gson;
-import mx.geoint.Model.SearchDoc;
+import mx.geoint.Model.Search.SearchDoc;
 import mx.geoint.Model.Search.SearchResponse;
 import mx.geoint.Model.ParseXML.Tier;
 import mx.geoint.pathSystem;

@@ -1,4 +1,4 @@
-package mx.geoint.Model;
+package mx.geoint.Model.Search;
 
 import com.google.gson.Gson;
 import mx.geoint.Model.ParseXML.Tier;

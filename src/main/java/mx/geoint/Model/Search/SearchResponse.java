@@ -1,7 +1,5 @@
 package mx.geoint.Model.Search;
 
-import mx.geoint.Model.SearchDoc;
-
 import java.util.ArrayList;
 
 public class SearchResponse {

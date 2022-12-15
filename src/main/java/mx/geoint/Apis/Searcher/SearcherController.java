@@ -3,7 +3,7 @@ package mx.geoint.Apis.Searcher;
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Model.Search.Search;
 import mx.geoint.Model.Search.SearchPage;
-import mx.geoint.Model.SearchDoc;
+import mx.geoint.Model.Search.SearchDoc;
 import mx.geoint.Model.Search.SearchResponse;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
