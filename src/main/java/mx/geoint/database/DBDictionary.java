@@ -1,18 +1,11 @@
 package mx.geoint.database;
 
-import com.google.gson.JsonArray;
-import mx.geoint.Glosa.Dictionary.DictionaryRequest;
+import mx.geoint.Apis.Dictionary.DictionaryRequest;
 import mx.geoint.Model.DictionaryDoc;
 import mx.geoint.Response.DictionaryResponse;
-import mx.geoint.Response.SearchResponse;
-import mx.geoint.User.User;
-import org.springframework.test.context.jdbc.Sql;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 public class DBDictionary {
     public Credentials credentials;

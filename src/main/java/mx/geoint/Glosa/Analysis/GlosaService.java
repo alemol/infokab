@@ -1,8 +1,7 @@
 package mx.geoint.Glosa.Analysis;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import mx.geoint.Glosa.Dictionary.DictionaryPaginate;
-import mx.geoint.Glosa.Dictionary.DictionaryRequest;
+import mx.geoint.Apis.Dictionary.DictionaryPaginate;
 import mx.geoint.Model.*;
 import mx.geoint.Model.Glosado.GlosaUpdateAnnotationRequest;
 import mx.geoint.Model.Glosado.GlosadoAnnotationRegister;
@@ -25,7 +24,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 @Service

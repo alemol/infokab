@@ -2,8 +2,7 @@ package mx.geoint.Glosa.Analysis;
 
 import mx.geoint.Logger.Logger;
 import mx.geoint.Model.*;
-import mx.geoint.Glosa.Dictionary.DictionaryPaginate;
-import mx.geoint.Glosa.Dictionary.DictionaryRequest;
+import mx.geoint.Apis.Dictionary.DictionaryPaginate;
 import mx.geoint.Model.Glosado.GlosaUpdateAnnotationRequest;
 import mx.geoint.Model.Glosado.GlosadoAnnotationRegister;
 import mx.geoint.ParseXML.Tier;
