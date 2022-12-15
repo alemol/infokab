@@ -1,7 +1,7 @@
 package mx.geoint.Apis.Glosa;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import mx.geoint.Apis.Dictionary.DictionaryPaginate;
+import mx.geoint.Model.Dictionary.DictionaryPaginate;
 import mx.geoint.Model.*;
 import mx.geoint.Model.Glosado.*;
 import mx.geoint.Controllers.ParseXML.ParseXML;

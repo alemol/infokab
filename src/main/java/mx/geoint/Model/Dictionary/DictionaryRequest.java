@@ -1,4 +1,4 @@
-package mx.geoint.Apis.Dictionary;
+package mx.geoint.Model.Dictionary;
 
 public class DictionaryRequest {
     private int id;

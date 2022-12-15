@@ -1,4 +1,4 @@
-package mx.geoint.Apis.Dictionary;
+package mx.geoint.Model.Dictionary;
 
 public class DictionaryPaginate {
     private int page;

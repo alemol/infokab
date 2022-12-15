@@ -1,7 +1,7 @@
 package mx.geoint.Database;
 
-import mx.geoint.Apis.Dictionary.DictionaryRequest;
-import mx.geoint.Model.DictionaryDoc;
+import mx.geoint.Model.Dictionary.DictionaryRequest;
+import mx.geoint.Model.Dictionary.DictionaryDoc;
 import mx.geoint.Response.DictionaryResponse;
 
 import java.sql.*;

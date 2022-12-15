@@ -1,5 +1,7 @@
 package mx.geoint.Apis.Dictionary;
 
+import mx.geoint.Model.Dictionary.DictionaryPaginate;
+import mx.geoint.Model.Dictionary.DictionaryRequest;
 import mx.geoint.Response.DictionaryResponse;
 import mx.geoint.Database.DBDictionary;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,6 @@
 package mx.geoint.Response;
 
-import mx.geoint.Model.DictionaryDoc;
-import mx.geoint.Model.SearchDoc;
+import mx.geoint.Model.Dictionary.DictionaryDoc;
 
 import java.util.ArrayList;
 
