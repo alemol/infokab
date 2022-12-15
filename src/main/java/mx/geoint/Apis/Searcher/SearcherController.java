@@ -1,6 +1,5 @@
-package mx.geoint.Searcher;
+package mx.geoint.Apis.Searcher;
 
-import com.google.gson.Gson;
 import mx.geoint.Logger.Logger;
 import mx.geoint.Model.SearchDoc;
 import mx.geoint.Response.SearchResponse;
