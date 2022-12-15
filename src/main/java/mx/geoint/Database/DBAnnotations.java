@@ -1,4 +1,4 @@
-package mx.geoint.database;
+package mx.geoint.Database;
 
 import com.google.gson.Gson;
 import mx.geoint.Controllers.Logger.Logger;

@@ -2,7 +2,7 @@ package mx.geoint.Apis.User;
 
 import com.google.gson.JsonObject;
 import mx.geoint.Controllers.Logger.Logger;
-import mx.geoint.database.DBUsers;
+import mx.geoint.Database.DBUsers;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

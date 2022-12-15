@@ -6,8 +6,8 @@ import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Controllers.ParseXML.ParseXML;
 import mx.geoint.Controllers.ParseXML.Tier;
 import mx.geoint.Controllers.VideoCutter.VideoCutter;
-import mx.geoint.database.DBProjects;
-import mx.geoint.database.DBReports;
+import mx.geoint.Database.DBProjects;
+import mx.geoint.Database.DBReports;
 import mx.geoint.pathSystem;
 import org.apache.commons.io.FilenameUtils;
 import org.xml.sax.SAXException;
@@ -31,7 +31,7 @@ public class ElanXmlDigester {
     String filepathMultimedia = "";
     String uuid = "";
     int projectID;
-    List<Tier> getTier;
+    public List<Tier> getTier;
     private DBReports dbReports;
     private DBProjects dbProjects;
 

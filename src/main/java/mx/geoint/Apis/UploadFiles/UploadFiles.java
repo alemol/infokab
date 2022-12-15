@@ -2,10 +2,10 @@ package mx.geoint.Apis.UploadFiles;
 
 import mx.geoint.Controllers.ElanXmlDigester.ThreadElanXmlDigester;
 import mx.geoint.Controllers.ElanXmlDigester.ThreadValidateElanXmlDigester;
-import mx.geoint.database.DBAnnotations;
-import mx.geoint.database.DBProjects;
-import mx.geoint.database.DBReports;
-import mx.geoint.database.DBUsers;
+import mx.geoint.Database.DBAnnotations;
+import mx.geoint.Database.DBProjects;
+import mx.geoint.Database.DBReports;
+import mx.geoint.Database.DBUsers;
 import mx.geoint.pathSystem;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Component;

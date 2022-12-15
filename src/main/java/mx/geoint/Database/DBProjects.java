@@ -1,4 +1,4 @@
-package mx.geoint.database;
+package mx.geoint.Database;
 
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Model.GlosaAnnotationsRequest;

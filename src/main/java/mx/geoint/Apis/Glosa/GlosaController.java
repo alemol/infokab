@@ -7,7 +7,7 @@ import mx.geoint.Model.Glosado.GlosaUpdateAnnotationRequest;
 import mx.geoint.Model.Glosado.GlosadoAnnotationRegister;
 import mx.geoint.Controllers.ParseXML.Tier;
 import mx.geoint.Response.ReportsResponse;
-import mx.geoint.database.DBProjects;
+import mx.geoint.Database.DBProjects;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

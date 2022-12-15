@@ -1,4 +1,4 @@
-package mx.geoint.database;
+package mx.geoint.Database;
 
 public class QueryTextProcess {
     static String query_main_base = " " +

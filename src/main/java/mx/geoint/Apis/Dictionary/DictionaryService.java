@@ -1,7 +1,7 @@
 package mx.geoint.Apis.Dictionary;
 
 import mx.geoint.Response.DictionaryResponse;
-import mx.geoint.database.DBDictionary;
+import mx.geoint.Database.DBDictionary;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;

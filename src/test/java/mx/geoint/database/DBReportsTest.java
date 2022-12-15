@@ -1,5 +1,6 @@
 package mx.geoint.database;
 
+import mx.geoint.Database.DBReports;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;

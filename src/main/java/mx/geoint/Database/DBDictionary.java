@@ -1,4 +1,4 @@
-package mx.geoint.database;
+package mx.geoint.Database;
 
 import mx.geoint.Apis.Dictionary.DictionaryRequest;
 import mx.geoint.Model.DictionaryDoc;

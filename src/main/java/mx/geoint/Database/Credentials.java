@@ -1,4 +1,4 @@
-package mx.geoint.database;
+package mx.geoint.Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
