@@ -1,25 +1,18 @@
-package mx.geoint.UploadFiles;
+package mx.geoint.Apis.UploadFiles;
 
 import com.google.gson.JsonObject;
 import mx.geoint.Logger.Logger;
-import mx.geoint.pathSystem;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-import java.util.ArrayList;
-
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.Enumeration;
 
 @CrossOrigin(origins = {"http://infokaab.com/", "http://infokaab.com.mx/", "http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009", "http://10.2.102.182"})
 @RestController
