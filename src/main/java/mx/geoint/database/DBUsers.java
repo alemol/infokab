@@ -1,7 +1,7 @@
 package mx.geoint.database;
 import mx.geoint.Model.UsersList;
 import mx.geoint.Response.UserListResponse;
-import mx.geoint.User.User;
+import mx.geoint.Apis.User.User;
 
 import java.time.LocalDateTime;
 import java.sql.*;

@@ -1,10 +1,9 @@
-package mx.geoint.Streaming;
+package mx.geoint.Apis.Streaming;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.reactive.HandlerMapping;
 import reactor.core.publisher.Mono;
 
 import javax.servlet.http.HttpServletRequest;

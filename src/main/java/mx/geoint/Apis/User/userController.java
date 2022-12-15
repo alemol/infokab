@@ -1,4 +1,4 @@
-package mx.geoint.User;
+package mx.geoint.Apis.User;
 
 import com.google.gson.JsonObject;
 import mx.geoint.Logger.Logger;
@@ -7,16 +7,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
-import mx.geoint.Response.DictionaryResponse;
 import mx.geoint.Response.UserListResponse;
 
 import java.sql.SQLException;
-
-
-import java.util.UUID;
 
 @CrossOrigin(origins = {"http://infokaab.com/","http://infokaab.com.mx/","http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182"})
 @RestController

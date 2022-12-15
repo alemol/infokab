@@ -1,4 +1,4 @@
-package mx.geoint.Streaming;
+package mx.geoint.Apis.Streaming;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
