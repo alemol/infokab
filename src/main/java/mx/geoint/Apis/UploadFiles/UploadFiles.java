@@ -1,7 +1,7 @@
 package mx.geoint.Apis.UploadFiles;
 
-import mx.geoint.ElanXmlDigester.ThreadElanXmlDigester;
-import mx.geoint.ElanXmlDigester.ThreadValidateElanXmlDigester;
+import mx.geoint.Controllers.ElanXmlDigester.ThreadElanXmlDigester;
+import mx.geoint.Controllers.ElanXmlDigester.ThreadValidateElanXmlDigester;
 import mx.geoint.database.DBAnnotations;
 import mx.geoint.database.DBProjects;
 import mx.geoint.database.DBReports;
@@ -18,7 +18,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 
 

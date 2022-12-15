@@ -1,4 +1,4 @@
-package mx.geoint.ElanXmlDigester;
+package mx.geoint.Controllers.ElanXmlDigester;
 
 import com.google.gson.Gson;
 import mx.geoint.Controllers.FFmpeg.FFmpeg;

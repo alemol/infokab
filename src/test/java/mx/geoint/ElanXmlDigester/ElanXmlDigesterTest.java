@@ -1,4 +1,5 @@
 package mx.geoint.ElanXmlDigester;
+import mx.geoint.Controllers.ElanXmlDigester.ElanXmlDigester;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 

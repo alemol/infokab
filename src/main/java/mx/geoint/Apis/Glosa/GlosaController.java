@@ -1,4 +1,4 @@
-package mx.geoint.Glosa.Analysis;
+package mx.geoint.Apis.Glosa;
 
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Model.*;

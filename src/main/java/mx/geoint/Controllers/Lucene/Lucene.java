@@ -1,4 +1,4 @@
-package mx.geoint.Lucene;
+package mx.geoint.Controllers.Lucene;
 
 import com.google.gson.Gson;
 import mx.geoint.Model.SearchDoc;

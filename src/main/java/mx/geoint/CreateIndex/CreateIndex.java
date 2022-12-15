@@ -1,9 +1,6 @@
 package mx.geoint.CreateIndex;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import mx.geoint.Lucene.Lucene;
-import mx.geoint.pathSystem;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package mx.geoint.Glosa.Analysis;
+package mx.geoint.Apis.Glosa;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import mx.geoint.Apis.Dictionary.DictionaryPaginate;

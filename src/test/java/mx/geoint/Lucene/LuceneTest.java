@@ -1,6 +1,7 @@
 package mx.geoint.Lucene;
 
-import mx.geoint.ElanXmlDigester.ElanXmlDigester;
+import mx.geoint.Controllers.Lucene.Lucene;
+import mx.geoint.Controllers.ElanXmlDigester.ElanXmlDigester;
 import mx.geoint.Model.SearchDoc;
 import mx.geoint.Response.SearchResponse;
 import mx.geoint.pathSystem;
