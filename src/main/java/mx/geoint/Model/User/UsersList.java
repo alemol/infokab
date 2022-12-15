@@ -1,4 +1,4 @@
-package mx.geoint.Model;
+package mx.geoint.Model.User;
 
 public class UsersList {
     String uuid;

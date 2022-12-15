@@ -3,13 +3,14 @@ package mx.geoint.Apis.User;
 import com.google.gson.JsonObject;
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Database.DBUsers;
+import mx.geoint.Model.User.User;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import mx.geoint.Response.UserListResponse;
+import mx.geoint.Model.User.UserListResponse;
 
 import java.sql.SQLException;
 

@@ -1,6 +1,6 @@
-package mx.geoint.Response;
+package mx.geoint.Model.User;
 
-import mx.geoint.Model.UsersList;
+import mx.geoint.Model.User.UsersList;
 
 import java.util.ArrayList;
 
