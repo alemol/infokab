@@ -2,11 +2,11 @@ package mx.geoint.User;
 
 import com.google.gson.JsonObject;
 import mx.geoint.Logger.Logger;
+import mx.geoint.database.DBUsers;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import mx.geoint.database.databaseController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -22,11 +22,11 @@ import java.util.UUID;
 @RestController
 @RequestMapping(path = "api/user")
 public class userController {
-    private final databaseController database;
+    private final DBUsers database;
     private Logger logger;
 
     public userController(){
-        database = new databaseController();
+        database = new DBUsers();
         this.logger = new Logger();
     }
 

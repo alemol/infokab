@@ -3,9 +3,10 @@ package mx.geoint.UploadFiles;
 import mx.geoint.ElanXmlDigester.ThreadElanXmlDigester;
 import mx.geoint.ElanXmlDigester.ThreadValidateElanXmlDigester;
 import mx.geoint.database.DBAnnotations;
+import mx.geoint.database.DBProjects;
 import mx.geoint.database.DBReports;
+import mx.geoint.database.DBUsers;
 import mx.geoint.pathSystem;
-import mx.geoint.database.databaseController;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,17 +28,19 @@ public class UploadFiles {
     //ThreadElanXmlDigester threadElanXmlDigester;
     private final ThreadElanXmlDigester threadElanXmlDigester;
     private final ThreadValidateElanXmlDigester threadValidateElanXmlDigester;
-    private final databaseController database;
+    private final DBUsers database;
     private final DBReports dbReports;
     private final DBAnnotations dbAnnotations;
+    private final DBProjects dbProjects;
 
     /**
      * Inicialización del thread
      */
     public UploadFiles(){
-        database = new databaseController();
+        database = new DBUsers();
         dbReports = new DBReports();
         dbAnnotations = new DBAnnotations();
+        dbProjects = new DBProjects();
         threadElanXmlDigester = new ThreadElanXmlDigester();
         threadElanXmlDigester.start();
 
@@ -95,7 +98,7 @@ public class UploadFiles {
 
         }
 
-        int id_project = database.createProject(uuid, basePath, baseProjectName, date, hablantes, ubicacion, radio, circleBounds); //inserta un registro del proyecto en la base de datos
+        int id_project = dbProjects.createProject(uuid, basePath, baseProjectName, date, hablantes, ubicacion, radio, circleBounds); //inserta un registro del proyecto en la base de datos
 
         System.out.println("ID de proyecto generado: "+id_project);
         if(id_project > 0){

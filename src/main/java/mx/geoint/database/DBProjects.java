@@ -22,6 +22,7 @@ import java.nio.file.Path;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class DBProjects {
     private Credentials credentials;
@@ -30,6 +31,48 @@ public class DBProjects {
     public DBProjects(){
         this.credentials = new Credentials();
         this.logger = new Logger();
+    }
+
+    public int createProject(String uuid, String basePath, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds) throws SQLException {
+        System.out.println("createProject");
+        int id_project = 0;
+        //---guardado a base de datos
+        System.out.println("save to database: "+projectName);
+
+        Connection conn = credentials.getConnection();
+        System.out.println(conn);
+
+        String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id_proyecto";
+
+
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
+        preparedStatement.setObject(1, UUID.fromString(uuid));
+        //preparedStatement.setObject();
+        //preparedStatement.setString(1, uuid);
+        preparedStatement.setString(2, projectName);
+        preparedStatement.setString(3, basePath.toString());
+        //preparedStatement.setString(4, contentType);
+        preparedStatement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+
+        preparedStatement.setString(5, date);
+        preparedStatement.setString(6, hablantes);
+        preparedStatement.setString(7, ubicacion);
+        preparedStatement.setInt(8, Integer.parseInt(radio));
+        preparedStatement.setString(9, circleBounds);
+
+        preparedStatement.execute();
+        //int row = preparedStatement.executeUpdate();
+        ResultSet rs = preparedStatement.getGeneratedKeys();
+        if ( rs.next() ) {
+            // Retrieve the auto generated key(s).
+            id_project = rs.getInt(1);
+            System.out.println("generated key");
+            System.out.println(id_project);
+        }
+
+        conn.close();
+
+        return id_project;
     }
 
     public ProjectRegistration getProjectById(String id) throws  SQLException {
