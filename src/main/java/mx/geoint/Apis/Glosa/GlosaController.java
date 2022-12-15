@@ -1,7 +1,6 @@
 package mx.geoint.Apis.Glosa;
 
 import mx.geoint.Controllers.Logger.Logger;
-import mx.geoint.Model.*;
 import mx.geoint.Model.Dictionary.DictionaryPaginate;
 import mx.geoint.Model.Glosado.*;
 import mx.geoint.Model.ParseXML.Tier;

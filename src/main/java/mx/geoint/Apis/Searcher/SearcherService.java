@@ -1,6 +1,5 @@
 package mx.geoint.Apis.Searcher;
 
-import mx.geoint.Model.Search.Searcher;
 import mx.geoint.Model.SearchDoc;
 import mx.geoint.Model.Search.SearchResponse;
 import org.apache.lucene.queryparser.classic.ParseException;
