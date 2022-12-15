@@ -1,4 +1,4 @@
-package mx.geoint.ParseXML;
+package mx.geoint.Controllers.ParseXML;
 
 import com.google.gson.JsonObject;
 import mx.geoint.pathSystem;
@@ -6,7 +6,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import javax.xml.namespace.QName;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashMap;

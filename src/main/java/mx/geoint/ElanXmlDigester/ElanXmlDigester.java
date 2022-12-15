@@ -3,15 +3,13 @@ package mx.geoint.ElanXmlDigester;
 import com.google.gson.Gson;
 import mx.geoint.FFmpeg.FFmpeg;
 import mx.geoint.Logger.Logger;
-import mx.geoint.ParseXML.ParseXML;
-import mx.geoint.ParseXML.Tier;
+import mx.geoint.Controllers.ParseXML.ParseXML;
+import mx.geoint.Controllers.ParseXML.Tier;
 import mx.geoint.VideoCutter.VideoCutter;
 import mx.geoint.database.DBProjects;
 import mx.geoint.database.DBReports;
 import mx.geoint.pathSystem;
 import org.apache.commons.io.FilenameUtils;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;

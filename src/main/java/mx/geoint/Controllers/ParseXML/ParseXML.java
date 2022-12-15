@@ -1,4 +1,4 @@
-package mx.geoint.ParseXML;
+package mx.geoint.Controllers.ParseXML;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

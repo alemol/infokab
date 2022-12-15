@@ -5,7 +5,7 @@ import mx.geoint.Model.*;
 import mx.geoint.Apis.Dictionary.DictionaryPaginate;
 import mx.geoint.Model.Glosado.GlosaUpdateAnnotationRequest;
 import mx.geoint.Model.Glosado.GlosadoAnnotationRegister;
-import mx.geoint.ParseXML.Tier;
+import mx.geoint.Controllers.ParseXML.Tier;
 import mx.geoint.Response.ReportsResponse;
 import mx.geoint.database.DBProjects;
 import org.springframework.http.HttpStatus;

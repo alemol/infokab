@@ -1,7 +1,7 @@
 package mx.geoint.Model;
 
 import com.google.gson.Gson;
-import mx.geoint.ParseXML.Tier;
+import mx.geoint.Controllers.ParseXML.Tier;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.FileNotFoundException;

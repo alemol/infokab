@@ -5,14 +5,12 @@ import mx.geoint.Logger.Logger;
 import mx.geoint.Model.GlosaAnnotationsRequest;
 import mx.geoint.Model.GlosaStep;
 import mx.geoint.Model.Glosado.GlosadoAnnotationRegister;
-import mx.geoint.ParseXML.ParseXML;
-import org.json.JSONArray;
+import mx.geoint.Controllers.ParseXML.ParseXML;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.sql.*;
 import java.util.ArrayList;
 

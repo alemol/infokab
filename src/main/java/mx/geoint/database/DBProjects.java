@@ -4,7 +4,7 @@ import mx.geoint.Logger.Logger;
 import mx.geoint.Model.GlosaAnnotationsRequest;
 import mx.geoint.Model.GlosaStep;
 import mx.geoint.Model.ProjectRegistration;
-import mx.geoint.ParseXML.ParseXML;
+import mx.geoint.Controllers.ParseXML.ParseXML;
 import org.apache.commons.io.FilenameUtils;
 import org.xml.sax.SAXException;
 

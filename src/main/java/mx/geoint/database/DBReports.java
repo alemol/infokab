@@ -3,7 +3,7 @@ package mx.geoint.database;
 import mx.geoint.Logger.Logger;
 import mx.geoint.Model.Glosado.GlosaUpdateAnnotationRequest;
 import mx.geoint.Model.ReportDoc;
-import mx.geoint.ParseXML.ParseXML;
+import mx.geoint.Controllers.ParseXML.ParseXML;
 import mx.geoint.Response.ReportsResponse;
 import mx.geoint.pathSystem;
 import org.xml.sax.SAXException;
