@@ -31,45 +31,13 @@ import java.util.Map;
 @Service
 public class GlosaService {
     public static DBDictionary dbDictionary;
-    public static DBReports dbReports;
     public static DBProjects dbProjects;
     public static DBAnnotations dbAnnotations;
 
     public GlosaService() {
         this.dbDictionary = new DBDictionary();
-        this.dbReports = new DBReports();
         this.dbProjects = new DBProjects();
         this.dbAnnotations = new DBAnnotations();
-    }
-
-    /**
-     * Servicio que ejecuta el script de python externo a java
-     * @return ArrayList<Glosa> un arreglo del modelo de glosa
-     * @throws IOException
-     */
-    public static ArrayList<GlosaResponse> process() throws IOException {
-        String s;
-        ArrayList<GlosaResponse> result_list = new ArrayList<>();
-
-        File f = new File("src/main/resources/");
-        String absolute = f.getAbsolutePath();
-
-        Process p = Runtime.getRuntime().exec("python3 src/main/resources/yucatec_parser.py " + absolute);
-        BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-
-        while ((s = stdInput.readLine()) != null) {
-            ObjectMapper mapper = new ObjectMapper();
-            Map<String, Object> map = mapper.readValue(s, Map.class);
-            GlosaResponse glosa = new GlosaResponse((int) map.get("id"), map.get("word").toString(), (ArrayList<GlosaStep>) map.get("steps"));
-
-            result_list.add(glosa);
-        }
-        while ((s = stdError.readLine()) != null) {
-            System.out.println(s);
-        }
-
-        return result_list;
     }
 
     /**
@@ -128,19 +96,6 @@ public class GlosaService {
         return result_list;
     }
 
-    /**
-     * Servicio para obtener las oraciones o anotaciones de un proyecto
-     * @param filePath
-     * @return ArraList<Tier> una lista del modelo Tier
-     */
-    public static ArrayList<Tier> getAnnotations(String filePath, String id) throws ParserConfigurationException, IOException, SAXException {
-        System.out.println("data " + filePath +" id "+ id);
-        String tier_id_transcripcion = pathSystem.TIER_MAIN;
-        ParseXML parseXML = new ParseXML(filePath, tier_id_transcripcion);
-        parseXML.read();
-        return new ArrayList<>(parseXML.getTier());
-    }
-
     public Boolean saveAnnotation(AnnotationsRequest annotationsRequest) throws SQLException, ParserConfigurationException, IOException, TransformerException, SAXException {
         boolean isNew = annotationsRequest.getNew();
         if(isNew == true){
@@ -152,30 +107,6 @@ public class GlosaService {
             return  true;
         }
 
-    }
-
-    public ReportsResponse getRegisters(GeneralPaginateResponse generalPaginateResponse) throws SQLException {
-        int page = generalPaginateResponse.getPage();
-        Integer id_project = generalPaginateResponse.getId();
-        int recordsPerPage = generalPaginateResponse.getRecord();
-        String search = generalPaginateResponse.getSearch();
-
-        int currentPage = (page - 1) * recordsPerPage;
-        return dbReports.ListRegisters(currentPage, recordsPerPage, id_project, search);
-    }
-
-    public boolean insertRegister(ReportRequest reportRequest) throws SQLException {
-        int id_project = reportRequest.getId_proyecto();
-        String title = reportRequest.getTitulo();
-        String report = reportRequest.getReporte();
-        String tipo = reportRequest.getTipo();
-        String comentario = reportRequest.getComentario();
-
-        return dbReports.newRegister(id_project, title, report, tipo, comentario, "");
-    }
-
-    public Boolean editAnnotation(AnnotationRequest annotationRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException, SQLException {
-        return dbReports.newAnnotationReport(annotationRequest);
     }
 
     public void setGlossingAnnotationToEaf(AnnotationsRequest annotationsRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException {
