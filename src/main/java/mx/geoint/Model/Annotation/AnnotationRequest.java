@@ -1,8 +1,8 @@
-package mx.geoint.Model.Glosado;
+package mx.geoint.Model.Annotation;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class GlosaUpdateAnnotationRequest {
+public class AnnotationRequest {
     private String filePath;
 
     @JsonProperty("ANNOTATION_ID")
@@ -21,7 +21,7 @@ public class GlosaUpdateAnnotationRequest {
     private String title;
     private String report;
     private String type;
-    public GlosaUpdateAnnotationRequest(){ }
+    public AnnotationRequest(){ }
 
     public void setFilePath(String filePath) { this.filePath = filePath; }
 

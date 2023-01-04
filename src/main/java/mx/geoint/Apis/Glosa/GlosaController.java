@@ -1,7 +1,10 @@
 package mx.geoint.Apis.Glosa;
 
 import mx.geoint.Controllers.Logger.Logger;
-import mx.geoint.Model.Dictionary.DictionaryPaginate;
+import mx.geoint.Model.Annotation.AnnotationsRequest;
+import mx.geoint.Model.Annotation.AnnotationRequest;
+import mx.geoint.Model.Annotation.AnnotationRegister;
+import mx.geoint.Model.General.GeneralPaginateResponse;
 import mx.geoint.Model.Glosado.*;
 import mx.geoint.Model.ParseXML.Tier;
 import mx.geoint.Model.Project.ProjectPostgresRegister;
@@ -37,10 +40,10 @@ public class GlosaController {
      */
     @RequestMapping(path="/script", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ArrayList<Glosa>> created() {
+    public ResponseEntity<ArrayList<GlosaResponse>> created() {
         try{
             Date startDate = new Date();
-            ArrayList<Glosa> response = glosaService.process();
+            ArrayList<GlosaResponse> response = glosaService.process();
             return ResponseEntity.status(HttpStatus.OK).body(response);
         }catch (IOException e){
             logger.appendToFile(e);
@@ -55,11 +58,11 @@ public class GlosaController {
      */
     @RequestMapping(path="/analysis", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ArrayList<Glosa>> analysis(@RequestBody Map<String, String> body) {
+    public ResponseEntity<ArrayList<GlosaResponse>> analysis(@RequestBody Map<String, String> body) {
         try{
             //System.out.println("data:"+body.get("uuid"));
             String text = body.get("text");
-            ArrayList<Glosa> response = glosaService.textProcess(text);
+            ArrayList<GlosaResponse> response = glosaService.textProcess(text);
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch(SQLException e){
             logger.appendToFile(e);
@@ -74,9 +77,9 @@ public class GlosaController {
      */
     @RequestMapping(path="/analysis/list", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ArrayList<Glosa>> arrayAnalisys(@RequestBody GlosaRequest glosaRequest) {
+    public ResponseEntity<ArrayList<GlosaResponse>> arrayAnalisys(@RequestBody GlosaRequest glosaRequest) {
         try {
-            ArrayList<Glosa> response = glosaService.ArrayProcess(glosaRequest);
+            ArrayList<GlosaResponse> response = glosaService.ArrayProcess(glosaRequest);
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch(SQLException e){
             logger.appendToFile(e);
@@ -143,14 +146,14 @@ public class GlosaController {
 
     /**
      *
-     * @param dictionaryPaginate
+     * @param generalPaginateResponse
      * @return
      */
     @RequestMapping(path="/reports/list", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ReportsResponse> getReports(@RequestBody DictionaryPaginate dictionaryPaginate) {
+    public ResponseEntity<ReportsResponse> getReports(@RequestBody GeneralPaginateResponse generalPaginateResponse) {
         try{
-            ReportsResponse reportsResponse = glosaService.getRegisters(dictionaryPaginate);
+            ReportsResponse reportsResponse = glosaService.getRegisters(generalPaginateResponse);
             return ResponseEntity.status(HttpStatus.OK).body(reportsResponse);
         } catch (SQLException e) {
             logger.appendToFile(e);
@@ -166,14 +169,14 @@ public class GlosaController {
 
     /**
      * Api para el guardado del análisis de una oración o anotación al archivo eaf correspondiente de un proyecto
-     * @param glosaAnnotationsRequest
+     * @param annotationsRequest
      * @return
      */
     @RequestMapping(path="/save/annotation", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Boolean> saveAnnotations(@RequestBody GlosaAnnotationsRequest glosaAnnotationsRequest) {
+    public ResponseEntity<Boolean> saveAnnotations(@RequestBody AnnotationsRequest annotationsRequest) {
         try{
-            Boolean answer = glosaService.saveAnnotation(glosaAnnotationsRequest);
+            Boolean answer = glosaService.saveAnnotation(annotationsRequest);
             return ResponseEntity.status(HttpStatus.OK).body(answer);
         } catch (SQLException e) {
             logger.appendToFile(e);
@@ -200,9 +203,9 @@ public class GlosaController {
      */
     @RequestMapping(path="/annotation/main", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Boolean> editAnnotation(@RequestBody GlosaUpdateAnnotationRequest glosaUpdateAnnotationRequest) {
+    public ResponseEntity<Boolean> editAnnotation(@RequestBody AnnotationRequest annotationRequest) {
         try{
-            Boolean answer = glosaService.editAnnotation(glosaUpdateAnnotationRequest);
+            Boolean answer = glosaService.editAnnotation(annotationRequest);
             return ResponseEntity.status(HttpStatus.OK).body(answer);
         } catch (ParserConfigurationException e){
             logger.appendToFile(e);
@@ -224,9 +227,9 @@ public class GlosaController {
 
     @RequestMapping(path="/saved/annotation/v2", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Boolean> saveAnnotationsV2(@RequestBody GlosaAnnotationsRequest glosaAnnotationsRequest) {
+    public ResponseEntity<Boolean> saveAnnotationsV2(@RequestBody AnnotationsRequest annotationsRequest) {
         try{
-            Boolean answer = glosaService.savedAnnotationV2(glosaAnnotationsRequest);
+            Boolean answer = glosaService.savedAnnotationV2(annotationsRequest);
             return ResponseEntity.status(HttpStatus.OK).body(answer);
         } catch (SQLException e) {
             logger.appendToFile(e);
@@ -248,12 +251,12 @@ public class GlosaController {
 
     @RequestMapping(path="saved/annotation/list", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ArrayList<GlosadoAnnotationRegister>> savedAnnotationsList(@RequestBody Map<String, String> body) {
+    public ResponseEntity<ArrayList<AnnotationRegister>> savedAnnotationsList(@RequestBody Map<String, String> body) {
         String uuid = body.get("uuid");
         String project_id = body.get("project");
 
         try{
-            ArrayList<GlosadoAnnotationRegister> answer = glosaService.savedAnnotationList(Integer.parseInt(project_id));
+            ArrayList<AnnotationRegister> answer = glosaService.savedAnnotationList(Integer.parseInt(project_id));
             return ResponseEntity.status(HttpStatus.OK).body(answer);
         } catch (SQLException e) {
             logger.appendToFile(e);
@@ -263,13 +266,13 @@ public class GlosaController {
 
     @RequestMapping(path="saved/annotation/register", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<GlosadoAnnotationRegister> getAnnotationRecord(@RequestBody Map<String, String> body) {
+    public ResponseEntity<AnnotationRegister> getAnnotationRecord(@RequestBody Map<String, String> body) {
         String uuid = body.get("uuid");
         String project_id = body.get("project");
         String annotation_ref = body.get("annotation_ref");
 
         try{
-            GlosadoAnnotationRegister answer = glosaService.getAnnotationRecord(Integer.parseInt(project_id), annotation_ref);
+            AnnotationRegister answer = glosaService.getAnnotationRecord(Integer.parseInt(project_id), annotation_ref);
             return ResponseEntity.status(HttpStatus.OK).body(answer);
         } catch (SQLException e) {
             logger.appendToFile(e);

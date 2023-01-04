@@ -1,7 +1,7 @@
 package mx.geoint.Database;
 
 import mx.geoint.Controllers.Logger.Logger;
-import mx.geoint.Model.Glosado.GlosaAnnotationsRequest;
+import mx.geoint.Model.Annotation.AnnotationsRequest;
 import mx.geoint.Model.Glosado.GlosaStep;
 import mx.geoint.Model.Project.ProjectPostgresRegister;
 import mx.geoint.Controllers.ParseXML.ParseXML;
@@ -197,17 +197,17 @@ public class DBProjects {
         return total_de_anotaciones;
     }
 
-    public boolean setGlossingAnnotationToEaf(Integer id_project, Integer count, GlosaAnnotationsRequest glosaAnnotationsRequest) throws SQLException{
-        String projectName = glosaAnnotationsRequest.getFilePath();
-        String annotationId = glosaAnnotationsRequest.getAnnotationID();
+    public boolean setGlossingAnnotationToEaf(Integer id_project, Integer count, AnnotationsRequest annotationsRequest) throws SQLException{
+        String projectName = annotationsRequest.getFilePath();
+        String annotationId = annotationsRequest.getAnnotationID();
         String annotationREF = "";
-        if(glosaAnnotationsRequest.getAnnotationREF().isEmpty()){
-            annotationREF = glosaAnnotationsRequest.getAnnotationID();
+        if(annotationsRequest.getAnnotationREF().isEmpty()){
+            annotationREF = annotationsRequest.getAnnotationID();
         }else{
-            annotationREF = glosaAnnotationsRequest.getAnnotationREF();
+            annotationREF = annotationsRequest.getAnnotationREF();
         }
 
-        ArrayList<GlosaStep> steps = glosaAnnotationsRequest.getSteps();
+        ArrayList<GlosaStep> steps = annotationsRequest.getSteps();
         boolean answer = false;
 
         Connection conn = credentials.getConnection();

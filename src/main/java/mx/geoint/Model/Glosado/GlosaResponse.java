@@ -1,15 +1,13 @@
 package mx.geoint.Model.Glosado;
 
-import mx.geoint.Model.Glosado.GlosaStep;
-
 import java.util.ArrayList;
 
-public class Glosa {
+public class GlosaResponse {
     private int id;
     private String word;
     private ArrayList<GlosaStep> steps;
 
-    public Glosa(int id, String word, ArrayList<GlosaStep> steps) {
+    public GlosaResponse(int id, String word, ArrayList<GlosaStep> steps) {
         this.id = id;
         this.word = word;
         this.steps = steps;

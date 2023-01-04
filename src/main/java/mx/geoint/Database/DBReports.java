@@ -1,7 +1,7 @@
 package mx.geoint.Database;
 
 import mx.geoint.Controllers.Logger.Logger;
-import mx.geoint.Model.Glosado.GlosaUpdateAnnotationRequest;
+import mx.geoint.Model.Annotation.AnnotationRequest;
 import mx.geoint.Model.Report.ReportPostgresRegister;
 import mx.geoint.Controllers.ParseXML.ParseXML;
 import mx.geoint.Model.Report.ReportsResponse;
@@ -44,16 +44,16 @@ public class DBReports {
         return true;
     }
 
-    public Boolean newAnnotationReport(GlosaUpdateAnnotationRequest glosaUpdateAnnotationRequest) throws SQLException {
-        String projectName = glosaUpdateAnnotationRequest.getFilePath();
-        String annotationId = glosaUpdateAnnotationRequest.getAnnotationID();
-        String annotationValue = glosaUpdateAnnotationRequest.getAnnotationValue();
-        String annotationOriginal = glosaUpdateAnnotationRequest.getAnnotationOriginal();
+    public Boolean newAnnotationReport(AnnotationRequest annotationRequest) throws SQLException {
+        String projectName = annotationRequest.getFilePath();
+        String annotationId = annotationRequest.getAnnotationID();
+        String annotationValue = annotationRequest.getAnnotationValue();
+        String annotationOriginal = annotationRequest.getAnnotationOriginal();
 
-        int id_project = glosaUpdateAnnotationRequest.getProjectID();
-        String title = glosaUpdateAnnotationRequest.getTitle();
-        String report = glosaUpdateAnnotationRequest.getReport();
-        String type = glosaUpdateAnnotationRequest.getType();
+        int id_project = annotationRequest.getProjectID();
+        String title = annotationRequest.getTitle();
+        String report = annotationRequest.getReport();
+        String type = annotationRequest.getType();
 
         Connection conn = credentials.getConnection();
         conn.setAutoCommit(false);

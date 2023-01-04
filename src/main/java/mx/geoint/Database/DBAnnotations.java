@@ -2,9 +2,9 @@ package mx.geoint.Database;
 
 import com.google.gson.Gson;
 import mx.geoint.Controllers.Logger.Logger;
-import mx.geoint.Model.Glosado.GlosaAnnotationsRequest;
+import mx.geoint.Model.Annotation.AnnotationsRequest;
 import mx.geoint.Model.Glosado.GlosaStep;
-import mx.geoint.Model.Glosado.GlosadoAnnotationRegister;
+import mx.geoint.Model.Annotation.AnnotationRegister;
 import mx.geoint.Controllers.ParseXML.ParseXML;
 import org.xml.sax.SAXException;
 
@@ -23,9 +23,9 @@ public class DBAnnotations {
         this.logger = new Logger();
     }
 
-    public ArrayList<GlosadoAnnotationRegister> getAnnotationList(int project_id) throws SQLException {
-        ArrayList<GlosadoAnnotationRegister> rs = new ArrayList<>();
-        GlosadoAnnotationRegister glosadoAnnotationRegister = null;
+    public ArrayList<AnnotationRegister> getAnnotationList(int project_id) throws SQLException {
+        ArrayList<AnnotationRegister> rs = new ArrayList<>();
+        AnnotationRegister annotationRegister = null;
         String SQL_QUERY = "SELECT proyecto_id, anotacion_id, anotacion_ref, anotacion_tier_ref, glosado FROM glosado WHERE proyecto_id = ?";
 
         Connection conn = credentials.getConnection();
@@ -35,16 +35,16 @@ public class DBAnnotations {
         ResultSet row = preparedStatement.executeQuery();
 
         while(row.next()){
-            glosadoAnnotationRegister = new GlosadoAnnotationRegister();
-            glosadoAnnotationRegister.setProjectID(row.getInt(1));
-            glosadoAnnotationRegister.setANNOTATION_ID(row.getString(2));
-            glosadoAnnotationRegister.setANNOTATION_REF(row.getString(3));
-            glosadoAnnotationRegister.setANNOTATION_TIER_REF(row.getString(4));
+            annotationRegister = new AnnotationRegister();
+            annotationRegister.setProjectID(row.getInt(1));
+            annotationRegister.setANNOTATION_ID(row.getString(2));
+            annotationRegister.setANNOTATION_REF(row.getString(3));
+            annotationRegister.setANNOTATION_TIER_REF(row.getString(4));
 
             ArrayList<GlosaStep> steps = new Gson().fromJson(row.getString(5), ArrayList.class);
-            glosadoAnnotationRegister.setSteps(steps);
+            annotationRegister.setSteps(steps);
 
-            rs.add(glosadoAnnotationRegister);
+            rs.add(annotationRegister);
         }
 
         row.close();
@@ -52,8 +52,8 @@ public class DBAnnotations {
         return rs;
     }
 
-    public GlosadoAnnotationRegister getAnnotationRecord(int project_id, String annotation_ref) throws SQLException {
-        GlosadoAnnotationRegister glosadoAnnotationRegister = null;
+    public AnnotationRegister getAnnotationRecord(int project_id, String annotation_ref) throws SQLException {
+        AnnotationRegister annotationRegister = null;
         String SQL_QUERY = "SELECT proyecto_id, anotacion_id, anotacion_ref, anotacion_tier_ref, glosado FROM glosado WHERE proyecto_id = ? and anotacion_ref = ?";
 
         Connection conn = credentials.getConnection();
@@ -64,33 +64,33 @@ public class DBAnnotations {
         ResultSet row = preparedStatement.executeQuery();
 
         while(row.next()){
-            glosadoAnnotationRegister = new GlosadoAnnotationRegister();
-            glosadoAnnotationRegister.setProjectID(row.getInt(1));
-            glosadoAnnotationRegister.setANNOTATION_ID(row.getString(2));
-            glosadoAnnotationRegister.setANNOTATION_REF(row.getString(3));
-            glosadoAnnotationRegister.setANNOTATION_TIER_REF(row.getString(4));
+            annotationRegister = new AnnotationRegister();
+            annotationRegister.setProjectID(row.getInt(1));
+            annotationRegister.setANNOTATION_ID(row.getString(2));
+            annotationRegister.setANNOTATION_REF(row.getString(3));
+            annotationRegister.setANNOTATION_TIER_REF(row.getString(4));
 
             ArrayList<GlosaStep> steps = new Gson().fromJson(row.getString(5), ArrayList.class);
-            glosadoAnnotationRegister.setSteps(steps);
+            annotationRegister.setSteps(steps);
         }
 
         row.close();
         conn.close();
-        return glosadoAnnotationRegister;
+        return annotationRegister;
     }
 
-    public boolean newRegister(GlosaAnnotationsRequest glosaAnnotationsRequest) throws SQLException {
-        String projectName = glosaAnnotationsRequest.getFilePath();
-        int projectID = glosaAnnotationsRequest.getProjectID();
-        String annotationId = glosaAnnotationsRequest.getAnnotationID();
-        ArrayList<GlosaStep> steps = glosaAnnotationsRequest.getSteps();
+    public boolean newRegister(AnnotationsRequest annotationsRequest) throws SQLException {
+        String projectName = annotationsRequest.getFilePath();
+        int projectID = annotationsRequest.getProjectID();
+        String annotationId = annotationsRequest.getAnnotationID();
+        ArrayList<GlosaStep> steps = annotationsRequest.getSteps();
         String stepsString = new Gson().toJson(steps);
 
         String annotationREF = "";
-        if(glosaAnnotationsRequest.getAnnotationREF().isEmpty()){
-            annotationREF = glosaAnnotationsRequest.getAnnotationID();
+        if(annotationsRequest.getAnnotationREF().isEmpty()){
+            annotationREF = annotationsRequest.getAnnotationID();
         }else{
-            annotationREF = glosaAnnotationsRequest.getAnnotationREF();
+            annotationREF = annotationsRequest.getAnnotationREF();
         }
 
         Connection conn = credentials.getConnection();
@@ -142,18 +142,18 @@ public class DBAnnotations {
         return answer;
     }
 
-    public boolean updateRegister(GlosaAnnotationsRequest glosaAnnotationsRequest) throws SQLException {
-        String projectName = glosaAnnotationsRequest.getFilePath();
-        int projectID = glosaAnnotationsRequest.getProjectID();
-        String annotationId = glosaAnnotationsRequest.getAnnotationID();
-        ArrayList<GlosaStep> steps = glosaAnnotationsRequest.getSteps();
+    public boolean updateRegister(AnnotationsRequest annotationsRequest) throws SQLException {
+        String projectName = annotationsRequest.getFilePath();
+        int projectID = annotationsRequest.getProjectID();
+        String annotationId = annotationsRequest.getAnnotationID();
+        ArrayList<GlosaStep> steps = annotationsRequest.getSteps();
         String stepsString = new Gson().toJson(steps);
 
         String annotationREF = "";
-        if(glosaAnnotationsRequest.getAnnotationREF().isEmpty()){
-            annotationREF = glosaAnnotationsRequest.getAnnotationID();
+        if(annotationsRequest.getAnnotationREF().isEmpty()){
+            annotationREF = annotationsRequest.getAnnotationID();
         }else{
-            annotationREF = glosaAnnotationsRequest.getAnnotationREF();
+            annotationREF = annotationsRequest.getAnnotationREF();
         }
 
         Connection conn = credentials.getConnection();
@@ -166,9 +166,9 @@ public class DBAnnotations {
         preparedStatement.setString(3, annotationREF);
         preparedStatement.setString(4, annotationId);
         preparedStatement.setString(5, stepsString);
-        preparedStatement.setInt(6, glosaAnnotationsRequest.getProjectID());
-        preparedStatement.setString(7, glosaAnnotationsRequest.getAnnotationID());
-        preparedStatement.setString(8, glosaAnnotationsRequest.getAnnotationREF());
+        preparedStatement.setInt(6, annotationsRequest.getProjectID());
+        preparedStatement.setString(7, annotationsRequest.getAnnotationID());
+        preparedStatement.setString(8, annotationsRequest.getAnnotationREF());
         preparedStatement.setString(9, annotationREF);
 
         int rs = preparedStatement.executeUpdate();

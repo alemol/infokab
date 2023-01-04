@@ -1,15 +1,17 @@
-package mx.geoint.Model.Glosado;
+package mx.geoint.Model.Annotation;
+
+import mx.geoint.Model.Glosado.GlosaStep;
 
 import java.util.ArrayList;
 
-public class GlosadoAnnotationRegister {
+public class AnnotationRegister {
     int projectID;
     String ANNOTATION_ID;
     String ANNOTATION_TIER_REF;
     String ANNOTATION_REF;
     ArrayList<GlosaStep> steps;
 
-    public GlosadoAnnotationRegister(){ }
+    public AnnotationRegister(){ }
 
     public void setANNOTATION_ID(String ANNOTATION_ID) { this.ANNOTATION_ID = ANNOTATION_ID; }
 

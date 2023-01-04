@@ -1,6 +1,6 @@
 package mx.geoint.Apis.Dictionary;
 
-import mx.geoint.Model.Dictionary.DictionaryPaginate;
+import mx.geoint.Model.General.GeneralPaginateResponse;
 import mx.geoint.Model.Dictionary.DictionaryRequest;
 import mx.geoint.Model.Dictionary.DictionaryResponse;
 import mx.geoint.Database.DBDictionary;
@@ -16,10 +16,10 @@ public class DictionaryService {
         this.dbDictionary = new DBDictionary();
     }
 
-    public DictionaryResponse getRegisters(DictionaryPaginate dictionaryPaginate, String tableName) throws SQLException {
-        String search = dictionaryPaginate.getSearch();
-        int page = dictionaryPaginate.getPage();
-        int recordsPerPage = dictionaryPaginate.getRecord();
+    public DictionaryResponse getRegisters(GeneralPaginateResponse generalPaginateResponse, String tableName) throws SQLException {
+        String search = generalPaginateResponse.getSearch();
+        int page = generalPaginateResponse.getPage();
+        int recordsPerPage = generalPaginateResponse.getRecord();
 
         int currentPage = (page - 1) * recordsPerPage;
         return dbDictionary.ListRegistersDictionary(currentPage, recordsPerPage, search, tableName);

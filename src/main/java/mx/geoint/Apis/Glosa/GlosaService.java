@@ -1,7 +1,10 @@
 package mx.geoint.Apis.Glosa;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import mx.geoint.Model.Dictionary.DictionaryPaginate;
+import mx.geoint.Model.Annotation.AnnotationsRequest;
+import mx.geoint.Model.Annotation.AnnotationRequest;
+import mx.geoint.Model.Annotation.AnnotationRegister;
+import mx.geoint.Model.General.GeneralPaginateResponse;
 import mx.geoint.Model.Glosado.*;
 import mx.geoint.Controllers.ParseXML.ParseXML;
 import mx.geoint.Model.ParseXML.Tier;
@@ -44,9 +47,9 @@ public class GlosaService {
      * @return ArrayList<Glosa> un arreglo del modelo de glosa
      * @throws IOException
      */
-    public static ArrayList<Glosa> process() throws IOException {
+    public static ArrayList<GlosaResponse> process() throws IOException {
         String s;
-        ArrayList<Glosa> result_list = new ArrayList<>();
+        ArrayList<GlosaResponse> result_list = new ArrayList<>();
 
         File f = new File("src/main/resources/");
         String absolute = f.getAbsolutePath();
@@ -58,7 +61,7 @@ public class GlosaService {
         while ((s = stdInput.readLine()) != null) {
             ObjectMapper mapper = new ObjectMapper();
             Map<String, Object> map = mapper.readValue(s, Map.class);
-            Glosa glosa = new Glosa((int) map.get("id"), map.get("word").toString(), (ArrayList<GlosaStep>) map.get("steps"));
+            GlosaResponse glosa = new GlosaResponse((int) map.get("id"), map.get("word").toString(), (ArrayList<GlosaStep>) map.get("steps"));
 
             result_list.add(glosa);
         }
@@ -75,10 +78,10 @@ public class GlosaService {
      * @return ArrayList<Glosa> una lista de modelo glosa
      * @throws SQLException
      */
-    public static ArrayList<Glosa> textProcess(String annotation) throws SQLException {
+    public static ArrayList<GlosaResponse> textProcess(String annotation) throws SQLException {
         //String[] textList = annotation.trim().toLowerCase().replaceAll("[^a-z üáéíóúñ\'-]", "").replaceAll("\\s{2,}", " ").split(" ");
         String[] textList = annotation.trim().replaceAll("\\s{2,}", " ").split(" ");
-        ArrayList<Glosa> result_list = new ArrayList<>();
+        ArrayList<GlosaResponse> result_list = new ArrayList<>();
         ArrayList<GlosaStep> glosaSteps = new ArrayList<>();
         int i = 0;
 
@@ -91,7 +94,7 @@ public class GlosaService {
                 glosaSteps.add(glosaStep);
             }
         }
-        result_list.add(new Glosa(1, annotation, glosaSteps));
+        result_list.add(new GlosaResponse(1, annotation, glosaSteps));
         return result_list;
     }
 
@@ -101,8 +104,8 @@ public class GlosaService {
      * @return ArrayList<Glosa> lista del modelo glosa
      * @throws SQLException
      */
-    public static ArrayList<Glosa> ArrayProcess(GlosaRequest glosaRequest) throws SQLException {
-        ArrayList<Glosa> result_list = new ArrayList<>();
+    public static ArrayList<GlosaResponse> ArrayProcess(GlosaRequest glosaRequest) throws SQLException {
+        ArrayList<GlosaResponse> result_list = new ArrayList<>();
         int i = 0;
         for (String annotation : glosaRequest.getAnnotations()) {
             i += 1;
@@ -120,7 +123,7 @@ public class GlosaService {
                 }
             }
 
-            result_list.add(new Glosa(i, annotation, glosaSteps));
+            result_list.add(new GlosaResponse(i, annotation, glosaSteps));
         }
         return result_list;
     }
@@ -138,24 +141,24 @@ public class GlosaService {
         return new ArrayList<>(parseXML.getTier());
     }
 
-    public Boolean saveAnnotation(GlosaAnnotationsRequest glosaAnnotationsRequest) throws SQLException, ParserConfigurationException, IOException, TransformerException, SAXException {
-        boolean isNew = glosaAnnotationsRequest.getNew();
+    public Boolean saveAnnotation(AnnotationsRequest annotationsRequest) throws SQLException, ParserConfigurationException, IOException, TransformerException, SAXException {
+        boolean isNew = annotationsRequest.getNew();
         if(isNew == true){
-            int projectId = glosaAnnotationsRequest.getProjectID();
+            int projectId = annotationsRequest.getProjectID();
             int glossingAnnotationInEaf = dbProjects.getGlossingAnnotationInEaf(projectId);
-            return  dbProjects.setGlossingAnnotationToEaf(projectId, (glossingAnnotationInEaf+1), glosaAnnotationsRequest);
+            return  dbProjects.setGlossingAnnotationToEaf(projectId, (glossingAnnotationInEaf+1), annotationsRequest);
         }else{
-            setGlossingAnnotationToEaf(glosaAnnotationsRequest);
+            setGlossingAnnotationToEaf(annotationsRequest);
             return  true;
         }
 
     }
 
-    public ReportsResponse getRegisters(DictionaryPaginate dictionaryPaginate) throws SQLException {
-        int page = dictionaryPaginate.getPage();
-        Integer id_project = dictionaryPaginate.getId();
-        int recordsPerPage = dictionaryPaginate.getRecord();
-        String search = dictionaryPaginate.getSearch();
+    public ReportsResponse getRegisters(GeneralPaginateResponse generalPaginateResponse) throws SQLException {
+        int page = generalPaginateResponse.getPage();
+        Integer id_project = generalPaginateResponse.getId();
+        int recordsPerPage = generalPaginateResponse.getRecord();
+        String search = generalPaginateResponse.getSearch();
 
         int currentPage = (page - 1) * recordsPerPage;
         return dbReports.ListRegisters(currentPage, recordsPerPage, id_project, search);
@@ -171,41 +174,41 @@ public class GlosaService {
         return dbReports.newRegister(id_project, title, report, tipo, comentario, "");
     }
 
-    public Boolean editAnnotation(GlosaUpdateAnnotationRequest glosaUpdateAnnotationRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException, SQLException {
-        return dbReports.newAnnotationReport(glosaUpdateAnnotationRequest);
+    public Boolean editAnnotation(AnnotationRequest annotationRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException, SQLException {
+        return dbReports.newAnnotationReport(annotationRequest);
     }
 
-    public void setGlossingAnnotationToEaf(GlosaAnnotationsRequest glosaAnnotationsRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException {
-        String projectName = glosaAnnotationsRequest.getFilePath();
-        String annotationId = glosaAnnotationsRequest.getAnnotationID();
+    public void setGlossingAnnotationToEaf(AnnotationsRequest annotationsRequest) throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        String projectName = annotationsRequest.getFilePath();
+        String annotationId = annotationsRequest.getAnnotationID();
         String annotationREF = "";
-        if(glosaAnnotationsRequest.getAnnotationREF().isEmpty()){
-            annotationREF = glosaAnnotationsRequest.getAnnotationID();
+        if(annotationsRequest.getAnnotationREF().isEmpty()){
+            annotationREF = annotationsRequest.getAnnotationID();
         }else{
-            annotationREF = glosaAnnotationsRequest.getAnnotationREF();
+            annotationREF = annotationsRequest.getAnnotationREF();
         }
-        ArrayList<GlosaStep> steps = glosaAnnotationsRequest.getSteps();
+        ArrayList<GlosaStep> steps = annotationsRequest.getSteps();
 
         ParseXML parseXML = new ParseXML(projectName, "Glosado");
         parseXML.writeElement(annotationREF, annotationId, steps);
     }
 
 
-    public Boolean savedAnnotationV2(GlosaAnnotationsRequest glosaAnnotationsRequest) throws SQLException, ParserConfigurationException, IOException, TransformerException, SAXException {
-        boolean isNew = glosaAnnotationsRequest.getNew();
+    public Boolean savedAnnotationV2(AnnotationsRequest annotationsRequest) throws SQLException, ParserConfigurationException, IOException, TransformerException, SAXException {
+        boolean isNew = annotationsRequest.getNew();
 
         if(isNew == true){
-            return dbAnnotations.newRegister(glosaAnnotationsRequest);
+            return dbAnnotations.newRegister(annotationsRequest);
         }else{
-            return dbAnnotations.updateRegister(glosaAnnotationsRequest);
+            return dbAnnotations.updateRegister(annotationsRequest);
         }
     }
 
-    public ArrayList<GlosadoAnnotationRegister> savedAnnotationList(int project_id) throws SQLException {
+    public ArrayList<AnnotationRegister> savedAnnotationList(int project_id) throws SQLException {
         return dbAnnotations.getAnnotationList(project_id);
     }
 
-    public GlosadoAnnotationRegister getAnnotationRecord(int project_id, String annotation_ref) throws SQLException {
+    public AnnotationRegister getAnnotationRecord(int project_id, String annotation_ref) throws SQLException {
         return dbAnnotations.getAnnotationRecord(project_id, annotation_ref);
     }
 }
