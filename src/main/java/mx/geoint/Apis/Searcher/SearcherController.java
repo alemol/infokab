@@ -1,9 +1,9 @@
 package mx.geoint.Apis.Searcher;
 
 import mx.geoint.Controllers.Logger.Logger;
-import mx.geoint.Model.Search.Search;
+import mx.geoint.Model.Search.SearchRequest;
 import mx.geoint.Model.Search.SearchPage;
-import mx.geoint.Model.Search.SearchDoc;
+import mx.geoint.Model.Search.SearchLuceneDoc;
 import mx.geoint.Model.Search.SearchResponse;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +30,9 @@ public class SearcherController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<SearchResponse> search(@RequestBody Search search){
+    public ResponseEntity<SearchResponse> search(@RequestBody SearchRequest searchRequest){
         try{
-            String text = search.getText();
+            String text = searchRequest.getText();
             SearchResponse response = searcherService.findDocuments(text);
 
             if(response != null){
@@ -51,12 +51,12 @@ public class SearcherController {
 
     @RequestMapping(path = "/page", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ArrayList<SearchDoc>> searchPaginate(@RequestBody SearchPage searchPage){
+    public ResponseEntity<ArrayList<SearchLuceneDoc>> searchPaginate(@RequestBody SearchPage searchPage){
         String text = searchPage.getText();
         int page = searchPage.getPage();
 
         try{
-            ArrayList<SearchDoc> response = searcherService.findDocumentsPage(text, page);
+            ArrayList<SearchLuceneDoc> response = searcherService.findDocumentsPage(text, page);
 
             if(response != null){
                 return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -74,8 +74,8 @@ public class SearcherController {
 
     @RequestMapping(path = "/multiple", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<SearchResponse> searchMultiple(@RequestBody Search search){
-        String text = search.getText();
+    public ResponseEntity<SearchResponse> searchMultiple(@RequestBody SearchRequest searchRequest){
+        String text = searchRequest.getText();
         try{
             SearchResponse response = searcherService.findDocumentsMultiple(text);
             return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -92,11 +92,11 @@ public class SearcherController {
 
     @RequestMapping(path = "/multiple/page", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ArrayList<SearchDoc>> searchPaginateMultiple(@RequestBody SearchPage searchPage){
+    public ResponseEntity<ArrayList<SearchLuceneDoc>> searchPaginateMultiple(@RequestBody SearchPage searchPage){
         String text = searchPage.getText();
         int page = searchPage.getPage();
         try{
-            ArrayList<SearchDoc> response = searcherService.findDocumentsPageMultiple(text, page);
+            ArrayList<SearchLuceneDoc> response = searcherService.findDocumentsPageMultiple(text, page);
 
             if(response != null){
                 return ResponseEntity.status(HttpStatus.OK).body(response);

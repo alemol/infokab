@@ -1,6 +1,6 @@
 package mx.geoint.Model.Dictionary;
 
-public class DictionaryDoc {
+public class DictionaryPostgresRegister {
     String id;
     String clave;
     String codigo;

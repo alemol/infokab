@@ -4,19 +4,19 @@ import java.util.ArrayList;
 
 public class SearchResponse {
 
-    private ArrayList<SearchDoc> documents;
+    private ArrayList<SearchLuceneDoc> documents;
     private long totalHits;
 
-    public SearchResponse(ArrayList<SearchDoc> documents, long totalHits) {
+    public SearchResponse(ArrayList<SearchLuceneDoc> documents, long totalHits) {
         this.documents = documents;
         this.totalHits = totalHits;
     }
 
-    public ArrayList<SearchDoc> getDocuments() {
+    public ArrayList<SearchLuceneDoc> getDocuments() {
         return documents;
     }
 
-    public void setDocuments(ArrayList<SearchDoc> documents) {
+    public void setDocuments(ArrayList<SearchLuceneDoc> documents) {
         this.documents = documents;
     }
 

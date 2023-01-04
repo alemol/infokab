@@ -7,7 +7,7 @@ import org.apache.commons.io.FilenameUtils;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-public class SearchDoc {
+public class SearchLuceneDoc {
     private String filePath;
     private String fileName;
     private String text;
@@ -23,7 +23,7 @@ public class SearchDoc {
 
     private float endTime;
 
-    public SearchDoc(String filePath, String fileName, String text, float score) throws FileNotFoundException {
+    public SearchLuceneDoc(String filePath, String fileName, String text, float score) throws FileNotFoundException {
         this.filePath = filePath;
         this.fileName = fileName;
         this.text = text;

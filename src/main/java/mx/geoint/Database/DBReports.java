@@ -2,7 +2,7 @@ package mx.geoint.Database;
 
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Model.Glosado.GlosaUpdateAnnotationRequest;
-import mx.geoint.Model.Report.ReportDoc;
+import mx.geoint.Model.Report.ReportPostgresRegister;
 import mx.geoint.Controllers.ParseXML.ParseXML;
 import mx.geoint.Model.Report.ReportsResponse;
 import mx.geoint.pathSystem;
@@ -103,8 +103,8 @@ public class DBReports {
     }
 
     public ReportsResponse ListRegisters(int offset, int noOfRecords, Integer id, String search) throws SQLException {
-        ArrayList<ReportDoc> results = new ArrayList<ReportDoc>();
-        ReportDoc reportDoc = null;
+        ArrayList<ReportPostgresRegister> results = new ArrayList<ReportPostgresRegister>();
+        ReportPostgresRegister reportDoc = null;
         int totalHits = 0;
 
         Connection conn = credentials.getConnection();
@@ -125,7 +125,7 @@ public class DBReports {
         ResultSet rs = preparedStatement.executeQuery();
 
         while (rs.next()) {
-            reportDoc = new ReportDoc();
+            reportDoc = new ReportPostgresRegister();
             reportDoc.setId(rs.getString(1));
             reportDoc.setId_proyecto(rs.getString(2));
             reportDoc.setTitulo(rs.getString(3));

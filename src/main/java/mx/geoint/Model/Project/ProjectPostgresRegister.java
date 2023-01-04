@@ -1,8 +1,6 @@
 package mx.geoint.Model.Project;
 
-import java.sql.Timestamp;
-
-public class ProjectRegistration {
+public class ProjectPostgresRegister {
     String id_proyecto;
     String id_usuario;
     String nombre_proyecto;

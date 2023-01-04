@@ -3,7 +3,7 @@ package mx.geoint.Database;
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Model.Glosado.GlosaAnnotationsRequest;
 import mx.geoint.Model.Glosado.GlosaStep;
-import mx.geoint.Model.Project.ProjectRegistration;
+import mx.geoint.Model.Project.ProjectPostgresRegister;
 import mx.geoint.Controllers.ParseXML.ParseXML;
 import org.apache.commons.io.FilenameUtils;
 import org.xml.sax.SAXException;
@@ -70,17 +70,17 @@ public class DBProjects {
         return id_project;
     }
 
-    public ProjectRegistration getProjectById(String id) throws  SQLException {
+    public ProjectPostgresRegister getProjectById(String id) throws  SQLException {
         String SQL_QUERY = "SELECT p.id_proyecto, p.nombre_proyecto, p.ruta_trabajo FROM proyectos as p WHERE p.id_proyecto = " + id;
 
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         ResultSet rs = preparedStatement.executeQuery();
 
-        ProjectRegistration projectRegister = null;
+        ProjectPostgresRegister projectRegister = null;
 
         while(rs.next()) {
-            projectRegister = new ProjectRegistration();
+            projectRegister = new ProjectPostgresRegister();
             projectRegister.setId_proyecto(rs.getString(1));
             projectRegister.setNombre_proyecto(rs.getString(2));
             projectRegister.setRuta_trabajo(rs.getString(3));
@@ -91,9 +91,9 @@ public class DBProjects {
 
     }
 
-    public ArrayList<ProjectRegistration> ListProjects() throws SQLException {
-        ArrayList<ProjectRegistration> result = new ArrayList<>();
-        ProjectRegistration projectRegistrations = null;
+    public ArrayList<ProjectPostgresRegister> ListProjects() throws SQLException {
+        ArrayList<ProjectPostgresRegister> result = new ArrayList<>();
+        ProjectPostgresRegister projectRegistrations = null;
         String SQL_QUERY =  "select p.id_proyecto, p.id_usuario, p.nombre_proyecto, p.ruta_trabajo, p.fecha_creacion, p.estado, p.fecha_archivo, p.hablantes, p.ubicacion, p.radio, p.bounds, p.total_de_anotaciones, count(distinct r.id) as total_de_reportes, count(distinct g.id) as total_de_anotaciones \n" +
                             "FROM proyectos as p \n" +
                             "left join reportes as r on r.id_proyecto = p.id_proyecto and r.activate=true\n" +
@@ -112,7 +112,7 @@ public class DBProjects {
                 random_save = (int)Math.floor(Math.random()*(random_total-1+1)+1);
             }
 
-            projectRegistrations = new ProjectRegistration();
+            projectRegistrations = new ProjectPostgresRegister();
             projectRegistrations.setId_proyecto(rs.getString(1));
             projectRegistrations.setId_usuario(rs.getString(2));
             projectRegistrations.setNombre_proyecto(rs.getString(3));

@@ -4,7 +4,7 @@ import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Model.Dictionary.DictionaryPaginate;
 import mx.geoint.Model.Glosado.*;
 import mx.geoint.Model.ParseXML.Tier;
-import mx.geoint.Model.Project.ProjectRegistration;
+import mx.geoint.Model.Project.ProjectPostgresRegister;
 import mx.geoint.Model.Report.ReportRequest;
 import mx.geoint.Model.Report.ReportsResponse;
 import mx.geoint.Database.DBProjects;
@@ -86,11 +86,11 @@ public class GlosaController {
 
     @RequestMapping(path="/project", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ProjectRegistration> getProjectById(@RequestBody Map<String, String> body) throws IOException, SQLException {
+    public ResponseEntity<ProjectPostgresRegister> getProjectById(@RequestBody Map<String, String> body) throws IOException, SQLException {
         String project_id = body.get("project");
 
         DBProjects dbProjects = new DBProjects();
-        ProjectRegistration result = dbProjects.getProjectById(project_id);
+        ProjectPostgresRegister result = dbProjects.getProjectById(project_id);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
@@ -108,7 +108,7 @@ public class GlosaController {
         //arrayList.add("04_02_01092022_11_SCY_C_2_2");
         try {
             DBProjects dbProjects = new DBProjects();
-            ArrayList<ProjectRegistration> result = dbProjects.ListProjects();
+            ArrayList<ProjectPostgresRegister> result = dbProjects.ListProjects();
             return ResponseEntity.status(HttpStatus.OK).body(result);
         }catch (SQLException e){
             logger.appendToFile(e);

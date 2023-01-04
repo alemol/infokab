@@ -1,7 +1,7 @@
 package mx.geoint.Database;
 
 import mx.geoint.Model.Dictionary.DictionaryRequest;
-import mx.geoint.Model.Dictionary.DictionaryDoc;
+import mx.geoint.Model.Dictionary.DictionaryPostgresRegister;
 import mx.geoint.Model.Dictionary.DictionaryResponse;
 
 import java.sql.*;
@@ -15,8 +15,8 @@ public class DBDictionary {
     }
 
     public DictionaryResponse ListRegistersDictionary(int offset, int noOfRecords, String Search, String tableName) throws SQLException {
-        ArrayList<DictionaryDoc> results = new ArrayList<DictionaryDoc>();
-        DictionaryDoc dictionaryDoc = null;
+        ArrayList<DictionaryPostgresRegister> results = new ArrayList<DictionaryPostgresRegister>();
+        DictionaryPostgresRegister dictionaryDoc = null;
         int totalHits = 0;
 
         Connection conn = credentials.getConnection();
@@ -27,7 +27,7 @@ public class DBDictionary {
         ResultSet rs = preparedStatement.executeQuery();
 
         while (rs.next()) {
-            dictionaryDoc = new DictionaryDoc();
+            dictionaryDoc = new DictionaryPostgresRegister();
             dictionaryDoc.setId(rs.getString(1));
             dictionaryDoc.setClave(rs.getString(2));
             dictionaryDoc.setCodigo(rs.getString(3));

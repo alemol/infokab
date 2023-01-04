@@ -1,23 +1,21 @@
 package mx.geoint.Model.Dictionary;
 
-import mx.geoint.Model.Dictionary.DictionaryDoc;
-
 import java.util.ArrayList;
 
 public class DictionaryResponse {
-    private ArrayList<DictionaryDoc> registers;
+    private ArrayList<DictionaryPostgresRegister> registers;
     private long totalHits;
 
-    public DictionaryResponse(ArrayList<DictionaryDoc> registers, long totalHits) {
+    public DictionaryResponse(ArrayList<DictionaryPostgresRegister> registers, long totalHits) {
         this.registers = registers;
         this.totalHits = totalHits;
     }
 
-    public ArrayList<DictionaryDoc> getRegisters() {
+    public ArrayList<DictionaryPostgresRegister> getRegisters() {
         return registers;
     }
 
-    public void setRegisters(ArrayList<DictionaryDoc> registers) { this.registers = registers; }
+    public void setRegisters(ArrayList<DictionaryPostgresRegister> registers) { this.registers = registers; }
 
     public long getTotalHits() {
         return totalHits;

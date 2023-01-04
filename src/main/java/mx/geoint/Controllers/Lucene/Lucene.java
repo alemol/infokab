@@ -1,7 +1,7 @@
 package mx.geoint.Controllers.Lucene;
 
 import com.google.gson.Gson;
-import mx.geoint.Model.Search.SearchDoc;
+import mx.geoint.Model.Search.SearchLuceneDoc;
 import mx.geoint.Model.Search.SearchResponse;
 import mx.geoint.Model.ParseXML.Tier;
 import mx.geoint.pathSystem;
@@ -126,7 +126,7 @@ public class Lucene{
         TopDocs hits = indexSearcher.search(new_query, 10);
         System.out.println("totalHits: " + hits.totalHits);
 
-        ArrayList<SearchDoc> results = new ArrayList<SearchDoc>();
+        ArrayList<SearchLuceneDoc> results = new ArrayList<SearchLuceneDoc>();
 
         for (ScoreDoc scoreDoc: hits.scoreDocs) {
             int docId = scoreDoc.doc;
@@ -139,7 +139,7 @@ public class Lucene{
             String content = hitDoc.get("contents");
 
 
-            SearchDoc doc = new SearchDoc(path, fileName, content, docScore);
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore);
             results.add(doc);
         }
 
@@ -150,7 +150,7 @@ public class Lucene{
         return searchResponse;
     }
 
-    public ArrayList<SearchDoc> searchPaginate(String search, int page) throws IOException, ParseException {
+    public ArrayList<SearchLuceneDoc> searchPaginate(String search, int page) throws IOException, ParseException {
         System.out.println("pagina="+ page);
         Analyzer analyzer = new StandardAnalyzer();
         Directory directory = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
@@ -166,7 +166,7 @@ public class Lucene{
         TopDocs hits = collector.topDocs(startIndex, 10);
         System.out.println("totalHits: " + hits.totalHits);
 
-        ArrayList<SearchDoc> results = new ArrayList<SearchDoc>();
+        ArrayList<SearchLuceneDoc> results = new ArrayList<SearchLuceneDoc>();
 
         for (ScoreDoc scoreDoc: hits.scoreDocs) {
             int docId = scoreDoc.doc;
@@ -179,7 +179,7 @@ public class Lucene{
             String content = hitDoc.get("contents");
 
 
-            SearchDoc doc = new SearchDoc(path, fileName, content, docScore);
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore);
             results.add(doc);
         }
 
@@ -222,7 +222,7 @@ public class Lucene{
         System.out.println("totalHits: " + hits.totalHits);
 
         //Obtención de información de los documentos encontrados
-        ArrayList<SearchDoc> results = new ArrayList<SearchDoc>();
+        ArrayList<SearchLuceneDoc> results = new ArrayList<SearchLuceneDoc>();
 
         for (ScoreDoc scoreDoc: hits.scoreDocs) {
             int docId = scoreDoc.doc;
@@ -235,7 +235,7 @@ public class Lucene{
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
 
-            SearchDoc doc = new SearchDoc(path, fileName, content, docScore);
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore);
             results.add(doc);
         }
 
@@ -245,7 +245,7 @@ public class Lucene{
         return searchResponse;
     }
 
-    public ArrayList<SearchDoc> searchPaginateMultiple(String search, int page) throws IOException, ParseException {
+    public ArrayList<SearchLuceneDoc> searchPaginateMultiple(String search, int page) throws IOException, ParseException {
         List<IndexReader> indexReaders = new ArrayList<>();
 
         Analyzer analyzer = new StandardAnalyzer();
@@ -278,7 +278,7 @@ public class Lucene{
         System.out.println("totalHits: " + hits.totalHits);
 
         //Obtención de información de los documentos encontrados
-        ArrayList<SearchDoc> results = new ArrayList<SearchDoc>();
+        ArrayList<SearchLuceneDoc> results = new ArrayList<SearchLuceneDoc>();
 
         for (ScoreDoc scoreDoc: hits.scoreDocs) {
             int docId = scoreDoc.doc;
@@ -291,7 +291,7 @@ public class Lucene{
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
 
-            SearchDoc doc = new SearchDoc(path, fileName, content, docScore);
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore);
             results.add(doc);
         }
 
