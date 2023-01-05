@@ -121,8 +121,8 @@ public class GlosaService {
         }
         ArrayList<GlosaStep> steps = annotationsRequest.getSteps();
 
-        ParseXML parseXML = new ParseXML(projectName, "Glosado");
-        parseXML.writeElement(annotationREF, annotationId, steps);
+        WriteXML writeXML = new WriteXML(projectName);
+        writeXML.writeElement(annotationREF, annotationId, steps);
     }
 
 

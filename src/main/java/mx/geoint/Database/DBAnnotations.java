@@ -2,6 +2,7 @@ package mx.geoint.Database;
 
 import com.google.gson.Gson;
 import mx.geoint.Controllers.Logger.Logger;
+import mx.geoint.Controllers.WriteXML.WriteXML;
 import mx.geoint.Model.Annotation.AnnotationsRequest;
 import mx.geoint.Model.Glosado.GlosaStep;
 import mx.geoint.Model.Annotation.AnnotationRegister;
@@ -113,8 +114,8 @@ public class DBAnnotations {
         boolean answer = false;
 
         try{
-            ParseXML parseXML = new ParseXML(projectName, "Glosado");
-            parseXML.writeElement(annotationREF, annotationId, steps);
+            WriteXML writeXML = new WriteXML(projectName);
+            writeXML.writeElement(annotationREF, annotationId, steps);
             conn.commit();
 
             if(rs>0){
@@ -180,8 +181,8 @@ public class DBAnnotations {
         boolean answer = false;
 
         try{
-            ParseXML parseXML = new ParseXML(projectName, "Glosado");
-            parseXML.writeElement(annotationREF, annotationId, steps);
+            WriteXML writeXML = new WriteXML(projectName);
+            writeXML.writeElement(annotationREF, annotationId, steps);
             conn.commit();
 
             if(rs>0){

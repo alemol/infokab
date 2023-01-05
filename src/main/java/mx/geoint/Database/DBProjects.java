@@ -1,6 +1,7 @@
 package mx.geoint.Database;
 
 import mx.geoint.Controllers.Logger.Logger;
+import mx.geoint.Controllers.WriteXML.WriteXML;
 import mx.geoint.Model.Annotation.AnnotationsRequest;
 import mx.geoint.Model.Glosado.GlosaStep;
 import mx.geoint.Model.Project.ProjectPostgresRegister;
@@ -219,8 +220,8 @@ public class DBProjects {
         preparedStatement.setObject(2, id_project);
         int rs = preparedStatement.executeUpdate();
         try{
-            ParseXML parseXML = new ParseXML(projectName, "Glosado");
-            parseXML.writeElement(annotationREF, annotationId, steps);
+            WriteXML writeXML = new WriteXML(projectName);
+            writeXML.writeElement(annotationREF, annotationId, steps);
 
             conn.commit();
             if(rs>0){

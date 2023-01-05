@@ -1,6 +1,7 @@
 package mx.geoint.Database;
 
 import mx.geoint.Controllers.Logger.Logger;
+import mx.geoint.Controllers.WriteXML.WriteXML;
 import mx.geoint.Model.Annotation.AnnotationRequest;
 import mx.geoint.Model.Report.ReportPostgresRegister;
 import mx.geoint.Controllers.ParseXML.ParseXML;
@@ -73,8 +74,8 @@ public class DBReports {
 
         boolean answer;
         try {
-            ParseXML parseXML = new ParseXML(projectName, pathSystem.TIER_MAIN);
-            parseXML.editAnnotation(annotationId, annotationValue, pathSystem.TIER_MAIN);
+            WriteXML writeXML = new WriteXML(projectName);
+            writeXML.editAnnotation(annotationId, annotationValue, pathSystem.TIER_MAIN);
 
             conn.commit();
             answer = true;

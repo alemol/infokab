@@ -75,7 +75,6 @@ public class WriteXML {
     }
 
     public void writeAnnotationRegisters(ArrayList<AnnotationRegister> annotationRegisters) throws ParserConfigurationException, TransformerException, IOException, SAXException {
-        System.out.println("writeAnnotationRegisters " + filePath);
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document document = db.parse(new File(filePath));
