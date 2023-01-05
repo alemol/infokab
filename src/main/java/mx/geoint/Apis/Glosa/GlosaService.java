@@ -1,6 +1,7 @@
 package mx.geoint.Apis.Glosa;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import mx.geoint.Controllers.WriteXML.WriteXML;
 import mx.geoint.Model.Annotation.AnnotationsRequest;
 import mx.geoint.Model.Annotation.AnnotationRequest;
 import mx.geoint.Model.Annotation.AnnotationRegister;
@@ -135,11 +136,28 @@ public class GlosaService {
         }
     }
 
+    public Boolean savedAnnotationV3(AnnotationsRequest annotationsRequest) throws SQLException, ParserConfigurationException, IOException, TransformerException, SAXException {
+        boolean isNew = annotationsRequest.getNew();
+
+        if(isNew == true){
+            return dbAnnotations.newRegisterV3(annotationsRequest);
+        }else{
+            return dbAnnotations.updateRegisterV3(annotationsRequest);
+        }
+    }
+
     public ArrayList<AnnotationRegister> savedAnnotationList(int project_id) throws SQLException {
         return dbAnnotations.getAnnotationList(project_id);
     }
 
     public AnnotationRegister getAnnotationRecord(int project_id, String annotation_ref) throws SQLException {
         return dbAnnotations.getAnnotationRecord(project_id, annotation_ref);
+    }
+
+    public Boolean saveAnnotationsToEaf(int projectID, String filePath) throws SQLException, ParserConfigurationException, IOException, TransformerException, SAXException {
+        ArrayList<AnnotationRegister> annotationList = dbAnnotations.getAnnotationList(projectID);
+        WriteXML parseXML = new WriteXML(filePath);
+        parseXML.writeAnnotationRegisters(annotationList);
+        return true;
     }
 }

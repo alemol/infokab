@@ -122,6 +122,57 @@ public class GlosaController {
         }
     }
 
+    @RequestMapping(path="/saved/annotation/v3", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Boolean> saveAnnotationsV3(@RequestBody AnnotationsRequest annotationsRequest) {
+        try{
+            Boolean answer = glosaService.savedAnnotationV3(annotationsRequest);
+            return ResponseEntity.status(HttpStatus.OK).body(answer);
+        } catch (SQLException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SQLException", e);
+        } catch (ParserConfigurationException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ParserConfigurationException", e);
+        } catch (IOException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "IOException", e);
+        } catch (TransformerException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "TransformerException", e);
+        } catch (SAXException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SAXException", e);
+        }
+    }
+
+    @RequestMapping(path="/saved/annotation/eaf", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Boolean> saveAnnotationsToEaf(@RequestBody Map<String, String> body) {
+        String filePath = body.get("filePath");
+        String projectID = body.get("projectID");
+
+        try{
+            Boolean answer = glosaService.saveAnnotationsToEaf(Integer.parseInt(projectID), filePath);
+            return ResponseEntity.status(HttpStatus.OK).body(answer);
+        } catch (SQLException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SQLException", e);
+        } catch (ParserConfigurationException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ParserConfigurationException", e);
+        } catch (IOException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "IOException", e);
+        } catch (TransformerException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "TransformerException", e);
+        } catch (SAXException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "SAXException", e);
+        }
+    }
+
     @RequestMapping(path="saved/annotation/list", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ArrayList<AnnotationRegister>> savedAnnotationsList(@RequestBody Map<String, String> body) {

@@ -13,6 +13,7 @@ import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DBAnnotations {
     private Credentials credentials;
@@ -41,8 +42,12 @@ public class DBAnnotations {
             annotationRegister.setANNOTATION_REF(row.getString(3));
             annotationRegister.setANNOTATION_TIER_REF(row.getString(4));
 
-            ArrayList<GlosaStep> steps = new Gson().fromJson(row.getString(5), ArrayList.class);
-            annotationRegister.setSteps(steps);
+            //ArrayList<GlosaStep> steps = new Gson().fromJson(row.getString(5), ArrayList.class);
+            GlosaStep[] arraySteps = new Gson().fromJson(row.getString(5), GlosaStep[].class);
+            ArrayList<GlosaStep> listSteps = new ArrayList<GlosaStep>();
+            Collections.addAll(listSteps, arraySteps);
+
+            annotationRegister.setSteps(listSteps);
 
             rs.add(annotationRegister);
         }
@@ -223,5 +228,90 @@ public class DBAnnotations {
             System.out.println("No se pudo eliminar el registro en base de datos");
             return false;
         }
+    }
+
+
+    public boolean newRegisterV3(AnnotationsRequest annotationsRequest) throws SQLException {
+        String projectName = annotationsRequest.getFilePath();
+        int projectID = annotationsRequest.getProjectID();
+        String annotationId = annotationsRequest.getAnnotationID();
+        ArrayList<GlosaStep> steps = annotationsRequest.getSteps();
+        String stepsString = new Gson().toJson(steps);
+
+        String annotationREF = "";
+        if(annotationsRequest.getAnnotationREF().isEmpty()){
+            annotationREF = annotationsRequest.getAnnotationID();
+        }else{
+            annotationREF = annotationsRequest.getAnnotationREF();
+        }
+
+        Connection conn = credentials.getConnection();
+        String SQL_INSERT = "INSERT INTO glosado (proyecto_id, anotacion_id, anotacion_ref, anotacion_tier_ref, glosado) VALUES(?,?,?,?,?) RETURNING proyecto_id";
+
+
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
+        preparedStatement.setInt(1, projectID);
+        preparedStatement.setString(2, 'g'+annotationREF);
+        preparedStatement.setString(3, annotationREF);
+        preparedStatement.setString(4, annotationId);
+        preparedStatement.setString(5, stepsString);
+        int rs = preparedStatement.executeUpdate();
+        boolean answer = false;
+
+        if(rs>0){
+            System.out.println("registro insertado en base de datos");
+            answer = true;
+        }else{
+            System.out.println("No se pudo insertar el registro en base de datos");
+            answer = false;
+        }
+
+        preparedStatement.close();
+        conn.close();
+        return answer;
+    }
+
+    public boolean updateRegisterV3(AnnotationsRequest annotationsRequest) throws SQLException {
+        String projectName = annotationsRequest.getFilePath();
+        int projectID = annotationsRequest.getProjectID();
+        String annotationId = annotationsRequest.getAnnotationID();
+        ArrayList<GlosaStep> steps = annotationsRequest.getSteps();
+        String stepsString = new Gson().toJson(steps);
+
+        String annotationREF = "";
+        if(annotationsRequest.getAnnotationREF().isEmpty()){
+            annotationREF = annotationsRequest.getAnnotationID();
+        }else{
+            annotationREF = annotationsRequest.getAnnotationREF();
+        }
+
+        Connection conn = credentials.getConnection();
+        String SQL_UPDATE = "UPDATE glosado SET proyecto_id = ?, anotacion_id = ?, anotacion_ref = ?, anotacion_tier_ref = ?, glosado = ? WHERE proyecto_id=? and anotacion_id=? and anotacion_ref = ? and anotacion_tier_ref = ?";
+
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
+        preparedStatement.setInt(1, projectID);
+        preparedStatement.setString(2, 'g'+annotationREF);
+        preparedStatement.setString(3, annotationREF);
+        preparedStatement.setString(4, annotationId);
+        preparedStatement.setString(5, stepsString);
+        preparedStatement.setInt(6, annotationsRequest.getProjectID());
+        preparedStatement.setString(7, annotationsRequest.getAnnotationID());
+        preparedStatement.setString(8, annotationsRequest.getAnnotationREF());
+        preparedStatement.setString(9, annotationREF);
+
+        int rs = preparedStatement.executeUpdate();
+        boolean answer = false;
+
+        if(rs>0){
+            System.out.println("registro insertado en base de datos");
+            answer = true;
+        }else{
+            System.out.println("No se pudo insertar el registro en base de datos");
+            answer = false;
+        }
+
+        preparedStatement.close();
+        conn.close();
+        return answer;
     }
 }
