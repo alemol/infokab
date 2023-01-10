@@ -171,7 +171,7 @@ public class ElanXmlDigester {
                             try{
                                 created = saveVideo(videoCutter, tier, tier_id, filepathMultimedia);
                             } catch (IOException e) {
-                                logger.appendToFile(e); 
+                                logger.appendToFile(e);
                             }
                             break;
                     }
