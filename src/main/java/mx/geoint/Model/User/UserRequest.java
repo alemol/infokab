@@ -1,6 +1,6 @@
 package mx.geoint.Model.User;
 
-public class User {
+public class UserRequest {
     private String uuid;
     private String nombre;
     private String apellido;
@@ -8,7 +8,7 @@ public class User {
     private String password;
     private String permisos;
 
-    public User() {
+    public UserRequest() {
         uuid = "";
         nombre = "";
         apellido = "";

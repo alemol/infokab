@@ -1,8 +1,9 @@
 package mx.geoint.Database;
 
 import mx.geoint.Controllers.Logger.Logger;
-import mx.geoint.Model.Glosado.GlosaUpdateAnnotationRequest;
-import mx.geoint.Model.Report.ReportDoc;
+import mx.geoint.Controllers.WriteXML.WriteXML;
+import mx.geoint.Model.Annotation.AnnotationRequest;
+import mx.geoint.Model.Report.ReportPostgresRegister;
 import mx.geoint.Controllers.ParseXML.ParseXML;
 import mx.geoint.Model.Report.ReportsResponse;
 import mx.geoint.pathSystem;
@@ -44,16 +45,16 @@ public class DBReports {
         return true;
     }
 
-    public Boolean newAnnotationReport(GlosaUpdateAnnotationRequest glosaUpdateAnnotationRequest) throws SQLException {
-        String projectName = glosaUpdateAnnotationRequest.getFilePath();
-        String annotationId = glosaUpdateAnnotationRequest.getAnnotationID();
-        String annotationValue = glosaUpdateAnnotationRequest.getAnnotationValue();
-        String annotationOriginal = glosaUpdateAnnotationRequest.getAnnotationOriginal();
+    public Boolean newAnnotationReport(AnnotationRequest annotationRequest) throws SQLException {
+        String projectName = annotationRequest.getFilePath();
+        String annotationId = annotationRequest.getAnnotationID();
+        String annotationValue = annotationRequest.getAnnotationValue();
+        String annotationOriginal = annotationRequest.getAnnotationOriginal();
 
-        int id_project = glosaUpdateAnnotationRequest.getProjectID();
-        String title = glosaUpdateAnnotationRequest.getTitle();
-        String report = glosaUpdateAnnotationRequest.getReport();
-        String type = glosaUpdateAnnotationRequest.getType();
+        int id_project = annotationRequest.getProjectID();
+        String title = annotationRequest.getTitle();
+        String report = annotationRequest.getReport();
+        String type = annotationRequest.getType();
 
         Connection conn = credentials.getConnection();
         conn.setAutoCommit(false);
@@ -73,8 +74,8 @@ public class DBReports {
 
         boolean answer;
         try {
-            ParseXML parseXML = new ParseXML(projectName, pathSystem.TIER_MAIN);
-            parseXML.editAnnotation(annotationId, annotationValue, pathSystem.TIER_MAIN);
+            WriteXML writeXML = new WriteXML(projectName);
+            writeXML.editAnnotation(annotationId, annotationValue, pathSystem.TIER_MAIN);
 
             conn.commit();
             answer = true;
@@ -103,8 +104,8 @@ public class DBReports {
     }
 
     public ReportsResponse ListRegisters(int offset, int noOfRecords, Integer id, String search) throws SQLException {
-        ArrayList<ReportDoc> results = new ArrayList<ReportDoc>();
-        ReportDoc reportDoc = null;
+        ArrayList<ReportPostgresRegister> results = new ArrayList<ReportPostgresRegister>();
+        ReportPostgresRegister reportDoc = null;
         int totalHits = 0;
 
         Connection conn = credentials.getConnection();
@@ -125,7 +126,7 @@ public class DBReports {
         ResultSet rs = preparedStatement.executeQuery();
 
         while (rs.next()) {
-            reportDoc = new ReportDoc();
+            reportDoc = new ReportPostgresRegister();
             reportDoc.setId(rs.getString(1));
             reportDoc.setId_proyecto(rs.getString(2));
             reportDoc.setTitulo(rs.getString(3));

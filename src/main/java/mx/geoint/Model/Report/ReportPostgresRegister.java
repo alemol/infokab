@@ -1,6 +1,6 @@
 package mx.geoint.Model.Report;
 
-public class ReportDoc {
+public class ReportPostgresRegister {
     String id;
     String id_proyecto;
     String titulo;

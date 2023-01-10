@@ -1,7 +1,7 @@
 package mx.geoint.Database;
-import mx.geoint.Model.User.UsersList;
 import mx.geoint.Model.User.UserListResponse;
-import mx.geoint.Model.User.User;
+import mx.geoint.Model.User.UserResponse;
+import mx.geoint.Model.User.UserRequest;
 
 import java.time.LocalDateTime;
 import java.sql.*;
@@ -13,12 +13,12 @@ public class DBUsers {
 
     public DBUsers(){ this.credentials = new Credentials(); }
 
-    public boolean insertUser(User user) throws SQLException {
-        System.out.println(user.getNombre());
-        System.out.println(user.getApellido());
-        System.out.println(user.getCorreo());
-        System.out.println(user.getPassword());
-        String encryptedPassword = org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPassword());
+    public boolean insertUser(UserRequest userRequest) throws SQLException {
+        System.out.println(userRequest.getNombre());
+        System.out.println(userRequest.getApellido());
+        System.out.println(userRequest.getCorreo());
+        System.out.println(userRequest.getPassword());
+        String encryptedPassword = org.apache.commons.codec.digest.DigestUtils.sha256Hex(userRequest.getPassword());
 
         System.out.println(encryptedPassword);
 
@@ -33,9 +33,9 @@ public class DBUsers {
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT);
         preparedStatement.setObject(1, uuid);
-        preparedStatement.setString(2, user.getNombre());
-        preparedStatement.setString(3, user.getApellido());
-        preparedStatement.setString(4, user.getCorreo());
+        preparedStatement.setString(2, userRequest.getNombre());
+        preparedStatement.setString(3, userRequest.getApellido());
+        preparedStatement.setString(4, userRequest.getCorreo());
         preparedStatement.setString(5, encryptedPassword);
         preparedStatement.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
 
@@ -56,14 +56,14 @@ public class DBUsers {
 
     /**
      * se encargar de verificar las credenciales de usuario y si existe devuelve su id
-     * @param user, User es la clase que contiene el correo y contraseña
+     * @param userRequest, User es la clase que contiene el correo y contraseña
      * @return UUID, String es el id_usuario
      */
-    public UserListResponse login(User user) throws SQLException {
+    public UserResponse login(UserRequest userRequest) throws SQLException {
         String UUID = null;
-        String encryptedPassword = org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPassword());
-        ArrayList<UsersList> results = new ArrayList<UsersList>();
-        UsersList userslist = null;
+        String encryptedPassword = org.apache.commons.codec.digest.DigestUtils.sha256Hex(userRequest.getPassword());
+        ArrayList<UserListResponse> results = new ArrayList<UserListResponse>();
+        UserListResponse userslist = null;
         int totalHits = 0;
 
         try {
@@ -71,12 +71,12 @@ public class DBUsers {
             String QUERY = "SELECT id_usuario, nombre, apellido, correo, permisos::text, id_rol FROM usuarios WHERE correo=? AND contraseña=?";
 
             PreparedStatement preparedStatement = conn.prepareStatement(QUERY);
-            preparedStatement.setString(1, user.getCorreo());
+            preparedStatement.setString(1, userRequest.getCorreo());
             preparedStatement.setString(2, encryptedPassword);
 
             ResultSet row = preparedStatement.executeQuery();
             while(row.next()){
-                userslist = new UsersList();
+                userslist = new UserListResponse();
                 userslist.setUUID(row.getString(1));
                 userslist.setNombres(row.getString(2));
                 userslist.setApellidos(row.getString(3));
@@ -91,8 +91,8 @@ public class DBUsers {
             preparedStatement.close();
             conn.close();
 
-            UserListResponse userListResponse = new UserListResponse(results, totalHits);
-            return userListResponse;
+            UserResponse userResponse = new UserResponse(results, totalHits);
+            return userResponse;
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
             return null;
@@ -123,9 +123,9 @@ public class DBUsers {
         }
     }
 
-    public UserListResponse getUserslist() {
-        ArrayList<UsersList> results = new ArrayList<UsersList>();
-        UsersList userslist = null;
+    public UserResponse getUserslist() {
+        ArrayList<UserListResponse> results = new ArrayList<UserListResponse>();
+        UserListResponse userslist = null;
         int totalHits = 0;
         try {
             Connection conn = credentials.getConnection();
@@ -135,7 +135,7 @@ public class DBUsers {
             ResultSet row = preparedStatement.executeQuery();
             System.out.println(preparedStatement);
             while(row.next()){
-                userslist = new UsersList();
+                userslist = new UserListResponse();
                 userslist.setUUID(row.getString(1));
                 userslist.setNombres(row.getString(2));
                 userslist.setApellidos(row.getString(3));
@@ -149,8 +149,8 @@ public class DBUsers {
             preparedStatement.close();
             conn.close();
 
-            UserListResponse userListResponse = new UserListResponse(results, totalHits);
-            return userListResponse;
+            UserResponse userResponse = new UserResponse(results, totalHits);
+            return userResponse;
 
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());

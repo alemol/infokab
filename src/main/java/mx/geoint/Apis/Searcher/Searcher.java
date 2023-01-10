@@ -1,7 +1,7 @@
 package mx.geoint.Apis.Searcher;
 
 import mx.geoint.Model.Search.SearchResponse;
-import mx.geoint.Model.Search.SearchDoc;
+import mx.geoint.Model.Search.SearchLuceneDoc;
 import mx.geoint.Controllers.Lucene.Lucene;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.stereotype.Component;
@@ -34,8 +34,8 @@ public class Searcher {
      * @param   page    la página de resultados que se necesita
      * @return          las incidencias con el resultado de la búsqueda
      */
-    public ArrayList<SearchDoc> findPage(String text, int page) throws IOException, ParseException {
-        ArrayList<SearchDoc> response = lucene.searchPaginate(text, page);
+    public ArrayList<SearchLuceneDoc> findPage(String text, int page) throws IOException, ParseException {
+        ArrayList<SearchLuceneDoc> response = lucene.searchPaginate(text, page);
         return response;
     }
 
@@ -44,8 +44,8 @@ public class Searcher {
         return response;
     }
 
-    public ArrayList<SearchDoc> findPageMultiple(String text, int page) throws IOException, ParseException {
-        ArrayList<SearchDoc> response = lucene.searchPaginateMultiple(text, page);
+    public ArrayList<SearchLuceneDoc> findPageMultiple(String text, int page) throws IOException, ParseException {
+        ArrayList<SearchLuceneDoc> response = lucene.searchPaginateMultiple(text, page);
         return response;
     }
 }

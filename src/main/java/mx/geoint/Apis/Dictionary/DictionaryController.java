@@ -1,7 +1,7 @@
 package mx.geoint.Apis.Dictionary;
 
 import mx.geoint.Controllers.Logger.Logger;
-import mx.geoint.Model.Dictionary.DictionaryPaginate;
+import mx.geoint.Model.General.GeneralPaginateResponse;
 import mx.geoint.Model.Dictionary.DictionaryRequest;
 import mx.geoint.Model.Dictionary.DictionaryResponse;
 import org.springframework.http.HttpStatus;
@@ -25,9 +25,9 @@ public class DictionaryController {
 
     @RequestMapping(path="/bases/list", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<DictionaryResponse> listBases(@RequestBody DictionaryPaginate dictionaryPaginate) {
+    public ResponseEntity<DictionaryResponse> listBases(@RequestBody GeneralPaginateResponse generalPaginateResponse) {
         try{
-            DictionaryResponse dictionaryResponse = dictionaryService.getRegisters(dictionaryPaginate, "bases");
+            DictionaryResponse dictionaryResponse = dictionaryService.getRegisters(generalPaginateResponse, "bases");
             return ResponseEntity.status(HttpStatus.OK).body(dictionaryResponse);
         } catch (SQLException e) {
             logger.appendToFile(e);
@@ -72,9 +72,9 @@ public class DictionaryController {
 
     @RequestMapping(path="/prefixes/list", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<DictionaryResponse> listPrefixes(@RequestBody DictionaryPaginate dictionaryPaginate) {
+    public ResponseEntity<DictionaryResponse> listPrefixes(@RequestBody GeneralPaginateResponse generalPaginateResponse) {
         try{
-            DictionaryResponse dictionaryResponse = dictionaryService.getRegisters(dictionaryPaginate, "prefijos");
+            DictionaryResponse dictionaryResponse = dictionaryService.getRegisters(generalPaginateResponse, "prefijos");
             return ResponseEntity.status(HttpStatus.OK).body(dictionaryResponse);
         } catch (SQLException e) {
             logger.appendToFile(e);
@@ -113,9 +113,9 @@ public class DictionaryController {
     }
     @RequestMapping(path="/suffixes/list", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<DictionaryResponse> listSuffixes(@RequestBody DictionaryPaginate dictionaryPaginate) {
+    public ResponseEntity<DictionaryResponse> listSuffixes(@RequestBody GeneralPaginateResponse generalPaginateResponse) {
         try{
-            DictionaryResponse dictionaryResponse = dictionaryService.getRegisters(dictionaryPaginate, "sufijos");
+            DictionaryResponse dictionaryResponse = dictionaryService.getRegisters(generalPaginateResponse, "sufijos");
             return ResponseEntity.status(HttpStatus.OK).body(dictionaryResponse);
         } catch (SQLException e) {
             logger.appendToFile(e);

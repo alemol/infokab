@@ -1,21 +1,19 @@
 package mx.geoint.Model.Report;
 
-import mx.geoint.Model.Report.ReportDoc;
-
 import java.util.ArrayList;
 
 public class ReportsResponse {
-    private ArrayList<ReportDoc> registers;
+    private ArrayList<ReportPostgresRegister> registers;
     private long totalHits;
 
-    public ReportsResponse(ArrayList<ReportDoc> registers, long totalHits) {
+    public ReportsResponse(ArrayList<ReportPostgresRegister> registers, long totalHits) {
         this.registers = registers;
         this.totalHits = totalHits;
     }
 
-    public void setRegisters(ArrayList<ReportDoc> registers) { this.registers = registers; }
+    public void setRegisters(ArrayList<ReportPostgresRegister> registers) { this.registers = registers; }
 
-    public ArrayList<ReportDoc> getRegisters() { return registers; }
+    public ArrayList<ReportPostgresRegister> getRegisters() { return registers; }
 
     public void setTotalHits(long totalHits) { this.totalHits = totalHits; }
 

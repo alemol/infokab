@@ -167,8 +167,12 @@ public class ElanXmlDigester {
                             }
                             break;
                         case "video/mp4":
-                            VideoCutter videoCutter = new VideoCutter();
-                            created = saveVideo(videoCutter, tier, tier_id, filepathMultimedia);
+                            VideoCutter videoCutter = new VideoCutter(filepathMultimedia);
+                            try{
+                                created = saveVideo(videoCutter, tier, tier_id, filepathMultimedia);
+                            } catch (IOException e) {
+                                logger.appendToFile(e); 
+                            }
                             break;
                     }
 
@@ -197,15 +201,16 @@ public class ElanXmlDigester {
      * @param source String, ruta del multimedia
      * @return
      */
-    public boolean saveVideo(VideoCutter videoCutter, Tier tier, String tier_id, String source){
+    public boolean saveVideo(VideoCutter videoCutter, Tier tier, String tier_id, String source) throws IOException {
         String basePath = FilenameUtils.getPath(source)+"multimedia/";
         String path = FilenameUtils.getBaseName(source);
         String type_path = FilenameUtils.getExtension(source);
 
         String file_name = format_name(tier, tier_id, path, type_path);
-        boolean created = videoCutter.Cutter(source,
+
+        boolean created = videoCutter.cortador(source,
                 (Integer.parseInt(tier.TIME_VALUE1)/1000),
-                (Integer.parseInt(tier.TIME_VALUE2)/1000),
+                (tier.DIFF_TIME/1000)+.5,
                 file_name);
 
         if(created){
@@ -213,6 +218,7 @@ public class ElanXmlDigester {
             tier.setMediaPath(basePath+file_name);
             tier.setOriginalMediaPath(source);
         }
+
         return created;
     }
 

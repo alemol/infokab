@@ -1,29 +1,27 @@
 package mx.geoint.Model.User;
 
-import mx.geoint.Model.User.UsersList;
-
-import java.util.ArrayList;
-
 public class UserListResponse {
-    private ArrayList<UsersList> users;
-    private long totalHits;
+    String uuid;
+    String nombres;
+    String apellidos;
+    String correo;
+    String permisos;
 
-    public UserListResponse(ArrayList<UsersList> users, long totalHits) {
-        this.users = users;
-        this.totalHits = totalHits;
-    }
+    Integer id_rol;
 
-    public ArrayList<UsersList> getRegisters() {
-        return users;
-    }
+    public String getUUID() { return uuid; }
+    public void setUUID(String uuid) { this.uuid = uuid; }
+    public String getNombres() { return nombres; }
+    public void setNombres(String nombres) { this.nombres = nombres; }
+    public String getApellidos() { return apellidos; }
+    public void setApellidos(String apellidos) { this.apellidos = apellidos; }
+    public String getCorreo() { return correo; }
+    public void setCorreo(String correo) { this.correo = correo; }
 
-    public void setRegisters(ArrayList<UsersList> registers) { this.users = users; }
+    public String getPermisos() { return permisos; }
+    public void setPermisos(String permisos) { this.permisos = permisos; }
 
-    public long getTotalHits() {
-        return totalHits;
-    }
+    public Integer getId_rol() { return id_rol; }
+    public void setId_rol(Integer id_rol) { this.id_rol = id_rol; }
 
-    public void setTotalHits(long totalHits) {
-        this.totalHits = totalHits;
-    }
 }

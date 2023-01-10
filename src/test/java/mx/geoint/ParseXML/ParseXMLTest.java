@@ -2,6 +2,7 @@ package mx.geoint.ParseXML;
 
 import com.google.gson.Gson;
 import mx.geoint.Controllers.ParseXML.ParseXML;
+import mx.geoint.Controllers.WriteXML.WriteXML;
 import mx.geoint.Model.ParseXML.Tier;
 import mx.geoint.Model.Glosado.GlosaStep;
 import mx.geoint.pathSystem;
@@ -328,8 +329,8 @@ class ParseXMLTest {
         glosaSteps.add(new GlosaStep(2, "ma'alobon", "ma'alobon", null, null));
         glosaSteps.add(new GlosaStep(3, "bejla'e'", "bejla'e'",null, "(bejla'e') = hoy[bejla'e']"));
 
-        ParseXML parseXML = new ParseXML(path_eaf, tier_id);
-        parseXML.writeElement("a283", "a284", glosaSteps);
+        WriteXML writeXML = new WriteXML(path_eaf);
+        writeXML.writeElement("a283", "a284", glosaSteps);
     }
 
     @Test
@@ -398,9 +399,9 @@ class ParseXMLTest {
     }
 
     void changeAnnotationinTier(String tier_id, String path_eaf) throws ParserConfigurationException, IOException, TransformerException, SAXException {
-        ParseXML parseXML = new ParseXML(path_eaf, tier_id);
-        parseXML.editAnnotation("a284",  "to'one' ma'alobon bejla'e'  chéen yaan horaa beya''", pathSystem.TIER_MAIN);
-        parseXML.editAnnotation("a55",  "kek  bin xan jaan", pathSystem.TIER_MAIN);
+        WriteXML writeXML = new WriteXML(path_eaf);
+        writeXML.editAnnotation("a284",  "to'one' ma'alobon bejla'e'  chéen yaan horaa beya''", pathSystem.TIER_MAIN);
+        writeXML.editAnnotation("a55",  "kek  bin xan jaan", pathSystem.TIER_MAIN);
     }
 
     @Test

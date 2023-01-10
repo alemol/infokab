@@ -1,16 +1,16 @@
-package mx.geoint.Model.Dictionary;
+package mx.geoint.Model.General;
 
-public class DictionaryPaginate {
+public class GeneralPaginateResponse {
     private int page;
     private int record;
     private String search;
     private Integer id;
 
-    public DictionaryPaginate(){
+    public GeneralPaginateResponse(){
         this.page = 1;
         this.record = 10;
     }
-    public DictionaryPaginate(int page, int record, String search){
+    public GeneralPaginateResponse(int page, int record, String search){
         if(page <= 0){
             this.page = 1;
         }else{

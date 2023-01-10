@@ -1,10 +1,11 @@
-package mx.geoint.Model.Glosado;
+package mx.geoint.Model.Annotation;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import mx.geoint.Model.Glosado.GlosaStep;
 
 import java.util.ArrayList;
 
-public class GlosaAnnotationsRequest {
+public class AnnotationsRequest {
     private String filePath;
     private int projectID;
 
@@ -18,8 +19,8 @@ public class GlosaAnnotationsRequest {
     private String annotationREF;
     private ArrayList<GlosaStep> steps;
 
-    public GlosaAnnotationsRequest(){ }
-    public GlosaAnnotationsRequest(String filePath, String annotationID, ArrayList<GlosaStep> steps){
+    public AnnotationsRequest(){ }
+    public AnnotationsRequest(String filePath, String annotationID, ArrayList<GlosaStep> steps){
         this.filePath = filePath;
         this.annotationID = annotationID;
         this.steps = steps;

@@ -1,6 +1,6 @@
 package mx.geoint.Download;
 
-import mx.geoint.Model.Search.SearchDoc;
+import mx.geoint.Model.Search.SearchLuceneDoc;
 import mx.geoint.Model.Search.SearchResponse;
 import mx.geoint.Apis.Searcher.Searcher;
 import org.apache.lucene.queryparser.classic.ParseException;
@@ -65,7 +65,7 @@ public class DownloadTest {
 
         System.out.println(results.getTotalHits());
         //System.out.print(results.getDocuments());
-        ArrayList<SearchDoc> documentsResult = results.getDocuments();
+        ArrayList<SearchLuceneDoc> documentsResult = results.getDocuments();
         //System.out.print(documentsResult);
 
         List<String> filePaths = new ArrayList<String>();

@@ -1,10 +1,10 @@
 package mx.geoint.Model.Search;
 
-public class Search {
+public class SearchRequest {
     private String text;
 
-    public Search(){}
-    public Search(String text) {
+    public SearchRequest(){}
+    public SearchRequest(String text) {
         this.text = text;
     }
 

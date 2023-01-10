@@ -3,14 +3,14 @@ package mx.geoint.Apis.User;
 import com.google.gson.JsonObject;
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Database.DBUsers;
-import mx.geoint.Model.User.User;
+import mx.geoint.Model.User.UserRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import mx.geoint.Model.User.UserListResponse;
+import mx.geoint.Model.User.UserResponse;
 
 import java.sql.SQLException;
 
@@ -28,10 +28,10 @@ public class userController {
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public boolean createUser(@RequestBody User user) {
+    public boolean createUser(@RequestBody UserRequest userRequest) {
         try{
             System.out.println("Create user");
-            boolean creationUser = database.insertUser(user);
+            boolean creationUser = database.insertUser(userRequest);
 
             return creationUser;
         } catch (SQLException e) {
@@ -42,17 +42,17 @@ public class userController {
 
     /**
      *
-     * @param user, User es la clase que contiene el correo y contraseña
+     * @param userRequest, User es la clase que contiene el correo y contraseña
      * @return
      */
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity loginUser(@RequestBody User user){
+    public ResponseEntity loginUser(@RequestBody UserRequest userRequest){
 
         try{
-            UserListResponse userListResponse = database.login(user);
-            if (userListResponse.getTotalHits() ==1) {
-                return ResponseEntity.status(HttpStatus.OK).body(userListResponse);
+            UserResponse userResponse = database.login(userRequest);
+            if (userResponse.getTotalHits() ==1) {
+                return ResponseEntity.status(HttpStatus.OK).body(userResponse);
             } else {
                 return createdResponseEntity(HttpStatus.CONFLICT, "No existe usuario", false);
             }
@@ -91,14 +91,14 @@ public class userController {
 
         Boolean haspermission = true;
         if (haspermission == true) {
-            UserListResponse userListResponse = database.getUserslist();
-            System.out.println(userListResponse.getTotalHits());
+            UserResponse userResponse = database.getUserslist();
+            System.out.println(userResponse.getTotalHits());
             //return createdResponseEntity(HttpStatus.CONFLICT, "No tiene permiso", false);
-            return ResponseEntity.status(HttpStatus.OK).body(userListResponse);
+            return ResponseEntity.status(HttpStatus.OK).body(userResponse);
         } else {
-            UserListResponse userListResponse = database.getUserslist();
+            UserResponse userResponse = database.getUserslist();
             //return createdResponseEntity(HttpStatus.CONFLICT, "No tiene permiso", false);
-            return ResponseEntity.status(HttpStatus.OK).body(userListResponse);
+            return ResponseEntity.status(HttpStatus.OK).body(userResponse);
         }
     }
 

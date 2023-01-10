@@ -2,7 +2,7 @@ package mx.geoint.Lucene;
 
 import mx.geoint.Controllers.Lucene.Lucene;
 import mx.geoint.Controllers.ElanXmlDigester.ElanXmlDigester;
-import mx.geoint.Model.Search.SearchDoc;
+import mx.geoint.Model.Search.SearchLuceneDoc;
 import mx.geoint.Model.Search.SearchResponse;
 import mx.geoint.pathSystem;
 import org.apache.lucene.document.Document;
@@ -64,7 +64,7 @@ class LuceneTest {
     @Test
     void searchPaginate() throws IOException, ParseException {
         initLucene();
-        ArrayList<SearchDoc> docs = lucene.searchPaginate("ma'", 1);
+        ArrayList<SearchLuceneDoc> docs = lucene.searchPaginate("ma'", 1);
     }
 
     @Test
