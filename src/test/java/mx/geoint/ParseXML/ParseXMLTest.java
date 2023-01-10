@@ -11,6 +11,8 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
@@ -407,5 +409,21 @@ class ParseXMLTest {
         String tier_id_transcripcion = "transpcion ortografica";
 
         changeAnnotationinTier(tier_id_transcripcion,"./eafs/"+path);
+    }
+
+
+    @Test
+    void runShortLink(){
+        URLConnection conn = null;
+        String bitlyLink = null;
+        try {
+            URL inputURL = new URL("https://goo.gl/maps/8mEHtfdMP7cxppe76");
+            conn = inputURL.openConnection();
+            conn.getHeaderFields();
+            System.out.println("Original URL: "+ conn.getURL());
+
+        } catch(Exception e) {
+            System.out.println("Error: "+ e.getMessage());
+        }
     }
 }
