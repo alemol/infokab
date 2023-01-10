@@ -40,7 +40,7 @@ public class VideoCutter {
         // creamos el cuerpo del comando que se va a ejecutar.
         Process p = Runtime.getRuntime().exec(new String[]{
                 "ffmpeg",
-                "-y -i",
+                "-i",
                 source,
                 "-ss",
                 String.valueOf(start),
@@ -62,7 +62,7 @@ public class VideoCutter {
         }
         // Recorremos la salida e imprimimos los errores.
         while ((s = stdError.readLine()) != null) {
-            if(s.indexOf("size=")==0) {
+            if(s.indexOf("frame=")==0) {
                 //System.out.println(s.indexOf("size=")+" "+s);
                 creado = true;
             }

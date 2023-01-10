@@ -72,10 +72,11 @@ public class DBProjects {
     }
 
     public ProjectPostgresRegister getProjectById(String id) throws  SQLException {
-        String SQL_QUERY = "SELECT p.id_proyecto, p.nombre_proyecto, p.ruta_trabajo FROM proyectos as p WHERE p.id_proyecto = " + id;
+        String SQL_QUERY = "SELECT p.id_proyecto, p.nombre_proyecto, p.ruta_trabajo, p.id_usuario FROM proyectos as p WHERE p.id_proyecto=?";
 
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
+        preparedStatement.setInt(1, Integer.parseInt(id));
         ResultSet rs = preparedStatement.executeQuery();
 
         ProjectPostgresRegister projectRegister = null;
@@ -85,6 +86,7 @@ public class DBProjects {
             projectRegister.setId_proyecto(rs.getString(1));
             projectRegister.setNombre_proyecto(rs.getString(2));
             projectRegister.setRuta_trabajo(rs.getString(3));
+            projectRegister.setId_usuario(rs.getString(4));
         }
         rs.close();
         conn.close();

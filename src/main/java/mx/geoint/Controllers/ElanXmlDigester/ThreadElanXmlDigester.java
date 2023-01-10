@@ -23,8 +23,7 @@ public class ThreadElanXmlDigester extends Thread{
             if(elanXmlDigester.isEmpty()){
                 deactivate();
             } else {
-                //process();
-                validateProcess();
+                process();
             }
         }
     }
@@ -72,7 +71,7 @@ public class ThreadElanXmlDigester extends Thread{
 
             Date startDate = new Date();
             ElanXmlDigester currentElanXmlDigester = elanXmlDigester.poll();
-            currentElanXmlDigester.parse_tier("Transcripción Ortográfico", true, true);
+            currentElanXmlDigester.parse_tier(pathSystem.TIER_MAIN, true, true);
 
             String uuid = currentElanXmlDigester.getUUID();
             Lucene lucene = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+uuid+"/");
@@ -84,35 +83,6 @@ public class ThreadElanXmlDigester extends Thread{
             long difference_In_Seconds = (difference_In_Time / (1000)) % 60;
             long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
             System.out.println("TIMER FINISHED THREAD: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
-        } catch (ParserConfigurationException e) {
-            logger.appendToFile(e);
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            logger.appendToFile(e);
-            throw new RuntimeException(e);
-        } catch (SAXException e) {
-            logger.appendToFile(e);
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
-     * Proceso para validar un archivo eaf
-     */
-    public void validateProcess(){
-        try{
-            Date startDate = new Date();
-            ElanXmlDigester currentElanXmlDigester = elanXmlDigester.poll();
-            currentElanXmlDigester.validateElanXmlDigester();
-
-            Date endDate = new Date();
-            long difference_In_Time = endDate.getTime() - startDate.getTime();
-            long difference_In_Seconds = (difference_In_Time / (1000)) % 60;
-            long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
-            System.out.println("TIMER FINISHED THREAD: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
-        } catch (SQLException e) {
-            logger.appendToFile(e);
-            throw new RuntimeException(e);
         } catch (ParserConfigurationException e) {
             logger.appendToFile(e);
             throw new RuntimeException(e);
