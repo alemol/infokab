@@ -12,8 +12,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
@@ -415,16 +414,19 @@ class ParseXMLTest {
 
     @Test
     void runShortLink(){
-        URLConnection conn = null;
-        String bitlyLink = null;
         try {
-            URL inputURL = new URL("https://goo.gl/maps/8mEHtfdMP7cxppe76");
-            conn = inputURL.openConnection();
-            conn.getHeaderFields();
-            System.out.println("Original URL: "+ conn.getURL());
+            URL url = new URL("https://www.google");
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
-        } catch(Exception e) {
-            System.out.println("Error: "+ e.getMessage());
+            //conn = inputURL.openConnection();
+            httpURLConnection.getHeaderFields();
+            System.out.println("Original URL: "+ httpURLConnection.getURL());
+            httpURLConnection.disconnect();
+
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException("ERROR!!!:"+ e);
         }
     }
 }

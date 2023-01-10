@@ -11,8 +11,11 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.Map;
 
 @CrossOrigin(origins = {"http://infokaab.com/", "http://infokaab.com.mx/", "http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009", "http://10.2.102.182"})
 @RestController
@@ -165,5 +168,22 @@ public class UploadFilesController {
         }
 
         return new ResponseEntity<>(answerJsonObject.toString(), headers, code);
+    }
+
+    @RequestMapping(path="/validate/link", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<URL> validateLink(@RequestBody Map<String, String> body) {
+        String link = body.get("link");
+
+        try{
+            URL url = uploadFilesService.validateLink(link);
+            return ResponseEntity.status(HttpStatus.OK).body(url);
+        } catch (MalformedURLException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
+        } catch (IOException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
+        }
     }
 }
