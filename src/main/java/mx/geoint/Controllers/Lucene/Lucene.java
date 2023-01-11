@@ -5,6 +5,7 @@ import mx.geoint.Model.Search.SearchLuceneDoc;
 import mx.geoint.Model.Search.SearchResponse;
 import mx.geoint.Model.ParseXML.Tier;
 import mx.geoint.pathSystem;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -21,6 +22,8 @@ import org.apache.lucene.store.FSDirectory;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -138,8 +141,8 @@ public class Lucene{
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
 
-
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore);
+            String[] imageList = null;
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList);
             results.add(doc);
         }
 
@@ -178,8 +181,8 @@ public class Lucene{
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
 
-
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore);
+            String[] imageList = null;
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList);
             results.add(doc);
         }
 
@@ -235,7 +238,33 @@ public class Lucene{
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
 
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore);
+            //System.out.println("PATH: "+ hitDoc.get("path"));
+            String[] arrOfStr = hitDoc.get("path").split("file_to_index");
+            //System.out.println(arrOfStr[0]);
+            String imagesDir = arrOfStr[0] + "Images/";
+            String[] imageList = null ;
+
+            if (Files.exists(Path.of(imagesDir))){
+                String[] pathnames;
+
+                File f = new File(imagesDir);
+
+                pathnames = f.list();
+                if(pathnames.length>0){
+                    for (String pathname : pathnames) {
+                        String x = FilenameUtils.getBaseName(pathname);
+                    }
+                    imageList=pathnames;
+
+                }else{
+                    imageList= null;
+                }
+            }
+
+
+
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList);
+
             results.add(doc);
         }
 
@@ -291,7 +320,8 @@ public class Lucene{
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
 
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore);
+            String[] imageList = null;
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList);
             results.add(doc);
         }
 

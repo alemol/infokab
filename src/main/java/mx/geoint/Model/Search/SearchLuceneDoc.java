@@ -23,7 +23,9 @@ public class SearchLuceneDoc {
 
     private float endTime;
 
-    public SearchLuceneDoc(String filePath, String fileName, String text, float score) throws FileNotFoundException {
+    private String[] imageList;
+
+    public SearchLuceneDoc(String filePath, String fileName, String text, float score, String[] imageList) throws FileNotFoundException {
         this.filePath = filePath;
         this.fileName = fileName;
         this.text = text;
@@ -40,6 +42,8 @@ public class SearchLuceneDoc {
         originalPath = tier.ORIGINAL_MEDIA_PATH.replace("./Files/", "/");
         startTime = Float.parseFloat(tier.TIME_VALUE1) / 1000;
         endTime = Float.parseFloat(tier.TIME_VALUE2) / 1000;
+
+        this.imageList = imageList;
     }
 
     public String getFilePath() {
@@ -101,4 +105,7 @@ public class SearchLuceneDoc {
     public void setEndTime(float endTime) {
         this.endTime = endTime;
     }
+
+    public String[] getimageList(){return imageList;}
+    public void setimageList(String[] imageList) { this.imageList = imageList; }
 }
