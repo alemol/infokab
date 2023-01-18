@@ -25,23 +25,23 @@ public class SearchLuceneDoc {
 
     private String[] imageList;
 
-    public SearchLuceneDoc(String filePath, String fileName, String text, float score, String[] imageList) throws FileNotFoundException {
+    public SearchLuceneDoc(String filePath, String fileName, String text, float score, String multimedia, String[] imageList) throws FileNotFoundException {
         this.filePath = filePath;
         this.fileName = fileName;
         this.text = text;
         this.score = score;
 
-        FileReader reader = new FileReader(filePath);
-        Gson gson = new Gson();
-        Tier tier = gson.fromJson(reader, Tier.class);
+        //FileReader reader = new FileReader(filePath);
+        //Gson gson = new Gson();
+        //Tier tier = gson.fromJson(reader, Tier.class);
 
-        basePath = FilenameUtils.getPath(tier.MEDIA_PATH).replace("./Files/","/");
-        multimediaName = FilenameUtils.getBaseName(tier.MEDIA_PATH);
-        typePath = FilenameUtils.getExtension(tier.MEDIA_PATH);
+        basePath = FilenameUtils.getPath(multimedia).replace("./Files/","/");
+        multimediaName = FilenameUtils.getBaseName(multimedia);
+        typePath = FilenameUtils.getExtension(multimedia);
 
-        originalPath = tier.ORIGINAL_MEDIA_PATH.replace("./Files/", "/");
-        startTime = Float.parseFloat(tier.TIME_VALUE1) / 1000;
-        endTime = Float.parseFloat(tier.TIME_VALUE2) / 1000;
+        //originalPath = tier.ORIGINAL_MEDIA_PATH.replace("./Files/", "/");
+        //startTime = Float.parseFloat(tier.TIME_VALUE1) / 1000;
+        //endTime = Float.parseFloat(tier.TIME_VALUE2) / 1000;
 
         this.imageList = imageList;
     }

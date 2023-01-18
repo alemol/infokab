@@ -35,6 +35,7 @@ public class Lucene{
     public static final String FIELD_PATH = "path";
     public static final String FIELD_NAME = "filename";
     public static final String FIELD_CONTENTS = "contents";
+    public static final String FIELD_PATH_MULTIMEDIA = "multimedia";
 
     private static final int MAX_RESULTS = 9999;
 
@@ -104,6 +105,7 @@ public class Lucene{
             FileReader reader = new FileReader(file);
             Gson gson = new Gson();
             Tier tier = gson.fromJson(reader, Tier.class);
+            document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.YES));
             document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE, Field.Store.YES));
 
             indexWriter.addDocument(document);
@@ -141,9 +143,10 @@ public class Lucene{
             String path = hitDoc.get("path");
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
+            String multimedia = hitDoc.get("multimedia");
 
             String[] imageList = null;
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList);
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, multimedia, imageList);
             results.add(doc);
         }
 
@@ -181,9 +184,10 @@ public class Lucene{
             String path = hitDoc.get("path");
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
+            String multimedia = hitDoc.get("multimedia");
 
             String[] imageList = null;
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList);
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, multimedia, imageList);
             results.add(doc);
         }
 
@@ -243,6 +247,7 @@ public class Lucene{
             String path = hitDoc.get("path");
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
+            String multimedia = hitDoc.get("multimedia");
 
             //System.out.println("PATH: "+ hitDoc.get("path"));
             String[] arrOfStr = hitDoc.get("path").split("file_to_index");
@@ -269,7 +274,7 @@ public class Lucene{
 
 
 
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList);
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, multimedia, imageList);
 
             results.add(doc);
         }
@@ -291,10 +296,15 @@ public class Lucene{
         File[] files = dir.listFiles();
         for (File file : files) {
             if(file.isDirectory()){
-                Directory directory = FSDirectory.open(Paths.get(file.getCanonicalPath()));
-                //Condición para no tomar los directorios que estan agregando al momento
-                if(DirectoryReader.indexExists(directory)){
-                    indexReaders.add(DirectoryReader.open(directory));
+                File[] list_files = file.listFiles();
+                for (File aux_file : list_files) {
+                    if(file.isDirectory()) {
+                        Directory directory = FSDirectory.open(Paths.get(aux_file.getCanonicalPath()));
+                        //Condición para no tomar los directorios que estan agregando al momento
+                        if(DirectoryReader.indexExists(directory)){
+                            indexReaders.add(DirectoryReader.open(directory));
+                        }
+                    }
                 }
             }
         }
@@ -325,9 +335,10 @@ public class Lucene{
             String path = hitDoc.get("path");
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
+            String multimedia = hitDoc.get("multimedia");
 
             String[] imageList = null;
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList);
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, multimedia, imageList);
             results.add(doc);
         }
 
