@@ -142,7 +142,8 @@ public class Lucene{
             String content = hitDoc.get("contents");
 
             String[] imageList = null;
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList);
+            String fecha_archivo = null, entidad = null, municipio = null;
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, entidad, municipio);
             results.add(doc);
         }
 
@@ -182,7 +183,8 @@ public class Lucene{
             String content = hitDoc.get("contents");
 
             String[] imageList = null;
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList);
+            String fecha_archivo = null, entidad = null, municipio = null;
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, entidad, municipio);
             results.add(doc);
         }
 
@@ -261,9 +263,9 @@ public class Lucene{
                 }
             }
 
+            String fecha_archivo = null, entidad = null, municipio = null;
 
-
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList);
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, entidad, municipio);
 
             results.add(doc);
         }
@@ -321,7 +323,8 @@ public class Lucene{
             String content = hitDoc.get("contents");
 
             String[] imageList = null;
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList);
+            String fecha_archivo = null, entidad = null, municipio = null;
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, entidad, municipio);
             results.add(doc);
         }
 
