@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
-@CrossOrigin(origins = {"http://infokaab.com/","http://infokaab.com.mx/","http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182"})
+//@CrossOrigin(origins = {"http://infokaab.com/","http://infokaab.com.mx/","http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182"})
 @RestController
 @RequestMapping(path = "api/project")
 public class ProjectController {
@@ -43,6 +43,20 @@ public class ProjectController {
     public ResponseEntity<ArrayList<?>> getProjects() {
         try {
             ArrayList<ProjectPostgresRegister> result = projectService.getProjects();
+            return ResponseEntity.status(HttpStatus.OK).body(result);
+        }catch (SQLException e){
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SQLException", e);
+        }
+    }
+
+    @RequestMapping(path="/delete", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Boolean> deleteProject(@RequestBody Map<String, String> body) {
+        try {
+            String projectID = body.get("projectID");
+            String projectName = body.get("projectName");
+            boolean result  = projectService.deleteProject(projectID, projectName);
             return ResponseEntity.status(HttpStatus.OK).body(result);
         }catch (SQLException e){
             logger.appendToFile(e);

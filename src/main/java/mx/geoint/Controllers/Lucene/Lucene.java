@@ -26,6 +26,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Lucene{
@@ -207,10 +208,15 @@ public class Lucene{
         File[] files = dir.listFiles();
         for (File file : files) {
             if(file.isDirectory()){
-                Directory directory = FSDirectory.open(Paths.get(file.getCanonicalPath()));
-                //Condición para no tomar los directorios que estan agregando al momento
-                if(DirectoryReader.indexExists(directory)){
-                    indexReaders.add(DirectoryReader.open(directory));
+                File[] list_files = file.listFiles();
+                for (File aux_file : list_files) {
+                    if(file.isDirectory()) {
+                        Directory directory = FSDirectory.open(Paths.get(aux_file.getCanonicalPath()));
+                        //Condición para no tomar los directorios que estan agregando al momento
+                        if(DirectoryReader.indexExists(directory)){
+                            indexReaders.add(DirectoryReader.open(directory));
+                        }
+                    }
                 }
             }
         }

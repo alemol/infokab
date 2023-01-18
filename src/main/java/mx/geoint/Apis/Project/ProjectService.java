@@ -27,4 +27,8 @@ public class ProjectService {
         ArrayList<ProjectPostgresRegister> result = this.dbProjects.ListProjects();
         return result;
     }
+
+    public Boolean deleteProject(String projectID, String projectName) throws SQLException {
+        return this.dbProjects.deleteProject(Integer.parseInt(projectID), projectName);
+    }
 }

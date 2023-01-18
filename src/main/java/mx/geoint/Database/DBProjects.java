@@ -6,6 +6,8 @@ import mx.geoint.Model.Annotation.AnnotationsRequest;
 import mx.geoint.Model.Glosado.GlosaStep;
 import mx.geoint.Model.Project.ProjectPostgresRegister;
 import mx.geoint.Controllers.ParseXML.ParseXML;
+import mx.geoint.pathSystem;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.xml.sax.SAXException;
 
@@ -294,5 +296,49 @@ public class DBProjects {
             System.out.println("No se pudo actualizar el registro en base de datos");
             return false;
         }
+    }
+
+    public boolean deleteProject(int projectID, String projectName) throws SQLException {
+        boolean result = false;
+
+        Connection conn = credentials.getConnection();
+        conn.setAutoCommit(false);
+
+        String SQL_QUERY_GLOSADO = "DELETE FROM glosado WHERE proyecto_id=?";
+        PreparedStatement preparedStatement_glosa = conn.prepareStatement(SQL_QUERY_GLOSADO);
+        preparedStatement_glosa.setInt(1, projectID);
+
+        String SQL_QUERY_REPORTS = "DELETE FROM reportes WHERE id_proyecto=?";
+        PreparedStatement preparedStatement_report = conn.prepareStatement(SQL_QUERY_REPORTS);
+        preparedStatement_report.setInt(1, projectID);
+
+        //String SQL_QUERY_PROJECTS = "DELETE FROM proyectos WHERE id_proyecto=?";
+        //PreparedStatement preparedStatement_project = conn.prepareStatement(SQL_QUERY_PROJECTS);
+        //preparedStatement_project.setInt(1, projectID);
+
+        try{
+
+            File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL+"maya/"+projectName+"/");
+            FileUtils.deleteDirectory(dir.getCanonicalFile());
+
+            preparedStatement_glosa.executeUpdate();
+            preparedStatement_report.executeUpdate();
+            //preparedStatement_project.executeUpdate();
+            conn.commit();
+            result = true;
+        }catch (SQLException e){
+            logger.appendToFile(e);
+            conn.rollback();
+            result = false;
+        } catch (IOException e) {
+            logger.appendToFile(e);
+            conn.rollback();
+            result = false;
+        } finally {
+            conn.close();
+        }
+
+        conn.close();
+        return result;
     }
 }

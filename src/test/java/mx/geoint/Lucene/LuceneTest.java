@@ -1,10 +1,12 @@
 package mx.geoint.Lucene;
 
+import ch.qos.logback.core.util.FileUtil;
 import mx.geoint.Controllers.Lucene.Lucene;
 import mx.geoint.Controllers.ElanXmlDigester.ElanXmlDigester;
 import mx.geoint.Model.Search.SearchLuceneDoc;
 import mx.geoint.Model.Search.SearchResponse;
 import mx.geoint.pathSystem;
+import org.apache.commons.io.FileUtils;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.TextField;
@@ -14,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -88,5 +91,11 @@ class LuceneTest {
         document2.add(new TextField("contents", "bueeno tuun ch'aalun", Field.Store.YES));
         indexWriter.addDocument(document2);
         indexWriter.close();
+    }
+
+    @Test
+    void deleteIndex() throws IOException {
+        File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL+"maya/04_006_05112022_05_MCC_E_2_1_1672857256919");
+        FileUtils.deleteDirectory(dir.getCanonicalFile());
     }
 }

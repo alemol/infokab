@@ -24,13 +24,14 @@ public class LuceneService {
         ProjectPostgresRegister projectPostgresRegister = this.dbProjects.getProjectById(projectID);
         String uuid = projectPostgresRegister.getId_usuario();
         String pathEAF = projectPostgresRegister.getRuta_trabajo()+projectPostgresRegister.getNombre_proyecto()+".eaf";
+        String projectName = projectPostgresRegister.getNombre_proyecto();
         String pathMultimedia = projectPostgresRegister.getRuta_trabajo()+projectPostgresRegister.getNombre_proyecto()+".wav";
 
         ElanXmlDigester elanXmlDigester = new ElanXmlDigester(pathEAF, pathMultimedia, uuid, Integer.parseInt(projectID));
         elanXmlDigester.parse_tier(pathSystem.TIER_MAIN, true, true);
 
-        Lucene lucene = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+uuid+"/");
-        lucene.initConfig(false);
+        Lucene lucene = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/maya/"+projectName+"/");
+        lucene.initConfig(true);
         lucene.createIndex(elanXmlDigester.basePathJsonFiles());
     }
 }
