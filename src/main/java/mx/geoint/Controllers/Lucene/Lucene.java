@@ -242,6 +242,7 @@ public class Lucene {
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
 
+            System.out.println("path: "+path.split("/")[4]);
             String[] imageList = find_images(hitDoc.get("path"));
 
             String fecha_archivo = "2022-11-05", entidad = "Campeche", municipio = "Hopelchén";
@@ -324,7 +325,6 @@ public class Lucene {
             pathnames = f.list();
             if (pathnames.length > 0) {
                 imageList = pathnames;
-
             } else {
                 imageList = null;
             }
