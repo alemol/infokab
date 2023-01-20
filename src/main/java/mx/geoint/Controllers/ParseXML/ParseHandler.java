@@ -58,6 +58,7 @@ public class ParseHandler extends DefaultHandler{
     //Objecto para almacenar los tiempo
     JsonObject jsonObjectTimeOrder = new JsonObject();
     JsonObject jsonObjectRefTimer = new JsonObject();
+    JsonObject jsonObjectRefTranscription = new JsonObject();
 
     ParseHandler(){
         this.tier_id = "";
@@ -88,15 +89,18 @@ public class ParseHandler extends DefaultHandler{
         }
 
         if(flag_text){
-            if(current_tier_id.equals(pathSystem.TIER_MAIN) || current_tier_id.equals(pathSystem.TIER_DEFAULT) ){
+            if(current_tier_id.equals(pathSystem.TIER_MAIN) ||
+                current_tier_id.equals(pathSystem.TIER_DEFAULT) ||
+                current_tier_id.equals(pathSystem.TIER_TRANSLATE)){
                 String annotation_value = new String(ch, start, length);
                 if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
                     latestTier(tierList).setAnnotationValue(annotation_value);
                 }
-                if(tier_id.isEmpty()) {
-                    List getTierList = tiersList.get(current_tier_id);
-                    latestTier(getTierList).setAnnotationValue(annotation_value);
-                }
+
+                //if(tier_id.isEmpty()) {
+                //    List getTierList = tiersList.get(current_tier_id);
+                //    latestTier(getTierList).setAnnotationValue(annotation_value);
+                //}
             }
         }
     }
@@ -161,14 +165,14 @@ public class ParseHandler extends DefaultHandler{
                 String normalize = Normalizer.normalize(LINGUISTIC_TYPE_REF.toLowerCase(), Normalizer.Form.NFD);
                 current_tier_id = normalize.replaceAll("[^\\p{ASCII}]", "");
 
-                if(tier_id.isEmpty()){
-                    if(current_tier_id.equals(pathSystem.TIER_MAIN) || current_tier_id.equals(pathSystem.TIER_DEFAULT) ){
-                        List getTierList = tiersList.get(current_tier_id);
-                        if(getTierList == null){
-                            tiersList.put(current_tier_id, new ArrayList<>());
-                        }
-                    }
-                }
+                //if(tier_id.isEmpty()){
+                //    if(current_tier_id.equals(pathSystem.TIER_MAIN) || current_tier_id.equals(pathSystem.TIER_DEFAULT) ){
+                //        List getTierList = tiersList.get(current_tier_id);
+                //        if(getTierList == null){
+                //            tiersList.put(current_tier_id, new ArrayList<>());
+                //        }
+                //    }
+                //}
 
                 break;
             case ALIGNABLE_ANNOTATION:
@@ -189,15 +193,15 @@ public class ParseHandler extends DefaultHandler{
                     tierList.add(new Tier(ANNOTATION_ID, TIME_SLOT_REF1, TIME_VALUE1, TIME_SLOT_REF2, TIME_VALUE2));
                 }
 
-                if(tier_id.isEmpty()){
-                    List getTierList = tiersList.get(current_tier_id);
-                    getTierList.add(new Tier(ANNOTATION_ID, TIME_SLOT_REF1, TIME_VALUE1, TIME_SLOT_REF2, TIME_VALUE2));
-                    tiersList.put(current_tier_id, getTierList);
-                }
+                //if(tier_id.isEmpty()){
+                //    List getTierList = tiersList.get(current_tier_id);
+                //    getTierList.add(new Tier(ANNOTATION_ID, TIME_SLOT_REF1, TIME_VALUE1, TIME_SLOT_REF2, TIME_VALUE2));
+                //    tiersList.put(current_tier_id, getTierList);
+                //}
 
                 break;
             case REF_ANNOTATION:
-                if(current_tier_id.equals(pathSystem.TIER_MAIN) || current_tier_id.equals(pathSystem.TIER_DEFAULT) ){
+                if(current_tier_id.equals(pathSystem.TIER_MAIN)){
                     String REF_ANNOTATION_ID = attr.getValue("ANNOTATION_ID");
                     String REF_ANNOTATION_REF = attr.getValue("ANNOTATION_REF");
 
@@ -207,14 +211,36 @@ public class ParseHandler extends DefaultHandler{
                     String REF_TIME_VALUE1 = REF_VALUES.get("TIME_VALUE1").getAsString();
                     String REF_TIME_VALUE2 = REF_VALUES.get("TIME_VALUE2").getAsString();
 
+                    JsonObject jsonObjectTranscription= new JsonObject();
+                    jsonObjectTranscription.addProperty("TIME_SLOT_REF1", REF_TIME_SLOT_REF1);
+                    jsonObjectTranscription.addProperty("TIME_SLOT_REF2", REF_TIME_SLOT_REF2);
+                    jsonObjectTranscription.addProperty("TIME_VALUE1", REF_TIME_VALUE1);
+                    jsonObjectTranscription.addProperty("TIME_VALUE2", REF_TIME_VALUE2);
+                    jsonObjectRefTranscription.add(REF_ANNOTATION_ID, jsonObjectTranscription);
+
                     if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
                         tierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
                     }
 
-                    if(tier_id.isEmpty()){
-                        List getTierList = tiersList.get(current_tier_id);
-                        getTierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
-                        tiersList.put(current_tier_id, getTierList);
+                    //if(tier_id.isEmpty()){
+                    //    List getTierList = tiersList.get(current_tier_id);
+                    //    getTierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
+                    //    tiersList.put(current_tier_id, getTierList);
+                    //}
+                }
+
+                if(current_tier_id.equals(pathSystem.TIER_TRANSLATE)){
+                    String REF_ANNOTATION_ID = attr.getValue("ANNOTATION_ID");
+                    String REF_ANNOTATION_REF = attr.getValue("ANNOTATION_REF");
+
+                    JsonObject REF_VALUES_TRANSCRIPTION = jsonObjectRefTranscription.getAsJsonObject(REF_ANNOTATION_REF);
+                    String REF_TIME_SLOT_REF1 = REF_VALUES_TRANSCRIPTION.get("TIME_SLOT_REF1").getAsString();
+                    String REF_TIME_SLOT_REF2 = REF_VALUES_TRANSCRIPTION.get("TIME_SLOT_REF2").getAsString();
+                    String REF_TIME_VALUE1 = REF_VALUES_TRANSCRIPTION.get("TIME_VALUE1").getAsString();
+                    String REF_TIME_VALUE2 = REF_VALUES_TRANSCRIPTION.get("TIME_VALUE2").getAsString();
+
+                    if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
+                        tierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
                     }
                 }
                 break;

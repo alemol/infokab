@@ -30,9 +30,10 @@ public class LuceneController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Boolean> indexLucene(@RequestBody Map<String, String> body) throws IOException {
         String projectID = body.get("projectID");
+        String indexName = "ALL";
 
         try{
-            luceneService.indexLucene(projectID);
+            luceneService.indexLucene(projectID, indexName);
             return ResponseEntity.status(HttpStatus.OK).body(true);
         } catch (SQLException e) {
             logger.appendToFile(e);

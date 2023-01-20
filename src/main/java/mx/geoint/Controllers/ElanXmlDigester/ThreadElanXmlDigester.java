@@ -48,7 +48,7 @@ public class ThreadElanXmlDigester extends Thread{
                 this.wait();
             } catch (InterruptedException e) {
                 logger.appendToFile(e);
-                throw new RuntimeException(e);
+                //throw new RuntimeException(e);
             }
         }
     }
@@ -68,15 +68,16 @@ public class ThreadElanXmlDigester extends Thread{
      */
     public void process(){
         try{
-
             Date startDate = new Date();
             ElanXmlDigester currentElanXmlDigester = elanXmlDigester.poll();
+            currentElanXmlDigester.validateElanXmlDigester();
             currentElanXmlDigester.parse_tier(pathSystem.TIER_MAIN, true, true);
+            currentElanXmlDigester.parse_tier(pathSystem.TIER_TRANSLATE, true, true);
 
-            String uuid = currentElanXmlDigester.getUUID();
-            Lucene lucene = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+uuid+"/");
-            lucene.initConfig(false);
-            lucene.createIndex(currentElanXmlDigester.basePathJsonFiles());
+            //String uuid = currentElanXmlDigester.getUUID();
+            //Lucene lucene = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+uuid+"/");
+            //lucene.initConfig(false);
+            //lucene.createIndex(currentElanXmlDigester.basePathJsonFiles());
 
             Date endDate = new Date();
             long difference_In_Time = endDate.getTime() - startDate.getTime();
@@ -85,13 +86,16 @@ public class ThreadElanXmlDigester extends Thread{
             System.out.println("TIMER FINISHED THREAD: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
         } catch (ParserConfigurationException e) {
             logger.appendToFile(e);
-            throw new RuntimeException(e);
+            //throw new RuntimeException(e);
         } catch (IOException e) {
             logger.appendToFile(e);
-            throw new RuntimeException(e);
+            //throw new RuntimeException(e);
         } catch (SAXException e) {
             logger.appendToFile(e);
-            throw new RuntimeException(e);
+            //throw new RuntimeException(e);
+        } catch (SQLException e) {
+            logger.appendToFile(e);
+            //throw new RuntimeException(e);
         }
     }
 }

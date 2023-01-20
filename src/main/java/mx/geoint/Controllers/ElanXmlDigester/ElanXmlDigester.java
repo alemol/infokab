@@ -263,7 +263,16 @@ public class ElanXmlDigester {
         Gson gson = new Gson();
 
         String basePath = FilenameUtils.getPath(filepathEaf);
-        String currentDirectory = existDirectory(basePath);
+        String currentDirectory = "";
+
+        if(tier_id == pathSystem.TIER_MAIN) {
+            currentDirectory = existDirectory(basePath + "/"+pathSystem.INDEX_LANGUAJE_MAYA+"/");
+        }
+
+        if(tier_id == pathSystem.TIER_TRANSLATE){
+            currentDirectory = existDirectory(basePath+ "/"+pathSystem.INDEX_LANGUAJE_SPANISH+"/");
+        }
+
 
         FileWriter file = new FileWriter( currentDirectory + file_name_json);
         file.write(gson.toJson(tier));
@@ -279,7 +288,8 @@ public class ElanXmlDigester {
      * @return
      */
     public String format_name(Tier tier, String tier_id, String path, String type_file){
-        String name_file = String.format("%s_%s_%s_%s_%s_%s_%s.%s", tier.ANNOTATION_ID, tier_id, tier.TIME_SLOT_REF1, tier.TIME_SLOT_REF2, tier.TIME_VALUE1, tier.TIME_VALUE2, path, type_file);
+        //String name_file = String.format("%s_%s_%s_%s_%s_%s_%s.%s", tier.ANNOTATION_ID, tier_id, tier.TIME_SLOT_REF1, tier.TIME_SLOT_REF2, tier.TIME_VALUE1, tier.TIME_VALUE2, path, type_file);
+        String name_file = String.format("%s_%s_%s_%s_%s_%s.%s", tier.ANNOTATION_ID, tier.TIME_SLOT_REF1, tier.TIME_SLOT_REF2, tier.TIME_VALUE1, tier.TIME_VALUE2, path, type_file);
         return name_file;
     }
 
@@ -289,7 +299,7 @@ public class ElanXmlDigester {
      * @return
      */
     private String existDirectory(String pathDirectory){
-        String currentDirectory = pathDirectory + "file_to_index/";
+        String currentDirectory = pathDirectory;
 
         if(!Files.exists(Path.of(currentDirectory))){
             File newSubDirectory = new File(currentDirectory);

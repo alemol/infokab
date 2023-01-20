@@ -33,7 +33,7 @@ public class FFmpeg {
         existDirectory(basePath);
         // Comprobamos si existe un archivo cortado con el mismo nomnbre, si existe mandamos a llamar a la función que lo elimina.
         if (if_exist(basePath+output)) {
-            eliminar(basePath+output);
+            return true;
         }
 
 
