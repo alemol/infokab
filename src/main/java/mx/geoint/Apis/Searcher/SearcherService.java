@@ -23,9 +23,11 @@ public class SearcherService {
         return searcher.findPage(searchvalue, page);
     }
 
-    public SearchResponse findDocumentsMultiple(String searchValue) throws IOException, ParseException { return  searcher.findMultiple(searchValue); }
+    public SearchResponse findDocumentsMultiple(String searchValue, String index) throws IOException, ParseException {
+        return  searcher.findMultiple(searchValue, index);
+    }
 
-    public ArrayList<SearchLuceneDoc> findDocumentsPageMultiple(String searchValue, int page) throws IOException, ParseException {
-        return searcher.findPageMultiple(searchValue, page);
+    public ArrayList<SearchLuceneDoc> findDocumentsPageMultiple(String searchValue, int page, String index) throws IOException, ParseException {
+        return searcher.findPageMultiple(searchValue, page, index);
     }
 }

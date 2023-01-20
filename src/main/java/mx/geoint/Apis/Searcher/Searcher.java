@@ -39,13 +39,13 @@ public class Searcher {
         return response;
     }
 
-    public SearchResponse findMultiple(String text) throws IOException, ParseException{
-        SearchResponse response = lucene.searchMultipleIndex(text);
+    public SearchResponse findMultiple(String text, String index) throws IOException, ParseException{
+        SearchResponse response = lucene.searchMultipleIndex(text, index);
         return response;
     }
 
-    public ArrayList<SearchLuceneDoc> findPageMultiple(String text, int page) throws IOException, ParseException {
-        ArrayList<SearchLuceneDoc> response = lucene.searchPaginateMultiple(text, page);
+    public ArrayList<SearchLuceneDoc> findPageMultiple(String text, int page, String index) throws IOException, ParseException {
+        ArrayList<SearchLuceneDoc> response = lucene.searchPaginateMultiple(text, page, index);
         return response;
     }
 }

@@ -61,7 +61,7 @@ public class DownloadTest {
     void generateZipFromSearch() throws IOException, ParseException {
         Searcher busqueda = new Searcher();
 
-        SearchResponse results = busqueda.findMultiple("yaan");
+        SearchResponse results = busqueda.findMultiple("yaan", "maya");
 
         System.out.println(results.getTotalHits());
         //System.out.print(results.getDocuments());

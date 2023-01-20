@@ -77,7 +77,8 @@ public class SearcherController {
     public ResponseEntity<SearchResponse> searchMultiple(@RequestBody SearchRequest searchRequest){
         String text = searchRequest.getText();
         try{
-            SearchResponse response = searcherService.findDocumentsMultiple(text);
+            String index = "maya";
+            SearchResponse response = searcherService.findDocumentsMultiple(text, index);
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (IOException e){
             System.out.println("entre IO");
@@ -96,7 +97,8 @@ public class SearcherController {
         String text = searchPage.getText();
         int page = searchPage.getPage();
         try{
-            ArrayList<SearchLuceneDoc> response = searcherService.findDocumentsPageMultiple(text, page);
+            String index = "maya";
+            ArrayList<SearchLuceneDoc> response = searcherService.findDocumentsPageMultiple(text, page, index);
 
             if(response != null){
                 return ResponseEntity.status(HttpStatus.OK).body(response);

@@ -201,7 +201,7 @@ public class Lucene{
      * @param searchString texto a buscar
      * @return List<Document> Lista de documentos encontrados
      **/
-    public SearchResponse searchMultipleIndex(String searchString) throws IOException, ParseException {
+    public SearchResponse searchMultipleIndex(String searchString, String index) throws IOException, ParseException {
         List<IndexReader> indexReaders = new ArrayList<>();
 
         Analyzer analyzer = new StandardAnalyzer();
@@ -211,10 +211,10 @@ public class Lucene{
         File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL);
         File[] files = dir.listFiles();
         for (File file : files) {
-            if(file.isDirectory()){
+            if(file.getName().equals(index) && file.isDirectory()){
                 File[] list_files = file.listFiles();
                 for (File aux_file : list_files) {
-                    if(file.isDirectory()) {
+                    if(file.isDirectory()){
                         Directory directory = FSDirectory.open(Paths.get(aux_file.getCanonicalPath()));
                         //Condición para no tomar los directorios que estan agregando al momento
                         if(DirectoryReader.indexExists(directory)){
@@ -285,7 +285,7 @@ public class Lucene{
         return searchResponse;
     }
 
-    public ArrayList<SearchLuceneDoc> searchPaginateMultiple(String search, int page) throws IOException, ParseException {
+    public ArrayList<SearchLuceneDoc> searchPaginateMultiple(String search, int page, String index) throws IOException, ParseException {
         List<IndexReader> indexReaders = new ArrayList<>();
 
         Analyzer analyzer = new StandardAnalyzer();

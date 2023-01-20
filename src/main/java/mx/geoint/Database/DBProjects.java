@@ -312,18 +312,27 @@ public class DBProjects {
         PreparedStatement preparedStatement_report = conn.prepareStatement(SQL_QUERY_REPORTS);
         preparedStatement_report.setInt(1, projectID);
 
-        //String SQL_QUERY_PROJECTS = "DELETE FROM proyectos WHERE id_proyecto=?";
-        //PreparedStatement preparedStatement_project = conn.prepareStatement(SQL_QUERY_PROJECTS);
-        //preparedStatement_project.setInt(1, projectID);
+        String SQL_QUERY_GET_PROJECT = "SELECT ruta_trabajo FROM proyectos WHERE id_proyecto=?";
+        PreparedStatement preparedStatement_get_project = conn.prepareStatement(SQL_QUERY_GET_PROJECT);
+        preparedStatement_get_project.setInt(1, projectID);
+
+        String SQL_QUERY_PROJECTS = "DELETE FROM proyectos WHERE id_proyecto=?";
+        PreparedStatement preparedStatement_project = conn.prepareStatement(SQL_QUERY_PROJECTS);
+        preparedStatement_project.setInt(1, projectID);
 
         try{
+            ResultSet rs = preparedStatement_get_project.executeQuery();
+            while(rs.next()) {
+                File dir_work = new File(rs.getString(1));
+                FileUtils.deleteDirectory(dir_work.getCanonicalFile());
+            }
 
             File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL+"maya/"+projectName+"/");
             FileUtils.deleteDirectory(dir.getCanonicalFile());
 
             preparedStatement_glosa.executeUpdate();
             preparedStatement_report.executeUpdate();
-            //preparedStatement_project.executeUpdate();
+            preparedStatement_project.executeUpdate();
             conn.commit();
             result = true;
         }catch (SQLException e){
