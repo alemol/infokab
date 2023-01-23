@@ -75,9 +75,10 @@ public class SearcherController {
     @RequestMapping(path = "/multiple", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<SearchResponse> searchMultiple(@RequestBody SearchRequest searchRequest){
-        String text = searchRequest.getText();
         try{
-            String index = "maya";
+            String text = searchRequest.getText();
+            String index = searchRequest.getIndex();
+
             SearchResponse response = searcherService.findDocumentsMultiple(text, index);
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (IOException e){

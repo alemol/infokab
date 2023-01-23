@@ -289,7 +289,8 @@ public class ElanXmlDigester {
      */
     public String format_name(Tier tier, String tier_id, String path, String type_file){
         //String name_file = String.format("%s_%s_%s_%s_%s_%s_%s.%s", tier.ANNOTATION_ID, tier_id, tier.TIME_SLOT_REF1, tier.TIME_SLOT_REF2, tier.TIME_VALUE1, tier.TIME_VALUE2, path, type_file);
-        String name_file = String.format("%s_%s_%s_%s_%s_%s.%s", tier.ANNOTATION_ID, tier.TIME_SLOT_REF1, tier.TIME_SLOT_REF2, tier.TIME_VALUE1, tier.TIME_VALUE2, path, type_file);
+        //String name_file = String.format("%s_%s_%s_%s_%s_%s.%s", tier.ANNOTATION_ID, tier.TIME_SLOT_REF1, tier.TIME_SLOT_REF2, tier.TIME_VALUE1, tier.TIME_VALUE2, path, type_file);
+        String name_file = String.format("%s_%s_%s_%s_%s.%s", tier.TIME_SLOT_REF1, tier.TIME_SLOT_REF2, tier.TIME_VALUE1, tier.TIME_VALUE2, path, type_file);
         return name_file;
     }
 

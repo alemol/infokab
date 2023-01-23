@@ -7,6 +7,7 @@ import mx.geoint.Database.DBProjects;
 import mx.geoint.Database.DBReports;
 import mx.geoint.Database.DBUsers;
 import mx.geoint.pathSystem;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -102,7 +103,7 @@ public class UploadFiles {
         System.out.println("ID de proyecto generado: "+id_project);
         if(id_project > 0){
             System.out.println("Proyecto guardado en base de datos");
-            InitElanXmlDigester(eaf, multimedia, uuid, basePath, baseProjectName, id_project);
+            InitElanXmlDigester(eaf.getOriginalFilename(), multimedia.getOriginalFilename(), uuid, basePath, baseProjectName, id_project);
             //InitValidateElanXmlDigester(eaf, uuid, basePath, baseProjectName, (Integer) id_project);
         }
         else{
@@ -120,10 +121,10 @@ public class UploadFiles {
      * @param uuid String, Identificador de usuario
      * @param projectName String, Nombre del proyecto
      */
-    public void InitElanXmlDigester(MultipartFile eaf, MultipartFile multimedia, String uuid, String basePath, String projectName, int projectID){
+    public void InitElanXmlDigester(String eaf, String multimedia, String uuid, String basePath, String projectName, int projectID){
         System.out.println("InitElanXmlDigester.....");
-        String extEaf = FilenameUtils.getExtension(eaf.getOriginalFilename());
-        String extMultimedia = FilenameUtils.getExtension(multimedia.getOriginalFilename());
+        String extEaf = FilenameUtils.getExtension(eaf);
+        String extMultimedia = FilenameUtils.getExtension(multimedia);
 
         String pathEaf = basePath+projectName+"."+extEaf;
         String pathMultimedia = basePath+projectName+"."+extMultimedia;
@@ -197,20 +198,43 @@ public class UploadFiles {
             return pathSystem.NOT_UPLOAD_EAF_FILE;
         }
 
+        File dir_maya = new File(basePath+"/maya/");
+        FileUtils.deleteDirectory(dir_maya.getCanonicalFile());
+
+        File dir_español = new File(basePath+"/español/");
+        FileUtils.deleteDirectory(dir_español.getCanonicalFile());
+
+        File dir_multimedia = new File(basePath+"/multimedia/");
+        FileUtils.deleteDirectory(dir_multimedia.getCanonicalFile());
+
+        String multimedia = FilenameUtils.getBaseName(baseProjectName)+".wav";
         boolean rs1 = dbReports.deactivateAllReportes(id_project);
         boolean rs2 = dbAnnotations.deleteGlossingRecords(id_project);
-        InitValidateElanXmlDigester(eaf, uuid, basePath, baseProjectName, id_project);
+        //InitValidateElanXmlDigester(eaf, uuid, basePath, baseProjectName, id_project);
+        InitElanXmlDigester(eaf.getOriginalFilename(), multimedia, uuid, basePath, baseProjectName, id_project);
 
         return pathSystem.SUCCESS_UPLOAD;
     }
 
-    public Number updateMultimedia(MultipartFile multimedia, String projectName, String uuid, int id) throws IOException, SQLException {
+    public Number updateMultimedia(MultipartFile multimedia, String projectName, String uuid, int id_project) throws IOException, SQLException {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
 
         if(!saveFile(multimedia, basePath, baseProjectName)){
             return pathSystem.NOT_UPLOAD_MULTIMEDIA_FILE;
         }
+
+        File dir_maya = new File(basePath+"/maya/");
+        FileUtils.deleteDirectory(dir_maya.getCanonicalFile());
+
+        File dir_español = new File(basePath+"/español/");
+        FileUtils.deleteDirectory(dir_español.getCanonicalFile());
+
+        File dir_multimedia = new File(basePath+"/multimedia/");
+        FileUtils.deleteDirectory(dir_multimedia.getCanonicalFile());
+
+        String eaf = FilenameUtils.getBaseName(baseProjectName)+".eaf";
+        InitElanXmlDigester(eaf, multimedia.getOriginalFilename(), uuid, basePath, baseProjectName, id_project);
 
         return pathSystem.SUCCESS_UPLOAD;
     }
