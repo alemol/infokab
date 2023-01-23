@@ -295,7 +295,7 @@ public class Lucene{
         File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL);
         File[] files = dir.listFiles();
         for (File file : files) {
-            if(file.isDirectory()){
+            if(file.getName().equals(index) && file.isDirectory()){
                 File[] list_files = file.listFiles();
                 for (File aux_file : list_files) {
                     if(file.isDirectory()) {

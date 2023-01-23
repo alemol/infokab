@@ -2,13 +2,15 @@ package mx.geoint.Model.Search;
 
 public class SearchPage {
     private String text;
+    private String index;
     private int page;
 
     public SearchPage(){}
 
-    public SearchPage(String text, int page) {
+    public SearchPage(String text, int page, String index) {
         this.text = text;
         this.page = page;
+        this.index = index;
     }
 
     public String getText() {
@@ -26,4 +28,8 @@ public class SearchPage {
     public void setPage(int page) {
         this.page = page;
     }
+
+    public void setIndex(String index) { this.index = index; }
+
+    public String getIndex() { return index; }
 }

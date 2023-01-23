@@ -96,9 +96,9 @@ public class SearcherController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ArrayList<SearchLuceneDoc>> searchPaginateMultiple(@RequestBody SearchPage searchPage){
         String text = searchPage.getText();
+        String index = searchPage.getIndex();
         int page = searchPage.getPage();
         try{
-            String index = "maya";
             ArrayList<SearchLuceneDoc> response = searcherService.findDocumentsPageMultiple(text, page, index);
 
             if(response != null){
