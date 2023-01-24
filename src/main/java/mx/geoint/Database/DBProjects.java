@@ -327,8 +327,11 @@ public class DBProjects {
                 FileUtils.deleteDirectory(dir_work.getCanonicalFile());
             }
 
-            File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL+"maya/"+projectName+"/");
-            FileUtils.deleteDirectory(dir.getCanonicalFile());
+            File dir_maya = new File(pathSystem.DIRECTORY_INDEX_GENERAL+"maya/"+projectName+"/");
+            FileUtils.deleteDirectory(dir_maya.getCanonicalFile());
+
+            File dir_español = new File(pathSystem.DIRECTORY_INDEX_GENERAL+"español/"+projectName+"/");
+            FileUtils.deleteDirectory(dir_español.getCanonicalFile());
 
             preparedStatement_glosa.executeUpdate();
             preparedStatement_report.executeUpdate();
