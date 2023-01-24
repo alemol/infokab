@@ -250,9 +250,11 @@ public class Lucene{
             String multimedia = hitDoc.get("multimedia");
 
             //System.out.println("PATH: "+ hitDoc.get("path"));
-            String[] arrOfStr = hitDoc.get("path").split("file_to_index");
+            //String[] arrOfStr = hitDoc.get("path").split("file_to_index");
+            String arrOfStr = FilenameUtils.getFullPath(path).replaceAll("/maya", "").replaceAll("/español", "");
+
             //System.out.println(arrOfStr[0]);
-            String imagesDir = arrOfStr[0] + "Images/";
+            String imagesDir = arrOfStr + "Images/";
             String[] imageList = null ;
 
             if (Files.exists(Path.of(imagesDir))){
@@ -337,7 +339,27 @@ public class Lucene{
             String content = hitDoc.get("contents");
             String multimedia = hitDoc.get("multimedia");
 
-            String[] imageList = null;
+            String arrOfStr = FilenameUtils.getFullPath(path).replaceAll("/maya", "").replaceAll("/español", "");
+            String imagesDir = arrOfStr + "Images/";
+            String[] imageList = null ;
+
+            if (Files.exists(Path.of(imagesDir))){
+                String[] pathnames;
+
+                File f = new File(imagesDir);
+
+                pathnames = f.list();
+                if(pathnames.length>0){
+                    for (String pathname : pathnames) {
+                        String x = FilenameUtils.getBaseName(pathname);
+                    }
+                    imageList=pathnames;
+
+                }else{
+                    imageList= null;
+                }
+            }
+
             SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, multimedia, imageList);
             results.add(doc);
         }
