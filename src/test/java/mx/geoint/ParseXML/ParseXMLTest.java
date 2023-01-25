@@ -357,6 +357,13 @@ class ParseXMLTest {
         }
     }
 
+    @Test
+    void runMapTestNewFile() throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        String basePath = "./eafs/";
+        getMapTier(basePath+"23_006_25102022_10_ANU_E_3_1.eaf");
+    }
+
+
     void testMapXMLFiles(String number_case) throws ParserConfigurationException, IOException, TransformerException, SAXException {
         String basePath = "./eafs/";
         String path = "";

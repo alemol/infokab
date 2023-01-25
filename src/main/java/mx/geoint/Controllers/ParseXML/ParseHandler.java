@@ -97,10 +97,10 @@ public class ParseHandler extends DefaultHandler{
                     latestTier(tierList).setAnnotationValue(annotation_value);
                 }
 
-                //if(tier_id.isEmpty()) {
-                //    List getTierList = tiersList.get(current_tier_id);
-                //    latestTier(getTierList).setAnnotationValue(annotation_value);
-                //}
+                if(tier_id.isEmpty()) {
+                    List getTierList = tiersList.get(current_tier_id);
+                    latestTier(getTierList).setAnnotationValue(annotation_value);
+                }
             }
         }
     }
@@ -165,14 +165,15 @@ public class ParseHandler extends DefaultHandler{
                 String normalize = Normalizer.normalize(LINGUISTIC_TYPE_REF.toLowerCase(), Normalizer.Form.NFD);
                 current_tier_id = normalize.replaceAll("[^\\p{ASCII}]", "");
 
-                //if(tier_id.isEmpty()){
-                //    if(current_tier_id.equals(pathSystem.TIER_MAIN) || current_tier_id.equals(pathSystem.TIER_DEFAULT) ){
-                //        List getTierList = tiersList.get(current_tier_id);
-                //        if(getTierList == null){
-                //            tiersList.put(current_tier_id, new ArrayList<>());
-                //        }
-                //    }
-                //}
+                if(tier_id.isEmpty()){
+                    if(current_tier_id.equals(pathSystem.TIER_MAIN) || current_tier_id.equals(pathSystem.TIER_DEFAULT) || current_tier_id.equals(pathSystem.TIER_TRANSLATE)){
+                        System.out.println("CURRENTIER: "+current_tier_id);
+                        List getTierList = tiersList.get(current_tier_id);
+                        if(getTierList == null){
+                            tiersList.put(current_tier_id, new ArrayList<>());
+                        }
+                    }
+                }
 
                 break;
             case ALIGNABLE_ANNOTATION:
@@ -193,11 +194,11 @@ public class ParseHandler extends DefaultHandler{
                     tierList.add(new Tier(ANNOTATION_ID, TIME_SLOT_REF1, TIME_VALUE1, TIME_SLOT_REF2, TIME_VALUE2));
                 }
 
-                //if(tier_id.isEmpty()){
-                //    List getTierList = tiersList.get(current_tier_id);
-                //    getTierList.add(new Tier(ANNOTATION_ID, TIME_SLOT_REF1, TIME_VALUE1, TIME_SLOT_REF2, TIME_VALUE2));
-                //    tiersList.put(current_tier_id, getTierList);
-                //}
+                if(tier_id.isEmpty()){
+                    List getTierList = tiersList.get(current_tier_id);
+                    getTierList.add(new Tier(ANNOTATION_ID, TIME_SLOT_REF1, TIME_VALUE1, TIME_SLOT_REF2, TIME_VALUE2));
+                    tiersList.put(current_tier_id, getTierList);
+                }
 
                 break;
             case REF_ANNOTATION:
@@ -222,11 +223,11 @@ public class ParseHandler extends DefaultHandler{
                         tierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
                     }
 
-                    //if(tier_id.isEmpty()){
-                    //    List getTierList = tiersList.get(current_tier_id);
-                    //    getTierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
-                    //    tiersList.put(current_tier_id, getTierList);
-                    //}
+                    if(tier_id.isEmpty()){
+                        List getTierList = tiersList.get(current_tier_id);
+                        getTierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
+                        tiersList.put(current_tier_id, getTierList);
+                    }
                 }
 
                 if(current_tier_id.equals(pathSystem.TIER_TRANSLATE)){
@@ -241,6 +242,12 @@ public class ParseHandler extends DefaultHandler{
 
                     if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
                         tierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
+                    }
+
+                    if(tier_id.isEmpty()){
+                        List getTierList = tiersList.get(current_tier_id);
+                        getTierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
+                        tiersList.put(current_tier_id, getTierList);
                     }
                 }
                 break;
