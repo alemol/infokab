@@ -273,6 +273,9 @@ public class ElanXmlDigester {
             currentDirectory = existDirectory(basePath+ "/"+pathSystem.INDEX_LANGUAJE_SPANISH+"/");
         }
 
+        if(tier_id == pathSystem.TIER_GlOSA_INDEX){
+            currentDirectory = existDirectory(basePath+ "/"+pathSystem.INDEX_LANGUAJE_GLOSA+"/");
+        }
 
         FileWriter file = new FileWriter( currentDirectory + file_name_json);
         file.write(gson.toJson(tier));

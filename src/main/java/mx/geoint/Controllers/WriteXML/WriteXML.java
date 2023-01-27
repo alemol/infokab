@@ -119,8 +119,6 @@ public class WriteXML {
                 ANNOTATION_VALUE.appendChild(document.createTextNode(step.getSelect()));
 
                 REF_ANNOTATION.appendChild(ANNOTATION_VALUE);
-                ANNOTATION_VALUE.appendChild(document.createTextNode(step.getSelect()));
-
                 String getSelect = step.getSelect();
 
                 String REGEX_START_BASE = Pattern.quote("(");
@@ -139,11 +137,10 @@ public class WriteXML {
                 }
 
                 while (matcher_category.find()) {
-                    GLOSA_INDEX += "["+matcher_category.group(1)+"]"+" ";
+                    GLOSA_INDEX += "("+matcher_category.group(1)+")"+" ";
                 }
             }
 
-            System.out.println("dATA!!!!1: "+GLOSA_INDEX);
             Element ANNOTATION_VALUE_INDEX = document.createElement("ANNOTATION_VALUE");
             REF_ANNOTATION_INDEX.appendChild(ANNOTATION_VALUE_INDEX);
             ANNOTATION_VALUE_INDEX.appendChild(document.createTextNode(GLOSA_INDEX));

@@ -90,25 +90,27 @@ public class Lucene{
      * @return
      **/
     public void createIndex(String path_files_to_index_directory) throws IOException {
-        File dir = new File(path_files_to_index_directory);
-        File[] files = dir.listFiles();
+        if(Files.exists(Path.of(path_files_to_index_directory))) {
+            File dir = new File(path_files_to_index_directory);
+            File[] files = dir.listFiles();
 
-        for (File file : files) {
-            Document document = new Document();
+            for (File file : files) {
+                Document document = new Document();
 
-            String path = file.getPath();
-            document.add(new StringField(FIELD_PATH, path, Field.Store.YES));
+                String path = file.getPath();
+                document.add(new StringField(FIELD_PATH, path, Field.Store.YES));
 
-            String name = file.getName();
-            document.add(new StringField(FIELD_NAME, name, Field.Store.YES));
+                String name = file.getName();
+                document.add(new StringField(FIELD_NAME, name, Field.Store.YES));
 
-            FileReader reader = new FileReader(file);
-            Gson gson = new Gson();
-            Tier tier = gson.fromJson(reader, Tier.class);
-            document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.YES));
-            document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE, Field.Store.YES));
+                FileReader reader = new FileReader(file);
+                Gson gson = new Gson();
+                Tier tier = gson.fromJson(reader, Tier.class);
+                document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.YES));
+                document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE, Field.Store.YES));
 
-            indexWriter.addDocument(document);
+                indexWriter.addDocument(document);
+            }
         }
 
         indexWriter.close();

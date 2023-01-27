@@ -91,7 +91,9 @@ public class ParseHandler extends DefaultHandler{
         if(flag_text){
             if(current_tier_id.equals(pathSystem.TIER_MAIN) ||
                 current_tier_id.equals(pathSystem.TIER_DEFAULT) ||
-                current_tier_id.equals(pathSystem.TIER_TRANSLATE)){
+                current_tier_id.equals(pathSystem.TIER_TRANSLATE) ||
+                current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX)){
+
                 String annotation_value = new String(ch, start, length);
                 if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
                     latestTier(tierList).setAnnotationValue(annotation_value);
@@ -166,8 +168,10 @@ public class ParseHandler extends DefaultHandler{
                 current_tier_id = normalize.replaceAll("[^\\p{ASCII}]", "");
 
                 if(tier_id.isEmpty()){
-                    if(current_tier_id.equals(pathSystem.TIER_MAIN) || current_tier_id.equals(pathSystem.TIER_DEFAULT) || current_tier_id.equals(pathSystem.TIER_TRANSLATE)){
-                        System.out.println("CURRENTIER: "+current_tier_id);
+                    if( current_tier_id.equals(pathSystem.TIER_MAIN) ||
+                        current_tier_id.equals(pathSystem.TIER_DEFAULT) ||
+                        current_tier_id.equals(pathSystem.TIER_TRANSLATE) ||
+                        current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX)){
                         List getTierList = tiersList.get(current_tier_id);
                         if(getTierList == null){
                             tiersList.put(current_tier_id, new ArrayList<>());
@@ -230,7 +234,7 @@ public class ParseHandler extends DefaultHandler{
                     }
                 }
 
-                if(current_tier_id.equals(pathSystem.TIER_TRANSLATE)){
+                if(current_tier_id.equals(pathSystem.TIER_TRANSLATE) || current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX)){
                     String REF_ANNOTATION_ID = attr.getValue("ANNOTATION_ID");
                     String REF_ANNOTATION_REF = attr.getValue("ANNOTATION_REF");
 

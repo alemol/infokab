@@ -7,6 +7,7 @@ public class pathSystem {
 
     public static final String INDEX_LANGUAJE_MAYA = "maya";
     public static final String INDEX_LANGUAJE_SPANISH = "español";
+    public static final String INDEX_LANGUAJE_GLOSA = "glosado";
     public static final String TIER_GlOSA = "glosa";
     public static final String TIER_GlOSA_INDEX = "glosa_index";
     public static final String DIRECTORY_PUBLIC_MULTIMEDIA = "./Files/";

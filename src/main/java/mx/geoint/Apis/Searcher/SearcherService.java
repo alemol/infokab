@@ -16,18 +16,40 @@ public class SearcherService {
     Searcher searcher;
 
     public SearchResponse findDocuments(String searchValue) throws IOException, ParseException {
-        return searcher.find(searchValue);
+        return searcher.find(formatLucene(searchValue));
     }
 
     public ArrayList<SearchLuceneDoc> findDocumentsPage(String searchvalue, int page) throws IOException, ParseException {
-        return searcher.findPage(searchvalue, page);
+        return searcher.findPage(formatLucene(searchvalue), page);
     }
 
     public SearchResponse findDocumentsMultiple(String searchValue, String index) throws IOException, ParseException {
-        return  searcher.findMultiple(searchValue, index);
+        return  searcher.findMultiple(formatLucene(searchValue), index);
     }
 
     public ArrayList<SearchLuceneDoc> findDocumentsPageMultiple(String searchValue, int page, String index) throws IOException, ParseException {
-        return searcher.findPageMultiple(searchValue, page, index);
+        return searcher.findPageMultiple(formatLucene(searchValue), page, index);
+    }
+
+    public String formatLucene(String text){
+        String new_text = text;
+        new_text = new_text.replaceAll("\\+","\\\\+");
+        new_text = new_text.replaceAll("\\-","\\\\-");
+        new_text = new_text.replaceAll("\\&\\&","\\\\&&");
+        new_text = new_text.replaceAll("\\|\\|","\\\\||");
+        new_text = new_text.replaceAll("\\!","\\\\!");
+        new_text = new_text.replaceAll("\\(","\\\\(");
+        new_text = new_text.replaceAll("\\)","\\\\)");
+        new_text = new_text.replaceAll("\\{","\\\\{");
+        new_text = new_text.replaceAll("\\}","\\\\}");
+        new_text = new_text.replaceAll("\\[","\\\\[");
+        new_text = new_text.replaceAll("\\]","\\\\]");
+        new_text = new_text.replaceAll("\\^","\\\\^");
+        new_text = new_text.replaceAll("\\“","\\\\“");
+        new_text = new_text.replaceAll("\\~","\\\\~");
+        new_text = new_text.replaceAll("\\*","\\\\*");
+        new_text = new_text.replaceAll("\\?","\\\\?");
+        new_text = new_text.replaceAll("\\:","\\\\:");
+        return new_text;
     }
 }

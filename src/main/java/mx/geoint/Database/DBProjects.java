@@ -327,11 +327,14 @@ public class DBProjects {
                 FileUtils.deleteDirectory(dir_work.getCanonicalFile());
             }
 
-            File dir_maya = new File(pathSystem.DIRECTORY_INDEX_GENERAL+"maya/"+projectName+"/");
+            File dir_maya = new File(pathSystem.DIRECTORY_INDEX_GENERAL+pathSystem.INDEX_LANGUAJE_MAYA+"/"+projectName+"/");
             FileUtils.deleteDirectory(dir_maya.getCanonicalFile());
 
-            File dir_español = new File(pathSystem.DIRECTORY_INDEX_GENERAL+"español/"+projectName+"/");
+            File dir_español = new File(pathSystem.DIRECTORY_INDEX_GENERAL+pathSystem.INDEX_LANGUAJE_SPANISH+"/"+projectName+"/");
             FileUtils.deleteDirectory(dir_español.getCanonicalFile());
+
+            File dir_glosa = new File(pathSystem.DIRECTORY_INDEX_GENERAL+pathSystem.INDEX_LANGUAJE_GLOSA+"/"+projectName+"/");
+            FileUtils.deleteDirectory(dir_glosa.getCanonicalFile());
 
             preparedStatement_glosa.executeUpdate();
             preparedStatement_report.executeUpdate();
