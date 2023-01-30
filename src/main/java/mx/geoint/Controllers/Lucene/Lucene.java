@@ -141,7 +141,7 @@ public class Lucene{
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
 
-            String[] imageList = null;
+            String[] imageList = getImageList(hitDoc.get("path"));
             SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList);
             results.add(doc);
         }
@@ -181,7 +181,7 @@ public class Lucene{
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
 
-            String[] imageList = null;
+            String[] imageList = getImageList(hitDoc.get("path"));
             SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList);
             results.add(doc);
         }
@@ -239,29 +239,7 @@ public class Lucene{
             String content = hitDoc.get("contents");
 
             //System.out.println("PATH: "+ hitDoc.get("path"));
-            String[] arrOfStr = hitDoc.get("path").split("file_to_index");
-            //System.out.println(arrOfStr[0]);
-            String imagesDir = arrOfStr[0] + "Images/";
-            String[] imageList = null ;
-
-            if (Files.exists(Path.of(imagesDir))){
-                String[] pathnames;
-
-                File f = new File(imagesDir);
-
-                pathnames = f.list();
-                if(pathnames.length>0){
-                    for (String pathname : pathnames) {
-                        String x = FilenameUtils.getBaseName(pathname);
-                    }
-                    imageList=pathnames;
-
-                }else{
-                    imageList= null;
-                }
-            }
-
-
+            String[] imageList = getImageList(hitDoc.get("path"));
 
             SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList);
 
@@ -272,6 +250,31 @@ public class Lucene{
 
         multiReader.close();
         return searchResponse;
+    }
+
+    private String[] getImageList(String path) {
+        String[] arrOfStr = path.split("file_to_index");
+        //System.out.println(arrOfStr[0]);
+        String imagesDir = arrOfStr[0] + "Images/";
+        String[] imageList = null ;
+
+        if (Files.exists(Path.of(imagesDir))){
+            String[] pathnames;
+
+            File f = new File(imagesDir);
+
+            pathnames = f.list();
+            if(pathnames.length>0){
+                for (String pathname : pathnames) {
+                    String x = FilenameUtils.getBaseName(pathname);
+                }
+                imageList=pathnames;
+
+            }else{
+                imageList= null;
+            }
+        }
+        return imageList;
     }
 
     public ArrayList<SearchLuceneDoc> searchPaginateMultiple(String search, int page) throws IOException, ParseException {
@@ -320,7 +323,7 @@ public class Lucene{
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
 
-            String[] imageList = null;
+            String[] imageList = getImageList(hitDoc.get("path"));
             SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList);
             results.add(doc);
         }
