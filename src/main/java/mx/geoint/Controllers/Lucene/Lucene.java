@@ -148,8 +148,8 @@ public class Lucene {
             String content = hitDoc.get("contents");
 
             String[] imageList = find_images(hitDoc.get("path"));
-            String fecha_archivo = null, entidad = null, municipio = null;
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, entidad, municipio);
+            String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null;
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio);
             results.add(doc);
         }
 
@@ -189,8 +189,8 @@ public class Lucene {
             String content = hitDoc.get("contents");
 
             String[] imageList = find_images(hitDoc.get("path"));
-            String fecha_archivo = null, entidad = null, municipio = null;
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, entidad, municipio);
+            String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null;
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio);
             results.add(doc);
         }
 
@@ -254,8 +254,7 @@ public class Lucene {
             Nhablantes = algo[1];
             entidad = algo[2];
             municipio = algo[3];
-            System.out.println(fecha_archivo+" "+entidad+" "+municipio);
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, entidad, municipio);
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio);
 
             results.add(doc);
         }
@@ -313,8 +312,8 @@ public class Lucene {
             String content = hitDoc.get("contents");
 
             String[] imageList = find_images(hitDoc.get("path"));
-            String fecha_archivo = null, entidad = null, municipio = null;
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, entidad, municipio);
+            String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null;
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio);
             results.add(doc);
         }
 

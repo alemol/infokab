@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class SearchLuceneDoc {
+    private String Nhablantes;
     private String filePath;
     private String fileName;
     private String text;
@@ -31,7 +32,7 @@ public class SearchLuceneDoc {
 
     private String municipio;
 
-    public SearchLuceneDoc(String filePath, String fileName, String text, float score, String[] imageList, String fecha_archivo, String entidad, String municipio) throws FileNotFoundException {
+    public SearchLuceneDoc(String filePath, String fileName, String text, float score, String[] imageList, String fecha_archivo, String Nhablantes, String entidad, String municipio) throws FileNotFoundException {
         this.filePath = filePath;
         this.fileName = fileName;
         this.text = text;
@@ -51,6 +52,7 @@ public class SearchLuceneDoc {
 
         this.imageList = imageList;
         this.fecha_archivo = fecha_archivo;
+        this.Nhablantes = Nhablantes;
         this.entidad = entidad;
         this.municipio = municipio;
     }
@@ -121,6 +123,8 @@ public class SearchLuceneDoc {
     public String getFecha_archivo(){ return fecha_archivo; }
     public void  setFecha_archivo(String fecha_archivo){this.fecha_archivo = fecha_archivo;}
 
+    public String getNhablantes(){ return Nhablantes; }
+    public void  setNhablantes(String Nhablantes){this.Nhablantes = Nhablantes;}
 
     public String getEntidad(){ return entidad; }
     public void  setEntidad(String entidad){this.entidad = entidad;}
