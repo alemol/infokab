@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @Service
@@ -23,7 +24,7 @@ public class SearcherService {
         return searcher.findPage(searchvalue, page);
     }
 
-    public SearchResponse findDocumentsMultiple(String searchValue) throws IOException, ParseException { return  searcher.findMultiple(searchValue); }
+    public SearchResponse findDocumentsMultiple(String searchValue) throws IOException, ParseException, SQLException { return  searcher.findMultiple(searchValue); }
 
     public ArrayList<SearchLuceneDoc> findDocumentsPageMultiple(String searchValue, int page) throws IOException, ParseException {
         return searcher.findPageMultiple(searchValue, page);

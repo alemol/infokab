@@ -7,6 +7,7 @@ import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @Component
@@ -39,7 +40,7 @@ public class Searcher {
         return response;
     }
 
-    public SearchResponse findMultiple(String text) throws IOException, ParseException{
+    public SearchResponse findMultiple(String text) throws IOException, ParseException, SQLException {
         SearchResponse response = lucene.searchMultipleIndex(text);
         return response;
     }

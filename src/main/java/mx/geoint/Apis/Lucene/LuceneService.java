@@ -33,4 +33,5 @@ public class LuceneService {
         lucene.initConfig(false);
         lucene.createIndex(elanXmlDigester.basePathJsonFiles());
     }
+
 }
