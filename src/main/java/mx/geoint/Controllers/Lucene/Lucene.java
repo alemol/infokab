@@ -122,7 +122,7 @@ public class Lucene {
      * @param searchString Texto a buscar en los indices
      * @return List<Document> lista de documentos encontrados
      **/
-    public SearchResponse searchIndex(String searchString) throws IOException, ParseException {
+    public SearchResponse searchIndex(String searchString) throws IOException, ParseException, SQLException {
         Analyzer analyzer = new StandardAnalyzer();
         System.out.println("Searching for '" + searchString + "'");
 
@@ -149,6 +149,11 @@ public class Lucene {
 
             String[] imageList = find_images(hitDoc.get("path"));
             String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null;
+            String[] algo = dbProjects.getProjectByName(path.split("/")[4]);
+            fecha_archivo = algo[0];
+            Nhablantes = algo[1];
+            entidad = algo[2];
+            municipio = algo[3];
             SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio);
             results.add(doc);
         }
@@ -160,7 +165,7 @@ public class Lucene {
         return searchResponse;
     }
 
-    public ArrayList<SearchLuceneDoc> searchPaginate(String search, int page) throws IOException, ParseException {
+    public ArrayList<SearchLuceneDoc> searchPaginate(String search, int page) throws IOException, ParseException, SQLException {
         System.out.println("pagina=" + page);
         Analyzer analyzer = new StandardAnalyzer();
         Directory directory = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
@@ -190,6 +195,11 @@ public class Lucene {
 
             String[] imageList = find_images(hitDoc.get("path"));
             String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null;
+            String[] algo = dbProjects.getProjectByName(path.split("/")[4]);
+            fecha_archivo = algo[0];
+            Nhablantes = algo[1];
+            entidad = algo[2];
+            municipio = algo[3];
             SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio);
             results.add(doc);
         }
@@ -265,7 +275,7 @@ public class Lucene {
         return searchResponse;
     }
 
-    public ArrayList<SearchLuceneDoc> searchPaginateMultiple(String search, int page) throws IOException, ParseException {
+    public ArrayList<SearchLuceneDoc> searchPaginateMultiple(String search, int page) throws IOException, ParseException, SQLException {
         List<IndexReader> indexReaders = new ArrayList<>();
 
         Analyzer analyzer = new StandardAnalyzer();
@@ -313,6 +323,11 @@ public class Lucene {
 
             String[] imageList = find_images(hitDoc.get("path"));
             String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null;
+            String[] algo = dbProjects.getProjectByName(path.split("/")[4]);
+            fecha_archivo = algo[0];
+            Nhablantes = algo[1];
+            entidad = algo[2];
+            municipio = algo[3];
             SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio);
             results.add(doc);
         }
