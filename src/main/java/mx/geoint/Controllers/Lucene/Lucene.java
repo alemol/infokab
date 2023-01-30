@@ -356,9 +356,8 @@ public class Lucene {
     }
 
     public String[] find_images(String path) {
-        //String[] arrOfStr = path.split("file_to_index");
-        //String imagesDir = arrOfStr[0] + "Images/";
-        String imagesDir = path.replaceAll("/maya", "").replaceAll("/español", "").replaceAll("/glosado","");
+        String[] arrOfStr = path.split("(?:maya|español|glosado)");
+        String imagesDir = arrOfStr[0] + "Images/";
         String[] imageList = null;
 
         if (Files.exists(Path.of(imagesDir))) {

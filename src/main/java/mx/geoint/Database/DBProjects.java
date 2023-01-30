@@ -103,7 +103,6 @@ public class DBProjects {
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
 
         preparedStatement.setString(1, filename);
-        System.out.println(preparedStatement);
         ResultSet rs = preparedStatement.executeQuery();
         String[] resultados = new String[4];
         while(rs.next()) {
