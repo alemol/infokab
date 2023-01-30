@@ -47,6 +47,9 @@ public class SearcherController {
         } catch (ParseException e) {
             logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
+        } catch (SQLException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
         }
     }
 
@@ -70,6 +73,9 @@ public class SearcherController {
         } catch (ParseException e) {
             logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
+        } catch (SQLException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
         }
     }
 
@@ -91,7 +97,8 @@ public class SearcherController {
             logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
         }
     }
 
@@ -113,6 +120,9 @@ public class SearcherController {
             Logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró", e);
         } catch (ParseException e) {
+            Logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
+        } catch (SQLException e) {
             Logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
         }

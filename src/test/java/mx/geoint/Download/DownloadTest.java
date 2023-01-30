@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -58,7 +59,7 @@ public class DownloadTest {
 
 
     @Test
-    void generateZipFromSearch() throws IOException, ParseException {
+    void generateZipFromSearch() throws IOException, ParseException, SQLException {
         Searcher busqueda = new Searcher();
 
         SearchResponse results = busqueda.findMultiple("yaan", "maya");

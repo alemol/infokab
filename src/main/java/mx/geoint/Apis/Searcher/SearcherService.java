@@ -16,19 +16,19 @@ public class SearcherService {
     @Autowired
     Searcher searcher;
 
-    public SearchResponse findDocuments(String searchValue) throws IOException, ParseException {
+    public SearchResponse findDocuments(String searchValue) throws IOException, ParseException, SQLException {
         return searcher.find(formatLucene(searchValue));
     }
 
-    public ArrayList<SearchLuceneDoc> findDocumentsPage(String searchvalue, int page) throws IOException, ParseException {
+    public ArrayList<SearchLuceneDoc> findDocumentsPage(String searchvalue, int page) throws IOException, ParseException, SQLException {
         return searcher.findPage(formatLucene(searchvalue), page);
     }
 
-    public SearchResponse findDocumentsMultiple(String searchValue, String index) throws IOException, ParseException {
+    public SearchResponse findDocumentsMultiple(String searchValue, String index) throws IOException, ParseException, SQLException {
         return  searcher.findMultiple(formatLucene(searchValue), index);
     }
 
-    public ArrayList<SearchLuceneDoc> findDocumentsPageMultiple(String searchValue, int page, String index) throws IOException, ParseException {
+    public ArrayList<SearchLuceneDoc> findDocumentsPageMultiple(String searchValue, int page, String index) throws IOException, ParseException, SQLException {
         return searcher.findPageMultiple(formatLucene(searchValue), page, index);
     }
 

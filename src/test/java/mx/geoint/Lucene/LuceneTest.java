@@ -18,6 +18,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 class LuceneTest {
@@ -58,20 +59,20 @@ class LuceneTest {
     }
 
     @Test
-    void searchIndex() throws IOException, ParseException {
+    void searchIndex() throws IOException, ParseException, SQLException {
         initLucene();
         SearchResponse docs = lucene.searchIndex("weye\u0027 bajux");
         //List<Document> docs = lucene.searchIndex("tsíimino’ob");
     }
 
     @Test
-    void searchPaginate() throws IOException, ParseException {
+    void searchPaginate() throws IOException, ParseException, SQLException {
         initLucene();
         ArrayList<SearchLuceneDoc> docs = lucene.searchPaginate("ma'", 1);
     }
 
     @Test
-    void searchMutlipleIndex() throws IOException, ParseException {
+    void searchMutlipleIndex() throws IOException, ParseException, SQLException {
         //createIndex();
         Lucene lucene = new Lucene();
         lucene.searchMultipleIndex("ch´aalun",pathSystem.INDEX_LANGUAJE_MAYA);

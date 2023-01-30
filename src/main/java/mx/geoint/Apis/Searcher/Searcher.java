@@ -24,7 +24,7 @@ public class Searcher {
      * @param   text    el texto que se quiere buscar
      * @return          las incidencias con el resultado de la búsqueda
      **/
-    public SearchResponse find(String text) throws IOException, ParseException {
+    public SearchResponse find(String text) throws IOException, ParseException, SQLException {
         SearchResponse response = lucene.searchIndex(text);
         return response;
     }
@@ -35,17 +35,17 @@ public class Searcher {
      * @param   page    la página de resultados que se necesita
      * @return          las incidencias con el resultado de la búsqueda
      */
-    public ArrayList<SearchLuceneDoc> findPage(String text, int page) throws IOException, ParseException {
+    public ArrayList<SearchLuceneDoc> findPage(String text, int page) throws IOException, ParseException, SQLException {
         ArrayList<SearchLuceneDoc> response = lucene.searchPaginate(text, page);
         return response;
     }
 
-    public SearchResponse findMultiple(String text, String index) throws IOException, ParseException{
+    public SearchResponse findMultiple(String text, String index) throws IOException, ParseException, SQLException {
         SearchResponse response = lucene.searchMultipleIndex(text, index);
         return response;
     }
 
-    public ArrayList<SearchLuceneDoc> findPageMultiple(String text, int page, String index) throws IOException, ParseException {
+    public ArrayList<SearchLuceneDoc> findPageMultiple(String text, int page, String index) throws IOException, ParseException, SQLException {
         ArrayList<SearchLuceneDoc> response = lucene.searchPaginateMultiple(text, page, index);
         return response;
     }
