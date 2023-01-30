@@ -1,6 +1,7 @@
 package mx.geoint.Controllers.Lucene;
 
 import com.google.gson.Gson;
+import mx.geoint.Database.DBProjects;
 import mx.geoint.Model.Search.SearchLuceneDoc;
 import mx.geoint.Model.Search.SearchResponse;
 import mx.geoint.Model.ParseXML.Tier;
@@ -25,11 +26,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Lucene{
+import static mx.geoint.Apis.Lucene.LuceneService.dbProjects;
+
+public class Lucene {
     public String INDEX_DIRECTORY;
 
     public static final String FIELD_PATH = "path";
@@ -43,10 +47,12 @@ public class Lucene{
     private IndexWriterConfig config;
     private Directory indexDirectory;
     private IndexWriter indexWriter;
-    public Lucene(){
+
+    public Lucene() {
         INDEX_DIRECTORY = pathSystem.DIRECTORY_INDEX_LUCENE;
     }
-    public Lucene(String path){
+
+    public Lucene(String path) {
         INDEX_DIRECTORY = path;
     }
 
@@ -59,9 +65,9 @@ public class Lucene{
         analyzer = new StandardAnalyzer();
         config = new IndexWriterConfig(analyzer);
 
-        if(create){
+        if (create) {
             config.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
-        }else{
+        } else {
             config.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
         }
 
@@ -77,7 +83,7 @@ public class Lucene{
      * @return indexWrite para agregar documentos al indices
      **/
     public IndexWriter statusIndexWrite() throws IOException {
-        if(indexWriter == null || !indexWriter.isOpen()){
+        if (indexWriter == null || !indexWriter.isOpen()) {
             indexWriter = new IndexWriter(indexDirectory, config);
         }
 
@@ -121,7 +127,7 @@ public class Lucene{
      * @param searchString Texto a buscar en los indices
      * @return List<Document> lista de documentos encontrados
      **/
-    public SearchResponse searchIndex(String searchString) throws IOException, ParseException {
+    public SearchResponse searchIndex(String searchString) throws IOException, ParseException, SQLException {
         Analyzer analyzer = new StandardAnalyzer();
         System.out.println("Searching for '" + searchString + "'");
 
@@ -136,19 +142,25 @@ public class Lucene{
 
         ArrayList<SearchLuceneDoc> results = new ArrayList<SearchLuceneDoc>();
 
-        for (ScoreDoc scoreDoc: hits.scoreDocs) {
+        for (ScoreDoc scoreDoc : hits.scoreDocs) {
             int docId = scoreDoc.doc;
             float docScore = scoreDoc.score;
             Document hitDoc = indexSearcher.doc(docId);
-            System.out.println("doc="+docId +" score=" + docScore +" path="+ hitDoc.get(FIELD_PATH));
+            System.out.println("doc=" + docId + " score=" + docScore + " path=" + hitDoc.get(FIELD_PATH));
 
             String path = hitDoc.get("path");
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
             String multimedia = hitDoc.get("multimedia");
 
-            String[] imageList = null;
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, multimedia, imageList);
+            String[] imageList = find_images(hitDoc.get("path"));
+            String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null;
+            String[] algo = dbProjects.getProjectByName(path.split("/")[4]);
+            fecha_archivo = algo[0];
+            Nhablantes = algo[1];
+            entidad = algo[2];
+            municipio = algo[3];
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio);
             results.add(doc);
         }
 
@@ -159,15 +171,15 @@ public class Lucene{
         return searchResponse;
     }
 
-    public ArrayList<SearchLuceneDoc> searchPaginate(String search, int page) throws IOException, ParseException {
-        System.out.println("pagina="+ page);
+    public ArrayList<SearchLuceneDoc> searchPaginate(String search, int page) throws IOException, ParseException, SQLException {
+        System.out.println("pagina=" + page);
         Analyzer analyzer = new StandardAnalyzer();
         Directory directory = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
         DirectoryReader indexReader = DirectoryReader.open(directory);
         IndexSearcher indexSearcher = new IndexSearcher(indexReader);
 
         TopScoreDocCollector collector = TopScoreDocCollector.create(MAX_RESULTS, 10);
-        int startIndex = (page -1) * 10;
+        int startIndex = (page - 1) * 10;
         QueryParser queryParser = new QueryParser(FIELD_CONTENTS, analyzer);
         Query new_query = queryParser.parse(search);
         indexSearcher.search(new_query, collector);
@@ -177,19 +189,25 @@ public class Lucene{
 
         ArrayList<SearchLuceneDoc> results = new ArrayList<SearchLuceneDoc>();
 
-        for (ScoreDoc scoreDoc: hits.scoreDocs) {
+        for (ScoreDoc scoreDoc : hits.scoreDocs) {
             int docId = scoreDoc.doc;
             float docScore = scoreDoc.score;
             Document hitDoc = indexReader.document(docId);
-            System.out.println("doc="+docId +" score=" + docScore +" path="+ hitDoc.get(FIELD_PATH));
+            System.out.println("doc=" + docId + " score=" + docScore + " path=" + hitDoc.get(FIELD_PATH));
 
             String path = hitDoc.get("path");
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
             String multimedia = hitDoc.get("multimedia");
 
-            String[] imageList = null;
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, multimedia, imageList);
+            String[] imageList = find_images(hitDoc.get("path"));
+            String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null;
+            String[] algo = dbProjects.getProjectByName(path.split("/")[4]);
+            fecha_archivo = algo[0];
+            Nhablantes = algo[1];
+            entidad = algo[2];
+            municipio = algo[3];
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio);
             results.add(doc);
         }
 
@@ -239,46 +257,27 @@ public class Lucene{
         //Obtención de información de los documentos encontrados
         ArrayList<SearchLuceneDoc> results = new ArrayList<SearchLuceneDoc>();
 
-        for (ScoreDoc scoreDoc: hits.scoreDocs) {
+        for (ScoreDoc scoreDoc : hits.scoreDocs) {
             int docId = scoreDoc.doc;
             float docScore = scoreDoc.score;
 
             Document hitDoc = indexSearcher.doc(docId);
-            System.out.println("doc="+docId +" score=" + docScore +" path="+ hitDoc.get(FIELD_PATH));
+            System.out.println("doc=" + docId + " score=" + docScore + " path=" + hitDoc.get(FIELD_PATH));
 
             String path = hitDoc.get("path");
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
             String multimedia = hitDoc.get("multimedia");
 
-            //System.out.println("PATH: "+ hitDoc.get("path"));
-            //String[] arrOfStr = hitDoc.get("path").split("file_to_index");
-            String arrOfStr = FilenameUtils.getFullPath(path).replaceAll("/maya", "").replaceAll("/español", "");
+            String[] imageList = find_images(hitDoc.get("path"));
 
-            //System.out.println(arrOfStr[0]);
-            String imagesDir = arrOfStr + "Images/";
-            String[] imageList = null ;
-
-            if (Files.exists(Path.of(imagesDir))){
-                String[] pathnames;
-
-                File f = new File(imagesDir);
-
-                pathnames = f.list();
-                if(pathnames.length>0){
-                    for (String pathname : pathnames) {
-                        String x = FilenameUtils.getBaseName(pathname);
-                    }
-                    imageList=pathnames;
-
-                }else{
-                    imageList= null;
-                }
-            }
-
-
-
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, multimedia, imageList);
+            String fecha_archivo = "2022-11-05", Nhablantes ="1", entidad = "Campeche", municipio = "Hopelchén";
+            String[] algo = dbProjects.getProjectByName(path.split("/")[4]);
+            fecha_archivo = algo[0];
+            Nhablantes = algo[1];
+            entidad = algo[2];
+            municipio = algo[3];
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio);
 
             results.add(doc);
         }
@@ -318,7 +317,7 @@ public class Lucene{
         IndexSearcher indexSearcher = new IndexSearcher(multiReader);
 
         TopScoreDocCollector collector = TopScoreDocCollector.create(MAX_RESULTS, 10);
-        int startIndex = (page -1) * 10;
+        int startIndex = (page - 1) * 10;
         QueryParser queryParser = new QueryParser(FIELD_CONTENTS, analyzer);
         Query new_query = queryParser.parse(search);
         indexSearcher.search(new_query, collector);
@@ -329,45 +328,49 @@ public class Lucene{
         //Obtención de información de los documentos encontrados
         ArrayList<SearchLuceneDoc> results = new ArrayList<SearchLuceneDoc>();
 
-        for (ScoreDoc scoreDoc: hits.scoreDocs) {
+        for (ScoreDoc scoreDoc : hits.scoreDocs) {
             int docId = scoreDoc.doc;
             float docScore = scoreDoc.score;
 
             Document hitDoc = indexSearcher.doc(docId);
-            System.out.println("doc="+docId +" score=" + docScore +" path="+ hitDoc.get(FIELD_PATH));
+            System.out.println("doc=" + docId + " score=" + docScore + " path=" + hitDoc.get(FIELD_PATH));
 
             String path = hitDoc.get("path");
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
             String multimedia = hitDoc.get("multimedia");
 
-            String arrOfStr = FilenameUtils.getFullPath(path).replaceAll("/maya", "").replaceAll("/español", "");
-            String imagesDir = arrOfStr + "Images/";
-            String[] imageList = null ;
-
-            if (Files.exists(Path.of(imagesDir))){
-                String[] pathnames;
-
-                File f = new File(imagesDir);
-
-                pathnames = f.list();
-                if(pathnames.length>0){
-                    for (String pathname : pathnames) {
-                        String x = FilenameUtils.getBaseName(pathname);
-                    }
-                    imageList=pathnames;
-
-                }else{
-                    imageList= null;
-                }
-            }
-
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, multimedia, imageList);
+            String[] imageList = find_images(hitDoc.get("path"));
+            String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null;
+            String[] algo = dbProjects.getProjectByName(path.split("/")[4]);
+            fecha_archivo = algo[0];
+            Nhablantes = algo[1];
+            entidad = algo[2];
+            municipio = algo[3];
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio);
             results.add(doc);
         }
 
         multiReader.close();
         return results;
+    }
+
+    public String[] find_images(String path) {
+        String[] arrOfStr = path.split("file_to_index");
+        String imagesDir = arrOfStr[0] + "Images/";
+        String[] imageList = null;
+
+        if (Files.exists(Path.of(imagesDir))) {
+            String[] pathnames;
+            File f = new File(imagesDir);
+            pathnames = f.list();
+            if (pathnames.length > 0) {
+                imageList = pathnames;
+            } else {
+                imageList = null;
+            }
+        }
+        return imageList;
     }
 }
 

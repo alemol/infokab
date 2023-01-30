@@ -51,4 +51,5 @@ public class LuceneService {
             lucene_glosa.createIndex(pathAnnotations);
         }
     }
+
 }

@@ -96,6 +96,27 @@ public class DBProjects {
 
     }
 
+    public String[] getProjectByName(String filename) throws  SQLException {
+        String SQL_QUERY = "SELECT fecha_archivo, hablantes, entidad, municipio FROM proyectos where nombre_proyecto = ?";
+
+        Connection conn = credentials.getConnection();
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
+
+        preparedStatement.setString(1, filename);
+        System.out.println(preparedStatement);
+        ResultSet rs = preparedStatement.executeQuery();
+        String[] resultados = new String[4];
+        while(rs.next()) {
+            resultados[0] = rs.getString(1);
+            resultados[1] = rs.getString(2);
+            resultados[2] = rs.getString(3);
+            resultados[3] = rs.getString(4);
+        }
+        rs.close();
+        conn.close();
+        return resultados;
+    }
+
     public ArrayList<ProjectPostgresRegister> ListProjects() throws SQLException {
         ArrayList<ProjectPostgresRegister> result = new ArrayList<>();
         ProjectPostgresRegister projectRegistrations = null;
