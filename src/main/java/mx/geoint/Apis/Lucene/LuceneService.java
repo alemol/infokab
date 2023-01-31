@@ -52,4 +52,38 @@ public class LuceneService {
         }
     }
 
+    public void indexProjectLucene(String projectID, String indexName) throws SQLException, IOException, ParserConfigurationException, SAXException {
+        ProjectPostgresRegister projectPostgresRegister = this.dbProjects.getProjectById(projectID);
+        String uuid = projectPostgresRegister.getId_usuario();
+        String pathEAF = projectPostgresRegister.getRuta_trabajo()+projectPostgresRegister.getNombre_proyecto()+".eaf";
+        String projectName = projectPostgresRegister.getNombre_proyecto();
+        String pathMultimedia = projectPostgresRegister.getRuta_trabajo()+projectPostgresRegister.getNombre_proyecto()+".wav";
+        String pathAnnotations = "";
+
+        ElanXmlDigester elanXmlDigester = new ElanXmlDigester(pathEAF, pathMultimedia, uuid, Integer.parseInt(projectID));
+
+        if(indexName == pathSystem.INDEX_LANGUAJE_MAYA){
+            pathAnnotations = projectPostgresRegister.getRuta_trabajo() + pathSystem.INDEX_LANGUAJE_MAYA+"/";
+            elanXmlDigester.parse_tier(pathSystem.TIER_MAIN, true, true);
+            Lucene lucene_maya = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_MAYA+"/"+projectName+"/");
+            lucene_maya.initConfig(true);
+            lucene_maya.createIndex(pathAnnotations);
+        }
+
+        if(indexName == pathSystem.INDEX_LANGUAJE_SPANISH){
+            pathAnnotations = projectPostgresRegister.getRuta_trabajo() + pathSystem.INDEX_LANGUAJE_SPANISH+"/";
+            elanXmlDigester.parse_tier(pathSystem.TIER_TRANSLATE, true, true);
+            Lucene lucene_spanish = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_SPANISH+"/"+projectName+"/");
+            lucene_spanish.initConfig(true);
+            lucene_spanish.createIndex(pathAnnotations);
+        }
+
+        if(indexName == pathSystem.INDEX_LANGUAJE_GLOSA){
+            pathAnnotations = projectPostgresRegister.getRuta_trabajo() + pathSystem.INDEX_LANGUAJE_GLOSA+"/";
+            elanXmlDigester.parse_tier(pathSystem.TIER_GlOSA_INDEX, true, true);
+            Lucene lucene_glosa = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_GLOSA+"/"+projectName+"/");
+            lucene_glosa.initConfig(true);
+            lucene_glosa.createIndex(pathAnnotations);
+        }
+    }
 }
