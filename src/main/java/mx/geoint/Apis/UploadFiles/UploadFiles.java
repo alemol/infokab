@@ -121,13 +121,14 @@ public class UploadFiles {
      * @param uuid String, Identificador de usuario
      * @param projectName String, Nombre del proyecto
      */
-    public void InitElanXmlDigester(String eaf, String multimedia, String uuid, String basePath, String projectName, int projectID){
+    public void InitElanXmlDigester(String eaf, String multimedia, String uuid, String basePath, String projectName, int projectID) throws SQLException {
         System.out.println("InitElanXmlDigester.....");
         String extEaf = FilenameUtils.getExtension(eaf);
         String extMultimedia = FilenameUtils.getExtension(multimedia);
 
         String pathEaf = basePath+projectName+"."+extEaf;
         String pathMultimedia = basePath+projectName+"."+extMultimedia;
+        dbProjects.updateProcess(projectID, true);
         threadElanXmlDigester.add(pathEaf, pathMultimedia, uuid, projectID);
         threadElanXmlDigester.activate();
     }

@@ -68,25 +68,26 @@ public class ThreadLuceneIndex extends Thread {
      * Función para obtener un elemento de la queue y ejecutar su proceso
      */
     public void process(){
+        Date startDate = new Date();
+        LuceneProjectRequest luceneProjectRequest = luceneIndex.poll();
+
+        boolean maya = luceneProjectRequest.getMaya();
+        boolean spanish = luceneProjectRequest.getSpanish();
+        boolean glosa = luceneProjectRequest.getGlosa();
+        int projectID = Integer.parseInt(luceneProjectRequest.getProjectID());
+
         try{
-            Date startDate = new Date();
-            LuceneProjectRequest luceneProjectRequest = luceneIndex.poll();
-
-            boolean maya = luceneProjectRequest.getMaya();
-            boolean spanish = luceneProjectRequest.getSpanish();
-            boolean glosa = luceneProjectRequest.getGlosa();
-
             if(maya){
                 indexProjectLucene(luceneProjectRequest.getProjectID(),pathSystem.INDEX_LANGUAJE_MAYA);
-                dbProjects.updateMayaIndex(Integer.parseInt(luceneProjectRequest.getProjectID()));
+                dbProjects.updateMayaIndex(projectID);
             }
             if(spanish){
                 indexProjectLucene(luceneProjectRequest.getProjectID(),pathSystem.INDEX_LANGUAJE_SPANISH);
-                dbProjects.updateSpanishIndex(Integer.parseInt(luceneProjectRequest.getProjectID()));
+                dbProjects.updateSpanishIndex(projectID);
             }
             if(glosa){
                 indexProjectLucene(luceneProjectRequest.getProjectID(), pathSystem.INDEX_LANGUAJE_GLOSA);
-                dbProjects.updateGlosaIndex(Integer.parseInt(luceneProjectRequest.getProjectID()));
+                dbProjects.updateGlosaIndex(projectID);
             }
 
             Date endDate = new Date();
@@ -94,8 +95,6 @@ public class ThreadLuceneIndex extends Thread {
             long difference_In_Seconds = (difference_In_Time / (1000)) % 60;
             long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
             System.out.println("TIMER FINISHED THREAD: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
-
-            dbProjects.updateProcess(Integer.parseInt(luceneProjectRequest.getProjectID()), false);
         } catch (ParserConfigurationException e) {
             logger.appendToFile(e);
             //throw new RuntimeException(e);
@@ -108,6 +107,8 @@ public class ThreadLuceneIndex extends Thread {
         } catch (SQLException e) {
             logger.appendToFile(e);
             //throw new RuntimeException(e);
+        } finally {
+            resetProcessProject(projectID);
         }
     }
 
@@ -143,6 +144,14 @@ public class ThreadLuceneIndex extends Thread {
             Lucene lucene_glosa = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_GLOSA+"/"+projectName+"/");
             lucene_glosa.initConfig(true);
             lucene_glosa.createIndex(pathAnnotations);
+        }
+    }
+
+    public void resetProcessProject(int projectID){
+        try{
+            dbProjects.updateProcess(projectID, false);
+        } catch (SQLException e) {
+            logger.appendToFile(e);
         }
     }
 

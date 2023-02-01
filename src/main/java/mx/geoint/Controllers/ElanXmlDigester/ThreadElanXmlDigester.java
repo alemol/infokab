@@ -1,6 +1,7 @@
 package mx.geoint.Controllers.ElanXmlDigester;
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Controllers.Lucene.Lucene;
+import mx.geoint.Database.DBProjects;
 import mx.geoint.pathSystem;
 import org.xml.sax.SAXException;
 
@@ -14,6 +15,8 @@ import java.util.LinkedList;
 public class ThreadElanXmlDigester extends Thread{
     Queue<ElanXmlDigester> elanXmlDigester = new LinkedList<>();
     Logger logger = new Logger();
+    DBProjects dbProjects = new DBProjects();
+
     /**
      * Función que ejecuta el hilo cuando esta en activo
      */
@@ -67,9 +70,11 @@ public class ThreadElanXmlDigester extends Thread{
      * Función para obtener un elemento de la queue y ejecutar su proceso
      */
     public void process(){
+        Date startDate = new Date();
+        ElanXmlDigester currentElanXmlDigester = elanXmlDigester.poll();
+        int projectID = currentElanXmlDigester.projectID;
+
         try{
-            Date startDate = new Date();
-            ElanXmlDigester currentElanXmlDigester = elanXmlDigester.poll();
             currentElanXmlDigester.validateElanXmlDigester();
             currentElanXmlDigester.parse_tier(pathSystem.TIER_MAIN, true, true);
             currentElanXmlDigester.parse_tier(pathSystem.TIER_TRANSLATE, true, true);
@@ -96,6 +101,16 @@ public class ThreadElanXmlDigester extends Thread{
         } catch (SQLException e) {
             logger.appendToFile(e);
             //throw new RuntimeException(e);
+        } finally {
+            resetProcessProject(projectID);
+        }
+    }
+
+    public void resetProcessProject(int projectID){
+        try{
+            dbProjects.updateProcess(projectID, false);
+        } catch (SQLException e) {
+            logger.appendToFile(e);
         }
     }
 }

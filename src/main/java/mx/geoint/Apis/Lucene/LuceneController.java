@@ -38,20 +38,29 @@ public class LuceneController {
 
     @RequestMapping(path="/index", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Boolean> indexLucene(@RequestBody Map<String, String> body) throws IOException {
+    public ResponseEntity<Boolean> indexLucene(@RequestBody Map<String, String> body) {
         String projectID = body.get("projectID");
         String indexName = "ALL";
 
         try{
+            dbProjects.updateProcess(Integer.parseInt(projectID), true);
             luceneService.indexLucene(projectID, indexName);
+            resetProcessProject(Integer.parseInt(projectID));
             return ResponseEntity.status(HttpStatus.OK).body(true);
         } catch (SQLException e) {
+            resetProcessProject(Integer.parseInt(projectID));
             logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
         } catch (ParserConfigurationException e) {
+            resetProcessProject(Integer.parseInt(projectID));
             logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "ParserConfigurationException", e);
         } catch (SAXException e) {
+            resetProcessProject(Integer.parseInt(projectID));
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "SAXException", e);
+        } catch (IOException e) {
+            resetProcessProject(Integer.parseInt(projectID));
             logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "SAXException", e);
         }
@@ -99,5 +108,13 @@ public class LuceneController {
             threadLuceneIndex.activate();
         }
         return ResponseEntity.status(HttpStatus.OK).body(true);
+    }
+
+    public void resetProcessProject(int projectID){
+        try{
+            dbProjects.updateProcess(projectID, false);
+        } catch (SQLException e) {
+            logger.appendToFile(e);
+        }
     }
 }
