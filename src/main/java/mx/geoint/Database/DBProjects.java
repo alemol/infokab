@@ -40,7 +40,7 @@ public class DBProjects {
         Connection conn = credentials.getConnection();
         System.out.println(conn);
 
-        String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id_proyecto";
+        String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds, en_proceso, indice_maya, indice_español, indice_glosado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id_proyecto";
 
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
@@ -57,6 +57,10 @@ public class DBProjects {
         preparedStatement.setString(7, ubicacion);
         preparedStatement.setInt(8, Integer.parseInt(radio));
         preparedStatement.setString(9, circleBounds);
+        preparedStatement.setBoolean(10, false);
+        preparedStatement.setBoolean(11, false);
+        preparedStatement.setBoolean(12, false);
+        preparedStatement.setBoolean(13, false);
 
         preparedStatement.execute();
         //int row = preparedStatement.executeUpdate();
@@ -119,7 +123,8 @@ public class DBProjects {
     public ArrayList<ProjectPostgresRegister> ListProjects() throws SQLException {
         ArrayList<ProjectPostgresRegister> result = new ArrayList<>();
         ProjectPostgresRegister projectRegistrations = null;
-        String SQL_QUERY =  "select p.id_proyecto, p.id_usuario, p.nombre_proyecto, p.ruta_trabajo, p.fecha_creacion, p.estado, p.fecha_archivo, p.hablantes, p.ubicacion, p.radio, p.bounds, p.total_de_anotaciones, count(distinct r.id) as total_de_reportes, count(distinct g.id) as total_de_anotaciones \n" +
+        String SQL_QUERY =  "select p.id_proyecto, p.id_usuario, p.nombre_proyecto, p.ruta_trabajo, p.fecha_creacion, p.estado, p.fecha_archivo, p.hablantes, p.ubicacion, p.radio, p.bounds, p.total_de_anotaciones, p.en_proceso, p.indice_maya, p.indice_español, p.indice_glosado," +
+                            " count(distinct r.id) as total_de_reportes, count(distinct g.id) as total_de_anotaciones \n" +
                             "FROM proyectos as p \n" +
                             "left join reportes as r on r.id_proyecto = p.id_proyecto and r.activate=true\n" +
                             "left join glosado as g on g.proyecto_id = p.id_proyecto\n" +
@@ -150,8 +155,13 @@ public class DBProjects {
             projectRegistrations.setRadio(rs.getInt(10));
             projectRegistrations.setBounds(rs.getString(11));
             projectRegistrations.setTotal_de_anotaciones(rs.getInt(12));
-            projectRegistrations.setTotal_de_reportes(rs.getInt(13));
-            projectRegistrations.setAnotaciones_guardadas(rs.getInt(14));
+            projectRegistrations.setEn_proceso(rs.getBoolean(13));
+            projectRegistrations.setIndex_maya(rs.getBoolean(14));
+            projectRegistrations.setIndex_español(rs.getBoolean(15));
+            projectRegistrations.setIndex_glosado(rs.getBoolean(16));
+
+            projectRegistrations.setTotal_de_reportes(rs.getInt(17));
+            projectRegistrations.setAnotaciones_guardadas(rs.getInt(18));
 
 
             String dir = rs.getString(4) + "/Images/";
@@ -374,6 +384,97 @@ public class DBProjects {
         }
 
         conn.close();
+        return result;
+    }
+
+    public boolean updateProcess(Integer id_project, boolean process) throws SQLException {
+        Connection conn = credentials.getConnection();
+        String SQL_UPDATE = "UPDATE proyectos SET en_proceso = ? WHERE id_proyecto=?";
+
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
+        preparedStatement.setBoolean(1, process);
+        preparedStatement.setObject(2, id_project);
+
+        int rs = preparedStatement.executeUpdate();
+        boolean result;
+
+        if(rs>0){
+            System.out.println("registro actualizado en base de datos");
+            result = true;
+        } else{
+            System.out.println("No se pudo actualizar el registro en base de datos");
+            result = false;
+        }
+
+        return result;
+    }
+
+    public boolean updateMayaIndex(Integer id_project) throws SQLException {
+        Connection conn = credentials.getConnection();
+        String SQL_UPDATE = "UPDATE proyectos SET indice_maya = ? WHERE id_proyecto=?";
+
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
+        preparedStatement.setBoolean(1, true);
+        preparedStatement.setObject(2, id_project);
+
+        int rs = preparedStatement.executeUpdate();
+        conn.close();
+        boolean result;
+
+        if(rs>0){
+            System.out.println("registro actualizado en base de datos");
+            result = true;
+        } else{
+            System.out.println("No se pudo actualizar el registro en base de datos");
+            result = false;
+        }
+
+        return result;
+    }
+
+    public boolean updateSpanishIndex(Integer id_project) throws SQLException {
+        Connection conn = credentials.getConnection();
+        String SQL_UPDATE = "UPDATE proyectos SET indice_español = ? WHERE id_proyecto=?";
+
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
+        preparedStatement.setBoolean(1, true);
+        preparedStatement.setObject(2, id_project);
+
+        int rs = preparedStatement.executeUpdate();
+        conn.close();
+        boolean result;
+
+        if(rs>0){
+            System.out.println("registro actualizado en base de datos");
+            result = true;
+        } else{
+            System.out.println("No se pudo actualizar el registro en base de datos");
+            result = false;
+        }
+
+        return result;
+    }
+
+    public boolean updateGlosaIndex(Integer id_project) throws SQLException {
+        Connection conn = credentials.getConnection();
+        String SQL_UPDATE = "UPDATE proyectos SET indice_glosado = ? WHERE id_proyecto=?";
+
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
+        preparedStatement.setBoolean(1, true);
+        preparedStatement.setObject(2, id_project);
+
+        int rs = preparedStatement.executeUpdate();
+        conn.close();
+        boolean result;
+
+        if(rs>0){
+            System.out.println("registro actualizado en base de datos");
+            result = true;
+        } else{
+            System.out.println("No se pudo actualizar el registro en base de datos");
+            result = false;
+        }
+
         return result;
     }
 }

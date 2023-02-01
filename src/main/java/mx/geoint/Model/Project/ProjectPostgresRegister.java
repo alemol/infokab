@@ -13,6 +13,10 @@ public class ProjectPostgresRegister {
     int radio;
     String bounds;
 
+    Boolean index_español;
+    Boolean index_maya;
+    Boolean index_glosado;
+    Boolean en_proceso;
     int total_de_anotaciones;
     int anotaciones_guardadas;
     int total_de_reportes;
@@ -86,4 +90,20 @@ public class ProjectPostgresRegister {
     public void setTotal_de_reportes(int total_de_reportes) { this.total_de_reportes = total_de_reportes; }
 
     public int getTotal_de_reportes() { return total_de_reportes; }
+
+    public void setEn_proceso(boolean en_proceso) { this.en_proceso = en_proceso; }
+
+    public void setIndex_español(boolean index_español) { this.index_español = index_español; }
+
+    public void setIndex_glosado(boolean index_glosado) { this.index_glosado = index_glosado; }
+
+    public void setIndex_maya(boolean index_maya) { this.index_maya = index_maya; }
+
+    public Boolean getIndex_español() { return index_español; }
+
+    public Boolean getIndex_glosado() { return index_glosado; }
+
+    public Boolean getEn_proceso() { return en_proceso;}
+
+    public Boolean getIndex_maya() { return index_maya; }
 }

@@ -78,12 +78,15 @@ public class ThreadLuceneIndex extends Thread {
 
             if(maya){
                 indexProjectLucene(luceneProjectRequest.getProjectID(),pathSystem.INDEX_LANGUAJE_MAYA);
+                dbProjects.updateMayaIndex(Integer.parseInt(luceneProjectRequest.getProjectID()));
             }
             if(spanish){
                 indexProjectLucene(luceneProjectRequest.getProjectID(),pathSystem.INDEX_LANGUAJE_SPANISH);
+                dbProjects.updateSpanishIndex(Integer.parseInt(luceneProjectRequest.getProjectID()));
             }
             if(glosa){
                 indexProjectLucene(luceneProjectRequest.getProjectID(), pathSystem.INDEX_LANGUAJE_GLOSA);
+                dbProjects.updateGlosaIndex(Integer.parseInt(luceneProjectRequest.getProjectID()));
             }
 
             Date endDate = new Date();
@@ -91,6 +94,8 @@ public class ThreadLuceneIndex extends Thread {
             long difference_In_Seconds = (difference_In_Time / (1000)) % 60;
             long difference_In_Minutes = (difference_In_Time / (1000 * 60)) % 60;
             System.out.println("TIMER FINISHED THREAD: "+ difference_In_Seconds +"s " + difference_In_Minutes+"m");
+
+            dbProjects.updateProcess(Integer.parseInt(luceneProjectRequest.getProjectID()), false);
         } catch (ParserConfigurationException e) {
             logger.appendToFile(e);
             //throw new RuntimeException(e);

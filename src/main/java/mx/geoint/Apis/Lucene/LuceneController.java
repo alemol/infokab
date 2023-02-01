@@ -2,6 +2,7 @@ package mx.geoint.Apis.Lucene;
 
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Controllers.Lucene.ThreadLuceneIndex;
+import mx.geoint.Database.DBProjects;
 import mx.geoint.Model.Lucene.LuceneProjectRequest;
 import mx.geoint.Model.Lucene.LuceneProjectsRequest;
 import mx.geoint.pathSystem;
@@ -25,10 +26,12 @@ public class LuceneController {
     private final LuceneService luceneService;
 
     private Logger logger;
+    private DBProjects dbProjects;
 
-    public LuceneController(LuceneService luceneService){
+    public LuceneController(LuceneService luceneService) {
         this.luceneService = luceneService;
         this.logger = new Logger();
+        this.dbProjects = new DBProjects();
         threadLuceneIndex = new ThreadLuceneIndex();
         threadLuceneIndex.start();
     }
@@ -88,9 +91,10 @@ public class LuceneController {
 
     @RequestMapping(path="/projects/index/v2", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Boolean> indexArrayLuceneV2(@RequestBody LuceneProjectsRequest luceneProjectsRequest) throws IOException {
+    public ResponseEntity<Boolean> indexArrayLuceneV2(@RequestBody LuceneProjectsRequest luceneProjectsRequest) throws IOException, SQLException {
         ArrayList<LuceneProjectRequest> luceneProjectRequests = luceneProjectsRequest.getProjectIndex();
         for(LuceneProjectRequest project : luceneProjectRequests){
+            dbProjects.updateProcess(Integer.parseInt(project.getProjectID()), true);
             threadLuceneIndex.add(project);
             threadLuceneIndex.activate();
         }
