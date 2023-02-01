@@ -409,12 +409,12 @@ public class DBProjects {
         return result;
     }
 
-    public boolean updateMayaIndex(Integer id_project) throws SQLException {
+    public boolean updateMayaIndex(Integer id_project, boolean status) throws SQLException {
         Connection conn = credentials.getConnection();
         String SQL_UPDATE = "UPDATE proyectos SET indice_maya = ? WHERE id_proyecto=?";
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
-        preparedStatement.setBoolean(1, true);
+        preparedStatement.setBoolean(1, status);
         preparedStatement.setObject(2, id_project);
 
         int rs = preparedStatement.executeUpdate();
@@ -432,12 +432,12 @@ public class DBProjects {
         return result;
     }
 
-    public boolean updateSpanishIndex(Integer id_project) throws SQLException {
+    public boolean updateSpanishIndex(Integer id_project, boolean status) throws SQLException {
         Connection conn = credentials.getConnection();
         String SQL_UPDATE = "UPDATE proyectos SET indice_español = ? WHERE id_proyecto=?";
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
-        preparedStatement.setBoolean(1, true);
+        preparedStatement.setBoolean(1, status);
         preparedStatement.setObject(2, id_project);
 
         int rs = preparedStatement.executeUpdate();
@@ -455,13 +455,38 @@ public class DBProjects {
         return result;
     }
 
-    public boolean updateGlosaIndex(Integer id_project) throws SQLException {
+    public boolean updateGlosaIndex(Integer id_project, boolean status) throws SQLException {
         Connection conn = credentials.getConnection();
         String SQL_UPDATE = "UPDATE proyectos SET indice_glosado = ? WHERE id_proyecto=?";
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
-        preparedStatement.setBoolean(1, true);
+        preparedStatement.setBoolean(1, status);
         preparedStatement.setObject(2, id_project);
+
+        int rs = preparedStatement.executeUpdate();
+        conn.close();
+        boolean result;
+
+        if(rs>0){
+            System.out.println("registro actualizado en base de datos");
+            result = true;
+        } else{
+            System.out.println("No se pudo actualizar el registro en base de datos");
+            result = false;
+        }
+
+        return result;
+    }
+
+    public boolean resetFlagIndex(Integer id_project, boolean status) throws SQLException {
+        Connection conn = credentials.getConnection();
+        String SQL_UPDATE = "UPDATE proyectos SET indice_glosado = ?, indice_español = ?, indice_maya = ? WHERE id_proyecto=?";
+
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
+        preparedStatement.setBoolean(1, status);
+        preparedStatement.setBoolean(2, status);
+        preparedStatement.setBoolean(3, status);
+        preparedStatement.setObject(4, id_project);
 
         int rs = preparedStatement.executeUpdate();
         conn.close();

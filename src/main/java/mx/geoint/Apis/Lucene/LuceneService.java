@@ -36,12 +36,14 @@ public class LuceneService {
             Lucene lucene_maya = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_MAYA+"/"+projectName+"/");
             lucene_maya.initConfig(true);
             lucene_maya.createIndex(pathAnnotations);
+            dbProjects.updateMayaIndex(Integer.parseInt(projectID), true);
 
             pathAnnotations = projectPostgresRegister.getRuta_trabajo() + pathSystem.INDEX_LANGUAJE_SPANISH+"/";
             elanXmlDigester.parse_tier(pathSystem.TIER_TRANSLATE, true, true);
             Lucene lucene_spanish = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_SPANISH+"/"+projectName+"/");
             lucene_spanish.initConfig(true);
             lucene_spanish.createIndex(pathAnnotations);
+            dbProjects.updateSpanishIndex(Integer.parseInt(projectID), true);
 
             pathAnnotations = projectPostgresRegister.getRuta_trabajo() + pathSystem.INDEX_LANGUAJE_GLOSA+"/";
             elanXmlDigester.parse_tier(pathSystem.TIER_GlOSA_INDEX, true, true);
@@ -49,6 +51,7 @@ public class LuceneService {
             Lucene lucene_glosa = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_GLOSA+"/"+projectName+"/");
             lucene_glosa.initConfig(true);
             lucene_glosa.createIndex(pathAnnotations);
+            dbProjects.updateGlosaIndex(Integer.parseInt(projectID), true);
         }
     }
 
@@ -68,6 +71,7 @@ public class LuceneService {
             Lucene lucene_maya = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_MAYA+"/"+projectName+"/");
             lucene_maya.initConfig(true);
             lucene_maya.createIndex(pathAnnotations);
+            dbProjects.updateMayaIndex(Integer.parseInt(projectID), true);
         }
 
         if(indexName == pathSystem.INDEX_LANGUAJE_SPANISH){
@@ -76,6 +80,7 @@ public class LuceneService {
             Lucene lucene_spanish = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_SPANISH+"/"+projectName+"/");
             lucene_spanish.initConfig(true);
             lucene_spanish.createIndex(pathAnnotations);
+            dbProjects.updateSpanishIndex(Integer.parseInt(projectID), true);
         }
 
         if(indexName == pathSystem.INDEX_LANGUAJE_GLOSA){
@@ -84,6 +89,7 @@ public class LuceneService {
             Lucene lucene_glosa = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_GLOSA+"/"+projectName+"/");
             lucene_glosa.initConfig(true);
             lucene_glosa.createIndex(pathAnnotations);
+            dbProjects.updateGlosaIndex(Integer.parseInt(projectID), true);
         }
     }
 }

@@ -75,6 +75,7 @@ public class ThreadElanXmlDigester extends Thread{
         int projectID = currentElanXmlDigester.projectID;
 
         try{
+            dbProjects.resetFlagIndex(projectID, false);
             currentElanXmlDigester.validateElanXmlDigester();
             currentElanXmlDigester.parse_tier(pathSystem.TIER_MAIN, true, true);
             currentElanXmlDigester.parse_tier(pathSystem.TIER_TRANSLATE, true, true);

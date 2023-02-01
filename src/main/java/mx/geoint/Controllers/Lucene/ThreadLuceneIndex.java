@@ -79,15 +79,15 @@ public class ThreadLuceneIndex extends Thread {
         try{
             if(maya){
                 indexProjectLucene(luceneProjectRequest.getProjectID(),pathSystem.INDEX_LANGUAJE_MAYA);
-                dbProjects.updateMayaIndex(projectID);
+                dbProjects.updateMayaIndex(projectID, true);
             }
             if(spanish){
                 indexProjectLucene(luceneProjectRequest.getProjectID(),pathSystem.INDEX_LANGUAJE_SPANISH);
-                dbProjects.updateSpanishIndex(projectID);
+                dbProjects.updateSpanishIndex(projectID, true);
             }
             if(glosa){
                 indexProjectLucene(luceneProjectRequest.getProjectID(), pathSystem.INDEX_LANGUAJE_GLOSA);
-                dbProjects.updateGlosaIndex(projectID);
+                dbProjects.updateGlosaIndex(projectID, true);
             }
 
             Date endDate = new Date();
