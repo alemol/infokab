@@ -36,11 +36,12 @@ public class DBProjects {
         int id_project = 0;
         //---guardado a base de datos
         System.out.println("save to database: "+projectName);
-
+        String[] parts = projectName.split("_");
+        String[] coords = ubicacion.split(",");
         Connection conn = credentials.getConnection();
         System.out.println(conn);
 
-        String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds, en_proceso, indice_maya, indice_español, indice_glosado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id_proyecto";
+        String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds, en_proceso, indice_maya, indice_español, indice_glosado, entidad, municipio, localidad) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,(SELECT entidad_nombre FROM public.dim_entidad WHERE entidad_cvegeo = ?),(SELECT municipio_nombre FROM public.dim_municipio WHERE municipio_cvegeo = ? limit 1),(SELECT l.localidad_nombre FROM (SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ? UNION SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ?  ORDER BY dist LIMIT 1) AS l) ) RETURNING id_proyecto";
 
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
@@ -61,6 +62,14 @@ public class DBProjects {
         preparedStatement.setBoolean(11, false);
         preparedStatement.setBoolean(12, false);
         preparedStatement.setBoolean(13, false);
+        preparedStatement.setString(14, parts[0]);
+        preparedStatement.setString(15, parts[0]+parts[1]);
+        preparedStatement.setString(16, coords[1]);
+        preparedStatement.setString(17, coords[0]);
+        preparedStatement.setString(18, parts[0]+parts[1]);
+        preparedStatement.setString(19, coords[1]);
+        preparedStatement.setString(20, coords[0]);
+        preparedStatement.setString(21, parts[0]+parts[1]);
 
         preparedStatement.execute();
         //int row = preparedStatement.executeUpdate();
@@ -101,19 +110,19 @@ public class DBProjects {
     }
 
     public String[] getProjectByName(String filename) throws  SQLException {
-        String SQL_QUERY = "SELECT fecha_archivo, hablantes, entidad, municipio FROM proyectos where nombre_proyecto = ?";
+        String SQL_QUERY = "SELECT fecha_archivo, hablantes, entidad, municipio, localidad FROM proyectos where nombre_proyecto = ?";
 
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
-
         preparedStatement.setString(1, filename);
         ResultSet rs = preparedStatement.executeQuery();
-        String[] resultados = new String[4];
+        String[] resultados = new String[5];
         while(rs.next()) {
             resultados[0] = rs.getString(1);
             resultados[1] = rs.getString(2);
             resultados[2] = rs.getString(3);
             resultados[3] = rs.getString(4);
+            resultados[4] = rs.getString(5);
         }
         rs.close();
         conn.close();
