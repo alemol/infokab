@@ -228,19 +228,14 @@ public class Lucene {
         //System.out.println("Searching for '" + searchString + "'");
 
         //Se Obtiene todos los indices generados en la caperta DIRECTORY_INDEX_GENERAL
-        File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL);
+        File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+index+"/");
         File[] files = dir.listFiles();
         for (File file : files) {
-            if(file.getName().equals(index) && file.isDirectory()){
-                File[] list_files = file.listFiles();
-                for (File aux_file : list_files) {
-                    if(file.isDirectory()){
-                        Directory directory = FSDirectory.open(Paths.get(aux_file.getCanonicalPath()));
-                        //Condición para no tomar los directorios que estan agregando al momento
-                        if(DirectoryReader.indexExists(directory)){
-                            indexReaders.add(DirectoryReader.open(directory));
-                        }
-                    }
+            if(file.isDirectory()){
+                Directory directory = FSDirectory.open(Paths.get(file.getCanonicalPath()));
+                //Condición para no tomar los directorios que estan agregando al momento
+                if(DirectoryReader.indexExists(directory)){
+                    indexReaders.add(DirectoryReader.open(directory));
                 }
             }
         }
@@ -248,12 +243,10 @@ public class Lucene {
         //Creacion de indexSearch con muchos indices
         MultiReader multiReader = new MultiReader(indexReaders.toArray(new IndexReader[indexReaders.size()]));
         IndexSearcher indexSearcher = new IndexSearcher(multiReader);
-
         QueryParser queryParser = new QueryParser(FIELD_CONTENTS, analyzer);
         Query new_query = queryParser.parse(searchString);
         TopDocs hits = indexSearcher.search(new_query, 10);
         System.out.println("totalHits: " + hits.totalHits);
-
         //Obtención de información de los documentos encontrados
         ArrayList<SearchLuceneDoc> results = new ArrayList<SearchLuceneDoc>();
 
@@ -295,19 +288,14 @@ public class Lucene {
         //System.out.println("Searching for '" + searchString + "'");
 
         //Se Obtiene todos los indices generados en la caperta DIRECTORY_INDEX_GENERAL
-        File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL);
+        File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+index+"/");
         File[] files = dir.listFiles();
         for (File file : files) {
-            if(file.getName().equals(index) && file.isDirectory()){
-                File[] list_files = file.listFiles();
-                for (File aux_file : list_files) {
-                    if(file.isDirectory()) {
-                        Directory directory = FSDirectory.open(Paths.get(aux_file.getCanonicalPath()));
-                        //Condición para no tomar los directorios que estan agregando al momento
-                        if(DirectoryReader.indexExists(directory)){
-                            indexReaders.add(DirectoryReader.open(directory));
-                        }
-                    }
+            if(file.isDirectory()){
+                Directory directory = FSDirectory.open(Paths.get(file.getCanonicalPath()));
+                //Condición para no tomar los directorios que estan agregando al momento
+                if(DirectoryReader.indexExists(directory)){
+                    indexReaders.add(DirectoryReader.open(directory));
                 }
             }
         }
