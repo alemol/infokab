@@ -71,6 +71,7 @@ public class DBProjects {
         preparedStatement.setString(20, coords[0]);
         preparedStatement.setString(21, parts[0]+parts[1]);
 
+
         preparedStatement.execute();
         //int row = preparedStatement.executeUpdate();
         ResultSet rs = preparedStatement.getGeneratedKeys();
