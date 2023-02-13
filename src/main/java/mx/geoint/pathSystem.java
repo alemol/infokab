@@ -8,8 +8,10 @@ public class pathSystem {
     public static final String INDEX_LANGUAJE_MAYA = "maya";
     public static final String INDEX_LANGUAJE_SPANISH = "español";
     public static final String INDEX_LANGUAJE_GLOSA = "glosado";
+    public static final String INDEX_LANGUAJE_GLOSA_WORDS = "glosado_words";
     public static final String TIER_GlOSA = "glosa";
     public static final String TIER_GlOSA_INDEX = "glosa_index";
+    public static final String TIER_GlOSA_INDEX_WORDS = "glosa_index_words";
     public static final String DIRECTORY_PUBLIC_MULTIMEDIA = "./Files/";
     public static final String DIRECTORY_INDEX_LUCENE = "./Files/index/";
     public static final String DIRECTORY_INDEX_GENERAL = "./Files/Indices/";

@@ -92,7 +92,8 @@ public class ParseHandler extends DefaultHandler{
             if(current_tier_id.equals(pathSystem.TIER_MAIN) ||
                 current_tier_id.equals(pathSystem.TIER_DEFAULT) ||
                 current_tier_id.equals(pathSystem.TIER_TRANSLATE) ||
-                current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX)){
+                current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX) ||
+                current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX_WORDS)){
 
                 String annotation_value = new String(ch, start, length);
                 if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
@@ -171,7 +172,8 @@ public class ParseHandler extends DefaultHandler{
                     if( current_tier_id.equals(pathSystem.TIER_MAIN) ||
                         current_tier_id.equals(pathSystem.TIER_DEFAULT) ||
                         current_tier_id.equals(pathSystem.TIER_TRANSLATE) ||
-                        current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX)){
+                        current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX) ||
+                        current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX_WORDS)){
                         List getTierList = tiersList.get(current_tier_id);
                         if(getTierList == null){
                             tiersList.put(current_tier_id, new ArrayList<>());
@@ -234,7 +236,9 @@ public class ParseHandler extends DefaultHandler{
                     }
                 }
 
-                if(current_tier_id.equals(pathSystem.TIER_TRANSLATE) || current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX)){
+                if(current_tier_id.equals(pathSystem.TIER_TRANSLATE) ||
+                    current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX) ||
+                    current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX_WORDS)){
                     String REF_ANNOTATION_ID = attr.getValue("ANNOTATION_ID");
                     String REF_ANNOTATION_REF = attr.getValue("ANNOTATION_REF");
 

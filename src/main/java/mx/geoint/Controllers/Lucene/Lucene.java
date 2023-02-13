@@ -228,14 +228,20 @@ public class Lucene {
         //System.out.println("Searching for '" + searchString + "'");
 
         //Se Obtiene todos los indices generados en la caperta DIRECTORY_INDEX_GENERAL
-        File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+index+"/");
+        File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL);
         File[] files = dir.listFiles();
         for (File file : files) {
-            if(file.isDirectory()){
-                Directory directory = FSDirectory.open(Paths.get(file.getCanonicalPath()));
-                //Condición para no tomar los directorios que estan agregando al momento
-                if(DirectoryReader.indexExists(directory)){
-                    indexReaders.add(DirectoryReader.open(directory));
+            if(file.getName().equals(index) && file.isDirectory()
+            || file.getName().equals(index+"_words") && file.isDirectory()){
+                File[] list_files = file.listFiles();
+                for (File aux_file : list_files) {
+                    if(file.isDirectory()){
+                        Directory directory = FSDirectory.open(Paths.get(aux_file.getCanonicalPath()));
+                        //Condición para no tomar los directorios que estan agregando al momento
+                        if(DirectoryReader.indexExists(directory)){
+                            indexReaders.add(DirectoryReader.open(directory));
+                        }
+                    }
                 }
             }
         }

@@ -83,6 +83,7 @@ public class WriteXML {
 
         removeTier(document, pathSystem.TIER_GlOSA);
         removeTier(document, pathSystem.TIER_GlOSA_INDEX);
+        removeTier(document, pathSystem.TIER_GlOSA_INDEX_WORDS);
 
         Element root = document.getDocumentElement();
         Element TIER = document.createElement("TIER");
@@ -91,8 +92,12 @@ public class WriteXML {
         Element TIER_INDEX = document.createElement("TIER");
         TIER_INDEX.setAttribute("LINGUISTIC_TYPE_REF", pathSystem.TIER_GlOSA_INDEX);
 
+        Element TIER_INDEX_COMPLETED = document.createElement("TIER");
+        TIER_INDEX_COMPLETED.setAttribute("LINGUISTIC_TYPE_REF", pathSystem.TIER_GlOSA_INDEX_WORDS);
+
         root.appendChild(TIER);
         root.appendChild(TIER_INDEX);
+        root.appendChild(TIER_INDEX_COMPLETED);
 
         for(AnnotationRegister annotationRegister: annotationRegisters){
             Element ANNOTATION = document.createElement("ANNOTATION");
@@ -106,12 +111,19 @@ public class WriteXML {
             Element ANNOTATION_INDEX = document.createElement("ANNOTATION");
             Element REF_ANNOTATION_INDEX = document.createElement("REF_ANNOTATION");
 
+            Element ANNOTATION_INDEX_COMPLETED = document.createElement("ANNOTATION");
+            Element REF_ANNOTATION_INDEX_COMPLETED = document.createElement("REF_ANNOTATION");
+
             REF_ANNOTATION_INDEX.setAttribute("ANNOTATION_ID", annotationRegister.getANNOTATION_ID().replaceAll("g","gi"));
             REF_ANNOTATION_INDEX.setAttribute("ANNOTATION_REF", annotationRegister.getANNOTATION_TIER_REF());
+
+            REF_ANNOTATION_INDEX_COMPLETED.setAttribute("ANNOTATION_ID", annotationRegister.getANNOTATION_ID().replaceAll("g","gc"));
+            REF_ANNOTATION_INDEX_COMPLETED.setAttribute("ANNOTATION_REF", annotationRegister.getANNOTATION_TIER_REF());
 
             ArrayList<GlosaStep> glosaSteps = annotationRegister.getSteps();
 
             String GLOSA_INDEX = "";
+            String GLOSA_INDEX_COMPLETED = "";
             for (GlosaStep step: glosaSteps){
                 Element ANNOTATION_VALUE = document.createElement("ANNOTATION_VALUE");
                 ANNOTATION_VALUE.setAttribute("WORD_POSITION", String.valueOf(step.getId()));
@@ -120,6 +132,14 @@ public class WriteXML {
 
                 REF_ANNOTATION.appendChild(ANNOTATION_VALUE);
                 String getSelect = step.getSelect();
+
+                String getCompleteSelect = "";
+                String[] splitCompleteSelect = getSelect.split("=");
+                if(splitCompleteSelect.length == 2){
+                    getCompleteSelect = splitCompleteSelect[0];
+                    getCompleteSelect = getCompleteSelect.replaceAll("\\(","").replaceAll("\\)","").replaceAll("\\+","").replaceAll(" ","");
+                    GLOSA_INDEX_COMPLETED += getCompleteSelect+" ";
+                }
 
                 String REGEX_START_BASE = Pattern.quote("(");
                 String REGEX_END_BASE = Pattern.quote(")");
@@ -138,6 +158,7 @@ public class WriteXML {
 
                 while (matcher_category.find()) {
                     GLOSA_INDEX += "("+matcher_category.group(1)+")"+" ";
+                    GLOSA_INDEX_COMPLETED += "("+matcher_category.group(1)+")"+" ";
                 }
             }
 
@@ -148,8 +169,15 @@ public class WriteXML {
             ANNOTATION.appendChild(REF_ANNOTATION);
             TIER.appendChild(ANNOTATION);
 
+            Element ANNOTATION_VALUE_INDEX_COMPLETED = document.createElement("ANNOTATION_VALUE");
+            REF_ANNOTATION_INDEX_COMPLETED.appendChild(ANNOTATION_VALUE_INDEX_COMPLETED);
+            ANNOTATION_VALUE_INDEX_COMPLETED.appendChild(document.createTextNode(GLOSA_INDEX_COMPLETED));
+
             ANNOTATION_INDEX.appendChild(REF_ANNOTATION_INDEX);
             TIER_INDEX.appendChild(ANNOTATION_INDEX);
+
+            ANNOTATION_INDEX_COMPLETED.appendChild(REF_ANNOTATION_INDEX_COMPLETED);
+            TIER_INDEX_COMPLETED.appendChild(ANNOTATION_INDEX_COMPLETED);
         }
 
         saveFile(document);
