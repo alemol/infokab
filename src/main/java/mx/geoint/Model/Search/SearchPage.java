@@ -5,6 +5,8 @@ public class SearchPage {
     private String index;
     private int page;
 
+    private boolean levenshtein;
+
     public SearchPage(){}
 
     public SearchPage(String text, int page, String index) {
@@ -32,4 +34,12 @@ public class SearchPage {
     public void setIndex(String index) { this.index = index; }
 
     public String getIndex() { return index; }
+
+    public boolean isLevenshtein() {
+        return levenshtein;
+    }
+
+    public void setLevenshtein(boolean levenshtein) {
+        this.levenshtein = levenshtein;
+    }
 }

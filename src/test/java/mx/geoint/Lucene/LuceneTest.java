@@ -75,7 +75,7 @@ class LuceneTest {
     void searchMutlipleIndex() throws IOException, ParseException, SQLException {
         //createIndex();
         Lucene lucene = new Lucene();
-        lucene.searchMultipleIndex("ch´aalun",pathSystem.INDEX_LANGUAJE_MAYA);
+        lucene.searchMultipleIndex("ch´aalun",pathSystem.INDEX_LANGUAJE_MAYA, false);
     }
 
     @Test

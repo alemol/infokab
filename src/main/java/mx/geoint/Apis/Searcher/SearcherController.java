@@ -109,8 +109,9 @@ public class SearcherController {
         String text = searchPage.getText();
         String index = searchPage.getIndex();
         int page = searchPage.getPage();
+        boolean levenshtein = searchPage.isLevenshtein();
         try{
-            ArrayList<SearchLuceneDoc> response = searcherService.findDocumentsPageMultiple(text, page, index);
+            ArrayList<SearchLuceneDoc> response = searcherService.findDocumentsPageMultiple(text, page, index, levenshtein);
 
             if(response != null){
                 return ResponseEntity.status(HttpStatus.OK).body(response);

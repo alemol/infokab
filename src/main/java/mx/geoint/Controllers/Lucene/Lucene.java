@@ -294,7 +294,7 @@ public class Lucene {
         return searchResponse;
     }
 
-    public ArrayList<SearchLuceneDoc> searchPaginateMultiple(String search, int page, String index) throws IOException, ParseException, SQLException {
+    public ArrayList<SearchLuceneDoc> searchPaginateMultiple(String search, int page, String index, boolean levenshtein) throws IOException, ParseException, SQLException {
         List<IndexReader> indexReaders = new ArrayList<>();
 
         Analyzer analyzer = new StandardAnalyzer();
@@ -320,7 +320,12 @@ public class Lucene {
         TopScoreDocCollector collector = TopScoreDocCollector.create(MAX_RESULTS, 10);
         int startIndex = (page - 1) * 10;
         QueryParser queryParser = new QueryParser(FIELD_CONTENTS, analyzer);
-        Query new_query = queryParser.parse(search);
+        Query new_query = null;
+        if(levenshtein){
+            new_query = new FuzzyQuery(new Term(FIELD_CONTENTS, search));
+        } else {
+            new_query = queryParser.parse(search);
+        }
         indexSearcher.search(new_query, collector);
 
         TopDocs hits = collector.topDocs(startIndex, 10);

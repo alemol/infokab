@@ -28,8 +28,8 @@ public class SearcherService {
         return  searcher.findMultiple(formatLucene(searchValue), index, levenshtein);
     }
 
-    public ArrayList<SearchLuceneDoc> findDocumentsPageMultiple(String searchValue, int page, String index) throws IOException, ParseException, SQLException {
-        return searcher.findPageMultiple(formatLucene(searchValue), page, index);
+    public ArrayList<SearchLuceneDoc> findDocumentsPageMultiple(String searchValue, int page, String index, boolean levenshtein) throws IOException, ParseException, SQLException {
+        return searcher.findPageMultiple(formatLucene(searchValue), page, index, levenshtein);
     }
 
     public String formatLucene(String text){
