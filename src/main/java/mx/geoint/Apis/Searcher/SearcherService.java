@@ -24,8 +24,8 @@ public class SearcherService {
         return searcher.findPage(formatLucene(searchvalue), page);
     }
 
-    public SearchResponse findDocumentsMultiple(String searchValue, String index) throws IOException, ParseException, SQLException {
-        return  searcher.findMultiple(formatLucene(searchValue), index);
+    public SearchResponse findDocumentsMultiple(String searchValue, String index, boolean levenshtein) throws IOException, ParseException, SQLException {
+        return  searcher.findMultiple(formatLucene(searchValue), index, levenshtein);
     }
 
     public ArrayList<SearchLuceneDoc> findDocumentsPageMultiple(String searchValue, int page, String index) throws IOException, ParseException, SQLException {

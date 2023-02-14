@@ -40,8 +40,8 @@ public class Searcher {
         return response;
     }
 
-    public SearchResponse findMultiple(String text, String index) throws IOException, ParseException, SQLException {
-        SearchResponse response = lucene.searchMultipleIndex(text, index);
+    public SearchResponse findMultiple(String text, String index, boolean levenshtein) throws IOException, ParseException, SQLException {
+        SearchResponse response = lucene.searchMultipleIndex(text, index, levenshtein);
         return response;
     }
 

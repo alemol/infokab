@@ -4,6 +4,8 @@ public class SearchRequest {
     private String text;
     private String index;
 
+    private boolean levenshtein;
+
     public SearchRequest(){}
     public SearchRequest(String text) {
         this.text = text;
@@ -16,4 +18,12 @@ public class SearchRequest {
     public void setIndex(String index) { this.index = index; }
 
     public String getIndex() { return index; }
+
+    public boolean isLevenshtein() {
+        return levenshtein;
+    }
+
+    public void setLevenshtein(boolean levenshtein) {
+        this.levenshtein = levenshtein;
+    }
 }

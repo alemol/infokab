@@ -223,7 +223,7 @@ public class Lucene {
      * @param searchString texto a buscar
      * @return List<Document> Lista de documentos encontrados
      **/
-    public SearchResponse searchMultipleIndex(String searchString, String index) throws IOException, ParseException, SQLException {
+    public SearchResponse searchMultipleIndex(String searchString, String index, boolean levenshtein) throws IOException, ParseException, SQLException {
         List<IndexReader> indexReaders = new ArrayList<>();
 
         Analyzer analyzer = new StandardAnalyzer();
@@ -252,7 +252,12 @@ public class Lucene {
         MultiReader multiReader = new MultiReader(indexReaders.toArray(new IndexReader[indexReaders.size()]));
         IndexSearcher indexSearcher = new IndexSearcher(multiReader);
         QueryParser queryParser = new QueryParser(FIELD_CONTENTS, analyzer);
-        Query new_query = queryParser.parse(searchString);
+        Query new_query = null;
+        if(levenshtein){
+            new_query = new FuzzyQuery(new Term(FIELD_CONTENTS, searchString));
+        } else {
+            new_query = queryParser.parse(searchString);
+        }
         TopDocs hits = indexSearcher.search(new_query, 10);
         System.out.println("totalHits: " + hits.totalHits);
         //Obtención de información de los documentos encontrados

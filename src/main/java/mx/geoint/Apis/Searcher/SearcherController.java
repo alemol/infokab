@@ -85,8 +85,9 @@ public class SearcherController {
         try{
             String text = searchRequest.getText();
             String index = searchRequest.getIndex();
+            boolean levenshtein = searchRequest.isLevenshtein();
 
-            SearchResponse response = searcherService.findDocumentsMultiple(text, index);
+            SearchResponse response = searcherService.findDocumentsMultiple(text, index, levenshtein);
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (IOException e){
             System.out.println("entre IO");
