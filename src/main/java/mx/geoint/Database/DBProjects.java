@@ -111,19 +111,20 @@ public class DBProjects {
     }
 
     public String[] getProjectByName(String filename) throws  SQLException {
-        String SQL_QUERY = "SELECT fecha_archivo, hablantes, entidad, municipio, localidad FROM proyectos where nombre_proyecto = ?";
+        String SQL_QUERY = "SELECT fecha_archivo, hablantes, entidad, municipio, localidad, ubicacion FROM proyectos where nombre_proyecto = ?";
 
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         preparedStatement.setString(1, filename);
         ResultSet rs = preparedStatement.executeQuery();
-        String[] resultados = new String[5];
+        String[] resultados = new String[6];
         while(rs.next()) {
             resultados[0] = rs.getString(1);
             resultados[1] = rs.getString(2);
             resultados[2] = rs.getString(3);
             resultados[3] = rs.getString(4);
             resultados[4] = rs.getString(5);
+            resultados[5] = rs.getString(6);
         }
         rs.close();
         conn.close();
