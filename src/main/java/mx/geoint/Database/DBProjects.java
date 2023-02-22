@@ -120,7 +120,7 @@ public class DBProjects {
                 "\tSELECT localidad_nombre, geom \n" +
                 "\tFROM public.dim_localidad_urbana \n" +
                 ") AS l \n" +
-                "WHERE p.nombre_proyecto ='04_006_05112022_05_MCC_E_2_1_1675808236556'\n" +
+                "WHERE p.nombre_proyecto =? \n" +
                 "AND l.localidad_nombre = p.localidad";
 
         Connection conn = credentials.getConnection();
