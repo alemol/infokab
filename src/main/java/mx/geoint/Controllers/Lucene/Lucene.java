@@ -290,7 +290,6 @@ public class Lucene {
             localidad = dbResponse[4];
             coordinates = dbResponse[5];
             bbox = dbResponse[6];
-            System.out.println("BBOX: "+bbox);
             SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
             results.add(doc);
         }
