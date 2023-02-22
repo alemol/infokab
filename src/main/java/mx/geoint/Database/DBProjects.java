@@ -111,13 +111,24 @@ public class DBProjects {
     }
 
     public String[] getProjectByName(String filename) throws  SQLException {
-        String SQL_QUERY = "SELECT fecha_archivo, hablantes, entidad, municipio, localidad, ubicacion FROM proyectos where nombre_proyecto = ?";
+        String SQL_QUERY = "SELECT p.fecha_archivo, p.hablantes, p.entidad, p.municipio, p.localidad, p.ubicacion, BOX2D(l.geom) as bbox\n" +
+                "FROM proyectos p ,\n" +
+                "(\n" +
+                "\tSELECT localidad_nombre, geom \n" +
+                "\tFROM public.dim_localidad_rural \n" +
+                "\tUNION\n" +
+                "\tSELECT localidad_nombre, geom \n" +
+                "\tFROM public.dim_localidad_urbana \n" +
+                ") AS l \n" +
+                "WHERE p.nombre_proyecto ='04_006_05112022_05_MCC_E_2_1_1675808236556'\n" +
+                "AND l.localidad_nombre = p.localidad";
 
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         preparedStatement.setString(1, filename);
+        System.out.println(preparedStatement);
         ResultSet rs = preparedStatement.executeQuery();
-        String[] resultados = new String[6];
+        String[] resultados = new String[7];
         while(rs.next()) {
             resultados[0] = rs.getString(1);
             resultados[1] = rs.getString(2);
@@ -125,6 +136,7 @@ public class DBProjects {
             resultados[3] = rs.getString(4);
             resultados[4] = rs.getString(5);
             resultados[5] = rs.getString(6);
+            resultados[6] = rs.getString(7);
         }
         rs.close();
         conn.close();

@@ -34,7 +34,9 @@ public class SearchLuceneDoc {
     private String localidad;
     private String coordinates;
 
-    public SearchLuceneDoc(String filePath, String fileName, String text, float score, String[] imageList, String fecha_archivo, String Nhablantes, String entidad, String municipio, String localidad, String coordinates, String multimedia) throws FileNotFoundException {
+    private String bbox;
+
+    public SearchLuceneDoc(String filePath, String fileName, String text, float score, String[] imageList, String fecha_archivo, String Nhablantes, String entidad, String municipio, String localidad, String coordinates, String bbox, String multimedia) throws FileNotFoundException {
         this.filePath = filePath;
         this.fileName = fileName;
         this.text = text;
@@ -59,6 +61,7 @@ public class SearchLuceneDoc {
         this.municipio = municipio;
         this.localidad = localidad;
         this.coordinates = coordinates;
+        this.bbox = bbox;
     }
 
     public String getFilePath() {
@@ -141,4 +144,6 @@ public class SearchLuceneDoc {
     public void  setLocalidad(String localidad){this.localidad = localidad;}
     public String getCoordinates(){ return coordinates; }
     public void  setCoordinates(String coordinates){this.coordinates = coordinates;}
+    public String getBbox(){ return bbox; }
+    public void  setBbox(String bbox){this.bbox = bbox;}
 }

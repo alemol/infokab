@@ -154,7 +154,7 @@ public class Lucene {
             String multimedia = hitDoc.get("multimedia");
 
             String[] imageList = find_images(hitDoc.get("path"));
-            String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null, localidad = null, coordinates = null;
+            String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null, localidad = null, coordinates = null, bbox = null;
             String[] dbResponse = dbProjects.getProjectByName(path.split("/")[4]);
             fecha_archivo = dbResponse[0];
             Nhablantes = dbResponse[1];
@@ -162,7 +162,8 @@ public class Lucene {
             municipio = dbResponse[3];
             localidad = dbResponse[4];
             coordinates = dbResponse[5];
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, multimedia);
+            bbox = dbResponse[6];
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
             results.add(doc);
         }
 
@@ -203,7 +204,7 @@ public class Lucene {
             String multimedia = hitDoc.get("multimedia");
 
             String[] imageList = find_images(hitDoc.get("path"));
-            String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null, localidad = null, coordinates = null;
+            String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null, localidad = null, coordinates = null, bbox = null;
             String[] dbResponse = dbProjects.getProjectByName(path.split("/")[4]);
             fecha_archivo = dbResponse[0];
             Nhablantes = dbResponse[1];
@@ -211,7 +212,8 @@ public class Lucene {
             municipio = dbResponse[3];
             localidad = dbResponse[4];
             coordinates = dbResponse[5];
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, multimedia);
+            bbox = dbResponse[6];
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
             results.add(doc);
         }
 
@@ -279,7 +281,7 @@ public class Lucene {
 
             String[] imageList = find_images(hitDoc.get("path"));
 
-            String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null, localidad = null, coordinates = null;
+            String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null, localidad = null, coordinates = null, bbox = null;
             String[] dbResponse = dbProjects.getProjectByName(path.split("/")[4]);
             fecha_archivo = dbResponse[0];
             Nhablantes = dbResponse[1];
@@ -287,7 +289,9 @@ public class Lucene {
             municipio = dbResponse[3];
             localidad = dbResponse[4];
             coordinates = dbResponse[5];
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, multimedia);
+            bbox = dbResponse[6];
+            System.out.println("BBOX: "+bbox);
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
             results.add(doc);
         }
 
@@ -350,7 +354,7 @@ public class Lucene {
             String multimedia = hitDoc.get("multimedia");
 
             String[] imageList = find_images(hitDoc.get("path"));
-            String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null, localidad = null, coordinates = null;
+            String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null, localidad = null, coordinates = null, bbox = null;
             String[] dbResponse = dbProjects.getProjectByName(path.split("/")[4]);
             fecha_archivo = dbResponse[0];
             Nhablantes = dbResponse[1];
@@ -358,7 +362,8 @@ public class Lucene {
             municipio = dbResponse[3];
             localidad = dbResponse[4];
             coordinates = dbResponse[5];
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, multimedia);
+            bbox = dbResponse[6];
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
             results.add(doc);
         }
 
