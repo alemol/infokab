@@ -2,6 +2,7 @@ package mx.geoint.Controllers.Lucene;
 
 import com.google.gson.Gson;
 import mx.geoint.Database.DBProjects;
+import mx.geoint.Model.ParseXML.TierMultiple;
 import mx.geoint.Model.Search.SearchLuceneDoc;
 import mx.geoint.Model.Search.SearchResponse;
 import mx.geoint.Model.ParseXML.Tier;
@@ -39,6 +40,7 @@ public class Lucene {
     public static final String FIELD_PATH = "path";
     public static final String FIELD_NAME = "filename";
     public static final String FIELD_CONTENTS = "contents";
+    public static final String FIELD_VIEW = "view";
     public static final String FIELD_PATH_MULTIMEDIA = "multimedia";
 
     private static final int MAX_RESULTS = 9999;
@@ -114,6 +116,37 @@ public class Lucene {
                 Tier tier = gson.fromJson(reader, Tier.class);
                 document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.YES));
                 document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE, Field.Store.YES));
+
+                indexWriter.addDocument(document);
+            }
+        }
+
+        indexWriter.close();
+    }
+
+    public void createIndex(String path_files_to_index_directory, String index) throws IOException {
+        if(Files.exists(Path.of(path_files_to_index_directory))) {
+            File dir = new File(path_files_to_index_directory);
+            File[] files = dir.listFiles();
+
+            for (File file : files) {
+                Document document = new Document();
+
+                if(index.equals(pathSystem.TIER_GlOSA_INDEX)){
+                    String path = file.getPath();
+                    document.add(new StringField(FIELD_PATH, path, Field.Store.YES));
+
+                    String name = file.getName();
+                    document.add(new StringField(FIELD_NAME, name, Field.Store.YES));
+
+                    FileReader reader = new FileReader(file);
+                    Gson gson = new Gson();
+                    TierMultiple tier = gson.fromJson(reader, TierMultiple.class);
+
+                    document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.YES));
+                    document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE_GLOSA_INDEX, Field.Store.YES));
+                    document.add(new TextField(FIELD_VIEW, tier.ANNOTATION_VALUE_GLOSA_INDEX_WORDS, Field.Store.YES));
+                }
 
                 indexWriter.addDocument(document);
             }
