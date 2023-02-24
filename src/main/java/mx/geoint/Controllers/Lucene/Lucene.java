@@ -257,21 +257,20 @@ public class Lucene {
 
     /*
      * Realiza la busqueda de un texto en los indices de la caperta raiz DIRECTORY_INDEX_GENERAL
-     * @param searchString texto a buscar
+     * @param search texto a buscar
      * @return List<Document> Lista de documentos encontrados
      **/
-    public SearchResponse searchMultipleIndex(String searchString, String index, boolean levenshtein) throws IOException, ParseException, SQLException {
+    public SearchResponse searchMultipleIndex(String search, String index, boolean levenshtein) throws IOException, ParseException, SQLException {
         List<IndexReader> indexReaders = new ArrayList<>();
 
         Analyzer analyzer = new StandardAnalyzer();
-        //System.out.println("Searching for '" + searchString + "'");
+        //System.out.println("Searching for '" + search + "'");
 
         //Se Obtiene todos los indices generados en la caperta DIRECTORY_INDEX_GENERAL
         File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL);
         File[] files = dir.listFiles();
         for (File file : files) {
-            if(file.getName().equals(index) && file.isDirectory()
-            || file.getName().equals(index+"_words") && file.isDirectory()){
+            if(file.getName().equals(index) && file.isDirectory()){
                 File[] list_files = file.listFiles();
                 for (File aux_file : list_files) {
                     if(file.isDirectory()){
@@ -291,9 +290,14 @@ public class Lucene {
         QueryParser queryParser = new QueryParser(FIELD_CONTENTS, analyzer);
         Query new_query = null;
         if(levenshtein){
-            new_query = new FuzzyQuery(new Term(FIELD_CONTENTS, searchString));
+            new_query = new FuzzyQuery(new Term(FIELD_CONTENTS, search));
         } else {
-            new_query = queryParser.parse(searchString);
+            if(index.equals("glosado")){
+                String combinate_searchString = FIELD_CONTENTS+":"+search+" OR "+FIELD_VIEW+":"+search;
+                new_query = queryParser.parse(combinate_searchString);
+            }else{
+                new_query = queryParser.parse(search);
+            }
         }
         TopDocs hits = indexSearcher.search(new_query, 10);
         System.out.println("totalHits: " + hits.totalHits);
@@ -309,8 +313,13 @@ public class Lucene {
 
             String path = hitDoc.get("path");
             String fileName = hitDoc.get("filename");
-            String content = hitDoc.get("contents");
             String multimedia = hitDoc.get("multimedia");
+            String content = "";
+            if(index.equals("glosado")) {
+                content = hitDoc.get(FIELD_VIEW);
+            } else {
+                content = hitDoc.get("contents");
+            }
 
             String[] imageList = find_images(hitDoc.get("path"));
 
@@ -338,17 +347,21 @@ public class Lucene {
         List<IndexReader> indexReaders = new ArrayList<>();
 
         Analyzer analyzer = new StandardAnalyzer();
-        //System.out.println("Searching for '" + searchString + "'");
 
         //Se Obtiene todos los indices generados en la caperta DIRECTORY_INDEX_GENERAL
         File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+index+"/");
         File[] files = dir.listFiles();
         for (File file : files) {
-            if(file.isDirectory()){
-                Directory directory = FSDirectory.open(Paths.get(file.getCanonicalPath()));
-                //Condición para no tomar los directorios que estan agregando al momento
-                if(DirectoryReader.indexExists(directory)){
-                    indexReaders.add(DirectoryReader.open(directory));
+            if(file.getName().equals(index) && file.isDirectory()){
+                File[] list_files = file.listFiles();
+                for (File aux_file : list_files) {
+                    if(file.isDirectory()){
+                        Directory directory = FSDirectory.open(Paths.get(aux_file.getCanonicalPath()));
+                        //Condición para no tomar los directorios que estan agregando al momento
+                        if(DirectoryReader.indexExists(directory)){
+                            indexReaders.add(DirectoryReader.open(directory));
+                        }
+                    }
                 }
             }
         }
@@ -364,7 +377,12 @@ public class Lucene {
         if(levenshtein){
             new_query = new FuzzyQuery(new Term(FIELD_CONTENTS, search));
         } else {
-            new_query = queryParser.parse(search);
+            if(index.equals("glosado")){
+                String combinate_searchString = FIELD_CONTENTS+":"+search+" OR "+FIELD_VIEW+":"+search;
+                new_query = queryParser.parse(combinate_searchString);
+            }else{
+                new_query = queryParser.parse(search);
+            }
         }
         indexSearcher.search(new_query, collector);
 
@@ -383,8 +401,14 @@ public class Lucene {
 
             String path = hitDoc.get("path");
             String fileName = hitDoc.get("filename");
-            String content = hitDoc.get("contents");
             String multimedia = hitDoc.get("multimedia");
+
+            String content = "";
+            if(index.equals("glosado")) {
+                content = hitDoc.get(FIELD_VIEW);
+            } else {
+                content = hitDoc.get("contents");
+            }
 
             String[] imageList = find_images(hitDoc.get("path"));
             String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null, localidad = null, coordinates = null, bbox = null;
