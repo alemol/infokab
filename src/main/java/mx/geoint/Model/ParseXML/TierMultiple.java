@@ -106,4 +106,8 @@ public class TierMultiple {
     public String getTIME_SLOT_REF1() {
         return TIME_SLOT_REF1;
     }
+
+    public double getDIFF_TIME() { return DIFF_TIME; }
+
+    public void setDIFF_TIME(double DIFF_TIME) { this.DIFF_TIME = DIFF_TIME; }
 }

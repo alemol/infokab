@@ -315,8 +315,10 @@ public class Lucene {
             String fileName = hitDoc.get("filename");
             String multimedia = hitDoc.get("multimedia");
             String content = "";
+            String subText = "";
             if(index.equals("glosado")) {
                 content = hitDoc.get(FIELD_VIEW);
+                subText = hitDoc.get(FIELD_CONTENTS);
             } else {
                 content = hitDoc.get("contents");
             }
@@ -324,16 +326,17 @@ public class Lucene {
             String[] imageList = find_images(hitDoc.get("path"));
 
             String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null, localidad = null, coordinates = null, bbox = null;
-            String[] dbResponse = dbProjects.getProjectByName(path.split("/")[4]);
-            fecha_archivo = dbResponse[0];
-            Nhablantes = dbResponse[1];
-            entidad = dbResponse[2];
-            municipio = dbResponse[3];
-            localidad = dbResponse[4];
-            coordinates = dbResponse[5];
-            bbox = dbResponse[6];
+            //String[] dbResponse = dbProjects.getProjectByName(path.split("/")[4]);
+            //fecha_archivo = dbResponse[0];
+            //Nhablantes = dbResponse[1];
+            //entidad = dbResponse[2];
+            //municipio = dbResponse[3];
+            //localidad = dbResponse[4];
+            //coordinates = dbResponse[5];
+            //bbox = dbResponse[6];
             System.out.println("BBOX: "+bbox);
             SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
+            doc.setSubText(subText);
             results.add(doc);
         }
 
@@ -404,23 +407,26 @@ public class Lucene {
             String multimedia = hitDoc.get("multimedia");
 
             String content = "";
+            String subText = "";
             if(index.equals("glosado")) {
                 content = hitDoc.get(FIELD_VIEW);
+                subText = hitDoc.get(FIELD_CONTENTS);
             } else {
                 content = hitDoc.get("contents");
             }
 
             String[] imageList = find_images(hitDoc.get("path"));
             String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null, localidad = null, coordinates = null, bbox = null;
-            String[] dbResponse = dbProjects.getProjectByName(path.split("/")[4]);
-            fecha_archivo = dbResponse[0];
-            Nhablantes = dbResponse[1];
-            entidad = dbResponse[2];
-            municipio = dbResponse[3];
-            localidad = dbResponse[4];
-            coordinates = dbResponse[5];
-            bbox = dbResponse[6];
+            //String[] dbResponse = dbProjects.getProjectByName(path.split("/")[4]);
+            //fecha_archivo = dbResponse[0];
+            //Nhablantes = dbResponse[1];
+            //entidad = dbResponse[2];
+            //municipio = dbResponse[3];
+            //localidad = dbResponse[4];
+            //coordinates = dbResponse[5];
+            //bbox = dbResponse[6];
             SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
+            doc.setSubText(subText);
             results.add(doc);
         }
 

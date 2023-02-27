@@ -185,6 +185,7 @@ public class ParseHandlerMultiple extends DefaultHandler {
                     String REF_TIME_SLOT_REF2 = REF_VALUES.get("TIME_SLOT_REF2").getAsString();
                     String REF_TIME_VALUE1 = REF_VALUES.get("TIME_VALUE1").getAsString();
                     String REF_TIME_VALUE2 = REF_VALUES.get("TIME_VALUE2").getAsString();
+                    double REF_DIFF_TIME = REF_VALUES.get("DIFF_TIME").getAsDouble();
 
                     JsonObject jsonObjectTranscription= new JsonObject();
                     jsonObjectTranscription.addProperty("TIME_SLOT_REF1", REF_TIME_SLOT_REF1);
@@ -193,6 +194,7 @@ public class ParseHandlerMultiple extends DefaultHandler {
                     jsonObjectTranscription.addProperty("TIME_VALUE2", REF_TIME_VALUE2);
                     jsonObjectTranscription.addProperty("REF_ANNOTATION_ID_"+tierName, REF_ANNOTATION_ID);
                     jsonObjectTranscription.addProperty("REF_ANNOTATION_REF_ID_"+tierName, REF_ANNOTATION_REF);
+                    jsonObjectTranscription.addProperty("DIFF_TIME", REF_DIFF_TIME);
                     jsonObjectRefTranscription.add(REF_ANNOTATION_ID, jsonObjectTranscription);
                 }
 
