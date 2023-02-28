@@ -14,7 +14,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -45,7 +47,7 @@ public class Downloader {
 
     public String createCSVFile(ArrayList<SearchLuceneDoc> documents) throws IOException{
         List<String[]> csvData = buildCSVFile(documents);
-        String fileName = NanoIdUtils.randomNanoId() + ".csv";
+        String fileName = NanoIdUtils.randomNanoId() + "_" + new SimpleDateFormat("yyyyMMddHHmm").format(new Date()) + ".csv";
 
         try(CSVWriter writer = new CSVWriter(new FileWriter(pathSystem.DIRECTORY_CSV + fileName))){
             writer.writeAll(csvData);
@@ -84,7 +86,7 @@ public class Downloader {
     }
 
     public void zipFiles(ArrayList<SearchLuceneDoc> documents, String csvFileName) throws IOException{
-        FileOutputStream fos = new FileOutputStream(pathSystem.DIRECTORY_DOWNLOADS + NanoIdUtils.randomNanoId() + ".zip");
+        FileOutputStream fos = new FileOutputStream(pathSystem.DIRECTORY_DOWNLOADS + NanoIdUtils.randomNanoId() + "_" + new SimpleDateFormat("yyyyMMddHHmm").format(new Date()) + ".zip");
         ZipOutputStream zipOut = new ZipOutputStream(fos);
 
         for(SearchLuceneDoc document : documents){
