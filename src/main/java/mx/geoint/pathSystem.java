@@ -26,4 +26,6 @@ public class pathSystem {
     public static final Number NOT_UPLOAD_AUTORIZATION_FILE = 04;
 
     public static final String DIRECTORY_DOWNLOADS = "./Files/Descargas/";
+
+    public static final String DIRECTORY_CSV = "./Files/CSV/";
 }
