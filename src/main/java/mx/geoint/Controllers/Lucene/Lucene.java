@@ -352,7 +352,7 @@ public class Lucene {
         Analyzer analyzer = new StandardAnalyzer();
 
         //Se Obtiene todos los indices generados en la caperta DIRECTORY_INDEX_GENERAL
-        File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+index+"/");
+        File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL);
         File[] files = dir.listFiles();
         for (File file : files) {
             if(file.getName().equals(index) && file.isDirectory()){
