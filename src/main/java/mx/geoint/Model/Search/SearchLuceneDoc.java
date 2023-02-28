@@ -12,6 +12,7 @@ public class SearchLuceneDoc {
     private String filePath;
     private String fileName;
     private String text;
+    private String subText;
 
     private float score;
     private String basePath;
@@ -62,6 +63,7 @@ public class SearchLuceneDoc {
         this.localidad = localidad;
         this.coordinates = coordinates;
         this.bbox = bbox;
+        this.subText = "";
     }
 
     public String getFilePath() {
@@ -146,4 +148,8 @@ public class SearchLuceneDoc {
     public void  setCoordinates(String coordinates){this.coordinates = coordinates;}
     public String getBbox(){ return bbox; }
     public void  setBbox(String bbox){this.bbox = bbox;}
+
+    public void setSubText(String subText) { this.subText = subText; }
+
+    public String getSubText() { return subText; }
 }
