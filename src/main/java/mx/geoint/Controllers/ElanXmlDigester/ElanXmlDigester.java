@@ -221,8 +221,13 @@ public class ElanXmlDigester {
                     if(!tierMultiple.getREF_ANNOTATION_ID_GLOSA_INDEX().isEmpty()){
                         exist = true;
                     };
+                }else{
+                    if(tier_id.equals(pathSystem.TIER_TRANSLATE)){
+                        if(!tierMultiple.getREF_ANNOTATION_ID_TRADUCCION_LIBRE().isEmpty()){
+                            exist = true;
+                        };
+                    }
                 }
-
 
                 if(exist == true){
                     if(type_path.equals("wav") || type_path.equals("mp4")){

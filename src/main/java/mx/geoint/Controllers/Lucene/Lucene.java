@@ -148,6 +148,22 @@ public class Lucene {
                     document.add(new TextField(FIELD_VIEW, tier.ANNOTATION_VALUE_GLOSA_INDEX_WORDS, Field.Store.YES));
                 }
 
+                if(index.equals(pathSystem.TIER_TRANSLATE)){
+                    String path = file.getPath();
+                    document.add(new StringField(FIELD_PATH, path, Field.Store.YES));
+
+                    String name = file.getName();
+                    document.add(new StringField(FIELD_NAME, name, Field.Store.YES));
+
+                    FileReader reader = new FileReader(file);
+                    Gson gson = new Gson();
+                    TierMultiple tier = gson.fromJson(reader, TierMultiple.class);
+
+                    document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.YES));
+                    document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE_TRADUCCION_LIBRE, Field.Store.YES));
+                    document.add(new TextField(FIELD_VIEW, tier.ANNOTATION_VALUE_TRANSCRIPCION_ORTOGRAFICA, Field.Store.YES));
+                }
+
                 indexWriter.addDocument(document);
             }
         }
@@ -316,7 +332,7 @@ public class Lucene {
             String multimedia = hitDoc.get("multimedia");
             String content = "";
             String subText = "";
-            if(index.equals("glosado")) {
+            if(index.equals("glosado") || index.equals("español")) {
                 content = hitDoc.get(FIELD_VIEW);
                 subText = hitDoc.get(FIELD_CONTENTS);
             } else {
@@ -408,7 +424,7 @@ public class Lucene {
 
             String content = "";
             String subText = "";
-            if(index.equals("glosado")) {
+                if(index.equals("glosado") || index.equals("español")) {
                 content = hitDoc.get(FIELD_VIEW);
                 subText = hitDoc.get(FIELD_CONTENTS);
             } else {
