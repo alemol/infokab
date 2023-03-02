@@ -126,7 +126,6 @@ public class DBProjects {
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         preparedStatement.setString(1, filename);
-        System.out.println(preparedStatement);
         ResultSet rs = preparedStatement.executeQuery();
         String[] resultados = new String[7];
         while(rs.next()) {
