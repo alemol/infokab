@@ -278,15 +278,18 @@ public class Lucene {
      **/
     public SearchResponse searchMultipleIndex(String search, String index, boolean levenshtein) throws IOException, ParseException, SQLException {
         List<IndexReader> indexReaders = new ArrayList<>();
-
         Analyzer analyzer = new StandardAnalyzer();
         //System.out.println("Searching for '" + search + "'");
+        String getIndex = index;
+        if(index.equals("maya")){
+            getIndex = "español";
+        }
 
         //Se Obtiene todos los indices generados en la caperta DIRECTORY_INDEX_GENERAL
         File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL);
         File[] files = dir.listFiles();
         for (File file : files) {
-            if(file.getName().equals(index) && file.isDirectory()){
+            if(file.getName().equals(getIndex) && file.isDirectory()){
                 File[] list_files = file.listFiles();
                 for (File aux_file : list_files) {
                     if(file.isDirectory()){
@@ -303,7 +306,12 @@ public class Lucene {
         //Creacion de indexSearch con muchos indices
         MultiReader multiReader = new MultiReader(indexReaders.toArray(new IndexReader[indexReaders.size()]));
         IndexSearcher indexSearcher = new IndexSearcher(multiReader);
+
         QueryParser queryParser = new QueryParser(FIELD_CONTENTS, analyzer);
+        if(index.equals("maya")) {
+            queryParser = new QueryParser(FIELD_VIEW, analyzer);
+        }
+
         Query new_query = null;
         if(levenshtein){
             new_query = new FuzzyQuery(new Term(FIELD_CONTENTS, search));
@@ -330,14 +338,8 @@ public class Lucene {
             String path = hitDoc.get("path");
             String fileName = hitDoc.get("filename");
             String multimedia = hitDoc.get("multimedia");
-            String content = "";
-            String subText = "";
-            if(index.equals("glosado") || index.equals("español")) {
-                content = hitDoc.get(FIELD_VIEW);
-                subText = hitDoc.get(FIELD_CONTENTS);
-            } else {
-                content = hitDoc.get("contents");
-            }
+            String content = hitDoc.get(FIELD_VIEW);
+            String subText = hitDoc.get(FIELD_CONTENTS);
 
             String[] imageList = find_images(hitDoc.get("path"));
 
@@ -366,11 +368,16 @@ public class Lucene {
 
         Analyzer analyzer = new StandardAnalyzer();
 
+        String getIndex = index;
+        if(index.equals("maya")){
+            getIndex = "español";
+        }
+
         //Se Obtiene todos los indices generados en la caperta DIRECTORY_INDEX_GENERAL
         File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL);
         File[] files = dir.listFiles();
         for (File file : files) {
-            if(file.getName().equals(index) && file.isDirectory()){
+            if(file.getName().equals(getIndex) && file.isDirectory()){
                 File[] list_files = file.listFiles();
                 for (File aux_file : list_files) {
                     if(file.isDirectory()){
@@ -391,6 +398,10 @@ public class Lucene {
         TopScoreDocCollector collector = TopScoreDocCollector.create(MAX_RESULTS, 10);
         int startIndex = (page - 1) * 10;
         QueryParser queryParser = new QueryParser(FIELD_CONTENTS, analyzer);
+        if(index.equals("maya")) {
+            queryParser = new QueryParser(FIELD_VIEW, analyzer);
+        }
+
         Query new_query = null;
         if(levenshtein){
             new_query = new FuzzyQuery(new Term(FIELD_CONTENTS, search));
@@ -421,14 +432,8 @@ public class Lucene {
             String fileName = hitDoc.get("filename");
             String multimedia = hitDoc.get("multimedia");
 
-            String content = "";
-            String subText = "";
-                if(index.equals("glosado") || index.equals("español")) {
-                content = hitDoc.get(FIELD_VIEW);
-                subText = hitDoc.get(FIELD_CONTENTS);
-            } else {
-                content = hitDoc.get("contents");
-            }
+            String content = hitDoc.get(FIELD_VIEW);
+            String subText = hitDoc.get(FIELD_CONTENTS);
 
             String[] imageList = find_images(hitDoc.get("path"));
             String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null, localidad = null, coordinates = null, bbox = null;
