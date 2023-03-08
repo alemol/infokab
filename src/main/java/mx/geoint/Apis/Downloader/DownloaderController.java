@@ -14,6 +14,8 @@ import org.springframework.web.server.ResponseStatusException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Map;
 
 @CrossOrigin(origins = {"http://infokaab.com/","http://infokaab.com.mx/","http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182"})
 @RestController
@@ -53,5 +55,14 @@ public class DownloaderController {
         System.out.println("File/Descargas/" + fileName + ".zip");
         InputStream in = getClass().getResourceAsStream("File/Descargas/" + fileName + ".zip");
         return IOUtils.toByteArray(in);
+    }
+
+    @RequestMapping(path="/list", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ArrayList<String>> listLogger(@RequestBody Map<String, String> body) {
+        String uuid = body.get("uuid");
+        ArrayList<String> response = downloaderService.getLoggerFiles();
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
