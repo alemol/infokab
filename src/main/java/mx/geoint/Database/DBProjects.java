@@ -111,21 +111,26 @@ public class DBProjects {
     }
 
     public String[] getProjectByName(String filename) throws  SQLException {
-        String SQL_QUERY = "SELECT p.fecha_archivo, p.hablantes, p.entidad, p.municipio, p.localidad, p.ubicacion, BOX2D(l.geom) as bbox\n" +
+
+        String[] parts = filename.split("_");
+        String SQL_QUERY = "SELECT p.fecha_archivo, p.hablantes, p.entidad, p.municipio, p.localidad, p.ubicacion, ST_Expand(BOX2D(l.geom),0.005) as bbox\n" +
                 "FROM proyectos p ,\n" +
                 "(\n" +
-                "\tSELECT localidad_nombre, geom \n" +
+                "\tSELECT localidad_nombre,municipio_cvegeo, geom \n" +
                 "\tFROM public.dim_localidad_rural \n" +
                 "\tUNION\n" +
-                "\tSELECT localidad_nombre, geom \n" +
+                "\tSELECT localidad_nombre,municipio_cvegeo, geom \n" +
                 "\tFROM public.dim_localidad_urbana \n" +
                 ") AS l \n" +
                 "WHERE p.nombre_proyecto =? \n" +
-                "AND l.localidad_nombre = p.localidad";
+                "AND l.localidad_nombre = p.localidad \n"+
+                "AND l.municipio_cvegeo = ?";
 
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         preparedStatement.setString(1, filename);
+        preparedStatement.setString(2, parts[0]+parts[1]);
+        System.out.println("asdilename: "+preparedStatement);
         ResultSet rs = preparedStatement.executeQuery();
         String[] resultados = new String[7];
         while(rs.next()) {
