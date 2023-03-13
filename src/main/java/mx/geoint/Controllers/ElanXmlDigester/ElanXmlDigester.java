@@ -1,6 +1,7 @@
 package mx.geoint.Controllers.ElanXmlDigester;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import mx.geoint.Controllers.FFmpeg.FFmpeg;
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Controllers.ParseXML.ParseXML;
@@ -8,6 +9,7 @@ import mx.geoint.Model.ParseXML.Tier;
 import mx.geoint.Controllers.VideoCutter.VideoCutter;
 import mx.geoint.Database.DBProjects;
 import mx.geoint.Database.DBReports;
+import mx.geoint.Model.ParseXML.TierMultiple;
 import mx.geoint.pathSystem;
 import org.apache.commons.io.FilenameUtils;
 import org.xml.sax.SAXException;
@@ -20,10 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.SQLException;
 import java.text.Normalizer;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ElanXmlDigester {
     private Logger logger = new Logger();
@@ -193,6 +192,79 @@ public class ElanXmlDigester {
         }
     }
 
+
+    /**
+     * Obtiene las anotaciones por medio de ParseXML, realizar los cortes de audio y genera los archivos json con la
+     * información necesaria para el indexado en lucene
+     * @param tier_id String, Identificador de tier a obtener en el archivo eaf
+     * @param save_text boolean, bandera para iniciar el proceso de guardado del json
+     * @param save_media boolean, bandera para iniciar el proceso de guardado de los fragmentos del multimedia
+     * @throws IOException
+     */
+    public void parse_tier_multiple(String tier_id, boolean save_text, boolean save_media) throws ParserConfigurationException, SAXException, IOException {
+        ParseXML parseXML = new ParseXML(filepathEaf, tier_id);
+        parseXML.readAnnotations();
+
+        JsonObject getMultipleTier = parseXML.getTierMultipleAnnotations();
+        String baseNameEaf = FilenameUtils.getBaseName(filepathEaf);
+        Iterator<String> iterator = getMultipleTier.keySet().iterator();
+
+        if(save_media==true) {
+            String type_path = getTypeMultimedia(filepathMultimedia);
+            while (iterator.hasNext()) {
+                String key = iterator.next();
+                Gson gson = new Gson();
+                TierMultiple tierMultiple = gson.fromJson(getMultipleTier.getAsJsonObject(key).toString(), TierMultiple.class);
+                Boolean exist = false;
+
+                if(tier_id.equals(pathSystem.TIER_GlOSA_INDEX)){
+                    if(!tierMultiple.getREF_ANNOTATION_ID_GLOSA_INDEX().isEmpty()){
+                        exist = true;
+                    };
+                }else{
+                    if(tier_id.equals(pathSystem.TIER_TRANSLATE)){
+                        if(!tierMultiple.getREF_ANNOTATION_ID_TRADUCCION_LIBRE().isEmpty()){
+                            exist = true;
+                        };
+                    }
+                }
+
+                if(exist == true){
+                    if(type_path.equals("wav") || type_path.equals("mp4")){
+                        String jsonString = new Gson().toJson(tierMultiple);
+                        System.out.println("jsonString" + parseXML.getMimeType());
+                        boolean created = false;
+
+                        switch (parseXML.getMimeTypeMultipleIndex()){
+                            case "audio/x-wav":
+                                FFmpeg ffmpeg = new FFmpeg(filepathMultimedia);
+                                try{
+                                    created = saveAudio(ffmpeg, tierMultiple, tier_id, filepathMultimedia);
+                                } catch (IOException e) {
+                                    logger.appendToFile(e);
+                                }
+                                break;
+                            case "video/mp4":
+                                VideoCutter videoCutter = new VideoCutter(filepathMultimedia);
+                                try{
+                                    created = saveVideo(videoCutter, tierMultiple, tier_id, filepathMultimedia);
+                                } catch (IOException e) {
+                                    logger.appendToFile(e);
+                                }
+                                break;
+                        }
+
+                        System.out.println("created:"+ created);
+                        if(created == true && save_text == true){
+                            saveText(tierMultiple, tier_id, baseNameEaf);
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * Se encarga de realizar los cortes de video y guardarlo
      * @param videoCutter VideoCutter, Una instancia de la clase videoCutter
@@ -221,6 +293,27 @@ public class ElanXmlDigester {
 
         return created;
     }
+    public boolean saveVideo(VideoCutter videoCutter, TierMultiple tier, String tier_id, String source) throws IOException {
+        String basePath = FilenameUtils.getPath(source)+"multimedia/";
+        String path = FilenameUtils.getBaseName(source);
+        String type_path = FilenameUtils.getExtension(source);
+
+        String file_name = format_name(tier, tier_id, path, type_path);
+
+        boolean created = videoCutter.cortador(source,
+                (Integer.parseInt(tier.TIME_VALUE1)/1000),
+                (tier.DIFF_TIME/1000)+.5,
+                file_name);
+
+        if(created){
+            tier.setProjectName(path);
+            tier.setMediaPath(basePath+file_name);
+            tier.setOriginalMediaPath(source);
+        }
+
+        return created;
+    }
+
 
     /**
      * Se encarga de realizar los cortes de audio y guardarlo
@@ -231,6 +324,27 @@ public class ElanXmlDigester {
      * @return
      */
     public boolean saveAudio(FFmpeg ffmpeg, Tier tier, String tier_id, String source) throws IOException {
+        String basePath = FilenameUtils.getPath(source)+"multimedia/";
+        String path = FilenameUtils.getBaseName(source);
+        String type_path = FilenameUtils.getExtension(source);
+
+        String file_name = format_name(tier, tier_id, path, type_path);
+
+        boolean created = ffmpeg.cortador(source,
+                (Integer.parseInt(tier.TIME_VALUE1)/1000),
+                (tier.DIFF_TIME/1000)+.5,
+                file_name);
+
+        if(created){
+            tier.setProjectName(path);
+            tier.setMediaPath(basePath+file_name);
+            tier.setOriginalMediaPath(source);
+        }
+
+        return created;
+    }
+
+    public boolean saveAudio(FFmpeg ffmpeg, TierMultiple tier, String tier_id, String source) throws IOException {
         String basePath = FilenameUtils.getPath(source)+"multimedia/";
         String path = FilenameUtils.getBaseName(source);
         String type_path = FilenameUtils.getExtension(source);
@@ -286,6 +400,34 @@ public class ElanXmlDigester {
         file.close();
     }
 
+    public void saveText(TierMultiple tier, String tier_id, String path) throws IOException {
+        String file_name_json = format_name(tier, tier_id, path,"json");
+        Gson gson = new Gson();
+
+        String basePath = FilenameUtils.getPath(filepathEaf);
+        String currentDirectory = "";
+
+        if(tier_id == pathSystem.TIER_MAIN) {
+            currentDirectory = existDirectory(basePath + "/"+pathSystem.INDEX_LANGUAJE_MAYA+"/");
+        }
+
+        if(tier_id == pathSystem.TIER_TRANSLATE){
+            currentDirectory = existDirectory(basePath+ "/"+pathSystem.INDEX_LANGUAJE_SPANISH+"/");
+        }
+
+        if(tier_id == pathSystem.TIER_GlOSA_INDEX){
+            currentDirectory = existDirectory(basePath+ "/"+pathSystem.INDEX_LANGUAJE_GLOSA+"/");
+        }
+
+        //if(tier_id == pathSystem.TIER_GlOSA_INDEX_WORDS){
+        //    currentDirectory = existDirectory(basePath+ "/"+pathSystem.INDEX_LANGUAJE_GLOSA_WORDS+"/");
+        //}
+
+        FileWriter file = new FileWriter( currentDirectory + file_name_json);
+        file.write(gson.toJson(tier));
+        file.close();
+    }
+
     /**
      * Se encarga de formatear el nombre a utilizar de los audio, videos y json
      * @param tier Tier, Instancia de la clase tier
@@ -295,6 +437,13 @@ public class ElanXmlDigester {
      * @return
      */
     public String format_name(Tier tier, String tier_id, String path, String type_file){
+        //String name_file = String.format("%s_%s_%s_%s_%s_%s_%s.%s", tier.ANNOTATION_ID, tier_id, tier.TIME_SLOT_REF1, tier.TIME_SLOT_REF2, tier.TIME_VALUE1, tier.TIME_VALUE2, path, type_file);
+        //String name_file = String.format("%s_%s_%s_%s_%s_%s.%s", tier.ANNOTATION_ID, tier.TIME_SLOT_REF1, tier.TIME_SLOT_REF2, tier.TIME_VALUE1, tier.TIME_VALUE2, path, type_file);
+        String name_file = String.format("%s_%s_%s_%s_%s.%s", tier.TIME_SLOT_REF1, tier.TIME_SLOT_REF2, tier.TIME_VALUE1, tier.TIME_VALUE2, path, type_file);
+        return name_file;
+    }
+
+    public String format_name(TierMultiple tier, String tier_id, String path, String type_file){
         //String name_file = String.format("%s_%s_%s_%s_%s_%s_%s.%s", tier.ANNOTATION_ID, tier_id, tier.TIME_SLOT_REF1, tier.TIME_SLOT_REF2, tier.TIME_VALUE1, tier.TIME_VALUE2, path, type_file);
         //String name_file = String.format("%s_%s_%s_%s_%s_%s.%s", tier.ANNOTATION_ID, tier.TIME_SLOT_REF1, tier.TIME_SLOT_REF2, tier.TIME_VALUE1, tier.TIME_VALUE2, path, type_file);
         String name_file = String.format("%s_%s_%s_%s_%s.%s", tier.TIME_SLOT_REF1, tier.TIME_SLOT_REF2, tier.TIME_VALUE1, tier.TIME_VALUE2, path, type_file);

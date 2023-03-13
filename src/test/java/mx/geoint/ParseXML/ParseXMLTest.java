@@ -1,6 +1,7 @@
 package mx.geoint.ParseXML;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import mx.geoint.Controllers.ParseXML.ParseXML;
 import mx.geoint.Controllers.WriteXML.WriteXML;
 import mx.geoint.Model.ParseXML.Tier;
@@ -435,5 +436,20 @@ class ParseXMLTest {
         } catch (IOException e) {
             throw new RuntimeException("ERROR!!!:"+ e);
         }
+    }
+
+    //TEST para multiple annotations
+    @Test
+    void runTestMutiplesAnnotations() throws ParserConfigurationException, IOException, SAXException {
+        String original_path_name = "./eafs/23_006_25102022_10_ANU_E_3_1.eaf";
+        String tier_id_transcripcion = "Transcripcion ortografica";
+
+        String normalize = Normalizer.normalize(original_path_name, Normalizer.Form.NFD);
+        String path_name = normalize.replaceAll("[^\\p{ASCII}]", "");
+        ParseXML parseXML = new ParseXML(path_name, tier_id_transcripcion);
+        parseXML.readAnnotations();
+
+        JsonObject tiersList = parseXML.getTierMultipleAnnotations();
+        System.out.println("tiersList: "+ tiersList.getAsJsonArray().getAsString());
     }
 }

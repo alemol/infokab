@@ -41,7 +41,7 @@ public class DBProjects {
         Connection conn = credentials.getConnection();
         System.out.println(conn);
 
-        String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds, en_proceso, indice_maya, indice_español, indice_glosado, entidad, municipio, localidad) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,(SELECT entidad_nombre FROM public.dim_entidad WHERE entidad_cvegeo = ?),(SELECT municipio_nombre FROM public.dim_municipio WHERE municipio_cvegeo = ? limit 1),(SELECT l.localidad_nombre FROM (SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ? UNION SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ?  ORDER BY dist ASC LIMIT 1) AS l) ) RETURNING id_proyecto";
+        String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds, en_proceso, indice_maya, indice_español, indice_glosado, entidad, municipio, localidad) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,(SELECT entidad_nombre FROM public.dim_entidad WHERE entidad_cvegeo = ?),(SELECT municipio_nombre FROM public.dim_municipio WHERE municipio_cvegeo = ? limit 1),(SELECT l.localidad_nombre FROM (SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ? UNION SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ?  ORDER BY dist LIMIT 1) AS l) ) RETURNING id_proyecto";
 
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
@@ -111,21 +111,25 @@ public class DBProjects {
     }
 
     public String[] getProjectByName(String filename) throws  SQLException {
+
+        String[] parts = filename.split("_");
         String SQL_QUERY = "SELECT p.fecha_archivo, p.hablantes, p.entidad, p.municipio, p.localidad, p.ubicacion, ST_Expand(BOX2D(l.geom),0.005) as bbox\n" +
                 "FROM proyectos p ,\n" +
                 "(\n" +
-                "\tSELECT localidad_nombre, geom \n" +
+                "\tSELECT localidad_nombre,municipio_cvegeo, geom \n" +
                 "\tFROM public.dim_localidad_rural \n" +
                 "\tUNION\n" +
-                "\tSELECT localidad_nombre, geom \n" +
+                "\tSELECT localidad_nombre,municipio_cvegeo, geom \n" +
                 "\tFROM public.dim_localidad_urbana \n" +
                 ") AS l \n" +
                 "WHERE p.nombre_proyecto =? \n" +
-                "AND l.localidad_nombre = p.localidad";
+                "AND l.localidad_nombre = p.localidad \n"+
+                "AND l.municipio_cvegeo = ?";
 
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         preparedStatement.setString(1, filename);
+        preparedStatement.setString(2, parts[0]+parts[1]);
         ResultSet rs = preparedStatement.executeQuery();
         String[] resultados = new String[7];
         while(rs.next()) {

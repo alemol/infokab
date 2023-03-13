@@ -39,26 +39,26 @@ public class LuceneService {
             dbProjects.updateMayaIndex(Integer.parseInt(projectID), true);
 
             pathAnnotations = projectPostgresRegister.getRuta_trabajo() + pathSystem.INDEX_LANGUAJE_SPANISH+"/";
-            elanXmlDigester.parse_tier(pathSystem.TIER_TRANSLATE, true, true);
+            elanXmlDigester.parse_tier_multiple(pathSystem.TIER_TRANSLATE, true, true);
             Lucene lucene_spanish = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_SPANISH+"/"+projectName+"/");
             lucene_spanish.initConfig(true);
-            lucene_spanish.createIndex(pathAnnotations);
+            lucene_spanish.createIndex(pathAnnotations, pathSystem.TIER_TRANSLATE);
             dbProjects.updateSpanishIndex(Integer.parseInt(projectID), true);
 
             pathAnnotations = projectPostgresRegister.getRuta_trabajo() + pathSystem.INDEX_LANGUAJE_GLOSA+"/";
-            elanXmlDigester.parse_tier(pathSystem.TIER_GlOSA_INDEX, true, true);
+            elanXmlDigester.parse_tier_multiple(pathSystem.TIER_GlOSA_INDEX, true, true);
 
             Lucene lucene_glosa = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_GLOSA+"/"+projectName+"/");
             lucene_glosa.initConfig(true);
-            lucene_glosa.createIndex(pathAnnotations);
+            lucene_glosa.createIndex(pathAnnotations, pathSystem.TIER_GlOSA_INDEX);
             dbProjects.updateGlosaIndex(Integer.parseInt(projectID), true);
 
-            pathAnnotations = projectPostgresRegister.getRuta_trabajo() + pathSystem.INDEX_LANGUAJE_GLOSA_WORDS+"/";
-            elanXmlDigester.parse_tier(pathSystem.TIER_GlOSA_INDEX_WORDS, true, true);
+            //pathAnnotations = projectPostgresRegister.getRuta_trabajo() + pathSystem.INDEX_LANGUAJE_GLOSA_WORDS+"/";
+            //elanXmlDigester.parse_tier(pathSystem.TIER_GlOSA_INDEX_WORDS, true, true);
 
-            Lucene lucene_glosa_words = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_GLOSA_WORDS+"/"+projectName+"/");
-            lucene_glosa_words.initConfig(true);
-            lucene_glosa_words.createIndex(pathAnnotations);
+            //Lucene lucene_glosa_words = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_GLOSA_WORDS+"/"+projectName+"/");
+            //lucene_glosa_words.initConfig(true);
+            //lucene_glosa_words.createIndex(pathAnnotations);
         }
     }
 
@@ -83,25 +83,25 @@ public class LuceneService {
 
         if(indexName == pathSystem.INDEX_LANGUAJE_SPANISH){
             pathAnnotations = projectPostgresRegister.getRuta_trabajo() + pathSystem.INDEX_LANGUAJE_SPANISH+"/";
-            elanXmlDigester.parse_tier(pathSystem.TIER_TRANSLATE, true, true);
+            elanXmlDigester.parse_tier_multiple(pathSystem.TIER_TRANSLATE, true, true);
             Lucene lucene_spanish = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_SPANISH+"/"+projectName+"/");
             lucene_spanish.initConfig(true);
-            lucene_spanish.createIndex(pathAnnotations);
+            lucene_spanish.createIndex(pathAnnotations, pathSystem.TIER_TRANSLATE);
             dbProjects.updateSpanishIndex(Integer.parseInt(projectID), true);
         }
 
         if(indexName == pathSystem.INDEX_LANGUAJE_GLOSA){
             pathAnnotations = projectPostgresRegister.getRuta_trabajo() + pathSystem.INDEX_LANGUAJE_GLOSA+"/";
-            elanXmlDigester.parse_tier(pathSystem.TIER_GlOSA_INDEX, true, true);
+            elanXmlDigester.parse_tier_multiple(pathSystem.TIER_GlOSA_INDEX, true, true);
             Lucene lucene_glosa = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_GLOSA+"/"+projectName+"/");
             lucene_glosa.initConfig(true);
-            lucene_glosa.createIndex(pathAnnotations);
+            lucene_glosa.createIndex(pathAnnotations, pathSystem.TIER_GlOSA_INDEX);
 
-            pathAnnotations = projectPostgresRegister.getRuta_trabajo() + pathSystem.INDEX_LANGUAJE_GLOSA_WORDS+"/";
-            elanXmlDigester.parse_tier(pathSystem.TIER_GlOSA_INDEX_WORDS, true, true);
-            Lucene lucene_glosa_words = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_GLOSA_WORDS+"/"+projectName+"/");
-            lucene_glosa_words.initConfig(true);
-            lucene_glosa_words.createIndex(pathAnnotations);
+            //pathAnnotations = projectPostgresRegister.getRuta_trabajo() + pathSystem.INDEX_LANGUAJE_GLOSA_WORDS+"/";
+            //elanXmlDigester.parse_tier(pathSystem.TIER_GlOSA_INDEX_WORDS, true, true);
+            //Lucene lucene_glosa_words = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_GLOSA_WORDS+"/"+projectName+"/");
+            //lucene_glosa_words.initConfig(true);
+            //lucene_glosa_words.createIndex(pathAnnotations);
             dbProjects.updateGlosaIndex(Integer.parseInt(projectID), true);
         }
     }
