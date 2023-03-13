@@ -130,7 +130,6 @@ public class DBProjects {
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         preparedStatement.setString(1, filename);
         preparedStatement.setString(2, parts[0]+parts[1]);
-        System.out.println("asdilename: "+preparedStatement);
         ResultSet rs = preparedStatement.executeQuery();
         String[] resultados = new String[7];
         while(rs.next()) {
