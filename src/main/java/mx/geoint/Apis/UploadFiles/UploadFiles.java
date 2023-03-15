@@ -86,14 +86,22 @@ public class UploadFiles {
         }else{
             int index = 0;
             String ImageFolder = basePath+"Images/";
-            System.out.println(ImageFolder);
-            File newSubDirectory = new File(ImageFolder);
-            newSubDirectory.mkdirs();
+            String VideoFolder = basePath+"Video/";
+            File imageDirectory = new File(ImageFolder);
+            File videoDirectory = new File(VideoFolder);
+            imageDirectory.mkdirs();
+            videoDirectory.mkdirs();
             for(MultipartFile file : images) {
-                //System.out.println("algo2 " + file.getOriginalFilename());
-                if(!saveFile(file, ImageFolder, baseProjectName+"_image"+(index++))){
-                    return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
+                if(file.getContentType().equals("video/mp4")){
+                    if(!saveFile(file, VideoFolder, baseProjectName+"_video"+(index++))){
+                        return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
+                    }
+                }else{
+                    if(!saveFile(file, ImageFolder, baseProjectName+"_image"+(index++))){
+                        return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
+                    }
                 }
+
             }
 
         }
