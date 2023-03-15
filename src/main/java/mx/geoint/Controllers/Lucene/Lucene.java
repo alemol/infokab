@@ -203,6 +203,7 @@ public class Lucene {
             String multimedia = hitDoc.get("multimedia");
 
             String[] imageList = find_images(hitDoc.get("path"));
+            String[] videoList = find_videos(hitDoc.get("path"));
             String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null, localidad = null, coordinates = null, bbox = null;
             String[] dbResponse = dbProjects.getProjectByName(path.split("/")[4]);
             fecha_archivo = dbResponse[0];
@@ -212,7 +213,7 @@ public class Lucene {
             localidad = dbResponse[4];
             coordinates = dbResponse[5];
             bbox = dbResponse[6];
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, videoList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
             results.add(doc);
         }
 
@@ -253,6 +254,7 @@ public class Lucene {
             String multimedia = hitDoc.get("multimedia");
 
             String[] imageList = find_images(hitDoc.get("path"));
+            String[] videoList = find_videos(hitDoc.get("path"));
             String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null, localidad = null, coordinates = null, bbox = null;
             String[] dbResponse = dbProjects.getProjectByName(path.split("/")[4]);
             fecha_archivo = dbResponse[0];
@@ -262,7 +264,7 @@ public class Lucene {
             localidad = dbResponse[4];
             coordinates = dbResponse[5];
             bbox = dbResponse[6];
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, videoList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
             results.add(doc);
         }
 
@@ -342,7 +344,7 @@ public class Lucene {
             String subText = hitDoc.get(FIELD_CONTENTS);
 
             String[] imageList = find_images(hitDoc.get("path"));
-
+            String[] videoList = find_videos(hitDoc.get("path"));
             String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null, localidad = null, coordinates = null, bbox = null;
             String[] dbResponse = dbProjects.getProjectByName(path.split("/")[4]);
             fecha_archivo = dbResponse[0];
@@ -352,7 +354,7 @@ public class Lucene {
             localidad = dbResponse[4];
             coordinates = dbResponse[5];
             bbox = dbResponse[6];
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, videoList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
             doc.setSubText(subText);
             results.add(doc);
         }
@@ -436,6 +438,7 @@ public class Lucene {
             String subText = hitDoc.get(FIELD_CONTENTS);
 
             String[] imageList = find_images(hitDoc.get("path"));
+            String[] videoList = find_videos(hitDoc.get("path"));
             String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null, localidad = null, coordinates = null, bbox = null;
             String[] dbResponse = dbProjects.getProjectByName(path.split("/")[4]);
             fecha_archivo = dbResponse[0];
@@ -445,7 +448,7 @@ public class Lucene {
             localidad = dbResponse[4];
             coordinates = dbResponse[5];
             bbox = dbResponse[6];
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
+            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, videoList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
             doc.setSubText(subText);
             results.add(doc);
         }
@@ -474,7 +477,7 @@ public class Lucene {
 
     public String[] find_videos(String path) {
         String[] arrOfStr = path.split("(?:maya|español|glosado)");
-        String videosDir = arrOfStr[0] + "Videos/";
+        String videosDir = arrOfStr[0] + "Video/";
         String[] videoList = null;
 
         if (Files.exists(Path.of(videosDir))) {
