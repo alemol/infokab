@@ -471,5 +471,23 @@ public class Lucene {
         }
         return imageList;
     }
+
+    public String[] find_videos(String path) {
+        String[] arrOfStr = path.split("(?:maya|español|glosado)");
+        String videosDir = arrOfStr[0] + "Videos/";
+        String[] videoList = null;
+
+        if (Files.exists(Path.of(videosDir))) {
+            String[] pathnames;
+            File f = new File(videosDir);
+            pathnames = f.list();
+            if (pathnames.length > 0) {
+                videoList = pathnames;
+            } else {
+                videoList = null;
+            }
+        }
+        return videoList;
+    }
 }
 
