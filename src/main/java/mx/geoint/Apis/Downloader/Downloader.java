@@ -2,6 +2,7 @@ package mx.geoint.Apis.Downloader;
 
 import com.aventrix.jnanoid.jnanoid.NanoIdUtils;
 import com.opencsv.CSVWriter;
+import mx.geoint.Apis.Email.Emailer;
 import mx.geoint.Controllers.Lucene.Lucene;
 import mx.geoint.Model.Download.DownloadRequest;
 import mx.geoint.Model.Search.SearchLuceneDoc;
@@ -27,9 +28,11 @@ import java.util.zip.ZipOutputStream;
 public class Downloader {
 
     private final Lucene lucene;
+    private final Emailer emailer;
 
     public Downloader() {
         this.lucene = new Lucene();
+        this.emailer = new Emailer();
     }
 
     public void prepare(DownloadRequest downloadRequest) throws IOException, ParseException, SQLException {
@@ -106,6 +109,8 @@ public class Downloader {
 
         zipOut.close();
         fos.close();
+
+        emailer.sendEmail();
     }
 
     public void writeFileToZip(File fileToZip, ZipOutputStream zipOut) throws IOException{
