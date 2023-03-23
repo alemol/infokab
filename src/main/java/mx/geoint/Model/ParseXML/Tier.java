@@ -16,6 +16,7 @@ public class Tier {
     public String PROJECT_NAME;
     public String MEDIA_PATH;
     public String ORIGINAL_MEDIA_PATH;
+    public String CVEGEO;
 
     /**
      * Inicializa la anotación con sus respectivos tiempos
@@ -85,4 +86,6 @@ public class Tier {
     public void setOriginalMediaPath(String path){
         ORIGINAL_MEDIA_PATH = path;
     }
+
+    public void setCVEGEO(String CVEGEO) { this.CVEGEO = CVEGEO; }
 }

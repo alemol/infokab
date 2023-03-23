@@ -10,6 +10,7 @@ import mx.geoint.Controllers.VideoCutter.VideoCutter;
 import mx.geoint.Database.DBProjects;
 import mx.geoint.Database.DBReports;
 import mx.geoint.Model.ParseXML.TierMultiple;
+import mx.geoint.Model.Project.ProjectPostgresRegister;
 import mx.geoint.pathSystem;
 import org.apache.commons.io.FilenameUtils;
 import org.xml.sax.SAXException;
@@ -140,18 +141,21 @@ public class ElanXmlDigester {
      * @param save_media boolean, bandera para iniciar el proceso de guardado de los fragmentos del multimedia
      * @throws IOException
      */
-    public void parse_tier(String tier_id, boolean save_text, boolean save_media) throws ParserConfigurationException, SAXException, IOException {
+    public void parse_tier(String tier_id, boolean save_text, boolean save_media) throws ParserConfigurationException, SAXException, IOException, SQLException {
         ParseXML parseXML = new ParseXML(filepathEaf, tier_id);
         parseXML.read();
 
         getTier = parseXML.getTier();
         String baseNameEaf = FilenameUtils.getBaseName(filepathEaf);
+        ProjectPostgresRegister projectPostgresRegister = dbProjects.getProjectById(String.valueOf(this.projectID));
+        String cve_localidad = projectPostgresRegister.getCvegeo();
 
         if(save_media==true){
             String type_path = getTypeMultimedia(filepathMultimedia);
 
             for (int i = 0; i< getTier.size(); i++){
                 Tier tier = getTier.get(i);
+                 tier.setCVEGEO(cve_localidad);
 
                 if(type_path.equals("wav") || type_path.equals("mp4")){
                     boolean created = false;

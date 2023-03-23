@@ -41,6 +41,12 @@ public class Lucene {
     public static final String FIELD_VIEW = "view";
     public static final String FIELD_PATH_MULTIMEDIA = "multimedia";
     public static final String FIELD_PROJECT = "project";
+    public static final String FIELD_CVEGEO = "cvegeo";
+    public static final String FIELD_TIME_VALUE_1 = "timer_value_1";
+    public static final String FIELD_TIME_VALUE_2 = "timer_value_2";
+    public static final String FIELD_FULL_PATH_MULTIMEDIA = "original_multimedia";
+
+
 
     private static final int MAX_RESULTS = 9999;
 
@@ -105,18 +111,30 @@ public class Lucene {
                 Document document = new Document();
 
                 String path = file.getPath();
-                document.add(new StringField(FIELD_PATH, path, Field.Store.YES));
+                document.add(new StringField(FIELD_PATH, path, Field.Store.NO));
 
                 String name = file.getName();
-                document.add(new StringField(FIELD_NAME, name, Field.Store.YES));
+                document.add(new StringField(FIELD_NAME, name, Field.Store.NO));
 
                 FileReader reader = new FileReader(file);
                 Gson gson = new Gson();
                 Tier tier = gson.fromJson(reader, Tier.class);
-                document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.YES));
+                document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.NO));
+                document.add(new StringField(FIELD_FULL_PATH_MULTIMEDIA, tier.ORIGINAL_MEDIA_PATH, Field.Store.NO));
+                document.add(new StringField(FIELD_TIME_VALUE_1, tier.TIME_VALUE1, Field.Store.NO));
+                document.add(new StringField(FIELD_TIME_VALUE_2, tier.TIME_VALUE2, Field.Store.NO));
+
                 document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE, Field.Store.YES));
+
+                document.add(new StringField(FIELD_CVEGEO, tier.CVEGEO, Field.Store.NO));
+                document.add(new SortedDocValuesField(FIELD_CVEGEO, new BytesRef(tier.CVEGEO) ));
+                document.add(new StoredField(FIELD_CVEGEO, tier.CVEGEO));
+
                 document.add(new TextField(FIELD_PROJECT, tier.PROJECT_NAME, Field.Store.YES));
+                document.add(new SortedDocValuesField(FIELD_PROJECT, new BytesRef(tier.PROJECT_NAME) ));
                 document.add(new StoredField(FIELD_PROJECT, tier.PROJECT_NAME));
+
+
                 indexWriter.addDocument(document);
             }
         }
@@ -134,39 +152,57 @@ public class Lucene {
 
                 if(index.equals(pathSystem.TIER_GlOSA_INDEX)){
                     String path = file.getPath();
-                    document.add(new StringField(FIELD_PATH, path, Field.Store.YES));
+                    document.add(new StringField(FIELD_PATH, path, Field.Store.NO));
 
                     String name = file.getName();
-                    document.add(new StringField(FIELD_NAME, name, Field.Store.YES));
+                    document.add(new StringField(FIELD_NAME, name, Field.Store.NO));
 
                     FileReader reader = new FileReader(file);
                     Gson gson = new Gson();
                     TierMultiple tier = gson.fromJson(reader, TierMultiple.class);
 
-                    document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.YES));
+                    document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.NO));
+                    document.add(new StringField(FIELD_FULL_PATH_MULTIMEDIA, tier.ORIGINAL_MEDIA_PATH, Field.Store.NO));
+                    document.add(new StringField(FIELD_TIME_VALUE_1, tier.TIME_VALUE1, Field.Store.NO));
+                    document.add(new StringField(FIELD_TIME_VALUE_2, tier.TIME_VALUE2, Field.Store.NO));
+
                     document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE_GLOSA_INDEX, Field.Store.YES));
                     document.add(new TextField(FIELD_VIEW, tier.ANNOTATION_VALUE_GLOSA_INDEX_WORDS, Field.Store.YES));
+
+                    document.add(new StringField(FIELD_CVEGEO, tier.CVEGEO, Field.Store.NO));
+                    document.add(new SortedDocValuesField(FIELD_CVEGEO, new BytesRef(tier.CVEGEO) ));
+                    document.add(new StoredField(FIELD_CVEGEO, tier.CVEGEO));
+
                     document.add(new TextField(FIELD_PROJECT, tier.PROJECT_NAME, Field.Store.YES));
                     document.add(new SortedDocValuesField(FIELD_PROJECT, new BytesRef(tier.PROJECT_NAME) ));
                     document.add(new StoredField(FIELD_PROJECT, tier.PROJECT_NAME));
+
                 }
 
                 if(index.equals(pathSystem.TIER_TRANSLATE)){
                     String path = file.getPath();
-                    document.add(new StringField(FIELD_PATH, path, Field.Store.YES));
+                    document.add(new StringField(FIELD_PATH, path, Field.Store.NO));
 
                     String name = file.getName();
-                    document.add(new StringField(FIELD_NAME, name, Field.Store.YES));
+                    document.add(new StringField(FIELD_NAME, name, Field.Store.NO));
 
                     FileReader reader = new FileReader(file);
                     Gson gson = new Gson();
                     TierMultiple tier = gson.fromJson(reader, TierMultiple.class);
 
-                    document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.YES));
+                    document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.NO));
+                    document.add(new StringField(FIELD_FULL_PATH_MULTIMEDIA, tier.ORIGINAL_MEDIA_PATH, Field.Store.NO));
+                    document.add(new StringField(FIELD_TIME_VALUE_1, tier.TIME_VALUE1, Field.Store.NO));
+                    document.add(new StringField(FIELD_TIME_VALUE_2, tier.TIME_VALUE2, Field.Store.NO));
+
                     document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE_TRADUCCION_LIBRE, Field.Store.YES));
                     document.add(new TextField(FIELD_VIEW, tier.ANNOTATION_VALUE_TRANSCRIPCION_ORTOGRAFICA, Field.Store.YES));
-                    document.add(new TextField(FIELD_PROJECT, tier.PROJECT_NAME, Field.Store.YES));
 
+                    document.add(new StringField(FIELD_CVEGEO, tier.CVEGEO, Field.Store.NO));
+                    document.add(new SortedDocValuesField(FIELD_CVEGEO, new BytesRef(tier.CVEGEO) ));
+                    document.add(new StoredField(FIELD_CVEGEO, tier.CVEGEO));
+
+                    document.add(new TextField(FIELD_PROJECT, tier.PROJECT_NAME, Field.Store.YES));
                     document.add(new SortedDocValuesField(FIELD_PROJECT, new BytesRef(tier.PROJECT_NAME) ));
                     document.add(new StoredField(FIELD_PROJECT, tier.PROJECT_NAME));
                 }

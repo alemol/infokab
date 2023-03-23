@@ -21,6 +21,7 @@ import org.apache.lucene.search.grouping.GroupingSearch;
 import org.apache.lucene.search.grouping.TopGroups;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.util.BytesRef;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
@@ -29,8 +30,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 class LuceneTest {
     private Lucene lucene;
@@ -44,7 +44,7 @@ class LuceneTest {
     }
 
     @Test
-    void createIndex() throws ParserConfigurationException, SAXException, IOException{
+    void createIndex() throws ParserConfigurationException, SAXException, IOException, SQLException {
         ElanXmlDigester user = initElanXmlDigesterAudio("47eebc99-9c0b-4ef8-bb6d-6bb9bd380a11");
         user.parse_tier("oracion", true, false);
 
@@ -54,7 +54,7 @@ class LuceneTest {
     }
 
     @Test
-    void createIndexTwoDirectory() throws ParserConfigurationException, SAXException, IOException {
+    void createIndexTwoDirectory() throws ParserConfigurationException, SAXException, IOException, SQLException {
         ElanXmlDigester user1 = initElanXmlDigesterAudio("47eebc99-9c0b-4ef8-bb6d-6bb9bd380a11");
         ElanXmlDigester user2 = initElanXmlDigesterAudio("47eebc99-9c0b-4ef8-bb6d-6bb9bd380a00");
 
@@ -137,19 +137,24 @@ class LuceneTest {
         IndexSearcher indexSearcher = new IndexSearcher(multiReader);
 
         GroupingSearch groupingSearch = new GroupingSearch("project");
-        //Sort groupSort = new Sort(new SortField("project", SortField.Type.STRING, true));  // in descending order
-        //groupingSearch.setGroupSort(groupSort);
-        //groupingSearch.setSortWithinGroup(groupSort);
+        Sort groupSort = new Sort(new SortField("project", SortField.Type.STRING, true));  // in descending order
+        groupingSearch.setGroupSort(groupSort);
+        groupingSearch.setSortWithinGroup(groupSort);
+        groupingSearch.setAllGroups(true);
 
         int offset = 0;
-        int limitGroup = 1000;
+        int limitGroup = 2000;
+
         TermQuery query = new TermQuery(new Term("contents", "a"));
         TopGroups groups = groupingSearch.search(indexSearcher, query, offset, limitGroup);
+        System.out.println("numero de documentos agrupados: " + groups.totalGroupedHitCount);
+        System.out.println("numero de documentos en la busqueda: " + groups.totalHitCount);
+        System.out.println("numero de grupos unicos: " + groups.totalGroupCount);
+        System.out.println("Number matching Groups: " + groupingSearch.getAllMatchingGroups().size());
 
         List<Document> result = new ArrayList();
         for (int i=0; i<groups.groups.length; i++) {
             for (int j=0; j<groups.groups[i].scoreDocs.length; j++) {
-                System.out.println(groups.groups[i].scoreDocs.length);
                 ScoreDoc sdoc = groups.groups[i].scoreDocs[j]; // first result of each group
                 Document d = indexSearcher.doc(sdoc.doc);
                 System.out.println(d.get("project"));

@@ -12,6 +12,7 @@ public class ProjectPostgresRegister {
     String ubicacion;
     int radio;
     String bounds;
+    String cvegeo;
 
     Boolean index_español;
     Boolean index_maya;
@@ -106,4 +107,8 @@ public class ProjectPostgresRegister {
     public Boolean getEn_proceso() { return en_proceso;}
 
     public Boolean getIndex_maya() { return index_maya; }
+
+    public void setCvegeo(String cvegeo) { this.cvegeo = cvegeo; }
+
+    public String getCvegeo() { return cvegeo; }
 }

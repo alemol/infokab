@@ -1,6 +1,7 @@
 package mx.geoint.Model.ParseXML;
 
 public class TierMultiple {
+    public String CVEGEO = "";
     public String TIME_SLOT_REF1 = "";
     public String TIME_VALUE1 = "";
     public String TIME_SLOT_REF2 = "";
@@ -110,4 +111,8 @@ public class TierMultiple {
     public double getDIFF_TIME() { return DIFF_TIME; }
 
     public void setDIFF_TIME(double DIFF_TIME) { this.DIFF_TIME = DIFF_TIME; }
+
+    public void setCVEGEO(String CVEGEO) { this.CVEGEO = CVEGEO; }
+
+    public String getCVEGEO() { return CVEGEO; }
 }
