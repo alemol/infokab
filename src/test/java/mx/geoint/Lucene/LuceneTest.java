@@ -136,8 +136,8 @@ class LuceneTest {
         MultiReader multiReader = new MultiReader(indexReaders.toArray(new IndexReader[indexReaders.size()]));
         IndexSearcher indexSearcher = new IndexSearcher(multiReader);
 
-        GroupingSearch groupingSearch = new GroupingSearch("project");
-        Sort groupSort = new Sort(new SortField("project", SortField.Type.STRING, true));  // in descending order
+        GroupingSearch groupingSearch = new GroupingSearch("cvegeo");
+        Sort groupSort = new Sort(new SortField("cvegeo", SortField.Type.STRING, true));  // in descending order
         groupingSearch.setGroupSort(groupSort);
         groupingSearch.setSortWithinGroup(groupSort);
         groupingSearch.setAllGroups(true);
@@ -157,7 +157,7 @@ class LuceneTest {
             for (int j=0; j<groups.groups[i].scoreDocs.length; j++) {
                 ScoreDoc sdoc = groups.groups[i].scoreDocs[j]; // first result of each group
                 Document d = indexSearcher.doc(sdoc.doc);
-                System.out.println(d.get("project"));
+                System.out.println("data "+ d.get("cvegeo"));
             }
         }
     }

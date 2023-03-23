@@ -126,7 +126,7 @@ public class Lucene {
 
                 document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE, Field.Store.YES));
 
-                document.add(new StringField(FIELD_CVEGEO, tier.CVEGEO, Field.Store.NO));
+                document.add(new StringField(FIELD_CVEGEO, tier.CVEGEO, Field.Store.YES));
                 document.add(new SortedDocValuesField(FIELD_CVEGEO, new BytesRef(tier.CVEGEO) ));
                 document.add(new StoredField(FIELD_CVEGEO, tier.CVEGEO));
 
@@ -169,7 +169,7 @@ public class Lucene {
                     document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE_GLOSA_INDEX, Field.Store.YES));
                     document.add(new TextField(FIELD_VIEW, tier.ANNOTATION_VALUE_GLOSA_INDEX_WORDS, Field.Store.YES));
 
-                    document.add(new StringField(FIELD_CVEGEO, tier.CVEGEO, Field.Store.NO));
+                    document.add(new StringField(FIELD_CVEGEO, tier.CVEGEO, Field.Store.YES));
                     document.add(new SortedDocValuesField(FIELD_CVEGEO, new BytesRef(tier.CVEGEO) ));
                     document.add(new StoredField(FIELD_CVEGEO, tier.CVEGEO));
 
@@ -198,7 +198,7 @@ public class Lucene {
                     document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE_TRADUCCION_LIBRE, Field.Store.YES));
                     document.add(new TextField(FIELD_VIEW, tier.ANNOTATION_VALUE_TRANSCRIPCION_ORTOGRAFICA, Field.Store.YES));
 
-                    document.add(new StringField(FIELD_CVEGEO, tier.CVEGEO, Field.Store.NO));
+                    document.add(new StringField(FIELD_CVEGEO, tier.CVEGEO, Field.Store.YES));
                     document.add(new SortedDocValuesField(FIELD_CVEGEO, new BytesRef(tier.CVEGEO) ));
                     document.add(new StoredField(FIELD_CVEGEO, tier.CVEGEO));
 
