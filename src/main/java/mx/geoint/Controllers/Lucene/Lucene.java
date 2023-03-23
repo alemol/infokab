@@ -10,16 +10,14 @@ import mx.geoint.pathSystem;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.StringField;
-import org.apache.lucene.document.TextField;
+import org.apache.lucene.document.*;
 import org.apache.lucene.index.*;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.*;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.util.BytesRef;
 
 import java.io.File;
 import java.io.FileReader;
@@ -42,6 +40,7 @@ public class Lucene {
     public static final String FIELD_CONTENTS = "contents";
     public static final String FIELD_VIEW = "view";
     public static final String FIELD_PATH_MULTIMEDIA = "multimedia";
+    public static final String FIELD_PROJECT = "project";
 
     private static final int MAX_RESULTS = 9999;
 
@@ -116,7 +115,8 @@ public class Lucene {
                 Tier tier = gson.fromJson(reader, Tier.class);
                 document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.YES));
                 document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE, Field.Store.YES));
-
+                document.add(new TextField(FIELD_PROJECT, tier.PROJECT_NAME, Field.Store.YES));
+                document.add(new StoredField(FIELD_PROJECT, tier.PROJECT_NAME));
                 indexWriter.addDocument(document);
             }
         }
@@ -146,6 +146,9 @@ public class Lucene {
                     document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.YES));
                     document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE_GLOSA_INDEX, Field.Store.YES));
                     document.add(new TextField(FIELD_VIEW, tier.ANNOTATION_VALUE_GLOSA_INDEX_WORDS, Field.Store.YES));
+                    document.add(new TextField(FIELD_PROJECT, tier.PROJECT_NAME, Field.Store.YES));
+                    document.add(new SortedDocValuesField(FIELD_PROJECT, new BytesRef(tier.PROJECT_NAME) ));
+                    document.add(new StoredField(FIELD_PROJECT, tier.PROJECT_NAME));
                 }
 
                 if(index.equals(pathSystem.TIER_TRANSLATE)){
@@ -162,6 +165,10 @@ public class Lucene {
                     document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.YES));
                     document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE_TRADUCCION_LIBRE, Field.Store.YES));
                     document.add(new TextField(FIELD_VIEW, tier.ANNOTATION_VALUE_TRANSCRIPCION_ORTOGRAFICA, Field.Store.YES));
+                    document.add(new TextField(FIELD_PROJECT, tier.PROJECT_NAME, Field.Store.YES));
+
+                    document.add(new SortedDocValuesField(FIELD_PROJECT, new BytesRef(tier.PROJECT_NAME) ));
+                    document.add(new StoredField(FIELD_PROJECT, tier.PROJECT_NAME));
                 }
 
                 indexWriter.addDocument(document);

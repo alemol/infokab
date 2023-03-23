@@ -1,25 +1,36 @@
 package mx.geoint.Lucene;
 
 import ch.qos.logback.core.util.FileUtil;
+import mx.geoint.Apis.Searcher.Searcher;
 import mx.geoint.Controllers.Lucene.Lucene;
 import mx.geoint.Controllers.ElanXmlDigester.ElanXmlDigester;
 import mx.geoint.Model.Search.SearchLuceneDoc;
 import mx.geoint.Model.Search.SearchResponse;
 import mx.geoint.pathSystem;
 import org.apache.commons.io.FileUtils;
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.TextField;
-import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.*;
 import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.search.*;
+import org.apache.lucene.search.grouping.GroupingSearch;
+import org.apache.lucene.search.grouping.TopGroups;
+import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.FSDirectory;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 class LuceneTest {
     private Lucene lucene;
@@ -98,5 +109,51 @@ class LuceneTest {
     void deleteIndex() throws IOException {
         File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL+"maya/04_006_05112022_05_MCC_E_2_1_1672857256919");
         FileUtils.deleteDirectory(dir.getCanonicalFile());
+    }
+
+    @Test
+    void search_group() throws IOException, ParseException {
+        List<IndexReader> indexReaders = new ArrayList<>();
+        String getIndex = "español";
+
+        File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL);
+        File[] files = dir.listFiles();
+        for (File file : files) {
+            if(file.getName().equals(getIndex) && file.isDirectory()){
+                File[] list_files = file.listFiles();
+                for (File aux_file : list_files) {
+                    if(file.isDirectory()){
+                        Directory directory = FSDirectory.open(Paths.get(aux_file.getCanonicalPath()));
+                        //Condición para no tomar los directorios que estan agregando al momento
+                        if(DirectoryReader.indexExists(directory)){
+                            indexReaders.add(DirectoryReader.open(directory));
+                        }
+                    }
+                }
+            }
+        }
+
+        MultiReader multiReader = new MultiReader(indexReaders.toArray(new IndexReader[indexReaders.size()]));
+        IndexSearcher indexSearcher = new IndexSearcher(multiReader);
+
+        GroupingSearch groupingSearch = new GroupingSearch("project");
+        //Sort groupSort = new Sort(new SortField("project", SortField.Type.STRING, true));  // in descending order
+        //groupingSearch.setGroupSort(groupSort);
+        //groupingSearch.setSortWithinGroup(groupSort);
+
+        int offset = 0;
+        int limitGroup = 1000;
+        TermQuery query = new TermQuery(new Term("contents", "a"));
+        TopGroups groups = groupingSearch.search(indexSearcher, query, offset, limitGroup);
+
+        List<Document> result = new ArrayList();
+        for (int i=0; i<groups.groups.length; i++) {
+            for (int j=0; j<groups.groups[i].scoreDocs.length; j++) {
+                System.out.println(groups.groups[i].scoreDocs.length);
+                ScoreDoc sdoc = groups.groups[i].scoreDocs[j]; // first result of each group
+                Document d = indexSearcher.doc(sdoc.doc);
+                System.out.println(d.get("project"));
+            }
+        }
     }
 }
