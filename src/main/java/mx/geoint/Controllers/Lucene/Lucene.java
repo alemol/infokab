@@ -119,10 +119,10 @@ public class Lucene {
                 FileReader reader = new FileReader(file);
                 Gson gson = new Gson();
                 Tier tier = gson.fromJson(reader, Tier.class);
-                document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.NO));
-                document.add(new StringField(FIELD_FULL_PATH_MULTIMEDIA, tier.ORIGINAL_MEDIA_PATH, Field.Store.NO));
-                document.add(new StringField(FIELD_TIME_VALUE_1, tier.TIME_VALUE1, Field.Store.NO));
-                document.add(new StringField(FIELD_TIME_VALUE_2, tier.TIME_VALUE2, Field.Store.NO));
+                document.add(new StoredField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH));
+                document.add(new StoredField(FIELD_FULL_PATH_MULTIMEDIA, tier.ORIGINAL_MEDIA_PATH));
+                document.add(new StoredField(FIELD_TIME_VALUE_1, tier.TIME_VALUE1));
+                document.add(new StoredField(FIELD_TIME_VALUE_2, tier.TIME_VALUE2));
 
                 document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE, Field.Store.YES));
 
@@ -160,11 +160,10 @@ public class Lucene {
                     FileReader reader = new FileReader(file);
                     Gson gson = new Gson();
                     TierMultiple tier = gson.fromJson(reader, TierMultiple.class);
-
-                    document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.NO));
-                    document.add(new StringField(FIELD_FULL_PATH_MULTIMEDIA, tier.ORIGINAL_MEDIA_PATH, Field.Store.NO));
-                    document.add(new StringField(FIELD_TIME_VALUE_1, tier.TIME_VALUE1, Field.Store.NO));
-                    document.add(new StringField(FIELD_TIME_VALUE_2, tier.TIME_VALUE2, Field.Store.NO));
+                    document.add(new StoredField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH));
+                    document.add(new StoredField(FIELD_FULL_PATH_MULTIMEDIA, tier.ORIGINAL_MEDIA_PATH));
+                    document.add(new StoredField(FIELD_TIME_VALUE_1, tier.TIME_VALUE1));
+                    document.add(new StoredField(FIELD_TIME_VALUE_2, tier.TIME_VALUE2));
 
                     document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE_GLOSA_INDEX, Field.Store.YES));
                     document.add(new TextField(FIELD_VIEW, tier.ANNOTATION_VALUE_GLOSA_INDEX_WORDS, Field.Store.YES));
@@ -190,10 +189,10 @@ public class Lucene {
                     Gson gson = new Gson();
                     TierMultiple tier = gson.fromJson(reader, TierMultiple.class);
 
-                    document.add(new StringField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH, Field.Store.NO));
-                    document.add(new StringField(FIELD_FULL_PATH_MULTIMEDIA, tier.ORIGINAL_MEDIA_PATH, Field.Store.NO));
-                    document.add(new StringField(FIELD_TIME_VALUE_1, tier.TIME_VALUE1, Field.Store.NO));
-                    document.add(new StringField(FIELD_TIME_VALUE_2, tier.TIME_VALUE2, Field.Store.NO));
+                    document.add(new StoredField(FIELD_PATH_MULTIMEDIA, tier.MEDIA_PATH));
+                    document.add(new StoredField(FIELD_FULL_PATH_MULTIMEDIA, tier.ORIGINAL_MEDIA_PATH));
+                    document.add(new StoredField(FIELD_TIME_VALUE_1, tier.TIME_VALUE1));
+                    document.add(new StoredField(FIELD_TIME_VALUE_2, tier.TIME_VALUE2));
 
                     document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE_TRADUCCION_LIBRE, Field.Store.YES));
                     document.add(new TextField(FIELD_VIEW, tier.ANNOTATION_VALUE_TRANSCRIPCION_ORTOGRAFICA, Field.Store.YES));

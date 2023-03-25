@@ -113,6 +113,7 @@ class LuceneTest {
 
     @Test
     void search_group() throws IOException, ParseException {
+        //https://lucene.apache.org/core/9_1_0/core/org/apache/lucene/geo/LatLonGeometry.html
         List<IndexReader> indexReaders = new ArrayList<>();
         String getIndex = "español";
 
@@ -158,6 +159,11 @@ class LuceneTest {
                 ScoreDoc sdoc = groups.groups[i].scoreDocs[j]; // first result of each group
                 Document d = indexSearcher.doc(sdoc.doc);
                 System.out.println("data "+ d.get("cvegeo"));
+                System.out.println("data "+ d.get("timer_value_1"));
+                System.out.println("data "+ d.get("timer_value_2"));
+                System.out.println("data "+ d.get("original_multimedia"));
+                System.out.println("data "+ d.get("multimedia"));
+                System.out.println("data "+ d.get("project"));
             }
         }
     }
