@@ -1,5 +1,6 @@
 package mx.geoint.Apis.Searcher;
 
+import mx.geoint.Model.Project.ProjectPostgresLocations;
 import mx.geoint.Model.Search.SearchResponse;
 import mx.geoint.Model.Search.SearchLuceneDoc;
 import mx.geoint.Controllers.Lucene.Lucene;
@@ -40,13 +41,19 @@ public class Searcher {
         return response;
     }
 
-    public SearchResponse findMultiple(String text, String index, boolean levenshtein) throws IOException, ParseException, SQLException {
-        SearchResponse response = lucene.searchMultipleIndex(text, index, levenshtein);
+    public SearchResponse findMultiple(String text, String index, String cvegeo, boolean levenshtein) throws IOException, ParseException, SQLException {
+        SearchResponse response = lucene.searchMultipleIndex(text, index, cvegeo, levenshtein);
         return response;
     }
 
-    public ArrayList<SearchLuceneDoc> findPageMultiple(String text, int page, String index, boolean levenshtein) throws IOException, ParseException, SQLException {
-        ArrayList<SearchLuceneDoc> response = lucene.searchPaginateMultiple(text, page, index, levenshtein);
+    public ArrayList<SearchLuceneDoc> findPageMultiple(String text, int page, String index, String cvegeo, boolean levenshtein) throws IOException, ParseException, SQLException {
+        ArrayList<SearchLuceneDoc> response = lucene.searchPaginateMultiple(text, page, index, cvegeo, levenshtein);
+        return response;
+    }
+
+
+    public ArrayList<ProjectPostgresLocations> findMultipleLocations(String text, String index, boolean levenshtein) throws IOException, ParseException, SQLException {
+        ArrayList<ProjectPostgresLocations> response = lucene.searchMultipleLocations(text, index);
         return response;
     }
 }

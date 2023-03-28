@@ -4,6 +4,7 @@ import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Controllers.WriteXML.WriteXML;
 import mx.geoint.Model.Annotation.AnnotationsRequest;
 import mx.geoint.Model.Glosado.GlosaStep;
+import mx.geoint.Model.Project.ProjectPostgresLocations;
 import mx.geoint.Model.Project.ProjectPostgresRegister;
 import mx.geoint.Controllers.ParseXML.ParseXML;
 import mx.geoint.pathSystem;
@@ -533,6 +534,42 @@ public class DBProjects {
             result = false;
         }
 
+        return result;
+    }
+
+
+    public ArrayList<ProjectPostgresLocations> getLocations(String[] cvegeo) throws  SQLException {
+        ArrayList<ProjectPostgresLocations> result = new ArrayList<>();
+        String SQL_QUERY = "SELECT l.localidad_cvegeo, l.localidad_nombre, l.municipio_cvegeo, ST_Expand(BOX2D(l.geom),0.005) as bbox\n" +
+                "FROM \n" +
+                "(\n" +
+                "\tSELECT localidad_cvegeo, localidad_nombre, municipio_cvegeo, geom \n" +
+                "\tFROM public.dim_localidad_rural \n" +
+                "\tUNION\n" +
+                "\tSELECT localidad_cvegeo, localidad_nombre, municipio_cvegeo, geom \n" +
+                "\tFROM public.dim_localidad_urbana \n" +
+                ") AS l \n" +
+                "WHERE l.localidad_cvegeo = any(array[?]) \n";
+
+
+        Connection conn = credentials.getConnection();
+        System.out.println("query!!!!!!!!!!!!!!!!!!" + cvegeo);
+        Array arrayCvegeo = conn.createArrayOf("text", cvegeo);
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
+        preparedStatement.setArray(1, arrayCvegeo);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        while(rs.next()) {
+            ProjectPostgresLocations projectPostgresLocations = new ProjectPostgresLocations();
+            projectPostgresLocations.setLocalidad_cvegeo(rs.getString(1));
+            projectPostgresLocations.setLocalidad_nombre(rs.getString(2));
+            projectPostgresLocations.setMunicipio_cvegeo(rs.getString(3));
+            projectPostgresLocations.setBbox(rs.getString(4));
+            result.add(projectPostgresLocations);
+        }
+
+        rs.close();
+        conn.close();
         return result;
     }
 }

@@ -3,6 +3,7 @@ package mx.geoint.Model.Search;
 public class SearchRequest {
     private String text;
     private String index;
+    private String cvegeo;
 
     private boolean levenshtein;
 
@@ -26,4 +27,8 @@ public class SearchRequest {
     public void setLevenshtein(boolean levenshtein) {
         this.levenshtein = levenshtein;
     }
+
+    public void setCvegeo(String cvegeo) { this.cvegeo = cvegeo; }
+
+    public String getCvegeo() { return cvegeo; }
 }
