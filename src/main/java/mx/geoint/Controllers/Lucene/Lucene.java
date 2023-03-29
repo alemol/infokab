@@ -320,7 +320,7 @@ public class Lucene {
      * @param search texto a buscar
      * @return List<Document> Lista de documentos encontrados
      **/
-    public SearchResponse searchMultipleIndex(String search, String index, String cvegeo, boolean levenshtein) throws IOException, ParseException, SQLException {
+    public SearchResponse searchMultipleIndex(String search, String index, ArrayList<String> cvegeo, boolean levenshtein) throws IOException, ParseException, SQLException {
         List<IndexReader> indexReaders = new ArrayList<>();
         Analyzer analyzer = new StandardAnalyzer();
         //System.out.println("Searching for '" + search + "'");
@@ -357,9 +357,9 @@ public class Lucene {
         if(levenshtein){
             new_query = new FuzzyQuery(new Term(FIELD_CONTENTS, search));
         } else {
-            System.out.println("CVEGEO : "+  cvegeo);
             if(cvegeo != null && !cvegeo.isEmpty()) {
-                query_cvegeo = " AND " +FIELD_CVEGEO + ":" + cvegeo;
+                String result_cvegeo = String.join(" ", cvegeo);
+                query_cvegeo = " AND " +FIELD_CVEGEO + ":" + "(" + result_cvegeo + ")";
             }
 
             if(index.equals("glosado")) {
@@ -385,14 +385,14 @@ public class Lucene {
             Document hitDoc = indexSearcher.doc(docId);
             System.out.println("doc=" + docId + " score=" + docScore + " path=" + hitDoc.get(FIELD_PATH));
 
-            String path = hitDoc.get("path");
-            String fileName = hitDoc.get("filename");
-            String multimedia = hitDoc.get("multimedia");
+            String path = hitDoc.get(FIELD_PATH);
+            String fileName = hitDoc.get(FIELD_NAME);
+            String multimedia = hitDoc.get(FIELD_PATH_MULTIMEDIA);
             String content = hitDoc.get(FIELD_VIEW);
             String subText = hitDoc.get(FIELD_CONTENTS);
 
-            String[] imageList = find_images(hitDoc.get("path"));
-            String[] videoList = find_videos(hitDoc.get("path"));
+            String[] imageList = find_images(hitDoc.get(FIELD_PATH));
+            String[] videoList = find_videos(hitDoc.get(FIELD_PATH));
             String fecha_archivo = null, entidad = null, municipio = null, Nhablantes = null, localidad = null, coordinates = null, bbox = null;
             String[] dbResponse = dbProjects.getProjectByName(path.split("/")[4]);
             fecha_archivo = dbResponse[0];
@@ -413,7 +413,7 @@ public class Lucene {
         return searchResponse;
     }
 
-    public ArrayList<SearchLuceneDoc> searchPaginateMultiple(String search, int page, String index, String cvegeo, boolean levenshtein) throws IOException, ParseException, SQLException {
+    public ArrayList<SearchLuceneDoc> searchPaginateMultiple(String search, int page, String index, ArrayList<String> cvegeo, boolean levenshtein) throws IOException, ParseException, SQLException {
         List<IndexReader> indexReaders = new ArrayList<>();
 
         Analyzer analyzer = new StandardAnalyzer();
@@ -454,9 +454,9 @@ public class Lucene {
         if(levenshtein){
             new_query = new FuzzyQuery(new Term(FIELD_CONTENTS, search));
         } else {
-
-            if(!cvegeo.isEmpty()) {
-                query_cvegeo = " AND " +FIELD_CVEGEO + ":" + cvegeo;
+            if(cvegeo != null && !cvegeo.isEmpty()) {
+                String result_cvegeo = String.join(" ", cvegeo);
+                query_cvegeo = " AND " +FIELD_CVEGEO + ":" + "(" + result_cvegeo + ")";
             }
 
             if(index.equals("glosado")) {
@@ -486,9 +486,9 @@ public class Lucene {
             Document hitDoc = indexSearcher.doc(docId);
             System.out.println("doc=" + docId + " score=" + docScore + " path=" + hitDoc.get(FIELD_PATH));
 
-            String path = hitDoc.get("path");
-            String fileName = hitDoc.get("filename");
-            String multimedia = hitDoc.get("multimedia");
+            String path = hitDoc.get(FIELD_PATH);
+            String fileName = hitDoc.get(FIELD_NAME);
+            String multimedia = hitDoc.get(FIELD_PATH_MULTIMEDIA);
 
             String content = hitDoc.get(FIELD_VIEW);
             String subText = hitDoc.get(FIELD_CONTENTS);
@@ -571,20 +571,16 @@ public class Lucene {
             groups = groupingSearch.search(indexSearcher, query, offset, limitGroup);
         }
 
-
-        ArrayList<String> result = new ArrayList();
         String[] list_cvegeo = new String[groups.groups.length];
         for (int i = 0; i < groups.groups.length; i++) {
             for (int j = 0; j < groups.groups[i].scoreDocs.length; j++) {
                 ScoreDoc sdoc = groups.groups[i].scoreDocs[j]; // first result of each group
                 Document d = indexSearcher.doc(sdoc.doc);
-                result.add(d.get("cvegeo"));
                 list_cvegeo[i] = d.get("cvegeo");
                 System.out.println("data " + d.get("cvegeo"));
             }
         }
 
-        System.out.println(result.toString());
         ArrayList<ProjectPostgresLocations> projectPostgresLocations = dbProjects.getLocations(list_cvegeo);
         return projectPostgresLocations;
     }

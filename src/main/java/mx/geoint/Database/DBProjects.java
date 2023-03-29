@@ -540,7 +540,7 @@ public class DBProjects {
 
     public ArrayList<ProjectPostgresLocations> getLocations(String[] cvegeo) throws  SQLException {
         ArrayList<ProjectPostgresLocations> result = new ArrayList<>();
-        String SQL_QUERY = "SELECT l.localidad_cvegeo, l.localidad_nombre, l.municipio_cvegeo, ST_Expand(BOX2D(l.geom),0.005) as bbox\n" +
+        String SQL_QUERY = "SELECT l.localidad_cvegeo, l.localidad_nombre, l.municipio_cvegeo, ST_Expand(BOX2D(l.geom),0.005) as bbox, ST_AsGeojson(l.geom) as geometria \n" +
                 "FROM \n" +
                 "(\n" +
                 "\tSELECT localidad_cvegeo, localidad_nombre, municipio_cvegeo, geom \n" +
@@ -553,7 +553,6 @@ public class DBProjects {
 
 
         Connection conn = credentials.getConnection();
-        System.out.println("query!!!!!!!!!!!!!!!!!!" + cvegeo);
         Array arrayCvegeo = conn.createArrayOf("text", cvegeo);
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         preparedStatement.setArray(1, arrayCvegeo);
@@ -565,6 +564,8 @@ public class DBProjects {
             projectPostgresLocations.setLocalidad_nombre(rs.getString(2));
             projectPostgresLocations.setMunicipio_cvegeo(rs.getString(3));
             projectPostgresLocations.setBbox(rs.getString(4));
+            projectPostgresLocations.setGeometria(rs.getString(5));
+
             result.add(projectPostgresLocations);
         }
 

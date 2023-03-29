@@ -403,7 +403,7 @@ public class ElanXmlDigester {
             currentDirectory = existDirectory(basePath+ "/"+pathSystem.INDEX_LANGUAJE_GLOSA_WORDS+"/");
         }
 
-        FileWriter file = new FileWriter( currentDirectory + file_name_json);
+        FileWriter file = new FileWriter( currentDirectory + file_name_json, false);
         file.write(gson.toJson(tier));
         file.close();
     }
@@ -431,7 +431,7 @@ public class ElanXmlDigester {
         //    currentDirectory = existDirectory(basePath+ "/"+pathSystem.INDEX_LANGUAJE_GLOSA_WORDS+"/");
         //}
 
-        FileWriter file = new FileWriter( currentDirectory + file_name_json);
+        FileWriter file = new FileWriter( currentDirectory + file_name_json, false);
         file.write(gson.toJson(tier));
         file.close();
     }

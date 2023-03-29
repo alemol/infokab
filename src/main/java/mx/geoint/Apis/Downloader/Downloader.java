@@ -33,12 +33,12 @@ public class Downloader {
     }
 
     public void prepare(DownloadRequest downloadRequest) throws IOException, ParseException, SQLException {
-        SearchResponse response = lucene.searchMultipleIndex(downloadRequest.getText(), downloadRequest.getIndex(), "", false);
+        SearchResponse response = lucene.searchMultipleIndex(downloadRequest.getText(), downloadRequest.getIndex(), null, false);
         ArrayList<SearchLuceneDoc> documents = response.getDocuments();
         int pages = (int)response.getTotalHits() / 10 + ((response.getTotalHits() % 10 == 0) ? 0 : 1);
 
         for (int i = 2; i <= pages; i++) {
-            ArrayList<SearchLuceneDoc> pageDocs = lucene.searchPaginateMultiple(downloadRequest.getText(), i, downloadRequest.getIndex(), "",false);
+            ArrayList<SearchLuceneDoc> pageDocs = lucene.searchPaginateMultiple(downloadRequest.getText(), i, downloadRequest.getIndex(), null, false);
             documents.addAll(pageDocs);
         }
 

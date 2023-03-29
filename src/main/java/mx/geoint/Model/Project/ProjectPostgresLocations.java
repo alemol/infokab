@@ -5,6 +5,7 @@ public class ProjectPostgresLocations {
     private String localidad_nombre;
     private String municipio_cvegeo;
     private String bbox;
+    private String geometria;
 
     public String getBbox() { return bbox; }
 
@@ -21,4 +22,8 @@ public class ProjectPostgresLocations {
     public String getMunicipio_cvegeo() { return municipio_cvegeo; }
 
     public void setMunicipio_cvegeo(String municipio_cvegeo) { this.municipio_cvegeo = municipio_cvegeo; }
+
+    public String getGeometria() { return geometria; }
+
+    public void setGeometria(String geometria) { this.geometria = geometria; }
 }

@@ -86,7 +86,7 @@ public class SearcherController {
         try{
             String text = searchRequest.getText();
             String index = searchRequest.getIndex();
-            String cvegeo = searchRequest.getCvegeo();
+            ArrayList<String> cvegeo = searchRequest.getCvegeo();
             boolean levenshtein = searchRequest.isLevenshtein();
             System.out.println("CVEGEO "+  cvegeo);
             SearchResponse response = searcherService.findDocumentsMultiple(text, index, cvegeo, levenshtein);
@@ -110,7 +110,7 @@ public class SearcherController {
     public ResponseEntity<ArrayList<SearchLuceneDoc>> searchPaginateMultiple(@RequestBody SearchPage searchPage){
         String text = searchPage.getText();
         String index = searchPage.getIndex();
-        String cvegeo = searchPage.getCvegeo();
+        ArrayList<String> cvegeo = searchPage.getCvegeo();
 
         int page = searchPage.getPage();
         boolean levenshtein = searchPage.isLevenshtein();

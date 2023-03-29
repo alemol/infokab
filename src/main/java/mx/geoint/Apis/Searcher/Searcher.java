@@ -41,12 +41,12 @@ public class Searcher {
         return response;
     }
 
-    public SearchResponse findMultiple(String text, String index, String cvegeo, boolean levenshtein) throws IOException, ParseException, SQLException {
+    public SearchResponse findMultiple(String text, String index, ArrayList<String> cvegeo, boolean levenshtein) throws IOException, ParseException, SQLException {
         SearchResponse response = lucene.searchMultipleIndex(text, index, cvegeo, levenshtein);
         return response;
     }
 
-    public ArrayList<SearchLuceneDoc> findPageMultiple(String text, int page, String index, String cvegeo, boolean levenshtein) throws IOException, ParseException, SQLException {
+    public ArrayList<SearchLuceneDoc> findPageMultiple(String text, int page, String index, ArrayList<String> cvegeo, boolean levenshtein) throws IOException, ParseException, SQLException {
         ArrayList<SearchLuceneDoc> response = lucene.searchPaginateMultiple(text, page, index, cvegeo, levenshtein);
         return response;
     }

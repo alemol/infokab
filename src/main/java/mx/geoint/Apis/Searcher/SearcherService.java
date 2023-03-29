@@ -25,11 +25,11 @@ public class SearcherService {
         return searcher.findPage(formatLucene(searchvalue), page);
     }
 
-    public SearchResponse findDocumentsMultiple(String searchValue, String index, String cvegeo, boolean levenshtein) throws IOException, ParseException, SQLException {
+    public SearchResponse findDocumentsMultiple(String searchValue, String index, ArrayList<String> cvegeo, boolean levenshtein) throws IOException, ParseException, SQLException {
         return  searcher.findMultiple(formatLucene(searchValue), index, cvegeo, levenshtein);
     }
 
-    public ArrayList<SearchLuceneDoc> findDocumentsPageMultiple(String searchValue, int page, String index, String cvegeo, boolean levenshtein) throws IOException, ParseException, SQLException {
+    public ArrayList<SearchLuceneDoc> findDocumentsPageMultiple(String searchValue, int page, String index, ArrayList<String> cvegeo, boolean levenshtein) throws IOException, ParseException, SQLException {
         return searcher.findPageMultiple(formatLucene(searchValue), page, index, cvegeo, levenshtein);
     }
 
