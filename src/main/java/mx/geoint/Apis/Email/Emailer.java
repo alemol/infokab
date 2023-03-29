@@ -14,7 +14,7 @@ public class Emailer {
         final String password = "";
 
         Properties prop = new Properties();
-        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.host", "smtp-mail.outlook.com");
         prop.put("mail.smtp.port", "587");
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.smtp.starttls.enable", "true"); //TLS
@@ -30,7 +30,7 @@ public class Emailer {
         try {
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("juc@centrogeo.edu.mx"));
+            message.setFrom(new InternetAddress("corpus.maya@correo.uady.mx"));
             message.setRecipients(
                     Message.RecipientType.TO,
                     InternetAddress.parse("ucp.jose@gmail.com")
