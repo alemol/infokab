@@ -513,7 +513,7 @@ public class Lucene {
         return results;
     }
 
-    public ArrayList<ProjectPostgresLocations> searchMultipleLocations(String search, String index) throws IOException, SQLException {
+    public ArrayList<ProjectPostgresLocations> searchMultipleLocations(String search, String index) throws IOException, SQLException, ParseException {
         //https://lucene.apache.org/core/9_1_0/core/org/apache/lucene/geo/LatLonGeometry.html
         List<IndexReader> indexReaders = new ArrayList<>();
         String getIndex = index;
@@ -550,26 +550,25 @@ public class Lucene {
         int offset = 0;
         int limitGroup = 2000;
 
-        String field = FIELD_CONTENTS;
-        if (index.equals("maya")) {
-            field = FIELD_VIEW;
-        }
+        Analyzer analyzer = new StandardAnalyzer();
+        QueryParser queryParser = new QueryParser(FIELD_CONTENTS, analyzer);;
+        String combinate_searchString = "";
 
-        TopGroups groups;
-        if (index.equals("glosado")) {
-            TermQuery query = new TermQuery(new Term(FIELD_CONTENTS, search));
-            TermQuery query2 = new TermQuery(new Term(FIELD_VIEW, search));
-
-            BooleanQuery booleanQuery = new BooleanQuery.Builder()
-                    .add(query, BooleanClause.Occur.SHOULD)
-                    .add(query2, BooleanClause.Occur.SHOULD)
-                    .build();
-
-            groups = groupingSearch.search(indexSearcher, booleanQuery, offset, limitGroup);
+        if(index.equals("glosado")) {
+            combinate_searchString = FIELD_CONTENTS + ":" + search + " OR " + FIELD_VIEW + ":" + search;
+        } else if(index.equals("maya")){
+            combinate_searchString = FIELD_VIEW + ":" + search;
         }else{
-            TermQuery query = new TermQuery(new Term(field, search));
-            groups = groupingSearch.search(indexSearcher, query, offset, limitGroup);
+            combinate_searchString = FIELD_CONTENTS + ":" + search;
         }
+
+        Query new_query = queryParser.parse(combinate_searchString);
+        TopGroups groups = groupingSearch.search(indexSearcher, new_query, offset, limitGroup);
+
+        System.out.println("INFORMATION : "+groups.groups.length);
+        System.out.println("INFORMATION totalGroupCount: "+groups.totalGroupCount);
+        System.out.println("INFORMATION totalGroupedHitCount: "+groups.totalGroupedHitCount);
+        System.out.println("INFORMATION totalHitCount: "+groups.totalHitCount);
 
         String[] list_cvegeo = new String[groups.groups.length];
         for (int i = 0; i < groups.groups.length; i++) {
