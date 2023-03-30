@@ -542,7 +542,7 @@ public class Lucene {
         IndexSearcher indexSearcher = new IndexSearcher(multiReader);
 
         GroupingSearch groupingSearch = new GroupingSearch("cvegeo");
-        Sort groupSort = new Sort(new SortField("cvegeo", SortField.Type.STRING, true));  // in descending order
+        Sort groupSort = new Sort(new SortField("cvegeo", SortField.Type.STRING, false));  // in descending order
         groupingSearch.setGroupSort(groupSort);
         groupingSearch.setSortWithinGroup(groupSort);
         groupingSearch.setAllGroups(true);
@@ -571,16 +571,17 @@ public class Lucene {
         System.out.println("INFORMATION totalHitCount: "+groups.totalHitCount);
 
         String[] list_cvegeo = new String[groups.groups.length];
+        Integer[] list_counters = new Integer[groups.groups.length];
         for (int i = 0; i < groups.groups.length; i++) {
             for (int j = 0; j < groups.groups[i].scoreDocs.length; j++) {
                 ScoreDoc sdoc = groups.groups[i].scoreDocs[j]; // first result of each group
                 Document d = indexSearcher.doc(sdoc.doc);
                 list_cvegeo[i] = d.get("cvegeo");
-                System.out.println("data " + d.get("cvegeo"));
+                list_counters[i] = Math.toIntExact(groups.groups[i].totalHits.value);
             }
         }
 
-        ArrayList<ProjectPostgresLocations> projectPostgresLocations = dbProjects.getLocations(list_cvegeo);
+        ArrayList<ProjectPostgresLocations> projectPostgresLocations = dbProjects.getLocations(list_cvegeo, list_counters);
         return projectPostgresLocations;
     }
 

@@ -10,6 +10,7 @@ import mx.geoint.Controllers.ParseXML.ParseXML;
 import mx.geoint.pathSystem;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.lucene.search.TotalHits;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -538,7 +539,7 @@ public class DBProjects {
     }
 
 
-    public ArrayList<ProjectPostgresLocations> getLocations(String[] cvegeo) throws  SQLException {
+    public ArrayList<ProjectPostgresLocations> getLocations(String[] cvegeo, Integer[] counters) throws  SQLException {
         ArrayList<ProjectPostgresLocations> result = new ArrayList<>();
         String SQL_QUERY = "SELECT l.localidad_cvegeo, l.localidad_nombre, l.municipio_cvegeo, ST_Expand(BOX2D(l.geom),0.005) as bbox, ST_AsGeojson(l.geom) as geometria \n" +
                 "FROM \n" +
@@ -549,7 +550,8 @@ public class DBProjects {
                 "\tSELECT localidad_cvegeo, localidad_nombre, municipio_cvegeo, geom \n" +
                 "\tFROM public.dim_localidad_urbana \n" +
                 ") AS l \n" +
-                "WHERE l.localidad_cvegeo = any(array[?]) \n";
+                "WHERE l.localidad_cvegeo = any(array[?]) \n" +
+                "ORDER BY l.localidad_cvegeo";
 
 
         Connection conn = credentials.getConnection();
@@ -558,15 +560,18 @@ public class DBProjects {
         preparedStatement.setArray(1, arrayCvegeo);
         ResultSet rs = preparedStatement.executeQuery();
 
+        Integer i = 0;
         while(rs.next()) {
+            System.out.println("POSTGRES: cvegeo" + cvegeo[i] + "counter: " + counters[i] + "DB : "+ rs.getString(1));
             ProjectPostgresLocations projectPostgresLocations = new ProjectPostgresLocations();
             projectPostgresLocations.setLocalidad_cvegeo(rs.getString(1));
             projectPostgresLocations.setLocalidad_nombre(rs.getString(2));
             projectPostgresLocations.setMunicipio_cvegeo(rs.getString(3));
             projectPostgresLocations.setBbox(rs.getString(4));
             projectPostgresLocations.setGeometria(rs.getString(5));
-
+            projectPostgresLocations.setCoincidencias(counters[i]);
             result.add(projectPostgresLocations);
+            i += 1;
         }
 
         rs.close();
