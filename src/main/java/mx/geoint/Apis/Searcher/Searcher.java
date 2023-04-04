@@ -46,8 +46,8 @@ public class Searcher {
         return response;
     }
 
-    public ArrayList<SearchLuceneDoc> findPageMultiple(String text, int page, String index, ArrayList<String> cvegeo, boolean levenshtein) throws IOException, ParseException, SQLException {
-        ArrayList<SearchLuceneDoc> response = lucene.searchPaginateMultiple(text, page, index, cvegeo, levenshtein);
+    public ArrayList<SearchLuceneDoc> findPageMultiple(String text, int page, String index, ArrayList<String> cvegeo, boolean levenshtein, boolean isMap) throws IOException, ParseException, SQLException {
+        ArrayList<SearchLuceneDoc> response = lucene.searchPaginateMultiple(text, page, index, cvegeo, levenshtein, isMap);
         return response;
     }
 

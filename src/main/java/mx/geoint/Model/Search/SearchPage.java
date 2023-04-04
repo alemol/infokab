@@ -10,7 +10,7 @@ public class SearchPage {
     private int page;
 
     private boolean levenshtein;
-
+    private boolean map;
     public SearchPage(){}
 
     public SearchPage(String text, int page, String index) {
@@ -50,4 +50,12 @@ public class SearchPage {
     public void setCvegeo(ArrayList<String> cvegeo) { this.cvegeo = cvegeo; }
 
     public ArrayList<String> getCvegeo() { return cvegeo; }
+
+    public boolean isMap() {
+        return map;
+    }
+
+    public void setMap(boolean map) {
+        this.map = map;
+    }
 }

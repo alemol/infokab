@@ -93,7 +93,7 @@ class LuceneTest {
     void searchMutlipleIndexV2() throws IOException, ParseException, SQLException {
         //createIndex();
         Lucene lucene = new Lucene();
-        lucene.searchPaginateMultiple("ch´aalun", 2, pathSystem.INDEX_LANGUAJE_MAYA, new ArrayList<>(), false);
+        lucene.searchPaginateMultiple("a", 2, pathSystem.INDEX_LANGUAJE_MAYA, new ArrayList<>(), false, false);
     }
 
     @Test

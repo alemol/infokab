@@ -413,7 +413,7 @@ public class Lucene {
         return searchResponse;
     }
 
-    public ArrayList<SearchLuceneDoc> searchPaginateMultiple(String search, int page, String index, ArrayList<String> cvegeo, boolean levenshtein) throws IOException, ParseException, SQLException {
+    public ArrayList<SearchLuceneDoc> searchPaginateMultiple(String search, int page, String index, ArrayList<String> cvegeo, boolean levenshtein, boolean isMap) throws IOException, ParseException, SQLException {
         List<IndexReader> indexReaders = new ArrayList<>();
 
         Analyzer analyzer = new StandardAnalyzer();
@@ -454,9 +454,13 @@ public class Lucene {
         if(levenshtein){
             new_query = new FuzzyQuery(new Term(FIELD_CONTENTS, search));
         } else {
-            if(cvegeo != null && !cvegeo.isEmpty()) {
-                String result_cvegeo = String.join(" ", cvegeo);
-                query_cvegeo = " AND " +FIELD_CVEGEO + ":" + "(" + result_cvegeo + ")";
+            if(isMap){
+                if(cvegeo != null && !cvegeo.isEmpty()) {
+                    String result_cvegeo = String.join(" ", cvegeo);
+                    query_cvegeo = " AND " +FIELD_CVEGEO + ":" + "(" + result_cvegeo + ")";
+                }else{
+                    return new ArrayList<SearchLuceneDoc>();
+                }
             }
 
             if(index.equals("glosado")) {

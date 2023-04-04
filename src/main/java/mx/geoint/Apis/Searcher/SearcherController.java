@@ -111,11 +111,12 @@ public class SearcherController {
         String text = searchPage.getText();
         String index = searchPage.getIndex();
         ArrayList<String> cvegeo = searchPage.getCvegeo();
+        boolean isMap = searchPage.isMap();
 
         int page = searchPage.getPage();
         boolean levenshtein = searchPage.isLevenshtein();
         try{
-            ArrayList<SearchLuceneDoc> response = searcherService.findDocumentsPageMultiple(text, page, index, cvegeo, levenshtein);
+            ArrayList<SearchLuceneDoc> response = searcherService.findDocumentsPageMultiple(text, page, index, cvegeo, levenshtein, isMap);
 
             if(response != null){
                 return ResponseEntity.status(HttpStatus.OK).body(response);
