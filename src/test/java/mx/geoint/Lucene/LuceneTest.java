@@ -90,6 +90,13 @@ class LuceneTest {
     }
 
     @Test
+    void searchMutlipleIndexV2() throws IOException, ParseException, SQLException {
+        //createIndex();
+        Lucene lucene = new Lucene();
+        lucene.searchPaginateMultiple("ch´aalun", 2, pathSystem.INDEX_LANGUAJE_MAYA, new ArrayList<>(), false);
+    }
+
+    @Test
     void createIndexLuceneText() throws IOException {
         Lucene lucene_1 = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"47eebc99-9c0b-4ef8-bb6d-6bb9bd380a11/");
         lucene_1.initConfig(true);

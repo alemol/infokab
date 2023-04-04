@@ -457,6 +457,8 @@ public class Lucene {
             if(cvegeo != null && !cvegeo.isEmpty()) {
                 String result_cvegeo = String.join(" ", cvegeo);
                 query_cvegeo = " AND " +FIELD_CVEGEO + ":" + "(" + result_cvegeo + ")";
+            } else {
+                return new ArrayList<SearchLuceneDoc>();
             }
 
             if(index.equals("glosado")) {
