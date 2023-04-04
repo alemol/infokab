@@ -1,5 +1,6 @@
 package mx.geoint.Apis.Searcher;
 
+import mx.geoint.Model.Project.ProjectPostgresGeometry;
 import mx.geoint.Model.Project.ProjectPostgresLocations;
 import mx.geoint.Model.Search.SearchResponse;
 import mx.geoint.Model.Search.SearchLuceneDoc;
@@ -52,8 +53,8 @@ public class Searcher {
     }
 
 
-    public ArrayList<ProjectPostgresLocations> findMultipleLocations(String text, String index, boolean levenshtein) throws IOException, ParseException, SQLException {
-        ArrayList<ProjectPostgresLocations> response = lucene.searchMultipleLocations(text, index);
+    public ProjectPostgresGeometry findMultipleLocations(String text, String index, boolean levenshtein) throws IOException, ParseException, SQLException {
+        ProjectPostgresGeometry response = lucene.searchMultipleLocations(text, index);
         return response;
     }
 }

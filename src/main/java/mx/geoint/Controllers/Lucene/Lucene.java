@@ -2,6 +2,7 @@ package mx.geoint.Controllers.Lucene;
 
 import com.google.gson.Gson;
 import mx.geoint.Model.ParseXML.TierMultiple;
+import mx.geoint.Model.Project.ProjectPostgresGeometry;
 import mx.geoint.Model.Project.ProjectPostgresLocations;
 import mx.geoint.Model.Search.SearchLuceneDoc;
 import mx.geoint.Model.Search.SearchResponse;
@@ -517,7 +518,7 @@ public class Lucene {
         return results;
     }
 
-    public ArrayList<ProjectPostgresLocations> searchMultipleLocations(String search, String index) throws IOException, SQLException, ParseException {
+    public ProjectPostgresGeometry searchMultipleLocations(String search, String index) throws IOException, SQLException, ParseException {
         //https://lucene.apache.org/core/9_1_0/core/org/apache/lucene/geo/LatLonGeometry.html
         List<IndexReader> indexReaders = new ArrayList<>();
         String getIndex = index;
@@ -586,7 +587,12 @@ public class Lucene {
         }
 
         ArrayList<ProjectPostgresLocations> projectPostgresLocations = dbProjects.getLocations(list_cvegeo, list_counters);
-        return projectPostgresLocations;
+        ArrayList<String> bbox = dbProjects.getBBox(list_cvegeo);
+
+        ProjectPostgresGeometry projectPostgresGeometry = new ProjectPostgresGeometry();
+        projectPostgresGeometry.setProjectPostgresLocations(projectPostgresLocations);
+        projectPostgresGeometry.setBbox(bbox);
+        return projectPostgresGeometry;
     }
 
     public String[] find_images(String path) {

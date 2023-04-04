@@ -1,6 +1,7 @@
 package mx.geoint.Apis.Searcher;
 
 import mx.geoint.Controllers.Logger.Logger;
+import mx.geoint.Model.Project.ProjectPostgresGeometry;
 import mx.geoint.Model.Project.ProjectPostgresLocations;
 import mx.geoint.Model.Search.SearchRequest;
 import mx.geoint.Model.Search.SearchPage;
@@ -137,13 +138,13 @@ public class SearcherController {
 
     @RequestMapping(path = "/locations", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ArrayList<ProjectPostgresLocations>> searchLocations(@RequestBody SearchRequest searchRequest){
+    public ResponseEntity<ProjectPostgresGeometry> searchLocations(@RequestBody SearchRequest searchRequest){
         try{
             String text = searchRequest.getText();
             String index = searchRequest.getIndex();
             boolean levenshtein = searchRequest.isLevenshtein();
 
-            ArrayList<ProjectPostgresLocations> response = searcherService.findMultipleLocations(text, index, levenshtein);
+            ProjectPostgresGeometry response = searcherService.findMultipleLocations(text, index, levenshtein);
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (IOException e){
             System.out.println("entre IO");

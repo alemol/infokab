@@ -612,4 +612,34 @@ public class DBProjects {
         conn.close();
         return result;
     }
+
+    public ArrayList<String> getBBox(String[] cvegeo) throws  SQLException {
+        ArrayList<String> result = new ArrayList<>();
+        String SQL_QUERY = "SELECT ST_AsGeojson(ST_Envelope(ST_Union(l.geom))) AS table_extent \n" +
+                "FROM \n" +
+                "(\n" +
+                "\tSELECT localidad_cvegeo, localidad_nombre, municipio_cvegeo, geom \n" +
+                "\tFROM public.dim_localidad_rural \n" +
+                "\tUNION\n" +
+                "\tSELECT localidad_cvegeo, localidad_nombre, municipio_cvegeo, geom \n" +
+                "\tFROM public.dim_localidad_urbana \n" +
+                ") AS l \n" +
+                "WHERE l.localidad_cvegeo = any(array[?]) \n";
+
+
+        Connection conn = credentials.getConnection();
+        Array arrayCvegeo = conn.createArrayOf("text", cvegeo);
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
+        preparedStatement.setArray(1, arrayCvegeo);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        Integer i = 0;
+        while(rs.next()) {
+            result.add(rs.getString(1));
+        }
+
+        rs.close();
+        conn.close();
+        return result;
+    }
 }
