@@ -10,6 +10,7 @@ import mx.geoint.Controllers.VideoCutter.VideoCutter;
 import mx.geoint.Database.DBProjects;
 import mx.geoint.Database.DBReports;
 import mx.geoint.Model.ParseXML.TierMultiple;
+import mx.geoint.Model.Project.ProjectPostgresRegister;
 import mx.geoint.pathSystem;
 import org.apache.commons.io.FilenameUtils;
 import org.xml.sax.SAXException;
@@ -140,18 +141,21 @@ public class ElanXmlDigester {
      * @param save_media boolean, bandera para iniciar el proceso de guardado de los fragmentos del multimedia
      * @throws IOException
      */
-    public void parse_tier(String tier_id, boolean save_text, boolean save_media) throws ParserConfigurationException, SAXException, IOException {
+    public void parse_tier(String tier_id, boolean save_text, boolean save_media) throws ParserConfigurationException, SAXException, IOException, SQLException {
         ParseXML parseXML = new ParseXML(filepathEaf, tier_id);
         parseXML.read();
 
         getTier = parseXML.getTier();
         String baseNameEaf = FilenameUtils.getBaseName(filepathEaf);
+        ProjectPostgresRegister projectPostgresRegister = dbProjects.getProjectById(String.valueOf(this.projectID));
+        String cvegeo = projectPostgresRegister.getCvegeo();
 
         if(save_media==true){
             String type_path = getTypeMultimedia(filepathMultimedia);
 
             for (int i = 0; i< getTier.size(); i++){
                 Tier tier = getTier.get(i);
+                 tier.setCVEGEO(cvegeo);
 
                 if(type_path.equals("wav") || type_path.equals("mp4")){
                     boolean created = false;
@@ -201,7 +205,7 @@ public class ElanXmlDigester {
      * @param save_media boolean, bandera para iniciar el proceso de guardado de los fragmentos del multimedia
      * @throws IOException
      */
-    public void parse_tier_multiple(String tier_id, boolean save_text, boolean save_media) throws ParserConfigurationException, SAXException, IOException {
+    public void parse_tier_multiple(String tier_id, boolean save_text, boolean save_media) throws ParserConfigurationException, SAXException, IOException, SQLException {
         ParseXML parseXML = new ParseXML(filepathEaf, tier_id);
         parseXML.readAnnotations();
 
@@ -209,12 +213,16 @@ public class ElanXmlDigester {
         String baseNameEaf = FilenameUtils.getBaseName(filepathEaf);
         Iterator<String> iterator = getMultipleTier.keySet().iterator();
 
+        ProjectPostgresRegister projectPostgresRegister = dbProjects.getProjectById(String.valueOf(this.projectID));
+        String cvegeo = projectPostgresRegister.getCvegeo();
+
         if(save_media==true) {
             String type_path = getTypeMultimedia(filepathMultimedia);
             while (iterator.hasNext()) {
                 String key = iterator.next();
                 Gson gson = new Gson();
                 TierMultiple tierMultiple = gson.fromJson(getMultipleTier.getAsJsonObject(key).toString(), TierMultiple.class);
+                tierMultiple.setCVEGEO(cvegeo);
                 Boolean exist = false;
 
                 if(tier_id.equals(pathSystem.TIER_GlOSA_INDEX)){
@@ -395,7 +403,7 @@ public class ElanXmlDigester {
             currentDirectory = existDirectory(basePath+ "/"+pathSystem.INDEX_LANGUAJE_GLOSA_WORDS+"/");
         }
 
-        FileWriter file = new FileWriter( currentDirectory + file_name_json);
+        FileWriter file = new FileWriter( currentDirectory + file_name_json, false);
         file.write(gson.toJson(tier));
         file.close();
     }
@@ -423,7 +431,7 @@ public class ElanXmlDigester {
         //    currentDirectory = existDirectory(basePath+ "/"+pathSystem.INDEX_LANGUAJE_GLOSA_WORDS+"/");
         //}
 
-        FileWriter file = new FileWriter( currentDirectory + file_name_json);
+        FileWriter file = new FileWriter( currentDirectory + file_name_json, false);
         file.write(gson.toJson(tier));
         file.close();
     }

@@ -1,12 +1,16 @@
 package mx.geoint.Model.Search;
 
+import java.util.ArrayList;
+
 public class SearchPage {
     private String text;
     private String index;
+
+    private ArrayList<String> cvegeo;
     private int page;
 
     private boolean levenshtein;
-
+    private boolean map;
     public SearchPage(){}
 
     public SearchPage(String text, int page, String index) {
@@ -41,5 +45,17 @@ public class SearchPage {
 
     public void setLevenshtein(boolean levenshtein) {
         this.levenshtein = levenshtein;
+    }
+
+    public void setCvegeo(ArrayList<String> cvegeo) { this.cvegeo = cvegeo; }
+
+    public ArrayList<String> getCvegeo() { return cvegeo; }
+
+    public boolean isMap() {
+        return map;
+    }
+
+    public void setMap(boolean map) {
+        this.map = map;
     }
 }

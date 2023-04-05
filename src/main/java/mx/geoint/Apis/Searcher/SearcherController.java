@@ -1,6 +1,8 @@
 package mx.geoint.Apis.Searcher;
 
 import mx.geoint.Controllers.Logger.Logger;
+import mx.geoint.Model.Project.ProjectPostgresGeometry;
+import mx.geoint.Model.Project.ProjectPostgresLocations;
 import mx.geoint.Model.Search.SearchRequest;
 import mx.geoint.Model.Search.SearchPage;
 import mx.geoint.Model.Search.SearchLuceneDoc;
@@ -85,9 +87,10 @@ public class SearcherController {
         try{
             String text = searchRequest.getText();
             String index = searchRequest.getIndex();
+            ArrayList<String> cvegeo = searchRequest.getCvegeo();
             boolean levenshtein = searchRequest.isLevenshtein();
-
-            SearchResponse response = searcherService.findDocumentsMultiple(text, index, levenshtein);
+            System.out.println("CVEGEO "+  cvegeo);
+            SearchResponse response = searcherService.findDocumentsMultiple(text, index, cvegeo, levenshtein);
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (IOException e){
             System.out.println("entre IO");
@@ -108,10 +111,13 @@ public class SearcherController {
     public ResponseEntity<ArrayList<SearchLuceneDoc>> searchPaginateMultiple(@RequestBody SearchPage searchPage){
         String text = searchPage.getText();
         String index = searchPage.getIndex();
+        ArrayList<String> cvegeo = searchPage.getCvegeo();
+        boolean isMap = searchPage.isMap();
+
         int page = searchPage.getPage();
         boolean levenshtein = searchPage.isLevenshtein();
         try{
-            ArrayList<SearchLuceneDoc> response = searcherService.findDocumentsPageMultiple(text, page, index, levenshtein);
+            ArrayList<SearchLuceneDoc> response = searcherService.findDocumentsPageMultiple(text, page, index, cvegeo, levenshtein, isMap);
 
             if(response != null){
                 return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -129,4 +135,29 @@ public class SearcherController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
         }
     }
+
+    @RequestMapping(path = "/locations", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ProjectPostgresGeometry> searchLocations(@RequestBody SearchRequest searchRequest){
+        try{
+            String text = searchRequest.getText();
+            String index = searchRequest.getIndex();
+            boolean levenshtein = searchRequest.isLevenshtein();
+
+            ProjectPostgresGeometry response = searcherService.findMultipleLocations(text, index, levenshtein);
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch (IOException e){
+            System.out.println("entre IO");
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró", e);
+        } catch (ParseException e){
+            System.out.println("entre Parse");
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
+        } catch (SQLException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al parsear", e);
+        }
+    }
+
 }

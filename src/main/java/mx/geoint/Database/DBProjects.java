@@ -4,11 +4,13 @@ import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Controllers.WriteXML.WriteXML;
 import mx.geoint.Model.Annotation.AnnotationsRequest;
 import mx.geoint.Model.Glosado.GlosaStep;
+import mx.geoint.Model.Project.ProjectPostgresLocations;
 import mx.geoint.Model.Project.ProjectPostgresRegister;
 import mx.geoint.Controllers.ParseXML.ParseXML;
 import mx.geoint.pathSystem;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.lucene.search.TotalHits;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -41,8 +43,7 @@ public class DBProjects {
         Connection conn = credentials.getConnection();
         System.out.println(conn);
 
-        String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds, en_proceso, indice_maya, indice_español, indice_glosado, entidad, municipio, localidad) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,(SELECT entidad_nombre FROM public.dim_entidad WHERE entidad_cvegeo = ?),(SELECT municipio_nombre FROM public.dim_municipio WHERE municipio_cvegeo = ? limit 1),(SELECT l.localidad_nombre FROM (SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ? UNION SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ?  ORDER BY dist LIMIT 1) AS l) ) RETURNING id_proyecto";
-
+        String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds, en_proceso, indice_maya, indice_español, indice_glosado, entidad, municipio, localidad, cvegeo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,(SELECT entidad_nombre FROM public.dim_entidad WHERE entidad_cvegeo = ?),(SELECT municipio_nombre FROM public.dim_municipio WHERE municipio_cvegeo = ? limit 1),(SELECT l.localidad_nombre FROM (SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ? UNION SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ?  ORDER BY dist LIMIT 1) AS l), (SELECT l.localidad_cvegeo FROM (SELECT localidad_cvegeo, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ? UNION SELECT localidad_cvegeo, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ?  ORDER BY dist LIMIT 1) AS l) ) RETURNING id_proyecto";
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
         preparedStatement.setObject(1, UUID.fromString(uuid));
@@ -70,6 +71,12 @@ public class DBProjects {
         preparedStatement.setString(19, coords[1]);
         preparedStatement.setString(20, coords[0]);
         preparedStatement.setString(21, parts[0]+parts[1]);
+        preparedStatement.setString(22, coords[1]);
+        preparedStatement.setString(23, coords[0]);
+        preparedStatement.setString(24, parts[0]+parts[1]);
+        preparedStatement.setString(25, coords[1]);
+        preparedStatement.setString(26, coords[0]);
+        preparedStatement.setString(27, parts[0]+parts[1]);
 
 
         preparedStatement.execute();
@@ -88,7 +95,7 @@ public class DBProjects {
     }
 
     public ProjectPostgresRegister getProjectById(String id) throws  SQLException {
-        String SQL_QUERY = "SELECT p.id_proyecto, p.nombre_proyecto, p.ruta_trabajo, p.id_usuario FROM proyectos as p WHERE p.id_proyecto=?";
+        String SQL_QUERY = "SELECT p.id_proyecto, p.nombre_proyecto, p.ruta_trabajo, p.id_usuario, p.cvegeo FROM proyectos as p WHERE p.id_proyecto=?";
 
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
@@ -103,6 +110,7 @@ public class DBProjects {
             projectRegister.setNombre_proyecto(rs.getString(2));
             projectRegister.setRuta_trabajo(rs.getString(3));
             projectRegister.setId_usuario(rs.getString(4));
+            projectRegister.setCvegeo(rs.getString(5));
         }
         rs.close();
         conn.close();
@@ -111,7 +119,6 @@ public class DBProjects {
     }
 
     public String[] getProjectByName(String filename) throws  SQLException {
-
         String[] parts = filename.split("_");
         String SQL_QUERY = "SELECT p.fecha_archivo, p.hablantes, p.entidad, p.municipio, p.localidad, p.ubicacion, ST_Expand(BOX2D(l.geom),0.005) as bbox\n" +
                 "FROM proyectos p ,\n" +
@@ -526,6 +533,111 @@ public class DBProjects {
             result = false;
         }
 
+        return result;
+    }
+
+
+    public ArrayList<ProjectPostgresLocations> getLocations(String[] cvegeo, Integer[] counters) throws  SQLException {
+        ArrayList<ProjectPostgresLocations> result = new ArrayList<>();
+        String SQL_QUERY = "SELECT l.localidad_cvegeo, l.localidad_nombre, l.municipio_cvegeo, ST_Expand(BOX2D(l.geom),0.005) as bbox, ST_AsGeojson(l.geom) as geometria \n" +
+                "FROM \n" +
+                "(\n" +
+                "\tSELECT localidad_cvegeo, localidad_nombre, municipio_cvegeo, geom \n" +
+                "\tFROM public.dim_localidad_rural \n" +
+                "\tUNION\n" +
+                "\tSELECT localidad_cvegeo, localidad_nombre, municipio_cvegeo, geom \n" +
+                "\tFROM public.dim_localidad_urbana \n" +
+                ") AS l \n" +
+                "WHERE l.localidad_cvegeo = any(array[?]) \n" +
+                "ORDER BY l.localidad_cvegeo";
+
+
+        Connection conn = credentials.getConnection();
+        Array arrayCvegeo = conn.createArrayOf("text", cvegeo);
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
+        preparedStatement.setArray(1, arrayCvegeo);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        Integer i = 0;
+        while(rs.next()) {
+            System.out.println("POSTGRES: cvegeo" + cvegeo[i] + "counter: " + counters[i] + "DB : "+ rs.getString(1));
+            ProjectPostgresLocations projectPostgresLocations = new ProjectPostgresLocations();
+            projectPostgresLocations.setLocalidad_cvegeo(rs.getString(1));
+            projectPostgresLocations.setLocalidad_nombre(rs.getString(2));
+            projectPostgresLocations.setMunicipio_cvegeo(rs.getString(3));
+            projectPostgresLocations.setBbox(rs.getString(4));
+            projectPostgresLocations.setGeometria(rs.getString(5));
+            projectPostgresLocations.setCoincidencias(counters[i]);
+            result.add(projectPostgresLocations);
+            i += 1;
+        }
+
+        rs.close();
+        conn.close();
+        return result;
+    }
+
+    public ArrayList<ProjectPostgresLocations> getProjectLocations() throws SQLException {
+        ArrayList<ProjectPostgresLocations> result = new ArrayList<>();
+
+        String SQL_QUERY =  "select p.cvegeo, l.localidad_nombre, l.municipio_cvegeo, ST_Expand(BOX2D(l.geom),0.005) as bbox,  ST_AsGeojson(l.geom) as geometria, count(p.cvegeo) as total\n" +
+                "FROM proyectos as p,  ( \n" +
+                "\tSELECT localidad_cvegeo, localidad_nombre, municipio_cvegeo, geom  \n" +
+                "\tFROM public.dim_localidad_rural  \n" +
+                "\tUNION \n" +
+                "\t\tSELECT localidad_cvegeo, localidad_nombre, municipio_cvegeo, geom  \n" +
+                "\t\tFROM public.dim_localidad_urbana  \n" +
+                "\t) AS l\n" +
+                "WHERE l.localidad_cvegeo = p.cvegeo\n" +
+                "group by p.cvegeo, l.localidad_nombre, l.municipio_cvegeo, l.geom";
+
+        Connection conn = credentials.getConnection();
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
+        ResultSet rs = preparedStatement.executeQuery();
+        while(rs.next()){
+            ProjectPostgresLocations projectPostgresLocations = new ProjectPostgresLocations();
+            projectPostgresLocations.setLocalidad_cvegeo(rs.getString(1));
+            projectPostgresLocations.setLocalidad_nombre(rs.getString(2));
+            projectPostgresLocations.setMunicipio_cvegeo(rs.getString(3));
+            projectPostgresLocations.setBbox(rs.getString(4));
+            projectPostgresLocations.setGeometria(rs.getString(5));
+            projectPostgresLocations.setCoincidencias(rs.getInt(6));
+
+            result.add(projectPostgresLocations);
+        }
+
+        rs.close();
+        conn.close();
+        return result;
+    }
+
+    public ArrayList<String> getBBox(String[] cvegeo) throws  SQLException {
+        ArrayList<String> result = new ArrayList<>();
+        String SQL_QUERY = "SELECT ST_AsGeojson(ST_Envelope(ST_Union(l.geom))) AS table_extent \n" +
+                "FROM \n" +
+                "(\n" +
+                "\tSELECT localidad_cvegeo, localidad_nombre, municipio_cvegeo, geom \n" +
+                "\tFROM public.dim_localidad_rural \n" +
+                "\tUNION\n" +
+                "\tSELECT localidad_cvegeo, localidad_nombre, municipio_cvegeo, geom \n" +
+                "\tFROM public.dim_localidad_urbana \n" +
+                ") AS l \n" +
+                "WHERE l.localidad_cvegeo = any(array[?]) \n";
+
+
+        Connection conn = credentials.getConnection();
+        Array arrayCvegeo = conn.createArrayOf("text", cvegeo);
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
+        preparedStatement.setArray(1, arrayCvegeo);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        Integer i = 0;
+        while(rs.next()) {
+            result.add(rs.getString(1));
+        }
+
+        rs.close();
+        conn.close();
         return result;
     }
 }

@@ -26,18 +26,16 @@ public class SearchLuceneDoc {
     private float endTime;
 
     private String[] imageList;
-
+    private String[] videoList;
     private String fecha_archivo;
-
     private String entidad;
-
     private String municipio;
     private String localidad;
     private String coordinates;
 
     private String bbox;
 
-    public SearchLuceneDoc(String filePath, String fileName, String text, float score, String[] imageList, String fecha_archivo, String Nhablantes, String entidad, String municipio, String localidad, String coordinates, String bbox, String multimedia) throws FileNotFoundException {
+    public SearchLuceneDoc(String filePath, String fileName, String text, float score, String[] imageList, String[] videoList, String fecha_archivo, String Nhablantes, String entidad, String municipio, String localidad, String coordinates, String bbox, String multimedia) throws FileNotFoundException {
         this.filePath = filePath;
         this.fileName = fileName;
         this.text = text;
@@ -56,6 +54,7 @@ public class SearchLuceneDoc {
         //endTime = Float.parseFloat(tier.TIME_VALUE2) / 1000;
 
         this.imageList = imageList;
+        this.videoList = videoList;
         this.fecha_archivo = fecha_archivo;
         this.Nhablantes = Nhablantes;
         this.entidad = entidad;
@@ -128,6 +127,9 @@ public class SearchLuceneDoc {
 
     public String[] getimageList(){return imageList;}
     public void setimageList(String[] imageList) { this.imageList = imageList; }
+
+    public String[] getVideoList(){return videoList;}
+    public void setVideoList(String[] videoList) { this.videoList = videoList; }
 
     public String getFecha_archivo(){ return fecha_archivo; }
     public void  setFecha_archivo(String fecha_archivo){this.fecha_archivo = fecha_archivo;}

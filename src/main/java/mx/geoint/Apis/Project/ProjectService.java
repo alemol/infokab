@@ -4,6 +4,7 @@ import mx.geoint.Database.DBAnnotations;
 import mx.geoint.Database.DBDictionary;
 import mx.geoint.Database.DBProjects;
 import mx.geoint.Database.DBReports;
+import mx.geoint.Model.Project.ProjectPostgresLocations;
 import mx.geoint.Model.Project.ProjectPostgresRegister;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +31,10 @@ public class ProjectService {
 
     public Boolean deleteProject(String projectID, String projectName) throws SQLException {
         return this.dbProjects.deleteProject(Integer.parseInt(projectID), projectName);
+    }
+
+    public ArrayList<ProjectPostgresLocations> ListProjectLocation() throws SQLException {
+        ArrayList<ProjectPostgresLocations> projectPostgresLocations = this.dbProjects.getProjectLocations();
+        return projectPostgresLocations;
     }
 }
