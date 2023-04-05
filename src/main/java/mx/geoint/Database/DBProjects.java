@@ -43,12 +43,7 @@ public class DBProjects {
         Connection conn = credentials.getConnection();
         System.out.println(conn);
 
-<<<<<<< HEAD
         String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds, en_proceso, indice_maya, indice_español, indice_glosado, entidad, municipio, localidad, cvegeo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,(SELECT entidad_nombre FROM public.dim_entidad WHERE entidad_cvegeo = ?),(SELECT municipio_nombre FROM public.dim_municipio WHERE municipio_cvegeo = ? limit 1),(SELECT l.localidad_nombre FROM (SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ? UNION SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ?  ORDER BY dist LIMIT 1) AS l), (SELECT l.localidad_cvegeo FROM (SELECT localidad_cvegeo, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ? UNION SELECT localidad_cvegeo, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ?  ORDER BY dist LIMIT 1) AS l) ) RETURNING id_proyecto";
-=======
-        String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds, en_proceso, indice_maya, indice_español, indice_glosado, entidad, municipio, localidad) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,(SELECT entidad_nombre FROM public.dim_entidad WHERE entidad_cvegeo = ?),(SELECT municipio_nombre FROM public.dim_municipio WHERE municipio_cvegeo = ? limit 1),(SELECT l.localidad_nombre FROM (SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ? UNION SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ?  ORDER BY dist ASC LIMIT 1) AS l) ) RETURNING id_proyecto";
->>>>>>> 37d3169b58b7d4113eb119de87ba0918b06d8e5c
-
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
         preparedStatement.setObject(1, UUID.fromString(uuid));
@@ -124,11 +119,7 @@ public class DBProjects {
     }
 
     public String[] getProjectByName(String filename) throws  SQLException {
-<<<<<<< HEAD
-
         String[] parts = filename.split("_");
-=======
->>>>>>> 37d3169b58b7d4113eb119de87ba0918b06d8e5c
         String SQL_QUERY = "SELECT p.fecha_archivo, p.hablantes, p.entidad, p.municipio, p.localidad, p.ubicacion, ST_Expand(BOX2D(l.geom),0.005) as bbox\n" +
                 "FROM proyectos p ,\n" +
                 "(\n" +
@@ -145,10 +136,7 @@ public class DBProjects {
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         preparedStatement.setString(1, filename);
-<<<<<<< HEAD
         preparedStatement.setString(2, parts[0]+parts[1]);
-=======
->>>>>>> 37d3169b58b7d4113eb119de87ba0918b06d8e5c
         ResultSet rs = preparedStatement.executeQuery();
         String[] resultados = new String[7];
         while(rs.next()) {

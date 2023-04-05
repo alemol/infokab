@@ -403,12 +403,8 @@ public class Lucene {
             localidad = dbResponse[4];
             coordinates = dbResponse[5];
             bbox = dbResponse[6];
-<<<<<<< HEAD
             SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, videoList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
             doc.setSubText(subText);
-=======
-            SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
->>>>>>> 37d3169b58b7d4113eb119de87ba0918b06d8e5c
             results.add(doc);
         }
 
