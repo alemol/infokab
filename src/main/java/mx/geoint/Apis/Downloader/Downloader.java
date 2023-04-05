@@ -47,7 +47,7 @@ public class Downloader {
 
         String csvFileName = createCSVFile(documents);
 
-        zipFiles(documents, csvFileName);
+        zipFiles(documents, csvFileName, downloadRequest.getEmail());
     }
 
     public String createCSVFile(ArrayList<SearchLuceneDoc> documents) throws IOException{
@@ -91,12 +91,14 @@ public class Downloader {
         return data;
     }
 
-    public void zipFiles(ArrayList<SearchLuceneDoc> documents, String csvFileName) throws IOException{
+    public void zipFiles(ArrayList<SearchLuceneDoc> documents, String csvFileName, String email) throws IOException{
 
         String directory_download = existDirectory(pathSystem.DIRECTORY_DOWNLOADS);
         String directory_csv = existDirectory(pathSystem.DIRECTORY_CSV);
 
-        FileOutputStream fos = new FileOutputStream(directory_download + NanoIdUtils.randomNanoId() + "_" + new SimpleDateFormat("yyyyMMddHHmm").format(new Date()) + ".zip");
+        String zipName = NanoIdUtils.randomNanoId() + "_" + new SimpleDateFormat("yyyyMMddHHmm").format(new Date());
+
+        FileOutputStream fos = new FileOutputStream(directory_download + zipName + ".zip");
         ZipOutputStream zipOut = new ZipOutputStream(fos);
 
         for(SearchLuceneDoc document : documents){
@@ -110,7 +112,7 @@ public class Downloader {
         zipOut.close();
         fos.close();
 
-        emailer.sendEmail();
+        emailer.sendEmail(zipName, email);
     }
 
     public void writeFileToZip(File fileToZip, ZipOutputStream zipOut) throws IOException{

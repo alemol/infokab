@@ -9,8 +9,8 @@ public class Emailer {
 
     public Emailer(){}
 
-    public void sendEmail(){
-        final String username = "";
+    public void sendEmail(String zipName, String email){
+        final String username = "corpus.maya@correo.uady.mx";
         final String password = "";
 
         Properties prop = new Properties();
@@ -33,11 +33,12 @@ public class Emailer {
             message.setFrom(new InternetAddress("corpus.maya@correo.uady.mx"));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse("ucp.jose@gmail.com")
+                    InternetAddress.parse(email)
             );
-            message.setSubject("Testing Gmail TLS");
-            message.setText("Dear Mail Crawler,"
-                    + "\n\n Please do not spam my email!");
+            message.setSubject("Enlace de descarga - Infokab");
+
+            String htmlContent = "<h1>Para descargar su archivo haga clic <a href='http://localhost:3009/download/"+zipName+"'>aquí</a></h1>";
+            message.setContent(htmlContent, "text/html; charset=utf-8");
 
             Transport.send(message);
 

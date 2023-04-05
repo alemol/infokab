@@ -4,6 +4,8 @@ public class DownloadRequest {
     private String text;
     private String index;
 
+    private String email;
+
     public DownloadRequest(){}
 
     public DownloadRequest(String text, String index) {
@@ -25,5 +27,13 @@ public class DownloadRequest {
 
     public void setIndex(String index) {
         this.index = index;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
