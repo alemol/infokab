@@ -41,17 +41,17 @@ public class SearchLuceneDoc {
         this.text = text;
         this.score = score;
 
-        //FileReader reader = new FileReader(filePath);
-        //Gson gson = new Gson();
-        //Tier tier = gson.fromJson(reader, Tier.class);
+        FileReader reader = new FileReader(filePath);
+        Gson gson = new Gson();
+        Tier tier = gson.fromJson(reader, Tier.class);
 
         basePath = FilenameUtils.getPath(multimedia).replace("./Files/","/");
         multimediaName = FilenameUtils.getBaseName(multimedia);
         typePath = FilenameUtils.getExtension(multimedia);
 
-        //originalPath = tier.ORIGINAL_MEDIA_PATH.replace("./Files/", "/");
-        //startTime = Float.parseFloat(tier.TIME_VALUE1) / 1000;
-        //endTime = Float.parseFloat(tier.TIME_VALUE2) / 1000;
+        originalPath = tier.ORIGINAL_MEDIA_PATH.replace("./Files/", "/");
+        startTime = Float.parseFloat(tier.TIME_VALUE1) / 1000;
+        endTime = Float.parseFloat(tier.TIME_VALUE2) / 1000;
 
         this.imageList = imageList;
         this.videoList = videoList;
