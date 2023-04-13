@@ -24,13 +24,14 @@ import org.apache.lucene.util.BytesRef;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.DocumentType;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.ParserConfigurationException;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.List;
 
 class LuceneTest {
     private Lucene lucene;
@@ -200,6 +201,7 @@ class LuceneTest {
         IndexSearcher indexSearcher = new IndexSearcher(multiReader);
 
         Sort groupSort = new Sort(new SortField("cvegeo", SortField.Type.STRING, true));  // in descending order
+        Sort groupSort2 = new Sort(new SortField("project", SortField.Type.STRING, true));  // in descending order
         TermQuery query = new TermQuery(new Term("contents", "a"));
 
         List<SearchGroup> searchGroups = new ArrayList<SearchGroup>();
@@ -213,20 +215,33 @@ class LuceneTest {
         FirstPassGroupingCollector firstPassGroupingCollector = new FirstPassGroupingCollector(new TermGroupSelector("cvegeo"), groupSort, 1000);
         indexSearcher.search(query, firstPassGroupingCollector);
         Collection<SearchGroup> topGroups = firstPassGroupingCollector.getTopGroups(0);
-        GroupSelector groupSelector = firstPassGroupingCollector.getGroupSelector();
-
-        FirstPassGroupingCollector firstPassGroupingCollector2 = new FirstPassGroupingCollector(new TermGroupSelector("project"), groupSort, 1000);
-        indexSearcher.search(query, firstPassGroupingCollector2);
-        Collection<SearchGroup> topGroups2 = firstPassGroupingCollector2.getTopGroups(0);
-
-        //new SecondPassGroupingCollector(new TermGroupSelector("project"), topGroups);
 
         for (SearchGroup searchGroup1 : topGroups){
             System.out.println(searchGroup1.groupValue.toString());
         }
 
-        //for (GroupDocs searchGroup1 : topGroups2){
-            //System.out.println(searchGroup1);
-        //}
+        TopGroupsCollector topGroupsCollector = new TopGroupsCollector(new TermGroupSelector("project"), topGroups, groupSort2, groupSort2, 2000, true);
+        indexSearcher.search(query, topGroupsCollector);
+        TopGroups groups = topGroupsCollector.getTopGroups(0);
+
+
+        System.out.println(groups.totalGroupCount);
+        System.out.println(groups.groups.length);
+        System.out.println(groups.totalHitCount);
+        System.out.println(groups.totalGroupedHitCount);
+
+        for (int i=0; i<groups.groups.length; i++) {
+            System.out.println(groups.groups[i].groupValue.toString());
+            for (int j=0; j<groups.groups[i].scoreDocs.length; j++) {
+                ScoreDoc sdoc = groups.groups[i].scoreDocs[j]; // first result of each group
+                Document d = indexSearcher.doc(sdoc.doc);
+                System.out.println("data "+ d.get("cvegeo"));
+                System.out.println("data "+ d.get("project"));
+                System.out.println("value "+ groups.groups[i].groupValue);
+                System.out.println("count" + groups.groups[i].totalHits.value);
+            }
+        }
+
+
     }
 }
