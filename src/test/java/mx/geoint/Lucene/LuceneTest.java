@@ -17,12 +17,12 @@ import org.apache.lucene.index.*;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.*;
-import org.apache.lucene.search.grouping.GroupingSearch;
-import org.apache.lucene.search.grouping.TopGroups;
+import org.apache.lucene.search.grouping.*;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.BytesRef;
 import org.junit.jupiter.api.Test;
+import org.w3c.dom.DocumentType;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -154,7 +154,7 @@ class LuceneTest {
         int limitGroup = 2000;
 
         TermQuery query = new TermQuery(new Term("contents", "a"));
-        TopGroups groups = groupingSearch.search(indexSearcher, query, offset, limitGroup);
+        TopGroups groups = groupingSearch.search(indexSearcher,  query, offset, limitGroup);
         System.out.println("numero de documentos agrupados: " + groups.totalGroupedHitCount);
         System.out.println("numero de documentos en la busqueda: " + groups.totalHitCount);
         System.out.println("numero de grupos unicos: " + groups.totalGroupCount);
@@ -166,12 +166,67 @@ class LuceneTest {
                 ScoreDoc sdoc = groups.groups[i].scoreDocs[j]; // first result of each group
                 Document d = indexSearcher.doc(sdoc.doc);
                 System.out.println("data "+ d.get("cvegeo"));
-                System.out.println("data "+ d.get("timer_value_1"));
-                System.out.println("data "+ d.get("timer_value_2"));
-                System.out.println("data "+ d.get("original_multimedia"));
-                System.out.println("data "+ d.get("multimedia"));
                 System.out.println("data "+ d.get("project"));
+                System.out.println("count" + groups.groups[i].totalHits.value);
             }
         }
+    }
+
+
+    @Test
+    void search_mutliple_group() throws IOException, ParseException {
+        //https://lucene.apache.org/core/9_1_0/core/org/apache/lucene/geo/LatLonGeometry.html
+        List<IndexReader> indexReaders = new ArrayList<>();
+        String getIndex = "español";
+
+        File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL);
+        File[] files = dir.listFiles();
+        for (File file : files) {
+            if(file.getName().equals(getIndex) && file.isDirectory()){
+                File[] list_files = file.listFiles();
+                for (File aux_file : list_files) {
+                    if(file.isDirectory()){
+                        Directory directory = FSDirectory.open(Paths.get(aux_file.getCanonicalPath()));
+                        //Condición para no tomar los directorios que estan agregando al momento
+                        if(DirectoryReader.indexExists(directory)){
+                            indexReaders.add(DirectoryReader.open(directory));
+                        }
+                    }
+                }
+            }
+        }
+
+        MultiReader multiReader = new MultiReader(indexReaders.toArray(new IndexReader[indexReaders.size()]));
+        IndexSearcher indexSearcher = new IndexSearcher(multiReader);
+
+        Sort groupSort = new Sort(new SortField("cvegeo", SortField.Type.STRING, true));  // in descending order
+        TermQuery query = new TermQuery(new Term("contents", "a"));
+
+        List<SearchGroup> searchGroups = new ArrayList<SearchGroup>();
+        SearchGroup searchGroup = new SearchGroup();
+        searchGroup.groupValue  = "cvegeo";
+        searchGroups.add(searchGroup);
+        SearchGroup searchGroup2 = new SearchGroup();
+        searchGroup2.groupValue  = "project";
+        searchGroups.add(searchGroup2);
+
+        FirstPassGroupingCollector firstPassGroupingCollector = new FirstPassGroupingCollector(new TermGroupSelector("cvegeo"), groupSort, 1000);
+        indexSearcher.search(query, firstPassGroupingCollector);
+        Collection<SearchGroup> topGroups = firstPassGroupingCollector.getTopGroups(0);
+        GroupSelector groupSelector = firstPassGroupingCollector.getGroupSelector();
+
+        FirstPassGroupingCollector firstPassGroupingCollector2 = new FirstPassGroupingCollector(new TermGroupSelector("project"), groupSort, 1000);
+        indexSearcher.search(query, firstPassGroupingCollector2);
+        Collection<SearchGroup> topGroups2 = firstPassGroupingCollector2.getTopGroups(0);
+
+        //new SecondPassGroupingCollector(new TermGroupSelector("project"), topGroups);
+
+        for (SearchGroup searchGroup1 : topGroups){
+            System.out.println(searchGroup1.groupValue.toString());
+        }
+
+        //for (GroupDocs searchGroup1 : topGroups2){
+            //System.out.println(searchGroup1);
+        //}
     }
 }
