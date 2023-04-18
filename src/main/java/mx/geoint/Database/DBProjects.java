@@ -197,36 +197,43 @@ public class DBProjects {
             projectRegistrations.setAnotaciones_guardadas(rs.getInt(18));
 
 
-            String dir = rs.getString(4) + "/Images/";
-            if (Files.exists(Path.of(dir))){
-                int lastIndex = 0;
+            //String dir = rs.getString(4) + "/Images/";
+            projectRegistrations.setimageList(find_files(rs.getString(4)+"/Images/"));
+            projectRegistrations.setVideoList(find_files(rs.getString(4)+"/Video/"));
+            /*if (Files.exists(Path.of(dir))){
                 String[] pathnames;
-
                 File f = new File(dir);
-
                 pathnames = f.list();
                 if(pathnames.length>0){
                     for (String pathname : pathnames) {
                         String x = FilenameUtils.getBaseName(pathname);
-                        lastIndex = Integer.parseInt(x.split("image")[1]);
                     }
                     projectRegistrations.setimageList(pathnames);
-                    projectRegistrations.setLastIndex(lastIndex);
                 }else{
                     projectRegistrations.setimageList(null);
-                    projectRegistrations.setLastIndex(lastIndex);
                 }
-            }
-
-
+            }*/
             result.add(projectRegistrations);
         }
-
         rs.close();
         conn.close();
         return result;
     }
 
+    public String[] find_files(String path) {
+        String[] List = null;
+        if (Files.exists(Path.of(path))) {
+            String[] pathnames;
+            File f = new File(path);
+            pathnames = f.list();
+            if (pathnames.length > 0) {
+                List = pathnames;
+            } else {
+                List = null;
+            }
+        }
+        return List;
+    }
     public boolean setProjectAnnotationsCounter(Integer id_project, Integer count) throws SQLException {
         Connection conn = credentials.getConnection();
         String SQL_UPDATE = "UPDATE proyectos SET total_de_anotaciones = ? WHERE id_proyecto=?";
