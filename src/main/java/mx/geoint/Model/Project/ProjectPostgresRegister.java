@@ -24,17 +24,14 @@ public class ProjectPostgresRegister {
 
     public int totalImages;
 
-    public String[] imageList;
-    public String[] videoList;
+    public String[] filesList;
 
     public int getTotalImages() {return totalImages;}
     public void setTotalImages(int totalImages){this.totalImages = totalImages;}
 
-    public String[] getimageList(){return imageList;}
-    public void setimageList(String[] imageList) { this.imageList = imageList; }
+    public String[] getFilesList(){return filesList;}
+    public void setFilesList(String[] filesList) { this.filesList = filesList; }
 
-    public String[] getVideoList(){return videoList;}
-    public void setVideoList(String[] videoList) { this.videoList = videoList; }
 
     public String getId_proyecto() { return id_proyecto; }
 
@@ -111,4 +108,5 @@ public class ProjectPostgresRegister {
     public void setCvegeo(String cvegeo) { this.cvegeo = cvegeo; }
 
     public String getCvegeo() { return cvegeo; }
+
 }

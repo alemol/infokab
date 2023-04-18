@@ -22,6 +22,7 @@ import java.nio.file.Path;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class DBProjects {
@@ -197,9 +198,7 @@ public class DBProjects {
             projectRegistrations.setAnotaciones_guardadas(rs.getInt(18));
 
 
-            //String dir = rs.getString(4) + "/Images/";
-            projectRegistrations.setimageList(find_files(rs.getString(4)+"/Images/"));
-            projectRegistrations.setVideoList(find_files(rs.getString(4)+"/Video/"));
+            projectRegistrations.setFilesList(concat(find_files(rs.getString(4)+"/Images/"),find_files(rs.getString(4)+"/Video/")));
             /*if (Files.exists(Path.of(dir))){
                 String[] pathnames;
                 File f = new File(dir);
@@ -220,6 +219,19 @@ public class DBProjects {
         return result;
     }
 
+    public static String[] concat(String[]... arrays) {
+        int length = 0;
+        for (String[] array : arrays) {
+            length += array.length;
+        }
+        String[] newArray = new String[length];
+        int pos = 0;
+        for (String[] array : arrays) {
+            System.arraycopy(array, 0, newArray, pos, array.length);
+            pos += array.length;
+        }
+        return newArray;
+    }
     public String[] find_files(String path) {
         String[] List = null;
         if (Files.exists(Path.of(path))) {
