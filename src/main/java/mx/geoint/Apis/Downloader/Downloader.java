@@ -63,7 +63,7 @@ public class Downloader {
     }
 
     public List<String[]> buildCSVFile(ArrayList<SearchLuceneDoc> documents) {
-        String[] header = {"idProyecto", "idSegmento", "texto", "ruta"};
+        String[] header = {"idProyecto", "idSegmento", "maya", "español", "ruta", "localidad", "municipio", "entidad", "bounding box"};
         List<String[]> data = new ArrayList<>();
 
         data.add(header);
@@ -76,7 +76,7 @@ public class Downloader {
                 Object obj = jsonParser.parse(reader);
 
                 String[] record = {(String)((JSONObject) obj).get("PROJECT_NAME"), (String)((JSONObject) obj).get("REF_ANNOTATION_ID_TRANSCRIPCION_ORTOGRAFICA"),
-                        (String)((JSONObject) obj).get("ANNOTATION_VALUE_TRANSCRIPCION_ORTOGRAFICA"), (String)((JSONObject) obj).get("MEDIA_PATH")};
+                        document.getText(), document.getSubText(), (String)((JSONObject) obj).get("MEDIA_PATH"), document.getLocalidad(), document.getMunicipio(), document.getEntidad(), document.getBbox()};
 
                 data.add(record);
             }
