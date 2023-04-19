@@ -275,11 +275,11 @@ public class UploadFiles {
 
         for(MultipartFile file : images) {
             if(file.getContentType().equals("video/mp4")){
-                if(!saveFile(file, VideoFolder, baseProjectName+"_video"+(index++))){
+                if(!saveFile(file, VideoFolder, baseProjectName+"_video"+(index+=1))){
                     return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
                 }
             }else{
-                if(!saveFile(file, ImageFolder, baseProjectName+"_image"+(index++))){
+                if(!saveFile(file, ImageFolder, baseProjectName+"_image"+(index+=1))){
                     return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
                 }
             }
