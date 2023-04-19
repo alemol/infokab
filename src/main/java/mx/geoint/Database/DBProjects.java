@@ -220,15 +220,13 @@ public class DBProjects {
         return newArray;
     }
     public String[] find_files(String path) {
-        String[] List = null;
+        String[] List = new String[0];
         if (Files.exists(Path.of(path))) {
             String[] pathnames;
             File f = new File(path);
             pathnames = f.list();
             if (pathnames.length > 0) {
                 List = pathnames;
-            } else {
-                List = null;
             }
         }
         return List;
