@@ -199,19 +199,6 @@ public class DBProjects {
 
 
             projectRegistrations.setFilesList(concat(find_files(rs.getString(4)+"/Images/"),find_files(rs.getString(4)+"/Video/")));
-            /*if (Files.exists(Path.of(dir))){
-                String[] pathnames;
-                File f = new File(dir);
-                pathnames = f.list();
-                if(pathnames.length>0){
-                    for (String pathname : pathnames) {
-                        String x = FilenameUtils.getBaseName(pathname);
-                    }
-                    projectRegistrations.setimageList(pathnames);
-                }else{
-                    projectRegistrations.setimageList(null);
-                }
-            }*/
             result.add(projectRegistrations);
         }
         rs.close();
