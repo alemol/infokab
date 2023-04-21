@@ -244,6 +244,9 @@ public class Lucene {
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
             String multimedia = hitDoc.get("multimedia");
+            String original_multimedia = hitDoc.get("original_multimedia");
+            String timer_value_1 = hitDoc.get("timer_value_1");
+            String timer_value_2 = hitDoc.get("timer_value_2");
 
             String[] imageList = find_images(hitDoc.get("path"));
             String[] videoList = find_videos(hitDoc.get("path"));
@@ -295,6 +298,9 @@ public class Lucene {
             String fileName = hitDoc.get("filename");
             String content = hitDoc.get("contents");
             String multimedia = hitDoc.get("multimedia");
+            String original_multimedia = hitDoc.get("original_multimedia");
+            String timer_value_1 = hitDoc.get("timer_value_1");
+            String timer_value_2 = hitDoc.get("timer_value_2");
 
             String[] imageList = find_images(hitDoc.get("path"));
             String[] videoList = find_videos(hitDoc.get("path"));
@@ -308,6 +314,9 @@ public class Lucene {
             coordinates = dbResponse[5];
             bbox = dbResponse[6];
             SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, videoList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
+            doc.setOriginalPath(original_multimedia.replace("./Files/", "/"));
+            doc.setStartTime(Float.parseFloat(timer_value_1) / 1000);
+            doc.setEndTime(Float.parseFloat(timer_value_2) / 1000);
             results.add(doc);
         }
 
@@ -391,6 +400,9 @@ public class Lucene {
             String multimedia = hitDoc.get(FIELD_PATH_MULTIMEDIA);
             String content = hitDoc.get(FIELD_VIEW);
             String subText = hitDoc.get(FIELD_CONTENTS);
+            String original_multimedia = hitDoc.get(FIELD_FULL_PATH_MULTIMEDIA);
+            String timer_value_1 = hitDoc.get(FIELD_TIME_VALUE_1);
+            String timer_value_2 = hitDoc.get(FIELD_TIME_VALUE_2);
 
             String[] imageList = find_images(hitDoc.get(FIELD_PATH));
             String[] videoList = find_videos(hitDoc.get(FIELD_PATH));
@@ -404,6 +416,9 @@ public class Lucene {
             coordinates = dbResponse[5];
             bbox = dbResponse[6];
             SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, videoList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
+            doc.setOriginalPath(original_multimedia.replace("./Files/", "/"));
+            doc.setStartTime(Float.parseFloat(timer_value_1) / 1000);
+            doc.setEndTime(Float.parseFloat(timer_value_2) / 1000);
             doc.setSubText(subText);
             results.add(doc);
         }
@@ -497,6 +512,9 @@ public class Lucene {
 
             String content = hitDoc.get(FIELD_VIEW);
             String subText = hitDoc.get(FIELD_CONTENTS);
+            String original_multimedia = hitDoc.get(FIELD_FULL_PATH_MULTIMEDIA);
+            String timer_value_1 = hitDoc.get(FIELD_TIME_VALUE_1);
+            String timer_value_2 = hitDoc.get(FIELD_TIME_VALUE_2);
 
             String[] imageList = find_images(hitDoc.get("path"));
             String[] videoList = find_videos(hitDoc.get("path"));
@@ -510,6 +528,9 @@ public class Lucene {
             coordinates = dbResponse[5];
             bbox = dbResponse[6];
             SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, videoList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
+            doc.setOriginalPath(original_multimedia);
+            doc.setStartTime(Float.parseFloat(timer_value_1) / 1000);
+            doc.setEndTime(Float.parseFloat(timer_value_2) / 1000);
             doc.setSubText(subText);
             results.add(doc);
         }

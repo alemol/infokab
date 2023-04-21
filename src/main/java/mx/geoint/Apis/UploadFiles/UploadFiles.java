@@ -184,17 +184,6 @@ public class UploadFiles {
         return currentDirectory;
     }
 
-    /*private String existDirectoryImages(String pathDirectory, String uuid, String baseName){
-        String currentDirectory = pathDirectory + uuid + "/"+baseName+"/";
-
-        if(!Files.exists(Path.of(currentDirectory))){
-            File newSubDirectory = new File(currentDirectory);
-            newSubDirectory.mkdirs();
-        }
-
-        return currentDirectory;
-    }*/
-
     public Number updateEaf(MultipartFile eaf, String projectName, String uuid, int id_project) throws IOException, SQLException {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
@@ -251,7 +240,10 @@ public class UploadFiles {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
         int index = 0;
+        int imageIndex = 0;
+        int videoIndex = 0;
         String ImageFolder = basePath+"Images/";
+        String VideoFolder = basePath+"Video/";
         if(Files.exists(Path.of(ImageFolder))){
             String[] pathnames;
             File f = new File(ImageFolder);
@@ -259,16 +251,39 @@ public class UploadFiles {
             Arrays.sort(pathnames);
             for (String pathname : pathnames) {
                 String x = FilenameUtils.getBaseName(pathname);
-                index = Integer.parseInt(x.split("image")[1]);
+                imageIndex = Integer.parseInt(x.split("image")[1]);
             }
         }else{
             File newSubDirectory = new File(ImageFolder);
             newSubDirectory.mkdirs();
         }
-        for(MultipartFile file : images) {
-            if(!saveFile(file, ImageFolder, baseProjectName+"_image"+(index+=1))){
-                return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
+        if(Files.exists(Path.of(VideoFolder))){
+            String[] pathnames;
+            File f = new File(VideoFolder);
+            pathnames = f.list();
+            Arrays.sort(pathnames);
+            for (String pathname : pathnames) {
+                String x = FilenameUtils.getBaseName(pathname);
+                videoIndex = Integer.parseInt(x.split("video")[1]);
             }
+        }else{
+            File newSubDirectory = new File(VideoFolder);
+            newSubDirectory.mkdirs();
+        }
+
+        index = Math.max(imageIndex, videoIndex);
+
+        for(MultipartFile file : images) {
+            if(file.getContentType().equals("video/mp4")){
+                if(!saveFile(file, VideoFolder, baseProjectName+"_video"+(index+=1))){
+                    return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
+                }
+            }else{
+                if(!saveFile(file, ImageFolder, baseProjectName+"_image"+(index+=1))){
+                    return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
+                }
+            }
+
         }
 
         return pathSystem.SUCCESS_UPLOAD;

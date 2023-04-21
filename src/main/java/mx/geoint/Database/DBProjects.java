@@ -22,6 +22,7 @@ import java.nio.file.Path;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class DBProjects {
@@ -197,36 +198,39 @@ public class DBProjects {
             projectRegistrations.setAnotaciones_guardadas(rs.getInt(18));
 
 
-            String dir = rs.getString(4) + "/Images/";
-            if (Files.exists(Path.of(dir))){
-                int lastIndex = 0;
-                String[] pathnames;
-
-                File f = new File(dir);
-
-                pathnames = f.list();
-                if(pathnames.length>0){
-                    for (String pathname : pathnames) {
-                        String x = FilenameUtils.getBaseName(pathname);
-                        lastIndex = Integer.parseInt(x.split("image")[1]);
-                    }
-                    projectRegistrations.setimageList(pathnames);
-                    projectRegistrations.setLastIndex(lastIndex);
-                }else{
-                    projectRegistrations.setimageList(null);
-                    projectRegistrations.setLastIndex(lastIndex);
-                }
-            }
-
-
+            projectRegistrations.setFilesList(concat(find_files(rs.getString(4)+"/Images/"),find_files(rs.getString(4)+"/Video/")));
             result.add(projectRegistrations);
         }
-
         rs.close();
         conn.close();
         return result;
     }
 
+    public static String[] concat(String[]... arrays) {
+        int length = 0;
+        for (String[] array : arrays) {
+            length += array.length;
+        }
+        String[] newArray = new String[length];
+        int pos = 0;
+        for (String[] array : arrays) {
+            System.arraycopy(array, 0, newArray, pos, array.length);
+            pos += array.length;
+        }
+        return newArray;
+    }
+    public String[] find_files(String path) {
+        String[] List = new String[0];
+        if (Files.exists(Path.of(path))) {
+            String[] pathnames;
+            File f = new File(path);
+            pathnames = f.list();
+            if (pathnames.length > 0) {
+                List = pathnames;
+            }
+        }
+        return List;
+    }
     public boolean setProjectAnnotationsCounter(Integer id_project, Integer count) throws SQLException {
         Connection conn = credentials.getConnection();
         String SQL_UPDATE = "UPDATE proyectos SET total_de_anotaciones = ? WHERE id_proyecto=?";
