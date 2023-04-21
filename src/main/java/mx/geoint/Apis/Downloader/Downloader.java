@@ -55,7 +55,8 @@ public class Downloader {
         List<String[]> csvData = buildCSVFile(documents);
         String fileName = NanoIdUtils.randomNanoId() + "_" + new SimpleDateFormat("yyyyMMddHHmm").format(new Date()) + ".csv";
 
-        try(CSVWriter writer = new CSVWriter(new FileWriter(directory_csv + fileName))){
+        try(CSVWriter writer = new CSVWriter(new FileWriter(directory_csv + fileName),'\u0009',CSVWriter.NO_QUOTE_CHARACTER,CSVWriter.NO_ESCAPE_CHARACTER,
+                CSVWriter.DEFAULT_LINE_END)){
             writer.writeAll(csvData);
         }
 
@@ -63,7 +64,7 @@ public class Downloader {
     }
 
     public List<String[]> buildCSVFile(ArrayList<SearchLuceneDoc> documents) {
-        String[] header = {"idProyecto", "idSegmento", "maya", "español", "ruta", "localidad", "municipio", "entidad", "bounding box"};
+        String[] header = {"idProyecto", "idSegmento", "localidad", "municipio", "entidad", "bounding box", "maya", "español", "ruta"};
         List<String[]> data = new ArrayList<>();
 
         data.add(header);
@@ -76,7 +77,7 @@ public class Downloader {
                 Object obj = jsonParser.parse(reader);
 
                 String[] record = {(String)((JSONObject) obj).get("PROJECT_NAME"), (String)((JSONObject) obj).get("REF_ANNOTATION_ID_TRANSCRIPCION_ORTOGRAFICA"),
-                        document.getText(), document.getSubText(), (String)((JSONObject) obj).get("MEDIA_PATH"), document.getLocalidad(), document.getMunicipio(), document.getEntidad(), document.getBbox()};
+                        document.getLocalidad(), document.getMunicipio(), document.getEntidad(), document.getBbox(), document.getText(), document.getSubText(), "multimedia/"+document.getMultimediaName()+".wav"};
 
                 data.add(record);
             }
@@ -103,11 +104,11 @@ public class Downloader {
 
         for(SearchLuceneDoc document : documents){
             File fileToZip = new File("./Files" + document.getBasePath() + document.getMultimediaName() + ".wav");
-            writeFileToZip(fileToZip, zipOut);
+            writeFileToZip(fileToZip, zipOut, "multimedia/");
         }
 
         File csvFile = new File(directory_csv + csvFileName);
-        writeFileToZip(csvFile, zipOut);
+        writeFileToZip(csvFile, zipOut, null);
 
         zipOut.close();
         fos.close();
@@ -115,9 +116,16 @@ public class Downloader {
         emailer.sendEmail(zipName, email);
     }
 
-    public void writeFileToZip(File fileToZip, ZipOutputStream zipOut) throws IOException{
+    public void writeFileToZip(File fileToZip, ZipOutputStream zipOut, String subDir) throws IOException{
         FileInputStream fis = new FileInputStream(fileToZip);
-        ZipEntry zipEntry = new ZipEntry(fileToZip.getName());
+        ZipEntry zipEntry = null;
+
+        if(subDir == null){
+            zipEntry = new ZipEntry(fileToZip.getName());
+        } else {
+            zipEntry = new ZipEntry(subDir + fileToZip.getName());
+        }
+
         zipOut.putNextEntry(zipEntry);
 
         byte[] bytes = new byte[1024];
