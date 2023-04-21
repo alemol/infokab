@@ -179,7 +179,7 @@ public class Lucene {
 
                 }
 
-                if(index.equals(pathSystem.TIER_TRANSLATE)){
+                if(index.equals(pathSystem.TIER_MAIN)){
                     String path = file.getPath();
                     document.add(new StoredField(FIELD_PATH, path));
 
@@ -335,8 +335,8 @@ public class Lucene {
         Analyzer analyzer = new StandardAnalyzer();
         //System.out.println("Searching for '" + search + "'");
         String getIndex = index;
-        if(index.equals("maya")){
-            getIndex = "español";
+        if(index.equals("español")){
+            getIndex = "maya";
         }
 
         //Se Obtiene todos los indices generados en la caperta DIRECTORY_INDEX_GENERAL
@@ -435,8 +435,8 @@ public class Lucene {
         Analyzer analyzer = new StandardAnalyzer();
 
         String getIndex = index;
-        if(index.equals("maya")){
-            getIndex = "español";
+        if(index.equals("español")){
+            getIndex = "maya";
         }
 
         //Se Obtiene todos los indices generados en la caperta DIRECTORY_INDEX_GENERAL
@@ -543,8 +543,8 @@ public class Lucene {
         //https://lucene.apache.org/core/9_1_0/core/org/apache/lucene/geo/LatLonGeometry.html
         List<IndexReader> indexReaders = new ArrayList<>();
         String getIndex = index;
-        if (index.equals("maya")) {
-            getIndex = "español";
+        if (index.equals("español")) {
+            getIndex = "maya";
         }
 
         File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL);

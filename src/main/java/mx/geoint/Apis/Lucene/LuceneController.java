@@ -73,14 +73,14 @@ public class LuceneController {
             ArrayList<LuceneProjectRequest> luceneProjectRequests = luceneProjectsRequest.getProjectIndex();
             for(LuceneProjectRequest project : luceneProjectRequests){
                 boolean maya = project.getMaya();
-                boolean spanish = project.getSpanish();
+                //boolean spanish = project.getSpanish();
                 boolean glosa = project.getGlosa();
                 if(maya){
                     luceneService.indexProjectLucene(project.getProjectID(),pathSystem.INDEX_LANGUAJE_MAYA);
                 }
-                if(spanish){
-                    luceneService.indexProjectLucene(project.getProjectID(),pathSystem.INDEX_LANGUAJE_SPANISH);
-                }
+                //if(spanish){
+                //    luceneService.indexProjectLucene(project.getProjectID(),pathSystem.INDEX_LANGUAJE_SPANISH);
+                //}
                 if(glosa){
                     luceneService.indexProjectLucene(project.getProjectID(), pathSystem.INDEX_LANGUAJE_GLOSA);
                 }

@@ -235,6 +235,12 @@ public class ElanXmlDigester {
                             exist = true;
                         };
                     }
+
+                    if(tier_id.equals(pathSystem.TIER_MAIN)){
+                        if(!tierMultiple.getREF_ANNOTATION_ID_TRANSCRIPCION_ORTOGRAFICA().isEmpty()){
+                            exist = true;
+                        }
+                    }
                 }
 
                 if(exist == true){
