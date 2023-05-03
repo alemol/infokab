@@ -528,7 +528,7 @@ public class Lucene {
             coordinates = dbResponse[5];
             bbox = dbResponse[6];
             SearchLuceneDoc doc = new SearchLuceneDoc(path, fileName, content, docScore, imageList, videoList, fecha_archivo, Nhablantes, entidad, municipio, localidad, coordinates, bbox, multimedia);
-            doc.setOriginalPath(original_multimedia);
+            doc.setOriginalPath(original_multimedia.replace("./Files/", "/"));
             doc.setStartTime(Float.parseFloat(timer_value_1) / 1000);
             doc.setEndTime(Float.parseFloat(timer_value_2) / 1000);
             doc.setSubText(subText);
