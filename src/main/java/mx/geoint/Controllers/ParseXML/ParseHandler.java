@@ -96,13 +96,17 @@ public class ParseHandler extends DefaultHandler{
                 current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX_WORDS)){
 
                 String annotation_value = new String(ch, start, length);
-                if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
-                    latestTier(tierList).setAnnotationValue(annotation_value);
-                }
+                try{
+                    if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
+                        latestTier(tierList).setAnnotationValue(annotation_value);
+                    }
 
-                if(tier_id.isEmpty()) {
-                    List getTierList = tiersList.get(current_tier_id);
-                    latestTier(getTierList).setAnnotationValue(annotation_value);
+                    if(tier_id.isEmpty()) {
+                        List getTierList = tiersList.get(current_tier_id);
+                        latestTier(getTierList).setAnnotationValue(annotation_value);
+                    }
+                } catch (Exception e){
+                    System.out.println("Error!!" + e);
                 }
             }
         }
@@ -212,27 +216,31 @@ public class ParseHandler extends DefaultHandler{
                     String REF_ANNOTATION_ID = attr.getValue("ANNOTATION_ID");
                     String REF_ANNOTATION_REF = attr.getValue("ANNOTATION_REF");
 
-                    JsonObject REF_VALUES = jsonObjectRefTimer.getAsJsonObject(REF_ANNOTATION_REF);
-                    String REF_TIME_SLOT_REF1 = REF_VALUES.get("TIME_SLOT_REF1").getAsString();
-                    String REF_TIME_SLOT_REF2 = REF_VALUES.get("TIME_SLOT_REF2").getAsString();
-                    String REF_TIME_VALUE1 = REF_VALUES.get("TIME_VALUE1").getAsString();
-                    String REF_TIME_VALUE2 = REF_VALUES.get("TIME_VALUE2").getAsString();
+                    try{
+                        JsonObject REF_VALUES = jsonObjectRefTimer.getAsJsonObject(REF_ANNOTATION_REF);
+                        String REF_TIME_SLOT_REF1 = REF_VALUES.get("TIME_SLOT_REF1").getAsString();
+                        String REF_TIME_SLOT_REF2 = REF_VALUES.get("TIME_SLOT_REF2").getAsString();
+                        String REF_TIME_VALUE1 = REF_VALUES.get("TIME_VALUE1").getAsString();
+                        String REF_TIME_VALUE2 = REF_VALUES.get("TIME_VALUE2").getAsString();
 
-                    JsonObject jsonObjectTranscription= new JsonObject();
-                    jsonObjectTranscription.addProperty("TIME_SLOT_REF1", REF_TIME_SLOT_REF1);
-                    jsonObjectTranscription.addProperty("TIME_SLOT_REF2", REF_TIME_SLOT_REF2);
-                    jsonObjectTranscription.addProperty("TIME_VALUE1", REF_TIME_VALUE1);
-                    jsonObjectTranscription.addProperty("TIME_VALUE2", REF_TIME_VALUE2);
-                    jsonObjectRefTranscription.add(REF_ANNOTATION_ID, jsonObjectTranscription);
+                        JsonObject jsonObjectTranscription= new JsonObject();
+                        jsonObjectTranscription.addProperty("TIME_SLOT_REF1", REF_TIME_SLOT_REF1);
+                        jsonObjectTranscription.addProperty("TIME_SLOT_REF2", REF_TIME_SLOT_REF2);
+                        jsonObjectTranscription.addProperty("TIME_VALUE1", REF_TIME_VALUE1);
+                        jsonObjectTranscription.addProperty("TIME_VALUE2", REF_TIME_VALUE2);
+                        jsonObjectRefTranscription.add(REF_ANNOTATION_ID, jsonObjectTranscription);
 
-                    if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
-                        tierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
-                    }
+                        if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
+                            tierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
+                        }
 
-                    if(tier_id.isEmpty()){
-                        List getTierList = tiersList.get(current_tier_id);
-                        getTierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
-                        tiersList.put(current_tier_id, getTierList);
+                        if(tier_id.isEmpty()){
+                            List getTierList = tiersList.get(current_tier_id);
+                            getTierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
+                            tiersList.put(current_tier_id, getTierList);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("error!!!!!!" + e);
                     }
                 }
 
@@ -242,20 +250,24 @@ public class ParseHandler extends DefaultHandler{
                     String REF_ANNOTATION_ID = attr.getValue("ANNOTATION_ID");
                     String REF_ANNOTATION_REF = attr.getValue("ANNOTATION_REF");
 
-                    JsonObject REF_VALUES_TRANSCRIPTION = jsonObjectRefTranscription.getAsJsonObject(REF_ANNOTATION_REF);
-                    String REF_TIME_SLOT_REF1 = REF_VALUES_TRANSCRIPTION.get("TIME_SLOT_REF1").getAsString();
-                    String REF_TIME_SLOT_REF2 = REF_VALUES_TRANSCRIPTION.get("TIME_SLOT_REF2").getAsString();
-                    String REF_TIME_VALUE1 = REF_VALUES_TRANSCRIPTION.get("TIME_VALUE1").getAsString();
-                    String REF_TIME_VALUE2 = REF_VALUES_TRANSCRIPTION.get("TIME_VALUE2").getAsString();
+                    try{
+                        JsonObject REF_VALUES_TRANSCRIPTION = jsonObjectRefTranscription.getAsJsonObject(REF_ANNOTATION_REF);
+                        String REF_TIME_SLOT_REF1 = REF_VALUES_TRANSCRIPTION.get("TIME_SLOT_REF1").getAsString();
+                        String REF_TIME_SLOT_REF2 = REF_VALUES_TRANSCRIPTION.get("TIME_SLOT_REF2").getAsString();
+                        String REF_TIME_VALUE1 = REF_VALUES_TRANSCRIPTION.get("TIME_VALUE1").getAsString();
+                        String REF_TIME_VALUE2 = REF_VALUES_TRANSCRIPTION.get("TIME_VALUE2").getAsString();
 
-                    if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
-                        tierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
-                    }
+                        if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
+                            tierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
+                        }
 
-                    if(tier_id.isEmpty()){
-                        List getTierList = tiersList.get(current_tier_id);
-                        getTierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
-                        tiersList.put(current_tier_id, getTierList);
+                        if(tier_id.isEmpty()){
+                            List getTierList = tiersList.get(current_tier_id);
+                            getTierList.add(new Tier(REF_ANNOTATION_ID, REF_TIME_SLOT_REF1, REF_TIME_VALUE1, REF_TIME_SLOT_REF2, REF_TIME_VALUE2, REF_ANNOTATION_REF));
+                            tiersList.put(current_tier_id, getTierList);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("error!!!!!!" + e);
                     }
                 }
                 break;

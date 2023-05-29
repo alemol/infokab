@@ -93,6 +93,7 @@ public class ElanXmlDigester {
         List<Integer> tierCount = new ArrayList<>();
         Boolean error_tier = false;
 
+        String errorTierLimit = "";
         for (var entry : tiersList.entrySet()){
             String key = entry.getKey();
 
@@ -103,6 +104,7 @@ public class ElanXmlDigester {
 
             List<Tier> tierList = entry.getValue();
             tierCount.add(tierList.size());
+            errorTierLimit += key + ": " + tierList.size() + "\n";
         }
 
         if(!error_tier){
@@ -112,7 +114,7 @@ public class ElanXmlDigester {
 
         HashSet<Integer> set = new HashSet<Integer>(tierCount);
         if(set.size() > 1){
-            dbReports.newRegister(projectID, "NO COINDICEN EL NUMERO DE ANOTACIONES", "","document", "", "");
+            dbReports.newRegister(projectID, "NO COINDICEN EL NUMERO DE ANOTACIONES: \n"+errorTierLimit, "","document", "", "");
         }
 
         if(set.size() == 1) {
