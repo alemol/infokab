@@ -42,7 +42,7 @@ public class Images {
                 "ffmpeg",
                 "-i",
                 source,
-                "-qscale:v 1",
+                "-qscale:v", "1",
                 "-vf",
                 "scale=w=320:h=240:force_original_aspect_ratio=decrease",
                 "-y",
