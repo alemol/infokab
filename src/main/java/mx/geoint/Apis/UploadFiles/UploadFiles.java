@@ -2,6 +2,7 @@ package mx.geoint.Apis.UploadFiles;
 
 import mx.geoint.Controllers.ElanXmlDigester.ThreadElanXmlDigester;
 import mx.geoint.Controllers.ElanXmlDigester.ThreadValidateElanXmlDigester;
+import mx.geoint.Controllers.Images.Images;
 import mx.geoint.Database.DBAnnotations;
 import mx.geoint.Database.DBProjects;
 import mx.geoint.Database.DBReports;
@@ -285,6 +286,17 @@ public class UploadFiles {
             }
 
         }
+
+        if(Files.exists(Path.of(ImageFolder))) {
+            Images img = new Images(ImageFolder);
+            String[] pathnames;
+            File f = new File(ImageFolder);
+            pathnames = f.list();
+            for (int i = 0; i < pathnames.length; i++) {
+                System.out.println(pathnames[i]+" reducida: "+ img.resizer(pathnames[i]));
+            }
+        }
+
 
         return pathSystem.SUCCESS_UPLOAD;
     }
