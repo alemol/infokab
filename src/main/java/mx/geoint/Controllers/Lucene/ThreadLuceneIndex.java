@@ -29,7 +29,11 @@ public class ThreadLuceneIndex extends Thread {
             if(luceneIndex.isEmpty()){
                 deactivate();
             } else {
-                process();
+                try {
+                    process();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
@@ -67,7 +71,7 @@ public class ThreadLuceneIndex extends Thread {
     /**
      * Función para obtener un elemento de la queue y ejecutar su proceso
      */
-    public void process(){
+    public void process() throws InterruptedException {
         Date startDate = new Date();
         LuceneProjectRequest luceneProjectRequest = luceneIndex.poll();
 
@@ -114,7 +118,7 @@ public class ThreadLuceneIndex extends Thread {
         }
     }
 
-    public void indexProjectLucene(String projectID, String indexName) throws SQLException, IOException, ParserConfigurationException, SAXException {
+    public void indexProjectLucene(String projectID, String indexName) throws SQLException, IOException, ParserConfigurationException, SAXException, InterruptedException {
         ProjectPostgresRegister projectPostgresRegister = this.dbProjects.getProjectById(projectID);
         String uuid = projectPostgresRegister.getId_usuario();
         String pathEAF = projectPostgresRegister.getRuta_trabajo()+projectPostgresRegister.getNombre_proyecto()+".eaf";

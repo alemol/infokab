@@ -3,6 +3,7 @@ package mx.geoint.Controllers.ElanXmlDigester;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import mx.geoint.Controllers.FFmpeg.FFmpeg;
+import mx.geoint.Controllers.Images.Images;
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Controllers.ParseXML.ParseXML;
 import mx.geoint.Model.ParseXML.Tier;
@@ -143,7 +144,7 @@ public class ElanXmlDigester {
      * @param save_media boolean, bandera para iniciar el proceso de guardado de los fragmentos del multimedia
      * @throws IOException
      */
-    public void parse_tier(String tier_id, boolean save_text, boolean save_media) throws ParserConfigurationException, SAXException, IOException, SQLException {
+    public void parse_tier(String tier_id, boolean save_text, boolean save_media) throws ParserConfigurationException, SAXException, IOException, SQLException, InterruptedException {
         ParseXML parseXML = new ParseXML(filepathEaf, tier_id);
         parseXML.read();
 
@@ -196,6 +197,20 @@ public class ElanXmlDigester {
                 }
             }
         }
+        //System.out.println("qqqqqqqqqq"+ filepathMultimedia.split("/"));
+        String path = filepathMultimedia;
+        String finalName = path.substring(path. lastIndexOf('/'));
+        String imagesDir = filepathMultimedia.replace(finalName,"/Images/");
+        if(Files.exists(Path.of(imagesDir))) {
+            Images img = new Images(imagesDir);
+            String[] pathnames;
+            File f = new File(imagesDir);
+            pathnames = f.list();
+            for (int i = 0; i < pathnames.length; i++) {
+                System.out.println(pathnames[i]+" reducida: "+ img.resizer(pathnames[i]));
+            }
+        }
+
     }
 
 

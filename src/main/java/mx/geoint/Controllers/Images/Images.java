@@ -27,52 +27,48 @@ public class Images {
      * - duration: es el tiempo que va a tardar el fragmento de video (se obtiene restando (TIME_VALUE2 - TIME_VALUE1)/1000).
      * - output: es el nombre con el cual se va a guardar el nuevo fragmento.
      * */
-    public boolean resizer(String source,String output) throws IOException, InterruptedException {
+    public boolean resizer(String source) throws IOException {
         boolean creado = false;
-        //String basePath = FilenameUtils.getPath(source)+"multimedia/";
-        //existDirectory(basePath);
-        // Comprobamos si existe un archivo cortado con el mismo nomnbre, si existe mandamos a llamar a la función que lo elimina.
-        /*if (if_exist(basePath+output)) {
-            return true;
-        }*/
-
+        String NewPath = path.replace("Images","Thumbs");
+        String output = source.replace("image","thumb");
+        existDirectory(NewPath);
 
         // creamos el cuerpo del comando que se va a ejecutar.
         Process p = Runtime.getRuntime().exec(new String[]{
                 "ffmpeg",
                 "-i",
-                source,
+                path+source,
                 "-qscale:v", "1",
                 "-vf",
                 "scale=w=320:h=240:force_original_aspect_ratio=decrease",
                 "-y",
-                output
+                NewPath+output
         });
 
-        int exitCode = p.waitFor();
-        System.out.println(exitCode);
-        // Atrapamos la respuesta en caso de que sea exitoso.
-        //BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        // Atrapamos la respuesta en caso de que genere errores.
-        //BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-        // Recorremos la salida e imprimimos los resultados
-        /*while ((s = stdInput.readLine()) != null) {
-            System.out.println(s);
-        }*/
-        // Recorremos la salida e imprimimos los errores.
-        /*while ((s = stdError.readLine()) != null) {
-            if(s.indexOf("size=")==0) {
-                System.out.println(s.indexOf("size=")+" "+s);
+        int exitCode = 0;
+        try {
+            exitCode = p.waitFor();
+            if(exitCode==0){
                 creado = true;
+            }else {
+                creado=false;
             }
-            if(s.indexOf("No such file or directory")!=-1){
-                System.out.println(s+" "+s.indexOf("No such file or directory"));
-                creado = false;
-            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
-        }*/
-        //System.exit(0);
 
         return creado;
+    }
+
+    private String existDirectory(String pathDirectory){
+        String currentDirectory = pathDirectory;
+
+        if(!Files.exists(Path.of(pathDirectory))){
+            File newSubDirectory = new File(pathDirectory);
+            newSubDirectory.mkdirs();
+        }
+
+        return currentDirectory;
     }
 }

@@ -198,7 +198,7 @@ public class DBProjects {
             projectRegistrations.setAnotaciones_guardadas(rs.getInt(18));
 
 
-            projectRegistrations.setFilesList(concat(find_files(rs.getString(4)+"/Images/"),find_files(rs.getString(4)+"/Video/")));
+            projectRegistrations.setFilesList(concat(find_files(rs.getString(4)+"/Thumbs/"),find_files(rs.getString(4)+"/Video/")));
             result.add(projectRegistrations);
         }
         rs.close();

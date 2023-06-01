@@ -14,6 +14,6 @@ class ImagesTest {
     @Test
     void resizer() throws IOException, InterruptedException {
         img = new Images(path);
-        img.resizer(path+source,path+output);
+        img.resizer(source);
     }
 }

@@ -26,7 +26,11 @@ public class ThreadElanXmlDigester extends Thread{
             if(elanXmlDigester.isEmpty()){
                 deactivate();
             } else {
-                process();
+                try {
+                    process();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
@@ -69,7 +73,7 @@ public class ThreadElanXmlDigester extends Thread{
     /**
      * Función para obtener un elemento de la queue y ejecutar su proceso
      */
-    public void process(){
+    public void process() throws InterruptedException {
         Date startDate = new Date();
         ElanXmlDigester currentElanXmlDigester = elanXmlDigester.poll();
         int projectID = currentElanXmlDigester.projectID;
