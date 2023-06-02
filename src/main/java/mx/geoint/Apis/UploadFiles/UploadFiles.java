@@ -86,7 +86,7 @@ public class UploadFiles {
             System.out.println("sin archivo de imagenes");
         }else{
             int index = 0;
-            String ImageFolder = basePath+"Images/";
+            String ImageFolder = basePath+"ImagesFull/";
             String VideoFolder = basePath+"Video/";
             File imageDirectory = new File(ImageFolder);
             File videoDirectory = new File(VideoFolder);
@@ -98,7 +98,7 @@ public class UploadFiles {
                         return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
                     }
                 }else{
-                    if(!saveFile(file, ImageFolder, baseProjectName+"_image"+(index++))){
+                    if(!saveFile(file, ImageFolder, baseProjectName+"_imageFull"+(index++))){
                         return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
                     }
                 }
@@ -243,7 +243,7 @@ public class UploadFiles {
         int index = 0;
         int imageIndex = 0;
         int videoIndex = 0;
-        String ImageFolder = basePath+"Images/";
+        String ImageFolder = basePath+"ImagesFull/";
         String VideoFolder = basePath+"Video/";
         if(Files.exists(Path.of(ImageFolder))){
             String[] pathnames;
@@ -280,7 +280,7 @@ public class UploadFiles {
                     return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
                 }
             }else{
-                if(!saveFile(file, ImageFolder, baseProjectName+"_image"+(index+=1))){
+                if(!saveFile(file, ImageFolder, baseProjectName+"_imageFull"+(index+=1))){
                     return pathSystem.NOT_UPLOAD_AUTORIZATION_FILE;
                 }
             }

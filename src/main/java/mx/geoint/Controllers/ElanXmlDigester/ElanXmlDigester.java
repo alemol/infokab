@@ -153,6 +153,19 @@ public class ElanXmlDigester {
         ProjectPostgresRegister projectPostgresRegister = dbProjects.getProjectById(String.valueOf(this.projectID));
         String cvegeo = projectPostgresRegister.getCvegeo();
 
+        String path = filepathMultimedia;
+        String finalName = path.substring(path. lastIndexOf('/'));
+        String imagesDir = filepathMultimedia.replace(finalName,"/ImagesFull/");
+        if(Files.exists(Path.of(imagesDir))) {
+            Images img = new Images(imagesDir);
+            String[] pathnames;
+            File f = new File(imagesDir);
+            pathnames = f.list();
+            for (int i = 0; i < pathnames.length; i++) {
+                System.out.println(pathnames[i]+" reducida: "+ img.resizer(pathnames[i]));
+            }
+        }
+
         if(save_media==true){
             String type_path = getTypeMultimedia(filepathMultimedia);
 
@@ -198,18 +211,7 @@ public class ElanXmlDigester {
             }
         }
         //System.out.println("qqqqqqqqqq"+ filepathMultimedia.split("/"));
-        String path = filepathMultimedia;
-        String finalName = path.substring(path. lastIndexOf('/'));
-        String imagesDir = filepathMultimedia.replace(finalName,"/Images/");
-        if(Files.exists(Path.of(imagesDir))) {
-            Images img = new Images(imagesDir);
-            String[] pathnames;
-            File f = new File(imagesDir);
-            pathnames = f.list();
-            for (int i = 0; i < pathnames.length; i++) {
-                System.out.println(pathnames[i]+" reducida: "+ img.resizer(pathnames[i]));
-            }
-        }
+
 
     }
 

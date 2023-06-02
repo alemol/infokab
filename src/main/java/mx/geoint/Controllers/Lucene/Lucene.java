@@ -620,7 +620,7 @@ public class Lucene {
         System.out.println("Imagespath:" + path);
         String[] arrOfStr = path.split("(?:maya|español|glosado)");
         System.out.println("Imagespath:" + arrOfStr.toString());
-        String imagesDir = arrOfStr[0] + "Thumbs/";
+        String imagesDir = arrOfStr[0] + "Images/";
         System.out.println("imagesDir "+imagesDir);
         String[] imageList = null;
 

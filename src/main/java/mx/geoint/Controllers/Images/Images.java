@@ -29,8 +29,8 @@ public class Images {
      * */
     public boolean resizer(String source) throws IOException {
         boolean creado = false;
-        String NewPath = path.replace("Images","Thumbs");
-        String output = source.replace("image","thumb");
+        String NewPath = path.replace("ImagesFull","Images");
+        String output = source.replace("imageFull","image");
         existDirectory(NewPath);
 
         // creamos el cuerpo del comando que se va a ejecutar.
@@ -42,7 +42,7 @@ public class Images {
                 "-vf",
                 "scale=w=320:h=240:force_original_aspect_ratio=decrease",
                 "-y",
-                NewPath+output
+                NewPath+source
         });
 
         int exitCode = 0;
