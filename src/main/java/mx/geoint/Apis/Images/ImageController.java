@@ -29,15 +29,18 @@ public class ImageController {
     @RequestMapping(path = "/deleteImage", method = RequestMethod.POST, consumes = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public boolean Filelist(@RequestBody routeModel route) {
-        String dirFull = DIRECTORY_PROJECTS+ route.getRoute().split("Project/")[1].replaceAll("Images", "ImagesFull").replaceAll("image", "imageFull");
-        Boolean deletedFull = false;
-        if(Files.exists(Path.of(dirFull))) {
-            System.out.println(DIRECTORY_PROJECTS+ route.getRoute().split("Project/")[1].replaceAll("Images", "ImagesFull").replaceAll("image", "imageFull"));
-            try {
-                File f = new File(dirFull); //file to be delete
-                deletedFull = f.delete();
-            } catch (Exception e) {
-                e.printStackTrace();
+        boolean isFound = route.getRoute().split("Project/")[1].indexOf("Images") != -1 ? true: false;
+        if(isFound){
+            String dirFull = DIRECTORY_PROJECTS+ route.getRoute().split("Project/")[1].replaceAll("Images", "ImagesFull").replaceAll("image", "imageFull");
+
+            Boolean deletedFull = false;
+            if(Files.exists(Path.of(dirFull))) {
+                try {
+                    File f = new File(dirFull); //file to be delete
+                    deletedFull = f.delete();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
 
