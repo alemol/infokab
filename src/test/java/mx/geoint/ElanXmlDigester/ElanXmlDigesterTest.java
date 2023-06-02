@@ -20,7 +20,7 @@ class ElanXmlDigesterTest {
     }
 
     @Test
-    void getTierTranscriptionAudio() throws ParserConfigurationException, SAXException, IOException, SQLException {
+    void getTierTranscriptionAudio() throws ParserConfigurationException, SAXException, IOException, SQLException, InterruptedException {
         //{
         // "ANNOTATION_ID":"a5",
         // "TIME_SLOT_REF1":"ts1",
@@ -43,7 +43,7 @@ class ElanXmlDigesterTest {
         );
     }
     @Test
-    void getTierTraduccionAudio() throws ParserConfigurationException, SAXException, IOException, SQLException {
+    void getTierTraduccionAudio() throws ParserConfigurationException, SAXException, IOException, SQLException, InterruptedException {
         //{
         // "ANNOTATION_ID":"a14",
         // "TIME_SLOT_REF1":"ts2",
@@ -67,7 +67,7 @@ class ElanXmlDigesterTest {
     }
 
     @Test
-    void getTierGlosadoAudio() throws ParserConfigurationException, SAXException, IOException, SQLException {//{
+    void getTierGlosadoAudio() throws ParserConfigurationException, SAXException, IOException, SQLException, InterruptedException {//{
         // "ANNOTATION_ID":"a23",
         // "TIME_SLOT_REF1":"ts3",
         // "TIME_VALUE1":"34240",
@@ -91,7 +91,7 @@ class ElanXmlDigesterTest {
     }
 
     @Test
-    void getTierMorfemasAudio() throws ParserConfigurationException, SAXException, IOException, SQLException {
+    void getTierMorfemasAudio() throws ParserConfigurationException, SAXException, IOException, SQLException, InterruptedException {
         // "ANNOTATION_ID":"a32",
         // "TIME_SLOT_REF1":"ts4",
         // "TIME_VALUE1":"34240",
@@ -115,7 +115,7 @@ class ElanXmlDigesterTest {
 
     //SECTION TEST FOR VIDEO
     @Test
-    void getTierTraduccionVideo() throws ParserConfigurationException, SAXException, IOException, SQLException {
+    void getTierTraduccionVideo() throws ParserConfigurationException, SAXException, IOException, SQLException, InterruptedException {
         //{
         // "ANNOTATION_ID":"a13",
         // "TIME_SLOT_REF1":"ts2",
@@ -139,7 +139,7 @@ class ElanXmlDigesterTest {
     }
 
     @Test
-    void getTierGlosadoVideo() throws ParserConfigurationException, SAXException, IOException, SQLException {//{
+    void getTierGlosadoVideo() throws ParserConfigurationException, SAXException, IOException, SQLException, InterruptedException {//{
         // "ANNOTATION_ID":"a9",
         // "TIME_SLOT_REF1":"ts2",
         // "TIME_VALUE1":"21340",
@@ -163,7 +163,7 @@ class ElanXmlDigesterTest {
     }
 
     @Test
-    void getTierMorfemasVideo() throws ParserConfigurationException, SAXException, IOException, SQLException {
+    void getTierMorfemasVideo() throws ParserConfigurationException, SAXException, IOException, SQLException, InterruptedException {
         // "ANNOTATION_ID":"a5",
         // "TIME_SLOT_REF1":"ts2",
         // "TIME_VALUE1":"21340",
@@ -186,7 +186,7 @@ class ElanXmlDigesterTest {
     }
 
     @Test
-    void getTierTranscriptionVideo() throws ParserConfigurationException, SAXException, IOException, SQLException {
+    void getTierTranscriptionVideo() throws ParserConfigurationException, SAXException, IOException, SQLException, InterruptedException {
         //{
         // "ANNOTATION_ID":"a1",
         // "TIME_SLOT_REF1":"ts2",

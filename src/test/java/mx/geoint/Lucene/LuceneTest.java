@@ -45,7 +45,7 @@ class LuceneTest {
     }
 
     @Test
-    void createIndex() throws ParserConfigurationException, SAXException, IOException, SQLException {
+    void createIndex() throws ParserConfigurationException, SAXException, IOException, SQLException, InterruptedException {
         ElanXmlDigester user = initElanXmlDigesterAudio("47eebc99-9c0b-4ef8-bb6d-6bb9bd380a11");
         user.parse_tier("oracion", true, false);
 
@@ -55,7 +55,7 @@ class LuceneTest {
     }
 
     @Test
-    void createIndexTwoDirectory() throws ParserConfigurationException, SAXException, IOException, SQLException {
+    void createIndexTwoDirectory() throws ParserConfigurationException, SAXException, IOException, SQLException, InterruptedException {
         ElanXmlDigester user1 = initElanXmlDigesterAudio("47eebc99-9c0b-4ef8-bb6d-6bb9bd380a11");
         ElanXmlDigester user2 = initElanXmlDigesterAudio("47eebc99-9c0b-4ef8-bb6d-6bb9bd380a00");
 

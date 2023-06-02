@@ -354,14 +354,14 @@ class ParseXMLTest {
         for (var entry : tiersList.entrySet()){
             String jsonString = new Gson().toJson(entry.getValue());
             System.out.println(entry.getKey() +" Size: " + entry.getValue().size());
-            System.out.println(jsonString);
+            //System.out.println(jsonString);
         }
     }
 
     @Test
     void runMapTestNewFile() throws ParserConfigurationException, IOException, TransformerException, SAXException {
         String basePath = "./eafs/";
-        getMapTier(basePath+"23_006_25102022_10_ANU_E_3_1.eaf");
+        getMapTier(basePath+"31_021_19022023_15_FCA_E_2_1_1683916082241(1).eaf");
     }
 
 

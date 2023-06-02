@@ -42,7 +42,7 @@ public class Images {
                 "-vf",
                 "scale=w=320:h=240:force_original_aspect_ratio=decrease",
                 "-y",
-                NewPath+source
+                NewPath+output
         });
 
         int exitCode = 0;

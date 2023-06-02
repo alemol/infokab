@@ -252,7 +252,7 @@ public class UploadFiles {
             Arrays.sort(pathnames);
             for (String pathname : pathnames) {
                 String x = FilenameUtils.getBaseName(pathname);
-                imageIndex = Integer.parseInt(x.split("image")[1]);
+                imageIndex = Integer.parseInt(x.split("image")[1].replace("Full", ""));
             }
         }else{
             File newSubDirectory = new File(ImageFolder);
