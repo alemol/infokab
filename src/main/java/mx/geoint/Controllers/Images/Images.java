@@ -34,16 +34,36 @@ public class Images {
         existDirectory(NewPath);
 
         // creamos el cuerpo del comando que se va a ejecutar.
+
         Process p = Runtime.getRuntime().exec(new String[]{
-                "ffmpeg",
-                "-i",
+                "convert",
                 path+source,
-                "-qscale:v", "1",
-                "-vf",
-                "scale=w=320:h=240:force_original_aspect_ratio=decrease",
-                "-y",
+                "-resize",
+                "320x240",
                 NewPath+output
         });
+
+        // Atrapamos la respuesta en caso de que sea exitoso.
+        BufferedReader stdInput = new BufferedReader(new
+                InputStreamReader(p.getInputStream()));
+        // Atrapamos la respuesta en caso de que genere errores.
+        BufferedReader stdError = new BufferedReader(new
+                InputStreamReader(p.getErrorStream()));
+        // Recorremos la salida e imprimimos los resultados
+        System.out.println(new String[]{
+                "convert",
+                path+source,
+                "-resize",
+                "320x240",
+                NewPath+output
+        });
+        while ((s = stdInput.readLine()) != null) {
+            System.out.println(s);
+        }
+        // Recorremos la salida e imprimimos los errores.
+        while ((s = stdError.readLine()) != null) {
+            System.out.println(s);
+        }
 
         int exitCode = 0;
         try {
