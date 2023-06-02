@@ -244,10 +244,16 @@ public class UploadFiles {
         int imageIndex = 0;
         int videoIndex = 0;
         String ImageFolder = basePath+"ImagesFull/";
+        String ImagesReducesFolder = basePath+"Images/";
         String VideoFolder = basePath+"Video/";
-        if(Files.exists(Path.of(ImageFolder))){
+        if(!Files.exists(Path.of(ImageFolder))){
+            File newSubDirectory = new File(ImageFolder);
+            newSubDirectory.mkdirs();
+        }
+
+        if(Files.exists(Path.of(ImagesReducesFolder))) {
             String[] pathnames;
-            File f = new File(ImageFolder);
+            File f = new File(ImagesReducesFolder);
             pathnames = f.list();
             Arrays.sort(pathnames);
             for (String pathname : pathnames) {
@@ -255,9 +261,10 @@ public class UploadFiles {
                 imageIndex = Integer.parseInt(x.split("image")[1].replace("Full", ""));
             }
         }else{
-            File newSubDirectory = new File(ImageFolder);
+            File newSubDirectory = new File(ImagesReducesFolder);
             newSubDirectory.mkdirs();
         }
+
         if(Files.exists(Path.of(VideoFolder))){
             String[] pathnames;
             File f = new File(VideoFolder);

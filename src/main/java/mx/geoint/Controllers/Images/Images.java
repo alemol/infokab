@@ -53,6 +53,7 @@ public class Images {
         System.out.println(new String[]{
                 "convert",
                 path+source,
+                "-quality", "1",
                 "-resize",
                 "320x240",
                 NewPath+output

@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import static mx.geoint.pathSystem.DIRECTORY_PROJECTS;
 
@@ -27,14 +29,29 @@ public class ImageController {
     @RequestMapping(path = "/deleteImage", method = RequestMethod.POST, consumes = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public boolean Filelist(@RequestBody routeModel route) {
+        String dirFull = DIRECTORY_PROJECTS+ route.getRoute().split("Project/")[1].replaceAll("Images", "ImagesFull").replaceAll("image", "imageFull");
+        Boolean deletedFull = false;
+        if(Files.exists(Path.of(dirFull))) {
+            System.out.println(DIRECTORY_PROJECTS+ route.getRoute().split("Project/")[1].replaceAll("Images", "ImagesFull").replaceAll("image", "imageFull"));
+            try {
+                File f = new File(dirFull); //file to be delete
+                deletedFull = f.delete();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         String dir = DIRECTORY_PROJECTS+ route.getRoute().split("Project/")[1];
         Boolean deleted = false;
-        try {
-            File f = new File(dir); //file to be delete
-            deleted = f.delete();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(Files.exists(Path.of(dir))) {
+            try {
+                File f = new File(dir); //file to be delete
+                deleted = f.delete();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
         return deleted;
     }
 
