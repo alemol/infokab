@@ -54,6 +54,14 @@ public class UploadFilesController {
             return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere nombre del proyecto", false);
         }
 
+        if(images != null){
+            for(MultipartFile file : images) {
+                if(!file.getContentType().equals("video/mp4") && !file.getContentType().equals("image/jpg") && !file.getContentType().equals("image/jpeg") && !file.getContentType().equals("image/png") ){
+                    return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error en formato desconocido de multimedia", false);
+                }
+            }
+        }
+
         try{
             long uploadTime = (new Date()).getTime();
         Number codeStatus = uploadFilesService.uploadFile(eaf, multimedia, autorizacion, images, uuid, projectName + "_" + uploadTime, date, hablantes, ubicacion, radio, circleBounds);
@@ -130,6 +138,12 @@ public class UploadFilesController {
     public ResponseEntity updateImages(@RequestParam MultipartFile[] images, @RequestParam String projectName, @RequestParam String uuid, @RequestParam int id) {
         if(images.length == 0) {
             return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error se requiere al menos una imagen", false);
+        }
+
+        for(MultipartFile file : images) {
+            if(!file.getContentType().equals("video/mp4") && !file.getContentType().equals("image/jpg") && !file.getContentType().equals("image/jpeg") && !file.getContentType().equals("image/png") ){
+                return createdResponseEntity(HttpStatus.BAD_REQUEST, "Error en formato desconocido de multimedia", false);
+            }
         }
 
         try{
