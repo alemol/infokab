@@ -20,7 +20,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.*;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -53,7 +56,7 @@ public class DBProjects {
         preparedStatement.setString(2, projectName);
         preparedStatement.setString(3, basePath.toString());
         //preparedStatement.setString(4, contentType);
-        preparedStatement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+        preparedStatement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now(ZoneOffset.UTC)));
 
         preparedStatement.setString(5, date);
         preparedStatement.setString(6, hablantes);
@@ -330,7 +333,7 @@ public class DBProjects {
         String SQL_UPDATE = "UPDATE proyectos SET fecha_eaf = ? WHERE id_proyecto=?";
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
-        preparedStatement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
+        preparedStatement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now(ZoneOffset.UTC)));
         preparedStatement.setObject(2, id_project);
 
         int rs = preparedStatement.executeUpdate();
@@ -350,7 +353,7 @@ public class DBProjects {
         String SQL_UPDATE = "UPDATE proyectos SET fecha_multimedia = ? WHERE id_proyecto=?";
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
-        preparedStatement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
+        preparedStatement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now(ZoneOffset.UTC)));
         preparedStatement.setObject(2, id_project);
 
         int rs = preparedStatement.executeUpdate();

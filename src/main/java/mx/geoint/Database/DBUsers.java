@@ -5,6 +5,7 @@ import mx.geoint.Model.User.UserRequest;
 
 import java.time.LocalDateTime;
 import java.sql.*;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -37,7 +38,7 @@ public class DBUsers {
         preparedStatement.setString(3, userRequest.getApellido());
         preparedStatement.setString(4, userRequest.getCorreo());
         preparedStatement.setString(5, encryptedPassword);
-        preparedStatement.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
+        preparedStatement.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now(ZoneOffset.UTC)));
 
         int row = preparedStatement.executeUpdate();
 

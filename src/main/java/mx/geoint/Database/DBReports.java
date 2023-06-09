@@ -13,8 +13,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.sql.*;
-import java.time.LocalDateTime;
+import java.time.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DBReports {
     public Credentials credentials;
@@ -36,7 +37,7 @@ public class DBReports {
         preparedStatement.setString(3, report);
         preparedStatement.setString(4, type);
         preparedStatement.setBoolean(5, true);
-        preparedStatement.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
+        preparedStatement.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now(ZoneOffset.UTC)));
         preparedStatement.setString(7, comentario);
         preparedStatement.setString(8, anotacion);
         preparedStatement.execute();
@@ -67,7 +68,7 @@ public class DBReports {
         preparedStatement.setString(3, report);
         preparedStatement.setString(4, type);
         preparedStatement.setBoolean(5, true);
-        preparedStatement.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now()));
+        preparedStatement.setTimestamp(6, Timestamp.valueOf(LocalDateTime.now(ZoneOffset.UTC)));
         preparedStatement.setString(7, annotationValue);
         preparedStatement.setString(8, annotationOriginal);
         preparedStatement.execute();
