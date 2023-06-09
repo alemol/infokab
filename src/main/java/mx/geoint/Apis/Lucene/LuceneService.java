@@ -25,7 +25,14 @@ public class LuceneService {
         String uuid = projectPostgresRegister.getId_usuario();
         String pathEAF = projectPostgresRegister.getRuta_trabajo()+projectPostgresRegister.getNombre_proyecto()+".eaf";
         String projectName = projectPostgresRegister.getNombre_proyecto();
-        String pathMultimedia = projectPostgresRegister.getRuta_trabajo()+projectPostgresRegister.getNombre_proyecto()+".wav";
+        String pathMultimedia = "";
+
+        if(projectPostgresRegister.getMime_type().equals("audio/wav")){
+            pathMultimedia = projectPostgresRegister.getRuta_trabajo()+projectPostgresRegister.getNombre_proyecto()+".wav";
+        }else{
+            pathMultimedia = projectPostgresRegister.getRuta_trabajo()+projectPostgresRegister.getNombre_proyecto()+".mp4";
+        }
+
         String pathAnnotations = "";
 
         ElanXmlDigester elanXmlDigester = new ElanXmlDigester(pathEAF, pathMultimedia, uuid, Integer.parseInt(projectID));
@@ -67,7 +74,14 @@ public class LuceneService {
         String uuid = projectPostgresRegister.getId_usuario();
         String pathEAF = projectPostgresRegister.getRuta_trabajo()+projectPostgresRegister.getNombre_proyecto()+".eaf";
         String projectName = projectPostgresRegister.getNombre_proyecto();
-        String pathMultimedia = projectPostgresRegister.getRuta_trabajo()+projectPostgresRegister.getNombre_proyecto()+".wav";
+
+        String pathMultimedia = "";
+        if(projectPostgresRegister.getMime_type().equals("audio/wav")){
+            pathMultimedia = projectPostgresRegister.getRuta_trabajo()+projectPostgresRegister.getNombre_proyecto()+".wav";
+        }else{
+            pathMultimedia = projectPostgresRegister.getRuta_trabajo()+projectPostgresRegister.getNombre_proyecto()+".mp4";
+        }
+
         String pathAnnotations = "";
 
         ElanXmlDigester elanXmlDigester = new ElanXmlDigester(pathEAF, pathMultimedia, uuid, Integer.parseInt(projectID));

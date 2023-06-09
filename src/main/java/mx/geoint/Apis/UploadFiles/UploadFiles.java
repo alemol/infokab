@@ -7,6 +7,7 @@ import mx.geoint.Database.DBAnnotations;
 import mx.geoint.Database.DBProjects;
 import mx.geoint.Database.DBReports;
 import mx.geoint.Database.DBUsers;
+import mx.geoint.Model.Project.ProjectPostgresRegister;
 import mx.geoint.pathSystem;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -59,7 +60,7 @@ public class UploadFiles {
      * @return boolean, respuesta de la carga de archivos
      * @throws IOException
      */
-    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion, MultipartFile[] images, String uuid, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds) throws IOException, SQLException {
+    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion, MultipartFile[] images, String uuid, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds, String mimeType) throws IOException, SQLException {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
 
@@ -107,7 +108,7 @@ public class UploadFiles {
 
         }
 
-        int id_project = dbProjects.createProject(uuid, basePath, baseProjectName, date, hablantes, ubicacion, radio, circleBounds); //inserta un registro del proyecto en la base de datos
+        int id_project = dbProjects.createProject(uuid, basePath, baseProjectName, date, hablantes, ubicacion, radio, circleBounds, mimeType); //inserta un registro del proyecto en la base de datos
 
         System.out.println("ID de proyecto generado: "+id_project);
         if(id_project > 0){
@@ -186,6 +187,8 @@ public class UploadFiles {
     }
 
     public Number updateEaf(MultipartFile eaf, String projectName, String uuid, int id_project) throws IOException, SQLException {
+        ProjectPostgresRegister projectPostgresRegister = this.dbProjects.getProjectById(String.valueOf(id_project));
+
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
 
@@ -206,7 +209,14 @@ public class UploadFiles {
         File dir_multimedia = new File(basePath+"/multimedia/");
         FileUtils.deleteDirectory(dir_multimedia.getCanonicalFile());
 
-        String multimedia = FilenameUtils.getBaseName(baseProjectName)+".wav";
+        //String multimedia = FilenameUtils.getBaseName(baseProjectName)+".wav";
+        String multimedia = "";
+
+        if(projectPostgresRegister.getMime_type().equals("audio/wav")){
+            multimedia = FilenameUtils.getBaseName(baseProjectName)+".wav";
+        }else{
+            multimedia = FilenameUtils.getBaseName(baseProjectName)+".mp4";
+        }
         boolean rs1 = dbReports.deactivateAllReportes(id_project);
         boolean rs2 = dbAnnotations.deleteGlossingRecords(id_project);
         //InitValidateElanXmlDigester(eaf, uuid, basePath, baseProjectName, id_project);

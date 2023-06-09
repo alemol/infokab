@@ -25,8 +25,8 @@ public class UploadFilesService {
      * @return boolean, respuesta del servicio
      * @throws IOException
      */
-    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion , MultipartFile[] images, String uuid, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds) throws IOException, SQLException {
-        return uploadFiles.uploadFile(eaf, multimedia, autorizacion, images, uuid, projectName, date, hablantes, ubicacion, radio, circleBounds);
+    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion , MultipartFile[] images, String uuid, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds, String mimeType) throws IOException, SQLException {
+        return uploadFiles.uploadFile(eaf, multimedia, autorizacion, images, uuid, projectName, date, hablantes, ubicacion, radio, circleBounds, mimeType);
     }
 
     public Number updateEaf(MultipartFile eaf, String projectName, String uuid, int id) throws IOException, SQLException {

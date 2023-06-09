@@ -37,7 +37,7 @@ public class DBProjects {
         this.logger = new Logger();
     }
 
-    public int createProject(String uuid, String basePath, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds) throws SQLException {
+    public int createProject(String uuid, String basePath, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds, String mimeType) throws SQLException {
         System.out.println("createProject");
         int id_project = 0;
         //---guardado a base de datos
@@ -47,7 +47,26 @@ public class DBProjects {
         Connection conn = credentials.getConnection();
         System.out.println(conn);
 
-        String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds, en_proceso, indice_maya, indice_español, indice_glosado, entidad, municipio, localidad, cvegeo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,(SELECT entidad_nombre FROM public.dim_entidad WHERE entidad_cvegeo = ?),(SELECT municipio_nombre FROM public.dim_municipio WHERE municipio_cvegeo = ? limit 1),(SELECT l.localidad_nombre FROM (SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ? UNION SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ?  ORDER BY dist LIMIT 1) AS l), (SELECT l.localidad_cvegeo FROM (SELECT localidad_cvegeo, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ? UNION SELECT localidad_cvegeo, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ?  ORDER BY dist LIMIT 1) AS l) ) RETURNING id_proyecto";
+        String SQL_INSERT = "INSERT INTO \n" +
+                            "proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds, en_proceso, indice_maya, indice_español, indice_glosado, mime_type, entidad, municipio, localidad, cvegeo) \n" +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?," +
+                            "(SELECT entidad_nombre FROM public.dim_entidad WHERE entidad_cvegeo = ?)," +
+                            "(SELECT municipio_nombre FROM public.dim_municipio WHERE municipio_cvegeo = ? limit 1)," +
+                            "(SELECT l.localidad_nombre " +
+                                "FROM (SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist " +
+                                    "FROM public.dim_localidad_rural " +
+                                    "WHERE municipio_cvegeo = ? " +
+                                "UNION SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist " +
+                                "FROM public.dim_localidad_rural " +
+                                "WHERE municipio_cvegeo = ?  ORDER BY dist LIMIT 1) AS l), " +
+                            "(SELECT l.localidad_cvegeo " +
+                                "FROM (SELECT localidad_cvegeo, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist " +
+                                "FROM public.dim_localidad_rural " +
+                                "WHERE municipio_cvegeo = ? " +
+                                "UNION SELECT localidad_cvegeo, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist " +
+                                "FROM public.dim_localidad_rural " +
+                                "WHERE municipio_cvegeo = ?  ORDER BY dist LIMIT 1) AS l) ) " +
+                            "RETURNING id_proyecto";
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
         preparedStatement.setObject(1, UUID.fromString(uuid));
@@ -67,20 +86,22 @@ public class DBProjects {
         preparedStatement.setBoolean(11, false);
         preparedStatement.setBoolean(12, false);
         preparedStatement.setBoolean(13, false);
-        preparedStatement.setString(14, parts[0]);
-        preparedStatement.setString(15, parts[0]+parts[1]);
-        preparedStatement.setString(16, coords[1]);
-        preparedStatement.setString(17, coords[0]);
-        preparedStatement.setString(18, parts[0]+parts[1]);
-        preparedStatement.setString(19, coords[1]);
-        preparedStatement.setString(20, coords[0]);
-        preparedStatement.setString(21, parts[0]+parts[1]);
-        preparedStatement.setString(22, coords[1]);
-        preparedStatement.setString(23, coords[0]);
-        preparedStatement.setString(24, parts[0]+parts[1]);
-        preparedStatement.setString(25, coords[1]);
-        preparedStatement.setString(26, coords[0]);
-        preparedStatement.setString(27, parts[0]+parts[1]);
+        preparedStatement.setString(14, mimeType);
+        preparedStatement.setString(15, parts[0]);
+        preparedStatement.setString(16, parts[0]+parts[1]);
+        preparedStatement.setString(17, coords[1]);
+        preparedStatement.setString(18, coords[0]);
+
+        preparedStatement.setString(19, parts[0]+parts[1]);
+        preparedStatement.setString(20, coords[1]);
+        preparedStatement.setString(21, coords[0]);
+        preparedStatement.setString(22, parts[0]+parts[1]);
+        preparedStatement.setString(23, coords[1]);
+        preparedStatement.setString(24, coords[0]);
+        preparedStatement.setString(25, parts[0]+parts[1]);
+        preparedStatement.setString(26, coords[1]);
+        preparedStatement.setString(27, coords[0]);
+        preparedStatement.setString(28, parts[0]+parts[1]);
 
 
         preparedStatement.execute();
@@ -99,7 +120,7 @@ public class DBProjects {
     }
 
     public ProjectPostgresRegister getProjectById(String id) throws  SQLException {
-        String SQL_QUERY = "SELECT p.id_proyecto, p.nombre_proyecto, p.ruta_trabajo, p.id_usuario, p.cvegeo FROM proyectos as p WHERE p.id_proyecto=?";
+        String SQL_QUERY = "SELECT p.id_proyecto, p.nombre_proyecto, p.ruta_trabajo, p.id_usuario, p.cvegeo, p.mime_type FROM proyectos as p WHERE p.id_proyecto=?";
 
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
@@ -115,6 +136,7 @@ public class DBProjects {
             projectRegister.setRuta_trabajo(rs.getString(3));
             projectRegister.setId_usuario(rs.getString(4));
             projectRegister.setCvegeo(rs.getString(5));
+            projectRegister.setMime_type(rs.getString(6));
         }
         rs.close();
         conn.close();
@@ -161,7 +183,7 @@ public class DBProjects {
         ArrayList<ProjectPostgresRegister> result = new ArrayList<>();
         ProjectPostgresRegister projectRegistrations = null;
         String SQL_QUERY =  "select p.id_proyecto, p.id_usuario, p.nombre_proyecto, p.ruta_trabajo, p.fecha_creacion, p.estado, p.fecha_archivo, p.hablantes, p.ubicacion, p.radio, p.bounds, p.total_de_anotaciones, p.en_proceso, p.indice_maya, p.indice_español, p.indice_glosado," +
-                            " count(distinct r.id) as total_de_reportes, count(distinct g.id) as total_de_anotaciones \n" +
+                            " count(distinct r.id) as total_de_reportes, count(distinct g.id) as total_de_anotaciones, p.mime_type \n" +
                             "FROM proyectos as p \n" +
                             "left join reportes as r on r.id_proyecto = p.id_proyecto and r.activate=true\n" +
                             "left join glosado as g on g.proyecto_id = p.id_proyecto\n" +
@@ -199,6 +221,7 @@ public class DBProjects {
 
             projectRegistrations.setTotal_de_reportes(rs.getInt(17));
             projectRegistrations.setAnotaciones_guardadas(rs.getInt(18));
+            projectRegistrations.setMime_type(rs.getString(19));
 
 
             projectRegistrations.setFilesList(concat(find_files(rs.getString(4)+"/Images/"),find_files(rs.getString(4)+"/Video/")));

@@ -18,6 +18,7 @@ public class ProjectPostgresRegister {
     Boolean index_maya;
     Boolean index_glosado;
     Boolean en_proceso;
+    String mime_type;
     int total_de_anotaciones;
     int anotaciones_guardadas;
     int total_de_reportes;
@@ -109,4 +110,7 @@ public class ProjectPostgresRegister {
 
     public String getCvegeo() { return cvegeo; }
 
+    public String getMime_type() { return mime_type; }
+
+    public void setMime_type(String mime_type) { this.mime_type = mime_type;}
 }
