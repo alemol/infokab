@@ -32,7 +32,7 @@ public class DBProjects {
     private Credentials credentials;
     private Logger logger;
 
-    public DBProjects(){
+    public DBProjects() {
         this.credentials = new Credentials();
         this.logger = new Logger();
     }
@@ -41,13 +41,17 @@ public class DBProjects {
         System.out.println("createProject");
         int id_project = 0;
         //---guardado a base de datos
-        System.out.println("save to database: "+projectName);
+        System.out.println("save to database: " + projectName);
         String[] parts = projectName.split("_");
         String[] coords = ubicacion.split(",");
         Connection conn = credentials.getConnection();
         System.out.println(conn);
 
-        String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds, en_proceso, indice_maya, indice_español, indice_glosado, entidad, municipio, localidad, cvegeo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,(SELECT entidad_nombre FROM public.dim_entidad WHERE entidad_cvegeo = ?),(SELECT municipio_nombre FROM public.dim_municipio WHERE municipio_cvegeo = ? limit 1),(SELECT l.localidad_nombre FROM (SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ? UNION SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ?  ORDER BY dist LIMIT 1) AS l), (SELECT l.localidad_cvegeo FROM (SELECT localidad_cvegeo, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ? UNION SELECT localidad_cvegeo, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ?  ORDER BY dist LIMIT 1) AS l) ) RETURNING id_proyecto";
+        String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds, en_proceso, indice_maya, indice_español, indice_glosado, entidad, municipio, localidad, cvegeo) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,(" +
+                "SELECT entidad_nombre FROM public.dim_entidad WHERE entidad_cvegeo = ?)," +
+                "(SELECT municipio_nombre FROM public.dim_municipio WHERE municipio_cvegeo = ? limit 1)," +
+                "(SELECT l.localidad_nombre FROM (SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ? UNION SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_urbana WHERE municipio_cvegeo = ?  ORDER BY dist LIMIT 1) AS l), (SELECT l.localidad_cvegeo FROM (SELECT localidad_cvegeo, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ? UNION SELECT localidad_cvegeo, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_urbana WHERE municipio_cvegeo = ?  ORDER BY dist LIMIT 1) AS l) ) RETURNING id_proyecto";
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
         preparedStatement.setObject(1, UUID.fromString(uuid));
@@ -68,25 +72,25 @@ public class DBProjects {
         preparedStatement.setBoolean(12, false);
         preparedStatement.setBoolean(13, false);
         preparedStatement.setString(14, parts[0]);
-        preparedStatement.setString(15, parts[0]+parts[1]);
+        preparedStatement.setString(15, parts[0] + parts[1]);
         preparedStatement.setString(16, coords[1]);
         preparedStatement.setString(17, coords[0]);
-        preparedStatement.setString(18, parts[0]+parts[1]);
+        preparedStatement.setString(18, parts[0] + parts[1]);
         preparedStatement.setString(19, coords[1]);
         preparedStatement.setString(20, coords[0]);
-        preparedStatement.setString(21, parts[0]+parts[1]);
+        preparedStatement.setString(21, parts[0] + parts[1]);
         preparedStatement.setString(22, coords[1]);
         preparedStatement.setString(23, coords[0]);
-        preparedStatement.setString(24, parts[0]+parts[1]);
+        preparedStatement.setString(24, parts[0] + parts[1]);
         preparedStatement.setString(25, coords[1]);
         preparedStatement.setString(26, coords[0]);
-        preparedStatement.setString(27, parts[0]+parts[1]);
+        preparedStatement.setString(27, parts[0] + parts[1]);
 
 
         preparedStatement.execute();
         //int row = preparedStatement.executeUpdate();
         ResultSet rs = preparedStatement.getGeneratedKeys();
-        if ( rs.next() ) {
+        if (rs.next()) {
             // Retrieve the auto generated key(s).
             id_project = rs.getInt(1);
             System.out.println("generated key");
@@ -98,7 +102,7 @@ public class DBProjects {
         return id_project;
     }
 
-    public ProjectPostgresRegister getProjectById(String id) throws  SQLException {
+    public ProjectPostgresRegister getProjectById(String id) throws SQLException {
         String SQL_QUERY = "SELECT p.id_proyecto, p.nombre_proyecto, p.ruta_trabajo, p.id_usuario, p.cvegeo FROM proyectos as p WHERE p.id_proyecto=?";
 
         Connection conn = credentials.getConnection();
@@ -108,7 +112,7 @@ public class DBProjects {
 
         ProjectPostgresRegister projectRegister = null;
 
-        while(rs.next()) {
+        while (rs.next()) {
             projectRegister = new ProjectPostgresRegister();
             projectRegister.setId_proyecto(rs.getString(1));
             projectRegister.setNombre_proyecto(rs.getString(2));
@@ -122,7 +126,7 @@ public class DBProjects {
 
     }
 
-    public String[] getProjectByName(String filename) throws  SQLException {
+    public String[] getProjectByName(String filename) throws SQLException {
         String[] parts = filename.split("_");
         String SQL_QUERY = "SELECT p.fecha_archivo, p.hablantes, p.entidad, p.municipio, p.localidad, p.ubicacion, ST_Expand(BOX2D(l.geom),0.005) as bbox\n" +
                 "FROM proyectos p ,\n" +
@@ -134,16 +138,16 @@ public class DBProjects {
                 "\tFROM public.dim_localidad_urbana \n" +
                 ") AS l \n" +
                 "WHERE p.nombre_proyecto =? \n" +
-                "AND l.localidad_nombre = p.localidad \n"+
+                "AND l.localidad_nombre = p.localidad \n" +
                 "AND l.municipio_cvegeo = ?";
 
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         preparedStatement.setString(1, filename);
-        preparedStatement.setString(2, parts[0]+parts[1]);
+        preparedStatement.setString(2, parts[0] + parts[1]);
         ResultSet rs = preparedStatement.executeQuery();
         String[] resultados = new String[7];
-        while(rs.next()) {
+        while (rs.next()) {
             resultados[0] = rs.getString(1);
             resultados[1] = rs.getString(2);
             resultados[2] = rs.getString(3);
@@ -160,23 +164,23 @@ public class DBProjects {
     public ArrayList<ProjectPostgresRegister> ListProjects() throws SQLException {
         ArrayList<ProjectPostgresRegister> result = new ArrayList<>();
         ProjectPostgresRegister projectRegistrations = null;
-        String SQL_QUERY =  "select p.id_proyecto, p.id_usuario, p.nombre_proyecto, p.ruta_trabajo, p.fecha_creacion, p.estado, p.fecha_archivo, p.hablantes, p.ubicacion, p.radio, p.bounds, p.total_de_anotaciones, p.en_proceso, p.indice_maya, p.indice_español, p.indice_glosado," +
-                            " count(distinct r.id) as total_de_reportes, count(distinct g.id) as total_de_anotaciones \n" +
-                            "FROM proyectos as p \n" +
-                            "left join reportes as r on r.id_proyecto = p.id_proyecto and r.activate=true\n" +
-                            "left join glosado as g on g.proyecto_id = p.id_proyecto\n" +
-                            "group by p.id_proyecto \n" +
-                            "order by p.id_proyecto";
+        String SQL_QUERY = "select p.id_proyecto, p.id_usuario, p.nombre_proyecto, p.ruta_trabajo, p.fecha_creacion, p.estado, p.fecha_archivo, p.hablantes, p.ubicacion, p.radio, p.bounds, p.total_de_anotaciones, p.en_proceso, p.indice_maya, p.indice_español, p.indice_glosado," +
+                " count(distinct r.id) as total_de_reportes, count(distinct g.id) as total_de_anotaciones \n" +
+                "FROM proyectos as p \n" +
+                "left join reportes as r on r.id_proyecto = p.id_proyecto and r.activate=true\n" +
+                "left join glosado as g on g.proyecto_id = p.id_proyecto\n" +
+                "group by p.id_proyecto \n" +
+                "order by p.id_proyecto";
 
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         ResultSet rs = preparedStatement.executeQuery();
-        while(rs.next()){
+        while (rs.next()) {
             int random_total = rs.getInt(12);
             int random_save = 0;
 
-            if(random_total > 0){
-                random_save = (int)Math.floor(Math.random()*(random_total-1+1)+1);
+            if (random_total > 0) {
+                random_save = (int) Math.floor(Math.random() * (random_total - 1 + 1) + 1);
             }
 
             projectRegistrations = new ProjectPostgresRegister();
@@ -201,7 +205,7 @@ public class DBProjects {
             projectRegistrations.setAnotaciones_guardadas(rs.getInt(18));
 
 
-            projectRegistrations.setFilesList(concat(find_files(rs.getString(4)+"/Images/"),find_files(rs.getString(4)+"/Video/")));
+            projectRegistrations.setFilesList(concat(find_files(rs.getString(4) + "/Images/"), find_files(rs.getString(4) + "/Video/")));
             result.add(projectRegistrations);
         }
         rs.close();
@@ -222,6 +226,7 @@ public class DBProjects {
         }
         return newArray;
     }
+
     public String[] find_files(String path) {
         String[] List = new String[0];
         if (Files.exists(Path.of(path))) {
@@ -234,6 +239,7 @@ public class DBProjects {
         }
         return List;
     }
+
     public boolean setProjectAnnotationsCounter(Integer id_project, Integer count) throws SQLException {
         Connection conn = credentials.getConnection();
         String SQL_UPDATE = "UPDATE proyectos SET total_de_anotaciones = ? WHERE id_proyecto=?";
@@ -244,10 +250,10 @@ public class DBProjects {
         int rs = preparedStatement.executeUpdate();
         conn.close();
 
-        if(rs>0){
+        if (rs > 0) {
             System.out.println("registro actualizado en base de datos");
             return true;
-        } else{
+        } else {
             System.out.println("No se pudo actualizar el registro en base de datos");
             return false;
         }
@@ -261,7 +267,7 @@ public class DBProjects {
         ResultSet row = preparedStatement.executeQuery();
 
         int total_de_anotaciones = 0;
-        while(row.next()){
+        while (row.next()) {
             total_de_anotaciones = row.getInt(1);
         }
 
@@ -272,13 +278,13 @@ public class DBProjects {
         return total_de_anotaciones;
     }
 
-    public boolean setGlossingAnnotationToEaf(Integer id_project, Integer count, AnnotationsRequest annotationsRequest) throws SQLException{
+    public boolean setGlossingAnnotationToEaf(Integer id_project, Integer count, AnnotationsRequest annotationsRequest) throws SQLException {
         String projectName = annotationsRequest.getFilePath();
         String annotationId = annotationsRequest.getAnnotationID();
         String annotationREF = "";
-        if(annotationsRequest.getAnnotationREF().isEmpty()){
+        if (annotationsRequest.getAnnotationREF().isEmpty()) {
             annotationREF = annotationsRequest.getAnnotationID();
-        }else{
+        } else {
             annotationREF = annotationsRequest.getAnnotationREF();
         }
 
@@ -293,15 +299,15 @@ public class DBProjects {
         preparedStatement.setInt(1, count);
         preparedStatement.setObject(2, id_project);
         int rs = preparedStatement.executeUpdate();
-        try{
+        try {
             WriteXML writeXML = new WriteXML(projectName);
             writeXML.writeElement(annotationREF, annotationId, steps);
 
             conn.commit();
-            if(rs>0){
+            if (rs > 0) {
                 System.out.println("registro actualizado en base de datos");
                 answer = true;
-            } else{
+            } else {
                 System.out.println("No se pudo actualizar el registro en base de datos");
                 answer = false;
             }
@@ -328,6 +334,7 @@ public class DBProjects {
         conn.close();
         return answer;
     }
+
     public boolean updateDateEaf(Integer id_project, Integer count) throws SQLException {
         Connection conn = credentials.getConnection();
         String SQL_UPDATE = "UPDATE proyectos SET fecha_eaf = ? WHERE id_proyecto=?";
@@ -339,10 +346,10 @@ public class DBProjects {
         int rs = preparedStatement.executeUpdate();
         conn.close();
 
-        if(rs>0){
+        if (rs > 0) {
             System.out.println("registro actualizado en base de datos");
             return true;
-        } else{
+        } else {
             System.out.println("No se pudo actualizar el registro en base de datos");
             return false;
         }
@@ -359,10 +366,10 @@ public class DBProjects {
         int rs = preparedStatement.executeUpdate();
         conn.close();
 
-        if(rs>0){
+        if (rs > 0) {
             System.out.println("registro actualizado en base de datos");
             return true;
-        } else{
+        } else {
             System.out.println("No se pudo actualizar el registro en base de datos");
             return false;
         }
@@ -390,20 +397,20 @@ public class DBProjects {
         PreparedStatement preparedStatement_project = conn.prepareStatement(SQL_QUERY_PROJECTS);
         preparedStatement_project.setInt(1, projectID);
 
-        try{
+        try {
             ResultSet rs = preparedStatement_get_project.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 File dir_work = new File(rs.getString(1));
                 FileUtils.deleteDirectory(dir_work.getCanonicalFile());
             }
 
-            File dir_maya = new File(pathSystem.DIRECTORY_INDEX_GENERAL+pathSystem.INDEX_LANGUAJE_MAYA+"/"+projectName+"/");
+            File dir_maya = new File(pathSystem.DIRECTORY_INDEX_GENERAL + pathSystem.INDEX_LANGUAJE_MAYA + "/" + projectName + "/");
             FileUtils.deleteDirectory(dir_maya.getCanonicalFile());
 
-            File dir_español = new File(pathSystem.DIRECTORY_INDEX_GENERAL+pathSystem.INDEX_LANGUAJE_SPANISH+"/"+projectName+"/");
+            File dir_español = new File(pathSystem.DIRECTORY_INDEX_GENERAL + pathSystem.INDEX_LANGUAJE_SPANISH + "/" + projectName + "/");
             FileUtils.deleteDirectory(dir_español.getCanonicalFile());
 
-            File dir_glosa = new File(pathSystem.DIRECTORY_INDEX_GENERAL+pathSystem.INDEX_LANGUAJE_GLOSA+"/"+projectName+"/");
+            File dir_glosa = new File(pathSystem.DIRECTORY_INDEX_GENERAL + pathSystem.INDEX_LANGUAJE_GLOSA + "/" + projectName + "/");
             FileUtils.deleteDirectory(dir_glosa.getCanonicalFile());
 
             preparedStatement_glosa.executeUpdate();
@@ -411,7 +418,7 @@ public class DBProjects {
             preparedStatement_project.executeUpdate();
             conn.commit();
             result = true;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             logger.appendToFile(e);
             conn.rollback();
             result = false;
@@ -438,10 +445,10 @@ public class DBProjects {
         int rs = preparedStatement.executeUpdate();
         boolean result;
 
-        if(rs>0){
+        if (rs > 0) {
             System.out.println("registro actualizado en base de datos");
             result = true;
-        } else{
+        } else {
             System.out.println("No se pudo actualizar el registro en base de datos");
             result = false;
         }
@@ -461,10 +468,10 @@ public class DBProjects {
         conn.close();
         boolean result;
 
-        if(rs>0){
+        if (rs > 0) {
             System.out.println("registro actualizado en base de datos");
             result = true;
-        } else{
+        } else {
             System.out.println("No se pudo actualizar el registro en base de datos");
             result = false;
         }
@@ -484,10 +491,10 @@ public class DBProjects {
         conn.close();
         boolean result;
 
-        if(rs>0){
+        if (rs > 0) {
             System.out.println("registro actualizado en base de datos");
             result = true;
-        } else{
+        } else {
             System.out.println("No se pudo actualizar el registro en base de datos");
             result = false;
         }
@@ -507,10 +514,10 @@ public class DBProjects {
         conn.close();
         boolean result;
 
-        if(rs>0){
+        if (rs > 0) {
             System.out.println("registro actualizado en base de datos");
             result = true;
-        } else{
+        } else {
             System.out.println("No se pudo actualizar el registro en base de datos");
             result = false;
         }
@@ -532,10 +539,10 @@ public class DBProjects {
         conn.close();
         boolean result;
 
-        if(rs>0){
+        if (rs > 0) {
             System.out.println("registro actualizado en base de datos");
             result = true;
-        } else{
+        } else {
             System.out.println("No se pudo actualizar el registro en base de datos");
             result = false;
         }
@@ -544,7 +551,7 @@ public class DBProjects {
     }
 
 
-    public ArrayList<ProjectPostgresLocations> getLocations(String[] cvegeo, Integer[] counters) throws  SQLException {
+    public ArrayList<ProjectPostgresLocations> getLocations(String[] cvegeo, Integer[] counters) throws SQLException {
         ArrayList<ProjectPostgresLocations> result = new ArrayList<>();
         String SQL_QUERY = "SELECT l.localidad_cvegeo, l.localidad_nombre, l.municipio_cvegeo, ST_Expand(BOX2D(l.geom),0.005) as bbox, ST_AsGeojson(l.geom) as geometria \n" +
                 "FROM \n" +
@@ -566,8 +573,8 @@ public class DBProjects {
         ResultSet rs = preparedStatement.executeQuery();
 
         Integer i = 0;
-        while(rs.next()) {
-            System.out.println("POSTGRES: cvegeo" + cvegeo[i] + "counter: " + counters[i] + "DB : "+ rs.getString(1));
+        while (rs.next()) {
+            System.out.println("POSTGRES: cvegeo" + cvegeo[i] + "counter: " + counters[i] + "DB : " + rs.getString(1));
             ProjectPostgresLocations projectPostgresLocations = new ProjectPostgresLocations();
             projectPostgresLocations.setLocalidad_cvegeo(rs.getString(1));
             projectPostgresLocations.setLocalidad_nombre(rs.getString(2));
@@ -587,7 +594,7 @@ public class DBProjects {
     public ArrayList<ProjectPostgresLocations> getProjectLocations() throws SQLException {
         ArrayList<ProjectPostgresLocations> result = new ArrayList<>();
 
-        String SQL_QUERY =  "select p.cvegeo, l.localidad_nombre, l.municipio_cvegeo, ST_Expand(BOX2D(l.geom),0.005) as bbox,  ST_AsGeojson(l.geom) as geometria, count(p.cvegeo) as total\n" +
+        String SQL_QUERY = "select p.cvegeo, l.localidad_nombre, l.municipio_cvegeo, ST_Expand(BOX2D(l.geom),0.005) as bbox,  ST_AsGeojson(l.geom) as geometria, count(p.cvegeo) as total\n" +
                 "FROM proyectos as p,  ( \n" +
                 "\tSELECT localidad_cvegeo, localidad_nombre, municipio_cvegeo, geom  \n" +
                 "\tFROM public.dim_localidad_rural  \n" +
@@ -601,7 +608,7 @@ public class DBProjects {
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         ResultSet rs = preparedStatement.executeQuery();
-        while(rs.next()){
+        while (rs.next()) {
             ProjectPostgresLocations projectPostgresLocations = new ProjectPostgresLocations();
             projectPostgresLocations.setLocalidad_cvegeo(rs.getString(1));
             projectPostgresLocations.setLocalidad_nombre(rs.getString(2));
@@ -618,7 +625,7 @@ public class DBProjects {
         return result;
     }
 
-    public ArrayList<String> getBBox(String[] cvegeo) throws  SQLException {
+    public ArrayList<String> getBBox(String[] cvegeo) throws SQLException {
         ArrayList<String> result = new ArrayList<>();
         String SQL_QUERY = "SELECT ST_AsGeojson(ST_Envelope(ST_Union(l.geom))) AS table_extent \n" +
                 "FROM \n" +
@@ -639,7 +646,7 @@ public class DBProjects {
         ResultSet rs = preparedStatement.executeQuery();
 
         Integer i = 0;
-        while(rs.next()) {
+        while (rs.next()) {
             result.add(rs.getString(1));
         }
 
