@@ -4,13 +4,13 @@ import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Controllers.WriteXML.WriteXML;
 import mx.geoint.Model.Annotation.AnnotationsRequest;
 import mx.geoint.Model.Glosado.GlosaStep;
+import mx.geoint.Model.Project.ProjectPostgresLocationCoincidence;
 import mx.geoint.Model.Project.ProjectPostgresLocations;
 import mx.geoint.Model.Project.ProjectPostgresRegister;
-import mx.geoint.Controllers.ParseXML.ParseXML;
+import mx.geoint.Model.User.UserListResponse;
+import mx.geoint.Model.User.UserResponse;
 import mx.geoint.pathSystem;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.lucene.search.TotalHits;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -20,16 +20,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.*;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class DBProjects {
-    private Credentials credentials;
+    private static Credentials credentials;
     private Logger logger;
 
     public DBProjects() {
@@ -37,7 +34,7 @@ public class DBProjects {
         this.logger = new Logger();
     }
 
-    public int createProject(String uuid, String basePath, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds) throws SQLException {
+    public int createProject(String uuid, String basePath, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds, String localidad_nombre, String localidad_cvegeo) throws SQLException {
         System.out.println("createProject");
         int id_project = 0;
         //---guardado a base de datos
@@ -50,8 +47,7 @@ public class DBProjects {
         String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds, en_proceso, indice_maya, indice_español, indice_glosado, entidad, municipio, localidad, cvegeo) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,(" +
                 "SELECT entidad_nombre FROM public.dim_entidad WHERE entidad_cvegeo = ?)," +
-                "(SELECT municipio_nombre FROM public.dim_municipio WHERE municipio_cvegeo = ? limit 1)," +
-                "(SELECT l.localidad_nombre FROM (SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ? UNION SELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_urbana WHERE municipio_cvegeo = ?  ORDER BY dist LIMIT 1) AS l), (SELECT l.localidad_cvegeo FROM (SELECT localidad_cvegeo, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_rural WHERE municipio_cvegeo = ? UNION SELECT localidad_cvegeo, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist FROM public.dim_localidad_urbana WHERE municipio_cvegeo = ?  ORDER BY dist LIMIT 1) AS l) ) RETURNING id_proyecto";
+                "(SELECT municipio_nombre FROM public.dim_municipio WHERE municipio_cvegeo = ? limit 1), ?, ?) RETURNING id_proyecto";
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
         preparedStatement.setObject(1, UUID.fromString(uuid));
@@ -73,18 +69,8 @@ public class DBProjects {
         preparedStatement.setBoolean(13, false);
         preparedStatement.setString(14, parts[0]);
         preparedStatement.setString(15, parts[0] + parts[1]);
-        preparedStatement.setString(16, coords[1]);
-        preparedStatement.setString(17, coords[0]);
-        preparedStatement.setString(18, parts[0] + parts[1]);
-        preparedStatement.setString(19, coords[1]);
-        preparedStatement.setString(20, coords[0]);
-        preparedStatement.setString(21, parts[0] + parts[1]);
-        preparedStatement.setString(22, coords[1]);
-        preparedStatement.setString(23, coords[0]);
-        preparedStatement.setString(24, parts[0] + parts[1]);
-        preparedStatement.setString(25, coords[1]);
-        preparedStatement.setString(26, coords[0]);
-        preparedStatement.setString(27, parts[0] + parts[1]);
+        preparedStatement.setString(16, localidad_nombre);
+        preparedStatement.setString(17, localidad_cvegeo);
 
 
         preparedStatement.execute();
@@ -654,4 +640,50 @@ public class DBProjects {
         conn.close();
         return result;
     }
+
+    public static ArrayList<ProjectPostgresLocationCoincidence> checkLocation(String projectName, String ubicacion) throws SQLException {
+        ArrayList<ProjectPostgresLocationCoincidence> result = new ArrayList<>();
+        String[] parts = projectName.split("_");
+        String[] coords = ubicacion.split(",");
+        String query = "SELECT l.localidad_nombre, l.localidad_cvegeo\n" +
+                "FROM (\n" +
+                "\tSELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist, localidad_cvegeo\n" +
+                "\tFROM public.dim_localidad_rural \n" +
+                "\tUNION \n" +
+                "\tSELECT localidad_nombre, geom <-> ST_SetSRID(ST_MakePoint(?::float,?::float),4326) AS dist, localidad_cvegeo\n" +
+                "\tFROM public.dim_localidad_urbana \n" +
+                "\tORDER BY dist \n" +
+                "\tLIMIT 1) \n" +
+                "\tAS l";
+
+        Connection conn = credentials.getConnection();
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+
+        preparedStatement.setString(1,coords[1]);
+        preparedStatement.setString(2,coords[0]);
+        preparedStatement.setString(3,coords[1]);
+        preparedStatement.setString(4,coords[0]);
+
+        ResultSet rs = preparedStatement.executeQuery();
+        System.out.println("rs: "+rs);
+        //ProjectPostgresRegister projectRegister = null;
+
+        ProjectPostgresLocationCoincidence locationCoincidence = null;
+
+        while (rs.next()) {
+            if(rs.getString(2).substring(0, 5).equals(parts[0]+parts[1])){
+                System.out.println("coincide");
+                locationCoincidence = new ProjectPostgresLocationCoincidence();
+                locationCoincidence.setLocalidad_nombre(rs.getString(1));
+                locationCoincidence.setLocalidad_cvegeo(rs.getString(2));
+                result.add(locationCoincidence);
+            }else{
+                System.out.println("No coincide");
+            }
+        }
+        rs.close();
+        conn.close();
+        return result;
+    }
+
 }

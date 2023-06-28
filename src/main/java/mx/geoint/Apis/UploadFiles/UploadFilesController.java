@@ -2,6 +2,9 @@ package mx.geoint.Apis.UploadFiles;
 
 import com.google.gson.JsonObject;
 import mx.geoint.Controllers.Logger.Logger;
+import mx.geoint.Database.DBProjects;
+import mx.geoint.Model.Project.ProjectPostgresLocationCoincidence;
+import mx.geoint.Model.User.UserResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +17,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -39,7 +43,7 @@ public class UploadFilesController {
      */
     @RequestMapping(path="/new", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity created(@RequestParam MultipartFile eaf, @RequestParam MultipartFile multimedia, @RequestParam String uuid, @RequestParam String projectName, @RequestParam(required = false) MultipartFile autorizacion, @RequestParam String date, @RequestParam String hablantes, @RequestParam String ubicacion, @RequestParam String radio, @RequestParam String circleBounds, @RequestParam(required = false) MultipartFile[] images) throws IOException {
+    public ResponseEntity created(@RequestParam MultipartFile eaf, @RequestParam MultipartFile multimedia, @RequestParam String uuid, @RequestParam String projectName, @RequestParam(required = false) MultipartFile autorizacion, @RequestParam String date, @RequestParam String hablantes, @RequestParam String ubicacion, @RequestParam String radio, @RequestParam String circleBounds, @RequestParam(required = false) MultipartFile[] images,@RequestParam String localidad_nombre, @RequestParam String localidad_cvegeo) throws IOException {
 
         Date startDate = new Date();
         if (eaf.isEmpty() || multimedia.isEmpty()) {
@@ -64,7 +68,7 @@ public class UploadFilesController {
 
         try{
             long uploadTime = (new Date()).getTime();
-        Number codeStatus = uploadFilesService.uploadFile(eaf, multimedia, autorizacion, images, uuid, projectName + "_" + uploadTime, date, hablantes, ubicacion, radio, circleBounds);
+        Number codeStatus = uploadFilesService.uploadFile(eaf, multimedia, autorizacion, images, uuid, projectName + "_" + uploadTime, date, hablantes, ubicacion, radio, circleBounds, localidad_nombre, localidad_cvegeo);
 
             Date endDate = new Date();
             long difference_In_Time = endDate.getTime() - startDate.getTime();
@@ -196,6 +200,23 @@ public class UploadFilesController {
             logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
         } catch (IOException e) {
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
+        }
+    }
+
+    @RequestMapping(path="/validate/location", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ArrayList<ProjectPostgresLocationCoincidence>> validateLocation(@RequestParam String projectName, @RequestParam String ubicacion) throws IOException, SQLException {
+        try {
+            ArrayList<ProjectPostgresLocationCoincidence> response = DBProjects.checkLocation(projectName, ubicacion);
+            if(response.size()==1){
+                return ResponseEntity.status(HttpStatus.OK).body(response);
+            }else{
+                return createdResponseEntity(HttpStatus.CONFLICT, "No coinciden los CVEGEO", false);
+            }
+
+        } catch (SQLException e) {
             logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.CONFLICT, "SQLException", e);
         }

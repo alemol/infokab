@@ -7,6 +7,7 @@ import mx.geoint.Database.DBAnnotations;
 import mx.geoint.Database.DBProjects;
 import mx.geoint.Database.DBReports;
 import mx.geoint.Database.DBUsers;
+import mx.geoint.Model.Project.ProjectPostgresLocationCoincidence;
 import mx.geoint.pathSystem;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -19,6 +20,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -59,7 +61,7 @@ public class UploadFiles {
      * @return boolean, respuesta de la carga de archivos
      * @throws IOException
      */
-    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion, MultipartFile[] images, String uuid, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds) throws IOException, SQLException {
+    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion, MultipartFile[] images, String uuid, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds, String localidad_nombre, String localidad_cvegeo) throws IOException, SQLException {
         String baseProjectName = projectName.replace(" ", "_");
         String basePath = existDirectory(pathSystem.DIRECTORY_PROJECTS, uuid, baseProjectName);
 
@@ -107,7 +109,7 @@ public class UploadFiles {
 
         }
 
-        int id_project = dbProjects.createProject(uuid, basePath, baseProjectName, date, hablantes, ubicacion, radio, circleBounds); //inserta un registro del proyecto en la base de datos
+        int id_project = dbProjects.createProject(uuid, basePath, baseProjectName, date, hablantes, ubicacion, radio, circleBounds, localidad_nombre, localidad_cvegeo); //inserta un registro del proyecto en la base de datos
 
         System.out.println("ID de proyecto generado: "+id_project);
         if(id_project > 0){
@@ -321,4 +323,5 @@ public class UploadFiles {
         threadValidateElanXmlDigester.add(pathEaf, uuid, projectID);
         threadValidateElanXmlDigester.activate();
     }
+
 }
