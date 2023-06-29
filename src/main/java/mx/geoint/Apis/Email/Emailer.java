@@ -11,7 +11,7 @@ public class Emailer {
 
     public void sendEmail(String zipName, String email){
         final String username = "corpus.maya@correo.uady.mx";
-        final String password = "";
+        final String password = "Meyaj2021";
 
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp-mail.outlook.com");
