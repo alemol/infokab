@@ -3,6 +3,7 @@ package mx.geoint.Controllers.ElanXmlDigester;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import mx.geoint.Controllers.FFmpeg.FFmpeg;
+import mx.geoint.Controllers.FFmpeg.FFprobe;
 import mx.geoint.Controllers.Images.Images;
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Controllers.ParseXML.ParseXML;
@@ -156,6 +157,9 @@ public class ElanXmlDigester {
         String path = filepathMultimedia;
         String finalName = path.substring(path. lastIndexOf('/'));
         String imagesDir = filepathMultimedia.replace(finalName,"/ImagesFull/");
+        FFprobe ffprobe = new FFprobe();
+        String metadata = ffprobe.getMetadata(filepathMultimedia);
+        System.out.println("filepathMultimedia: "+metadata);
         if(Files.exists(Path.of(imagesDir))) {
             Images img = new Images(imagesDir);
             String[] pathnames;

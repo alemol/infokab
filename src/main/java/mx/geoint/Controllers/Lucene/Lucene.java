@@ -373,13 +373,13 @@ public class Lucene {
             }
 
             if(index.equals("glosado")) {
-                String combinate_searchString = FIELD_CONTENTS + ":" + search + " OR " + FIELD_VIEW + ":" + search + query_cvegeo;
+                String combinate_searchString = FIELD_CONTENTS + ":(" + search + ")" + " OR " + FIELD_VIEW + ":(" + search + ")" + query_cvegeo;
                 new_query = queryParser.parse(combinate_searchString);
             } else if(index.equals("maya")){
-                String combinate_searchString = FIELD_VIEW + ":" + search + query_cvegeo;
+                String combinate_searchString = FIELD_VIEW + ": (" + search + ")"  + query_cvegeo;
                 new_query = queryParser.parse(combinate_searchString);
             }else{
-                String combinate_searchString = FIELD_CONTENTS + ":" + search + query_cvegeo;
+                String combinate_searchString = FIELD_CONTENTS + ": (" + search + ")" + query_cvegeo;
                 new_query = queryParser.parse(combinate_searchString);
             }
         }
@@ -480,13 +480,13 @@ public class Lucene {
             }
 
             if(index.equals("glosado")) {
-                String combinate_searchString = FIELD_CONTENTS + ":" + search + " OR " + FIELD_VIEW + ":" + search + query_cvegeo;
+                String combinate_searchString = FIELD_CONTENTS + ":(" + search + ")" + " OR " + FIELD_VIEW + ":(" + search + ")" + query_cvegeo;
                 new_query = queryParser.parse(combinate_searchString);
             } else if(index.equals("maya")){
-                String combinate_searchString = FIELD_VIEW + ":" + search + query_cvegeo;
+                String combinate_searchString = FIELD_VIEW + ": (" + search + ")" + query_cvegeo;
                 new_query = queryParser.parse(combinate_searchString);
             }else{
-                String combinate_searchString = FIELD_CONTENTS + ":" + search + query_cvegeo;
+                String combinate_searchString = FIELD_CONTENTS + ": (" + search + ")" + query_cvegeo;
                 new_query = queryParser.parse(combinate_searchString);
             }
         }
@@ -581,11 +581,11 @@ public class Lucene {
         String combinate_searchString = "";
 
         if(index.equals("glosado")) {
-            combinate_searchString = FIELD_CONTENTS + ":" + search + " OR " + FIELD_VIEW + ":" + search;
+            combinate_searchString = FIELD_CONTENTS + ":(" + search + ")" + " OR " + FIELD_VIEW + ":(" + search + ")";
         } else if(index.equals("maya")){
-            combinate_searchString = FIELD_VIEW + ":" + search;
+            combinate_searchString = FIELD_VIEW + ":(" + search + ")";
         }else{
-            combinate_searchString = FIELD_CONTENTS + ":" + search;
+            combinate_searchString = FIELD_CONTENTS + ":(" + search + ")";
         }
 
         Query new_query = queryParser.parse(combinate_searchString);

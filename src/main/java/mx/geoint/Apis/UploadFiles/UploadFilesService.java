@@ -1,14 +1,15 @@
 package mx.geoint.Apis.UploadFiles;
 
+import mx.geoint.Model.Project.ProjectPostgresLocationCoincidence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 @Service
 public class UploadFilesService {
@@ -25,8 +26,8 @@ public class UploadFilesService {
      * @return boolean, respuesta del servicio
      * @throws IOException
      */
-    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion , MultipartFile[] images, String uuid, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds, String mimeType) throws IOException, SQLException {
-        return uploadFiles.uploadFile(eaf, multimedia, autorizacion, images, uuid, projectName, date, hablantes, ubicacion, radio, circleBounds, mimeType);
+    public Number uploadFile(MultipartFile eaf, MultipartFile multimedia, MultipartFile autorizacion , MultipartFile[] images, String uuid, String projectName, String date, String hablantes, String ubicacion, String radio, String circleBounds, String localidad_nombre, String localidad_cvegeo, String mimeType) throws IOException, SQLException {
+        return uploadFiles.uploadFile(eaf, multimedia, autorizacion, images, uuid, projectName, date, hablantes, ubicacion, radio, circleBounds, localidad_nombre, localidad_cvegeo, mimeType);
     }
 
     public Number updateEaf(MultipartFile eaf, String projectName, String uuid, int id) throws IOException, SQLException {
@@ -49,4 +50,5 @@ public class UploadFilesService {
         httpURLConnection.disconnect();
         return httpURLConnection.getURL();
     }
+
 }
