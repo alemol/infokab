@@ -196,7 +196,8 @@ public class Lucene {
                     document.add(new StoredField(FIELD_TIME_VALUE_2, tier.TIME_VALUE2));
 
                     document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE_TRADUCCION_LIBRE, Field.Store.YES));
-                    document.add(new TextField(FIELD_VIEW, tier.ANNOTATION_VALUE_TRANSCRIPCION_ORTOGRAFICA, Field.Store.YES));
+                    //document.add(new TextField(FIELD_VIEW, tier.ANNOTATION_VALUE_TRANSCRIPCION_ORTOGRAFICA, Field.Store.YES));
+                    document.add(new TextField(FIELD_VIEW, tier.ANNOTATION_VALUE_TRANSCRIPCION_LITERAL, Field.Store.YES));
 
                     document.add(new StringField(FIELD_CVEGEO, tier.CVEGEO, Field.Store.YES));
                     document.add(new SortedDocValuesField(FIELD_CVEGEO, new BytesRef(tier.CVEGEO) ));

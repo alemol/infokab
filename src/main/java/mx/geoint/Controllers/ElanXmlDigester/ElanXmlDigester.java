@@ -98,6 +98,7 @@ public class ElanXmlDigester {
         String errorTierLimit = "";
         for (var entry : tiersList.entrySet()){
             String key = entry.getKey();
+            System.out.println("DATA!!!!!!" + key);
 
             if(key.equals(pathSystem.TIER_MAIN)){
                 error_tier = true;
@@ -260,7 +261,10 @@ public class ElanXmlDigester {
                     }
 
                     if(tier_id.equals(pathSystem.TIER_MAIN)){
-                        if(!tierMultiple.getREF_ANNOTATION_ID_TRANSCRIPCION_ORTOGRAFICA().isEmpty()){
+                        //if(!tierMultiple.getREF_ANNOTATION_ID_TRANSCRIPCION_ORTOGRAFICA().isEmpty()){
+                        //    exist = true;
+                        //}
+                        if(!tierMultiple.getREF_ANNOTATION_ID_TRANSCRIPCION_LITERAL().isEmpty()){
                             exist = true;
                         }
                     }

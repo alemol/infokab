@@ -76,7 +76,8 @@ public class Downloader {
                 FileReader reader = new FileReader(document.getFilePath());
                 Object obj = jsonParser.parse(reader);
 
-                String[] record = {(String)((JSONObject) obj).get("PROJECT_NAME"), (String)((JSONObject) obj).get("REF_ANNOTATION_ID_TRANSCRIPCION_ORTOGRAFICA"),
+                //String[] record = {(String)((JSONObject) obj).get("PROJECT_NAME"), (String)((JSONObject) obj).get("REF_ANNOTATION_ID_TRANSCRIPCION_ORTOGRAFICA"),
+                String[] record = {(String)((JSONObject) obj).get("PROJECT_NAME"), (String)((JSONObject) obj).get("REF_ANNOTATION_ID_TRANSCRIPCION_LITERAL"),
                         document.getLocalidad(), document.getMunicipio(), document.getEntidad(), document.getBbox(), document.getText(), document.getSubText(), "multimedia/"+document.getMultimediaName()+".wav"};
 
                 data.add(record);

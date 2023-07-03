@@ -1,7 +1,7 @@
 package mx.geoint;
 
 public class pathSystem {
-    public static final String TIER_MAIN = "transcripcion ortografica";
+    public static final String TIER_MAIN = "transcripcion literal";
     public static final String TIER_TRANSLATE = "traduccion libre";
     public static final String TIER_DEFAULT = "default-lt";
 
