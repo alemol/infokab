@@ -23,7 +23,7 @@ public class DataManagement {
         return length;
     }
 
-    public Map<String, Long> getDiskSize(String path ){
+    public static Map<String, Long> getDiskSize(String path){
         //System.out.println("Working Directory = " + System.getProperty("user.dir"));
         //System.out.println("Free space: "+ FileSystemUtils.freeSpaceKb("/"));
         File diskPartition = new File(path);
