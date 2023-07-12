@@ -160,7 +160,8 @@ public class ElanXmlDigester {
         String imagesDir = filepathMultimedia.replace(finalName,"/ImagesFull/");
         FFprobe ffprobe = new FFprobe();
         String metadata = ffprobe.getMetadata(filepathMultimedia);
-        System.out.println("filepathMultimedia: "+metadata);
+        boolean updatedMetadata = dbProjects.updateMetadata(metadata,projectPostgresRegister.getNombre_proyecto());
+        System.out.println("updated Metadata :"+updatedMetadata);
         if(Files.exists(Path.of(imagesDir))) {
             Images img = new Images(imagesDir);
             String[] pathnames;

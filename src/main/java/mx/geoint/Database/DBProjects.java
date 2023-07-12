@@ -44,8 +44,9 @@ public class DBProjects {
         Connection conn = credentials.getConnection();
         System.out.println(conn);
 
-        String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds, en_proceso, indice_maya, indice_español, indice_glosado, mime_type, entidad, municipio, localidad, cvegeo) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,(" +
+        String SQL_INSERT = "INSERT INTO proyectos (id_usuario, nombre_proyecto, ruta_trabajo, fecha_creacion, fecha_archivo, hablantes, ubicacion, radio, bounds, en_proceso, " +
+                "indice_maya, indice_español, indice_glosado, mime_type, entidad, municipio, localidad, cvegeo) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,(" +
                 "SELECT entidad_nombre FROM public.dim_entidad WHERE entidad_cvegeo = ?)," +
                 "(SELECT municipio_nombre FROM public.dim_municipio WHERE municipio_cvegeo = ? limit 1), ?, ?) RETURNING id_proyecto";
 
@@ -67,8 +68,8 @@ public class DBProjects {
         preparedStatement.setBoolean(11, false);
         preparedStatement.setBoolean(12, false);
         preparedStatement.setBoolean(13, false);
-        preparedStatement.setBoolean(14, false);
-        preparedStatement.setString(15, mimeType);
+        preparedStatement.setString(14, mimeType);
+        preparedStatement.setString(15, parts[0]);
         preparedStatement.setString(16, parts[0] + parts[1]);
         preparedStatement.setString(17, localidad_nombre);
         preparedStatement.setString(18, localidad_cvegeo);
@@ -686,6 +687,31 @@ public class DBProjects {
         }
         rs.close();
         conn.close();
+        return result;
+    }
+
+    public boolean updateMetadata(String metadata, String nombre_proyecto) throws SQLException {
+        Connection conn = credentials.getConnection();
+        String SQL_UPDATE = "UPDATE public.proyectos\n" +
+                "\tSET metadata=?::json \n" +
+                "\tWHERE nombre_proyecto = ? ;";
+
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
+        preparedStatement.setString(1, metadata);
+        preparedStatement.setString(2, nombre_proyecto);
+
+        int rs = preparedStatement.executeUpdate();
+        conn.close();
+        boolean result;
+
+        if (rs > 0) {
+            System.out.println("registro actualizado en base de datos");
+            result = true;
+        } else {
+            System.out.println("No se pudo actualizar el registro en base de datos");
+            result = false;
+        }
+
         return result;
     }
 
