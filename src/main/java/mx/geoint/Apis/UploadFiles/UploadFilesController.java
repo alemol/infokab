@@ -5,6 +5,7 @@ import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Database.DBProjects;
 import mx.geoint.Model.Project.ProjectPostgresLocationCoincidence;
 import mx.geoint.Model.User.UserResponse;
+import org.apache.commons.io.FileSystemUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.File;
 import java.io.IOException;
 
 import java.net.MalformedURLException;
@@ -212,6 +214,7 @@ public class UploadFilesController {
     @RequestMapping(path="/validate/location", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ArrayList<ProjectPostgresLocationCoincidence>> validateLocation(@RequestParam String projectName, @RequestParam String ubicacion) throws IOException, SQLException {
+
         try {
             ArrayList<ProjectPostgresLocationCoincidence> response = DBProjects.checkLocation(projectName, ubicacion);
             if(response.size()==1){
