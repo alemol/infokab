@@ -723,7 +723,17 @@ public class DBProjects {
         Metadatos meta = null;
         Map<String, Object> response = new HashMap<String, Object>();
 
-        String SQL_QUERY = "SELECT ruta_trabajo, metadata -> 'format' ->> 'duration' duration, metadata -> 'format' ->> 'size' tamaño, metadata -> 'streams' -> 0 ->>'channels' chanels, mime_type, metadata FROM public.proyectos;";
+        String SQL_QUERY = "SELECT \n" +
+                "\truta_trabajo, \n" +
+                "\tmetadata -> 'format' ->> 'duration' duration, \n" +
+                "\tmetadata -> 'format' ->> 'size' tamaño, \n" +
+                "\tCASE mime_type \n" +
+                "  \t\tWHEN 'video/mp4' THEN metadata -> 'streams' -> 1 ->>'channels' \n" +
+                "  \t\tWHEN 'audio/wav' THEN metadata -> 'streams' -> 0 ->>'channels'\n" +
+                "  \tEND AS channels,\n" +
+                "\tmime_type,\n" +
+                "\tmetadata\n" +
+                "FROM public.proyectos;";
 
 
         Connection conn = credentials.getConnection();
