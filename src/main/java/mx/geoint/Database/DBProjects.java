@@ -3,12 +3,11 @@ package mx.geoint.Database;
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Controllers.WriteXML.WriteXML;
 import mx.geoint.Model.Annotation.AnnotationsRequest;
+import mx.geoint.Model.DataManagement.Metadatos;
 import mx.geoint.Model.Glosado.GlosaStep;
 import mx.geoint.Model.Project.ProjectPostgresLocationCoincidence;
 import mx.geoint.Model.Project.ProjectPostgresLocations;
 import mx.geoint.Model.Project.ProjectPostgresRegister;
-import mx.geoint.Model.User.UserListResponse;
-import mx.geoint.Model.User.UserResponse;
 import mx.geoint.pathSystem;
 import org.apache.commons.io.FileUtils;
 import org.xml.sax.SAXException;
@@ -23,6 +22,8 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class DBProjects {
@@ -663,25 +664,25 @@ public class DBProjects {
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(query);
 
-        preparedStatement.setString(1,coords[1]);
-        preparedStatement.setString(2,coords[0]);
-        preparedStatement.setString(3,coords[1]);
-        preparedStatement.setString(4,coords[0]);
+        preparedStatement.setString(1, coords[1]);
+        preparedStatement.setString(2, coords[0]);
+        preparedStatement.setString(3, coords[1]);
+        preparedStatement.setString(4, coords[0]);
 
         ResultSet rs = preparedStatement.executeQuery();
-        System.out.println("rs: "+rs);
+        System.out.println("rs: " + rs);
         //ProjectPostgresRegister projectRegister = null;
 
         ProjectPostgresLocationCoincidence locationCoincidence = null;
 
         while (rs.next()) {
-            if(rs.getString(2).substring(0, 5).equals(parts[0]+parts[1])){
+            if (rs.getString(2).substring(0, 5).equals(parts[0] + parts[1])) {
                 System.out.println("coincide");
                 locationCoincidence = new ProjectPostgresLocationCoincidence();
                 locationCoincidence.setLocalidad_nombre(rs.getString(1));
                 locationCoincidence.setLocalidad_cvegeo(rs.getString(2));
                 result.add(locationCoincidence);
-            }else{
+            } else {
                 System.out.println("No coincide");
             }
         }
@@ -691,6 +692,8 @@ public class DBProjects {
     }
 
     public boolean updateMetadata(String metadata, String nombre_proyecto) throws SQLException {
+        ArrayList<Metadatos> results = new ArrayList<Metadatos>();
+        Metadatos meta = null;
         Connection conn = credentials.getConnection();
         String SQL_UPDATE = "UPDATE public.proyectos\n" +
                 "\tSET metadata=?::json \n" +
@@ -713,6 +716,37 @@ public class DBProjects {
         }
 
         return result;
+    }
+
+    public static ArrayList<Metadatos> getMetadata() throws SQLException {
+        ArrayList<Metadatos> results = new ArrayList<Metadatos>();
+        Metadatos meta = null;
+        Map<String, Object> response = new HashMap<String, Object>();
+
+        String SQL_QUERY = "SELECT ruta_trabajo, metadata -> 'format' ->> 'duration' duration, metadata -> 'format' ->> 'size' tamaño, metadata -> 'streams' -> 0 ->>'channels' chanels, mime_type, metadata FROM public.proyectos;";
+
+
+        Connection conn = credentials.getConnection();
+
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        while (rs.next()) {
+            meta = new Metadatos();
+            meta.setRuta_trabajo(rs.getString(1));
+            meta.setDuration(rs.getString(2));
+            meta.setTamaño(rs.getString(3));
+            meta.setChannels(rs.getString(4));
+            meta.setMime_type(rs.getString(5));
+            meta.setMetadata(rs.getString(6));
+            meta.setFolderSize(FileUtils.sizeOfDirectory(new File(rs.getString(1))));
+
+            results.add(meta);
+        }
+
+        rs.close();
+        conn.close();
+        return results;
     }
 
 }

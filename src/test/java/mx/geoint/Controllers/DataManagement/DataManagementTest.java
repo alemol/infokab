@@ -3,6 +3,7 @@ package mx.geoint.Controllers.DataManagement;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.sql.SQLException;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,8 +18,8 @@ class DataManagementTest {
     }
 
     @Test
-    void getDiskSize(){
-        Map<String, Long> x = dm.getDiskSize("/");
+    void getDiskSize() throws SQLException {
+        Map<String, Object> x = dm.getDiskSize("/");
 
         System.out.println("\n**** Sizes en Giga Bytes ****\n");
 

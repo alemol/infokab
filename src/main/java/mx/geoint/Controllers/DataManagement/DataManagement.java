@@ -1,8 +1,14 @@
 package mx.geoint.Controllers.DataManagement;
 
 import java.io.File;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import mx.geoint.Database.DBProjects.*;
+import mx.geoint.Model.DataManagement.Metadatos;
+
+import static mx.geoint.Database.DBProjects.getMetadata;
 
 public class DataManagement {
 
@@ -23,22 +29,23 @@ public class DataManagement {
         return length;
     }
 
-    public static Map<String, Long> getDiskSize(String path){
-        //System.out.println("Working Directory = " + System.getProperty("user.dir"));
-        //System.out.println("Free space: "+ FileSystemUtils.freeSpaceKb("/"));
+    public static Map<String, Object> getDiskSize(String path) throws SQLException {
         File diskPartition = new File(path);
+        long totalCapacity = diskPartition.getTotalSpace() / (1000*1000*1000);
+        long freePartitionSpace = diskPartition.getFreeSpace() / (1000*1000*1000);
+        long usablePatitionSpace = diskPartition.getUsableSpace() / (1000*1000*1000);
 
-        long totalCapacity = diskPartition.getTotalSpace() / (1024*1024*1024);
+        /*SELECT ruta_trabajo, metadata -> 'format' ->> 'duration' duration, metadata -> 'format' ->> 'size' tamaño, metadata -> 'streams' -> 0 ->>'channels' chanels, metadata
+	FROM public.proyectos;*/
 
+        ArrayList<Metadatos> metadata = getMetadata();
 
-        long freePartitionSpace = diskPartition.getFreeSpace() / (1024*1024*1024);
-        long usablePatitionSpace = diskPartition.getUsableSpace() / (1024*1024*1024);
-
-        Map<String, Long> mapSizes = new HashMap<String, Long>();
+        Map<String, Object> mapSizes = new HashMap<String, Object>();
         mapSizes.put("totalCapacity", totalCapacity);
         mapSizes.put("freePartitionSpace", freePartitionSpace);
         mapSizes.put("usableParitionSpace", usablePatitionSpace);
         mapSizes.put("usedPartitionSpace", (totalCapacity - freePartitionSpace));
+        mapSizes.put("metadata", metadata);
 
         return  mapSizes;
 

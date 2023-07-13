@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.Map;
 
 import static mx.geoint.Controllers.DataManagement.DataManagement.getDiskSize;
@@ -21,8 +22,8 @@ public class DataManagement {
 
     @RequestMapping(path = "/getStorage", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity getStorage() {
-        Map<String, Long> mapSizes = getDiskSize("/");
+    public ResponseEntity getStorage() throws SQLException {
+        Map<String, Object> mapSizes = getDiskSize("/");
         return ResponseEntity.status(HttpStatus.OK).body(mapSizes);
     }
 }
