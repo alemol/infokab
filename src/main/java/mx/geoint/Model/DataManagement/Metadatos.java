@@ -7,6 +7,7 @@ public class Metadatos {
     String channels;
     String mime_type;
     String metadata;
+    String id_project;
     long folderSize;
 
     public String getRuta_trabajo(){return  ruta_trabajo;}
@@ -29,4 +30,8 @@ public class Metadatos {
 
     public long getFolderSize(){return  folderSize;}
     public void setFolderSize(long folderSize) {this.folderSize = folderSize; }
+
+    public String getId_project() { return id_project; }
+
+    public void setId_project(String id_project) { this.id_project = id_project; }
 }

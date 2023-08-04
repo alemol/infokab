@@ -718,6 +718,32 @@ public class DBProjects {
         return result;
     }
 
+    public boolean updateMetadataOfProject(String metadata, String id) throws SQLException {
+        ArrayList<Metadatos> results = new ArrayList<Metadatos>();
+        Metadatos meta = null;
+        Connection conn = credentials.getConnection();
+        String SQL_UPDATE = "UPDATE public.proyectos\n" +
+                "\tSET metadata=?::json \n" +
+                "\tWHERE id_proyecto = ? ;";
+
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE);
+        preparedStatement.setString(1, metadata);
+        preparedStatement.setInt(2, Integer.parseInt(id));
+
+        int rs = preparedStatement.executeUpdate();
+        conn.close();
+        boolean result;
+
+        if (rs > 0) {
+            System.out.println("registro actualizado en base de datos");
+            result = true;
+        } else {
+            System.out.println("No se pudo actualizar el registro en base de datos");
+            result = false;
+        }
+
+        return result;
+    }
     public static ArrayList<Metadatos> getMetadata() throws SQLException {
         ArrayList<Metadatos> results = new ArrayList<Metadatos>();
         Metadatos meta = null;
@@ -732,7 +758,8 @@ public class DBProjects {
                 "  \t\tWHEN 'audio/wav' THEN metadata -> 'streams' -> 0 ->>'channels'\n" +
                 "  \tEND AS channels,\n" +
                 "\tmime_type,\n" +
-                "\tmetadata\n" +
+                "\tmetadata,\n" +
+                "\tid_proyecto \n" +
                 "FROM public.proyectos;";
 
 
@@ -750,7 +777,7 @@ public class DBProjects {
             meta.setMime_type(rs.getString(5));
             meta.setMetadata(rs.getString(6));
             meta.setFolderSize(FileUtils.sizeOfDirectory(new File(rs.getString(1))));
-
+            meta.setId_project(rs.getString(7));
             results.add(meta);
         }
 
