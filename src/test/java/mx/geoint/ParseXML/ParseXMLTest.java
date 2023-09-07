@@ -17,6 +17,7 @@ import java.net.*;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -451,5 +452,70 @@ class ParseXMLTest {
 
         JsonObject tiersList = parseXML.getTierMultipleAnnotations();
         System.out.println("tiersList: "+ tiersList.getAsJsonArray().getAsString());
+    }
+
+     String getCode(char c){
+        //Reglas para el sonundex
+        String code = "";
+
+        switch(c) {
+            case 'B':
+            case 'F':
+            case 'P':
+            case 'W':
+                code = "1";
+                break;
+            case 'C':
+            case 'G':
+            case 'J':
+            case 'K':
+            case 'Q':
+            case 'S':
+            case 'X':
+            case 'Z':
+                code = "2";
+                break;
+            case 'D':
+            case 'T':
+                code = "3";
+                break;
+            case 'L':
+                code = "4";
+                break;
+            case 'M':
+            case 'N':
+                code = "5";
+                break;
+            case 'R':
+                code = "6";
+                break;
+        }
+
+        return code;
+    }
+
+    String soundex(String s){
+        String code, previous, soundex;
+        code = s.toUpperCase().charAt(0) + "";
+        previous = "7";
+        for (int i=1; i < s.length(); i++){
+            String current = getCode(s.toUpperCase().charAt(i));
+            if(current.length()>0 && !current.equals(previous)){
+                code = code + current;
+            }
+            previous = current;
+        }
+        soundex = (code + "0000").substring(0,4);
+        return soundex;
+    }
+
+    @Test
+    void testSoundex(){
+        System.out.println(soundex("Soundex"));
+        System.out.println(soundex("peek"));
+        System.out.println(soundex("pek"));
+        System.out.println(soundex("pec"));
+        System.out.println(soundex("pecs"));
+
     }
 }
