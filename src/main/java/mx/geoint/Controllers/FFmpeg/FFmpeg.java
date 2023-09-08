@@ -32,9 +32,9 @@ public class FFmpeg {
         String basePath = FilenameUtils.getPath(source)+"multimedia/";
         existDirectory(basePath);
         // Comprobamos si existe un archivo cortado con el mismo nomnbre, si existe mandamos a llamar a la función que lo elimina.
-        if (if_exist(basePath+output)) {
-            return true;
-        }
+        //if (if_exist(basePath+output)) {
+        //    return true;
+        //}
 
 
         // creamos el cuerpo del comando que se va a ejecutar.
@@ -48,6 +48,7 @@ public class FFmpeg {
                 String.valueOf(duration),
                 "-c",
                 "copy",
+                "-y",
                 basePath+output
         });
         // Atrapamos la respuesta en caso de que sea exitoso.
