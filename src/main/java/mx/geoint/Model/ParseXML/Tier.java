@@ -63,6 +63,10 @@ public class Tier {
         ANNOTATION_VALUE = annotation_value;
     }
 
+    public String getANNOTATION_VALUE() {
+        return ANNOTATION_VALUE;
+    }
+
     /**
      * Inserta el valor del nombre del proyecto
      * @param projectName String, Nombre del proyecto
