@@ -85,7 +85,15 @@ public class ParseHandlerMultiple extends DefaultHandler {
 
                 String tierName = current_tier_id.toUpperCase().replaceAll(" ", "_");
                 JsonObject REF_VALUES_TRANSCRIPTION = jsonObjectRefTranscription.getAsJsonObject(REF_ANNOTATION_TIER);
-                REF_VALUES_TRANSCRIPTION.addProperty("ANNOTATION_VALUE_"+tierName, annotation_value);
+                String ANNOTATION_VALUE_OBJECT = "";
+
+                try{
+                    ANNOTATION_VALUE_OBJECT = REF_VALUES_TRANSCRIPTION.get("ANNOTATION_VALUE_"+tierName).getAsString();
+                } catch (Exception e){
+                    ANNOTATION_VALUE_OBJECT = "";
+                }
+
+                REF_VALUES_TRANSCRIPTION.addProperty("ANNOTATION_VALUE_"+tierName, ANNOTATION_VALUE_OBJECT+annotation_value);
                 jsonObjectRefTranscription.add(REF_ANNOTATION_TIER, REF_VALUES_TRANSCRIPTION);
             }
         }

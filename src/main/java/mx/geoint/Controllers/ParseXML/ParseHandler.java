@@ -98,12 +98,14 @@ public class ParseHandler extends DefaultHandler{
                 String annotation_value = new String(ch, start, length);
                 try{
                     if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
-                        latestTier(tierList).setAnnotationValue(annotation_value);
+                        String last_annotation_value = latestTier(tierList).getANNOTATION_VALUE();
+                        latestTier(tierList).setAnnotationValue(last_annotation_value+annotation_value);
                     }
 
                     if(tier_id.isEmpty()) {
                         List getTierList = tiersList.get(current_tier_id);
-                        latestTier(getTierList).setAnnotationValue(annotation_value);
+                        String last_annotation_value = latestTier(getTierList).getANNOTATION_VALUE();
+                        latestTier(getTierList).setAnnotationValue(last_annotation_value+annotation_value);
                     }
                 } catch (Exception e){
                     System.out.println("Error!!" + e);
