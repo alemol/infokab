@@ -99,4 +99,14 @@ public class FFmpeg {
 
         return currentDirectory;
     }
+
+    /*private String formatedMillis(double durationInMillis) {
+        double millis = durationInMillis % 1000;
+        double second = (durationInMillis / 1000) % 60;
+        double minute = (durationInMillis / (1000 * 60)) % 60;
+        double hour = (durationInMillis / (1000 * 60 * 60)) % 24;
+
+        String time = String.format("%02d:%02d:%02d.%d", hour, minute, second, millis);
+        return time;
+    }*/
 }
