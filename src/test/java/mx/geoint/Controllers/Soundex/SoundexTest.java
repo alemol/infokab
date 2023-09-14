@@ -8,7 +8,17 @@ class SoundexTest {
     @Test
     void testSound(){
         Soundex soundex = new Soundex();
-        String code = soundex.maya_soundex("taants'il");
-        System.out.println("modif_string -> " + code);
+        String code = "", word = "";
+        String[] arr = new String[3];
+
+        arr[0] = "ti'i’al";
+        arr[1] = "tya’al";
+        arr[2] = "ta’’ap’'";
+
+        for(int i=0;i<arr.length; i++){
+            System.out.println("****");
+            code = soundex.maya_soundex(arr[i]);
+            System.out.println(arr[i] + " Codigo -> " + code);
+        }
     }
 }

@@ -26,14 +26,35 @@ public class Soundex {
         return output_string;
     }
 
+    String scrap(String input_string, Dictionary<String, String> priordict){
+        String output_string = "";
+
+        for (int i=0; i < input_string.length(); i++){
+            String character = String.valueOf(input_string.charAt(i));
+            String value = priordict.get(character);
+            if(value != null){
+                output_string += character;
+            }
+        }
+
+        return output_string;
+    }
+
     String maya_soundex(String input_string){
         String modif_string = "";
+
+        System.out.println("Original -> " + input_string);
         modif_string  = split(input_string, priorclass3);
-        System.out.println("modif_string -> " + modif_string);
+        System.out.println("priorclass3 -> " + modif_string);
+
         modif_string = split(modif_string, priorclass2);
-        System.out.println("modif_string -> " + modif_string);
+        System.out.println("priorclass2 -> " + modif_string);
+
+        modif_string = scrap(modif_string, priorclass1);
+        System.out.println("scrap with priorclass1 -> " + modif_string);
+
         modif_string = split(modif_string, priorclass1);
-        System.out.println("modif_string -> " + modif_string);
+        System.out.println("priorclass1 -> " + modif_string);
 
         String code = (input_string.toUpperCase().charAt(0) + modif_string + "0000000000").substring(0,10);
         return code;
@@ -89,7 +110,8 @@ public class Soundex {
         priorclass2.put("t'", "d");
 
         //Codigos del fila 4
-        priorclass2.put("gu'", "g");
+        priorclass2.put("gu'", "w");
+        priorclass2.put("gw'", "w");
 
         //Codigos del fila 5
         priorclass2.put("ii", "i");
@@ -112,6 +134,7 @@ public class Soundex {
         priorclass2.put("que", "k");
         priorclass2.put("qui", "k");
         priorclass2.put("ng", "k");
+        priorclass2.put("c", "k");
         priorclass2.put("ca", "ka");
         priorclass2.put("ce", "ke");
         priorclass2.put("ci", "ki");
