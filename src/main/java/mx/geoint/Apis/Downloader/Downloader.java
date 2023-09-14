@@ -55,7 +55,17 @@ public class Downloader {
         List<String[]> csvData = buildCSVFile(documents);
         String fileName = NanoIdUtils.randomNanoId() + "_" + new SimpleDateFormat("yyyyMMddHHmm").format(new Date()) + ".csv";
 
-        try(CSVWriter writer = new CSVWriter(new FileWriter(directory_csv + fileName),'\u0009',CSVWriter.NO_QUOTE_CHARACTER,CSVWriter.NO_ESCAPE_CHARACTER,
+        /*try(CSVWriter writer = new CSVWriter(new FileWriter(directory_csv + fileName),'\u0009',CSVWriter.NO_QUOTE_CHARACTER,CSVWriter.NO_ESCAPE_CHARACTER,
+                CSVWriter.DEFAULT_LINE_END)){
+            writer.writeAll(csvData);
+        }*/
+
+        FileOutputStream os = new FileOutputStream(directory_csv + fileName);
+        os.write(0xef);
+        os.write(0xbb);
+        os.write(0xbf);
+
+        try(CSVWriter writer = new CSVWriter(new OutputStreamWriter(os),'\u0009',CSVWriter.NO_QUOTE_CHARACTER,CSVWriter.NO_ESCAPE_CHARACTER,
                 CSVWriter.DEFAULT_LINE_END)){
             writer.writeAll(csvData);
         }
