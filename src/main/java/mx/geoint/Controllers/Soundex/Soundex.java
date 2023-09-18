@@ -1,15 +1,18 @@
 package mx.geoint.Controllers.Soundex;
 
+import mx.geoint.Model.Soundex.SoundexResponse;
+
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
 public class Soundex {
+    SoundexResponse soundexResponse = new SoundexResponse();
     Dictionary<String, String> priorclass3 = new Hashtable<>();
     Dictionary<String, String> priorclass2 = new Hashtable<>();
     Dictionary<String, String> priorclass1 = new Hashtable<>();
 
-    Soundex(){
+    public Soundex(){
         initPriorClass3();
         initPriorClass2();
         initPriorClass1();
@@ -22,6 +25,19 @@ public class Soundex {
             String key = (String) k.nextElement();
             //System.out.println("Keys in Dictionary : " + key + " -> " +priordict.get(key));
             output_string = output_string.replaceAll(key, priordict.get(key));
+        }
+        return output_string;
+    }
+
+    String replaceRepeated(String input_string){
+        String output_string = "";
+        String last_character = "";
+
+        for(int i=0;i<input_string.length(); i++) {
+            if(!last_character.equals(String.valueOf(input_string.charAt(i)))){
+                last_character = String.valueOf(input_string.charAt(i));
+                output_string += last_character;
+            }
         }
         return output_string;
     }
@@ -40,24 +56,35 @@ public class Soundex {
         return output_string;
     }
 
-    String maya_soundex(String input_string){
+    public SoundexResponse maya_soundex(String input_string){
         String modif_string = "";
-
+        String fistLetter = "";
         System.out.println("Original -> " + input_string);
+        soundexResponse.setOriginalWord(input_string);
+
         modif_string  = split(input_string, priorclass3);
         System.out.println("priorclass3 -> " + modif_string);
+        soundexResponse.setPriorClass3(modif_string);
 
         modif_string = split(modif_string, priorclass2);
         System.out.println("priorclass2 -> " + modif_string);
+        soundexResponse.setPriorClass2(modif_string);
 
         modif_string = scrap(modif_string, priorclass1);
         System.out.println("scrap with priorclass1 -> " + modif_string);
+        soundexResponse.setScrap(modif_string);
 
+        fistLetter = String.valueOf(modif_string.toUpperCase().charAt(0));
         modif_string = split(modif_string, priorclass1);
         System.out.println("priorclass1 -> " + modif_string);
 
-        String code = (input_string.toUpperCase().charAt(0) + modif_string + "0000000000").substring(0,10);
-        return code;
+        modif_string = replaceRepeated(modif_string);
+        System.out.println("replace Repeated -> " + modif_string);
+
+        String code = (fistLetter + modif_string.substring(1) + "0000000000").substring(0,10);
+        soundexResponse.setCode(code);
+
+        return soundexResponse;
     }
 
     void initPriorClass3(){
