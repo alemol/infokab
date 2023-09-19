@@ -43,9 +43,9 @@ public class VideoCutter {
                 "-i",
                 source,
                 "-ss",
-                String.valueOf(start),
+                formatedMillis(start),
                 "-t",
-                String.valueOf(duration),
+                formatedMillis(duration),
                 "-c",
                 "copy",
                 basePath+output
@@ -97,5 +97,15 @@ public class VideoCutter {
         }
 
         return currentDirectory;
+    }
+
+    private String formatedMillis(double durationInMillis) {
+        long millis = (long) (durationInMillis % 1000);
+        long second = (long) ((durationInMillis / 1000) % 60);
+        long minute = (long) ((durationInMillis / (1000 * 60)) % 60);
+        long hour = (long) ((durationInMillis / (1000 * 60 * 60)) % 24);
+
+        String time = String.format("%02d:%02d:%02d.%d", hour, minute, second, millis);
+        return time;
     }
 }

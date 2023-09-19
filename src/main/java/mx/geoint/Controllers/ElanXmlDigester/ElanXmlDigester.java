@@ -323,8 +323,8 @@ public class ElanXmlDigester {
         String file_name = format_name(tier, tier_id, path, type_path);
 
         boolean created = videoCutter.cortador(source,
-                (Float.parseFloat(tier.TIME_VALUE1)/1000),
-                (tier.DIFF_TIME/1000),
+                (Float.parseFloat(tier.TIME_VALUE1)),
+                (tier.DIFF_TIME),
                 file_name);
 
         if(created){
@@ -343,8 +343,8 @@ public class ElanXmlDigester {
         String file_name = format_name(tier, tier_id, path, type_path);
 
         boolean created = videoCutter.cortador(source,
-                (Float.parseFloat(tier.TIME_VALUE1)/1000),
-                (tier.DIFF_TIME/1000),
+                (Float.parseFloat(tier.TIME_VALUE1)),
+                (tier.DIFF_TIME),
                 file_name);
 
         if(created){
@@ -373,8 +373,8 @@ public class ElanXmlDigester {
         String file_name = format_name(tier, tier_id, path, type_path);
 
         boolean created = ffmpeg.cortador(source,
-                (Float.parseFloat(tier.TIME_VALUE1)/1000),
-                (tier.DIFF_TIME/1000),
+                (Float.parseFloat(tier.TIME_VALUE1)),
+                (tier.DIFF_TIME),
                 file_name);
 
         if(created){
@@ -394,8 +394,8 @@ public class ElanXmlDigester {
         String file_name = format_name(tier, tier_id, path, type_path);
 
         boolean created = ffmpeg.cortador(source,
-                (Float.parseFloat(tier.TIME_VALUE1)/1000),
-                (tier.DIFF_TIME/1000),
+                (Float.parseFloat(tier.TIME_VALUE1)),
+                (tier.DIFF_TIME),
                 file_name);
 
         if(created){

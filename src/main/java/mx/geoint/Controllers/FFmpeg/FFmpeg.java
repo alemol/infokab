@@ -29,6 +29,8 @@ public class FFmpeg {
      * */
     public boolean cortador(String source, double start, double duration, String output) throws IOException {
         boolean creado = false;
+        System.out.println("start: "+ start);
+        System.out.println("end: "+ duration);
         String basePath = FilenameUtils.getPath(source)+"multimedia/";
         existDirectory(basePath);
         // Comprobamos si existe un archivo cortado con el mismo nomnbre, si existe mandamos a llamar a la función que lo elimina.
@@ -107,6 +109,7 @@ public class FFmpeg {
         long hour = (long) ((durationInMillis / (1000 * 60 * 60)) % 24);
 
         String time = String.format("%02d:%02d:%02d.%d", hour, minute, second, millis);
+        System.out.println("time: "+time);
         return time;
     }
 }
