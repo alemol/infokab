@@ -62,7 +62,7 @@ public class Soundex {
         System.out.println("Original -> " + input_string);
         soundexResponse.setOriginalWord(input_string);
 
-        modif_string  = split(input_string, priorclass3);
+        modif_string  = split(input_string.toLowerCase(), priorclass3);
         System.out.println("priorclass3 -> " + modif_string);
         soundexResponse.setPriorClass3(modif_string);
 
@@ -75,13 +75,14 @@ public class Soundex {
         soundexResponse.setScrap(modif_string);
 
         fistLetter = String.valueOf(modif_string.toUpperCase().charAt(0));
-        modif_string = split(modif_string, priorclass1);
+        modif_string = split(modif_string.substring(1), priorclass1);
         System.out.println("priorclass1 -> " + modif_string);
 
         modif_string = replaceRepeated(modif_string);
         System.out.println("replace Repeated -> " + modif_string);
 
-        String code = (fistLetter + modif_string.substring(1) + "0000000000").substring(0,10);
+        modif_string = modif_string.replaceAll("0", "");
+        String code = (fistLetter + modif_string + "0000000000").substring(0,10);
         soundexResponse.setCode(code);
 
         return soundexResponse;
@@ -180,14 +181,14 @@ public class Soundex {
 
     void initPriorClass1(){
         //Codigos del fila 0
-        priorclass1.put("a", "");
-        priorclass1.put("á", "");
-        priorclass1.put("é", "");
-        priorclass1.put("e", "");
-        priorclass1.put("ó", "");
-        priorclass1.put("o", "");
-        priorclass1.put("ú", "");
-        priorclass1.put("u", "");
+        priorclass1.put("a", "0");
+        priorclass1.put("á", "0");
+        priorclass1.put("é", "0");
+        priorclass1.put("e", "0");
+        priorclass1.put("ó", "0");
+        priorclass1.put("o", "0");
+        priorclass1.put("ú", "0");
+        priorclass1.put("u", "0");
 
         //Codigos del fila 1
         priorclass1.put("b", "1");

@@ -10,12 +10,9 @@ class SoundexTest {
     void testSound(){
         Soundex soundex = new Soundex();
         String code = "", word = "";
-        String[] arr = new String[4];
+        String[] arr = new String[1];
 
-        arr[0] = "ti'i’al";
-        arr[1] = "tya’al";
-        arr[2] = "ta’’ap’'";
-        arr[3] = "ttttta’’ap’'";
+        arr[0] = "próomosyonaartik";
 
         for(int i=0;i<arr.length; i++){
             System.out.println("****");
