@@ -43,9 +43,9 @@ public class FFmpeg {
                 "-i",
                 source,
                 "-ss",
-                String.valueOf(start),
+                formatedMillis(start),
                 "-t",
-                String.valueOf(duration),
+                formatedMillis(duration),
                 "-c",
                 "copy",
                 "-y",
@@ -100,13 +100,13 @@ public class FFmpeg {
         return currentDirectory;
     }
 
-    /*private String formatedMillis(double durationInMillis) {
-        double millis = durationInMillis % 1000;
-        double second = (durationInMillis / 1000) % 60;
-        double minute = (durationInMillis / (1000 * 60)) % 60;
-        double hour = (durationInMillis / (1000 * 60 * 60)) % 24;
+    private String formatedMillis(double durationInMillis) {
+        long millis = (long) (durationInMillis % 1000);
+        long second = (long) ((durationInMillis / 1000) % 60);
+        long minute = (long) ((durationInMillis / (1000 * 60)) % 60);
+        long hour = (long) ((durationInMillis / (1000 * 60 * 60)) % 24);
 
         String time = String.format("%02d:%02d:%02d.%d", hour, minute, second, millis);
         return time;
-    }*/
+    }
 }
