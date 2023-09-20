@@ -6,7 +6,11 @@ public class SoundexResponse {
     String PriorClass2;
     String PriorClass1;
     String scrap;
-    String code;
+
+    String startCode;
+    String codeWithoutRepeating;
+    String endCode;
+
 
     public void setOriginalWord(String originalWord) {
         this.originalWord = originalWord;
@@ -48,13 +52,17 @@ public class SoundexResponse {
         this.scrap = scrap;
     }
 
-    public String getCode() {
-        return code;
-    }
+    public String getEndCode() { return endCode; }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
+    public void setEndCode(String endCode) { this.endCode = endCode; }
+
+    public String getCodeWithoutRepeating() { return codeWithoutRepeating; }
+
+    public void setCodeWithoutRepeating(String codeWithoutRepeating) { this.codeWithoutRepeating = codeWithoutRepeating; }
+
+    public String getStartCode() { return startCode; }
+
+    public void setStartCode(String startCode) { this.startCode = startCode; }
 }
 
 

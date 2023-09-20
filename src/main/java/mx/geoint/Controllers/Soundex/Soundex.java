@@ -76,14 +76,16 @@ public class Soundex {
 
         fistLetter = String.valueOf(modif_string.toUpperCase().charAt(0));
         modif_string = split(modif_string.substring(1), priorclass1);
-        System.out.println("priorclass1 -> " + modif_string);
+        System.out.println("Convert a code -> " + modif_string);
+        soundexResponse.setStartCode(modif_string);
 
         modif_string = replaceRepeated(modif_string);
         System.out.println("replace Repeated -> " + modif_string);
+        soundexResponse.setCodeWithoutRepeating(modif_string);
 
         modif_string = modif_string.replaceAll("0", "");
         String code = (fistLetter + modif_string + "0000000000").substring(0,10);
-        soundexResponse.setCode(code);
+        soundexResponse.setEndCode(code);
 
         return soundexResponse;
     }
@@ -187,8 +189,6 @@ public class Soundex {
         priorclass1.put("e", "0");
         priorclass1.put("ó", "0");
         priorclass1.put("o", "0");
-        priorclass1.put("ú", "0");
-        priorclass1.put("u", "0");
 
         //Codigos del fila 1
         priorclass1.put("b", "1");
@@ -210,6 +210,8 @@ public class Soundex {
         priorclass1.put("u", "4");
         priorclass1.put("ü", "4");
         priorclass1.put("w", "4");
+        priorclass1.put("ú", "4");
+        priorclass1.put("u", "4");
 
         //Codigos del fila 5
         priorclass1.put("i", "5");
