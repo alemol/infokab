@@ -211,6 +211,15 @@ public class UploadFiles {
         File dir_multimedia = new File(basePath+"/multimedia/");
         FileUtils.deleteDirectory(dir_multimedia.getCanonicalFile());
 
+        File dir_index_maya = new File(pathSystem.DIRECTORY_INDEX_GENERAL + pathSystem.INDEX_LANGUAJE_MAYA + "/" + projectName + "/");
+        FileUtils.deleteDirectory(dir_index_maya.getCanonicalFile());
+
+        File dir_index_español = new File(pathSystem.DIRECTORY_INDEX_GENERAL + pathSystem.INDEX_LANGUAJE_SPANISH + "/" + projectName + "/");
+        FileUtils.deleteDirectory(dir_index_español.getCanonicalFile());
+
+        File dir_index_glosa = new File(pathSystem.DIRECTORY_INDEX_GENERAL + pathSystem.INDEX_LANGUAJE_GLOSA + "/" + projectName + "/");
+        FileUtils.deleteDirectory(dir_index_glosa.getCanonicalFile());
+
         //String multimedia = FilenameUtils.getBaseName(baseProjectName)+".wav";
         String multimedia = "";
 
