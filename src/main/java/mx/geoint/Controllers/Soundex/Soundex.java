@@ -18,6 +18,12 @@ public class Soundex {
         initPriorClass1();
     }
 
+    /**
+     * Remplaza los caracteres de una cadena de texto que se encuentre en el diccionario priordict
+     * @param input_string Cadena de texto a analizar
+     * @param priordict Diccionario que contiene las palabras a remplazar
+     * @return
+     */
     String split(String input_string, Dictionary<String, String> priordict){
         String output_string = input_string;
         for (Enumeration k = priordict.keys(); k.hasMoreElements();)
@@ -29,6 +35,11 @@ public class Soundex {
         return output_string;
     }
 
+    /**
+     * Elimina los caracteres repetidos consecutivamente (aaa) -> (a)
+     * @param input_string Cadena de texto a analizar
+     * @return
+     */
     String replaceRepeated(String input_string){
         String output_string = "";
         String last_character = "";
@@ -42,6 +53,12 @@ public class Soundex {
         return output_string;
     }
 
+    /**
+     * Elimina los caracteres que no se encuentren en el diccionario priodict
+     * @param input_string Cadena de texto a analizar
+     * @param priordict Diccionario que contiene las palabras a remplazar
+     * @return
+     */
     String scrap(String input_string, Dictionary<String, String> priordict){
         String output_string = "";
 
@@ -59,30 +76,36 @@ public class Soundex {
     public SoundexResponse maya_soundex(String input_string){
         String modif_string = "";
         String fistLetter = "";
-        System.out.println("Original -> " + input_string);
+        //System.out.println("Original -> " + input_string);
         soundexResponse.setOriginalWord(input_string);
 
+        //Remplazo de los caracteres con longitud 3  ejemplo pe'eek? => peek?
         modif_string  = split(input_string.toLowerCase(), priorclass3);
-        System.out.println("priorclass3 -> " + modif_string);
+        //System.out.println("priorclass3 -> " + modif_string);
         soundexResponse.setPriorClass3(modif_string);
 
+        //Remplazo de los caracteres con longitud 2  ejemplo peek? => pek?
         modif_string = split(modif_string, priorclass2);
-        System.out.println("priorclass2 -> " + modif_string);
+        //System.out.println("priorclass2 -> " + modif_string);
         soundexResponse.setPriorClass2(modif_string);
 
+        //Remplazo de los caracteres con longitud 1 que no se encuentre en el diccionario ejemplo peek? => pek
         modif_string = scrap(modif_string, priorclass1);
-        System.out.println("scrap with priorclass1 -> " + modif_string);
+        //System.out.println("scrap with priorclass1 -> " + modif_string);
         soundexResponse.setScrap(modif_string);
 
+        //Remplazo de los caracteres por su codigo asigando en la tabla hexadecimal peek => 1008
         fistLetter = String.valueOf(modif_string.toUpperCase().charAt(0));
         modif_string = split(modif_string.substring(1), priorclass1);
-        System.out.println("Convert a code -> " + modif_string);
+        //System.out.println("Convert a code -> " + modif_string);
         soundexResponse.setStartCode(modif_string);
 
+        //Remplazo de los codigos repetidos consecutivamente peek => 1008 => 108
         modif_string = replaceRepeated(modif_string);
-        System.out.println("replace Repeated -> " + modif_string);
+        //System.out.println("replace Repeated -> " + modif_string);
         soundexResponse.setCodeWithoutRepeating(modif_string);
 
+        //Remplazo de los caracteres con codigo 0 peek => 1008 => 18
         modif_string = modif_string.replaceAll("0", "");
         String code = (fistLetter + modif_string + "0000000000").substring(0,10);
         soundexResponse.setEndCode(code);
@@ -161,9 +184,9 @@ public class Soundex {
 
         //Codigos del fila 8
         priorclass2.put("k'", "k");
-        priorclass2.put("que", "k");
-        priorclass2.put("qui", "k");
-        priorclass2.put("ng", "k");
+        priorclass2.put("que", "ke");
+        priorclass2.put("qui", "ki");
+        priorclass2.put("ng", "nk");
         priorclass2.put("c", "k");
         priorclass2.put("ca", "ka");
         priorclass2.put("ce", "ke");
@@ -177,7 +200,7 @@ public class Soundex {
         priorclass2.put("cú", "kí");
 
         //Codigos del fila 10
-        priorclass2.put("ny'", "ñ");
+        priorclass2.put("ny", "ñ");
         priorclass2.put("ni", "ñ");
     }
 
@@ -234,7 +257,7 @@ public class Soundex {
         priorclass1.put("m", "9");
 
         //Codigos del fila A
-        priorclass1.put("ñ", "a");
+        priorclass1.put("ñ", "A");
     }
 
 }
