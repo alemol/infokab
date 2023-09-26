@@ -9,6 +9,8 @@ public class SearchRequest {
 
     private boolean levenshtein;
 
+    private String id_usuario;
+
     public SearchRequest(){}
     public SearchRequest(String text) {
         this.text = text;
@@ -36,5 +38,13 @@ public class SearchRequest {
 
     public void setCvegeo(ArrayList<String> cvegeo) {
         this.cvegeo = cvegeo;
+    }
+
+    public String getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(String id_usuario) {
+        this.id_usuario = id_usuario;
     }
 }

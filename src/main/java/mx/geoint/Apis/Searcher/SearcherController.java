@@ -90,7 +90,8 @@ public class SearcherController {
             ArrayList<String> cvegeo = searchRequest.getCvegeo();
             boolean levenshtein = searchRequest.isLevenshtein();
             System.out.println("CVEGEO "+  cvegeo);
-            SearchResponse response = searcherService.findDocumentsMultiple(text, index, cvegeo, levenshtein);
+            String id_usuario = searchRequest.getId_usuario();
+            SearchResponse response = searcherService.findDocumentsMultiple(text, index, cvegeo, levenshtein, id_usuario);
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (IOException e){
             System.out.println("entre IO");

@@ -1,5 +1,6 @@
 package mx.geoint.Apis.Searcher;
 
+import mx.geoint.Database.DBSearch;
 import mx.geoint.Model.Project.ProjectPostgresGeometry;
 import mx.geoint.Model.Project.ProjectPostgresLocations;
 import mx.geoint.Model.Search.SearchResponse;
@@ -17,8 +18,11 @@ public class Searcher {
 
     private final Lucene lucene;
 
+    private final DBSearch dbSearch;
+
     public Searcher() {
         this.lucene = new Lucene();
+        this.dbSearch = new DBSearch();
     }
 
     /**
@@ -42,8 +46,12 @@ public class Searcher {
         return response;
     }
 
-    public SearchResponse findMultiple(String text, String index, ArrayList<String> cvegeo, boolean levenshtein) throws IOException, ParseException, SQLException {
+    public SearchResponse findMultiple(String text, String index, ArrayList<String> cvegeo, boolean levenshtein, String id_usuario) throws IOException, ParseException, SQLException {
         SearchResponse response = lucene.searchMultipleIndex(text, index, cvegeo, levenshtein);
+
+        int id_search = dbSearch.createSearch(id_usuario, text);
+        System.out.println("ID de búsqueda generada: "+ id_search);
+
         return response;
     }
 
