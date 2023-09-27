@@ -16,20 +16,22 @@ public class DBSearch {
         this.logger = new Logger();
     }
 
-    public int createSearch(String uuid, String search) throws SQLException {
+    public int createSearch(String uuid, String search, String index) throws SQLException {
         System.out.println("createSearch");
         int id_search = 0;
         System.out.println("save to database: " + search);
         Connection conn = credentials.getConnection();
         System.out.println(conn);
+        System.out.println(index);
 
-        String SQL_INSERT = "INSERT INTO busquedas (id_usuario, consulta, fecha_creacion) " +
-                "VALUES (?, ?, ?) RETURNING id_busqueda";
+        String SQL_INSERT = "INSERT INTO busquedas (id_usuario, consulta, fecha_creacion, indice) " +
+                "VALUES (?, ?, ?, ?) RETURNING id_busqueda";
 
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
-        preparedStatement.setObject(1, UUID.fromString(uuid));
+        preparedStatement.setObject(1, null);
         preparedStatement.setString(2, search);
         preparedStatement.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now(ZoneOffset.UTC)));
+        preparedStatement.setString(4, index);
 
         preparedStatement.execute();
         //int row = preparedStatement.executeUpdate();

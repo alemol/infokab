@@ -49,7 +49,7 @@ public class Searcher {
     public SearchResponse findMultiple(String text, String index, ArrayList<String> cvegeo, boolean levenshtein, String id_usuario) throws IOException, ParseException, SQLException {
         SearchResponse response = lucene.searchMultipleIndex(text, index, cvegeo, levenshtein);
 
-        int id_search = dbSearch.createSearch(id_usuario, text);
+        int id_search = dbSearch.createSearch(id_usuario, text, index);
         System.out.println("ID de búsqueda generada: "+ id_search);
 
         return response;
