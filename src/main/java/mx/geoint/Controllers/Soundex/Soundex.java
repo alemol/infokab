@@ -11,11 +11,12 @@ public class Soundex {
     Dictionary<String, String> priorclass3 = new Hashtable<>();
     Dictionary<String, String> priorclass2 = new Hashtable<>();
     Dictionary<String, String> priorclass1 = new Hashtable<>();
-
+    Dictionary<String, String> representants  = new Hashtable<>();
     public Soundex(){
         initPriorClass3();
         initPriorClass2();
         initPriorClass1();
+        initRepresentants();
     }
 
     /**
@@ -24,7 +25,7 @@ public class Soundex {
      * @param priordict Diccionario que contiene las palabras a remplazar
      * @return
      */
-    String split(String input_string, Dictionary<String, String> priordict){
+    String hashtable(String input_string, Dictionary<String, String> priordict){
         String output_string = input_string;
         for (Enumeration k = priordict.keys(); k.hasMoreElements();)
         {
@@ -40,7 +41,7 @@ public class Soundex {
      * @param input_string Cadena de texto a analizar
      * @return
      */
-    String replaceRepeated(String input_string){
+    String replace_repeated(String input_string){
         String output_string = "";
         String last_character = "";
 
@@ -73,41 +74,54 @@ public class Soundex {
         return output_string;
     }
 
+    String special_start(String input_string){
+        String modif_string = "";
+        input_string = input_string.toLowerCase();
+        input_string = input_string.strip();
+
+        if(input_string.substring(0,2).equals("ll")){
+            modif_string = "y"+input_string.substring(2);
+        } else if (input_string.substring(0,1).equals("h")) {
+            modif_string = "j"+input_string.substring(1);
+        } else {
+            modif_string = input_string;
+        }
+
+        return modif_string;
+    }
+
     public SoundexResponse maya_soundex(String input_string){
         String modif_string = "";
         String fistLetter = "";
-        //System.out.println("Original -> " + input_string);
+
+        modif_string = special_start(input_string);
+        //System.out.println("Special Start -> " + modif_string);
         soundexResponse.setOriginalWord(input_string);
 
-        //Remplazo de los caracteres con longitud 3  ejemplo pe'eek? => peek?
-        modif_string  = split(input_string.toLowerCase(), priorclass3);
+        modif_string  = hashtable(modif_string, priorclass3);
         //System.out.println("priorclass3 -> " + modif_string);
         soundexResponse.setPriorClass3(modif_string);
 
-        //Remplazo de los caracteres con longitud 2  ejemplo peek? => pek?
-        modif_string = split(modif_string, priorclass2);
+        modif_string = hashtable(modif_string, priorclass2);
         //System.out.println("priorclass2 -> " + modif_string);
         soundexResponse.setPriorClass2(modif_string);
 
-        //Remplazo de los caracteres con longitud 1 que no se encuentre en el diccionario ejemplo peek? => pek
+
+        //NORMALIZAR
+        fistLetter = hashtable(String.valueOf(modif_string.charAt(0)), priorclass1);
+        fistLetter = hashtable(fistLetter, representants);
+
         modif_string = scrap(modif_string, priorclass1);
         //System.out.println("scrap with priorclass1 -> " + modif_string);
         soundexResponse.setScrap(modif_string);
 
-        //Remplazo de los caracteres por su codigo asigando en la tabla hexadecimal peek => 1008
-        fistLetter = String.valueOf(modif_string.toUpperCase().charAt(0));
-        modif_string = split(modif_string.substring(1), priorclass1);
-        //System.out.println("Convert a code -> " + modif_string);
-        soundexResponse.setStartCode(modif_string);
+        modif_string = hashtable(modif_string, priorclass1);
+        //System.out.println("priorclass1 -> " + modif_string);
 
-        //Remplazo de los codigos repetidos consecutivamente peek => 1008 => 108
-        modif_string = replaceRepeated(modif_string);
+        modif_string = replace_repeated(modif_string);
         //System.out.println("replace Repeated -> " + modif_string);
-        soundexResponse.setCodeWithoutRepeating(modif_string);
 
-        //Remplazo de los caracteres con codigo 0 peek => 1008 => 18
-        modif_string = modif_string.replaceAll("0", "");
-        String code = (fistLetter + modif_string + "0000000000").substring(0,10);
+        String code = (fistLetter + modif_string.substring(1) + "**********").substring(0,10);
         soundexResponse.setEndCode(code);
 
         return soundexResponse;
@@ -179,29 +193,29 @@ public class Soundex {
         priorclass2.put("ts", "s");
         priorclass2.put("tz", "s");
         priorclass2.put("dz", "s");
-        priorclass2.put("ks", "s");
+        //priorclass2.put("ks", "s");
         priorclass2.put("cs", "s");
 
         //Codigos del fila 8
         priorclass2.put("k'", "k");
-        priorclass2.put("que", "ke");
-        priorclass2.put("qui", "ki");
-        priorclass2.put("ng", "nk");
-        priorclass2.put("c", "k");
+        priorclass2.put("que", "k");
+        priorclass2.put("qui", "k");
+        priorclass2.put("ng", "k");
+        //priorclass2.put("c", "k");
         priorclass2.put("ca", "ka");
-        priorclass2.put("ce", "ke");
-        priorclass2.put("ci", "ki");
+        //priorclass2.put("ce", "ke");
+        //priorclass2.put("ci", "ki");
         priorclass2.put("co", "ko");
         priorclass2.put("cu", "ku");
         priorclass2.put("cá", "ká");
-        priorclass2.put("cé", "ké");
-        priorclass2.put("cí", "kí");
+        //priorclass2.put("cé", "ké");
+        //priorclass2.put("cí", "kí");
         priorclass2.put("có", "kó");
-        priorclass2.put("cú", "kí");
+        priorclass2.put("cú", "kú");
 
         //Codigos del fila 10
-        priorclass2.put("ny", "ñ");
-        priorclass2.put("ni", "ñ");
+        priorclass2.put("ny'", "ni");
+        priorclass2.put("ñ", "ni");
     }
 
     void initPriorClass1(){
@@ -212,6 +226,8 @@ public class Soundex {
         priorclass1.put("e", "0");
         priorclass1.put("ó", "0");
         priorclass1.put("o", "0");
+        //priorclass1.put("ú", "0");
+        //priorclass1.put("u", "0");
 
         //Codigos del fila 1
         priorclass1.put("b", "1");
@@ -228,7 +244,7 @@ public class Soundex {
 
         //Codigos del fila 4
         priorclass1.put("g", "4");
-        priorclass1.put("h", "4");
+        //priorclass1.put("h", "4");
         priorclass1.put("j", "4");
         priorclass1.put("u", "4");
         priorclass1.put("ü", "4");
@@ -251,6 +267,7 @@ public class Soundex {
 
         //Codigos del fila 8
         priorclass1.put("k", "8");
+        priorclass1.put("c", "8");
 
         //Codigos del fila 9
         priorclass1.put("n", "9");
@@ -260,4 +277,17 @@ public class Soundex {
         priorclass1.put("ñ", "A");
     }
 
+    void initRepresentants(){
+        representants.put("0", "A");
+        representants.put("1", "B");
+        representants.put("2", "X");
+        representants.put("3", "T");
+        representants.put("4", "U");
+        representants.put("5", "Y");
+        representants.put("6", "R");
+        representants.put("7", "S");
+        representants.put("8", "K");
+        representants.put("9", "M");
+        representants.put("A", "Ñ");
+    }
 }
