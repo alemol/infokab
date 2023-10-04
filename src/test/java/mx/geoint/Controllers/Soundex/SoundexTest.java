@@ -1,14 +1,19 @@
 package mx.geoint.Controllers.Soundex;
 
+import mx.geoint.Database.DBSearch;
+import mx.geoint.Model.Search.SearchPostgres;
 import mx.geoint.Model.Soundex.SoundexResponse;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class SoundexTest {
+    private DBSearch dbSearch;
+
     @Test
     void testSound(){
         Soundex soundex = new Soundex();
@@ -119,6 +124,19 @@ class SoundexTest {
             System.out.println("****");
             SoundexResponse soundexResponse = soundex.maya_soundex(testList.get(i));
             System.out.println(testList.get(i) + " Codigo -> " + soundexResponse.getEndCode());
+        }
+    }
+
+    @Test
+    void testSoundDB() throws SQLException {
+        Soundex soundex = new Soundex();
+        this.dbSearch = new DBSearch();
+        ArrayList<SearchPostgres> result = this.dbSearch.listSearch();
+
+        for(int i=0;i<result.size(); i++){
+            System.out.println("****");
+            SoundexResponse soundexResponse = soundex.maya_soundex(result.get(i).getConsulta());
+            System.out.println(result.get(i).getConsulta() + " Codigo -> " + soundexResponse.getEndCode());
         }
     }
 }

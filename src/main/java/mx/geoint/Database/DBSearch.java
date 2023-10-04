@@ -1,7 +1,9 @@
 package mx.geoint.Database;
 
 import mx.geoint.Controllers.Logger.Logger;
+import mx.geoint.Controllers.Soundex.Soundex;
 import mx.geoint.Model.Search.SearchPostgres;
+import mx.geoint.Model.Soundex.SoundexResponse;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -51,6 +53,7 @@ public class DBSearch {
     }
 
     public ArrayList<SearchPostgres> listSearch() throws SQLException {
+        Soundex soundex = new Soundex();
         ArrayList<SearchPostgres> result = new ArrayList<>();
         SearchPostgres searchPostgres = null;
 
@@ -60,12 +63,14 @@ public class DBSearch {
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         ResultSet rs = preparedStatement.executeQuery();
         while (rs.next()) {
+            SoundexResponse soundexResponse = soundex.maya_soundex(rs.getString(3));
             searchPostgres = new SearchPostgres();
             searchPostgres.setId_busqueda(rs.getString(1));
             searchPostgres.setId_usuario(rs.getString(2));
             searchPostgres.setConsulta(rs.getString(3));
             searchPostgres.setFecha_creacion(rs.getString(4));
             searchPostgres.setIndice(rs.getString(5));
+            searchPostgres.setSoundex(soundexResponse.getEndCode());
 
             result.add(searchPostgres);
         }

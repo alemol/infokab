@@ -7,6 +7,8 @@ public class SearchPostgres {
     String fecha_creacion;
     String indice;
 
+    String soundex;
+
     public String getId_busqueda() {
         return id_busqueda;
     }
@@ -46,4 +48,8 @@ public class SearchPostgres {
     public void setIndice(String indice) {
         this.indice = indice;
     }
+
+    public String getSoundex() { return soundex; }
+
+    public void setSoundex(String soundex) { this.soundex = soundex; }
 }
