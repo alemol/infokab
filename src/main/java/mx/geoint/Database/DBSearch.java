@@ -1,10 +1,12 @@
 package mx.geoint.Database;
 
 import mx.geoint.Controllers.Logger.Logger;
+import mx.geoint.Model.Search.SearchPostgres;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class DBSearch {
@@ -46,5 +48,29 @@ public class DBSearch {
         conn.close();
 
         return id_search;
+    }
+
+    public ArrayList<SearchPostgres> listSearch() throws SQLException {
+        ArrayList<SearchPostgres> result = new ArrayList<>();
+        SearchPostgres searchPostgres = null;
+
+        String SQL_QUERY = "select * FROM busquedas";
+
+        Connection conn = credentials.getConnection();
+        PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
+        ResultSet rs = preparedStatement.executeQuery();
+        while (rs.next()) {
+            searchPostgres = new SearchPostgres();
+            searchPostgres.setId_busqueda(rs.getString(1));
+            searchPostgres.setId_usuario(rs.getString(2));
+            searchPostgres.setConsulta(rs.getString(3));
+            searchPostgres.setFecha_creacion(rs.getString(4));
+            searchPostgres.setIndice(rs.getString(5));
+
+            result.add(searchPostgres);
+        }
+        rs.close();
+        conn.close();
+        return result;
     }
 }

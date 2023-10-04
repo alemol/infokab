@@ -1,8 +1,10 @@
 package mx.geoint.Apis.Searcher;
 
+import mx.geoint.Database.DBSearch;
 import mx.geoint.Model.Project.ProjectPostgresGeometry;
 import mx.geoint.Model.Project.ProjectPostgresLocations;
 import mx.geoint.Model.Search.SearchLuceneDoc;
+import mx.geoint.Model.Search.SearchPostgres;
 import mx.geoint.Model.Search.SearchResponse;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,12 @@ public class SearcherService {
 
     @Autowired
     Searcher searcher;
+
+    public static DBSearch dbSearch;
+
+    public SearcherService(){
+        this.dbSearch = new DBSearch();
+    }
 
     public SearchResponse findDocuments(String searchValue) throws IOException, ParseException, SQLException {
         return searcher.find(formatLucene(searchValue));
@@ -59,5 +67,10 @@ public class SearcherService {
         new_text = new_text.replaceAll("\\?","\\\\?");
         new_text = new_text.replaceAll("\\:","\\\\:");
         return new_text;
+    }
+
+    public ArrayList<SearchPostgres> getSearchs() throws SQLException {
+        ArrayList<SearchPostgres> result = this.dbSearch.listSearch();
+        return result;
     }
 }

@@ -3,10 +3,7 @@ package mx.geoint.Apis.Searcher;
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Model.Project.ProjectPostgresGeometry;
 import mx.geoint.Model.Project.ProjectPostgresLocations;
-import mx.geoint.Model.Search.SearchRequest;
-import mx.geoint.Model.Search.SearchPage;
-import mx.geoint.Model.Search.SearchLuceneDoc;
-import mx.geoint.Model.Search.SearchResponse;
+import mx.geoint.Model.Search.*;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -161,4 +158,15 @@ public class SearcherController {
         }
     }
 
+    @RequestMapping(path = "/userSearch", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ArrayList<?>> getSearchs(){
+        try{
+            ArrayList<SearchPostgres> result = searcherService.getSearchs();
+            return ResponseEntity.status(HttpStatus.OK).body(result);
+        } catch (SQLException e){
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SQLException", e);
+        }
+    }
 }
