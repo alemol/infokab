@@ -57,19 +57,22 @@ public class DBSearch {
         ArrayList<SearchPostgres> result = new ArrayList<>();
         SearchPostgres searchPostgres = null;
 
-        String SQL_QUERY = "select * FROM busquedas";
+        String SQL_QUERY = "select consulta, indice, TO_CHAR(fecha_creacion ,'YYYY-MM-DD HH24:MI:SS') fecha_creacion_aux, count(*)\n" +
+                "\tFROM busquedas\n" +
+                "\tgroup by consulta, fecha_creacion_aux, indice" +
+                "\torder by consulta asc";
 
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
         ResultSet rs = preparedStatement.executeQuery();
         while (rs.next()) {
-            SoundexResponse soundexResponse = soundex.maya_soundex(rs.getString(3));
+            SoundexResponse soundexResponse = soundex.maya_soundex(rs.getString(1));
             searchPostgres = new SearchPostgres();
-            searchPostgres.setId_busqueda(rs.getString(1));
-            searchPostgres.setId_usuario(rs.getString(2));
-            searchPostgres.setConsulta(rs.getString(3));
-            searchPostgres.setFecha_creacion(rs.getString(4));
-            searchPostgres.setIndice(rs.getString(5));
+            //searchPostgres.setId_busqueda(rs.getString(1));
+            //searchPostgres.setId_usuario(rs.getString(2));
+            searchPostgres.setConsulta(rs.getString(1));
+            searchPostgres.setFecha_creacion(rs.getString(3));
+            searchPostgres.setIndice(rs.getString(2));
             searchPostgres.setSoundex(soundexResponse.getEndCode());
 
             result.add(searchPostgres);

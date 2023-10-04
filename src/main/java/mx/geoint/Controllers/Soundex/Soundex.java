@@ -79,7 +79,7 @@ public class Soundex {
         input_string = input_string.toLowerCase();
         input_string = input_string.strip();
 
-        if(input_string.substring(0,2).equals("ll")){
+        if(input_string.length()>=2 && input_string.substring(0,2).equals("ll")){
             modif_string = "y"+input_string.substring(2);
         } else if (input_string.substring(0,1).equals("h")) {
             modif_string = "j"+input_string.substring(1);
