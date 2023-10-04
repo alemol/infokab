@@ -60,7 +60,7 @@ public class DBSearch {
         String SQL_QUERY = "select consulta, indice, TO_CHAR(fecha_creacion ,'YYYY-MM-DD HH24:MI:SS') fecha_creacion_aux, count(*)\n" +
                 "\tFROM busquedas\n" +
                 "\tgroup by consulta, fecha_creacion_aux, indice" +
-                "\torder by consulta asc";
+                "\torder by lower(consulta) asc";
 
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
