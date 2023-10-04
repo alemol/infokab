@@ -121,7 +121,7 @@ public class Soundex {
         modif_string = replace_repeated(modif_string);
         //System.out.println("replace Repeated -> " + modif_string);
 
-        String code = (fistLetter + modif_string.substring(1) + "**********").substring(0,10);
+        String code = (fistLetter + modif_string.substring(1) + "*************").substring(0,13);
         soundexResponse.setEndCode(code);
 
         return soundexResponse;
