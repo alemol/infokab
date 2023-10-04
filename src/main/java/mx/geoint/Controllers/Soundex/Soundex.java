@@ -93,6 +93,7 @@ public class Soundex {
     public SoundexResponse maya_soundex(String input_string){
         String modif_string = "";
         String fistLetter = "";
+        String code = "";
 
         modif_string = special_start(input_string);
         //System.out.println("Special Start -> " + modif_string);
@@ -120,8 +121,9 @@ public class Soundex {
 
         modif_string = replace_repeated(modif_string);
         //System.out.println("replace Repeated -> " + modif_string);
-
-        String code = (fistLetter + modif_string.substring(1) + "*************").substring(0,13);
+        if(!modif_string.equals("")){
+            code = (fistLetter + modif_string.substring(1) + "*************").substring(0,13);
+        }
         soundexResponse.setEndCode(code);
 
         return soundexResponse;
