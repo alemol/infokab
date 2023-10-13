@@ -198,7 +198,7 @@ public class UploadFilesController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<URL> validateLink(@RequestBody Map<String, String> body) {
         String link = body.get("link");
-
+        System.out.println(link);
         try{
             URL url = uploadFilesService.validateLink(link);
             return ResponseEntity.status(HttpStatus.OK).body(url);

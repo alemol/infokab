@@ -43,7 +43,7 @@ public class UploadFilesService {
     }
 
     public URL validateLink(String link) throws IOException {
-        URL url = new URL("https://www.google.com.mx/maps/@20.0334236,-88.5424351,3a,75y,338.19h,90t/data=!3m7!1e1!3m5!1sdls_yCl_kmsafEYgVf9Yyg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fpanoid%3Ddls_yCl_kmsafEYgVf9Yyg%26cb_client%3Dsearch.revgeo_and_fetch.gps%26w%3D96%26h%3D64%26yaw%3D338.18787%26pitch%3D0%26thumbfov%3D100!7i13312!8i6656?shorturl=1");
+        URL url = new URL(link);
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         httpURLConnection.getHeaderFields();
         //System.out.println("Original URL: "+ httpURLConnection.getURL());
