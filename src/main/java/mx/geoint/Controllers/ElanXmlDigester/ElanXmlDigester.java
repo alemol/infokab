@@ -2,11 +2,13 @@ package mx.geoint.Controllers.ElanXmlDigester;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import mx.geoint.Apis.Soundex.SoundexController;
 import mx.geoint.Controllers.FFmpeg.FFmpeg;
 import mx.geoint.Controllers.FFmpeg.FFprobe;
 import mx.geoint.Controllers.Images.Images;
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Controllers.ParseXML.ParseXML;
+import mx.geoint.Controllers.Soundex.Soundex;
 import mx.geoint.Model.ParseXML.Tier;
 import mx.geoint.Controllers.VideoCutter.VideoCutter;
 import mx.geoint.Database.DBProjects;
@@ -36,6 +38,7 @@ public class ElanXmlDigester {
     public List<Tier> getTier;
     private DBReports dbReports;
     private DBProjects dbProjects;
+    private Soundex soundex;
 
     /**
      * Inicializa el path del archivo a parsear
@@ -48,6 +51,7 @@ public class ElanXmlDigester {
         filepathEaf = normalize.replaceAll("[^\\p{ASCII}]", "");
         dbReports = new DBReports();
         dbProjects = new DBProjects();
+        soundex = new Soundex();
     }
 
     /**
@@ -65,6 +69,7 @@ public class ElanXmlDigester {
         filepathMultimedia = multimedia_path;
         dbReports = new DBReports();
         dbProjects = new DBProjects();
+        soundex = new Soundex();
     }
 
     /**
@@ -80,6 +85,7 @@ public class ElanXmlDigester {
         this.projectID = projectID;
         dbReports = new DBReports();
         dbProjects = new DBProjects();
+        soundex = new Soundex();
     }
 
     /**
@@ -298,6 +304,13 @@ public class ElanXmlDigester {
 
                         System.out.println("created:"+ created);
                         if(created == true && save_text == true){
+                            System.out.println("LITERAL    " + tierMultiple.getANNOTATION_VALUE_TRANSCRIPCION_LITERAL());
+                            System.out.println("LIBRE    " + tierMultiple.getANNOTATION_VALUE_TRADUCCION_LIBRE());
+                            String soundex_phrase_literal = soundex.get_maya_soundex(tierMultiple.getANNOTATION_VALUE_TRANSCRIPCION_LITERAL());
+                            String soundex_phrase_libre = soundex.get_maya_soundex(tierMultiple.getANNOTATION_VALUE_TRADUCCION_LIBRE());
+
+                            tierMultiple.setANNOTATION_VALUE_SOUNDEX_TRADUCCION_LIBRE(soundex_phrase_libre);
+                            tierMultiple.setANNOTATION_VALUE_SOUNDEX_TRANSCRIPCION_LITERAL(soundex_phrase_literal);
                             saveText(tierMultiple, tier_id, baseNameEaf);
                         }
 

@@ -2,9 +2,7 @@ package mx.geoint.Controllers.Soundex;
 
 import mx.geoint.Model.Soundex.SoundexResponse;
 
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.Hashtable;
+import java.util.*;
 
 public class Soundex {
     SoundexResponse soundexResponse = new SoundexResponse();
@@ -81,7 +79,7 @@ public class Soundex {
 
         if(input_string.length()>=2 && input_string.substring(0,2).equals("ll")){
             modif_string = "y"+input_string.substring(2);
-        } else if (input_string.substring(0,1).equals("h")) {
+        } else if (input_string.length()>=1 && input_string.substring(0,1).equals("h")) {
             modif_string = "j"+input_string.substring(1);
         } else {
             modif_string = input_string;
@@ -107,7 +105,10 @@ public class Soundex {
         //System.out.println("priorclass2 -> " + modif_string);
         soundexResponse.setPriorClass2(modif_string);
 
-
+        if(modif_string.length() == 0){
+            soundexResponse.setEndCode("*************");
+            return soundexResponse;
+        }
         //NORMALIZAR
         fistLetter = hashtable(String.valueOf(modif_string.charAt(0)), priorclass1);
         fistLetter = hashtable(fistLetter, representants);
@@ -127,6 +128,25 @@ public class Soundex {
         soundexResponse.setEndCode(code);
 
         return soundexResponse;
+    }
+
+    public String preprocessing(String input_string){
+        input_string.replaceAll(",|¿|\\?|\\[|\\]|«|»|<<|>>|\\(|\\)|\\.", "");
+        return input_string;
+    }
+
+    public String get_maya_soundex(String phrase) {
+        String prepro_phase = preprocessing(phrase);
+        String[] list_words = prepro_phase.split(" ");
+        List<String> code_list = new ArrayList<String>();
+
+        for (String s : list_words) {
+            String soundex_code = maya_soundex(s).getEndCode();
+            code_list.add(soundex_code);
+        }
+
+        String encoded_phrase = String.join(" ", code_list);
+        return encoded_phrase;
     }
 
     void initPriorClass3(){

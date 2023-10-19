@@ -137,7 +137,7 @@ public class ThreadLuceneIndex extends Thread {
 
         if(indexName == pathSystem.INDEX_LANGUAJE_MAYA){
             pathAnnotations = projectPostgresRegister.getRuta_trabajo() + pathSystem.INDEX_LANGUAJE_MAYA+"/";
-            elanXmlDigester.parse_tier(pathSystem.TIER_MAIN, true, true);
+            elanXmlDigester.parse_tier_multiple(pathSystem.TIER_MAIN, true, true);
             Lucene lucene_maya = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+"/"+pathSystem.INDEX_LANGUAJE_MAYA+"/"+projectName+"/");
             lucene_maya.initConfig(true);
             lucene_maya.createIndex(pathAnnotations);

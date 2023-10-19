@@ -81,8 +81,8 @@ public class ThreadElanXmlDigester extends Thread{
         try{
             dbProjects.resetFlagIndex(projectID, false);
             currentElanXmlDigester.validateElanXmlDigester();
-            currentElanXmlDigester.parse_tier(pathSystem.TIER_MAIN, true, true);
-            currentElanXmlDigester.parse_tier(pathSystem.TIER_TRANSLATE, true, true);
+            currentElanXmlDigester.parse_tier_multiple(pathSystem.TIER_MAIN, true, true);
+            currentElanXmlDigester.parse_tier_multiple(pathSystem.TIER_TRANSLATE, true, true);
 
             //String uuid = currentElanXmlDigester.getUUID();
             //Lucene lucene = new Lucene(pathSystem.DIRECTORY_INDEX_GENERAL+uuid+"/");
