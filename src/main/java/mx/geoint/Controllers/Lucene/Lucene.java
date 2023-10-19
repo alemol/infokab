@@ -39,7 +39,11 @@ public class Lucene {
     public static final String FIELD_PATH = "path";
     public static final String FIELD_NAME = "filename";
     public static final String FIELD_CONTENTS = "contents";
+
+    public static final String FIELD_CONTENTS_SOUNDEX = "contents_soundex";
+
     public static final String FIELD_VIEW = "view";
+    public static final String FIELD_VIEW_SOUNDEX = "contents_soundex";
     public static final String FIELD_PATH_MULTIMEDIA = "multimedia";
     public static final String FIELD_PROJECT = "project";
     public static final String FIELD_CVEGEO = "cvegeo";
@@ -198,6 +202,9 @@ public class Lucene {
                     document.add(new TextField(FIELD_CONTENTS, tier.ANNOTATION_VALUE_TRADUCCION_LIBRE, Field.Store.YES));
                     //document.add(new TextField(FIELD_VIEW, tier.ANNOTATION_VALUE_TRANSCRIPCION_ORTOGRAFICA, Field.Store.YES));
                     document.add(new TextField(FIELD_VIEW, tier.ANNOTATION_VALUE_TRANSCRIPCION_LITERAL, Field.Store.YES));
+
+                    document.add(new TextField(FIELD_CONTENTS_SOUNDEX, tier.ANNOTATION_VALUE_SOUNDEX_TRADUCCION_LIBRE, Field.Store.YES));
+                    document.add(new TextField(FIELD_VIEW_SOUNDEX, tier.REF_ANNOTATION_ID_TRANSCRIPCION_LITERAL, Field.Store.YES));
 
                     document.add(new StringField(FIELD_CVEGEO, tier.CVEGEO, Field.Store.YES));
                     document.add(new SortedDocValuesField(FIELD_CVEGEO, new BytesRef(tier.CVEGEO) ));
