@@ -118,7 +118,7 @@ public class DBProjects {
 
     public String[] getProjectByName(String filename) throws SQLException {
         String[] parts = filename.split("_");
-        String SQL_QUERY = "SELECT p.fecha_archivo, p.hablantes, p.entidad, p.municipio, p.localidad, p.ubicacion, ST_Expand(BOX2D(l.geom),0.005) as bbox\n" +
+        String SQL_QUERY = "SELECT p.fecha_archivo, p.hablantes, p.entidad, p.municipio, p.localidad, p.ubicacion, ST_Expand(BOX2D(l.geom),0.005) as bbox, p.id_proyecto\n" +
                 "FROM proyectos p ,\n" +
                 "(\n" +
                 "\tSELECT localidad_nombre,municipio_cvegeo, geom \n" +
@@ -136,7 +136,7 @@ public class DBProjects {
         preparedStatement.setString(1, filename);
         preparedStatement.setString(2, parts[0] + parts[1]);
         ResultSet rs = preparedStatement.executeQuery();
-        String[] resultados = new String[7];
+        String[] resultados = new String[8];
         while (rs.next()) {
             resultados[0] = rs.getString(1);
             resultados[1] = rs.getString(2);
@@ -145,6 +145,7 @@ public class DBProjects {
             resultados[4] = rs.getString(5);
             resultados[5] = rs.getString(6);
             resultados[6] = rs.getString(7);
+            resultados[7] = rs.getString(8);
         }
         rs.close();
         conn.close();
