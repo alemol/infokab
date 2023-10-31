@@ -1,6 +1,7 @@
 package mx.geoint.Controllers.Lucene;
 
 import com.google.gson.Gson;
+import mx.geoint.Controllers.Soundex.Soundex;
 import mx.geoint.Model.ParseXML.TierMultiple;
 import mx.geoint.Model.Project.ProjectPostgresGeometry;
 import mx.geoint.Model.Project.ProjectPostgresLocations;
@@ -43,7 +44,7 @@ public class Lucene {
     public static final String FIELD_CONTENTS_SOUNDEX = "contents_soundex";
 
     public static final String FIELD_VIEW = "view";
-    public static final String FIELD_VIEW_SOUNDEX = "contents_soundex";
+    public static final String FIELD_VIEW_SOUNDEX = "view_soundex";
     public static final String FIELD_PATH_MULTIMEDIA = "multimedia";
     public static final String FIELD_PROJECT = "project";
     public static final String FIELD_CVEGEO = "cvegeo";
@@ -59,13 +60,15 @@ public class Lucene {
     private IndexWriterConfig config;
     private Directory indexDirectory;
     private IndexWriter indexWriter;
-
+    private Soundex soundex;
     public Lucene() {
         INDEX_DIRECTORY = pathSystem.DIRECTORY_INDEX_LUCENE;
+        soundex = new Soundex();
     }
 
     public Lucene(String path) {
         INDEX_DIRECTORY = path;
+        soundex = new Soundex();
     }
 
     /*
@@ -204,7 +207,7 @@ public class Lucene {
                     document.add(new TextField(FIELD_VIEW, tier.ANNOTATION_VALUE_TRANSCRIPCION_LITERAL, Field.Store.YES));
 
                     document.add(new TextField(FIELD_CONTENTS_SOUNDEX, tier.ANNOTATION_VALUE_SOUNDEX_TRADUCCION_LIBRE, Field.Store.YES));
-                    document.add(new TextField(FIELD_VIEW_SOUNDEX, tier.REF_ANNOTATION_ID_TRANSCRIPCION_LITERAL, Field.Store.YES));
+                    document.add(new TextField(FIELD_VIEW_SOUNDEX, tier.ANNOTATION_VALUE_SOUNDEX_TRANSCRIPCION_LITERAL, Field.Store.YES));
 
                     document.add(new StringField(FIELD_CVEGEO, tier.CVEGEO, Field.Store.YES));
                     document.add(new SortedDocValuesField(FIELD_CVEGEO, new BytesRef(tier.CVEGEO) ));
@@ -343,8 +346,13 @@ public class Lucene {
         Analyzer analyzer = new StandardAnalyzer();
         //System.out.println("Searching for '" + search + "'");
         String getIndex = index;
+        String new_search = search;
+
         if(index.equals("español")){
             getIndex = "maya";
+        } else if (index.equals("soundex")) {
+            getIndex = "maya";
+            new_search = soundex.get_maya_soundex(search);
         }
 
         //Se Obtiene todos los indices generados en la caperta DIRECTORY_INDEX_GENERAL
@@ -373,7 +381,7 @@ public class Lucene {
         Query new_query = null;
         String query_cvegeo = "";
         if(levenshtein){
-            new_query = new FuzzyQuery(new Term(FIELD_CONTENTS, search));
+            new_query = new FuzzyQuery(new Term(FIELD_CONTENTS, new_search));
         } else {
             if(cvegeo != null && !cvegeo.isEmpty()) {
                 String result_cvegeo = String.join(" ", cvegeo);
@@ -381,13 +389,16 @@ public class Lucene {
             }
 
             if(index.equals("glosado")) {
-                String combinate_searchString = FIELD_CONTENTS + ":(" + search + ")" + " OR " + FIELD_VIEW + ":(" + search + ")" + query_cvegeo;
+                String combinate_searchString = FIELD_CONTENTS + ":(" + new_search + ")" + " OR " + FIELD_VIEW + ":(" + new_search + ")" + query_cvegeo;
                 new_query = queryParser.parse(combinate_searchString);
             } else if(index.equals("maya")){
-                String combinate_searchString = FIELD_VIEW + ": (" + search + ")"  + query_cvegeo;
+                String combinate_searchString = FIELD_VIEW + ": (" + new_search + ")"  + query_cvegeo;
+                new_query = queryParser.parse(combinate_searchString);
+            } else if(index.equals("soundex")){
+                String combinate_searchString = FIELD_VIEW_SOUNDEX + ": (" + new_search + ")"  + query_cvegeo;
                 new_query = queryParser.parse(combinate_searchString);
             }else{
-                String combinate_searchString = FIELD_CONTENTS + ": (" + search + ")" + query_cvegeo;
+                String combinate_searchString = FIELD_CONTENTS + ": (" + new_search + ")" + query_cvegeo;
                 new_query = queryParser.parse(combinate_searchString);
             }
         }
@@ -443,8 +454,13 @@ public class Lucene {
         Analyzer analyzer = new StandardAnalyzer();
 
         String getIndex = index;
+        String new_search = search;
+
         if(index.equals("español")){
             getIndex = "maya";
+        } else if (index.equals("soundex")) {
+            getIndex = "maya";
+            new_search = soundex.get_maya_soundex(search);
         }
 
         //Se Obtiene todos los indices generados en la caperta DIRECTORY_INDEX_GENERAL
@@ -476,7 +492,7 @@ public class Lucene {
         String query_cvegeo = "";
 
         if(levenshtein){
-            new_query = new FuzzyQuery(new Term(FIELD_CONTENTS, search));
+            new_query = new FuzzyQuery(new Term(FIELD_CONTENTS, new_search));
         } else {
             if(isMap){
                 if(cvegeo != null && !cvegeo.isEmpty()) {
@@ -488,13 +504,16 @@ public class Lucene {
             }
 
             if(index.equals("glosado")) {
-                String combinate_searchString = FIELD_CONTENTS + ":(" + search + ")" + " OR " + FIELD_VIEW + ":(" + search + ")" + query_cvegeo;
+                String combinate_searchString = FIELD_CONTENTS + ":(" + new_search + ")" + " OR " + FIELD_VIEW + ":(" + new_search + ")" + query_cvegeo;
                 new_query = queryParser.parse(combinate_searchString);
             } else if(index.equals("maya")){
-                String combinate_searchString = FIELD_VIEW + ": (" + search + ")" + query_cvegeo;
+                String combinate_searchString = FIELD_VIEW + ": (" + new_search + ")" + query_cvegeo;
                 new_query = queryParser.parse(combinate_searchString);
-            }else{
-                String combinate_searchString = FIELD_CONTENTS + ": (" + search + ")" + query_cvegeo;
+            } else if(index.equals("soundex")){
+                String combinate_searchString = FIELD_VIEW_SOUNDEX + ": (" + new_search + ")"  + query_cvegeo;
+                new_query = queryParser.parse(combinate_searchString);
+            } else{
+                String combinate_searchString = FIELD_CONTENTS + ": (" + new_search + ")" + query_cvegeo;
                 new_query = queryParser.parse(combinate_searchString);
             }
         }
