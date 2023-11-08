@@ -15,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 @CrossOrigin(origins = {"http://taantsil.com","http://taantsil.com.mx/","http://infokaab.com/","http://infokaab.com.mx/","http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182","http://10.2.102.189:3009"})
@@ -39,6 +40,23 @@ public class SoundexController {
 
         if (response != null) {
             return ResponseEntity.status(HttpStatus.OK).body(response);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @RequestMapping(path = "/annotation", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Map> annotationSoundex(@RequestBody Map<String, String> body) {
+        String word = body.get("text");
+
+        String response = SoundexService.getWords(word);
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("originalWord", word);
+        map.put("endCode", response);
+
+        if (response != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(map);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
