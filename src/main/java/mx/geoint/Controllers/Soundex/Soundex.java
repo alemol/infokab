@@ -105,17 +105,18 @@ public class Soundex {
         //System.out.println("priorclass2 -> " + modif_string);
         soundexResponse.setPriorClass2(modif_string);
 
+        //NORMALIZAR
+        modif_string = scrap(modif_string, priorclass1);
+        //System.out.println("scrap with priorclass1 -> " + modif_string);
+        soundexResponse.setScrap(modif_string);
+
         if(modif_string.length() == 0){
             soundexResponse.setEndCode("*************");
             return soundexResponse;
         }
-        //NORMALIZAR
+
         fistLetter = hashtable(String.valueOf(modif_string.charAt(0)), priorclass1);
         fistLetter = hashtable(fistLetter, representants);
-
-        modif_string = scrap(modif_string, priorclass1);
-        //System.out.println("scrap with priorclass1 -> " + modif_string);
-        soundexResponse.setScrap(modif_string);
 
         modif_string = hashtable(modif_string, priorclass1);
         //System.out.println("priorclass1 -> " + modif_string);

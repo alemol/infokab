@@ -574,8 +574,13 @@ public class Lucene {
         //https://lucene.apache.org/core/9_1_0/core/org/apache/lucene/geo/LatLonGeometry.html
         List<IndexReader> indexReaders = new ArrayList<>();
         String getIndex = index;
-        if (index.equals("español")) {
+        String new_search = search;
+
+        if(index.equals("español")){
             getIndex = "maya";
+        } else if (index.equals("soundex")) {
+            getIndex = "maya";
+            new_search = soundex.get_maya_soundex(search);
         }
 
         File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL);
@@ -612,11 +617,13 @@ public class Lucene {
         String combinate_searchString = "";
 
         if(index.equals("glosado")) {
-            combinate_searchString = FIELD_CONTENTS + ":(" + search + ")" + " OR " + FIELD_VIEW + ":(" + search + ")";
+            combinate_searchString = FIELD_CONTENTS + ":(" + new_search + ")" + " OR " + FIELD_VIEW + ":(" + new_search + ")";
         } else if(index.equals("maya")){
-            combinate_searchString = FIELD_VIEW + ":(" + search + ")";
-        }else{
-            combinate_searchString = FIELD_CONTENTS + ":(" + search + ")";
+            combinate_searchString = FIELD_VIEW + ":(" + new_search + ")";
+        }else if(index.equals("soundex")){
+            combinate_searchString = FIELD_VIEW_SOUNDEX + ": (" + new_search + ")";
+        } else {
+            combinate_searchString = FIELD_CONTENTS + ":(" + new_search + ")";
         }
 
         Query new_query = queryParser.parse(combinate_searchString);
