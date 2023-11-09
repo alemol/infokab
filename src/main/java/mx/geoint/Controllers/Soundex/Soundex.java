@@ -150,6 +150,20 @@ public class Soundex {
         return encoded_phrase;
     }
 
+    public String get_maya_soundex_similarity_lucene(String phrase) {
+        String prepro_phase = preprocessing(phrase);
+        String[] list_words = prepro_phase.split(" ");
+        List<String> code_list = new ArrayList<String>();
+
+        for (String s : list_words) {
+            String soundex_code = maya_soundex(s).getEndCode();
+            code_list.add("\""+soundex_code+"\"");
+        }
+
+        String encoded_phrase = String.join(" ", code_list);
+        return encoded_phrase;
+    }
+
     void initPriorClass3(){
         //Codigos del fila 0
         priorclass3.put("a'a", "a");

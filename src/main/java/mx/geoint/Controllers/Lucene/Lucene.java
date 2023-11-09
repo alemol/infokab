@@ -355,6 +355,10 @@ public class Lucene {
         } else if (index.equals("soundex")) {
             getIndex = "maya";
             new_search = soundex.get_maya_soundex(search);
+        } else if (index.equals("soundex_boolean")) {
+            getIndex = "maya";
+            new_search = soundex.get_maya_soundex_similarity_lucene(search);
+            System.out.println("totalHits: " + new_search);
         }
 
         //Se Obtiene todos los indices generados en la caperta DIRECTORY_INDEX_GENERAL
@@ -396,7 +400,7 @@ public class Lucene {
             } else if(index.equals("maya")){
                 String combinate_searchString = FIELD_VIEW + ": (" + new_search + ")"  + query_cvegeo;
                 new_query = queryParser.parse(combinate_searchString);
-            } else if(index.equals("soundex")){
+            } else if(index.equals("soundex") || index.equals("soundex_boolean")){
                 String combinate_searchString = FIELD_VIEW_SOUNDEX + ": (" + new_search + ")"  + query_cvegeo;
                 new_query = queryParser.parse(combinate_searchString);
             }else{
@@ -404,6 +408,7 @@ public class Lucene {
                 new_query = queryParser.parse(combinate_searchString);
             }
         }
+
         TopDocs hits = indexSearcher.search(new_query, 10);
         System.out.println("totalHits: " + hits.totalHits);
         //Obtención de información de los documentos encontrados
@@ -464,6 +469,10 @@ public class Lucene {
         } else if (index.equals("soundex")) {
             getIndex = "maya";
             new_search = soundex.get_maya_soundex(search);
+        } else if (index.equals("soundex_boolean")) {
+            getIndex = "maya";
+            new_search = soundex.get_maya_soundex_similarity_lucene(search);
+            System.out.println("totalHits: " + new_search);
         }
 
         //Se Obtiene todos los indices generados en la caperta DIRECTORY_INDEX_GENERAL
@@ -512,7 +521,7 @@ public class Lucene {
             } else if(index.equals("maya")){
                 String combinate_searchString = FIELD_VIEW + ": (" + new_search + ")" + query_cvegeo;
                 new_query = queryParser.parse(combinate_searchString);
-            } else if(index.equals("soundex")){
+            } else if(index.equals("soundex") || index.equals("soundex_boolean")){
                 String combinate_searchString = FIELD_VIEW_SOUNDEX + ": (" + new_search + ")"  + query_cvegeo;
                 new_query = queryParser.parse(combinate_searchString);
             } else{
@@ -581,6 +590,9 @@ public class Lucene {
         } else if (index.equals("soundex")) {
             getIndex = "maya";
             new_search = soundex.get_maya_soundex(search);
+        } else if (index.equals("soundex_boolean")) {
+            getIndex = "maya";
+            new_search = soundex.get_maya_soundex_similarity_lucene(search);
         }
 
         File dir = new File(pathSystem.DIRECTORY_INDEX_GENERAL);
@@ -620,7 +632,7 @@ public class Lucene {
             combinate_searchString = FIELD_CONTENTS + ":(" + new_search + ")" + " OR " + FIELD_VIEW + ":(" + new_search + ")";
         } else if(index.equals("maya")){
             combinate_searchString = FIELD_VIEW + ":(" + new_search + ")";
-        }else if(index.equals("soundex")){
+        }else if(index.equals("soundex") || index.equals("soundex_boolean")){
             combinate_searchString = FIELD_VIEW_SOUNDEX + ": (" + new_search + ")";
         } else {
             combinate_searchString = FIELD_CONTENTS + ":(" + new_search + ")";
