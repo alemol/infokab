@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-@CrossOrigin(origins = {"http://taantsil.com","http://taantsil.com.mx/","http://infokaab.com/","http://infokaab.com.mx/","http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182","http://10.2.102.189:3009"})
+@CrossOrigin(origins = {"http://www.taantsil.com","http://www.taantsil.com.mx/","http://www.infokaab.com/","http://www.infokaab.com.mx/","http://taantsil.com","http://taantsil.com.mx/","http://infokaab.com/","http://infokaab.com.mx/","http://localhost:3009", "http://localhost:3000", "http://10.2.102.182:3009","http://10.2.102.182","http://10.2.102.189:3009"})
 @RestController
 @RequestMapping(path = "api/search")
 public class SearcherController {
