@@ -17,6 +17,8 @@ public class Tier {
     public String MEDIA_PATH;
     public String ORIGINAL_MEDIA_PATH;
     public String CVEGEO;
+    public String ANNOTATOR_NAME = "";
+    public String PARTICIPANT_NAME = "";
 
     /**
      * Inicializa la anotación con sus respectivos tiempos
@@ -92,4 +94,12 @@ public class Tier {
     }
 
     public void setCVEGEO(String CVEGEO) { this.CVEGEO = CVEGEO; }
+
+    public void setANNOTATOR_NAME(String ANNOTATOR_NAME) { this.ANNOTATOR_NAME = ANNOTATOR_NAME; }
+
+    public void setPARTICIPANT_NAME(String PARTICIPANT_NAME) { this.PARTICIPANT_NAME = PARTICIPANT_NAME; }
+
+    public String getANNOTATOR_NAME() { return ANNOTATOR_NAME; }
+
+    public String getPARTICIPANT_NAME() { return PARTICIPANT_NAME; }
 }
