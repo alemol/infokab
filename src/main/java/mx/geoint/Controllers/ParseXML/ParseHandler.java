@@ -60,6 +60,9 @@ public class ParseHandler extends DefaultHandler{
     JsonObject jsonObjectRefTimer = new JsonObject();
     JsonObject jsonObjectRefTranscription = new JsonObject();
 
+    private String ANNOTATOR_NAME = "";
+    private String PARTICIPANT_NAME = "";
+
     ParseHandler(){
         this.tier_id = "";
     }
@@ -100,12 +103,16 @@ public class ParseHandler extends DefaultHandler{
                     if(tier_id.equals(current_tier_id) && !tier_id.isEmpty()) {
                         String last_annotation_value = latestTier(tierList).getANNOTATION_VALUE();
                         latestTier(tierList).setAnnotationValue(last_annotation_value+annotation_value);
+                        latestTier(tierList).setPARTICIPANT_NAME(PARTICIPANT_NAME);
+                        latestTier(tierList).setANNOTATOR_NAME(ANNOTATOR_NAME);
                     }
 
                     if(tier_id.isEmpty()) {
                         List getTierList = tiersList.get(current_tier_id);
                         String last_annotation_value = latestTier(getTierList).getANNOTATION_VALUE();
                         latestTier(getTierList).setAnnotationValue(last_annotation_value+annotation_value);
+                        latestTier(tierList).setPARTICIPANT_NAME(PARTICIPANT_NAME);
+                        latestTier(tierList).setANNOTATOR_NAME(ANNOTATOR_NAME);
                     }
                 } catch (Exception e){
                     System.out.println("Error!!" + e);
@@ -170,6 +177,8 @@ public class ParseHandler extends DefaultHandler{
                 break;
             case TIER:
                 //current_tier_id = attr.getValue("TIER_ID");
+                ANNOTATOR_NAME = attr.getValue("ANNOTATOR");
+                PARTICIPANT_NAME = attr.getValue("PARTICIPANT");
                 String LINGUISTIC_TYPE_REF = attr.getValue("LINGUISTIC_TYPE_REF");
                 String normalize = Normalizer.normalize(LINGUISTIC_TYPE_REF.toLowerCase(), Normalizer.Form.NFD);
                 current_tier_id = normalize.replaceAll("[^\\p{ASCII}]", "");
