@@ -447,6 +447,7 @@ public class Lucene {
             doc.setStartTime(Float.parseFloat(timer_value_1) / 1000);
             doc.setEndTime(Float.parseFloat(timer_value_2) / 1000);
             doc.setSubText(subText);
+            doc.setHighlight_words(soundex.get_diccionary_maya_soundex(content, new_search, index));
             results.add(doc);
         }
 
@@ -572,6 +573,7 @@ public class Lucene {
             doc.setStartTime(Float.parseFloat(timer_value_1) / 1000);
             doc.setEndTime(Float.parseFloat(timer_value_2) / 1000);
             doc.setSubText(subText);
+            doc.setHighlight_words(soundex.get_diccionary_maya_soundex(content, new_search, index));
             results.add(doc);
         }
 

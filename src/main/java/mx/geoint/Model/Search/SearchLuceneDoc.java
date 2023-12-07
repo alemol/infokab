@@ -6,6 +6,7 @@ import org.apache.commons.io.FilenameUtils;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.List;
 
 public class SearchLuceneDoc {
     private String Nhablantes;
@@ -36,6 +37,9 @@ public class SearchLuceneDoc {
     private String bbox;
 
     private String project_id;
+
+    private List<String> highlight_words;
+
     public SearchLuceneDoc(String filePath, String fileName, String text, float score, String[] imageList, String[] videoList, String fecha_archivo, String Nhablantes, String entidad, String municipio, String localidad, String coordinates, String bbox, String multimedia, String project_id) throws FileNotFoundException {
         this.filePath = filePath;
         this.fileName = fileName;
@@ -160,4 +164,8 @@ public class SearchLuceneDoc {
     public void setProject_id(String project_id){this.project_id = project_id;}
 
     public String getProject_id(){return project_id;}
+
+    public void setHighlight_words(List<String> highlight_words) { this.highlight_words = highlight_words; }
+
+    public List<String> getHighlight_words() { return highlight_words; }
 }

@@ -3,6 +3,7 @@ package mx.geoint.Controllers.Soundex;
 import mx.geoint.Model.Soundex.SoundexResponse;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Soundex {
     SoundexResponse soundexResponse = new SoundexResponse();
@@ -162,6 +163,31 @@ public class Soundex {
 
         String encoded_phrase = String.join(" ", code_list);
         return encoded_phrase;
+    }
+
+    public List<String> get_diccionary_maya_soundex(String phrase, String codes, String index) {
+        String prepro_phase = preprocessing(phrase);
+        String[] list_words = prepro_phase.split(" ");
+        List<String> list_codes = List.of(codes.split(" "));
+        List<String> code_list = new ArrayList<String>();
+
+        for (String s : list_words) {
+            if(index.equals("soundex") || index.equals("soundex_boolean")){
+                String soundex_code = maya_soundex(s).getEndCode();
+                if(list_codes.stream().filter(p -> soundex_code.startsWith(p.replaceAll("\\*", "").replaceAll("\"", ""))).count() > 0){
+                    code_list.add(s);
+                }
+            }else{
+                if(list_codes.stream().filter(p -> s.startsWith(p)).count() > 0){
+                    code_list.add(s);
+                }
+            }
+        }
+
+        Set<String> set = new HashSet<>(code_list);
+        code_list.clear();
+        code_list.addAll(set);
+        return code_list;
     }
 
     void initPriorClass3(){
