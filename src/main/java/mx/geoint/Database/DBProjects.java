@@ -586,7 +586,7 @@ public class DBProjects {
     public ArrayList<ProjectPostgresLocations> getProjectLocations() throws SQLException {
         ArrayList<ProjectPostgresLocations> result = new ArrayList<>();
 
-        String SQL_QUERY = "select p.cvegeo, l.localidad_nombre, l.municipio_cvegeo, ST_Expand(BOX2D(l.geom),0.005) as bbox,  ST_AsGeojson(l.geom) as geometria, count(p.cvegeo) as total\n" +
+        String SQL_QUERY = "select p.cvegeo, l.localidad_nombre, l.municipio_cvegeo, p.ubicacion, ST_Expand(BOX2D(l.geom),0.005) as bbox,  ST_AsGeojson(l.geom) as geometria, count(p.cvegeo) as total\n" +
                 "FROM proyectos as p,  ( \n" +
                 "\tSELECT localidad_cvegeo, localidad_nombre, municipio_cvegeo, geom  \n" +
                 "\tFROM public.dim_localidad_rural  \n" +
@@ -595,7 +595,7 @@ public class DBProjects {
                 "\t\tFROM public.dim_localidad_urbana  \n" +
                 "\t) AS l\n" +
                 "WHERE l.localidad_cvegeo = p.cvegeo\n" +
-                "group by p.cvegeo, l.localidad_nombre, l.municipio_cvegeo, l.geom";
+                "group by p.cvegeo, p.ubicacion, l.localidad_nombre, l.municipio_cvegeo, l.geom";
 
         Connection conn = credentials.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_QUERY);
@@ -605,9 +605,10 @@ public class DBProjects {
             projectPostgresLocations.setLocalidad_cvegeo(rs.getString(1));
             projectPostgresLocations.setLocalidad_nombre(rs.getString(2));
             projectPostgresLocations.setMunicipio_cvegeo(rs.getString(3));
-            projectPostgresLocations.setBbox(rs.getString(4));
-            projectPostgresLocations.setGeometria(rs.getString(5));
-            projectPostgresLocations.setCoincidencias(rs.getInt(6));
+            projectPostgresLocations.setUbicacion(rs.getString(4));
+            projectPostgresLocations.setBbox(rs.getString(5));
+            projectPostgresLocations.setGeometria(rs.getString(6));
+            projectPostgresLocations.setCoincidencias(rs.getInt(7));
 
             result.add(projectPostgresLocations);
         }
