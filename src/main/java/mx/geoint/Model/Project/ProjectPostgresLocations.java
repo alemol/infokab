@@ -7,6 +7,8 @@ public class ProjectPostgresLocations {
     private String bbox;
     private String geometria;
 
+    private String ubicacion;
+
     private Number coincidencias;
 
     public String getBbox() { return bbox; }
@@ -32,4 +34,12 @@ public class ProjectPostgresLocations {
     public void setCoincidencias(Number coincidencias) { this.coincidencias = coincidencias; }
 
     public Number getCoincidencias() { return coincidencias; }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
 }
