@@ -213,6 +213,8 @@ public class ParseHandlerMultiple extends DefaultHandler {
                     jsonObjectTranscription.addProperty("ANNOTATOR_NAME", ANNOTATOR_NAME);
                     jsonObjectTranscription.addProperty("PARTICIPANT_NAME", PARTICIPANT_NAME);
                     jsonObjectRefTranscription.add(REF_ANNOTATION_ID, jsonObjectTranscription);
+                }else{
+                    throw new SAXException();
                 }
 
                 if( current_tier_id.equals(pathSystem.TIER_TRANSLATE) ||
