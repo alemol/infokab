@@ -227,7 +227,27 @@ public class ElanXmlDigester {
 
     }
 
+    public void generate_image() throws IOException, InterruptedException, SQLException {
+        ProjectPostgresRegister projectPostgresRegister = dbProjects.getProjectById(String.valueOf(this.projectID));
 
+        String path = filepathMultimedia;
+        String finalName = path.substring(path. lastIndexOf('/'));
+        String imagesDir = filepathMultimedia.replace(finalName,"/ImagesFull/");
+        FFprobe ffprobe = new FFprobe();
+        String metadata = ffprobe.getMetadata(filepathMultimedia);
+        boolean updatedMetadata = dbProjects.updateMetadata(metadata,projectPostgresRegister.getNombre_proyecto());
+        System.out.println("updated Metadata :"+updatedMetadata);
+
+        if(Files.exists(Path.of(imagesDir))) {
+            Images img = new Images(imagesDir);
+            String[] pathnames;
+            File f = new File(imagesDir);
+            pathnames = f.list();
+            for (int i = 0; i < pathnames.length; i++) {
+                System.out.println(pathnames[i]+" reducida: "+ img.resizer(pathnames[i]));
+            }
+        }
+    }
     /**
      * Obtiene las anotaciones por medio de ParseXML, realizar los cortes de audio y genera los archivos json con la
      * información necesaria para el indexado en lucene
