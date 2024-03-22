@@ -80,10 +80,10 @@ public class ParseHandlerMultiple extends DefaultHandler {
         }
 
         if(flag_text){
-            if( current_tier_id.equals(pathSystem.TIER_MAIN) ||
-                current_tier_id.equals(pathSystem.TIER_TRANSLATE) ||
-                current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX) ||
-                current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX_WORDS)){
+            if( current_tier_id.equalsIgnoreCase(pathSystem.TIER_MAIN) ||
+                current_tier_id.equalsIgnoreCase(pathSystem.TIER_TRANSLATE) ||
+                current_tier_id.equalsIgnoreCase(pathSystem.TIER_GlOSA_INDEX) ||
+                current_tier_id.equalsIgnoreCase(pathSystem.TIER_GlOSA_INDEX_WORDS)){
                 String annotation_value = new String(ch, start, length);
 
                 String tierName = current_tier_id.toUpperCase().replaceAll(" ", "_");
@@ -188,7 +188,7 @@ public class ParseHandlerMultiple extends DefaultHandler {
 
                 break;
             case REF_ANNOTATION:
-                if(current_tier_id.equals(pathSystem.TIER_MAIN)){
+                if(current_tier_id.equalsIgnoreCase(pathSystem.TIER_MAIN)){
                     String REF_ANNOTATION_REF = attr.getValue("ANNOTATION_REF");
                     REF_ANNOTATION_ID = attr.getValue("ANNOTATION_ID");
                     REF_ANNOTATION_TIER = attr.getValue("ANNOTATION_ID");
@@ -213,13 +213,12 @@ public class ParseHandlerMultiple extends DefaultHandler {
                     jsonObjectTranscription.addProperty("ANNOTATOR_NAME", ANNOTATOR_NAME);
                     jsonObjectTranscription.addProperty("PARTICIPANT_NAME", PARTICIPANT_NAME);
                     jsonObjectRefTranscription.add(REF_ANNOTATION_ID, jsonObjectTranscription);
-                }else{
-                    throw new SAXException();
+                } else {
                 }
 
-                if( current_tier_id.equals(pathSystem.TIER_TRANSLATE) ||
-                    current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX) ||
-                    current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX_WORDS)){
+                if( current_tier_id.equalsIgnoreCase(pathSystem.TIER_TRANSLATE) ||
+                    current_tier_id.equalsIgnoreCase(pathSystem.TIER_GlOSA_INDEX) ||
+                    current_tier_id.equalsIgnoreCase(pathSystem.TIER_GlOSA_INDEX_WORDS)){
 
                     String tierName = current_tier_id.toUpperCase().replaceAll(" ", "_");
                     REF_ANNOTATION_ID = attr.getValue("ANNOTATION_ID");
