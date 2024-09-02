@@ -56,6 +56,9 @@ public class ParseHandlerMultiple extends DefaultHandler {
     JsonObject jsonObjectRefTimer = new JsonObject();
     JsonObject jsonObjectRefTranscription = new JsonObject();
 
+    private String ANNOTATOR_NAME = "";
+    private String PARTICIPANT_NAME = "";
+
     ParseHandlerMultiple(){
 
     }
@@ -77,10 +80,10 @@ public class ParseHandlerMultiple extends DefaultHandler {
         }
 
         if(flag_text){
-            if( current_tier_id.equals(pathSystem.TIER_MAIN) ||
-                current_tier_id.equals(pathSystem.TIER_TRANSLATE) ||
-                current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX) ||
-                current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX_WORDS)){
+            if( current_tier_id.equalsIgnoreCase(pathSystem.TIER_MAIN) ||
+                current_tier_id.equalsIgnoreCase(pathSystem.TIER_TRANSLATE) ||
+                current_tier_id.equalsIgnoreCase(pathSystem.TIER_GlOSA_INDEX) ||
+                current_tier_id.equalsIgnoreCase(pathSystem.TIER_GlOSA_INDEX_WORDS)){
                 String annotation_value = new String(ch, start, length);
 
                 String tierName = current_tier_id.toUpperCase().replaceAll(" ", "_");
@@ -154,6 +157,9 @@ public class ParseHandlerMultiple extends DefaultHandler {
                 jsonObjectTimeOrder.addProperty(TIME_SLOT_ID, TIME_VALUE);
                 break;
             case TIER:
+                ANNOTATOR_NAME = attr.getValue("ANNOTATOR");
+                PARTICIPANT_NAME = attr.getValue("PARTICIPANT");
+
                 //current_tier_id = attr.getValue("TIER_ID");
                 String LINGUISTIC_TYPE_REF = attr.getValue("LINGUISTIC_TYPE_REF");
                 String normalize = Normalizer.normalize(LINGUISTIC_TYPE_REF.toLowerCase(), Normalizer.Form.NFD);
@@ -182,7 +188,7 @@ public class ParseHandlerMultiple extends DefaultHandler {
 
                 break;
             case REF_ANNOTATION:
-                if(current_tier_id.equals(pathSystem.TIER_MAIN)){
+                if(current_tier_id.equalsIgnoreCase(pathSystem.TIER_MAIN)){
                     String REF_ANNOTATION_REF = attr.getValue("ANNOTATION_REF");
                     REF_ANNOTATION_ID = attr.getValue("ANNOTATION_ID");
                     REF_ANNOTATION_TIER = attr.getValue("ANNOTATION_ID");
@@ -203,12 +209,16 @@ public class ParseHandlerMultiple extends DefaultHandler {
                     jsonObjectTranscription.addProperty("REF_ANNOTATION_ID_"+tierName, REF_ANNOTATION_ID);
                     jsonObjectTranscription.addProperty("REF_ANNOTATION_REF_ID_"+tierName, REF_ANNOTATION_REF);
                     jsonObjectTranscription.addProperty("DIFF_TIME", REF_DIFF_TIME);
+
+                    jsonObjectTranscription.addProperty("ANNOTATOR_NAME", ANNOTATOR_NAME);
+                    jsonObjectTranscription.addProperty("PARTICIPANT_NAME", PARTICIPANT_NAME);
                     jsonObjectRefTranscription.add(REF_ANNOTATION_ID, jsonObjectTranscription);
+                } else {
                 }
 
-                if( current_tier_id.equals(pathSystem.TIER_TRANSLATE) ||
-                    current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX) ||
-                    current_tier_id.equals(pathSystem.TIER_GlOSA_INDEX_WORDS)){
+                if( current_tier_id.equalsIgnoreCase(pathSystem.TIER_TRANSLATE) ||
+                    current_tier_id.equalsIgnoreCase(pathSystem.TIER_GlOSA_INDEX) ||
+                    current_tier_id.equalsIgnoreCase(pathSystem.TIER_GlOSA_INDEX_WORDS)){
 
                     String tierName = current_tier_id.toUpperCase().replaceAll(" ", "_");
                     REF_ANNOTATION_ID = attr.getValue("ANNOTATION_ID");
@@ -254,7 +264,6 @@ public class ParseHandlerMultiple extends DefaultHandler {
      */
     public JsonObject getTier(){
         return jsonObjectRefTranscription;
-
     }
 
     /**

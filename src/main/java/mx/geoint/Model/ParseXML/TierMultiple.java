@@ -33,6 +33,10 @@ public class TierMultiple {
     public String MEDIA_PATH;
     public String ORIGINAL_MEDIA_PATH;
 
+    public String ANNOTATOR_NAME = "";
+    public String PARTICIPANT_NAME = "";
+
+
     /**
      * Inserta el valor del nombre del proyecto
      * @param projectName String, Nombre del proyecto
@@ -137,4 +141,8 @@ public class TierMultiple {
     public String getANNOTATION_VALUE_SOUNDEX_TRANSCRIPCION_LITERAL() { return ANNOTATION_VALUE_SOUNDEX_TRANSCRIPCION_LITERAL; }
 
     public void setANNOTATION_VALUE_SOUNDEX_TRANSCRIPCION_LITERAL(String ANNOTATION_VALUE_SOUNDEX_TRANSCRIPCION_LITERAL) { this.ANNOTATION_VALUE_SOUNDEX_TRANSCRIPCION_LITERAL = ANNOTATION_VALUE_SOUNDEX_TRANSCRIPCION_LITERAL;}
+
+    public String getANNOTATOR_NAME() { return ANNOTATOR_NAME; }
+
+    public String getPARTICIPANT_NAME() { return PARTICIPANT_NAME; }
 }

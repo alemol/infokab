@@ -1,8 +1,10 @@
 package mx.geoint.Apis.Annotation;
 
+import com.google.gson.JsonObject;
 import mx.geoint.Controllers.Logger.Logger;
 import mx.geoint.Model.Annotation.AnnotationRequest;
 import mx.geoint.Model.ParseXML.Tier;
+import mx.geoint.Model.ParseXML.TierMultiple;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -65,6 +67,26 @@ public class AnnotationController {
             String project_id = body.get("project");
             ArrayList<Tier> arrayList = annotationService.getAnnotations(filePath, project_id);
             return ResponseEntity.status(HttpStatus.OK).body(arrayList);
+        } catch (ParserConfigurationException e){
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ParserConfigurationException", e);
+        } catch (SAXException e){
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "SAXException", e);
+        } catch (IOException e){
+            logger.appendToFile(e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "IOException", e);
+        }
+    }
+
+    @RequestMapping(path="/multiple_registers", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ArrayList<TierMultiple>> getMultipleAnnotations(@RequestBody Map<String, String> body) {
+        try{
+            String filePath = body.get("filePath");
+            String project_id = body.get("project");
+            ArrayList<TierMultiple> list_tier_multiple = annotationService.getMultipleAnnotations(filePath, project_id);
+            return ResponseEntity.status(HttpStatus.OK).body(list_tier_multiple);
         } catch (ParserConfigurationException e){
             logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ParserConfigurationException", e);
