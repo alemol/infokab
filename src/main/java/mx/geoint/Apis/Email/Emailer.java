@@ -10,27 +10,23 @@ public class Emailer {
     public Emailer(){}
 
     public void sendEmail(String zipName, String email){
-        final String username = "corpus.maya@correo.uady.mx";
-        final String password = "Meyaj2023";
+        final String username = "taantsil@centrogeo.edu.mx";
+        final String password = "ya29.a0AXeO80RNu1Erb2pTei0QzLR-t4FyFxZAtZQYG1Dueb8Ns7RqXibsNNtPGiqd0Uzv22pISu02aVX9lgeyqDQz7Rdn9HdWL5N5mshiAIXzTwEX0MYwGDJa4I7PNxJLPGPVtN-sd9ND79AYS4k2AxcgoMdyQx-AY-yzmX-kUAYoaCgYKAZcSARASFQHGX2MiBIJT3LatTN1gThNpeDkN6g0175";
 
         Properties prop = new Properties();
-        prop.put("mail.smtp.host", "smtp-mail.outlook.com");
-        prop.put("mail.smtp.port", "587");
-        prop.put("mail.smtp.auth", "true");
-        prop.put("mail.smtp.starttls.enable", "true"); //TLS
-        prop.put("mail.debug", "true");
-
-        Session session = Session.getInstance(prop,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
-                    }
-                });
+        prop.put("mail.smtp.ssl.enable", "true"); // required for Gmail
+        prop.put("mail.smtp.sasl.enable", "true");
+        prop.put("mail.smtp.sasl.mechanisms", "XOAUTH2");
+        prop.put("mail.smtp.auth.login.disable", "true");
+        prop.put("mail.smtp.auth.plain.disable", "true");
 
         try {
+            Session session = Session.getInstance(prop);
+            Transport transport = session.getTransport("smtp");
+            transport.connect("smtp.gmail.com", username, password);
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("corpus.maya@correo.uady.mx"));
+            message.setFrom(new InternetAddress("taantsil@centrogeo.edu.mx"));
             message.setRecipients(
                     Message.RecipientType.TO,
                     InternetAddress.parse(email)
@@ -115,8 +111,8 @@ public class Emailer {
                     "          Si no reconoces o no esperabas este correo electrónico, siempre puedes\n" +
                     "          denunciar comportamientos sospechosos a nuestro equipo de asistencia\n" +
                     "          enviándo un correo a\n" +
-                    "          <a href=\"mailto:corpus.maya@correo.uady.mx\"\n" +
-                    "            >corpus.maya@correo.uady.mx</a\n" +
+                    "          <a href=\"mailto:taantsil@centrogeo.edu.mx\"\n" +
+                    "            >taantsil@centrogeo.edu.mx</a\n" +
                     "          >\n" +
                     "          indicando el código proporcionado.\n" +
                     "        </p>\n" +
@@ -144,13 +140,16 @@ public class Emailer {
                     "  </body>\n" +
                     "</html>\n";
             message.setContent(htmlContent, "text/html; charset=utf-8");
+            message.saveChanges();
 
-            Transport.send(message);
+            transport.send(message, message.getAllRecipients());
 
             System.out.println("Done");
 
         } catch (MessagingException e) {
             e.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 }
