@@ -10,8 +10,8 @@ public class Emailer {
     public Emailer(){}
 
     public void sendEmail(String zipName, String email){
-        final String username = "taantsil@centrogeo.edu.mx";
-        final String password = "ya29.a0AXeO80RNu1Erb2pTei0QzLR-t4FyFxZAtZQYG1Dueb8Ns7RqXibsNNtPGiqd0Uzv22pISu02aVX9lgeyqDQz7Rdn9HdWL5N5mshiAIXzTwEX0MYwGDJa4I7PNxJLPGPVtN-sd9ND79AYS4k2AxcgoMdyQx-AY-yzmX-kUAYoaCgYKAZcSARASFQHGX2MiBIJT3LatTN1gThNpeDkN6g0175";
+        final String username = "";
+        final String password = "";
 
         Properties prop = new Properties();
         prop.put("mail.smtp.ssl.enable", "true"); // required for Gmail

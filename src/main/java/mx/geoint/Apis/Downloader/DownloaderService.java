@@ -16,7 +16,7 @@ public class DownloaderService {
 
     @Autowired Downloader downloader;
 
-    public void prepareDownload(DownloadRequest downloadRequest) throws IOException, ParseException, SQLException {
+    public void prepareDownload(DownloadRequest downloadRequest) throws Exception {
         downloader.prepare(downloadRequest);
     }
 

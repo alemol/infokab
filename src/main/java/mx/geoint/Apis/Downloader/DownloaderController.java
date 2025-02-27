@@ -47,6 +47,8 @@ public class DownloaderController {
         } catch (SQLException e) {
             logger.appendToFile(e);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error sql", e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

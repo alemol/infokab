@@ -2,7 +2,7 @@ package mx.geoint.Apis.Downloader;
 
 import com.aventrix.jnanoid.jnanoid.NanoIdUtils;
 import com.opencsv.CSVWriter;
-import mx.geoint.Apis.Email.Emailer;
+import mx.geoint.Apis.Email.GmailSender;
 import mx.geoint.Controllers.Lucene.Lucene;
 import mx.geoint.Model.Download.DownloadRequest;
 import mx.geoint.Model.Search.SearchLuceneDoc;
@@ -28,14 +28,14 @@ import java.util.zip.ZipOutputStream;
 public class Downloader {
 
     private final Lucene lucene;
-    private final Emailer emailer;
+    private final GmailSender gmailSender;
 
-    public Downloader() {
+    public Downloader() throws Exception {
         this.lucene = new Lucene();
-        this.emailer = new Emailer();
+        this.gmailSender = new GmailSender();
     }
 
-    public void prepare(DownloadRequest downloadRequest) throws IOException, ParseException, SQLException {
+    public void prepare(DownloadRequest downloadRequest) throws Exception {
         SearchResponse response = lucene.searchMultipleIndex(downloadRequest.getText(), downloadRequest.getIndex(), downloadRequest.getCvegeo(), false);
         ArrayList<SearchLuceneDoc> documents = response.getDocuments();
         int pages = (int)response.getTotalHits() / 10 + ((response.getTotalHits() % 10 == 0) ? 0 : 1);
@@ -103,7 +103,7 @@ public class Downloader {
         return data;
     }
 
-    public void zipFiles(ArrayList<SearchLuceneDoc> documents, String csvFileName, String email) throws IOException{
+    public void zipFiles(ArrayList<SearchLuceneDoc> documents, String csvFileName, String email) throws IOException, Exception{
 
         String directory_download = existDirectory(pathSystem.DIRECTORY_DOWNLOADS);
         String directory_csv = existDirectory(pathSystem.DIRECTORY_CSV);
@@ -124,7 +124,7 @@ public class Downloader {
         zipOut.close();
         fos.close();
 
-        emailer.sendEmail(zipName, email);
+        gmailSender.createEmail(email, zipName);
     }
 
     public void writeFileToZip(File fileToZip, ZipOutputStream zipOut, String subDir) throws IOException{

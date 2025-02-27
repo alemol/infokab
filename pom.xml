@@ -129,6 +129,48 @@
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
+
+        <!-- Dependencia para la API de Gmail -->
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-gmail</artifactId>
+            <version>v1-rev20240520-2.0.0</version>
+        </dependency>
+
+        <!-- Dependencia para el cliente OAuth 2.0 de Google -->
+        <dependency>
+            <groupId>com.google.oauth-client</groupId>
+            <artifactId>google-oauth-client</artifactId>
+            <version>1.35.0</version>
+        </dependency>
+
+        <!-- Dependencia para la API de cliente de Google -->
+        <dependency>
+            <groupId>com.google.api-client</groupId>
+            <artifactId>google-api-client</artifactId>
+            <version>1.35.0</version>
+        </dependency>
+
+        <!-- Dependencia para las bibliotecas comunes de Google -->
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client-gson</artifactId>
+            <version>1.40.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.oauth-client</groupId>
+            <artifactId>google-oauth-client-jetty</artifactId>
+            <version>1.38.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client-gson</artifactId>
+            <version>1.46.3</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
