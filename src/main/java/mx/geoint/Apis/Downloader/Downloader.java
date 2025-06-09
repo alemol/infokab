@@ -13,6 +13,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Component;
 
+import javax.mail.internet.MimeMessage;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -124,7 +125,8 @@ public class Downloader {
         zipOut.close();
         fos.close();
 
-        gmailSender.createEmail(email, zipName);
+        inf send_email = gmailSender.createEmail(email, zipName);
+        gmailSender.sendMessage("me", send_email);
     }
 
     public void writeFileToZip(File fileToZip, ZipOutputStream zipOut, String subDir) throws IOException{
