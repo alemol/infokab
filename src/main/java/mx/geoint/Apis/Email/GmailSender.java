@@ -66,6 +66,7 @@ public class GmailSender {
 
         String htmlContent = "<html>\n" +
                 "  <head>\n" +
+                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"+
                 "    <style>\n" +
                 "      #body {\n" +
                 "        width: 50%;\n" +
@@ -98,7 +99,7 @@ public class GmailSender {
                 "      .footer {\n" +
                 "        background-color: #303030;\n" +
                 "        text-align: center;\n" +
-                "        padding: 2rem 6rem;\n" +
+                "        padding: 2rem 10%;\n" +
                 "      }\n" +
                 "      .footer-section {\n" +
                 "        padding-bottom: 2rem;\n" +
@@ -118,7 +119,7 @@ public class GmailSender {
                 "    </style>\n" +
                 "  </head>\n" +
                 "  <body>\n" +
-                "    <div id=\"body\">\n" +
+                "   <div id=\"body\" style=\"max-width: 600px; margin: 0 auto; width: 100%;\">\n"+
                 "      <div class=\"body-top\">\n" +
                 "        <img class=\"logo\" src=\"http://taantsil.com.mx/logo_verde.jpg\" />\n" +
                 "        <div class=\"body-section\">\n" +
@@ -149,14 +150,14 @@ public class GmailSender {
                 "        </p>\n" +
                 "      </div>\n" +
                 "      <div class=\"footer\">\n" +
-                "        <img class=\"logo\" src=\"http://taantsil.com.mx/logo3.png\" />\n" +
+                "        <img src=\"http://taantsil.com.mx/logo3.png\" style=\"display: block; margin: 0 auto; max-width: 100%; height: auto;\" />\n"+
                 "        <div class=\"footer-section\">\n" +
                 "          <p class=\"footer-main\">\n" +
                 "            Esta herramienta ha sido desarrollada en el Centro de\n" +
                 "            Investigación en Ciencias de Información Geoespacial y financiada\n" +
                 "            por W.K. Kellogg Foundation mediante el proyecto P-6005156-2021\n" +
-                "            “Desarrollo de tecnologías de la información para el corpus\n" +
-                "            lingüístico del maya yucateco “ (Development of Information\n" +
+                "            \"Desarrollo de tecnologías de la información para el corpus\n" +
+                "            lingüístico del maya yucateco\" (Development of Information\n" +
                 "            Technologies for the Linguistic Corpus of the Maya Language of\n" +
                 "            Yucatan).\n" +
                 "          </p>\n" +

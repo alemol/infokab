@@ -89,7 +89,7 @@ public class Downloader {
 
                 //String[] record = {(String)((JSONObject) obj).get("PROJECT_NAME"), (String)((JSONObject) obj).get("REF_ANNOTATION_ID_TRANSCRIPCION_ORTOGRAFICA"),
                 String[] record = {(String)((JSONObject) obj).get("PROJECT_NAME"), (String)((JSONObject) obj).get("REF_ANNOTATION_ID_TRANSCRIPCION_LITERAL"),
-                        document.getLocalidad(), document.getMunicipio(), document.getEntidad(), document.getBbox(), document.getText(), document.getSubText(), "multimedia/"+document.getMultimediaName()+".wav"};
+                        document.getLocalidad(), document.getMunicipio(), document.getEntidad(), document.getBbox(), document.getText(), document.getSubText(), "multimedia/"+document.getMultimediaName()+"." +document.getTypePath()};
 
                 data.add(record);
             }
@@ -115,7 +115,7 @@ public class Downloader {
         ZipOutputStream zipOut = new ZipOutputStream(fos);
 
         for(SearchLuceneDoc document : documents){
-            File fileToZip = new File("./Files" + document.getBasePath() + document.getMultimediaName() + ".wav");
+            File fileToZip = new File("./Files" + document.getBasePath() + document.getMultimediaName() + "." + document.getTypePath());
             writeFileToZip(fileToZip, zipOut, "multimedia/");
         }
 
@@ -125,7 +125,7 @@ public class Downloader {
         zipOut.close();
         fos.close();
 
-        inf send_email = gmailSender.createEmail(email, zipName);
+        MimeMessage send_email = gmailSender.createEmail(email, zipName);
         gmailSender.sendMessage("me", send_email);
     }
 
