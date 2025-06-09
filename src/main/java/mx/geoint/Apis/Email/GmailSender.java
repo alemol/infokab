@@ -39,6 +39,7 @@ public class GmailSender {
     }
 
     public static Credential authorize() throws Exception {
+        System.out.println("Tokens path: " + new File(TOKENS_DIRECTORY_PATH).getAbsolutePath());
         InputStream in = GmailSender.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
 
         GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
@@ -183,7 +184,8 @@ public class GmailSender {
 
     public void sendMessage(String userId, MimeMessage email) throws IOException, MessagingException {
         Message message = createMessageWithEmail(email);
-        service.users().messages().send(userId, message).execute();
+        Message sentMessage = service.users().messages().send(userId, message).execute();
+        System.out.println("Message sent with ID: " + sentMessage.getId());
     }
 
     private Message createMessageWithEmail(MimeMessage email) throws MessagingException, IOException {
